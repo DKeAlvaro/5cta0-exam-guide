@@ -46,6 +46,7 @@ theme:
 nav:
   - Start here: index.md
   - The exam, decoded: patterns.md
+  - Chapter 0 · From zero (background maths): p0-foundations.md
   - Toolbox (math you need): toolbox.md
   - Part 1 · Probability & signals:
       - 1.1 Bayes & total probability: p1-bayes.md
