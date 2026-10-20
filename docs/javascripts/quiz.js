@@ -33,4 +33,9 @@
     document.getElementById("quiz-toggle").style.display = hasSolutions ? "" : "none";
     apply(document);
   });
+  // Also run immediately: document$ may have emitted before this script loaded.
+  ensureButton();
+  const has = document.querySelector("details.solution");
+  document.getElementById("quiz-toggle").style.display = has ? "" : "none";
+  apply(document);
 })();
