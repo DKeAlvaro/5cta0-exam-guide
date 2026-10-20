@@ -102,11 +102,13 @@ extra_javascript:
   - https://unpkg.com/katex@0.16.11/dist/katex.min.js
   - https://unpkg.com/katex@0.16.11/dist/contrib/auto-render.min.js
   - javascripts/quiz.js
+  - javascripts/ask.js
 
 extra_css:
   - https://unpkg.com/katex@0.16.11/dist/katex.min.css
   - https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap
   - stylesheets/extra.css
+  - stylesheets/ask.css
 
 extra:
   generator: false
