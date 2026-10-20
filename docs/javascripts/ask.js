@@ -13,6 +13,14 @@
   const MAX_TURNS = 12; // messages kept in the conversation
   const MAX_SELECTION = 4000; // chars of highlighted text
 
+  const ICONS = {
+    close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+    settings: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h9M19 7h1M4 17h3M13 17h7"/><circle cx="16" cy="7" r="2.3"/><circle cx="10" cy="17" r="2.3"/></svg>',
+    send: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M6 12l6-6 6 6"/></svg>',
+    chat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a7.5 7.5 0 0 1-7.5 7.5H8l-4 2.5V12A7.5 7.5 0 0 1 11.5 4.5h1A7.5 7.5 0 0 1 20 12z"/></svg>',
+    quote: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 7h4v4a5.5 5.5 0 0 1-4 5v-2.2c1.2-.5 1.9-1.3 2-2.3H7V7zm8 0h4v4a5.5 5.5 0 0 1-4 5v-2.2c1.2-.5 1.9-1.3 2-2.3h-2V7z"/></svg>',
+  };
+
   // Older defaults kept in localStorage get upgraded silently.
   const LEGACY_MODELS = {
     "gpt-4o-mini": "gpt-5.6-terra",
@@ -229,7 +237,7 @@
       selBtn.id = "ask-select-btn";
       selBtn.type = "button";
       selBtn.title = "Ask about the selected text";
-      selBtn.textContent = "Ask about this";
+      selBtn.innerHTML = ICONS.quote + '<span>Ask about this</span>';
       selBtn.addEventListener("mousedown", (e) => e.preventDefault()); // keep the selection
       selBtn.addEventListener("click", () => {
         const t = selBtn.dataset.text || "";
@@ -275,9 +283,12 @@
     wrap.id = "ask-panel";
     wrap.innerHTML =
       '<div class="ask-head">' +
-        '<span class="ask-title">Ask about this page</span>' +
-        '<button type="button" class="ask-icon" data-act="settings" title="API key settings">&#9881;</button>' +
-        '<button type="button" class="ask-icon" data-act="close" title="Close">&times;</button>' +
+        '<div class="ask-head-text">' +
+          '<span class="ask-title">Ask the guide</span>' +
+          '<span class="ask-sub">5CTA0 tutor &middot; your own API key</span>' +
+        '</div>' +
+        '<button type="button" class="ask-icon" data-act="settings" title="API key settings">' + ICONS.settings + '</button>' +
+        '<button type="button" class="ask-close" data-act="close" title="Close (Esc)">' + ICONS.close + '</button>' +
       '</div>' +
       '<div class="ask-settings">' +
         '<p class="ask-note">The key is kept only in this browser (localStorage) and goes straight to the provider. Nothing passes through this site.</p>' +
@@ -292,10 +303,20 @@
       '</div>' +
       '<div class="ask-quote"><span class="ask-quote-text"></span>' +
         '<button type="button" class="ask-icon" data-act="unquote" title="Remove the selection">&times;</button></div>' +
-      '<div class="ask-msgs"></div>' +
+      '<div class="ask-msgs">' +
+        '<div class="ask-empty">' +
+          '<div class="ask-empty-title">Ask anything on this page</div>' +
+          'Type below, or select a passage and hit <i>Ask about this</i>. Maths welcome.' +
+          '<div class="ask-chips">' +
+            '<button type="button" class="ask-chip">Explain this page in 5 bullets</button>' +
+            '<button type="button" class="ask-chip">Quiz me on this topic</button>' +
+            '<button type="button" class="ask-chip">Where do people lose points?</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
       '<form class="ask-form">' +
         '<textarea class="ask-input" rows="1" placeholder="Ask about the topics on this page…"></textarea>' +
-        '<button type="submit" class="ask-send">Send</button>' +
+        '<button type="submit" class="ask-send" title="Send">' + ICONS.send + '</button>' +
       '</form>';
 
     document.body.appendChild(wrap);
@@ -323,10 +344,13 @@
     });
 
     wrap.addEventListener("click", (e) => {
-      const act = e.target.getAttribute && e.target.getAttribute("data-act");
+      const actEl = e.target.closest && e.target.closest("[data-act]");
+      const act = actEl && actEl.getAttribute("data-act");
       if (act === "close") toggle(false);
       if (act === "settings") el.settings.classList.toggle("open");
       if (act === "unquote") setSelection("");
+      const chip = e.target.closest && e.target.closest(".ask-chip");
+      if (chip) askNow(chip.textContent);
     });
     el.provider.addEventListener("change", () => {
       loadProviderFields(el.provider.value); // show that provider's saved values
@@ -377,6 +401,8 @@
 
   function addMessage(role, text, quote) {
     const isThinking = role.indexOf("thinking") > -1;
+    const empty = el.msgs.querySelector(".ask-empty");
+    if (empty && !isThinking) empty.remove();
     const div = document.createElement("div");
     div.className = "ask-msg " + role.replace(" thinking", "") + (isThinking ? " thinking" : "");
     if (role.indexOf("user") === 0) {
@@ -400,6 +426,8 @@
     build();
     state.open = typeof force === "boolean" ? force : !state.open;
     el.panel.classList.toggle("open", state.open);
+    const launcher = document.getElementById("ask-toggle");
+    if (launcher) launcher.classList.toggle("hidden", state.open); // never overlap the panel
     if (state.open) {
       hideSelectionBtn();
       if (!state.key) el.settings.classList.add("open");
@@ -419,13 +447,18 @@
     b.id = "ask-toggle";
     b.type = "button";
     b.title = "Ask about the material on this page (bring your own API key)";
-    b.innerHTML = '<span class="dot"></span><span class="label">Ask</span>';
+    b.innerHTML = ICONS.chat + '<span class="dot"></span><span class="label">Ask</span>';
     b.addEventListener("click", () => toggle());
     document.body.appendChild(b);
     updateButton();
   }
 
   /* ---------- API call ---------- */
+
+  function askNow(text) {
+    el.input.value = text;
+    send();
+  }
 
   async function send() {
     const text = el.input.value.trim();
@@ -511,5 +544,10 @@
     });
     window.addEventListener("scroll", hideSelectionBtn, true);
     window.addEventListener("resize", hideSelectionBtn);
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+      hideSelectionBtn();
+      if (state.open) toggle(false);
+    });
   });
 })();
