@@ -156,6 +156,38 @@
 #ask-panel .ask-msg pre code { padding: 0; background: none; }
 #ask-panel .ask-msg .katex-display { margin: .4em 0; overflow-x: auto; overflow-y: hidden; }
 
+#ask-panel .ask-quote {
+  display: none;
+  align-items: flex-start;
+  gap: .4em;
+  padding: .45em .7em;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+  background: rgba(0, 0, 0, .06);
+  font-size: .72rem;
+  font-style: italic;
+  color: var(--md-default-fg-color--light, #6b6259);
+}
+#ask-panel .ask-quote.open { display: flex; }
+#ask-panel .ask-quote-text {
+  flex: 1;
+  max-height: 4.2em;
+  overflow-y: auto;
+  border-left: 3px solid var(--md-primary-fg-color, #9b2114);
+  padding-left: .5em;
+}
+#ask-panel .ask-quote .ask-icon { background: rgba(0, 0, 0, .12); color: inherit; flex: none; }
+
+#ask-panel .ask-msg-quote {
+  margin: 0 0 .35em;
+  padding: .25em .5em;
+  border-left: 3px solid rgba(255, 255, 255, .65);
+  background: rgba(255, 255, 255, .16);
+  border-radius: 4px;
+  font-size: .74rem;
+  font-style: italic;
+  opacity: .92;
+}
+
 #ask-panel .ask-form {
   display: flex;
   gap: .5em;
@@ -205,4 +237,22 @@
   }
 }
 
-@media print { #ask-toggle, #ask-panel { display: none !important; } }
+#ask-select-btn {
+  position: fixed;
+  z-index: 13;
+  display: none;
+  align-items: center;
+  gap: .35em;
+  padding: .35em .75em;
+  border: 1px solid rgba(0, 0, 0, .18);
+  border-radius: 999px;
+  background: var(--md-primary-fg-color, #9b2114);
+  color: #fff;
+  font: 600 .7rem "JetBrains Mono", monospace;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
+  white-space: nowrap;
+}
+#ask-select-btn:hover { filter: brightness(1.1); }
+
+@media print { #ask-toggle, #ask-panel, #ask-select-btn { display: none !important; } }

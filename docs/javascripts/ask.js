@@ -1,25 +1,39 @@
 // Ask-the-guide: a small chat panel that answers questions about the current
 // page using the reader's own LLM API key (stored only in localStorage).
+// Highlighting text on the page pops up a button to ask about that passage.
 (function () {
   const LS = {
     provider: "ssp-ask-provider",
     key: "ssp-ask-key",
     model: "ssp-ask-model",
+    bases: "ssp-ask-bases",
   };
 
   const MAX_CONTEXT = 14000; // chars of page text sent as context
   const MAX_TURNS = 12; // messages kept in the conversation
+  const MAX_SELECTION = 4000; // chars of highlighted text
+
+  // Older defaults kept in localStorage get upgraded silently.
+  const LEGACY_MODELS = {
+    "gpt-4o-mini": "gpt-5.6-terra",
+    "gpt-4o": "gpt-5.6-terra",
+    "gemini-2.5-flash": "gemini-3.8-flash",
+    "gemini-2.0-flash": "gemini-3.8-flash",
+    "openai/gpt-4o-mini": "google/gemini-3.8-flash",
+  };
 
   const PROVIDERS = {
     openai: {
       name: "OpenAI",
       keyHint: "sk-...",
       keyUrl: "https://platform.openai.com/api-keys",
-      defaultModel: "gpt-4o-mini",
-      build: (key, model, system, messages) => ({
-        url: "https://api.openai.com/v1/chat/completions",
-        headers: { Authorization: "Bearer " + key, "Content-Type": "application/json" },
-        body: { model: model, messages: [{ role: "system", content: system }].concat(messages) },
+      defaultModel: "gpt-5.6-terra",
+      defaultBase: "https://api.openai.com/v1",
+      baseHint: "https://api.openai.com/v1",
+      build: (base, key, model, system, messages) => ({
+        url: base.replace(/\/+$/, "") + "/chat/completions",
+        headers: chatHeaders(key),
+        body: { model: model, messages: [{ role: "system", content: system }].concat(messages.map((m) => ({ role: m.role, content: m.text }))) },
         read: (d) => d.choices[0].message.content,
       }),
     },
@@ -27,47 +41,73 @@
       name: "Google Gemini",
       keyHint: "AIza...",
       keyUrl: "https://aistudio.google.com/apikey",
-      defaultModel: "gemini-2.5-flash",
-      build: (key, model, system, messages) => ({
-        url:
-          "https://generativelanguage.googleapis.com/v1beta/models/" +
-          encodeURIComponent(model) + ":generateContent?key=" + encodeURIComponent(key),
-        headers: { "Content-Type": "application/json" },
-        body: {
-          system_instruction: { parts: [{ text: system }] },
-          contents: messages.map((m) => ({
-            role: m.role === "assistant" ? "model" : "user",
-            parts: [{ text: m.text }],
-          })),
-        },
-        read: (d) => {
-          const c = d.candidates && d.candidates[0];
-          return c && c.content ? c.content.parts.map((p) => p.text || "").join("") : "";
-        },
-      }),
+      defaultModel: "gemini-3.8-flash",
+      defaultBase: "https://generativelanguage.googleapis.com/v1beta",
+      baseHint: "https://generativelanguage.googleapis.com/v1beta",
+      build: (base, key, model, system, messages) => {
+        const headers = { "Content-Type": "application/json" };
+        if (key) headers["x-goog-api-key"] = key;
+        return {
+          url: base.replace(/\/+$/, "") + "/models/" + encodeURIComponent(model) + ":generateContent",
+          headers: headers,
+          body: {
+            system_instruction: { parts: [{ text: system }] },
+            contents: messages.map((m) => ({
+              role: m.role === "assistant" ? "model" : "user",
+              parts: [{ text: m.text }],
+            })),
+          },
+          read: (d) => {
+            const c = d.candidates && d.candidates[0];
+            return c && c.content ? c.content.parts.map((p) => p.text || "").join("") : "";
+          },
+        };
+      },
     },
     openrouter: {
       name: "OpenRouter",
       keyHint: "sk-or-...",
       keyUrl: "https://openrouter.ai/keys",
-      defaultModel: "openai/gpt-4o-mini",
-      build: (key, model, system, messages) => ({
-        url: "https://openrouter.ai/api/v1/chat/completions",
-        headers: { Authorization: "Bearer " + key, "Content-Type": "application/json" },
-        body: { model: model, messages: [{ role: "system", content: system }].concat(messages) },
+      defaultModel: "google/gemini-3.8-flash",
+      defaultBase: "https://openrouter.ai/api/v1",
+      baseHint: "https://openrouter.ai/api/v1",
+      build: (base, key, model, system, messages) => ({
+        url: base.replace(/\/+$/, "") + "/chat/completions",
+        headers: chatHeaders(key),
+        body: { model: model, messages: [{ role: "system", content: system }].concat(messages.map((m) => ({ role: m.role, content: m.text }))) },
         read: (d) => d.choices[0].message.content,
       }),
     },
   };
 
+  function chatHeaders(key) {
+    const h = { "Content-Type": "application/json" };
+    if (key) h.Authorization = "Bearer " + key;
+    return h;
+  }
+
+  function loadBases() {
+    try {
+      return JSON.parse(localStorage.getItem(LS.bases)) || {};
+    } catch (e) {
+      return {};
+    }
+  }
+
   const state = {
     provider: localStorage.getItem(LS.provider) || "gemini",
     key: localStorage.getItem(LS.key) || "",
     model: localStorage.getItem(LS.model) || "",
+    bases: loadBases(),
+    selection: "", // highlighted passage to ask about
     history: [], // {role: "user"|"assistant", text}
     busy: false,
     open: false,
   };
+  if (LEGACY_MODELS[state.model]) {
+    state.model = LEGACY_MODELS[state.model];
+    localStorage.setItem(LS.model, state.model);
+  }
 
   /* ---------- page context ---------- */
 
@@ -93,6 +133,8 @@
       "The student is revising for the exam and asks about the material in this guide. " +
       "Answer only from the PAGE CONTENT below when the question is about the guide; " +
       "if it goes beyond it, say so and answer from general knowledge. " +
+      "When a message starts with 'Selected passage', that is the exact text the student highlighted: " +
+      "focus your answer on it and treat it as the immediate context. " +
       "Be concise and exam-focused: short derivation steps, state the formula before using it, " +
       "and point out the common mistakes the exams punish. " +
       "Write maths in LaTeX between $...$ (inline) or $$...$$ (display); never use MathML. " +
@@ -159,6 +201,70 @@
     } catch (e) { /* math is optional */ }
   }
 
+  /* ---------- selection button ---------- */
+
+  let selBtn = null;
+
+  function hideSelectionBtn() {
+    if (selBtn) selBtn.style.display = "none";
+  }
+
+  function showSelectionBtn() {
+    const sel = window.getSelection();
+    const text = sel ? String(sel).replace(/\s+/g, " ").trim() : "";
+    const content = document.querySelector(".md-content__inner");
+    const inContent = (n) => n && content && content.contains(n.nodeType === 1 ? n : n.parentNode);
+    if (!sel || sel.isCollapsed || text.length < 3 || text.length > MAX_SELECTION ||
+        !inContent(sel.anchorNode) || !inContent(sel.focusNode) || state.open) {
+      hideSelectionBtn();
+      return;
+    }
+    const range = sel.getRangeAt(0);
+    const rects = range.getClientRects();
+    const r = rects.length ? rects[rects.length - 1] : range.getBoundingClientRect();
+    if (!r || (!r.top && !r.left)) { hideSelectionBtn(); return; }
+
+    if (!selBtn) {
+      selBtn = document.createElement("button");
+      selBtn.id = "ask-select-btn";
+      selBtn.type = "button";
+      selBtn.title = "Ask about the selected text";
+      selBtn.textContent = "Ask about this";
+      selBtn.addEventListener("mousedown", (e) => e.preventDefault()); // keep the selection
+      selBtn.addEventListener("click", () => {
+        const t = selBtn.dataset.text || "";
+        hideSelectionBtn();
+        toggle(true);
+        setSelection(t);
+        if (el.input) el.input.focus();
+      });
+      document.body.appendChild(selBtn);
+    }
+    selBtn.dataset.text = text;
+    selBtn.style.display = "flex";
+    const w = selBtn.offsetWidth || 110;
+    const x = Math.min(Math.max(8, r.left + r.width / 2 - w / 2), window.innerWidth - w - 8);
+    const above = r.top > 52;
+    selBtn.style.left = x + "px";
+    selBtn.style.top = (above ? r.top - 40 : Math.min(r.bottom + 8, window.innerHeight - 52)) + "px";
+    selBtn.classList.toggle("below", !above);
+  }
+
+  function setSelection(text) {
+    state.selection = (text || "").slice(0, MAX_SELECTION);
+    if (el.quote) {
+      el.quote.classList.toggle("open", !!state.selection);
+      el.quoteText.textContent = state.selection.length > 240
+        ? state.selection.slice(0, 240) + "…"
+        : state.selection;
+      if (el.input) {
+        el.input.placeholder = state.selection
+          ? "Ask about the selected passage…"
+          : "Ask about the topics on this page…";
+      }
+    }
+  }
+
   /* ---------- UI ---------- */
 
   let el = {};
@@ -174,15 +280,18 @@
         '<button type="button" class="ask-icon" data-act="close" title="Close">&times;</button>' +
       '</div>' +
       '<div class="ask-settings">' +
-        '<p class="ask-note">The key is stored only in this browser (localStorage) and is sent straight to the provider. Nothing passes through this site.</p>' +
+        '<p class="ask-note">The key is kept only in this browser (localStorage) and goes straight to the provider. Nothing passes through this site.</p>' +
         '<label>Provider <select class="ask-provider"></select></label>' +
         '<label>API key <input type="password" class="ask-key" placeholder="paste your key" autocomplete="off" spellcheck="false"></label>' +
+        '<label>Base URL <input type="url" class="ask-base" spellcheck="false" placeholder="https://…"></label>' +
         '<label>Model <input type="text" class="ask-model" spellcheck="false"></label>' +
         '<div class="ask-actions">' +
           '<button type="button" class="ask-save">Save</button>' +
           '<a class="ask-keylink" target="_blank" rel="noopener">Get a key</a>' +
         '</div>' +
       '</div>' +
+      '<div class="ask-quote"><span class="ask-quote-text"></span>' +
+        '<button type="button" class="ask-icon" data-act="unquote" title="Remove the selection">&times;</button></div>' +
       '<div class="ask-msgs"></div>' +
       '<form class="ask-form">' +
         '<textarea class="ask-input" rows="1" placeholder="Ask about the topics on this page…"></textarea>' +
@@ -195,8 +304,11 @@
       settings: wrap.querySelector(".ask-settings"),
       provider: wrap.querySelector(".ask-provider"),
       key: wrap.querySelector(".ask-key"),
+      base: wrap.querySelector(".ask-base"),
       model: wrap.querySelector(".ask-model"),
       keylink: wrap.querySelector(".ask-keylink"),
+      quote: wrap.querySelector(".ask-quote"),
+      quoteText: wrap.querySelector(".ask-quote-text"),
       msgs: wrap.querySelector(".ask-msgs"),
       form: wrap.querySelector(".ask-form"),
       input: wrap.querySelector(".ask-input"),
@@ -214,8 +326,11 @@
       const act = e.target.getAttribute && e.target.getAttribute("data-act");
       if (act === "close") toggle(false);
       if (act === "settings") el.settings.classList.toggle("open");
+      if (act === "unquote") setSelection("");
     });
-    el.provider.addEventListener("change", syncSettings);
+    el.provider.addEventListener("change", () => {
+      loadProviderFields(el.provider.value); // show that provider's saved values
+    });
     wrap.querySelector(".ask-save").addEventListener("click", saveSettings);
 
     el.form.addEventListener("submit", (e) => { e.preventDefault(); send(); });
@@ -227,13 +342,18 @@
       el.input.style.height = Math.min(el.input.scrollHeight, 140) + "px";
     });
 
-    syncSettings();
+    loadProviderFields(state.provider);
   }
 
-  function syncSettings() {
-    const p = PROVIDERS[el.provider.value] || PROVIDERS.gemini;
+  function loadProviderFields(id) {
+    const p = PROVIDERS[id] || PROVIDERS.gemini;
+    el.provider.value = id;
+    el.key.value = id === state.provider ? state.key : "";
+    el.model.value = id === state.provider ? state.model : "";
+    el.base.value = state.bases[id] || "";
     el.model.placeholder = p.defaultModel;
     el.key.placeholder = p.keyHint;
+    el.base.placeholder = p.baseHint;
     el.keylink.href = p.keyUrl;
   }
 
@@ -241,21 +361,32 @@
     state.provider = el.provider.value;
     state.key = el.key.value.trim();
     state.model = el.model.value.trim();
+    const base = el.base.value.trim();
+    if (base) state.bases[state.provider] = base;
+    else delete state.bases[state.provider];
     localStorage.setItem(LS.provider, state.provider);
     localStorage.setItem(LS.key, state.key);
     localStorage.setItem(LS.model, state.model);
+    localStorage.setItem(LS.bases, JSON.stringify(state.bases));
     el.settings.classList.remove("open");
     if (state.key) {
-      addMessage("assistant", "Key saved. Ask me anything about the material on this page.");
+      addMessage("assistant", "Saved. Ask me anything about the material on this page — or select a passage and hit *Ask about this*.");
     }
     updateButton();
   }
 
-  function addMessage(role, text) {
+  function addMessage(role, text, quote) {
+    const isThinking = role.indexOf("thinking") > -1;
     const div = document.createElement("div");
-    div.className = "ask-msg " + role;
-    if (role === "user") {
-      div.textContent = text;
+    div.className = "ask-msg " + role.replace(" thinking", "") + (isThinking ? " thinking" : "");
+    if (role.indexOf("user") === 0) {
+      if (quote) {
+        const q = document.createElement("div");
+        q.className = "ask-msg-quote";
+        q.textContent = quote.length > 180 ? quote.slice(0, 180) + "…" : quote;
+        div.appendChild(q);
+      }
+      div.appendChild(document.createTextNode(text));
     } else {
       div.innerHTML = renderMarkdown(text);
       renderMath(div);
@@ -270,6 +401,7 @@
     state.open = typeof force === "boolean" ? force : !state.open;
     el.panel.classList.toggle("open", state.open);
     if (state.open) {
+      hideSelectionBtn();
       if (!state.key) el.settings.classList.add("open");
       el.input.focus();
       el.msgs.scrollTop = el.msgs.scrollHeight;
@@ -298,7 +430,11 @@
   async function send() {
     const text = el.input.value.trim();
     if (!text || state.busy) return;
-    if (!state.key) {
+
+    const p = PROVIDERS[state.provider] || PROVIDERS.gemini;
+    const base = (state.bases[state.provider] || p.defaultBase).replace(/\/+$/, "");
+    const customBase = base !== p.defaultBase.replace(/\/+$/, "");
+    if (!state.key && !customBase) {
       toggle(true);
       el.settings.classList.add("open");
       el.key.focus();
@@ -306,19 +442,24 @@
       return;
     }
 
+    const quote = state.selection;
+    const apiText = quote
+      ? 'Selected passage:\n"""' + quote + '"""\n\nQuestion: ' + text
+      : text;
+
     el.input.value = "";
     el.input.style.height = "auto";
-    addMessage("user", text);
-    state.history.push({ role: "user", text: text });
+    addMessage("user", text, quote);
+    state.history.push({ role: "user", text: apiText });
     if (state.history.length > MAX_TURNS) state.history = state.history.slice(-MAX_TURNS);
+    setSelection("");
 
     state.busy = true;
     el.send.disabled = true;
     const thinking = addMessage("assistant thinking", "Thinking…");
 
-    const p = PROVIDERS[state.provider] || PROVIDERS.gemini;
     const model = state.model || p.defaultModel;
-    const req = p.build(state.key, model, systemPrompt(), state.history);
+    const req = p.build(base, state.key, model, systemPrompt(), state.history);
 
     try {
       const res = await fetch(req.url, {
@@ -340,7 +481,7 @@
       addMessage(
         "assistant",
         "**Request failed:** " + String(err.message || err) + "\n\n" +
-        "Check the key and model in the gear menu, and that your provider allows browser calls."
+        "Check the key, base URL and model in the gear menu, and that your provider allows browser calls."
       );
     } finally {
       state.busy = false;
@@ -354,5 +495,21 @@
   document$.subscribe(() => {
     build();
     ensureButton();
+    if (!window.getSelection) return; // no selection API
+    let t = null;
+    const queue = () => {
+      clearTimeout(t);
+      t = setTimeout(showSelectionBtn, 120);
+    };
+    document.addEventListener("mouseup", queue);
+    document.addEventListener("touchend", queue);
+    document.addEventListener("keyup", (e) => { if (e.shiftKey || e.key.indexOf("Arrow") === 0) queue(); });
+    document.addEventListener("selectionchange", queue);
+    document.addEventListener("mousedown", (e) => {
+      if (selBtn && e.target === selBtn) return;
+      hideSelectionBtn();
+    });
+    window.addEventListener("scroll", hideSelectionBtn, true);
+    window.addEventListener("resize", hideSelectionBtn);
   });
 })();

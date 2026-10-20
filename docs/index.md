@@ -44,7 +44,7 @@ Multiple choice has one correct answer. Some open questions say *"provide only t
 3. Go through the parts in this order: **Part 3 → Part 2 → Part 4 → Part 1**. Part 3 is the most mechanical and has the most points.
 4. Every question has a **Solution** block. Turn on **Quiz mode** (button bottom-right) to hide all solutions and try first.
 5. Two days before: do **April 2025** and **June 2026** from [Every exam](exams.md) in quiz mode, timed, then print the [A4 sheet](cheatsheet.md).
-6. Stuck on something? Hit **Ask** (button bottom-right) and question the guide about whatever is on the page. It uses **your own API key** (Gemini, OpenAI or OpenRouter), kept in your browser only — nothing is stored on this site.
+6. Stuck on something? Hit **Ask** (button bottom-right), or **select any text** and press *Ask about this* to question that exact passage. It uses **your own API key** (Gemini, OpenAI or OpenRouter — custom base URL supported for proxies), kept in your browser only — nothing is stored on this site.
 
 !!! idea "Box legend"
     - **Exam question** (grey box): the original text, unchanged. The header says which exam, which question, how many points.
