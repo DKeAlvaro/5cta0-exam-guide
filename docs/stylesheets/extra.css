@@ -229,3 +229,12 @@
 .md-typeset div.arithmatex { margin: .55em 0; }
 .md-typeset .katex-display { margin: .3em 0; }
 .md-typeset .admonition div.arithmatex, .md-typeset details div.arithmatex { margin: .4em 0; }
+
+/* keep wide formulas from widening the page on phones */
+.md-content, .md-main__inner, .md-content__inner { min-width: 0; }
+.md-typeset div.arithmatex { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+.md-typeset .katex-display { max-width: 100%; }
+.md-typeset .admonition, .md-typeset details { overflow-x: auto; }
+.md-typeset .grid3 img { width: 100%; }
+.md-typeset .cheat table:not([class]) { font-size: .68rem; }
+.md-typeset .cheat table:not([class]) th, .md-typeset .cheat table:not([class]) td { padding: .25em .6em; }
