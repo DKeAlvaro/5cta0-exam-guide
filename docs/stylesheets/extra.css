@@ -244,3 +244,6 @@
 .md-typeset .katex { position: relative; }
 .md-typeset__scrollwrap, .md-typeset .scroll { position: relative; }
 .md-main { overflow-x: clip; }
+@media screen and (max-width: 44.9375em) {
+  #quiz-toggle { right: .6rem; bottom: .6rem; padding: .45em .7em; font-size: .66rem; opacity: .92; }
+}

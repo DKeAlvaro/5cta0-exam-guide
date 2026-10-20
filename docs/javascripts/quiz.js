@@ -9,7 +9,7 @@
     const btn = document.getElementById("quiz-toggle");
     if (btn) {
       btn.classList.toggle("on", quiz);
-      btn.querySelector(".label").textContent = quiz ? "Quiz mode ON · solutions hidden" : "Quiz mode OFF";
+      btn.querySelector(".label").textContent = quiz ? "Quiz ON" : "Quiz OFF";
     }
   }
 
