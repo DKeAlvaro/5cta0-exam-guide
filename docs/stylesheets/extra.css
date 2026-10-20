@@ -238,3 +238,9 @@
 .md-typeset .grid3 img { width: 100%; }
 .md-typeset .cheat table:not([class]) { font-size: .68rem; }
 .md-typeset .cheat table:not([class]) th, .md-typeset .cheat table:not([class]) td { padding: .25em .6em; }
+
+/* KaTeX's hidden MathML copy is position:absolute; anchor it to its formula so
+   table/scroll containers clip it instead of widening the whole page on phones */
+.md-typeset .katex { position: relative; }
+.md-typeset__scrollwrap, .md-typeset .scroll { position: relative; }
+.md-main { overflow-x: clip; }
