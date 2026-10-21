@@ -360,3 +360,5 @@
   padding: .55rem .85rem; background: var(--md-default-bg-color, #fff); color: var(--md-default-fg-color, #222);
   border-bottom: 1px solid var(--ask-line); box-shadow: 0 8px 18px rgba(0, 0, 0, .18);
 }
+#ask-panel .ask-head .ask-quote-text { display: block; -webkit-line-clamp: unset; -webkit-box-orient: unset; overflow-y: auto; max-height: 14em; font-size: .8rem; line-height: 1.55; }
+#ask-panel[data-view="settings"] .ask-head .ask-quote { display: none; }
