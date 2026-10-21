@@ -75,7 +75,7 @@
 
   function pageTitle() {
     const h = document.querySelector(".md-content__inner h1");
-    return (h && h.textContent.trim()) || document.title;
+    return (h && h.textContent.replace(/\s*#\s*$/, "").trim()) || document.title;
   }
 
   function pageContext() {
@@ -116,6 +116,7 @@
     const sys = systemPrompt();
     if (b.systemInstruction) b.systemInstruction = { parts: [{ text: sys }] };
     else if (b.system_instruction) b.system_instruction = { parts: [{ text: sys }] };
+    else if (Array.isArray(b.contents)) b.systemInstruction = { parts: [{ text: sys }] };
     else if (Array.isArray(b.messages)) {
       if (b.messages[0] && b.messages[0].role === "system") b.messages[0].content = sys;
       else b.messages.unshift({ role: "system", content: sys });
@@ -151,19 +152,20 @@
     const fg = d ? "#ece7e1" : "#1d1b19";
     const soft = d ? "rgba(255,255,255,.08)" : "rgba(0,0,0,.05)";
     return {
-      style: { width: "100%", height: "100%", border: "none", background: "transparent", fontFamily: "inherit" },
+      chatStyle: { width: "100%", height: "100%", border: "none", background: "transparent", borderRadius: "0" },
       messageStyles: {
         default: {
-          shared: { bubble: { maxWidth: "94%", padding: ".6rem .8rem", fontSize: ".88rem", lineHeight: "1.55", color: fg } },
+          shared: { bubble: { maxWidth: "94%", padding: ".5rem .75rem", fontSize: "14px", lineHeight: "1.5", color: fg } },
           user: { bubble: { background: "linear-gradient(135deg,#9b2114,#c0432c)", color: "#fff" } },
+          intro: { bubble: { background: "transparent", border: "none", color: d ? "#b9b1a7" : "#6b6259", fontSize: "13px", padding: ".2rem .2rem" } },
           ai: { bubble: { background: soft, border: "1px solid " + (d ? "rgba(255,255,255,.13)" : "rgba(0,0,0,.1)") } },
         },
       },
       textInput: {
-        placeholder: { text: "Ask about this page", style: { color: d ? "#9a948c" : "#6b6259" } },
+        placeholder: { text: "Ask about this page, or highlight a passage", style: { color: d ? "#9a948c" : "#6b6259" } },
         styles: {
-          container: { borderRadius: "14px", border: "1px solid " + (d ? "rgba(255,255,255,.2)" : "rgba(0,0,0,.18)"), background: d ? "#1d1b19" : "#fff", boxShadow: "none" },
-          text: { color: fg, fontSize: ".9rem" },
+          container: { borderRadius: "14px", border: "1px solid " + (d ? "rgba(255,255,255,.2)" : "rgba(0,0,0,.18)"), background: d ? "#1d1b19" : "#fff", boxShadow: "none", marginBottom: "14px", width: "88%" },
+          text: { color: fg, fontSize: "14px" },
         },
       },
     };
@@ -175,7 +177,6 @@
     c.connect = { stream: true };
     c.remarkable = { math: { options: { throwOnError: false } }, breaks: true };
     c.requestInterceptor = requestInterceptor;
-    c.introMessage = { text: "Ask anything about this page. Highlight a passage and press **Ask about this** to focus on it." };
     const s = chatStyleProps();
     Object.keys(s).forEach((k) => { c[k] = s[k]; });
   }
@@ -258,7 +259,7 @@
       '</header>' +
       '<div class="ask-ctx"><span class="ask-ctx-dot"></span><span class="ask-ctx-text"></span></div>' +
       '<div class="ask-quote" hidden>' +
-        '<div class="ask-quote-text"></div>' +
+        '<div class="ask-quote-main"><div class="ask-quote-label">Highlighted passage</div><div class="ask-quote-text"></div></div>' +
         '<button type="button" class="ask-quote-x" data-act="clear-ctx" aria-label="Remove highlighted passage">' + ICONS.close + '</button>' +
       '</div>' +
       '<div class="ask-body">' +

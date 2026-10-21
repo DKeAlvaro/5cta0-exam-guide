@@ -296,3 +296,7 @@
 #ask-panel .ask-quote-text { max-height: 6.5em; font-size: .78rem; }
 [data-md-color-scheme="slate"] #ask-panel .ask-ctx { color: #b9b1a7; }
 [data-md-color-scheme="slate"] #ask-panel .ask-quote-text { color: #e4ded6; }
+#ask-panel .ask-quote-main { flex: 1; min-width: 0; }
+#ask-panel .ask-quote-label { font: 600 .62rem "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: .06em; color: var(--ask-rust); margin-bottom: .15rem; }
+#ask-panel .ask-quote-text { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; max-height: none; overflow: hidden; font-style: normal; font-size: .76rem; line-height: 1.45; }
+[data-md-color-scheme="slate"] #ask-panel .ask-quote-label { color: #e3826f; }
