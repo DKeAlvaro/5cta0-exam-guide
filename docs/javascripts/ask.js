@@ -490,7 +490,7 @@
   function selectedText(sel) {
     if (!sel.rangeCount) return "";
     const box = document.createElement("div");
-    box.appendChild(sel.getRangeAt(0).cloneContents());
+    box.appendChild((window.sspWholeFormulas ? window.sspWholeFormulas(sel.getRangeAt(0)) : sel.getRangeAt(0)).cloneContents());
     box.querySelectorAll(".katex").forEach((k) => {
       const ann = k.querySelector('annotation[encoding="application/x-tex"]');
       k.replaceWith(document.createTextNode(" $" + (ann ? ann.textContent.trim() : k.textContent) + "$ "));

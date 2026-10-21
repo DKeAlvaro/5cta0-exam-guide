@@ -11,11 +11,21 @@ document$.subscribe(({ body }) => {
   })
 })
 
+// A selection boundary inside a formula is widened to the whole formula, so a formula is never cut in half.
+window.sspWholeFormulas = (range) => {
+  const r = range.cloneRange();
+  const up = (n) => { const e = n && (n.nodeType === 1 ? n : n.parentNode); return e && e.closest ? e.closest(".katex") : null; };
+  const a = up(r.startContainer), b = up(r.endContainer);
+  if (a) r.setStartBefore(a);
+  if (b) r.setEndAfter(b);
+  return r;
+};
+
 // Copying a selection that includes formulas puts their LaTeX source on the clipboard.
 document.addEventListener("copy", (e) => {
   const sel = window.getSelection();
   if (!sel || sel.isCollapsed || !sel.rangeCount) return;
-  const frag = sel.getRangeAt(0).cloneContents();
+  const frag = window.sspWholeFormulas(sel.getRangeAt(0)).cloneContents();
   if (!frag.querySelector(".katex")) return;
   frag.querySelectorAll(".katex").forEach((k) => {
     const tex = k.querySelector('annotation[encoding="application/x-tex"]');
