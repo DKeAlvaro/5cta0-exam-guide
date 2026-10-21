@@ -20,12 +20,16 @@ There are two kinds, and the notation tells you which one you are looking at:
 
 Two notation rules that look like pedantry but will save you points:
 
-1. **Round brackets = continuous** ($x(t)$), **square brackets = discrete** ($x[n]$). The exam uses this consistently. If you see $x[n]$ you are summing ($\sum$); if you see $x(t)$ you are integrating ($\int$).
+1. ==**Round brackets = continuous** ($x(t)$), **square brackets = discrete** ($x[n]$).== The exam uses this consistently. If you see $x[n]$ you are summing ($\sum$); if you see $x(t)$ you are integrating ($\int$).
 2. $n$ is a *count* (0, 1, 2, …), so nothing "happens between" $n=3$ and $n=4$.
 
 **Sampling** is how you get the second kind from the first: you measure $x(t)$ once every $T_s$ seconds and throw away everything in between.
 
+<div class="key" markdown>
+
 $$x[n] = x(nT_s),\qquad T_s=\frac{1}{f_s}\ \text{seconds between samples}$$
+
+</div>
 
 $f_s$ is the **sample rate** in Hz (samples per second). Example: audio at $f_s=50$ Hz means you keep one number every $1/50=0.02$ s. The exam loves to give you $f_s$ because the *digital* frequency of a tone depends on it (next section).
 
@@ -63,15 +67,19 @@ $$x(t) = A\sin(\omega t) \;=\; A\sin(2\pi f t)$$
 
 **Discrete version.** For $x[n]$ the angle is $\theta n$, with $\theta$ measured in **radians per sample**:
 
+<div class="key" markdown>
+
 $$x[n] = A\cos(\theta n),\qquad \theta = 2\pi\frac{f}{f_s}\ \text{(radians per sample)}$$
 
-and $\theta$ always lives between $-\pi$ and $\pi$ (outside that range the same wiggle comes back — you cannot tell fast wiggles from slow ones once they are sampled).
+</div>
+
+and ==$\theta$ always lives between $-\pi$ and $\pi$== (outside that range the same wiggle comes back — you cannot tell fast wiggles from slow ones once they are sampled).
 
 **Tiny worked example (this exact one is an exam question).** $f=25$ Hz sampled at $f_s=50$ Hz:
 
 $$\theta = 2\pi\cdot\frac{25}{50} = \pi \qquad\Rightarrow\qquad x[n]=\cos(\pi n) = (-1)^n = 1,-1,1,-1,\dots$$
 
-So a 25 Hz tone sampled 50 times per second is the fastest possible wiggle: it lands exactly on $\theta=\pi$, the top of the range. Nice to have in your head: **$f = f_s/2$ is the fastest digital wiggle** (the *Nyquist* frequency).
+So a 25 Hz tone sampled 50 times per second is the fastest possible wiggle: it lands exactly on $\theta=\pi$, the top of the range. Nice to have in your head: ==**$f = f_s/2$ is the fastest digital wiggle**== (the *Nyquist* frequency).
 
 <figure markdown>
 ![Sampling at the Nyquist frequency and aliasing](img/gen/p0_alias.svg)
@@ -92,7 +100,7 @@ So a 25 Hz tone sampled 50 times per second is the fastest possible wiggle: it l
 
 ## 0.3 Complex numbers and $e^{j\theta}$
 
-**Plain words.** You do not need to like complex numbers. You only need one fact, and then one formula. The fact: **the exam writes cosines as complex exponentials because it makes the algebra shorter.** That is the entire reason. Nothing deeper.
+**Plain words.** You do not need to like complex numbers. You only need one fact, and then one formula. The fact: ==**the exam writes cosines as complex exponentials because it makes the algebra shorter.**== That is the entire reason. Nothing deeper.
 
 **The fact.** $j$ is the symbol for $\sqrt{-1}$ (engineers write $j$, mathematicians write $i$; same thing). A complex number is a pair $(a,b)$ written $a+jb$, and it can be drawn as an arrow in a plane: $a$ to the right, $b$ up.
 
@@ -110,7 +118,11 @@ $$e^{j\theta}=\cos\theta+j\sin\theta,\qquad \lvert e^{j\theta}\rvert = 1$$
 
 From it, adding and subtracting the two mirror images kills the sine part:
 
+<div class="key" markdown>
+
 $$e^{j\theta}+e^{-j\theta}=2\cos\theta \qquad\Longrightarrow\qquad \boxed{\cos\theta=\frac{e^{j\theta}+e^{-j\theta}}{2}}$$
+
+</div>
 
 and subtracting kills the cosine part: $e^{j\theta}-e^{-j\theta}=2j\sin\theta$.
 
@@ -126,9 +138,13 @@ and subtracting kills the cosine part: $e^{j\theta}-e^{-j\theta}=2j\sin\theta$.
 
 **Why anyone bothers.** $\cos(\theta)$ is awkward to multiply and to raise to powers; $e^{j\theta}$ is trivial ($e^{j\theta}e^{j\phi}=e^{j(\theta+\phi)}$). So the course rewrites every tone as two complex exponentials, does easy algebra, and converts back. You will see $e^{-j k\theta}$ appear inside sums everywhere in Part 3 — it is just "a cosine in disguise".
 
-**Squared magnitude, the thing you actually compute.** For any complex $w$, $\lvert w\rvert^2 = w\,w^*$. Example that appears on literally every spectral-estimation exam:
+**Squared magnitude, the thing you actually compute.** ==For any complex $w$, $\lvert w\rvert^2 = w\,w^*$.== Example that appears on literally every spectral-estimation exam:
+
+<div class="key" markdown>
 
 $$\lvert 1+ae^{-j\theta}\rvert^2=(1+ae^{-j\theta})(1+ae^{+j\theta}) = 1+a^2+a(e^{j\theta}+e^{-j\theta}) = 1+a^2+2a\cos\theta$$
+
+</div>
 
 which is a **real** number (no $j$ left), and that is why the answer always ends up as a formula in $\cos\theta$. Full details in the [Toolbox](toolbox.md#5-complex-exponentials-needed-for-every-psd).
 
@@ -162,7 +178,11 @@ reads: "average over a window of length $T$, then let that window grow without b
 
 **The one limit fact you need:** for any fixed number $c$,
 
+<div class="key" markdown>
+
 $$\lim_{T\to\infty}\frac{c}{T}=0 .$$
+
+</div>
 
 This single fact is why "finite energy ⟹ average power is zero" (page 3.1) and why "a cosine averaged over infinitely many periods gives exactly half its peak-square" (next).
 
@@ -173,7 +193,11 @@ This single fact is why "finite energy ⟹ average power is zero" (page 3.1) and
 
 ### The geometric series: "add up a shrinking list"
 
+<div class="key" markdown>
+
 $$\sum_{n=0}^{\infty} r^n = 1 + r + r^2 + \dots = \frac{1}{1-r}\qquad\text{for } \lvert r\rvert < 1$$
+
+</div>
 
 Where it comes from: the finite sum is $1+r+\dots+r^N = \dfrac{1-r^{N+1}}{1-r}$ (multiply by $(1-r)$ and watch everything cancel). If $\lvert r\rvert<1$ then $r^{N+1}\to 0$, leaving $\frac{1}{1-r}$.
 
@@ -190,9 +214,13 @@ $$E = \frac{1}{1-e^{-2}} = \frac{1}{1-0.1353} = \frac{1}{0.8647}\approx 1.1565 .
 
 Start from $\cos(2\alpha) = 1-2\sin^2\alpha$ and rearrange:
 
+<div class="key" markdown>
+
 $$\boxed{\sin^2\alpha = \frac{1-\cos(2\alpha)}{2}}\qquad\qquad \boxed{\cos^2\alpha = \frac{1+\cos(2\alpha)}{2}}$$
 
-Why these matter: energy and power formulas contain $x(t)^2$, and squaring a sine gives you $\sin^2$, which the identity splits into **a constant ($\tfrac12$) plus a wiggle at double frequency ($\cos 2\alpha$)**. The constant is what survives averaging; the wiggle averages to zero. That is the whole trick behind "$P = A^2/2$".
+</div>
+
+Why these matter: energy and power formulas contain $x(t)^2$, and squaring a sine gives you $\sin^2$, which the identity splits into **a constant ($\tfrac12$) plus a wiggle at double frequency ($\cos 2\alpha$)**. ==The constant is what survives averaging; the wiggle averages to zero.== That is the whole trick behind "$P = A^2/2$".
 
 <figure markdown>
 ![Why the average of sine squared is one half](img/gen/p0_sin2.svg)
@@ -219,13 +247,17 @@ The **Fourier transform** is the machine that turns "signal vs time" into "recip
 
 Three things worth memorising about this pair:
 
-1. **The FTD is a curve, the DFT is a list of $N$ numbers that samples that curve.** The exam draws both in the same figure and asks you to match them (that is question 3a of January 2022).
+1. ==**The FTD is a curve, the DFT is a list of $N$ numbers that samples that curve.**== The exam draws both in the same figure and asks you to match them (that is question 3a of January 2022).
 2. **$\theta$ is "frequency" in radians per sample**, and $\theta = 2\pi f/f_s$, so $\theta=\pi$ ↔ $f = f_s/2$ (the fastest wiggle, section 0.2).
-3. A pure, never-ending cosine of amplitude $A$ has exactly **two** infinitely thin spikes in its spectrum, at $\theta = \pm\theta_0$, each of height $\propto A/2$. Two, because $\cos\theta = \tfrac12(e^{j\theta}+e^{-j\theta})$: one spike for each of the two complex exponentials. This is why every spectrum picture of a cosine shows a peak on the left *and* one mirrored on the right.
+3. ==A pure, never-ending cosine of amplitude $A$ has exactly **two** infinitely thin spikes in its spectrum, at $\theta = \pm\theta_0$==, each of height $\propto A/2$. Two, because $\cos\theta = \tfrac12(e^{j\theta}+e^{-j\theta})$: one spike for each of the two complex exponentials. This is why every spectrum picture of a cosine shows a peak on the left *and* one mirrored on the right.
 
 **DFT bins.** The $N$ DFT values sit at evenly spaced frequencies. The spacing is
 
+<div class="key" markdown>
+
 $$\text{bin width} = \frac{f_s}{N}\ \text{Hz}.$$
+
+</div>
 
 Example: $f_s = 50$ Hz and $N = 24$ samples → $\frac{50}{24}\approx 2.08$ Hz apart. The $k$-th number $X[k]$ is "how much of the tone at frequency $k\cdot 2.08$ Hz is present". *Bin* = one of those $N$ frequency slots.
 
@@ -234,7 +266,7 @@ Example: $f_s = 50$ Hz and $N = 24$ samples → $\frac{50}{24}\approx 2.08$ Hz a
 <figcaption>That exact example with a 10 Hz tone. Grey: the FTD of the 24 samples, a smooth curve. Blue dots: the DFT, the same curve read off every 2.08 Hz (only 0 to 25 Hz shown; the other half is the mirror image). 10 Hz falls between two bins, so no dot sits on the true peak. The top axis gives the same frequencies as $\theta$: $f_s/2=25$ Hz is $\theta=\pi$.</figcaption>
 </figure>
 
-**Decibels (dB).** Spectra figures are drawn on a log scale: $\lvert X\rvert_{\text{dB}} = 20\log_{10}\lvert X\rvert$. So 0 dB = height 1, −20 dB = height 0.1, −40 dB = height 0.01. When a figure says "the weak tone is 34 dB below the strong one", it means its amplitude is about $10^{-34/20}\approx 0.02$ times the big one. dB exists purely so you can see tiny and huge things in the same plot.
+**Decibels (dB).** Spectra figures are drawn on a log scale: ==$\lvert X\rvert_{\text{dB}} = 20\log_{10}\lvert X\rvert$==. So 0 dB = height 1, −20 dB = height 0.1, −40 dB = height 0.01. When a figure says "the weak tone is 34 dB below the strong one", it means its amplitude is about $10^{-34/20}\approx 0.02$ times the big one. dB exists purely so you can see tiny and huge things in the same plot.
 
 <figure markdown>
 ![Linear scale vs dB scale](img/gen/p0_db.svg)
@@ -253,13 +285,13 @@ Parts 1, 2 and 4 live on this. Nothing here needs more than the integrals of [0.
 
 For a number that can land anywhere on a line (a voltage), "the probability that $X$ is exactly 0.5" is zero (there are infinitely many possible values). So instead we describe a random variable with a **PDF** (probability density function) $p(x)$, a curve with one rule:
 
-> **The area under the curve between $a$ and $b$ is the probability that $X$ lands between $a$ and $b$.** The total area under the whole curve is 1 (something must happen).
+> ==**The area under the curve between $a$ and $b$ is the probability that $X$ lands between $a$ and $b$.**== The total area under the whole curve is 1 (something must happen).
 
 !!! example "Two PDFs with real numbers"
     - **Uniform on $[0,2]$**: $p(x)=\tfrac12$ for $0\le x\le 2$, zero elsewhere. Total area $=\tfrac12\cdot 2 = 1$ ✓. $P(0.5\lt X<1.5)=$ width $\times$ height $=1\times\tfrac12=0.5$.
     - **Exponential**: $p(x)=e^{-x}$ for $x\ge0$. Total area $=\int_0^\infty e^{-x}dx = [-e^{-x}]_0^\infty = 0-(-1)=1$ ✓. $P(X>1)=\int_1^\infty e^{-x}dx = e^{-1}\approx0.368$.
 
-Careful: the *height* $p(x)$ is **not** a probability (it can be bigger than 1, for example a uniform on $[0,0.1]$ has height 10). Only **areas** are probabilities.
+Careful: the *height* $p(x)$ is **not** a probability (it can be bigger than 1, for example a uniform on $[0,0.1]$ has height 10). ==Only **areas** are probabilities.==
 
 <figure markdown>
 ![Probabilities are areas under the PDF](img/gen/p0_pdfs.svg)
@@ -270,7 +302,11 @@ Careful: the *height* $p(x)$ is **not** a probability (it can be bigger than 1, 
 
 **Expectation** (mean) $\mathbb E[X]$ = the long-run average of $X$ if you could repeat the experiment forever. Formula: weight every value by how likely it is and add up:
 
+<div class="key" markdown>
+
 $$\mathbb E[X]=\int_{-\infty}^{\infty} x\,p(x)\,dx,\qquad \mathbb E[g(X)]=\int g(x)\,p(x)\,dx .$$
+
+</div>
 
 (For a die: $\mathbb E[X]=\tfrac16(1+2+\dots+6)=3.5$. The uniform on $[0,2]$ has mean $1$, the middle, as you would guess.)
 
@@ -278,7 +314,11 @@ $$\mathbb E[X]=\int_{-\infty}^{\infty} x\,p(x)\,dx,\qquad \mathbb E[g(X)]=\int g
 
 Handy rewriting (expand the square: $\mathbb E[X^2-2\mu X+\mu^2]=\mathbb E[X^2]-2\mu^2+\mu^2$):
 
+<div class="key" markdown>
+
 $$\operatorname{Var}(X)=\mathbb E[X^2]-\mu^2 .$$
+
+</div>
 
 Die: $\mathbb E[X^2]=\tfrac16(1+4+9+16+25+36)=\tfrac{91}{6}=15.17$, so $\operatorname{Var}=15.17-3.5^2=15.17-12.25=2.92$.
 
@@ -289,29 +329,41 @@ Die: $\mathbb E[X^2]=\tfrac16(1+4+9+16+25+36)=\tfrac{91}{6}=15.17$, so $\operato
 
 Three rules you will use constantly (the first one is just "averaging is linear"):
 
+<div class="key" markdown>
+
 | Rule | Meaning |
 |---|---|
 | $\mathbb E[aX+b]=a\mathbb E[X]+b$ | scaling and shifting move the mean the same way |
 | $\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$ | shifting does not change spread; scaling by $a$ scales spread by $a$, variance by $a^2$ |
 | $\operatorname{Var}(X+Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)$ **if $X,Y$ independent** | independent randomness adds up in variance |
 
+</div>
+
 ### Conditional probability and independence
 
 $P(A\mid B)$ = "the probability of $A$ **given that we already know** $B$ happened". Restrict to the cases where $B$ is true and ask how many of those also have $A$:
 
+<div class="key" markdown>
+
 $$P(A\mid B)=\frac{P(A\cap B)}{P(B)}\qquad(A\cap B=\text{"both A and B"}).$$
 
-$A$ and $B$ are **independent** when knowing $B$ tells you nothing about $A$: $P(A\mid B)=P(A)$, equivalently $P(A\cap B)=P(A)P(B)$. Two coin flips: $P(\text{both heads})=\tfrac12\cdot\tfrac12=\tfrac14$. For random variables the same idea reads: **$X,Y$ are independent iff the joint PDF factorises, $p(x,y)=p(x)\,p(y)$** (this is used again in [1.2](p1-rv.md) and in every estimation problem with "independent samples").
+</div>
+
+$A$ and $B$ are **independent** when knowing $B$ tells you nothing about $A$: $P(A\mid B)=P(A)$, equivalently $P(A\cap B)=P(A)P(B)$. Two coin flips: $P(\text{both heads})=\tfrac12\cdot\tfrac12=\tfrac14$. For random variables the same idea reads: ==**$X,Y$ are independent iff the joint PDF factorises, $p(x,y)=p(x)\,p(y)$**== (this is used again in [1.2](p1-rv.md) and in every estimation problem with "independent samples").
 
 ### The Gaussian (bell curve)
 
+<div class="key" markdown>
+
 $$p(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\;e^{-\frac{(x-\mu)^2}{2\sigma^2}}\qquad\text{written }X\sim\mathcal N(\mu,\sigma^2).$$
+
+</div>
 
 - $\mu$ = centre of the bell (the mean), $\sigma^2$ = variance (the width). The prefactor $\frac1{\sqrt{2\pi\sigma^2}}$ only exists to make the total area equal 1.
 - About 68 % of the area lies within $\pm\sigma$ of $\mu$, 95 % within $\pm2\sigma$, 99.7 % within $\pm3\sigma$.
-- **Standardising:** if $X\sim\mathcal N(\mu,\sigma^2)$ then $\frac{X-\mu}{\sigma}\sim\mathcal N(0,1)$ (shift by the mean, divide by the spread). So any Gaussian question reduces to the standard one.
-- **$Q$-function:** $Q(x)=P(Z>x)$ for $Z\sim\mathcal N(0,1)$ = the area of the right tail beyond $x$. Symmetry gives $Q(-x)=1-Q(x)$ and $Q(0)=\tfrac12$. From the 68/95/99.7 numbers: $Q(1)=\frac{1-0.683}{2}=0.1587$, $Q(2)=\frac{1-0.954}{2}=0.023$. Exams that give you an erf table want exactly this: $Q(x)=\tfrac12\big(1-\operatorname{erf}(x/\sqrt2)\big)$.
-- **Sums:** independent Gaussians added together are Gaussian again, with the **means added and the variances added**.
+- **Standardising:** ==if $X\sim\mathcal N(\mu,\sigma^2)$ then $\frac{X-\mu}{\sigma}\sim\mathcal N(0,1)$== (shift by the mean, divide by the spread). So any Gaussian question reduces to the standard one.
+- **$Q$-function:** ==$Q(x)=P(Z>x)$ for $Z\sim\mathcal N(0,1)$ = the area of the right tail beyond $x$==. Symmetry gives $Q(-x)=1-Q(x)$ and $Q(0)=\tfrac12$. From the 68/95/99.7 numbers: $Q(1)=\frac{1-0.683}{2}=0.1587$, $Q(2)=\frac{1-0.954}{2}=0.023$. Exams that give you an erf table want exactly this: $Q(x)=\tfrac12\big(1-\operatorname{erf}(x/\sqrt2)\big)$.
+- **Sums:** ==independent Gaussians added together are Gaussian again, with the **means added and the variances added**==.
 
 <figure markdown>
 ![Gaussian areas and the Q function](img/gen/p0_gauss.svg)
@@ -320,7 +372,7 @@ $$p(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\;e^{-\frac{(x-\mu)^2}{2\sigma^2}}\qquad\tex
 
 ### Likelihood: the same formula read backwards
 
-A PDF with a parameter, e.g. $p(y;\theta)$, answers "*given* the parameter $\theta$, how likely is each data value $y$?". Estimation reverses the question: **the data $y$ are fixed (you measured them), which $\theta$ makes them most plausible?** Same formula, now plotted against $\theta$, and called the **likelihood**.
+A PDF with a parameter, e.g. $p(y;\theta)$, answers "*given* the parameter $\theta$, how likely is each data value $y$?". Estimation reverses the question: ==**the data $y$ are fixed (you measured them), which $\theta$ makes them most plausible?**== Same formula, now plotted against $\theta$, and called the **likelihood**.
 
 !!! example "One sample, unknown mean"
     You measure $y=3$ from $\mathcal N(\theta,1)$ with $\theta$ unknown: $p(3;\theta)=\frac1{\sqrt{2\pi}}e^{-(3-\theta)^2/2}$. As a function of $\theta$ this is a bell centred at $\theta=3$: the most plausible mean is the measurement itself. That is the whole idea of maximum likelihood ([2.1](p2-mle.md)).
@@ -335,25 +387,25 @@ A PDF with a parameter, e.g. $p(y;\theta)$, answers "*given* the parameter $\the
 A **random signal** (random process) is a list of random variables $x[0],x[1],x[2],\dots$: every time you record it you get a different list (a "realisation"). Two statistics describe it:
 
 - **Mean** $\mu_x=\mathbb E[x[n]]$.
-- **Autocorrelation** $r[l]=\mathbb E\big[x[n]\,x[n-l]\big]$: how strongly the signal at time $n$ is related, *on average*, to the signal $l$ steps earlier ($l$ = the **lag**).
+- **Autocorrelation** ==$r[l]=\mathbb E\big[x[n]\,x[n-l]\big]$: how strongly the signal at time $n$ is related, *on average*, to the signal $l$ steps earlier== ($l$ = the **lag**).
 
 <figure markdown>
 ![Autocorrelation as how tilted the scatter cloud is](img/gen/p0_autocorr.svg)
 <figcaption>What $r[l]$ measures. Take one long recording (left) and plot every value against the value $l$ steps earlier. For $l=1$ (green) the points line up along a tilted cloud: when $x[n-1]$ is high, $x[n]$ is usually high too, so the average product $x[n]x[n-1]$ is large. For $l=20$ (orange) the cloud is round: no relation, average product near 0. The stems on the right are those average products for every lag.</figcaption>
 </figure>
 
-The process is **stationary** (wide-sense) when $\mu_x$ and $r[l]$ do **not depend on $n$**: the statistics look the same at any time. Facts you will use:
+The process is **stationary** (wide-sense) ==when $\mu_x$ and $r[l]$ do **not depend on $n$**==: the statistics look the same at any time. Facts you will use:
 
-1. $r[0]=\mathbb E[x[n]^2]$ = the **average power** (the random-signal twin of $P_x$ in [3.1](p3-windows.md#1-energy-vs-power-which-one-is-this-signal)). It is the largest value: $|r[l]|\le r[0]$.
-2. $r[-l]=r[l]$ for real signals (symmetric in the lag).
-3. **White noise** has no relation between different times: $r[0]=\sigma^2$ and $r[l]=0$ for $l\ne0$.
-4. The **PSD** (power spectral density: how the power is spread over frequency) is the FTD of the autocorrelation:
+1. ==$r[0]=\mathbb E[x[n]^2]$ = the **average power**== (the random-signal twin of $P_x$ in [3.1](p3-windows.md#1-energy-vs-power-which-one-is-this-signal)). It is the largest value: $|r[l]|\le r[0]$.
+2. ==$r[-l]=r[l]$ for real signals== (symmetric in the lag).
+3. ==**White noise** has no relation between different times: $r[0]=\sigma^2$ and $r[l]=0$ for $l\ne0$.==
+4. ==The **PSD** (power spectral density: how the power is spread over frequency) is the FTD of the autocorrelation==:
 
     $$P(\theta)=\sum_{l=-\infty}^{\infty} r[l]\,e^{-jl\theta}=r[0]+2\sum_{l=1}^{\infty} r[l]\cos(l\theta)\quad(\text{real, symmetric }r).$$
 
     Example: $r[0]=1,\ r[\pm1]=0.5$, zero otherwise → $P(\theta)=1+2(0.5)\cos\theta=1+\cos\theta$. Check: $P(0)=2=1+0.5+0.5$ (the sum of all $r[l]$), and $P\ge0$ everywhere, as a power must be (figure below).
 
-5. **Ergodic** means one long recording is as good as many short ones: averaging over *time* in a single record gives the same answer as averaging over *realisations*. This is what lets us estimate $r[l]$ from a single record ([3.2](p3-nonparametric.md)).
+5. **Ergodic** means ==one long recording is as good as many short ones==: averaging over *time* in a single record gives the same answer as averaging over *realisations*. This is what lets us estimate $r[l]$ from a single record ([3.2](p3-nonparametric.md)).
 
 <figure markdown>
 ![Autocorrelation and its PSD](img/gen/p0_r_psd.svg)

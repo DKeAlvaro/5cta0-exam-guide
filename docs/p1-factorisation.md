@@ -19,11 +19,19 @@
 
 If you pass a random signal through a linear filter $H(z)$, its spectrum gets multiplied by the squared magnitude of the filter ([3.3 §2](p3-autocorr.md#2-the-psd-of-a-model-without-any-autocorrelation)):
 
+<div class="key" markdown>
+
 $$P_y(e^{j\theta})=|H(e^{j\theta})|^2\,P_x(e^{j\theta}).$$
+
+</div>
 
 So white noise through a filter $L(z)$ gives a "coloured" signal with PSD $\sigma_i^2|L(e^{j\theta})|^2$. The **innovation representation** says: almost any WSS signal can be seen as white noise through a filter. Finding that filter and the noise variance from the PSD is **spectral factorisation**:
 
+<div class="key" markdown>
+
 $$P_x(z)=\sigma_i^2\,L(z)\,L(z^{-1}),\qquad z=e^{j\theta}$$
+
+</div>
 
 (on the unit circle $L(z^{-1})$ is the complex conjugate of $L(z)$, so the product is $\lvert L\rvert^2$).
 
@@ -34,11 +42,11 @@ $$P_x(z)=\sigma_i^2\,L(z)\,L(z^{-1}),\qquad z=e^{j\theta}$$
 
 ### 1.2 Why two answers fit, and why we pick "inside the unit circle"
 
-The PSD only knows $|L|^2$. Take the factor $(1-az^{-1})$ and its twin $(1-a^{-1}z^{-1})$. Their squared magnitudes differ only by a constant:
+==The PSD only knows $|L|^2$.== Take the factor $(1-az^{-1})$ and its twin $(1-a^{-1}z^{-1})$. Their squared magnitudes differ only by a constant:
 
 $$\lvert1-a^{-1}e^{-j\theta}\rvert^2=1+a^{-2}-2a^{-1}\cos\theta=a^{-2}\big(a^2+1-2a\cos\theta\big)=a^{-2}\,\lvert1-ae^{-j\theta}\rvert^2 .$$
 
-So there are always two candidates for every factor, and the constant $a^{-2}$ just gets absorbed in $\sigma_i^2$. Which one is the "real" filter? The convention that makes the answer unique: $L(z)$ is **causal, stable and minimum phase**, i.e. all poles **and** zeros inside the unit circle ($|a|<1$), and its first impulse-response sample is $l[0]=1$.
+So there are always two candidates for every factor, and the constant $a^{-2}$ just gets absorbed in $\sigma_i^2$. Which one is the "real" filter? The convention that makes the answer unique: ==$L(z)$ is **causal, stable and minimum phase**, i.e. all poles **and** zeros inside the unit circle ($|a|<1$), and its first impulse-response sample is $l[0]=1$==.
 
 *Why that is natural:* the AR(1) recipe $x[n]=a\,x[n-1]+i[n]$ has the pole at $a$. If $|a|<1$ the memory fades and the signal stays bounded (e.g. $a=\frac34$: each value remembers $\frac34$ of the previous one). If $|a|>1$ (e.g. $a=\frac43$) the recursion explodes. Minimum phase also guarantees that the inverse $1/L(z)$, the *whitening filter* that turns $x[n]$ back into $i[n]$, is stable.
 
@@ -56,11 +64,15 @@ So there are always two candidates for every factor, and the constant $a^{-2}$ j
 
 The PSD is written with cosines, the filter with $z$. The bridge ([Toolbox](toolbox.md#5-complex-exponentials-needed-for-every-psd), derived in [3.3 §2](p3-autocorr.md#2-the-psd-of-a-model-without-any-autocorrelation)): using $z+z^{-1}=2\cos\theta$ on the unit circle,
 
+<div class="key" markdown>
+
 $$(1-az^{-1})(1-az)=1+a^2-a(z+z^{-1})=\underbrace{(1+a^2)}_{\text{constant}}-\underbrace{2a}_{\text{cos coeff.}}\cos\theta .$$
+
+</div>
 
 With a **plus** sign, $(1+az^{-1})(1+az)=(1+a^2)+2a\cos\theta$.
 
-!!! recipe "Recipe: spectral factorisation of $P(e^{j\theta})=\dfrac{\alpha_n\pm\beta_n\cos\theta}{\alpha_d\pm\beta_d\cos\theta}$"
+!!! recipe key "Recipe: spectral factorisation of $P(e^{j\theta})=\dfrac{\alpha_n\pm\beta_n\cos\theta}{\alpha_d\pm\beta_d\cos\theta}$"
     Do numerator and denominator separately. For "$\alpha\pm\beta\cos\theta$":
 
     1. Match it to $C\big[(1+a^2)\pm2a\cos\theta\big]$:
@@ -76,7 +88,7 @@ With a **plus** sign, $(1+az^{-1})(1+az)=(1+a^2)+2a\cos\theta$.
 !!! example "Smallest possible example: $P=\dfrac{5}{4}+\cos\theta$ (a numerator only)"
     Match $C(1+b^2)=\frac54$ and $2Cb=1$ (plus sign). Divide: $\frac{1+b^2}{2b}=\frac54\Rightarrow2b^2-5b+2=0\Rightarrow b=\frac12$ or $2$. Keep $b=\frac12$, $C=\frac1{2b}=1$. So $P=1\cdot(1+\frac12z^{-1})(1+\frac12z)$: an MA(1) with $b=\frac12$ driven by unit-variance noise (compare [3.4 Jan 2020 ex. 3](p3-chain.md#jan20-3)).
 
-!!! trap "Traps"
+!!! trap key "Traps"
     - $\cos\theta=\frac{z+z^{-1}}{2}$: the coefficient of $z$ is **half** the cosine coefficient. Writing $60\cos\theta$ as $60(z+z^{-1})$ is the classic mistake.
     - A constant numerator (e.g. 1 or 7) gives $b=0$, $C_n=$ that constant.
     - $L(z^{-1})$ (poles outside the circle) is the *maximum-phase* twin, never the answer.

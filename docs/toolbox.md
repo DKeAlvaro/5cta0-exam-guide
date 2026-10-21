@@ -22,9 +22,13 @@ $$\ln(ab)=\ln a+\ln b,\qquad \ln\frac ab=\ln a-\ln b,\qquad \ln a^k=k\ln a,\qqua
 
 **Why $\ln(ab)=\ln a+\ln b$:** it is just $e^ae^b=e^{a+b}$ read backwards: logs turn multiplication into addition. The other rules in the line follow from it.
 
-**Why we take logs all the time.** The log is increasing, so whatever maximises $f(\theta)$ also maximises $\ln f(\theta)$. And the log turns a product of $N$ terms (likelihood of independent samples) into a sum, which is much easier to differentiate:
+**Why we take logs all the time.** The log is increasing, so ==whatever maximises $f(\theta)$ also maximises $\ln f(\theta)$==. And the log turns a product of $N$ terms (likelihood of independent samples) into a sum, which is much easier to differentiate:
+
+<div class="key" markdown>
 
 $$\ln\prod_{n=1}^{N} f(x_n)=\sum_{n=1}^{N}\ln f(x_n).$$
+
+</div>
 
 The same trick is used in detection: "$L(x)>\lambda$" is the same statement as "$\ln L(x)>\ln\lambda$".
 
@@ -44,11 +48,15 @@ The same trick is used in detection: "$L(x)>\lambda$" is the same statement as "
 
 **Where they come from:** the power rule is $\frac d{d\theta}\theta^k=k\theta^{k-1}$ (so $1/\theta=\theta^{-1}$ gives $-\theta^{-2}$). The sigmoid one: $\lambda'=\frac{e^{-\theta}}{(1+e^{-\theta})^2}=\lambda\cdot\frac{e^{-\theta}}{1+e^{-\theta}}=\lambda(1-\lambda)$. The chain rule is "derivative of the outside, evaluated at the inside, times the derivative of the inside".
 
-**Maximum or minimum?** At a point where $f'=0$, if $f''<0$ it is a maximum. For MLE/MAP you want a maximum.
+**Maximum or minimum?** ==At a point where $f'=0$, if $f''<0$ it is a maximum.== For MLE/MAP you want a maximum.
 
 ## 4. The integrals that keep coming back
 
+<div class="key" markdown>
+
 $$\int_0^\infty e^{-ax}\,dx=\frac1a,\qquad \int_0^\infty x^n e^{-ax}\,dx=\frac{n!}{a^{n+1}}\quad(a>0)$$
+
+</div>
 
 (Why: substitute $u=ax$ and the integral becomes $\frac{1}{a^{n+1}}\int_0^\infty u^ne^{-u}du=\frac{n!}{a^{n+1}}$, because $\int_0^\infty u^ne^{-u}du=n!$ by integrating by parts $n$ times.) So $\int_0^\infty xe^{-ax}dx=1/a^2$ and $\int_0^\infty x^2e^{-ax}dx=2/a^3$. These give every MMSE in this course.
 
@@ -56,20 +64,28 @@ $$\int_{a}^{b}\lambda e^{-\lambda x}dx=e^{-\lambda a}-e^{-\lambda b}\qquad\text{
 
 $$\int_{-\infty}^{\infty}e^{-\frac{(x-\mu)^2}{2\sigma^2}}dx=\sqrt{2\pi\sigma^2}\qquad\text{(normalising a Gaussian)}$$
 
-**Gaussian tails.** For $X\sim\mathcal N(\mu,\sigma^2)$: $\;P(X>t)=Q\!\left(\frac{t-\mu}{\sigma}\right)$, where $Q(z)=\int_z^\infty\frac{1}{\sqrt{2\pi}}e^{-u^2/2}du$ is the area of the standard normal to the right of $z$. Useful values: $Q(0)=0.5$, $Q(1)=0.159$, $Q(2)=0.023$, $Q(3)=0.0013$, and $Q(-z)=1-Q(z)$.
+**Gaussian tails.** For $X\sim\mathcal N(\mu,\sigma^2)$: ==$\;P(X>t)=Q\!\left(\frac{t-\mu}{\sigma}\right)$==, where $Q(z)=\int_z^\infty\frac{1}{\sqrt{2\pi}}e^{-u^2/2}du$ is the area of the standard normal to the right of $z$. Useful values: $Q(0)=0.5$, $Q(1)=0.159$, $Q(2)=0.023$, $Q(3)=0.0013$, and ==$Q(-z)=1-Q(z)$==.
 Older exams use $\operatorname{erf}$ instead: $P(X\le t)=\tfrac12\left[1+\operatorname{erf}\!\left(\frac{t-\mu}{\sigma\sqrt2}\right)\right]$, so $Q(z)=\tfrac12\left[1-\operatorname{erf}(z/\sqrt2)\right]$.
 
 ## 5. Complex exponentials (needed for every PSD)
 
 Euler: $e^{j\theta}=\cos\theta+j\sin\theta$. Adding $e^{j\theta}$ and $e^{-j\theta}$ cancels the sines:
 
+<div class="key" markdown>
+
 $$\boxed{\cos\theta=\frac{e^{j\theta}+e^{-j\theta}}{2}}\qquad\text{so}\qquad e^{jk\theta}+e^{-jk\theta}=2\cos k\theta.$$
+
+</div>
 
 (Picture and animation of why: [Chapter 0 §0.3](p0-foundations.md#03-complex-numbers-and-ejtheta).)
 
 The squared magnitude of a complex number is the number times its conjugate: $|w|^2=w\,w^*$. The single most used identity in Part 3:
 
+<div class="key" markdown>
+
 $$\boxed{|1+a e^{-j\theta}|^2=(1+ae^{-j\theta})(1+ae^{j\theta})=1+a^2+2a\cos\theta}$$
+
+</div>
 
 and for two coefficients:
 
@@ -87,9 +103,9 @@ $$H(z)=\frac{1+b_1z^{-1}}{1+a_1z^{-1}}.$$
 
 - **Zeros**: values of $z$ that make the numerator 0 (here $z=-b_1$). **Poles**: values that make the denominator 0 (here $z=-a_1$).
 - Evaluating on the unit circle $z=e^{j\theta}$ gives the frequency response; that is why PSDs contain $e^{-j\theta}$.
-- **Stable and causal**: all poles inside the unit circle ($|{\rm pole}|<1$).
-- **Minimum phase**: poles **and** zeros inside the unit circle. The innovation filter of a spectral factorisation must be minimum phase. For one coefficient this just means $|a|<1$, $|b|<1$.
-- AR = only poles (peaks in the spectrum), MA = only zeros (dips), ARMA = both.
+- ==**Stable and causal**: all poles inside the unit circle ($|{\rm pole}|<1$).==
+- ==**Minimum phase**: poles **and** zeros inside the unit circle.== The innovation filter of a spectral factorisation must be minimum phase. For one coefficient this just means $|a|<1$, $|b|<1$.
+- ==AR = only poles (peaks in the spectrum), MA = only zeros (dips), ARMA = both.==
 
 <figure markdown>
 ![Poles make peaks, zeros make dips](img/gen/p3_poles_zeros.svg)
@@ -98,7 +114,7 @@ $$H(z)=\frac{1+b_1z^{-1}}{1+a_1z^{-1}}.$$
 
 ## 7. Solving things fast
 
-**Quadratic:** $ax^2+bx+c=0\Rightarrow x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$. The two roots of the equations in Part 3 are always $a$ and $1/a$ (their product is $c/a=1$ there): keep the one with $|{\rm root}|<1$.
+**Quadratic:** $ax^2+bx+c=0\Rightarrow x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$. ==The two roots of the equations in Part 3 are always $a$ and $1/a$ (their product is $c/a=1$ there): keep the one with $|{\rm root}|<1$.==
 
 **2×2 linear system (Cramer's rule)** (it comes from eliminating one unknown: multiply the first equation by $s$, the second by $q$, and subtract):
 

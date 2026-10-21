@@ -14,7 +14,7 @@
 
 ### 1.1 A process is a stack of signals
 
-A **random process** $X(t)$ (or $X[n]$ in discrete time) is a **collection of signals**. Each time you run the experiment you get one whole signal, called a **realisation**. The collection of all possible realisations is the **ensemble**. Picture a table: each **row** is one realisation, each **column** is one time instant.
+A **random process** $X(t)$ (or $X[n]$ in discrete time) is a **collection of signals**. Each time you run the experiment you get one whole signal, called a **realisation**. The collection of all possible realisations is the **ensemble**. Picture a table: ==each **row** is one realisation, each **column** is one time instant.==
 
 Two ways to average:
 
@@ -35,21 +35,21 @@ Two ways to average:
 
 The statistics up to second order do not depend on *when* you look:
 
-1. The mean is constant: $\mathbb E[X(t)]=\mu$ for all $t$ (every column has the same average).
-2. The autocorrelation $r(t_1,t_2)=\mathbb E[X(t_1)X(t_2)]$ depends only on the lag $\tau=t_2-t_1$ (how related two columns are depends on how far apart they are, not on where they sit).
+1. ==The mean is constant: $\mathbb E[X(t)]=\mu$ for all $t$== (every column has the same average).
+2. The autocorrelation $r(t_1,t_2)=\mathbb E[X(t_1)X(t_2)]$ ==depends only on the lag $\tau=t_2-t_1$== (how related two columns are depends on how far apart they are, not on where they sit).
 
 *Examples.* White noise: constant mean 0, $r[l]=\sigma^2\delta[l]$ → WSS. A signal whose average power grows with time (a volume knob turned up): mean or $r(t,t)$ depends on $t$ → not WSS.
 
 ### 1.3 Ergodic
 
-**Ergodic**: you can learn the ensemble statistics from **one** (infinitely long) realisation, because the time average along a row equals the ensemble average down a column. The course requires a process to be stationary before it can be ergodic.
+**Ergodic**: you can learn the ensemble statistics from **one** (infinitely long) realisation, because ==the time average along a row equals the ensemble average down a column==. ==The course requires a process to be stationary before it can be ergodic.==
 
 - **Ergodic in the mean**: $\frac1N\sum x[n]\to\mathbb E[X]$ for every realisation.
 - **Ergodic in the variance / autocorrelation**: the same for $x^2$ or $x[n]x[n+l]$.
 
-The thing that breaks ergodicity is a **random quantity drawn once per realisation and then frozen** (an amplitude $A$, a range): each row then has its own personality, and no row alone can reveal the average over personalities.
+==The thing that breaks ergodicity is a **random quantity drawn once per realisation and then frozen**== (an amplitude $A$, a range): each row then has its own personality, and no row alone can reveal the average over personalities.
 
-!!! recipe "Recipe: is it WSS? is it ergodic?"
+!!! recipe key "Recipe: is it WSS? is it ergodic?"
     1. Compute $\mathbb E[X(t)]$. If it depends on $t$ → **not WSS** → not ergodic. Stop.
     2. Compute $\mathbb E[X(t_1)X(t_2)]$. Use $\cos\alpha\cos\beta=\tfrac12[\cos(\alpha+\beta)+\cos(\alpha-\beta)]$ when there are cosines. If only $t_1-t_2$ survives → WSS.
     3. For ergodicity, look for a random quantity that is **drawn once per realisation and then frozen** (an amplitude $A$, the size of the range). Any statistic that depends on it differs from realisation to realisation → not ergodic in that statistic. A random **phase** $U$ that is uniform over $[0,2\pi)$ does not hurt the mean: every realisation still averages to 0.
@@ -59,11 +59,11 @@ The thing that breaks ergodicity is a **random quantity drawn once per realisati
 
 For a real WSS signal, $r[l]=\mathbb E\{x[n]\,x[n-l]\}$ must satisfy:
 
-1. **Symmetric**: $r[-l]=r[l]$ (the relation of $x[n]$ with $x[n-l]$ is the same as of $x[n]$ with $x[n+l]$).
-2. **Peak at zero lag**: $r[0]\ge|r[l]|$ ($r[0]=\mathbb E[x^2]$ is the power; nothing can be more related to $x[n]$ than $x[n]$ itself).
-3. **Non-negative spectrum**: the PSD $P(e^{j\theta})=\sum_l r[l]e^{-jl\theta}$ (Wiener–Khinchin) must be $\ge0$ for every $\theta$.
+1. ==**Symmetric**: $r[-l]=r[l]$== (the relation of $x[n]$ with $x[n-l]$ is the same as of $x[n]$ with $x[n+l]$).
+2. ==**Peak at zero lag**: $r[0]\ge|r[l]|$== ($r[0]=\mathbb E[x^2]$ is the power; nothing can be more related to $x[n]$ than $x[n]$ itself).
+3. ==**Non-negative spectrum**: the PSD $P(e^{j\theta})=\sum_l r[l]e^{-jl\theta}$ (Wiener–Khinchin) must be $\ge0$ for every $\theta$==.
 
-White noise has $r[l]=\sigma^2\delta[l]$ (correlated only with itself) and a flat PSD $P=\sigma^2$.
+==White noise has $r[l]=\sigma^2\delta[l]$ (correlated only with itself) and a flat PSD $P=\sigma^2$.==
 
 <figure markdown>
 ![Valid and invalid autocorrelations](img/gen/p1_valid_r.svg)

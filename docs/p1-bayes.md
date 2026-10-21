@@ -17,7 +17,7 @@ A **probability** is a number between 0 and 1 (or 0–100 %) that says what frac
 
 ### 1.2 One picture with whole numbers
 
-The trick that makes everything below obvious: **imagine 10 000 chips** and count.
+The trick that makes everything below obvious: ==**imagine 10 000 chips** and count.==
 
 !!! example "The machine problem as counts (June 2026 1b)"
     Machine $M_1$ makes 40 % of the chips, $M_2$ 35 %, $M_3$ 25 %. Defect rates: 2 %, 4 %, 5 %.
@@ -48,23 +48,35 @@ The trick that makes everything below obvious: **imagine 10 000 chips** and coun
 
 **Conditional probability.** $P(A\mid B)$ ("probability of $A$ given $B$") is the probability of $A$ *when you already know that $B$ happened*. You zoom into the part of the world where $B$ is true and ask how much of it is also $A$:
 
+<div class="key" markdown>
+
 $$P(A\mid B)=\frac{P(A\cap B)}{P(B)}\qquad\Longleftrightarrow\qquad P(A\cap B)=P(A\mid B)\,P(B)$$
+
+</div>
 
 ($A\cap B$ = "both $A$ and $B$"). In the picture: $\frac{140}{345}$ is "defective and from $M_2$" divided by "defective".
 
 **Law of total probability.** If the world is split into non-overlapping groups $A_1,A_2,\dots$ (machine 1, machine 2, …) that together cover everything, the probability of $B$ is the weighted average of the per-group probabilities:
 
+<div class="key" markdown>
+
 $$P(B)=\sum_i P(B\mid A_i)\,P(A_i).$$
+
+</div>
 
 In the picture: $0.02\cdot0.40+0.04\cdot0.35+0.05\cdot0.25=0.008+0.014+0.0125=0.0345$, i.e. the 345 defective chips divided by 10 000.
 
 **Bayes' theorem.** Turn the conditional around: from "how often does group $k$ produce $B$" to "given $B$, how likely is it that it came from group $k$":
 
+<div class="key" markdown>
+
 $$P(A_k\mid B)=\frac{P(B\mid A_k)\,P(A_k)}{P(B)}=\frac{P(B\mid A_k)\,P(A_k)}{\sum_i P(B\mid A_i)P(A_i)}.$$
+
+</div>
 
 (Derivation: write $P(A_k\cap B)$ in the two possible ways, $P(B\mid A_k)P(A_k)=P(A_k\mid B)P(B)$, and divide by $P(B)$.)
 
-Names you will see: $P(A_k)$ = **prior** (before knowing the outcome), $P(B\mid A_k)$ = **likelihood**, $P(B)$ = **evidence**, $P(A_k\mid B)$ = **posterior** (after knowing the outcome). The same structure comes back in Part 2 (Bayesian estimation) and Part 4 (Bayesian detection).
+Names you will see: ==$P(A_k)$ = **prior** (before knowing the outcome), $P(B\mid A_k)$ = **likelihood**, $P(B)$ = **evidence**, $P(A_k\mid B)$ = **posterior** (after knowing the outcome)==. The same structure comes back in Part 2 (Bayesian estimation) and Part 4 (Bayesian detection).
 
 <figure markdown>
 ![Probability tree for the June 2026 machine problem](img/gen/p1_bayes_tree.svg)
@@ -73,16 +85,16 @@ Names you will see: $P(A_k)$ = **prior** (before knowing the outcome), $P(B\mid 
 
 ### 1.4 Independent events
 
-$A$ and $B$ are **independent** when knowing $B$ tells you nothing about $A$: $P(A\mid B)=P(A)$, equivalently $P(A\cap B)=P(A)P(B)$. Two coin flips: $P(\text{both heads})=\frac12\cdot\frac12=\frac14$.
+==$A$ and $B$ are **independent** when knowing $B$ tells you nothing about $A$: $P(A\mid B)=P(A)$, equivalently $P(A\cap B)=P(A)P(B)$.== Two coin flips: $P(\text{both heads})=\frac12\cdot\frac12=\frac14$.
 
-Do not confuse with **mutually exclusive** (disjoint) events, which cannot happen together ($P(A\cap B)=0$). Two events with non-zero probabilities that are independent can never be disjoint ($P(A)P(B)>0$). And the addition rule in general is $P(A\cup B)=P(A)+P(B)-P(A\cap B)$; plain addition is only for disjoint events.
+Do not confuse with **mutually exclusive** (disjoint) events, which cannot happen together ($P(A\cap B)=0$). ==Two events with non-zero probabilities that are independent can never be disjoint== ($P(A)P(B)>0$). And ==the addition rule in general is $P(A\cup B)=P(A)+P(B)-P(A\cap B)$==; plain addition is only for disjoint events.
 
 <figure markdown>
 ![Disjoint vs independent events](img/gen/p1_indep_disjoint.svg)
 <figcaption>The square is "everything that can happen", area 1. Left: disjoint events do not touch, so knowing $B$ happened tells you for sure that $A$ did not. That is the opposite of independent. Right: independent events cross like a grid. Inside the strip $B$, the event $A$ still takes 40 % of the width, exactly as in the whole square, and the overlap's area is $0.4\times0.3$.</figcaption>
 </figure>
 
-!!! recipe "Recipe: every Bayes word problem"
+!!! recipe key "Recipe: every Bayes word problem"
     1. Name the events. Write the groups $A_1,\dots$ and the "outcome" $B$.
     2. Read off the priors $P(A_i)$. If they give counts (18, 22, 15 patients), divide by the total.
     3. Read off the likelihoods $P(B\mid A_i)$. **If they give "% that pass", the defect rate is 1 minus that.**
@@ -90,7 +102,7 @@ Do not confuse with **mutually exclusive** (disjoint) events, which cannot happe
     5. Bayes: $P(A_k\mid B)=P(B\mid A_k)P(A_k)/P(B)$, i.e. one branch divided by the sum.
     6. *(Check)* the posteriors of all groups add up to 1.
 
-!!! trap "Traps"
+!!! trap key "Traps"
     - "Probability that a car **passed** the test **was** painted by $M_3$" is $P(M_3\mid\text{pass})$, not $P(\text{pass}\mid M_3)$.
     - A test that is "99% accurate" means $P(+\mid\text{sick})=0.99$ **and** $P(+\mid\text{healthy})=0.01$.
     - Watch whether they ask about the **good** or the **bad** outcome; use the complement $P(B^c)=1-P(B)$.

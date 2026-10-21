@@ -21,7 +21,7 @@ A **random variable** (RV) $X$ maps the outcome of an experiment to a **number**
 - **Continuous RV**: it can take any value in an interval (time, distance, weight, voltage, an *average* of money). Described by a **PDF** $p_X(x)$, which integrates to 1. Probabilities are areas: $P(a\le X\le b)=\int_a^b p_X(x)\,dx$.
 - **CDF** $P_X(x)=P(X\le x)$: always goes from 0 at $-\infty$ to 1 at $+\infty$ and never decreases.
 
-Quick test: *can I list the possible values (0, 1, 2, …), or is it a measurement on a continuum?* Counts are discrete; durations, distances and averages are continuous.
+Quick test: *can I list the possible values (0, 1, 2, …), or is it a measurement on a continuum?* ==Counts are discrete; durations, distances and averages are continuous.==
 
 <figure markdown>
 ![PMF and CDF of a die, PDF and CDF of an exponential](img/gen/p1_pmf_cdf.svg)
@@ -32,24 +32,32 @@ Quick test: *can I list the possible values (0, 1, 2, …), or is it a measureme
 
 **Expected value** = the average outcome, each outcome weighted by its probability:
 
+<div class="key" markdown>
+
 $$\mathbb E[X]=\sum_x x\,p_X(x)\quad\text{(discrete)},\qquad \mathbb E[X]=\int x\,p_X(x)\,dx\quad\text{(continuous)}.$$
 
-It is the long-run average over infinitely many repetitions. It is **not** "the most likely value" (that is the *mode*) and not "the most common value".
+</div>
+
+It is the long-run average over infinitely many repetitions. ==It is **not** "the most likely value" (that is the *mode*)== and not "the most common value".
 
 !!! example "A die"
     $\mathbb E[X]=1\cdot\frac16+2\cdot\frac16+\dots+6\cdot\frac16=\frac{21}{6}=3.5$: a value that can never be rolled, but the average of a million rolls. $\mathbb E[X^2]=\frac{91}6=15.17$, so $\operatorname{Var}=15.17-3.5^2=2.92$.
 
-**Variance** = average squared distance from the mean: $\operatorname{Var}[X]=\mathbb E[(X-\mu)^2]=\mathbb E[X^2]-\mu^2$.
+**Variance** = average squared distance from the mean: ==$\operatorname{Var}[X]=\mathbb E[(X-\mu)^2]=\mathbb E[X^2]-\mu^2$==.
 
 ### 1.3 Two random variables at once
 
 A **joint PDF** $p_{X,Y}(x,y)$ describes $X$ and $Y$ together (a surface over the $(x,y)$ plane; probabilities are *volumes*; the total volume is 1). Three operations:
+
+<div class="key" markdown>
 
 | Operation | Formula | In words |
 |---|---|---|
 | **Marginal** | $p_X(x)=\int p_{X,Y}(x,y)\,dy$ | forget $Y$ by summing/integrating over all its values (for a table of probabilities: **sum each row**) |
 | **Conditional** | $p_{X\mid Y}(x\mid y)=\dfrac{p_{X,Y}(x,y)}{p_Y(y)}$ | slice the surface at a fixed $y$ and renormalise so the slice has area 1 |
 | **Independence** | $p_{X,Y}(x,y)=p_X(x)\,p_Y(y)$ for all $x,y$ | knowing $Y$ tells nothing about $X$ |
+
+</div>
 
 !!! example "Tiny example: uniform on a triangle"
     $p_{X,Y}=2$ on the triangle $0\le y\le x\le1$ (area $\frac12$, so height 2 makes the volume $\frac12\cdot2=1$ ✓). Marginal of $Y$: at height $y$, $x$ runs from $y$ to 1, so $p_Y(y)=\int_y^12\,dx=2(1-y)$. Conditional: $p_{X\mid Y}=\frac{2}{2(1-y)}=\frac{1}{1-y}$ on $y\le x\le1$: a flat slice. This is not independent, because the region is a triangle: knowing $y$ changes the possible range of $x$.
@@ -61,12 +69,12 @@ A **joint PDF** $p_{X,Y}(x,y)$ describes $X$ and $Y$ together (a surface over th
 
 ### 1.4 Covariance and correlation
 
-**Covariance** $\operatorname{Cov}[X,Y]=\mathbb E[(X-\mu_X)(Y-\mu_Y)]=\mathbb E[XY]-\mu_X\mu_Y$: the average product of the two deviations from the means. If large $X$ comes with large $Y$ the product is positive; if large $X$ comes with small $Y$ it is negative.
+**Covariance** ==$\operatorname{Cov}[X,Y]=\mathbb E[(X-\mu_X)(Y-\mu_Y)]=\mathbb E[XY]-\mu_X\mu_Y$==: the average product of the two deviations from the means. If large $X$ comes with large $Y$ the product is positive; if large $X$ comes with small $Y$ it is negative.
 
 !!! example "Numbers"
     Three equally likely pairs $(1,2),(2,3),(3,7)$. Means: $\mu_X=2$, $\mu_Y=4$. Products of deviations: $(-1)(-2)=2,\ (0)(-1)=0,\ (1)(3)=3$. Average: $\frac{5}{3}=1.67>0$. If $Y$ is measured in other units (×10), the covariance becomes $16.7$.
 
-Its sign tells the direction of the relation. It has **no upper bound** and **depends on the units**. The **correlation coefficient** $\rho=\frac{\operatorname{Cov}}{\sigma_X\sigma_Y}$ fixes that: it is always between $-1$ and $1$ and does not change with units. Independent variables have zero covariance (the reverse is not true in general).
+Its sign tells the direction of the relation. ==It has **no upper bound** and **depends on the units**.== The **correlation coefficient** $\rho=\frac{\operatorname{Cov}}{\sigma_X\sigma_Y}$ fixes that: ==it is always between $-1$ and $1$ and does not change with units==. ==Independent variables have zero covariance (the reverse is not true in general).==
 
 <figure markdown>
 ![Scatter clouds for different correlations](img/gen/p1_cov.svg)
@@ -75,7 +83,7 @@ Its sign tells the direction of the relation. It has **no upper bound** and **de
 
 For two Gaussians, the covariance matrix $\begin{bmatrix}\sigma_x^2&\operatorname{Cov}\\\operatorname{Cov}&\sigma_y^2\end{bmatrix}$ decides the shape of the contour lines of the joint PDF (see Jan 2025 1b).
 
-!!! recipe "Recipe: joint PDF questions"
+!!! recipe key "Recipe: joint PDF questions"
     1. **Draw the region** where the PDF is non-zero. This is the step that gives you the integration limits.
     2. **Normalise:** set $\iint p\,dx\,dy=1$ and solve for the constant.
     3. **Marginal of $X$:** fix $x$, integrate over $y$ from the bottom to the top of the region at that $x$. The answer is a function of $x$ only, valid on the $x$-range of the region.
