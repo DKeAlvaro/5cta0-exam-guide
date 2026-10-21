@@ -6,7 +6,7 @@ document$.subscribe(({ body }) => {
       { left: "\\(", right: "\\)", display: false },
       { left: "\\[", right: "\\]", display: true }
     ],
-    ignoredClasses: ["md-nav", "md-search", "md-header"],
+    ignoredClasses: ["md-search", "md-header"],
     throwOnError: false
   })
 })
