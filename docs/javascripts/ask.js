@@ -525,13 +525,35 @@
   }
 
   function close() {
+    // desktop: the window folds into a point instead of vanishing
+    if (state.open && !minimized && floating() && ui.panel && geom && ui.panel.classList.contains("open")) {
+      const p = ui.panel;
+      const cx = geom.x + geom.w / 2, cy = geom.y + geom.h / 2;
+      p.classList.add("morph", "to-ball");
+      p.style.left = cx - BALL / 2 + "px"; p.style.top = cy - BALL / 2 + "px";
+      p.style.width = BALL + "px"; p.style.height = BALL + "px";
+      setTimeout(() => {
+        if (ui.panel !== p || state.open) return;
+        p.classList.add("noanim");
+        p.classList.remove("open", "morph", "to-ball");
+        applyGeom(geom);
+        void p.offsetWidth;
+        p.classList.remove("noanim");
+      }, 290);
+      finishClose(true);
+      return;
+    }
+    finishClose(false);
+  }
+
+  function finishClose(animated) {
     state.open = false;
     minimized = false;
     hideBall();
     hideTail();
     clearAnchor();
     document.documentElement.classList.remove("ask-open");
-    if (ui.panel) ui.panel.classList.remove("open");
+    if (ui.panel && !animated) ui.panel.classList.remove("open");
     if (ui.backdrop) ui.backdrop.classList.remove("open");
     hideChip();
     if (lastFocus && lastFocus.focus && document.contains(lastFocus)) {
@@ -594,15 +616,12 @@
 
   /* ---------------- the ball: what the window becomes when you click away ---------------- */
 
+  // a white brush dab with two eyes and a mouth
   const FACE =
     '<svg viewBox="0 0 48 48" aria-hidden="true">' +
-      '<path d="M10 14q4-4 8-1M30 13q4-3 8 1" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>' +
-      '<ellipse cx="17" cy="21" rx="3.4" ry="4.2" fill="#fff"/><ellipse cx="31" cy="21" rx="3.4" ry="4.2" fill="#fff"/>' +
-      '<circle cx="17.8" cy="21.8" r="1.9" fill="#4a1109"/><circle cx="31.8" cy="21.8" r="1.9" fill="#4a1109"/>' +
-      '<circle cx="18.4" cy="20.6" r=".8" fill="#fff"/><circle cx="32.4" cy="20.6" r=".8" fill="#fff"/>' +
-      '<ellipse cx="10" cy="30" rx="3" ry="1.9" fill="#ff9a8a" opacity=".6"/><ellipse cx="38" cy="30" rx="3" ry="1.9" fill="#ff9a8a" opacity=".6"/>' +
-      '<path d="M14 29.5h20c0 6.5-4.5 10.5-10 10.5s-10-4-10-10.5z" fill="#fff"/>' +
-      '<path d="M18.5 35.5c3.2 2.4 7.8 2.4 11 0c-1.2 2.6-9.8 2.6-11 0z" fill="#e0624d"/>' +
+      '<path d="M9 27C7 17 14 9 24 9c10 0 17 7 15 17-1 8-8 13-16 13S10 35 9 27z" fill="#fff"/>' +
+      '<circle cx="18" cy="23" r="2.2" fill="#a82616"/><circle cx="30" cy="23" r="2.2" fill="#a82616"/>' +
+      '<path d="M18 30q6 5 12 0" fill="none" stroke="#a82616" stroke-width="2.2" stroke-linecap="round"/>' +
     '</svg>';
   const BALL = 44;
   let bx = 0, by = 0; // ball centre
@@ -768,7 +787,8 @@
     const x = Math.min(Math.max(8, r.left + r.width / 2 - w / 2), window.innerWidth - w - 8);
     // touch browsers draw their own menu above the selection, so go below there
     const above = !isTouch() && r.top > 44;
-    const y = above ? r.top - 38 : Math.min(r.bottom + (isTouch() ? 44 : 6), window.innerHeight - 52);
+    const h = btn.offsetHeight || 30;
+    const y = above ? r.top - h - 2 : Math.min(r.bottom + (isTouch() ? 44 : 2), window.innerHeight - 52);
     btn.style.left = x + "px";
     btn.style.top = y + "px";
   }
