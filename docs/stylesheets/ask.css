@@ -369,3 +369,11 @@
 #ask-panel .ask-head .ask-quote-text { display: block; -webkit-line-clamp: unset; -webkit-box-orient: unset; overflow-y: auto; max-height: 14em; font-size: .8rem; line-height: 1.55; }
 #ask-panel[data-view="settings"] .ask-head .ask-quote { display: none; }
 #ask-panel .ask-zoom svg { width: 1rem; height: 1rem; }
+
+/* ---------- compact header, icon-only quote label ---------- */
+#ask-panel .ask-head { padding: .05rem .3rem .05rem .7rem; min-height: 0; }
+#ask-panel .ask-head .ask-btn { width: 1.6rem; height: 1.6rem; }
+#ask-panel .ask-head .ask-btn svg { width: .85rem; height: .85rem; }
+#ask-panel .ask-head .ask-quote-label svg { width: .95rem; height: .95rem; display: block; }
+#ask-panel .ask-head .ask-quote-x { width: 1.4rem; height: 1.4rem; }
+#ask-panel .ask-head .ask-quote-main { padding: .15rem .2rem; }

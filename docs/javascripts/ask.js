@@ -147,6 +147,8 @@
   }
 
   const SHADOW_CSS =
+    "#text-input{white-space:nowrap!important;overflow:hidden!important;max-height:2.4em!important}" +
+    "[contenteditable]:empty:before{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}" +
     ".katex{font-size:1.05em;display:inline-block;max-width:100%;overflow-x:auto;overflow-y:hidden;vertical-align:middle}" +
     ".katex-display{overflow-x:auto;overflow-y:hidden;margin:.6em 0;max-width:100%}.katex-display>.katex{display:block;max-width:100%}" +
     ".message-bubble,.ai-message,.user-message{overflow-wrap:anywhere;min-width:0;max-width:100%}" +
@@ -250,7 +252,7 @@
         '<button type="button" class="ask-btn ask-back" data-act="back" aria-label="Back to chat">' + ICONS.back + '</button>' +
         '<div class="ask-head-text">' +
           '<div class="ask-quote" hidden>' +
-            '<div class="ask-quote-main" tabindex="0"><div class="ask-quote-label">Ask about this</div><div class="ask-quote-text"></div></div>' +
+            '<div class="ask-quote-main" tabindex="0"><div class="ask-quote-label" aria-label="Highlighted passage">' + ICONS.quote + '</div><div class="ask-quote-text"></div></div>' +
             '<button type="button" class="ask-quote-x" data-act="clear-ctx" aria-label="Remove highlighted passage">' + ICONS.close + '</button>' +
           '</div>' +
         '</div>' +
