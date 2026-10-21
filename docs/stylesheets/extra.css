@@ -230,3 +230,14 @@
 .md-main { overflow-x: clip; }
 @media screen and (max-width: 44.9375em) {
 }
+
+/* ---------- progress tracking ---------- */
+#progress-bar { margin: 3rem 0 1rem; padding-top: .8rem; border-top: 1px solid var(--md-default-fg-color--lightest);
+  display: flex; align-items: center; gap: .9rem; font-size: .75rem; }
+#progress-bar button { font: inherit; cursor: pointer; background: none; color: inherit; }
+#progress-toggle { padding: .25rem .7rem; border: 1px solid currentColor; border-radius: 4px; opacity: .8; }
+#progress-toggle.on { background: var(--md-default-fg-color); color: var(--md-default-bg-color); border-color: transparent; opacity: 1; }
+#progress-count { opacity: .6; margin-right: auto; }
+#progress-bar .link { border: 0; padding: 0; opacity: .6; text-decoration: underline; }
+#progress-bar .link:hover { opacity: 1; }
+.md-nav--primary a.md-nav__link.done::after { content: " ¹3"; opacity: .6; }

@@ -105,6 +105,7 @@ extra_javascript:
   - javascripts/ask.js
   - javascripts/layout.js
 
+  - javascripts/progress.js
 extra_css:
   - https://unpkg.com/katex@0.16.11/dist/katex.min.css
   - https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap
