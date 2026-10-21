@@ -164,7 +164,7 @@
       textInput: {
         placeholder: { text: "Ask about this page, or highlight a passage", style: { color: d ? "#9a948c" : "#6b6259" } },
         styles: {
-          container: { borderRadius: "14px", border: "1px solid " + (d ? "rgba(255,255,255,.2)" : "rgba(0,0,0,.18)"), background: d ? "#1d1b19" : "#fff", boxShadow: "none", marginBottom: "14px", width: "88%" },
+          container: { borderRadius: "14px", border: "1px solid " + (d ? "rgba(255,255,255,.2)" : "rgba(0,0,0,.18)"), background: d ? "#1d1b19" : "#fff", boxShadow: "none", marginBottom: "6px", width: "96%" },
           text: { color: fg, fontSize: "14px" },
         },
       },
@@ -235,6 +235,8 @@
     wrap.setAttribute("aria-label", "Ask the guide");
     wrap.innerHTML =
       '<div class="ask-grab"></div>' +
+      '<div class="ask-resize ask-resize-nw" data-edge="nw"></div>' +
+      '<div class="ask-resize ask-resize-se" data-edge="se"></div>' +
       '<header class="ask-head">' +
         '<button type="button" class="ask-btn ask-back" data-act="back" aria-label="Back to chat">' + ICONS.back + '</button>' +
         '<div class="ask-head-text">' +
@@ -301,9 +303,82 @@
       saveSettings();
     });
 
+    bindFloating();
     loadProviderFields(state.provider);
     setSelection(state.selection);
     setView(state.key ? "chat" : "settings");
+  }
+
+  /* ---------------- floating window: drag + resize (desktop) ---------------- */
+
+  const GEOM_KEY = "ssp-ask-geom";
+  const MIN_W = 300, MIN_H = 260;
+  const floating = () => window.matchMedia && window.matchMedia("(min-width: 45em)").matches;
+
+  function clampGeom(g) {
+    g.w = Math.max(MIN_W, Math.min(g.w, window.innerWidth - 8));
+    g.h = Math.max(MIN_H, Math.min(g.h, window.innerHeight - 8));
+    g.x = Math.max(4, Math.min(g.x, window.innerWidth - g.w - 4));
+    g.y = Math.max(4, Math.min(g.y, window.innerHeight - g.h - 4));
+    return g;
+  }
+
+  function loadGeom() {
+    let g = null;
+    try { g = JSON.parse(localStorage.getItem(GEOM_KEY)); } catch (e) { /* default */ }
+    const w = (g && g.w) || 380;
+    const h = (g && g.h) || 520;
+    const x = g && typeof g.x === "number" ? g.x : window.innerWidth - w - 12;
+    const y = g && typeof g.y === "number" ? g.y : window.innerHeight - h - 12;
+    return clampGeom({ x: x, y: y, w: w, h: h });
+  }
+
+  function applyGeom(g) {
+    const st = ui.panel.style;
+    if (!floating()) { st.left = st.top = st.width = st.height = ""; return; }
+    st.left = g.x + "px"; st.top = g.y + "px"; st.width = g.w + "px"; st.height = g.h + "px";
+  }
+
+  function bindFloating() {
+    const g = loadGeom();
+    applyGeom(g);
+    const save = () => { try { localStorage.setItem(GEOM_KEY, JSON.stringify(g)); } catch (e) { /* ignore */ } };
+
+    function track(e, onMove) {
+      e.preventDefault();
+      const sx = e.clientX, sy = e.clientY, g0 = { x: g.x, y: g.y, w: g.w, h: g.h };
+      const move = (ev) => { onMove(g0, ev.clientX - sx, ev.clientY - sy); applyGeom(g); };
+      const up = () => {
+        window.removeEventListener("pointermove", move);
+        window.removeEventListener("pointerup", up);
+        ui.panel.classList.remove("dragging");
+        save();
+      };
+      ui.panel.classList.add("dragging");
+      window.addEventListener("pointermove", move);
+      window.addEventListener("pointerup", up);
+    }
+
+    ui.panel.querySelector(".ask-head").addEventListener("pointerdown", (e) => {
+      if (!floating() || e.target.closest("button")) return;
+      track(e, (g0, dx, dy) => { g.x = g0.x + dx; g.y = g0.y + dy; clampGeom(g); });
+    });
+    ui.panel.querySelectorAll(".ask-resize").forEach((h) => {
+      h.addEventListener("pointerdown", (e) => {
+        if (!floating()) return;
+        const nw = h.dataset.edge === "nw";
+        track(e, (g0, dx, dy) => {
+          if (nw) {
+            g.w = Math.max(MIN_W, g0.w - dx); g.h = Math.max(MIN_H, g0.h - dy);
+            g.x = g0.x + g0.w - g.w; g.y = g0.y + g0.h - g.h;
+          } else { g.w = Math.max(MIN_W, g0.w + dx); g.h = Math.max(MIN_H, g0.h + dy); }
+          clampGeom(g);
+        });
+      });
+    });
+    window.addEventListener("resize", () => {
+      if (ui.panel && document.body.contains(ui.panel)) { clampGeom(g); applyGeom(g); }
+    });
   }
 
   function setView(v) {

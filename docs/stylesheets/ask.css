@@ -307,3 +307,33 @@
 #ask-panel .ask-btn { width: 2.1rem; height: 2.1rem; }
 #ask-panel .ask-btn svg { width: 1.05rem; height: 1.05rem; }
 #ask-panel .ask-close { background: transparent; }
+
+/* ---------- floating window (desktop): drag by the header, resize from the corners ---------- */
+@media screen and (min-width: 45em) {
+  #ask-panel {
+    right: auto; bottom: auto; top: 0; left: 0;
+    width: 380px; height: 520px;
+    border: 1px solid var(--ask-line);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 10px 36px rgba(0, 0, 0, .35);
+    transform: scale(.97);
+    opacity: 0;
+    transition: transform .15s ease, opacity .15s ease, visibility 0s linear .15s;
+  }
+  #ask-panel.open { transform: none; opacity: 1; transition: transform .15s ease, opacity .15s ease; }
+  #ask-panel.dragging { transition: none; user-select: none; }
+  #ask-panel .ask-head { cursor: grab; touch-action: none; padding: .2rem .35rem .2rem .8rem; }
+  #ask-panel.dragging .ask-head { cursor: grabbing; }
+  #ask-panel .ask-title { font-size: .85rem; }
+  #ask-panel .ask-btn { width: 1.9rem; height: 1.9rem; }
+  #ask-panel .ask-btn svg { width: .95rem; height: .95rem; }
+  #ask-panel .ask-resize { position: absolute; z-index: 3; width: 18px; height: 18px; touch-action: none; }
+  #ask-panel .ask-resize-nw { top: 0; left: 0; cursor: nwse-resize; }
+  #ask-panel .ask-resize-se { bottom: 0; right: 0; cursor: nwse-resize; }
+  #ask-panel .ask-resize-se::after { content: ""; position: absolute; right: 4px; bottom: 4px; width: 8px; height: 8px; border-right: 2px solid var(--ask-line); border-bottom: 2px solid var(--ask-line); }
+  #ask-panel .ask-quote { padding: .35rem .4rem .35rem .65rem; }
+  #ask-panel .ask-quote-text { -webkit-line-clamp: 2; }
+  #ask-panel .ask-settings { padding: .2rem; }
+}
+@media screen and (max-width: 44.9375em) { #ask-panel .ask-resize { display: none; } }

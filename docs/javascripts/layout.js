@@ -23,13 +23,11 @@
 
   function ensureButtons() {
     const inner = document.querySelector(".md-header__inner");
-    if (!inner || inner.querySelector(".layout-btns")) return;
-    const wrap = document.createElement("div");
-    wrap.className = "layout-btns";
+    if (!inner || inner.querySelector(".layout-btn")) return;
     ["nav", "toc"].forEach((k) => {
       const b = document.createElement("button");
       b.type = "button";
-      b.className = "layout-btn";
+      b.className = "layout-btn layout-btn-" + k;
       b.dataset.k = k;
       b.title = TITLES[k];
       b.setAttribute("aria-label", TITLES[k]);
@@ -38,9 +36,10 @@
         localStorage.setItem(KEYS[k], on(k) ? "0" : "1");
         apply();
       });
-      wrap.appendChild(b);
+      // chapters button on the far left, page-index button on the far right
+      if (k === "nav") inner.insertBefore(b, inner.firstChild);
+      else inner.appendChild(b);
     });
-    inner.appendChild(wrap);
     apply();
   }
 
