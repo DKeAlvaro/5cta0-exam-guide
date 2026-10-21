@@ -388,9 +388,7 @@
     }
     st.textContent =
       ".message-bubble,.ai-message-text,.user-message-text,.error-message-text{font-size:" + Math.round(14 * zoom * 10) / 10 + "px!important}" +
-      ".message-bubble .katex{font-size:1.05em!important}" +
-      "#text-input-container{transition:transform .18s ease,border-color .18s ease!important}" +
-      "#text-input-container:hover{transform:translateY(-2px);border-color:#c0432c!important}";
+      ".message-bubble .katex{font-size:1.05em!important}";
   }
 
   function bindFloating() {
@@ -500,6 +498,7 @@
   function open(opts) {
     if (!document.getElementById("ask-panel")) buildPanel();
     if (!state.open) lastFocus = document.activeElement;
+    const wasOpen = state.open && !minimized;
     state.open = true;
     const wasMin = minimized;
     minimized = false;
@@ -507,16 +506,23 @@
     document.documentElement.classList.add("ask-open");
     if (wasMin && floating() && !(opts && opts.rect)) expandFromBall();
     else {
-      ui.panel.classList.remove("morph", "to-ball");
-      ui.panel.classList.add("open");
+      if (!(opts && opts.rect && floating() && !wasOpen)) {
+        ui.panel.classList.remove("morph", "to-ball");
+        ui.panel.classList.add("open");
+      }
     }
     ui.backdrop.classList.add("open");
     if (opts && opts.selection !== undefined) {
       setSelection(opts.selection);
       if (state.key) setView("chat");
       if (opts.range) setAnchor(opts.range);
-      if (opts.rect && floating()) placeNear(opts.rect);
-      else hideTail();
+      if (opts.rect && floating()) {
+        placeNear(opts.rect);
+        if (!wasOpen) {
+          const r = opts.rect;
+          growFrom((r.left + r.right) / 2, geom.y > r.bottom - 1 ? r.bottom : r.top);
+        }
+      } else hideTail();
     } else if (wasMin) {
       showAnchor();
     }
@@ -705,20 +711,24 @@
     }, 290);
   }
 
-  // window grows out of the ball
-  function expandFromBall() {
+  // window grows out of a point (the ball, or the highlighted text); header and body fade in after
+  function growFrom(cx, cy) {
     const p = ui.panel;
-    geom.x = bx - geom.w / 2; geom.y = by - geom.h / 2;
-    clampGeom(geom);
-    p.classList.add("noanim", "morph", "to-ball");
-    p.style.left = bx - BALL / 2 + "px"; p.style.top = by - BALL / 2 + "px";
+    p.classList.add("noanim", "morph", "to-ball", "grow");
+    p.style.left = cx - BALL / 2 + "px"; p.style.top = cy - BALL / 2 + "px";
     p.style.width = BALL + "px"; p.style.height = BALL + "px";
     p.classList.add("open");
     void p.offsetWidth;
-    hideBall();
     p.classList.remove("noanim", "to-ball");
     applyGeom(geom);
-    setTimeout(() => p.classList.remove("morph"), 300);
+    setTimeout(() => p.classList.remove("morph", "grow"), 520);
+  }
+
+  function expandFromBall() {
+    geom.x = bx - geom.w / 2; geom.y = by - geom.h / 2;
+    clampGeom(geom);
+    hideBall();
+    growFrom(bx, by);
   }
 
   /* ---------------- selection chip ---------------- */
