@@ -13,6 +13,10 @@
   const LS = { provider: "ssp-ask-provider", key: "ssp-ask-key", model: "ssp-ask-model" };
   const MAX_CONTEXT = 14000;
   const MAX_SELECTION = 6000;
+  const ZOOM_KEY = "ssp-ask-zoom";
+  const ZOOM_MIN = 0.6, ZOOM_MAX = 2.2;
+  let zoom = parseFloat(localStorage.getItem(ZOOM_KEY)) || 1;
+  zoom = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, zoom));
 
   const PROVIDERS = {
     gemini: {
@@ -44,6 +48,8 @@
     close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
     settings: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h9M19 7h1M4 17h3M13 17h7"/><circle cx="16" cy="7" r="2.3"/><circle cx="10" cy="17" r="2.3"/></svg>',
     chat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a7.5 7.5 0 0 1-7.5 7.5H8l-4 2.5V12A7.5 7.5 0 0 1 11.5 4.5h1A7.5 7.5 0 0 1 20 12z"/></svg>',
+    zoomIn: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5M10.5 8v5M8 10.5h5"/></svg>',
+    zoomOut: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5M8 10.5h5"/></svg>',
     quote: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 7h4v4a5.5 5.5 0 0 1-4 5v-2.2c1.2-.5 1.9-1.3 2-2.3H7V7zm8 0h4v4a5.5 5.5 0 0 1-4 5v-2.2c1.2-.5 1.9-1.3 2-2.3h-2V7z"/></svg>',
   };
 
@@ -141,7 +147,9 @@
   }
 
   const SHADOW_CSS =
-    ".katex{font-size:1.05em}.katex-display{overflow-x:auto;overflow-y:hidden;margin:.6em 0}" +
+    ".katex{font-size:1.05em;display:inline-block;max-width:100%;overflow-x:auto;overflow-y:hidden;vertical-align:middle}" +
+    ".katex-display{overflow-x:auto;overflow-y:hidden;margin:.6em 0;max-width:100%}.katex-display>.katex{display:block;max-width:100%}" +
+    ".message-bubble,.ai-message,.user-message{overflow-wrap:anywhere;min-width:0;max-width:100%}" +
     "table{display:block;max-width:100%;overflow-x:auto;border-collapse:collapse;font-size:.85em;margin:.5em 0}" +
     "th,td{border:1px solid rgba(128,128,128,.4);padding:.3em .6em}th{background:rgba(128,128,128,.12)}" +
     "pre{overflow-x:auto}p{margin:.4em 0}ul,ol{margin:.3em 0;padding-left:1.3em}h1,h2,h3,h4{font-size:1em;margin:.7em 0 .3em}" +
@@ -155,9 +163,9 @@
       chatStyle: { width: "100%", height: "100%", border: "none", background: "transparent", borderRadius: "0" },
       messageStyles: {
         default: {
-          shared: { bubble: { maxWidth: "94%", padding: ".5rem .75rem", fontSize: "14px", lineHeight: "1.5", color: fg } },
+          shared: { bubble: { maxWidth: "94%", padding: ".5rem .75rem", overflow: "hidden", overflowWrap: "anywhere", fontSize: Math.round(14 * zoom * 10) / 10 + "px", lineHeight: "1.5", color: fg } },
           user: { bubble: { background: "linear-gradient(135deg,#9b2114,#c0432c)", color: "#fff" } },
-          intro: { bubble: { background: "transparent", border: "none", color: d ? "#b9b1a7" : "#6b6259", fontSize: "13px", padding: ".2rem .2rem" } },
+          intro: { bubble: { background: "transparent", border: "none", color: d ? "#b9b1a7" : "#6b6259", fontSize: Math.round(13 * zoom * 10) / 10 + "px", padding: ".2rem .2rem" } },
           ai: { bubble: { background: soft, border: "1px solid " + (d ? "rgba(255,255,255,.13)" : "rgba(0,0,0,.1)") } },
         },
       },
@@ -165,7 +173,7 @@
         placeholder: { text: "Ask about this page, or highlight a passage", style: { color: d ? "#9a948c" : "#6b6259" } },
         styles: {
           container: { borderRadius: "14px", border: "1px solid " + (d ? "rgba(255,255,255,.2)" : "rgba(0,0,0,.18)"), background: d ? "#1d1b19" : "#fff", boxShadow: "none", marginBottom: "8px", width: "calc(100% - 16px)" },
-          text: { color: fg, fontSize: "14px" },
+          text: { color: fg, fontSize: Math.round(14 * zoom * 10) / 10 + "px" },
         },
       },
       submitButtonStyles: { position: "inside-right", submit: { container: { default: { bottom: "6px", right: "10px" } } } },
@@ -236,8 +244,7 @@
     wrap.setAttribute("aria-label", "Ask");
     wrap.innerHTML =
       '<div class="ask-grab"></div>' +
-      '<div class="ask-resize ask-resize-nw" data-edge="nw"></div>' +
-      '<div class="ask-resize ask-resize-se" data-edge="se"></div>' +
+      ["n", "s", "e", "w", "nw", "ne", "sw", "se"].map((d) => '<div class="ask-resize ask-resize-' + d + '" data-edge="' + d + '"></div>').join("") +
       '<header class="ask-head">' +
         '<button type="button" class="ask-btn ask-back" data-act="back" aria-label="Back to chat">' + ICONS.back + '</button>' +
         '<div class="ask-head-text">' +
@@ -246,6 +253,8 @@
             '<button type="button" class="ask-quote-x" data-act="clear-ctx" aria-label="Remove highlighted passage">' + ICONS.close + '</button>' +
           '</div>' +
         '</div>' +
+        '<button type="button" class="ask-btn ask-zoom" data-act="zoom-out" aria-label="Smaller text" title="Smaller text (Ctrl+scroll)">' + ICONS.zoomOut + '</button>' +
+        '<button type="button" class="ask-btn ask-zoom" data-act="zoom-in" aria-label="Bigger text" title="Bigger text (Ctrl+scroll)">' + ICONS.zoomIn + '</button>' +
         '<button type="button" class="ask-btn ask-reset" data-act="reset" aria-label="New chat" title="New chat">' + ICONS.trash + '</button>' +
         '<button type="button" class="ask-btn ask-gear" data-act="settings" aria-label="API key settings" title="API key settings">' + ICONS.settings + '</button>' +
         '<button type="button" class="ask-btn ask-close" data-act="close" aria-label="Close" title="Close (Esc)">' + ICONS.close + '</button>' +
@@ -294,6 +303,8 @@
       else if (act === "settings") setView(state.view === "settings" ? "chat" : "settings");
       else if (act === "back") setView("chat");
       else if (act === "reset") resetChat();
+      else if (act === "zoom-in") setZoom(zoom + 0.1);
+      else if (act === "zoom-out") setZoom(zoom - 0.1);
       else if (act === "clear-ctx") setSelection("");
     });
 
@@ -339,6 +350,12 @@
     st.left = g.x + "px"; st.top = g.y + "px"; st.width = g.w + "px"; st.height = g.h + "px";
   }
 
+  function setZoom(z) {
+    zoom = Math.round(Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, z)) * 10) / 10;
+    try { localStorage.setItem(ZOOM_KEY, String(zoom)); } catch (e) { /* ignore */ }
+    if (chat) chatSettings(chat);
+  }
+
   function bindFloating() {
     const g = loadGeom();
     applyGeom(g);
@@ -366,16 +383,23 @@
     ui.panel.querySelectorAll(".ask-resize").forEach((h) => {
       h.addEventListener("pointerdown", (e) => {
         if (!floating()) return;
-        const nw = h.dataset.edge === "nw";
+        const d = h.dataset.edge;
         track(e, (g0, dx, dy) => {
-          if (nw) {
-            g.w = Math.max(MIN_W, g0.w - dx); g.h = Math.max(MIN_H, g0.h - dy);
-            g.x = g0.x + g0.w - g.w; g.y = g0.y + g0.h - g.h;
-          } else { g.w = Math.max(MIN_W, g0.w + dx); g.h = Math.max(MIN_H, g0.h + dy); }
+          const maxW = window.innerWidth - 8, maxH = window.innerHeight - 8;
+          if (d.includes("e")) g.w = Math.min(maxW, Math.max(MIN_W, g0.w + dx));
+          if (d.includes("s")) g.h = Math.min(maxH, Math.max(MIN_H, g0.h + dy));
+          if (d.includes("w")) { g.w = Math.min(maxW, Math.max(MIN_W, g0.w - dx)); g.x = g0.x + g0.w - g.w; }
+          if (d.includes("n")) { g.h = Math.min(maxH, Math.max(MIN_H, g0.h - dy)); g.y = g0.y + g0.h - g.h; }
           clampGeom(g);
         });
       });
     });
+    // Ctrl + wheel (or pinch on a trackpad) over the window zooms the text instead of the page
+    ui.panel.addEventListener("wheel", (e) => {
+      if (!e.ctrlKey) return;
+      e.preventDefault();
+      setZoom(zoom + (e.deltaY < 0 ? 0.1 : -0.1));
+    }, { passive: false });
     window.addEventListener("resize", () => {
       if (ui.panel && document.body.contains(ui.panel)) { clampGeom(g); applyGeom(g); }
     });
