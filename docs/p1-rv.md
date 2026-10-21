@@ -23,6 +23,11 @@ A **random variable** (RV) $X$ maps the outcome of an experiment to a **number**
 
 Quick test: *can I list the possible values (0, 1, 2, …), or is it a measurement on a continuum?* Counts are discrete; durations, distances and averages are continuous.
 
+<figure markdown>
+![PMF and CDF of a die, PDF and CDF of an exponential](img/gen/p1_pmf_cdf.svg)
+<figcaption>Discrete (die, blue): probabilities sit on separate points, so the CDF climbs in jumps of $\frac16$. Continuous (exponential, red): probability is spread as an area, so the CDF climbs smoothly. Either way the CDF starts at 0, never goes down, and ends at 1.</figcaption>
+</figure>
+
 ### 1.2 Expected value and variance
 
 **Expected value** = the average outcome, each outcome weighted by its probability:
@@ -49,6 +54,11 @@ A **joint PDF** $p_{X,Y}(x,y)$ describes $X$ and $Y$ together (a surface over th
 !!! example "Tiny example: uniform on a triangle"
     $p_{X,Y}=2$ on the triangle $0\le y\le x\le1$ (area $\frac12$, so height 2 makes the volume $\frac12\cdot2=1$ ✓). Marginal of $Y$: at height $y$, $x$ runs from $y$ to 1, so $p_Y(y)=\int_y^12\,dx=2(1-y)$. Conditional: $p_{X\mid Y}=\frac{2}{2(1-y)}=\frac{1}{1-y}$ on $y\le x\le1$: a flat slice. This is not independent, because the region is a triangle: knowing $y$ changes the possible range of $x$.
 
+<figure markdown>
+![Region, marginal and conditional of the triangle example](img/gen/p1_joint_ops.svg)
+<figcaption>The example at $y=0.3$. Left: the region; the orange strip is "all $x$ that go with $y=0.3$", from 0.3 to 1. Middle: the marginal adds up each strip, height 2 × length $(1-y)$; at $y=0.3$ that is $1.4$. Right: the conditional is that one strip on its own, rescaled to total area 1: a flat line at $\frac{1}{0.7}$.</figcaption>
+</figure>
+
 ### 1.4 Covariance and correlation
 
 **Covariance** $\operatorname{Cov}[X,Y]=\mathbb E[(X-\mu_X)(Y-\mu_Y)]=\mathbb E[XY]-\mu_X\mu_Y$: the average product of the two deviations from the means. If large $X$ comes with large $Y$ the product is positive; if large $X$ comes with small $Y$ it is negative.
@@ -57,6 +67,11 @@ A **joint PDF** $p_{X,Y}(x,y)$ describes $X$ and $Y$ together (a surface over th
     Three equally likely pairs $(1,2),(2,3),(3,7)$. Means: $\mu_X=2$, $\mu_Y=4$. Products of deviations: $(-1)(-2)=2,\ (0)(-1)=0,\ (1)(3)=3$. Average: $\frac{5}{3}=1.67>0$. If $Y$ is measured in other units (×10), the covariance becomes $16.7$.
 
 Its sign tells the direction of the relation. It has **no upper bound** and **depends on the units**. The **correlation coefficient** $\rho=\frac{\operatorname{Cov}}{\sigma_X\sigma_Y}$ fixes that: it is always between $-1$ and $1$ and does not change with units. Independent variables have zero covariance (the reverse is not true in general).
+
+<figure markdown>
+![Scatter clouds for different correlations](img/gen/p1_cov.svg)
+<figcaption>400 random pairs $(X,Y)$ per panel. The sign of $\rho$ is the tilt of the cloud: down, none, up. The last panel is the trap: $Y$ is completely determined by $X$ (a U shape), yet $\rho\approx0$, because covariance only measures <i>straight-line</i> relations. Zero covariance does not mean independent.</figcaption>
+</figure>
 
 For two Gaussians, the covariance matrix $\begin{bmatrix}\sigma_x^2&\operatorname{Cov}\\\operatorname{Cov}&\sigma_y^2\end{bmatrix}$ decides the shape of the contour lines of the joint PDF (see Jan 2025 1b).
 

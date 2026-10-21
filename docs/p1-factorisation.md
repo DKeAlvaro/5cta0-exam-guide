@@ -27,6 +27,11 @@ $$P_x(z)=\sigma_i^2\,L(z)\,L(z^{-1}),\qquad z=e^{j\theta}$$
 
 (on the unit circle $L(z^{-1})$ is the complex conjugate of $L(z)$, so the product is $\lvert L\rvert^2$).
 
+<figure markdown>
+![White noise through a filter, and back](img/gen/p1_innovation.svg)
+<figcaption>The innovation picture. Left: white noise, no memory, flat PSD. Through $L(z)$ it becomes the coloured signal on the right, with memory and a PSD shaped like $|L|^2$. Spectral factorisation is reading that right-hand PSD and recovering $L$ and $\sigma_i^2$. The dashed arrow is the way back, the whitening filter $1/L(z)$, which only works if $L$ is minimum phase.</figcaption>
+</figure>
+
 ### 1.2 Why two answers fit, and why we pick "inside the unit circle"
 
 The PSD only knows $|L|^2$. Take the factor $(1-az^{-1})$ and its twin $(1-a^{-1}z^{-1})$. Their squared magnitudes differ only by a constant:
@@ -36,6 +41,11 @@ $$\lvert1-a^{-1}e^{-j\theta}\rvert^2=1+a^{-2}-2a^{-1}\cos\theta=a^{-2}\big(a^2+1
 So there are always two candidates for every factor, and the constant $a^{-2}$ just gets absorbed in $\sigma_i^2$. Which one is the "real" filter? The convention that makes the answer unique: $L(z)$ is **causal, stable and minimum phase**, i.e. all poles **and** zeros inside the unit circle ($|a|<1$), and its first impulse-response sample is $l[0]=1$.
 
 *Why that is natural:* the AR(1) recipe $x[n]=a\,x[n-1]+i[n]$ has the pole at $a$. If $|a|<1$ the memory fades and the signal stays bounded (e.g. $a=\frac34$: each value remembers $\frac34$ of the previous one). If $|a|>1$ (e.g. $a=\frac43$) the recursion explodes. Minimum phase also guarantees that the inverse $1/L(z)$, the *whitening filter* that turns $x[n]$ back into $i[n]$, is stable.
+
+<figure markdown>
+![The twin factor has the same shape; only one is stable](img/gen/p1_twins.svg)
+<figcaption>Left: $|1-\frac34e^{-j\theta}|^2$ (blue) and its twin $|1-\frac43e^{-j\theta}|^2$ (faint red) have the same shape; the twin is just $(\frac43)^2$ times taller, and scaling it by $(\frac34)^2$ (dashed) lands exactly on blue. A PSD therefore cannot tell them apart; the constant goes into $\sigma_i^2$. Right: what tells them apart is stability. One kick into $x[n]=a\,x[n-1]+i[n]$ fades for $a=\frac34$ and explodes for $a=\frac43$.</figcaption>
+</figure>
 
 <figure markdown>
 ![Choosing the root inside the unit circle](img/gen/p1_unit_circle.svg)

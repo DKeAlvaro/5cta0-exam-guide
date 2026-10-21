@@ -43,6 +43,16 @@ $$P_x = \lim_{T\to\infty}\frac{1}{T}\int_{-T/2}^{T/2}\lvert x(t)\rvert^2\,dt$$
 
 Read it inside-out: $\int_{-T/2}^{T/2}$ = energy in a window of length $T$; $\frac1T\times$ that = **average energy per second over that window**; $\lim_{T\to\infty}$ = now stretch the window forever and see what value the average settles on. Discrete version: replace $\frac1T\int$ by $\frac1N\sum_{n=-N/2}^{N/2}$.
 
+<figure markdown>
+![Energy as the area under x squared](img/gen/p3_energy_power.svg)
+<figcaption>Both formulas are about the bottom row, $x^2(t)$. Left column: a signal that dies out. Its squared version has a finite shaded area, $\frac12$: that number is the energy. Right column: a tone that never stops. Every second adds another $\frac{A^2}{2}$ of area, so the total is infinite. Its <i>average height</i> (dashed line) stays at $\frac{A^2}{2}$, and that average height is the power.</figcaption>
+</figure>
+
+<figure class="anim">
+<video class="anim" src="video/energy_power.mp4" poster="video/energy_power.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation: the two formulas, live.</b> The beige window $[-\frac{T}{2},\frac{T}{2}]$ grows. Top right: the area inside it, $E(T)$. Blue (dies out) levels off at $\frac12$; red (a tone) keeps climbing. Bottom right: that area divided by $T$, the average power $P(T)$. Blue sinks to 0 (a fixed $\frac12$ divided by a growing $T$, section 1.3 below); red settles on $\frac{A^2}{2}=\frac12$. Those two end values are exactly what "$\lim_{T\to\infty}$" means.</figcaption>
+</figure>
+
 ### 1.3 Why the two categories can never overlap
 
 Suppose $E_x$ is a finite number. Then the average over a window of length $T$ is at most $E_x/T$, and
@@ -61,6 +71,11 @@ So: **finite energy ⟹ average power is exactly zero.** That is why the answer 
     Rule of thumb for the average of the square of a wiggle: **the average of $\sin^2$ or $\cos^2$ over many periods is exactly $\frac12$**, so a tone $A\sin(\omega t)$ has $P = A^2/2$. If the tone is only *half* on (switched on at $t=0$ instead of existing forever), the average is halved again: $P = A^2/4$.
 
 ### 1.5 Every example the exams use, computed from scratch
+
+<figure markdown>
+![The six exam signals and their verdicts](img/gen/p3_examples.svg)
+<figcaption>All six examples below at a glance, blue = energy signal, red = power signal. The recipe of 1.4 is visible in the shapes: everything that sinks to 0 on both sides (B, C, E, F) is an energy signal; everything that keeps wiggling forever (A, D) is a power signal.</figcaption>
+</figure>
 
 **Example A — $x(t) = A\sin(\omega t)$, forever.** It repeats, so it is a **power signal**, $E=\infty$. For the power, use the identity from [Chapter 0](p0-foundations.md#04-the-three-calculations-you-keep-meeting): $\sin^2(\omega t) = \frac{1-\cos(2\omega t)}{2}$.
 
@@ -93,6 +108,11 @@ $$P = \lim_{T\to\infty}\frac{1}{T}\int_{0}^{T/2}\cos^2(t)\,dt = \frac{1}{2}\time
 
 The extra $\frac12$ is exactly "the tone is on only half the time". (Same reason $A\sin(\omega t)u(t)$ gives $A^2/4$ instead of $A^2/2$.)
 
+<figure markdown>
+![Why a switched-on cosine has power one quarter](img/gen/p3_cos_u.svg)
+<figcaption>The window $[-\frac{T}{2},\frac{T}{2}]$ is always centred on $t=0$. The left half (grey) falls before the switch-on, where $x=0$, so it adds nothing. The right half averages $\frac12$ like any $\cos^2$. Averaged over the whole window: half of $\frac12$, i.e. $\frac14$, however long $T$ gets.</figcaption>
+</figure>
+
 **Example E — $x(t) = 5$ for $-2 \le t \le 2$, zero elsewhere** (a rectangular pulse). Non-zero only on a finite stretch → energy signal, and $x^2 = 25$ there:
 
 $$E = \int_{-2}^{2} 25\,dt = 25 \times 4 = 100,\qquad P = 0 .$$
@@ -119,6 +139,11 @@ $$\tilde{x}[n] = x[n]\cdot w[n],\qquad w[n] = \begin{cases}1 & n = 0,\dots,N-1\\
 
 That particular shape is the **rectangular window** (a rectangle: 1 inside, 0 outside). Other windows (Hann, Hamming, triangular) taper smoothly to 0 at the edges instead of cutting hard.
 
+<figure markdown>
+![Multiplying a signal by a window](img/gen/p3_window_time.svg)
+<figcaption>Top row: recording 32 samples is the same as multiplying the never-ending signal by a rectangle that is 1 on the samples you keep and 0 elsewhere. Bottom row: a Hann window does the same multiplication but fades the recording in and out, so there is no hard cut at the edges. The hard cut is what produces high side lobes in section 2.2.</figcaption>
+</figure>
+
 ### 2.2 What multiplication does to the spectrum
 
 The rule from [Chapter 0](p0-foundations.md#05-spectrum-what-a-fourier-transform-tells-you): **multiplying signals in time = smearing (convolving) their spectra in frequency**. So the spectrum you compute is not the true spectrum; it is the true spectrum **smeared with the window's own spectrum** $W(e^{j\theta})$:
@@ -126,6 +151,11 @@ The rule from [Chapter 0](p0-foundations.md#05-spectrum-what-a-fourier-transform
 $$\text{what you measure} \;=\; \text{true spectrum} \;\otimes\; W(e^{j\theta})$$
 
 Intuition: every true frequency peak gets replaced by a copy of the window's spectrum shape, scaled and centred on that peak. If the window's shape were an infinitely thin spike, nothing would change. Because it is *not* infinitely thin, two bad things happen — and each is caused by one feature of the window's shape:
+
+<figure class="anim">
+<video class="anim" src="video/windowing.mp4" poster="video/windowing.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation: windowing, start to finish.</b> Top: the true signal (grey), a strong tone plus a tone 100 times weaker, and the window (red); blue is what you record. Bottom: the spectrum you compute (dB). Each true tone (dashed) becomes a copy of the window's spectrum. As $N$ grows the main lobe narrows, but the side lobes stay at −13 dB and bury the weak tone. Switching to a Hann window drops the side lobes and the weak tone appears; the main lobe gets wider in exchange.</figcaption>
+</figure>
 
 <figure markdown>
 ![Rectangular vs Hann window](img/gen/p3_windows.svg)
@@ -154,6 +184,11 @@ So each window feature causes exactly one problem:
 - **Use a smoother window** (triangular: −27 dB, Hann: −32 dB, Hamming: similar) → **less leakage**, but the main lobe becomes **wider** → **worse resolution** for the same $N$. It is always a trade: you buy leakage at the price of resolution.
 
 <figure markdown>
+![Longer N narrows the main lobe but not the side lobes](img/gen/p3_N_lobes.svg)
+<figcaption>The rectangular window's spectrum for $N=8,16,32$. Left (linear): the main lobe ends at $\theta=\frac{2\pi}{N}$ (triangles), so doubling $N$ halves its width. Right (dB): the highest side lobe sits at −13 dB for every $N$; only more lobes get squeezed in. This one picture answers "does a longer window reduce leakage?" (no) and "does it improve resolution?" (yes).</figcaption>
+</figure>
+
+<figure markdown>
 ![Zero padding](img/gen/p3_zeropad.svg)
 <figcaption>Grey curve: the true FTD of 16 samples of a cosine. Blue squares: the 16-point DFT (one sample per bin). Red dots: the DFT after zero padding to 64 points. The red dots simply trace the same grey curve at closer spacing; the peak does not get narrower and no new peak can appear.</figcaption>
 </figure>
@@ -179,9 +214,19 @@ Take your $N$ samples, stick $L-N$ zeros at the end, and compute the **$L$-point
 
 What you get: the $L$-point DFT samples **the same $N$-sample FTD curve** at the finer spacing $2\pi k/L$ (i.e. $f_s/L$ Hz). More points on the *same* curve.
 
+<figure class="anim">
+<video class="anim" src="video/zero_pad.mp4" poster="video/zero_pad.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation.</b> Top: 16 real samples (blue) followed by more and more zeros (grey). Bottom: the $L$-point DFT (red dots) for $L=16,32,64,256$. The dots get denser but never leave the grey curve, the FTD of the 16 real samples. The green curve at the end uses 64 <i>real</i> samples: only that makes the peak narrower.</figcaption>
+</figure>
+
 ### 3.3 Why it does not improve resolution
 
 Resolution is set by the **width of the main lobe**, and that width depends only on $N$ and the window — the zeros you appended carry no information, so the curve cannot get any narrower. Zero padding only makes the plot look smoother (it *interpolates* between the old points). Two tones that were merged into one peak before are still merged after.
+
+<figure markdown>
+![Zero padding vs more samples for two close tones](img/gen/p3_resolution.svg)
+<figcaption>Two tones only 0.2 rad/sample apart (dotted), closer than $\frac{2\pi}{16}\approx0.39$. Left: 16 samples, plain DFT: one blob. Middle: the same 16 samples zero-padded to 128 points: a smooth curve, still one blob. Right: 64 real samples ($\frac{2\pi}{64}\approx0.1$ apart is now resolvable): two clean peaks. Only real data buys resolution.</figcaption>
+</figure>
 
 !!! trap "Traps (all of these are real exam statements)"
     - "Zero padding increases resolution" → **false**. It increases the *density of frequency samples*, nothing more.

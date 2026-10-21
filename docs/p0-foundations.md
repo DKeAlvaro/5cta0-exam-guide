@@ -29,6 +29,11 @@ $$x[n] = x(nT_s),\qquad T_s=\frac{1}{f_s}\ \text{seconds between samples}$$
 
 $f_s$ is the **sample rate** in Hz (samples per second). Example: audio at $f_s=50$ Hz means you keep one number every $1/50=0.02$ s. The exam loves to give you $f_s$ because the *digital* frequency of a tone depends on it (next section).
 
+<figure markdown>
+![Continuous signal and its samples](img/gen/p0_sampling.svg)
+<figcaption>Left: $x(t)$ has a value at every instant. Right: sampling keeps only the red dots, one every $T_s$ seconds. The list of red heights <i>is</i> $x[n]$; the grey curve between them is thrown away. The horizontal axis now counts samples ($n=0,1,2,\dots$), not seconds.</figcaption>
+</figure>
+
 !!! trap "The exam's favourite corner"
     A discrete signal can only wiggle as fast as "up, down, up, down" ($+1,-1,+1,-1,\dots$). Anything faster is *impossible* to represent with one sample per step. That fastest wiggle corresponds to half the sample rate.
 
@@ -49,6 +54,11 @@ $$x(t) = A\sin(\omega t) \;=\; A\sin(2\pi f t)$$
 | $\omega$ | angular frequency | rad/s | same thing as $f$, in "radians per second": $\omega = 2\pi f$ |
 | $T=1/f$ | period | s | time for one full wiggle |
 
+<figure markdown>
+![Amplitude and period of a sine](img/gen/p0_sine.svg)
+<figcaption>Read $A$ off the height of the peak and $T$ off the distance between two identical points (here two upward zero crossings). The orange tone squeezes 3 full wiggles into each second: $f=3$ Hz, $T=\frac13$ s.</figcaption>
+</figure>
+
 **Why $\omega = 2\pi f$?** One full cycle is $2\pi$ radians. Doing $f$ cycles per second means the angle $2\pi f t$ grows by $2\pi$ every $1/f$ seconds. Both notations appear in exams ($A\sin(\omega t)$ and $A\sin(2\pi f t)$ are the *same signal*).
 
 **Discrete version.** For $x[n]$ the angle is $\theta n$, with $\theta$ measured in **radians per sample**:
@@ -62,6 +72,16 @@ and $\theta$ always lives between $-\pi$ and $\pi$ (outside that range the same 
 $$\theta = 2\pi\cdot\frac{25}{50} = \pi \qquad\Rightarrow\qquad x[n]=\cos(\pi n) = (-1)^n = 1,-1,1,-1,\dots$$
 
 So a 25 Hz tone sampled 50 times per second is the fastest possible wiggle: it lands exactly on $\theta=\pi$, the top of the range. Nice to have in your head: **$f = f_s/2$ is the fastest digital wiggle** (the *Nyquist* frequency).
+
+<figure markdown>
+![Sampling at the Nyquist frequency and aliasing](img/gen/p0_alias.svg)
+<figcaption>Left: the exam example. 25 Hz at $f_s=50$ Hz gives exactly one sample on each peak and each trough: $+1,-1,+1,\dots$. Right: why $\theta$ only lives in $[-\pi,\pi]$. A 40 Hz tone ($\theta=1.6\pi$) passes through exactly the same red dots as a 10 Hz tone ($\theta=0.4\pi$). From the samples alone you cannot tell them apart, so every $\theta$ outside $[-\pi,\pi]$ is "the same" as one inside (add or subtract $2\pi$).</figcaption>
+</figure>
+
+<figure class="anim">
+<video class="anim" src="video/sampling_alias.mp4" poster="video/sampling_alias.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation.</b> The frequency of the blue tone rises from 1 Hz to 9 Hz while the sampler keeps one red dot every 0.1 s. At 5 Hz ($f_s/2$) the dots alternate $+1,-1$. Above it the dots trace a slower orange tone: 9 Hz sampled at 10 Hz looks exactly like 1 Hz.</figcaption>
+</figure>
 
 !!! example "What the exam asks about this"
     - Convert between $\omega$ and $f$ ($\omega = 2\pi f$).
@@ -94,6 +114,16 @@ $$e^{j\theta}+e^{-j\theta}=2\cos\theta \qquad\Longrightarrow\qquad \boxed{\cos\t
 
 and subtracting kills the cosine part: $e^{j\theta}-e^{-j\theta}=2j\sin\theta$.
 
+<figure markdown>
+![Complex numbers as arrows and the unit circle](img/gen/p0_complex.svg)
+<figcaption>Left: $3+2j$ is the arrow "3 right, 2 up"; its length $|z|$ is Pythagoras; the conjugate $z^*$ is its mirror image below the real axis. Right: $e^{j\theta}$ always has length 1, so its tip runs along the circle. Its shadow on the real axis (green) is $\cos\theta$, its height (orange) is $\sin\theta$. Adding the mirror arrow $e^{-j\theta}$ cancels the heights and doubles the shadow: the red arrow $2\cos\theta$.</figcaption>
+</figure>
+
+<figure class="anim">
+<video class="anim" src="video/phasor.mp4" poster="video/phasor.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation.</b> The arrow $e^{j\theta}$ turns as $\theta$ grows; its shadow on the real axis draws $\cos\theta$ on the right. Then the mirror arrow $e^{-j\theta}$ turns the other way: their sum never leaves the real axis and draws $2\cos\theta$. That is the whole reason a cosine can be written as $\frac{e^{j\theta}+e^{-j\theta}}{2}$.</figcaption>
+</figure>
+
 **Why anyone bothers.** $\cos(\theta)$ is awkward to multiply and to raise to powers; $e^{j\theta}$ is trivial ($e^{j\theta}e^{j\phi}=e^{j(\theta+\phi)}$). So the course rewrites every tone as two complex exponentials, does easy algebra, and converts back. You will see $e^{-j k\theta}$ appear inside sums everywhere in Part 3 — it is just "a cosine in disguise".
 
 **Squared magnitude, the thing you actually compute.** For any complex $w$, $\lvert w\rvert^2 = w\,w^*$. Example that appears on literally every spectral-estimation exam:
@@ -113,6 +143,11 @@ which is a **real** number (no $j$ left), and that is why the answer always ends
 
 They are the same idea ("total up a quantity over time"); one for smooth time, one for counted time. **$\sum$ goes with square brackets, $\int$ goes with round brackets.**
 
+<figure markdown>
+![An integral is an area, a sum adds bars](img/gen/p0_integral_sum.svg)
+<figcaption>The same shape $e^{-2t}$ totalled two ways. Left: continuous time, the total is the shaded area, $\frac12$. Right: discrete time, the total is the sum of the bar heights, $1.1565$. The two numbers differ because the bars are not the area (the first bar alone is 1 tall); never mix the two formulas.</figcaption>
+</figure>
+
 Worked example you will need on page 3.1:
 
 $$\int_0^\infty e^{-2t}\,dt = \left[\frac{e^{-2t}}{-2}\right]_0^\infty = \frac{e^{-\infty}}{-2}-\frac{e^{0}}{-2} = 0-\Big(-\frac12\Big)=\frac12 .$$
@@ -131,11 +166,21 @@ $$\lim_{T\to\infty}\frac{c}{T}=0 .$$
 
 This single fact is why "finite energy ⟹ average power is zero" (page 3.1) and why "a cosine averaged over infinitely many periods gives exactly half its peak-square" (next).
 
+<figure markdown>
+![A limit is where the average settles](img/gen/p0_limit.svg)
+<figcaption>Left: the average of $\cos^2 t$ over a window of length $T$, computed for every $T$. For short windows it depends on where the window happens to cut a wiggle; as $T$ grows the leftover piece $\frac{\sin T}{2T}$ shrinks and the average settles on $\frac12$. That settling value is the limit. Right: any fixed number divided by a growing $T$ sinks to 0, however big the number is.</figcaption>
+</figure>
+
 ### The geometric series: "add up a shrinking list"
 
 $$\sum_{n=0}^{\infty} r^n = 1 + r + r^2 + \dots = \frac{1}{1-r}\qquad\text{for } \lvert r\rvert < 1$$
 
 Where it comes from: the finite sum is $1+r+\dots+r^N = \dfrac{1-r^{N+1}}{1-r}$ (multiply by $(1-r)$ and watch everything cancel). If $\lvert r\rvert<1$ then $r^{N+1}\to 0$, leaving $\frac{1}{1-r}$.
+
+<figure markdown>
+![Geometric series filling up to its limit](img/gen/p0_geometric.svg)
+<figcaption>Left: with $r=\frac12$ every new piece fills exactly half of the gap that is left before 2, so you get as close to 2 as you like but never pass it: $\frac{1}{1-\frac12}=2$. Right: the running totals for $r=\frac12$ and for the exam's $r=e^{-2}\approx0.135$. The smaller $r$, the faster the total levels off (here at 1.1565 after only 3 terms).</figcaption>
+</figure>
 
 **Worked example (an exam answer, exactly):** $E=\sum_{n=0}^\infty e^{-2n}$ is a geometric series with $r=e^{-2}\approx0.135$:
 
@@ -149,6 +194,11 @@ $$\boxed{\sin^2\alpha = \frac{1-\cos(2\alpha)}{2}}\qquad\qquad \boxed{\cos^2\alp
 
 Why these matter: energy and power formulas contain $x(t)^2$, and squaring a sine gives you $\sin^2$, which the identity splits into **a constant ($\tfrac12$) plus a wiggle at double frequency ($\cos 2\alpha$)**. The constant is what survives averaging; the wiggle averages to zero. That is the whole trick behind "$P = A^2/2$".
 
+<figure markdown>
+![Why the average of sine squared is one half](img/gen/p0_sin2.svg)
+<figcaption>Left: $\sin\alpha$ is positive half the time and negative half the time, so its average is 0. Squaring flips the negative halves up: $\sin^2\alpha$ is never negative and wiggles twice as fast, between 0 and 1. Right: it wiggles symmetrically around $\frac12$; the green humps above the dashed line have exactly the area of the orange dips below it, so the average height is $\frac12$. A tone of amplitude $A$ squares to $A^2\sin^2$, whose average is $\frac{A^2}{2}$.</figcaption>
+</figure>
+
 ---
 
 ## 0.5 Spectrum: what a Fourier transform tells you
@@ -156,6 +206,11 @@ Why these matter: energy and power formulas contain $x(t)^2$, and squaring a sin
 **Plain words.** Any signal can be described as "a mixture of pure tones of different frequencies". The **spectrum** of a signal is the recipe: *how much of each frequency is in there*. A tone at 250 Hz and nothing else has a spectrum with a single bump at 250 Hz. Two tones = two bumps. Noise = a flat smear over all frequencies.
 
 The **Fourier transform** is the machine that turns "signal vs time" into "recipe vs frequency". It is a *change of description*, nothing is lost or added — same signal, different label on the horizontal axis.
+
+<figure markdown>
+![The same signal in time and in frequency](img/gen/p0_spectrum.svg)
+<figcaption>Left: what a microphone records, a 5 Hz tone plus a weaker 12 Hz tone (dashed), added up into the black curve. Right: the recipe. One pair of spikes per tone, at $\pm5$ Hz and $\pm12$ Hz, each spike half the tone's amplitude (point 3 below explains the pair and the half). Hard to read on the left, obvious on the right.</figcaption>
+</figure>
 
 | Name | Symbol | Input | Output | Used for |
 |---|---|---|---|---|
@@ -174,7 +229,17 @@ $$\text{bin width} = \frac{f_s}{N}\ \text{Hz}.$$
 
 Example: $f_s = 50$ Hz and $N = 24$ samples → $\frac{50}{24}\approx 2.08$ Hz apart. The $k$-th number $X[k]$ is "how much of the tone at frequency $k\cdot 2.08$ Hz is present". *Bin* = one of those $N$ frequency slots.
 
+<figure markdown>
+![FTD curve and DFT samples at the bins](img/gen/p0_ftd_dft.svg)
+<figcaption>That exact example with a 10 Hz tone. Grey: the FTD of the 24 samples, a smooth curve. Blue dots: the DFT, the same curve read off every 2.08 Hz (only 0 to 25 Hz shown; the other half is the mirror image). 10 Hz falls between two bins, so no dot sits on the true peak. The top axis gives the same frequencies as $\theta$: $f_s/2=25$ Hz is $\theta=\pi$.</figcaption>
+</figure>
+
 **Decibels (dB).** Spectra figures are drawn on a log scale: $\lvert X\rvert_{\text{dB}} = 20\log_{10}\lvert X\rvert$. So 0 dB = height 1, −20 dB = height 0.1, −40 dB = height 0.01. When a figure says "the weak tone is 34 dB below the strong one", it means its amplitude is about $10^{-34/20}\approx 0.02$ times the big one. dB exists purely so you can see tiny and huge things in the same plot.
+
+<figure markdown>
+![Linear scale vs dB scale](img/gen/p0_db.svg)
+<figcaption>The same spectrum twice: a 10 Hz tone plus an 18 Hz tone 50 times weaker. On the linear scale (left) the weak tone is a bump of height 0.02, invisible. On the dB scale (right) every factor of 10 gets the same vertical room (20 dB), so the weak tone stands out clearly at $-34$ dB.</figcaption>
+</figure>
 
 ---
 
@@ -191,10 +256,15 @@ For a number that can land anywhere on a line (a voltage), "the probability that
 > **The area under the curve between $a$ and $b$ is the probability that $X$ lands between $a$ and $b$.** The total area under the whole curve is 1 (something must happen).
 
 !!! example "Two PDFs with real numbers"
-    - **Uniform on $[0,2]$**: $p(x)=\tfrac12$ for $0\le x\le 2$, zero elsewhere. Total area $=\tfrac12\cdot 2 = 1$ ✓. $P(0.5<X<1.5)=$ width $\times$ height $=1\times\tfrac12=0.5$.
+    - **Uniform on $[0,2]$**: $p(x)=\tfrac12$ for $0\le x\le 2$, zero elsewhere. Total area $=\tfrac12\cdot 2 = 1$ ✓. $P(0.5\lt X<1.5)=$ width $\times$ height $=1\times\tfrac12=0.5$.
     - **Exponential**: $p(x)=e^{-x}$ for $x\ge0$. Total area $=\int_0^\infty e^{-x}dx = [-e^{-x}]_0^\infty = 0-(-1)=1$ ✓. $P(X>1)=\int_1^\infty e^{-x}dx = e^{-1}\approx0.368$.
 
 Careful: the *height* $p(x)$ is **not** a probability (it can be bigger than 1, for example a uniform on $[0,0.1]$ has height 10). Only **areas** are probabilities.
+
+<figure markdown>
+![Probabilities are areas under the PDF](img/gen/p0_pdfs.svg)
+<figcaption>The two examples above and the warning, drawn. Each shaded area is a probability: width × height for the flat PDF, an integral for the curved one. The third panel is a valid PDF even though its height is 10, because its total area is still exactly 1.</figcaption>
+</figure>
 
 ### Expectation, variance
 
@@ -211,6 +281,11 @@ Handy rewriting (expand the square: $\mathbb E[X^2-2\mu X+\mu^2]=\mathbb E[X^2]-
 $$\operatorname{Var}(X)=\mathbb E[X^2]-\mu^2 .$$
 
 Die: $\mathbb E[X^2]=\tfrac16(1+4+9+16+25+36)=\tfrac{91}{6}=15.17$, so $\operatorname{Var}=15.17-3.5^2=15.17-12.25=2.92$.
+
+<figure markdown>
+![Expectation is the balance point, variance is the spread](img/gen/p0_expectation.svg)
+<figcaption>The mean is where the shape would balance on a finger (red triangle). Left: the die balances at 3.5, a value it can never show. Middle: $e^{-x}$ is tallest at 0 but balances at 1, because its long right tail pulls the balance point over. Right: two PDFs with the same mean 0; the arrows span $\pm\sigma$. A bigger variance means the values spread further from the mean.</figcaption>
+</figure>
 
 Three rules you will use constantly (the first one is just "averaging is linear"):
 
@@ -238,12 +313,22 @@ $$p(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\;e^{-\frac{(x-\mu)^2}{2\sigma^2}}\qquad\tex
 - **$Q$-function:** $Q(x)=P(Z>x)$ for $Z\sim\mathcal N(0,1)$ = the area of the right tail beyond $x$. Symmetry gives $Q(-x)=1-Q(x)$ and $Q(0)=\tfrac12$. From the 68/95/99.7 numbers: $Q(1)=\frac{1-0.683}{2}=0.1587$, $Q(2)=\frac{1-0.954}{2}=0.023$. Exams that give you an erf table want exactly this: $Q(x)=\tfrac12\big(1-\operatorname{erf}(x/\sqrt2)\big)$.
 - **Sums:** independent Gaussians added together are Gaussian again, with the **means added and the variances added**.
 
+<figure markdown>
+![Gaussian areas and the Q function](img/gen/p0_gauss.svg)
+<figcaption>Left: the darker the band, the closer to the mean; the arrows below give the area inside $\pm1,\pm2,\pm3\,\sigma$. Right: $Q(1)$ is the red tail beyond $z=1$. The orange tail on the left has the same area by symmetry, which is why $Q(-1)=1-Q(1)$: everything except the left tail.</figcaption>
+</figure>
+
 ### Likelihood: the same formula read backwards
 
 A PDF with a parameter, e.g. $p(y;\theta)$, answers "*given* the parameter $\theta$, how likely is each data value $y$?". Estimation reverses the question: **the data $y$ are fixed (you measured them), which $\theta$ makes them most plausible?** Same formula, now plotted against $\theta$, and called the **likelihood**.
 
 !!! example "One sample, unknown mean"
     You measure $y=3$ from $\mathcal N(\theta,1)$ with $\theta$ unknown: $p(3;\theta)=\frac1{\sqrt{2\pi}}e^{-(3-\theta)^2/2}$. As a function of $\theta$ this is a bell centred at $\theta=3$: the most plausible mean is the measurement itself. That is the whole idea of maximum likelihood ([2.1](p2-mle.md)).
+
+<figure markdown>
+![PDF read over the data vs likelihood read over the parameter](img/gen/p0_likelihood.svg)
+<figcaption>Left: three candidate models ($\theta=1,3,5$), each a bell over the possible data. The dashed line is the one value you measured, $y=3$; each dot is how high that model's bell is there. Right: collect those heights for every possible $\theta$ and you get the likelihood. The three dots reappear on it, and its peak marks the best $\theta$.</figcaption>
+</figure>
 
 ### Random signals: stationarity and autocorrelation
 
@@ -252,15 +337,28 @@ A **random signal** (random process) is a list of random variables $x[0],x[1],x[
 - **Mean** $\mu_x=\mathbb E[x[n]]$.
 - **Autocorrelation** $r[l]=\mathbb E\big[x[n]\,x[n-l]\big]$: how strongly the signal at time $n$ is related, *on average*, to the signal $l$ steps earlier ($l$ = the **lag**).
 
+<figure markdown>
+![Autocorrelation as how tilted the scatter cloud is](img/gen/p0_autocorr.svg)
+<figcaption>What $r[l]$ measures. Take one long recording (left) and plot every value against the value $l$ steps earlier. For $l=1$ (green) the points line up along a tilted cloud: when $x[n-1]$ is high, $x[n]$ is usually high too, so the average product $x[n]x[n-1]$ is large. For $l=20$ (orange) the cloud is round: no relation, average product near 0. The stems on the right are those average products for every lag.</figcaption>
+</figure>
+
 The process is **stationary** (wide-sense) when $\mu_x$ and $r[l]$ do **not depend on $n$**: the statistics look the same at any time. Facts you will use:
 
 1. $r[0]=\mathbb E[x[n]^2]$ = the **average power** (the random-signal twin of $P_x$ in [3.1](p3-windows.md#1-energy-vs-power-which-one-is-this-signal)). It is the largest value: $|r[l]|\le r[0]$.
 2. $r[-l]=r[l]$ for real signals (symmetric in the lag).
 3. **White noise** has no relation between different times: $r[0]=\sigma^2$ and $r[l]=0$ for $l\ne0$.
 4. The **PSD** (power spectral density: how the power is spread over frequency) is the FTD of the autocorrelation:
-$$P(\theta)=\sum_{l=-\infty}^{\infty} r[l]\,e^{-jl\theta}=r[0]+2\sum_{l=1}^{\infty} r[l]\cos(l\theta)\quad(\text{real, symmetric }r).$$
-    Example: $r[0]=1,\ r[\pm1]=0.5$, zero otherwise → $P(\theta)=1+2(0.5)\cos\theta=1+\cos\theta$. Check: $P(0)=2=1+0.5+0.5$ (the sum of all $r[l]$), and $P\ge0$ everywhere, as a power must be.
+
+    $$P(\theta)=\sum_{l=-\infty}^{\infty} r[l]\,e^{-jl\theta}=r[0]+2\sum_{l=1}^{\infty} r[l]\cos(l\theta)\quad(\text{real, symmetric }r).$$
+
+    Example: $r[0]=1,\ r[\pm1]=0.5$, zero otherwise → $P(\theta)=1+2(0.5)\cos\theta=1+\cos\theta$. Check: $P(0)=2=1+0.5+0.5$ (the sum of all $r[l]$), and $P\ge0$ everywhere, as a power must be (figure below).
+
 5. **Ergodic** means one long recording is as good as many short ones: averaging over *time* in a single record gives the same answer as averaging over *realisations*. This is what lets us estimate $r[l]$ from a single record ([3.2](p3-nonparametric.md)).
+
+<figure markdown>
+![Autocorrelation and its PSD](img/gen/p0_r_psd.svg)
+<figcaption>The example of fact 4 as a pair of pictures: three stems in lag (left) become one smooth bump in frequency (right). Neighbouring samples resemble each other (positive $r[\pm1]$), so the signal changes slowly: its power sits at low frequencies, near $\theta=0$.</figcaption>
+</figure>
 
 ---
 

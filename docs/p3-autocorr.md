@@ -35,6 +35,16 @@ Its PSD is $\sum_l r_i[l]e^{-jl\theta}=\sigma_i^2$: **a flat line**, all frequen
 !!! trap "The sign convention"
     The $a_k$ are defined with a **minus** in the difference equation. So $x[n]=i[n]+\frac34x[n-1]$ means $a_1=-\frac34$ and $A(z)=1-\frac34z^{-1}$. The $b_k$ come with a **plus**. Get this wrong and every later number is wrong.
 
+<figure markdown>
+![White noise, MA and AR signals with their autocorrelation and PSD](img/gen/p3_memory.svg)
+<figcaption>The same random kicks $i[n]$ fed into four recipes (one per row). Left: one realisation. Middle: its autocorrelation. Right: its PSD. <b>White noise</b>: no memory, a single stem at lag 0, flat PSD. <b>MA(1)</b>: remembers exactly one step, so the stems stop after lag 1; a gentle low-pass PSD. <b>AR(1) with $+0.9$</b>: long memory, smooth slow signal, stems decaying slowly, PSD peak at $\theta=0$. <b>AR(1) with $-0.9$</b>: each value flips the sign of the last, a zig-zag signal, alternating stems, PSD peak at $\theta=\pi$.</figcaption>
+</figure>
+
+<figure class="anim">
+<video class="anim" src="video/ar_recursion.mp4" poster="video/ar_recursion.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation: how an AR(1) builds its memory.</b> Each new value is 0.8 × the previous one (faded bar) plus today's kick (grey). Run it forever and you get a smooth wandering signal. At the end a single kick is fed in and nothing else: its echo fades as $0.8^n$ but never reaches exactly 0. That echo is why the AR autocorrelation is a geometric tail (section 3.2).</figcaption>
+</figure>
+
 **How to tell which model it is.** Look at what is on the right-hand side: past **inputs** $i[n-k]$ → MA part (these give the *zeros*). Past **outputs** $x[n-k]$ → AR part (these give the *poles*). Both → ARMA. The orders are the largest delay of each kind.
 
 !!! example "Three one-liners"
@@ -51,6 +61,16 @@ Its PSD is $\sum_l r_i[l]e^{-jl\theta}=\sigma_i^2$: **a flat line**, all frequen
 $$\boxed{P_x(e^{j\theta})=\sigma_i^2\,\lvert H(e^{j\theta})\rvert^2}\quad\Longrightarrow\quad \text{MA: }\sigma_i^2\lvert B\rvert^2,\quad \text{AR: }\frac{\sigma_i^2}{\lvert A\rvert^2},\quad\text{ARMA: }\sigma_i^2\frac{\lvert B\rvert^2}{\lvert A\rvert^2},$$
 
 with $B=B(e^{j\theta})$, $A=A(e^{j\theta})$.
+
+<figure markdown>
+![Flat noise times the filter shape gives the PSD](img/gen/p3_shaping.svg)
+<figcaption>The boxed formula as a picture. White noise brings the same power to every frequency (flat, left). The filter's $|H|^2$ (middle) says how much each frequency is amplified or damped. Their product (right) is the output PSD: the filter's shape, scaled by $\sigma_i^2$. An AR(1) with $a_1=-0.8$ boosts low frequencies; an MA(1) with $b_1=-0.9$ almost kills them.</figcaption>
+</figure>
+
+<figure markdown>
+![Poles make peaks, zeros make dips](img/gen/p3_poles_zeros.svg)
+<figcaption>Where the peaks and dips come from. Walk along the unit circle: the point $e^{j\theta}$ (red) is frequency $\theta$. A <b>pole</b> (×, from the AR part) close to the circle makes the PSD shoot up when you walk past it: $|H|$ contains a factor $\frac{1}{\text{distance to the pole}}$, and that distance gets tiny. A <b>zero</b> (○, from the MA part) makes it drop: $|H|$ contains a factor (distance to the zero). The angle of the pole or zero is the frequency of the peak or dip, and the closer it sits to the circle, the sharper the peak or dip.</figcaption>
+</figure>
 
 **Expanding the squares.** For one coefficient $c$, using $\lvert u\rvert^2=u\bar u$ and $\cos\theta=\frac{e^{j\theta}+e^{-j\theta}}2$:
 
@@ -91,6 +111,11 @@ In words: **line up the coefficient list with a copy of itself shifted by $l$, m
     - $r[2]=1\cdot(-0.4)=-0.4$
     - $r[l]=0$ for $|l|\ge3$.
 
+<figure class="anim">
+<video class="anim" src="video/slide_ma.mp4" poster="video/slide_ma.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation: this example, slide by slide.</b> The coefficient list $[1,\,0.5,\,-0.4]$ slides over a copy of itself. At each shift the overlapping boxes are multiplied and added: 1.41, 0.3, −0.4. At shift 3 nothing overlaps any more, so $r[3]=0$, and so is every longer lag.</figcaption>
+</figure>
+
 ### 3.2 AR(1): a geometric tail
 
 $x[n]=i[n]-a\,x[n-1]$. Multiply by $x[n-l]$ and take expectations:
@@ -105,6 +130,16 @@ $$\boxed{r[l]=\frac{\sigma_i^2}{1-a^2}\,(-a)^{|l|}}\qquad(\text{needs }|a|<1\tex
 An AR model has **infinite memory**: $r[l]$ never reaches exactly 0, it only decays.
 
 *Example:* $a=-0.8$, $\sigma_i^2=1$: $r[0]=\frac1{1-0.64}=2.78$, $r[1]=2.78\cdot0.8=2.22$, $r[2]=1.78$, … (slow decay; the signal is smooth).
+
+<figure markdown>
+![AR(1) autocorrelation for a = -0.8 and a = +0.8](img/gen/p3_ar1_tail.svg)
+<figcaption>The example (left) and its sign-flipped twin (right). Same size at every lag, $2.78\times0.8^{|l|}$; with $a=+0.8$ every odd lag is negative, because the signal flips sign at each step. The impulse responses below show the same memory directly.</figcaption>
+</figure>
+
+<figure markdown>
+![MA memory stops, AR memory fades](img/gen/p3_impulse.svg)
+<figcaption>Feed a single kick and watch what comes out. The MA(2) output is just the coefficient list $1,\ 0.5,\ -0.4$ and then silence: finite memory, so $r[l]=0$ after lag 2. The AR(1) output $0.8^n$ never quite stops: infinite memory, so $r[l]$ never reaches exactly 0.</figcaption>
+</figure>
 
 ### 3.3 ARMA(1,1): two equations, then a geometric tail
 

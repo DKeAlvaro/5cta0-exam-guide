@@ -62,7 +62,7 @@ Binary $X=\pm1$ + Gaussian: MMSE $\tanh(y/\sigma^2)$, MAP sign(y).
 <div markdown>
 ## 3 · Spectral estimation
 
-**Energy** $E<\infty$, $P=0$ (pulses). **Power** $0<P<\infty$, $E=\infty$ (periodic: $A^2/2$; $\cos t\,u(t)$: 1/4).
+**Energy** $E<\infty$, $P=0$ (pulses). **Power** $0\lt P<\infty$, $E=\infty$ (periodic: $A^2/2$; $\cos t\,u(t)$: 1/4).
 **Window:** main lobe → **resolution** (≈2π/N); side lobes → **leakage**. Rect: narrowest lobe, −13 dB; triang −27, Hann −32 (less leakage, worse resolution). Longer N → better resolution. **Zero padding**: samples FTD at $2\pi k/L$, no extra resolution. DFT = FTD at $2\pi k/N$.
 </div>
 

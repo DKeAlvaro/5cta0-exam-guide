@@ -21,6 +21,11 @@ Two ways to average:
 - **Ensemble average** (down a column): fix a time $t$, average over *all realisations*. This is $\mathbb E[X(t)]$.
 - **Time average** (along a row): take *one* realisation and average it over time, $\frac1N\sum_n x[n]$.
 
+<figure class="anim">
+<video class="anim" src="video/ensemble.mp4" poster="video/ensemble.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation: the two averages.</b> Five realisations of $\cos(t+U)$. A red column sweeps across time: the average down the column is 0 wherever it stands (stationary mean). Then one row is averaged along time (orange): it also goes to 0, the same as the column average, so the process is ergodic in the mean. Last, each row gets its own frozen level $A$: row 1 now averages to $-1$, while the column average is $0.28$. One row can no longer tell you about the stack: not ergodic.</figcaption>
+</figure>
+
 <figure markdown>
 ![Four example processes](img/gen/p1_processes.svg)
 <figcaption>Top left: $\cos(t+U)$. Every realisation wiggles around 0, so the time average of any one of them equals the ensemble mean 0. Top right: $A\cos t$. The ensemble mean is $\cos t$, which changes with time. Bottom left: dice. Every row is i.i.d. rolls, so time averages are the same for every row. Bottom right: the Nov 2022 process. $A$ is drawn once per realisation, so the spread differs from row to row.</figcaption>
@@ -59,6 +64,11 @@ For a real WSS signal, $r[l]=\mathbb E\{x[n]\,x[n-l]\}$ must satisfy:
 3. **Non-negative spectrum**: the PSD $P(e^{j\theta})=\sum_l r[l]e^{-jl\theta}$ (Wiener–Khinchin) must be $\ge0$ for every $\theta$.
 
 White noise has $r[l]=\sigma^2\delta[l]$ (correlated only with itself) and a flat PSD $P=\sigma^2$.
+
+<figure markdown>
+![Valid and invalid autocorrelations](img/gen/p1_valid_r.svg)
+<figcaption>The three checks, in the order you should apply them. Green passes all three. The second fails symmetry at a glance. The third has $r[\pm1]=1.2>r[0]=1$, impossible because nothing can resemble $x[n]$ more than $x[n]$ itself. The fourth is the sneaky one: symmetric, highest at 0, but its PSD $1+1.8\cos\theta$ goes negative near $\theta=\pi$ (red), so it is not a valid autocorrelation.</figcaption>
+</figure>
 
 The **cross-correlation** between two signals is $r_{xy}[l]=\mathbb E\{x[n]\,y[n-l]\}$. For ergodic signals you estimate it from data as $\hat r_{xy}[l]=\frac1N\sum_n x[n]\,y[n-l]$ (slide $y$ along $x$, multiply the overlapping samples, add, divide by $N$).
 

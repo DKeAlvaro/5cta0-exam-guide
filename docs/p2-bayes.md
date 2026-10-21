@@ -34,6 +34,11 @@ You must report a single value $\hat\theta$. Choose a **cost** for being wrong a
 
 *Why the mean for squared error:* the average cost of reporting $a$ is $\mathbb E[(\theta-a)^2\mid\mathbf x]$; its derivative with respect to $a$ is $2\big(a-\mathbb E[\theta\mid\mathbf x]\big)$, which is zero at $a=\mathbb E[\theta\mid\mathbf x]$. *Why the mode for hit-or-miss:* you are rewarded only for landing on the right value, so bet on the most probable one.
 
+<figure markdown>
+![Three cost functions and the three answers they give](img/gen/p2_costs.svg)
+<figcaption>Left: the three ways of charging for an error. Squared error punishes big misses hard; absolute error grows evenly; hit-or-miss only cares whether you are (almost) exactly right. Right: one skewed posterior and the three answers. Mode (MAP) at the top of the hill, median in the middle of the area, mean (MMSE) dragged right by the long tail. For a symmetric bell all three coincide.</figcaption>
+</figure>
+
 **MAP vs MLE.** MAP maximises likelihood × prior; MLE maximises the likelihood alone. With a flat prior they are equal. With lots of data the likelihood dominates and MAP moves towards the MLE (usually; a prior that rules out the true value never lets go).
 
 **MAP vs MMSE.** Equal when the posterior is symmetric with one peak (e.g. a Gaussian: mean = mode). Different otherwise: skewed or two-peaked posteriors (figures below).
@@ -41,6 +46,11 @@ You must report a single value $\hat\theta$. Choose a **cost** for being wrong a
 !!! example "A coin, with numbers"
     Prior: Beta(2, 3), shape $\propto\theta^1(1-\theta)^2$ (mean $\frac25=0.4$: "probably a bit biased towards tails"). Data: 3 heads, 1 tail → likelihood $\propto\theta^3(1-\theta)^1$. Posterior $\propto\theta^{1+3}(1-\theta)^{2+1}=\theta^4(1-\theta)^3$ → **Beta(5, 4)**.
     MLE $=\frac34=0.75$. MAP $=$ mode $=\frac{5-1}{5+4-2}=\frac47=0.571$. MMSE $=$ mean $=\frac59=0.556$. The prior pulled all Bayesian answers away from the MLE towards its own mean.
+
+<figure markdown>
+![Prior, likelihood and posterior of the coin example](img/gen/p2_coin.svg)
+<figcaption>The coin example drawn. Grey: what you believed before (centred near 0.4). Orange: what the 4 flips say (peak at 0.75 = MLE). Blue: the posterior, their product rescaled to area 1. It sits between the two, and its peak (MAP 0.571) and balance point (MMSE 0.556) are pulled towards the prior.</figcaption>
+</figure>
 
 ### 1.3 Recipes
 
@@ -64,6 +74,11 @@ A prior is **conjugate** to a likelihood when the posterior has the same *shape 
   → posterior Gamma($\alpha+S,\ \beta+n$), **mode** $=\dfrac{\alpha+S-1}{\beta+n}$.
 
 (The Beta distribution is a flexible bump on $(0,1)$, which is why it is the natural prior for a probability; Beta($\alpha,\beta$) has mode $\frac{\alpha-1}{\alpha+\beta-2}$ and mean $\frac{\alpha}{\alpha+\beta}$. Gamma($\alpha,\beta$) has mode $\frac{\alpha-1}{\beta}$ and mean $\frac\alpha\beta$.)
+
+<figure class="anim">
+<video class="anim" src="video/bayes_update.mp4" poster="video/bayes_update.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation: conjugate updating, flip by flip.</b> Start from the prior Beta(2, 3) (grey). Every head adds 1 to the first number and every tail adds 1 to the second, so the posterior stays a Beta (blue). After a few flips the prior still matters; after 60 flips of a coin with true $\theta=0.7$ the posterior is a narrow bump around 0.7, and the MAP has moved there.</figcaption>
+</figure>
 
 ---
 
@@ -213,7 +228,7 @@ A prior is **conjugate** to a likelihood when the posterior has the same *shape 
 
     **Step 4 — back to $\theta$:** $\hat\theta=\ln\frac{\lambda}{1-\lambda}=\ln\frac{2/x}{1-2/x}=\ln\frac{2}{x-2}$ (multiply top and bottom by $x$).
 
-    Valid when $\lambda=\frac2x<1$, i.e. $x>2$. For $1<x\le2$ the derivative stays positive: no finite maximum.
+    Valid when $\lambda=\frac2x<1$, i.e. $x>2$. For $1\lt x\le2$ the derivative stays positive: no finite maximum.
 
     !!! answer "Answer"
         $\hat\theta_{MAP}=\ln\dfrac{2}{x-2}=-\ln\!\left(\dfrac x2-1\right)$, for $x>2$

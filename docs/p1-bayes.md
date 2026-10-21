@@ -34,6 +34,16 @@ The trick that makes everything below obvious: **imagine 10 000 chips** and coun
 
     These two sentences are exactly the two formulas below, with the multiplication done on whole numbers.
 
+<figure markdown>
+![The machine problem as areas](img/gen/p1_bayes_area.svg)
+<figcaption>Left: the 10 000 chips as a square. Each machine gets a strip as wide as its share, and the red part at the bottom of each strip is its defective chips. Right: "given that the chip is defective" means keep only the red pieces and line them up. Each machine's share of that bar is its posterior probability. That zoom is all Bayes' theorem does.</figcaption>
+</figure>
+
+<figure class="anim">
+<video class="anim" src="video/bayes_zoom.mp4" poster="video/bayes_zoom.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation: Bayes as a zoom.</b> The strips appear, then the defective chips (red). Learning "the chip is defective" throws away everything that is not red, and the 345 red chips are regrouped by machine: 80, 140 and 125 of them, i.e. 0.232, 0.406 and 0.362.</figcaption>
+</figure>
+
 ### 1.3 The three formulas
 
 **Conditional probability.** $P(A\mid B)$ ("probability of $A$ given $B$") is the probability of $A$ *when you already know that $B$ happened*. You zoom into the part of the world where $B$ is true and ask how much of it is also $A$:
@@ -66,6 +76,11 @@ Names you will see: $P(A_k)$ = **prior** (before knowing the outcome), $P(B\mid 
 $A$ and $B$ are **independent** when knowing $B$ tells you nothing about $A$: $P(A\mid B)=P(A)$, equivalently $P(A\cap B)=P(A)P(B)$. Two coin flips: $P(\text{both heads})=\frac12\cdot\frac12=\frac14$.
 
 Do not confuse with **mutually exclusive** (disjoint) events, which cannot happen together ($P(A\cap B)=0$). Two events with non-zero probabilities that are independent can never be disjoint ($P(A)P(B)>0$). And the addition rule in general is $P(A\cup B)=P(A)+P(B)-P(A\cap B)$; plain addition is only for disjoint events.
+
+<figure markdown>
+![Disjoint vs independent events](img/gen/p1_indep_disjoint.svg)
+<figcaption>The square is "everything that can happen", area 1. Left: disjoint events do not touch, so knowing $B$ happened tells you for sure that $A$ did not. That is the opposite of independent. Right: independent events cross like a grid. Inside the strip $B$, the event $A$ still takes 40 % of the width, exactly as in the whole square, and the overlap's area is $0.4\times0.3$.</figcaption>
+</figure>
 
 !!! recipe "Recipe: every Bayes word problem"
     1. Name the events. Write the groups $A_1,\dots$ and the "outcome" $B$.
@@ -207,14 +222,14 @@ Do not confuse with **mutually exclusive** (disjoint) events, which cannot happe
     |---|---|
     | $T$ | lifetime of the transducer in years |
     | $\Pr[T\ge t]=e^{-t/5}$ | the probability it is still working at time $t$ ("survival") |
-    | $A=\{2<T\le3\}$ | breaks down in year 3 |
+    | $A=\{2\lt T\le3\}$ | breaks down in year 3 |
     | $B=\{T>2\}$ | still working after 2 years |
 
     **Step 1 — conditional probability.** $P(A\mid B)=\frac{P(A\cap B)}{P(B)}$. Since $A$ lies inside $B$, $A\cap B=A$, and $P(A)=P(T>2)-P(T>3)$ (survive to 2 but not to 3).
 
     **Step 2 — plug in:**
 
-    $$P(2<T\le3\mid T>2)=\frac{e^{-2/5}-e^{-3/5}}{e^{-2/5}}=1-e^{-1/5}=1-0.8187=0.181.$$
+    $$P(2\lt T\le3\mid T>2)=\frac{e^{-2/5}-e^{-3/5}}{e^{-2/5}}=1-e^{-1/5}=1-0.8187=0.181.$$
 
     Notice the answer does not depend on the 2 years already survived: the exponential distribution is **memoryless**. $1-e^{-1/5}$ is just the probability that a brand-new transducer breaks in its first year.
 

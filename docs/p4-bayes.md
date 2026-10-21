@@ -36,6 +36,16 @@ $$\boxed{\frac{p(\mathbf x\mid\mathcal H_1)}{p(\mathbf x\mid\mathcal H_0)}\ \und
     $\mathcal H_0$: $x\sim\mathcal N(0,1)$, $\mathcal H_1$: $x\sim\mathcal N(2,1)$ (the example of [4.1](p4-basics.md#11-two-stories-about-the-data)). Its ratio is $L(x)=e^{2x-2}$ (the algebra of [4.2](p4-lrt.md#2-the-recipe-with-one-example-done-slowly)). Equal costs, but now $\mathcal H_1$ happens only 10 % of the time: $\lambda=\frac{P_0}{P_1}=\frac{0.9}{0.1}=9$.
     $e^{2x-2}>9\iff2x-2>\ln9=2.197\iff x>2.10$. With equal priors ($\lambda=1$) the threshold would be $x>1$. The rare event needs much stronger evidence.
 
+<figure markdown>
+![Priors move the crossing point](img/gen/p4_prior_threshold.svg)
+<figcaption>The rule "decide $\mathcal H_1$ where $P_1\,p(x|\mathcal H_1)>P_0\,p(x|\mathcal H_0)$" means: shrink each PDF by its prior, then see where the curves cross. Left: equal priors, crossing at $x=1$. Middle: $\mathcal H_1$ only 10 % of the time, so its curve shrinks to a tenth and the crossing moves to $x=2.10$. Right: the total error $P_0P_{FA}+P_1P_M$ against the threshold; its lowest point (dots) is exactly at those crossings.</figcaption>
+</figure>
+
+<figure class="anim">
+<video class="anim" src="video/bayes_threshold.mp4" poster="video/bayes_threshold.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation: the table of section 1.3, live.</b> The prior $P_1$ slides from 0.5 down to 0.1 and up to 0.8. Each PDF is weighted by its prior, and the decision boundary (dashed) sits where the weighted curves cross. A rarer $\mathcal H_1$ pushes the boundary right (stronger evidence needed); a common $\mathcal H_1$ pulls it left.</figcaption>
+</figure>
+
 ### 1.3 How the threshold moves (how the MC questions are built)
 
 | Change | Effect on $\lambda$ | Meaning |
@@ -73,6 +83,16 @@ It is a **correlator**: multiply the data with the expected pattern sample by sa
 
 !!! example "Tiny numbers"
     $s=[1,2,1]$, $\sigma^2=1$, $\lambda=1$: threshold $\lambda'=0+\frac12(1+4+1)=3$. Data $x=[0.8,\,2.5,\,0.3]$: $\sum x_ns_n=0.8+5+0.3=6.1>3$ → decide $\mathcal H_1$. Data $x=[0.1,\,-0.4,\,0.5]$: $0.1-0.8+0.5=-0.2<3$ → $\mathcal H_0$.
+
+<figure markdown>
+![Matched filter products for the two data sets](img/gen/p4_matched_products.svg)
+<figcaption>The tiny example as bars. Grey: the known pattern. Blue: the data. Coloured: their products. When the data look like the pattern (left), every product is positive and the biggest sample meets the biggest weight, so the sum is large. When they do not (right), products have mixed signs and cancel.</figcaption>
+</figure>
+
+<figure class="anim">
+<video class="anim" src="video/matched_filter.mp4" poster="video/matched_filter.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation: the same idea along a long record.</b> The pattern $[1,2,3,2,1]$ is hidden in noise at $n=31$, hard to see by eye. The orange template slides along; at each position the overlapping samples are multiplied by the pattern and added (green curve below). Only where the pattern really is does the sum clear the threshold $\frac12\sum s_n^2$.</figcaption>
+</figure>
 
 - **As an FIR filter:** impulse response = the **time-reversed** signal, $h[n]=s[N-1-n]$, output sampled at $n=N-1$. (Check: convolution gives $y[N-1]=\sum_kh[k]x[N-1-k]=\sum_ks[N-1-k]x[N-1-k]=\sum_ms[m]x[m]$, the correlator.) Writing $h[n]=s[n]$ (no reversal) is a classic wrong option.
 - **It maximises the output SNR** among all linear filters. Reason: weights $\mathbf w$ give signal part $\mathbf w^T\mathbf s$ and noise variance $\sigma^2\lVert\mathbf w\rVert^2$, so SNR $=\frac{(\mathbf w^T\mathbf s)^2}{\sigma^2\lVert\mathbf w\rVert^2}\le\frac{\lVert\mathbf s\rVert^2}{\sigma^2}$ by the Cauchy–Schwarz inequality, with equality exactly when $\mathbf w\propto\mathbf s$.

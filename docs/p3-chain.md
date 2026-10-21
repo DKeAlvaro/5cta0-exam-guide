@@ -27,6 +27,11 @@ $$\boxed{\hat P_{corr}(e^{j\theta})=r[0]+2\sum_{k\ge1}r[k]\cos(k\theta)}$$
 
 **Weakness.** If the true autocorrelation does not really stop at the last lag you used, chopping it there can make the sum **dip below zero**. A real PSD never does. (This is how you reject plots.)
 
+<figure markdown>
+![A truncated correlogram can go negative](img/gen/p3_corr_negative.svg)
+<figcaption>$r[l]=0.7^{|l|}$ is a perfectly valid autocorrelation (an AR(1) process). Keeping only lags 0, 1, 2 gives the grey correlogram, which dips below zero (red) around $\theta\approx\pm1.94$: impossible for a power. The AR(2) fit of the same three numbers (blue dashed) is the true PSD here, and it stays positive everywhere.</figcaption>
+</figure>
+
 ### 1.2 AR($p$) by Yule–Walker: pretend the signal is AR and fit it
 
 **Idea.** An AR($p$) model $x[n]=i[n]-a_1x[n-1]-\dots-a_px[n-p]$ is determined by $p+1$ numbers: $a_1,\dots,a_p$ and $\sigma_i^2$. Choose them so that the model's autocorrelation matches the first $p+1$ lags you were given. The resulting equations are the **Yule–Walker equations**. Here is where they come from.
@@ -68,6 +73,11 @@ A quadratic: two roots, and they are $b$ and $1/b$ (their product is $r[1]/r[1]=
     Expand the MA(1) PSD: $\sigma_i^2\lvert1+be^{-j\theta}\rvert^2=\sigma_i^2(1+b^2)+2\sigma_i^2b\cos\theta=r[0]+2r[1]\cos\theta$.
     **The MA(1) PSD is just the correlogram truncated at lag 1.** You still have to give $b$ and $\sigma_i^2$ if they are asked, but you can write the PSD immediately and exactly, without the rounding errors of, say, $b\approx-0.127$.
 
+<figure markdown>
+![Four estimates from the same three autocorrelation values](img/gen/p3_chain_three.svg)
+<figcaption>The whole chain on one small example, $r[0]=1,\ r[1]=0.4,\ r[2]=0.1$. The MA(1) quadratic $0.4b^2-b+0.4=0$ gives $b=0.5$ or $2$; keep $0.5$, so $\sigma_i^2=\frac{0.4}{0.5}=0.8$. Its PSD is exactly $1+0.8\cos\theta$, the correlogram cut after lag 1 (green). Check the end values: correlogram $1+0.8+0.2=2$ at $\theta=0$ and $1-0.8+0.2=0.4$ at $\pi$; AR(1) $\frac{0.84}{0.6^2}=2.33$ and $\frac{0.84}{1.4^2}=0.43$. Four different curves, because each method assumes something different about the lags you were not given.</figcaption>
+</figure>
+
 ### 1.4 Reading PSD plots (the "which plot is right?" question)
 
 <figure markdown>
@@ -100,6 +110,11 @@ $$\text{AIC}(P)=N\ln\hat\sigma_P^2+2P,\qquad \text{FPE}(P)=\frac{N+P}{N-P}\,\hat
 </figure>
 
 **One more fact (asked in June 2026).** *Any* PSD can be approximated by an AR model if the order is high enough, even one with deep notches (which an MA/ARMA would describe). Reason: for a minimum-phase $B(z)$, the series $1/B(z)=1+c_1z^{-1}+c_2z^{-2}+\dots$ is an *infinite* AR model. So a notch needs a **very high AR order** (and $N\gg p$ samples to estimate it).
+
+<figure markdown>
+![AR fits of increasing order approaching a notch](img/gen/p3_ar_notch.svg)
+<figcaption>Black: an MA(1) spectrum with a deep notch (−20 dB at $\theta=0$). AR models fitted to its exact autocorrelation: AR(1) barely bends, AR(4) starts to dip, AR(16) follows the notch closely. AR models are built for peaks (poles); to fake a dip they need many coefficients.</figcaption>
+</figure>
 
 ---
 

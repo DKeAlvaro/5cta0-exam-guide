@@ -22,6 +22,11 @@ $$J(\theta)=\sum_n\big(x[n]-s[n;\theta]\big)^2,\qquad\hat\theta_{LS}=\arg\min_\t
 !!! example "Smallest possible example: one number from noisy copies"
     Model $x[n]=A+w[n]$, data $x=[2,4,6]$. $J(A)=(2-A)^2+(4-A)^2+(6-A)^2$. Derivative: $-2\big[(2-A)+(4-A)+(6-A)\big]=0\Rightarrow3A=12\Rightarrow\hat A=4$: the **sample mean**. $J(4)=4+0+4=8$ is the smallest possible; e.g. $J(3)=1+1+9=11$.
 
+<figure markdown>
+![Least squares as squares](img/gen/p2_ls_squares.svg)
+<figcaption>"Least squares" taken literally. Each error (red segment between a data point and the model line) is drawn as a real square, so the cost $J$ is the total red area. With $A=3$ the squares have areas 1, 1, 9 ($J=11$); with $A=4$ they are 4, 0, 4 ($J=8$). Right: $J$ for every $A$ is a parabola whose bottom is the LS estimate.</figcaption>
+</figure>
+
 ### 1.1 Fitting a line (the exam favourite)
 
 Model $y=ax+b$ (slope $a$, intercept $b$) through points $(x_i,y_i)$, $i=1..n$. The cost is $J(a,b)=\sum_i(y_i-ax_i-b)^2$. Two unknowns, so two derivatives set to 0:
@@ -35,6 +40,11 @@ Model $y=ax+b$ (slope $a$, intercept $b$) through points $(x_i,y_i)$, $i=1..n$. 
     3. Solve with Cramer's rule ([toolbox](toolbox.md#7-solving-things-fast)): for $\begin{cases}p\,a+q\,b=r\\q\,a+n\,b=s\end{cases}$, $\det=pn-q^2$, $a=\frac{rn-qs}{\det}$, $b=\frac{ps-qr}{\det}$.
     4. *(Check)* the residuals $y_i-ax_i-b$ add up to 0 and are orthogonal to the $x_i$ ($\sum x_i\cdot\text{res}_i=0$).
 
+<figure class="anim">
+<video class="anim" src="video/ls_line.mp4" poster="video/ls_line.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation.</b> A line is tried at several slopes and intercepts; every error is drawn as a square and $J$ (their total area) is shown on the right. Bad lines leave huge squares. The least-squares line, the one the two equations above give, has the smallest total area of all.</figcaption>
+</figure>
+
 ### 1.2 The linear model in matrix form
 
 If the signal is a weighted sum of known columns, $\mathbf x=\mathbf H\boldsymbol\theta+\mathbf w$ ($\mathbf H$ is $N\times K$: row $n$ holds the $K$ known numbers that multiply the parameters in sample $n$; $\mathbf w$ = noise), then $J(\boldsymbol\theta)=\lVert\mathbf x-\mathbf H\boldsymbol\theta\rVert^2$. Setting its gradient to zero gives the **normal equations** $\mathbf H^T\mathbf H\hat{\boldsymbol\theta}=\mathbf H^T\mathbf x$, so
@@ -43,14 +53,24 @@ $$\hat{\boldsymbol\theta}_{LS}=(\mathbf H^T\mathbf H)^{-1}\mathbf H^T\mathbf x.$
 
 *Check with the line fit:* $\boldsymbol\theta=[a,b]^T$ and row $i$ of $\mathbf H$ is $[x_i,\ 1]$. Then $\mathbf H^T\mathbf H=\begin{bmatrix}\sum x_i^2&\sum x_i\\\sum x_i&n\end{bmatrix}$ and $\mathbf H^T\mathbf y=\begin{bmatrix}\sum x_iy_i\\\sum y_i\end{bmatrix}$: exactly the 2×2 system above.
 
-- **Geometry:** $\mathbf H\hat{\boldsymbol\theta}$ is the projection of $\mathbf x$ onto the space spanned by the columns of $\mathbf H$. The normal equations say $\mathbf H^T(\mathbf x-\mathbf H\hat{\boldsymbol\theta})=\mathbf 0$: the **error** $\mathbf x-\mathbf H\hat{\boldsymbol\theta}$ is **orthogonal** to every column (it is *not* in that space; the *fit* is).
+- **Geometry:** $\mathbf H\hat{\boldsymbol\theta}$ is the projection of $\mathbf x$ onto the space spanned by the columns of $\mathbf H$. The normal equations say $\mathbf H^T(\mathbf x-\mathbf H\hat{\boldsymbol\theta})=\mathbf 0$: the **error** $\mathbf x-\mathbf H\hat{\boldsymbol\theta}$ is **orthogonal** to every column (it is *not* in that space; the *fit* is). Picture below.
 - $\mathbf H^T\mathbf H$ must be invertible: you need **at least** as many observations as parameters ($N\ge K$), not exactly as many.
 - **Weighted LS:** $J=(\mathbf x-\mathbf H\boldsymbol\theta)^T\mathbf W(\mathbf x-\mathbf H\boldsymbol\theta)$ gives $\hat{\boldsymbol\theta}=(\mathbf H^T\mathbf W\mathbf H)^{-1}\mathbf H^T\mathbf W\mathbf x$ (trust some samples more than others). With $\mathbf W=\mathbf C_x^{-1}$ (inverse noise covariance) this is the **BLUE**, the best linear unbiased estimator.
+
+<figure markdown>
+![Least squares as an orthogonal projection](img/gen/p2_projection.svg)
+<figcaption>The geometry bullet. Three data values make one point in 3-D (black arrow). Everything the model can produce, $\mathbf H\boldsymbol\theta$ for some $\boldsymbol\theta$, is the blue plane through the two columns of $\mathbf H$. The best fit (green) is the point of the plane straight below the data, and the error (red) stands at a right angle to the plane. "Orthogonal to every column" is exactly that right angle.</figcaption>
+</figure>
 
 ### 1.3 Nonlinear models
 
 - **Transformation trick:** if an invertible change of parameter $\alpha=g(\theta)$ makes the model linear, solve for $\hat\alpha$ and map back: $\hat\theta=g^{-1}(\hat\alpha)$.
 - **Otherwise iterate.** **Gauss–Newton**: at the current guess $\boldsymbol\theta_k$ replace the model by its straight-line approximation $\mathbf s(\boldsymbol\theta)\approx\mathbf s(\boldsymbol\theta_k)+\mathbf H(\boldsymbol\theta_k)(\boldsymbol\theta-\boldsymbol\theta_k)$ (with $\mathbf H$ = the table of derivatives of $s[n]$ with respect to each parameter, the **Jacobian**), solve the resulting *linear* LS problem for the step, repeat. **Newton–Raphson** uses the second derivatives of $J$ as well.
+
+<figure markdown>
+![Gauss-Newton iterations](img/gen/p2_gauss_newton.svg)
+<figcaption>Black: the real cost of fitting $e^{-\theta n}$ to data, not a parabola. At the current guess (dot) Gauss–Newton straightens the model, which turns the cost into a parabola (dashed, same colour). It jumps to that parabola's bottom (arrow) and repeats. Three jumps from $\theta_0=0.15$ already end up right next to the minimum.</figcaption>
+</figure>
 
 ---
 

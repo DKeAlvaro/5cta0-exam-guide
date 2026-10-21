@@ -20,8 +20,12 @@ Plot the log-likelihood of $\theta$ for the data you have ([2.1](p2-mle.md#12-th
 - **Sharp peak:** moving $\theta$ a little away from the top makes the data much less likely, so only values very close to the top are plausible. $\theta$ is pinned down: **small variance** is possible.
 - **Flat hill:** many different $\theta$ explain the data almost equally well. $\theta$ cannot be pinned down: **large variance**.
 
-"How sharp" = how strongly the curve bends downward at the top = the size of the **second derivative** (it is negative at a peak; a sharp peak has a very negative one). The **Fisher information** is this bend, averaged over the random data:
+<figure markdown>
+![Sharp vs flat log-likelihood and the spread of the estimates](img/gen/p2_sharp_flat.svg)
+<figcaption>Left: log-likelihoods of a Gaussian mean from 5 samples (orange) and 50 samples (blue), both with their top set to 0. The arrows mark how far $\mu$ can move before the log-likelihood drops by $\frac12$: about $\pm\frac{1}{\sqrt N}$. The sharper curve allows a much smaller range. Right: repeat the experiment 5000 times and histogram the MLE. The spread matches the bound, $\frac{1}{\mathcal I}=\frac{1}{N}$, exactly.</figcaption>
+</figure>
 
+"How sharp" = how strongly the curve bends downward at the top = the size of the **second derivative** (it is negative at a peak; a sharp peak has a very negative one). The **Fisher information** is this bend, averaged over the random data:
 $$\mathcal I(\theta)=-\mathbb E\!\left[\frac{\partial^2\ln p(\mathbf x;\theta)}{\partial\theta^2}\right]=\mathbb E\!\left[\left(\frac{\partial\ln p(\mathbf x;\theta)}{\partial\theta}\right)^2\right]\ \ (>0).$$
 
 (The two forms are equal under the regularity condition below. $\frac{\partial\ln p}{\partial\theta}$ is called the **score**.)
@@ -50,6 +54,11 @@ Facts that get tested:
 The theorem needs $\mathbb E\!\left[\frac{\partial\ln p}{\partial\theta}\right]=0$. Why that holds normally: $\int p(x;\theta)dx=1$ for every $\theta$; differentiate both sides; if you may swap $\frac d{d\theta}$ and $\int$, you get $\int\frac{\partial p}{\partial\theta}dx=0$, and since $\frac{\partial p}{\partial\theta}=p\,\frac{\partial\ln p}{\partial\theta}$ this says $\mathbb E[\text{score}]=0$.
 
 The swap **fails when the support of $p(x;\theta)$ depends on $\theta$** (e.g. $0\le x\le\theta$): the moving integration limit adds an extra term. Then the CRLB cannot be derived.
+
+<figure markdown>
+![Uniform on 0 to theta: a moving edge and a cliff-shaped likelihood](img/gen/p2_regularity.svg)
+<figcaption>Left: for $\mathcal U[0,\theta]$ the place where the PDF stops moves with $\theta$. That moving edge is the "support depends on $\theta$" condition. Right: the likelihood is 0 for $\theta$ below the largest sample and $\theta^{-N}$ above it, so its maximum is a cliff edge, not a smooth hilltop. There is no "curvature at the top" to measure, and the CRLB machinery does not apply.</figcaption>
+</figure>
 
 !!! recipe "Recipe: compute the CRLB"
     1. Log-likelihood $\ln p(\mathbf x;\theta)$ (sum over samples).

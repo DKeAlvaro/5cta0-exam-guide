@@ -61,6 +61,27 @@ This file is the checklist used to convert the remaining pages. The reference im
 | `!!! freq` | how often a pattern comes up in exams (red) |
 | `!!! example` | tiny worked example inside theory |
 
+## Pictures and animations
+
+Every theory idea gets a picture next to it, placed right after the paragraph it illustrates, with a caption
+that says **how to read it** (what each colour/axis is, what to notice), not just what it is.
+
+| What | Source | Output | Rebuild |
+|---|---|---|---|
+| exam-solution figures | `scripts/plots.py` | `docs/img/gen/*.svg` | `python scripts/plots.py` |
+| theory figures | `scripts/theory_plots.py` | `docs/img/gen/*.svg` | `python scripts/theory_plots.py [name ...]` |
+| animations (Manim) | `scripts/videos.py` (+ `vidkit.py`) | `docs/video/*.mp4` + `.jpg` poster | `python scripts/render_videos.py [Scene ...]` |
+
+- Figure markup: `<figure markdown>` + `![alt](img/gen/x.svg)` + `<figcaption>`. Never indent a figure inside a
+  list item (it breaks the list); put it after the list.
+- Video markup: `<figure class="anim"><video class="anim" src="video/x.mp4" poster="video/x.jpg" muted loop
+  playsinline controls preload="none"></video><figcaption><b>Animation.</b> …</figcaption></figure>`.
+  `javascripts/video.js` plays it only while it is on screen.
+- Animations need no LaTeX: `vidkit.MT()` renders `$math$` with matplotlib. Check a scene quickly with
+  `PREVIEW=<dir> python scripts/render_videos.py --last Scene` (last frame as PNG).
+- In inline math write `\lt` instead of `<` before a letter (`$M\lt N$`): `<N` looks like an HTML tag to
+  Markdown and breaks the figures that follow.
+
 ## Conversion status
 
 All pages are converted: `p0-foundations.md` (with 0.6 probability from zero), Part 1 to Part 4,

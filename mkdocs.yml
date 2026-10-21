@@ -103,6 +103,7 @@ extra_javascript:
   - https://unpkg.com/katex@0.16.11/dist/contrib/auto-render.min.js
   - javascripts/quiz.js
   - javascripts/ask.js
+  - javascripts/video.js
   - javascripts/layout.js
 
   - javascripts/progress.js

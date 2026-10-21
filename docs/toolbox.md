@@ -65,6 +65,8 @@ Euler: $e^{j\theta}=\cos\theta+j\sin\theta$. Adding $e^{j\theta}$ and $e^{-j\the
 
 $$\boxed{\cos\theta=\frac{e^{j\theta}+e^{-j\theta}}{2}}\qquad\text{so}\qquad e^{jk\theta}+e^{-jk\theta}=2\cos k\theta.$$
 
+(Picture and animation of why: [Chapter 0 §0.3](p0-foundations.md#03-complex-numbers-and-ejtheta).)
+
 The squared magnitude of a complex number is the number times its conjugate: $|w|^2=w\,w^*$. The single most used identity in Part 3:
 
 $$\boxed{|1+a e^{-j\theta}|^2=(1+ae^{-j\theta})(1+ae^{j\theta})=1+a^2+2a\cos\theta}$$
@@ -88,6 +90,11 @@ $$H(z)=\frac{1+b_1z^{-1}}{1+a_1z^{-1}}.$$
 - **Stable and causal**: all poles inside the unit circle ($|{\rm pole}|<1$).
 - **Minimum phase**: poles **and** zeros inside the unit circle. The innovation filter of a spectral factorisation must be minimum phase. For one coefficient this just means $|a|<1$, $|b|<1$.
 - AR = only poles (peaks in the spectrum), MA = only zeros (dips), ARMA = both.
+
+<figure markdown>
+![Poles make peaks, zeros make dips](img/gen/p3_poles_zeros.svg)
+<figcaption>The last bullet as a picture (explained in <a href="p3-autocorr.html#2-the-psd-of-a-model-without-any-autocorrelation">3.3 §2</a>). The angle of a pole or zero is the frequency of the peak or dip; its distance to the circle sets how sharp it is.</figcaption>
+</figure>
 
 ## 7. Solving things fast
 

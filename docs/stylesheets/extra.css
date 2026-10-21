@@ -187,6 +187,13 @@
 .md-typeset figure { margin: 1.2em auto; }
 .md-typeset figcaption { font-size: .78rem; max-width: 46rem; color: var(--md-default-fg-color--light); }
 
+/* animations (Manim, scripts/videos.py): muted loops that play while on screen (javascripts/video.js) */
+.md-typeset figure.anim { max-width: 46rem; }
+.md-typeset video.anim { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 4px; background: #fff; }
+[data-md-color-scheme="slate"] .md-typeset video.anim { box-shadow: 0 0 0 1px #3a332e; }
+.md-typeset figure.anim figcaption b:first-child { color: var(--md-primary-fg-color); }
+@media print { .md-typeset figure.anim { display: none; } }
+
 /* ---------- A4 cheat sheet ---------- */
 .md-typeset .cheat { font-size: .7rem; line-height: 1.38; }
 .md-typeset .cheat h2 { font-size: 1.05em; margin: .8em 0 .3em; padding-bottom: 0; }

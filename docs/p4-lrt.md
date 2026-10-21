@@ -34,6 +34,11 @@ Read: "if $L>\lambda$ decide $\mathcal H_1$, otherwise decide $\mathcal H_0$" ($
 - $\lambda>1$: you demand $\mathcal H_1$ to be *much* better before saying yes: fewer false alarms, fewer detections.
 - Where $\lambda$ comes from: from a **target $P_{FA}$** (Neyman–Pearson, [4.1](p4-basics.md#3-neymanpearson-which-detector-is-the-best-one)) or from **priors and costs** (Bayes, [4.3](p4-bayes.md): for equal costs $\lambda=P_0/P_1$).
 
+<figure markdown>
+![The likelihood ratio of the running example](img/gen/p4_lr.svg)
+<figcaption>Top: the two stories and the measurement $x=1.5$. The red bar (0.3521) is taller than the blue one (0.1295), and their ratio is $L=2.72$. The curves cross at $x=1$, where $L=1$. Bottom: $L(x)$ for every $x$ (log scale). Comparing $L$ with $\lambda$ is a horizontal line: $\lambda=1$ cuts it at $x=1$, $\lambda=9$ at $x=2.10$. Since $L$ only grows with $x$, "$L>\lambda$" is the same as "$x>$ a threshold", which is why the algebra always ends in a simple rule.</figcaption>
+</figure>
+
 ### 1.3 Many samples: products become sums
 
 With $N$ **independent and identically distributed (i.i.d.)** samples $x_0,\dots,x_{N-1}$, the joint PDF of independent things is the **product** of the individual PDFs ([0.6](p0-foundations.md#conditional-probability-and-independence)):
@@ -41,6 +46,11 @@ With $N$ **independent and identically distributed (i.i.d.)** samples $x_0,\dots
 $$p(\mathbf x\mid\mathcal H_i)=\prod_{n=0}^{N-1}p(x_n\mid\mathcal H_i).$$
 
 Products of exponentials turn into exponentials of **sums** ($e^ae^b=e^{a+b}$), and taking $\ln$ turns the whole product into a sum. That is why test statistics look like $\sum x_n$, $\sum x_n^2$, $\sum\lvert x_n\rvert$.
+
+<figure markdown>
+![More samples separate the two hypotheses](img/gen/p4_more_samples.svg)
+<figcaption>Why more samples help. The statistic $\bar x$ has spread $\frac{\sigma}{\sqrt N}$, so as $N$ grows the two bells (mean 0 under $\mathcal H_0$, mean 1 under $\mathcal H_1$) get narrower while staying the same distance apart. With the threshold halfway, both error areas shrink from $Q(0.5)=0.31$ to $Q(2)=0.023$ as $N$ goes from 1 to 16.</figcaption>
+</figure>
 
 ---
 
@@ -77,12 +87,17 @@ Products of exponentials turn into exponentials of **sums** ($e^ae^b=e^{a+b}$), 
 
 (Rule of thumb: the hypothesis with the **wider** PDF wins in the tails, the narrower one wins near the centre.)
 
+<figure markdown>
+![Wider PDF wins the tails, narrower wins the centre](img/gen/p4_tails.svg)
+<figcaption>The rule of thumb, drawn. Left: same mean, $\mathcal H_1$ has the bigger variance. Far from 0 its curve is the higher one, so you decide $\mathcal H_1$ on <i>both</i> sides, $|x|>1.36$: the statistic is $x^2$ (or $|x|$), not $x$. Right: Laplacians, with $\mathcal H_1$ narrower. Now $\mathcal H_1$ wins only in the middle, so you decide $\mathcal H_1$ when $|x|$ is <i>small</i>. That reversed inequality is the classic exam trap.</figcaption>
+</figure>
+
 ### 2.1 From the rule to $P_{FA}$ and $P_D$
 
 The error probabilities are integrals of the PDFs over the "decide $\mathcal H_1$" region ([4.1 §1.3](p4-basics.md#13-each-probability-is-an-area)). Useful tools:
 
 - Gaussians: standardise and use $Q(z)$ (or the erf table).
-- Exponential $\lambda e^{-\lambda x}$: right tail $P(X>a)=e^{-\lambda a}$, so $\int_a^b\lambda e^{-\lambda x}dx=e^{-\lambda a}-e^{-\lambda b}$ and $P(X<a)=1-e^{-\lambda a}$.
+- Exponential $\lambda e^{-\lambda x}$: right tail $P(X>a)=e^{-\lambda a}$, so $\int_a^b\lambda e^{-\lambda x}dx=e^{-\lambda a}-e^{-\lambda b}$ and $P(X\lt a)=1-e^{-\lambda a}$.
 - Rayleigh $\frac x{\sigma^2}e^{-x^2/2\sigma^2}$: right tail $P(X>a)=e^{-a^2/2\sigma^2}$ (substitute $u=\frac{x^2}{2\sigma^2}$, $du=\frac x{\sigma^2}dx$, the integral becomes $\int e^{-u}du$).
 - **Given $P_{FA}=\alpha$, find the threshold:** invert the $P_{FA}$ formula (e.g. $1-e^{-\gamma'}=\alpha\Rightarrow\gamma'=-\ln(1-\alpha)$), then plug it into $P_D$.
 
@@ -397,15 +412,15 @@ The error probabilities are integrals of the PDFs over the "decide $\mathcal H_1
     |---|---|
     | $\lambda_0,\lambda_1$ | rate of the exponential PDF under each hypothesis (large rate = PDF squeezed towards 0) |
     | $x_{th}$ | threshold on $x$ |
-    | CDF $1-e^{-\lambda x}$ | $P(X<x)$ for an exponential |
+    | CDF $1-e^{-\lambda x}$ | $P(X\lt x)$ for an exponential |
 
     **Step 1 — (a): the crossing.** $L(x)=\dfrac{\lambda_1e^{-\lambda_1x}}{\lambda_0e^{-\lambda_0x}}=\dfrac{\lambda_1}{\lambda_0}e^{-(\lambda_1-\lambda_0)x}=20e^{-1.9x}$. Set $L=1$: $e^{-1.9x}=\frac1{20}\Rightarrow x_{th}=\dfrac{\ln20}{1.9}=\dfrac{2.996}{1.9}\approx1.58$.
 
-    **Step 2 — which side?** $L(x)$ *decreases* with $x$ (because $\lambda_1>\lambda_0$): near 0 the steep $\mathcal H_1$ PDF is higher. So **decide $\mathcal H_1$ for $x<x_{th}$** (this is what makes $P_d>P_{fa}$, as the hint asks).
+    **Step 2 — which side?** $L(x)$ *decreases* with $x$ (because $\lambda_1>\lambda_0$): near 0 the steep $\mathcal H_1$ PDF is higher. So **decide $\mathcal H_1$ for $x\lt x_{th}$** (this is what makes $P_d>P_{fa}$, as the hint asks).
 
-    **Step 3 — probabilities** (CDF, since the region is $x<x_{th}$):
+    **Step 3 — probabilities** (CDF, since the region is $x\lt x_{th}$):
 
-    $$P_d=P(x<x_{th}\mid\mathcal H_1)=1-e^{-\lambda_1x_{th}},\qquad P_{fa}=P(x<x_{th}\mid\mathcal H_0)=1-e^{-\lambda_0x_{th}}.$$
+    $$P_d=P(x\lt x_{th}\mid\mathcal H_1)=1-e^{-\lambda_1x_{th}},\qquad P_{fa}=P(x\lt x_{th}\mid\mathcal H_0)=1-e^{-\lambda_0x_{th}}.$$
 
     (Numbers for $\lambda_1=2$: $P_d=1-e^{-3.15}=0.957$, $P_{fa}=1-e^{-0.158}=0.146$.)
 
@@ -422,7 +437,7 @@ The error probabilities are integrals of the PDFs over the "decide $\mathcal H_1
     **Step 6 — the two extra curves.** Increasing $\lambda_1$ makes the PDFs more different → the ROC moves closer to the top-left corner. Decreasing it towards $\lambda_0$ → closer to the diagonal.
 
     !!! answer "Answer"
-        (a) $x_{th}=\frac{\ln20}{1.9}\approx1.58$, decide $\mathcal H_1$ for $x<x_{th}$, $P_d=1-e^{-\lambda_1x_{th}}$, $P_{fa}=1-e^{-\lambda_0x_{th}}$. (b) $\lambda_1\approx2.19$. (c) $P_d\approx1$ at both points; curves as in the figure.
+        (a) $x_{th}=\frac{\ln20}{1.9}\approx1.58$, decide $\mathcal H_1$ for $x\lt x_{th}$, $P_d=1-e^{-\lambda_1x_{th}}$, $P_{fa}=1-e^{-\lambda_0x_{th}}$. (b) $\lambda_1\approx2.19$. (c) $P_d\approx1$ at both points; curves as in the figure.
 
 ### November 2019 exam · Exercise 4 {#nov19-4}
 

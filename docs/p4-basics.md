@@ -82,9 +82,19 @@ $$P_{FA}=\int_{\text{decide }\mathcal H_1}p(x\mid\mathcal H_0)\,dx,\qquad P_D=\i
 
     Add the end points $(0,0)$ ($\gamma=+\infty$) and $(1,1)$ ($\gamma=-\infty$) and join: a curve that bows up towards the top-left.
 
+<figure class="anim">
+<video class="anim" src="video/roc_sweep.mp4" poster="video/roc_sweep.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation: the table above, continuously.</b> The threshold $\gamma$ slides from right to left over the running example. Blue area = $P_{FA}$ (the part of the $\mathcal H_0$ curve beyond $\gamma$), red area = $P_D$ (the part of the $\mathcal H_1$ curve beyond $\gamma$). Each position gives one green point $(P_{FA},P_D)$; together they draw the ROC from $(0,0)$ to $(1,1)$.</figcaption>
+</figure>
+
 <figure markdown>
 ![How to read a ROC](img/gen/p4_roc_explain.svg)
 <figcaption>Every ROC starts at (0,0) (never say $\mathcal H_1$) and ends at (1,1) (always say $\mathcal H_1$). The diagonal is guessing (a coin flip has $P_D=P_{FA}$). A good detector bends towards the top-left corner (perfect: $P_{FA}=0$, $P_D=1$). The more separated the two PDFs (higher SNR), the closer to that corner. A curve **below** the diagonal means something was swapped: flip your decision and it goes above.</figcaption>
+</figure>
+
+<figure markdown>
+![More separation, better ROC](img/gen/p4_snr_roc.svg)
+<figcaption>Same noise $\mathcal N(0,1)$ under $\mathcal H_0$, signal means 0.5, 1, 2, 3 under $\mathcal H_1$ (dashed). The further the dashed bell moves away, the less the two overlap, and the closer the matching ROC (same colour) hugs the top-left corner. Separation 3 is almost a perfect detector; separation 0.5 is barely better than the coin-flip diagonal.</figcaption>
 </figure>
 
 ---
@@ -220,9 +230,9 @@ The solution is always a **likelihood ratio test** ([next page](p4-lrt.md)): com
 
     **What is being asked?** Which of the four causes would **not** push the ROC below the diagonal.
 
-    **Step 1 — what "below the diagonal" means.** $P_d<P_{fa}$: the decision is upside down (worse than a coin flip).
+    **Step 1 — what "below the diagonal" means.** $P_d\lt P_{fa}$: the decision is upside down (worse than a coin flip).
 
-    **Step 2 — (b), (c), (d) all flip the decision.** Inverting the ratio decides the wrong way (b). The CDF is $P(y<t)$, but detection is $P(y>t)$; using the CDF gives $1-P_d$ (c). Swapping the axes mirrors the curve about the diagonal (d).
+    **Step 2 — (b), (c), (d) all flip the decision.** Inverting the ratio decides the wrong way (b). The CDF is $P(y\lt t)$, but detection is $P(y>t)$; using the CDF gives $1-P_d$ (c). Swapping the axes mirrors the curve about the diagonal (d).
 
     **Step 3 — (a).** A wrong variance changes *how good* the test is (how far the curve is from the diagonal), not its direction: a likelihood ratio test built from PDFs you assumed still lands above the diagonal.
 
@@ -287,7 +297,7 @@ The solution is always a **likelihood ratio test** ([next page](p4-lrt.md)): com
     | $\mu$ | mean under $\mathcal H_1$ (under $\mathcal H_0$ the mean is 0); $\sigma=1$ |
     | erf table | gives $\operatorname{erf}(x/\sqrt2)$ for $x=-3\dots3$, i.e. the Gaussian CDF in disguise |
 
-    **Step 1 — right tails, not the CDF.** The formula given is $P(y<y_{th})$. We decide $\mathcal H_1$ for $y>y_{th}$, so each probability is **1 minus** the CDF:
+    **Step 1 — right tails, not the CDF.** The formula given is $P(y\lt y_{th})$. We decide $\mathcal H_1$ for $y>y_{th}$, so each probability is **1 minus** the CDF:
 
     $$P_{fa}=\tfrac12\Big[1-\operatorname{erf}\Big(\tfrac{y_{th}-0}{\sqrt2}\Big)\Big],\qquad P_d=\tfrac12\Big[1-\operatorname{erf}\Big(\tfrac{y_{th}-\mu}{\sqrt2}\Big)\Big].$$
 
@@ -311,7 +321,7 @@ The solution is always a **likelihood ratio test** ([next page](p4-lrt.md)): com
     ![ROC points](img/gen/p4_roc_pe21.svg)
 
     !!! trap "Read the CDF formula carefully"
-        The text gives $P(y<y_{th})$. Detection and false alarm are $P(y>y_{th})$, so use **1 minus** it. Using the CDF directly is exactly the mistake from [1e](#pe21-1e) that puts the ROC below the diagonal.
+        The text gives $P(y\lt y_{th})$. Detection and false alarm are $P(y>y_{th})$, so use **1 minus** it. Using the CDF directly is exactly the mistake from [1e](#pe21-1e) that puts the ROC below the diagonal.
 
     !!! answer "Answer"
         The table above; ROC curves through those points, the $\mu=2$ curve above the $\mu=1$ curve.

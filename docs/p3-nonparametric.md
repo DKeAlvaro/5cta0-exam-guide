@@ -36,6 +36,11 @@ Think of throwing darts at a bullseye. The bullseye is the true PSD value at one
 | **Consistent** | gets perfect as $N\to\infty$ (bias → 0 **and** variance → 0) | with enough data, every dart hits the centre | |
 | **Asymptotically unbiased** | bias → 0 as $N\to\infty$ (nothing said about variance) | | |
 
+<figure markdown>
+![Bias and variance as darts](img/gen/p3_darts.svg)
+<figcaption>Each blue × is the estimate from one recording; the red star is their average. <b>Bias</b> = how far the star is from the centre. <b>Variance</b> = how scattered the crosses are. The raw periodogram behaves like the second board (right on average, wildly scattered); the fixes in section 3 move it towards the third (calm, slightly off).</figcaption>
+</figure>
+
 !!! example "Tiny numbers"
     True value $P=4$. Five recordings give estimates $3.1,\ 4.9,\ 1.2,\ 7.0,\ 3.8$. Their average is $20/5=4.0$: no bias. But they spread between 1.2 and 7.0: huge variance. Another method gives $5.1,\ 5.0,\ 4.9,\ 5.0,\ 5.0$: tiny variance but average 5.0, a bias of $+1$. Averaging trades one for the other, and that is the whole story of this page.
 
@@ -80,6 +85,11 @@ $$\hat P_{cor}(e^{j\theta})=\sum_{l=-(N-1)}^{N-1}\hat r[l]\,e^{-jl\theta}=\hat r
     At $\theta=0$ (all cosines equal 1): $\hat P_{cor}(0)=\frac{14}3+2\cdot\frac83+2\cdot1=\frac{14+16+6}{3}=12$.
     Periodogram at $\theta=0$: $\frac{(1+2+3)^2}{3}=\frac{36}{3}=12$. **Same number.**
 
+<figure class="anim">
+<video class="anim" src="video/slide_corr.mp4" poster="video/slide_corr.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation: the $\hat r[l]$ of this example, step by step.</b> The orange copy of $x$ slides $l$ boxes to the right; the boxes that overlap are multiplied, the products added and divided by $N=3$. Each result becomes a stem at $+l$ and $-l$. At $l=2$ only one product is left, which is why long lags are the least reliable (and why Blackman–Tukey drops them, section 3.4).</figcaption>
+</figure>
+
 That is not a coincidence: with the $\frac1N$ ("biased") autocorrelation estimate, **the periodogram and the correlogram are the same estimator** (just computed in a different order). If you use the "unbiased" version (divide by $N-l$) the equivalence breaks, and the estimate can even go negative, which a power can never be.
 
 ### 2.3 Their bias
@@ -92,6 +102,11 @@ $$\mathbb E[\hat P]=P\ \otimes\ W_{\text{triangle}}\quad(\text{true PSD smeared}
 
 giving some loss of resolution and some leakage, and **both vanish as $N\to\infty$** (the triangle becomes a thin spike). Therefore the raw estimators are **asymptotically unbiased**.
 
+<figure markdown>
+![The biased autocorrelation estimate shrinks long lags](img/gen/p3_rhat_bias.svg)
+<figcaption>Grey: a true autocorrelation. Blue: what the $\frac1N$ estimate gives on average. Every lag is multiplied by the orange triangle $1-\frac{l}{N}$, so lag 10 of 20 keeps only half its value and the last lag almost nothing. For $N=1000$ the triangle would be almost flat over the first lags, which is why this bias disappears as $N$ grows.</figcaption>
+</figure>
+
 ### 2.4 Their variance: the real problem
 
 $$\operatorname{Var}\big[\hat P(e^{j\theta})\big]\approx P^2(e^{j\theta}).$$
@@ -102,6 +117,16 @@ $$\operatorname{Var}\big[\hat P(e^{j\theta})\big]\approx P^2(e^{j\theta}).$$
 
 So the raw estimators are **not consistent**: bias → 0 but variance does **not** → 0. All the other methods in this page exist to fix exactly this.
 
+<figure markdown>
+![Periodogram of white noise for three record lengths](img/gen/p3_periodogram_N.svg)
+<figcaption>Periodograms of white noise (true PSD = 1, red) from 64, 256 and 1024 samples. More samples give more bins (more points across), but every bin still jumps between about 0 and 5: the spread around the true value does not shrink. That is "variance $\approx P^2$ for any $N$".</figcaption>
+</figure>
+
+<figure class="anim">
+<video class="anim" src="video/periodogram_average.mp4" poster="video/periodogram_average.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation: the problem and the fix.</b> First $N$ grows from 64 to 4096: the periodogram gets denser, not calmer. Then the same 4096 samples are cut into $K=4,16,64$ pieces and the pieces' periodograms are averaged (Bartlett): the curve settles onto the true value 1. The price, a coarser frequency resolution $2\pi/M$, is shown in the figures of section 3.</figcaption>
+</figure>
+
 ---
 
 ## 3 · The three fixes, and why they all cost bias
@@ -110,7 +135,7 @@ So the raw estimators are **not consistent**: bias → 0 but variance does **not
 
 If you have $K$ **independent** estimates, each with variance $V$, their average has variance $V/K$. (Variances of independent things add, $K\cdot V$; dividing by $K$ divides the variance by $K^2$; net $V/K$, from the rules in [0.6](p0-foundations.md#expectation-variance).) Averaging $K=9$ estimates cuts the variance to $\frac19\approx0.11$ of the original.
 
-Where do independent estimates come from, when you have a single recording? **Cut the recording into segments** and compute one periodogram per segment. The price: each segment is shorter ($M<N$ samples), so each periodogram has a **wider main lobe** (resolution about $2\pi/M$), i.e. **more bias**. Fewer samples per estimate = blurrier estimate. Always the same trade:
+Where do independent estimates come from, when you have a single recording? **Cut the recording into segments** and compute one periodogram per segment. The price: each segment is shorter ($M\lt N$ samples), so each periodogram has a **wider main lobe** (resolution about $2\pi/M$), i.e. **more bias**. Fewer samples per estimate = blurrier estimate. Always the same trade:
 
 !!! idea "The trade in one line"
     **More, shorter pieces** → lower variance, higher bias (worse resolution). Bartlett, Welch and Blackman–Tukey are three ways of making this trade.
@@ -120,6 +145,11 @@ Where do independent estimates come from, when you have a single recording? **Cu
 Cut the $N$ samples into $K$ **non-overlapping** pieces of length $M=N/K$, take the periodogram of each, average. Since the pieces do not share samples, they are (nearly) independent, so
 
 $$\operatorname{Var}\approx\frac{P^2}{K}\qquad(\text{proportional to }1/K),\qquad\text{resolution}\approx\frac{2\pi}{M}\ (\text{worse}).$$
+
+<figure markdown>
+![Bartlett averaging of segment periodograms](img/gen/p3_bartlett.svg)
+<figcaption>A signal with a peak near $\theta=1$ (true PSD in red, dB scale). Grey: the periodograms of the 8 separate pieces, each one noisy in its own way. Blue: their average. The noise largely cancels; the price is visible at the peak, which comes out lower and wider because each piece has only 128 samples.</figcaption>
+</figure>
 
 ### 3.3 Welch (WOSA): overlapping, windowed segments
 
@@ -139,11 +169,16 @@ $$K=\frac{N-L}{D}+1\qquad(\text{round the fraction down}).$$
 
 ### 3.4 Blackman–Tukey: trust only the short lags
 
-The estimates $\hat r[l]$ at **large lags** are built from very few products ($N-l$ of them), so they are the noisiest; yet the correlogram adds them all in. Blackman–Tukey **multiplies $\hat r[l]$ by a lag window $w[l]$** that is non-zero only for $|l|<M$ with $M\ll N$, *then* takes the FT. Throwing away the noisy long lags kills the variance, so the variance is
+The estimates $\hat r[l]$ at **large lags** are built from very few products ($N-l$ of them), so they are the noisiest; yet the correlogram adds them all in. Blackman–Tukey **multiplies $\hat r[l]$ by a lag window $w[l]$** that is non-zero only for $|l|\lt M$ with $M\ll N$, *then* takes the FT. Throwing away the noisy long lags kills the variance, so the variance is
 
 $$\operatorname{Var}\approx\frac{P^2}{N}\sum_l w^2[l]\ \to\ 0\ \text{as }N\to\infty\text{ (keeping }M\text{ fixed or growing slowly)},$$
 
 and the estimator is **consistent**. Cost: multiplying by a short $w[l]$ in lag = smearing by a wide spectrum in frequency = **more bias** (the shorter $M$, the more).
+
+<figure markdown>
+![Blackman-Tukey lag window](img/gen/p3_bt.svg)
+<figcaption>Left: the estimated autocorrelation of 256 samples (grey). Beyond the first few lags it is mostly noise, because each value there averages only a few products. The lag window (orange) keeps the first 20 lags and fades them out; blue is what survives. Right: transforming all lags gives the jumpy periodogram (grey); transforming only the kept ones gives the smooth blue curve, slightly blurred around the peak.</figcaption>
+</figure>
 
 ### 3.5 The table to memorise
 
@@ -154,6 +189,11 @@ and the estimator is **consistent**. Cost: multiplying by a short $w[l]$ in lag 
 | **Welch / WOSA** | **overlapping** (50–75 %), **windowed** segments, average | increases **less** than Bartlett | decreases, but **not** as $1/K$ (correlated segments) |
 | **Blackman–Tukey** | lag window of length $2M-1\ll N$ on $\hat r[l]$, then FT | increases as $M$ shrinks | $\approx\frac{P^2}{N}\sum w^2$ → 0: **consistent** |
 | **Parametric (AR/MA/ARMA)** | fit a signal model, use its formula | small if the model fits | low; see [3.4](p3-chain.md) |
+
+<figure markdown>
+![The four estimators on the same data](img/gen/p3_methods.svg)
+<figcaption>The table as one picture: the same 512 samples, four estimators, true PSD dashed red. Reading order: raw periodogram (right shape, huge jumps) → Bartlett (calm, peak blunted) → Welch (calm, peak sharper than Bartlett for similar calm) → Blackman–Tukey with few lags (calmest, most smeared). Down the list, variance goes down and bias goes up.</figcaption>
+</figure>
 
 !!! trap "Phrases that decide multiple-choice questions"
     - "Zero padding" never reduces variance; Bartlett averages segments ([3.1 §3](p3-windows.md#dft-ftd-and-zero-padding)).
@@ -273,7 +313,7 @@ and the estimator is **consistent**. Cost: multiplying by a short $w[l]$ in lag 
     | 1 | **non-overlapping** segments, averaged | **Bartlett** | [3.2](#32-bartlett-average-non-overlapping-segments) |
     | 2 | **modulus squared of the DFT** divided by $N$ | **Periodogram** | the formula of [2.1](#21-periodogram-direct-method) |
     | 3 | a **ratio of two polynomials** in $e^{-j\theta}$ (a *model*) | **ARMA** (parametric) | numerator $b_q$ = MA part, denominator $a_p$ = AR part ([3.4](p3-chain.md)) |
-    | 4 | **window on the autocorrelation** ($M<L$), then FT | **Blackman–Tukey** | [3.4](#34-blackmantukey-trust-only-the-short-lags) |
+    | 4 | **window on the autocorrelation** ($M\lt L$), then FT | **Blackman–Tukey** | [3.4](#34-blackmantukey-trust-only-the-short-lags) |
     | 5 | **overlapping** segments, averaged | **Welch (WOSA)** | [3.3](#33-welch-wosa-overlapping-windowed-segments) |
 
     !!! answer "Answer"

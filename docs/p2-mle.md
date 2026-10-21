@@ -26,17 +26,27 @@
 !!! example "The sample mean, with numbers"
     Samples $x_n\sim\mathcal N(\mu,\sigma^2)$, estimator $\hat\mu=\bar x=\frac1N\sum x_n$. Averaging is linear, so $\mathbb E[\bar x]=\frac1N\cdot N\mu=\mu$: **unbiased**. The variance of a sum of independent samples is the sum of variances, so $\operatorname{Var}[\bar x]=\frac1{N^2}\cdot N\sigma^2=\frac{\sigma^2}N$: with $\sigma^2=4$ and $N=100$ it is $0.04$ (standard deviation $0.2$) and it shrinks to 0 as $N$ grows: **consistent**.
 
+<figure markdown>
+![The sample mean over many datasets](img/gen/p2_sampling_dist.svg)
+<figcaption>The example, simulated: 4000 datasets with $\mu=5$, $\sigma=2$, one estimate $\bar x$ per dataset. With $N=4$ the estimates spread widely; with $N=100$ they cluster tightly. All three histograms are centred on the true value (unbiased), and they narrow as $\sigma/\sqrt N$ (consistent).</figcaption>
+</figure>
+
 ### 1.2 The likelihood
 
 Take the PDF of the data, $p(\mathbf x;\theta)$, plug in the numbers you **actually observed**, and read it as a function of $\theta$. That is the **likelihood** $L(\theta)$: how well each candidate $\theta$ explains what you saw. The **maximum likelihood estimate** is the $\theta$ that explains the data best:
 
 $$\hat\theta_{ML}=\arg\max_\theta\ p(\mathbf x;\theta)\qquad(\arg\max=\text{"the value of }\theta\text{ at which it is largest"}).$$
 
+<figure class="anim">
+<video class="anim" src="video/likelihood_sweep.mp4" poster="video/likelihood_sweep.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation: what the likelihood is.</b> Three measurements (black dots) and a candidate model $\mathcal N(\mu,1)$ sliding along. For each $\mu$, read the bell's height at the three data points (red) and multiply them: that product is $L(\mu)$, drawn below. It is largest when the bell sits on top of the data, at $\hat\mu=\bar x=4.07$: that is the MLE.</figcaption>
+</figure>
+
 For **independent** samples the joint PDF is a product ([0.6](p0-foundations.md#conditional-probability-and-independence)), and the log turns it into a sum:
 
 $$L(\theta)=\prod_{n=1}^Np(x_n;\theta),\qquad\ln L(\theta)=\sum_{n=1}^N\ln p(x_n;\theta).$$
 
-**Why the log is allowed.** $\ln$ is *increasing*: if $a<b$ then $\ln a<\ln b$. So $L$ and $\ln L$ are largest at the **same** $\theta$ (figure). And sums are far easier to differentiate than products: $\ln(ab)=\ln a+\ln b$, $\ln e^u=u$.
+**Why the log is allowed.** $\ln$ is *increasing*: if $a\lt b$ then $\ln a<\ln b$. So $L$ and $\ln L$ are largest at the **same** $\theta$ (figure). And sums are far easier to differentiate than products: $\ln(ab)=\ln a+\ln b$, $\ln e^u=u$.
 
 <figure markdown>
 ![Likelihood and log-likelihood peak at the same place](img/gen/p2_mle_idea.svg)
@@ -180,7 +190,7 @@ $$L(\theta)=\prod_{n=1}^Np(x_n;\theta),\qquad\ln L(\theta)=\sum_{n=1}^N\ln p(x_n
 
     $$\hat\theta_{ML}=\ln\frac{7}{4x-7}=-\ln\!\left(\frac{4x}{7}-1\right).$$
 
-    **When does it exist?** A sigmoid is between 0 and 1, so we need $\frac7{4x}<1$, i.e. $x>\frac74$. For $1<x\le\frac74$ the derivative is positive everywhere and the likelihood keeps increasing ($\hat\theta\to\infty$), as the orange curve shows. For $x>\frac74$ the derivative is positive for $\lambda<\frac7{4x}$ and negative after: a peak ✓.
+    **When does it exist?** A sigmoid is between 0 and 1, so we need $\frac7{4x}<1$, i.e. $x>\frac74$. For $1\lt x\le\frac74$ the derivative is positive everywhere and the likelihood keeps increasing ($\hat\theta\to\infty$), as the orange curve shows. For $x>\frac74$ the derivative is positive for $\lambda<\frac7{4x}$ and negative after: a peak ✓.
 
     ![log-likelihood vs theta](img/gen/p2_sigmoid.svg)
 
