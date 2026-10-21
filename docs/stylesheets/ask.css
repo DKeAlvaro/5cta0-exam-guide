@@ -387,11 +387,11 @@
 #ask-panel .ask-head .ask-quote { align-self: flex-start; width: fit-content; max-width: 100%; }
 #ask-panel .ask-head .ask-quote-main { flex: 0 0 auto; }
 
-/* ---------- desktop: only the content by default; header + input appear on hover ---------- */
+/* ---------- desktop: only the content by default; the header and the input each appear when hovered ---------- */
 @media screen and (min-width: 45em) {
-  #ask-panel { --ask-input-bg: var(--md-default-bg-color, #fbf8f2); }
-  #ask-panel .ask-head { position: absolute; top: 0; left: 0; right: 0; z-index: 4; opacity: 0; pointer-events: none; transition: opacity .15s ease; }
-  #ask-panel:hover .ask-head, #ask-panel:focus-within .ask-head, #ask-panel.dragging .ask-head,
-  #ask-panel[data-view="settings"] .ask-head { opacity: 1; pointer-events: auto; }
+  #ask-panel .ask-resize { z-index: 6; }
+  #ask-panel .ask-head { position: absolute; top: 0; left: 0; right: 0; z-index: 4; max-height: 10px; overflow: hidden; opacity: 0; transition: opacity .15s ease, max-height .15s ease; }
+  #ask-panel .ask-head:hover, #ask-panel.dragging .ask-head, #ask-panel[data-view="settings"] .ask-head { max-height: 4rem; overflow: visible; opacity: 1; }
+  #ask-panel .ask-reset { display: none; }
   #ask-panel[data-view="settings"] .ask-body { padding-top: 2.4rem; }
 }

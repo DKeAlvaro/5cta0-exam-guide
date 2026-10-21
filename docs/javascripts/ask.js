@@ -147,9 +147,10 @@
   }
 
   const SHADOW_CSS =
-    // desktop: the input floats over the bottom edge and only shows while the window is hovered / focused
-    "@media (min-width:45em){#input{position:absolute!important;left:0;right:0;bottom:0;padding-top:6px;background:var(--ask-input-bg,#fbf8f2);opacity:0;transition:opacity .15s}" +
-    ":host(:hover) #input,#input:focus-within{opacity:1}}" +
+    // desktop: the input floats over the bottom edge, transparent apart from the box itself,
+    // and only shows while the box (or send button) is hovered / focused
+    "@media (min-width:45em){#input{position:absolute!important;left:0;right:0;bottom:0;padding:0!important;background:transparent!important;opacity:0;transition:opacity .15s;pointer-events:none}" +
+    "#input>*{pointer-events:auto}#input:has(:hover),#input:focus-within{opacity:1}}" +
     "#text-input{padding-right:2.8rem!important;box-sizing:border-box}" +
     ".inner-message-container{width:calc(100% - 8px)!important}" +
     "#text-input{white-space:nowrap!important;overflow:hidden!important;max-height:2.4em!important}" +
