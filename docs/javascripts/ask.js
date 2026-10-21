@@ -154,7 +154,7 @@
     ".message-bubble,.ai-message,.user-message{overflow-wrap:anywhere;min-width:0;max-width:100%}" +
     "table{display:block;max-width:100%;overflow-x:auto;border-collapse:collapse;font-size:.85em;margin:.5em 0}" +
     "th,td{border:1px solid rgba(128,128,128,.4);padding:.3em .6em}th{background:rgba(128,128,128,.12)}" +
-    "pre{overflow-x:auto}p{margin:.4em 0}ul,ol{margin:.3em 0;padding-left:1.3em}h1,h2,h3,h4{font-size:1em;margin:.7em 0 .3em}" +
+    "pre{overflow-x:auto}p{margin:.25em 0}ul,ol{margin:.3em 0;padding-left:1.3em}h1,h2,h3,h4{font-size:1em;margin:.7em 0 .3em}" +
     "blockquote{margin:.4em 0;padding:.1em .8em;border-left:3px solid rgba(128,128,128,.5)}";
 
   function chatStyleProps() {
@@ -165,7 +165,7 @@
       chatStyle: { width: "100%", height: "100%", border: "none", background: "transparent", borderRadius: "0" },
       messageStyles: {
         default: {
-          shared: { bubble: { maxWidth: "94%", padding: ".5rem .75rem", overflow: "hidden", overflowWrap: "anywhere", fontSize: "14px", lineHeight: "1.5", color: fg } },
+          shared: { bubble: { maxWidth: "94%", padding: ".3rem .6rem", overflow: "hidden", overflowWrap: "anywhere", fontSize: "14px", lineHeight: "1.5", color: fg } },
           user: { bubble: { background: "linear-gradient(135deg,#9b2114,#c0432c)", color: "#fff" } },
           intro: { bubble: { background: "transparent", border: "none", color: d ? "#b9b1a7" : "#6b6259", fontSize: "13px", padding: ".2rem .2rem" } },
           ai: { bubble: { background: soft, border: "1px solid " + (d ? "rgba(255,255,255,.13)" : "rgba(0,0,0,.1)") } },
