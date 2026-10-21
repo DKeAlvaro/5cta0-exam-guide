@@ -179,7 +179,7 @@
       messageStyles: {
         default: {
           shared: { bubble: { maxWidth: "94%", padding: ".3rem .6rem", overflow: "hidden", overflowWrap: "anywhere", fontSize: "14px", lineHeight: "1.5", color: fg } },
-          user: { bubble: { background: "linear-gradient(135deg,#9b2114,#c0432c)", color: "#fff" } },
+          user: { bubble: { background: "#a82616", color: "#fff" } },
           intro: { bubble: { background: "transparent", border: "none", color: d ? "#b9b1a7" : "#6b6259", fontSize: "13px", padding: ".2rem .2rem" } },
           ai: { bubble: { background: soft, border: "1px solid " + (d ? "rgba(255,255,255,.13)" : "rgba(0,0,0,.1)") } },
         },
@@ -388,7 +388,9 @@
     }
     st.textContent =
       ".message-bubble,.ai-message-text,.user-message-text,.error-message-text{font-size:" + Math.round(14 * zoom * 10) / 10 + "px!important}" +
-      ".message-bubble .katex{font-size:1.05em!important}";
+      ".message-bubble .katex{font-size:1.05em!important}" +
+      "#text-input-container{transition:transform .18s ease,border-color .18s ease!important}" +
+      "#text-input-container:hover{transform:translateY(-2px);border-color:#c0432c!important}";
   }
 
   function bindFloating() {
@@ -503,7 +505,11 @@
     minimized = false;
     hideBall();
     document.documentElement.classList.add("ask-open");
-    ui.panel.classList.add("open");
+    if (wasMin && floating() && !(opts && opts.rect)) expandFromBall();
+    else {
+      ui.panel.classList.remove("morph", "to-ball");
+      ui.panel.classList.add("open");
+    }
     ui.backdrop.classList.add("open");
     if (opts && opts.selection !== undefined) {
       setSelection(opts.selection);
@@ -590,11 +596,16 @@
 
   const FACE =
     '<svg viewBox="0 0 48 48" aria-hidden="true">' +
-      '<circle cx="17" cy="19" r="3" fill="#fff"/>' +
-      '<circle cx="31" cy="19" r="3" fill="#fff"/>' +
-      '<path d="M14 28c2.5 7 17.5 7 20 0" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>' +
+      '<path d="M10 14q4-4 8-1M30 13q4-3 8 1" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>' +
+      '<ellipse cx="17" cy="21" rx="3.4" ry="4.2" fill="#fff"/><ellipse cx="31" cy="21" rx="3.4" ry="4.2" fill="#fff"/>' +
+      '<circle cx="17.8" cy="21.8" r="1.9" fill="#4a1109"/><circle cx="31.8" cy="21.8" r="1.9" fill="#4a1109"/>' +
+      '<circle cx="18.4" cy="20.6" r=".8" fill="#fff"/><circle cx="32.4" cy="20.6" r=".8" fill="#fff"/>' +
+      '<ellipse cx="10" cy="30" rx="3" ry="1.9" fill="#ff9a8a" opacity=".6"/><ellipse cx="38" cy="30" rx="3" ry="1.9" fill="#ff9a8a" opacity=".6"/>' +
+      '<path d="M14 29.5h20c0 6.5-4.5 10.5-10 10.5s-10-4-10-10.5z" fill="#fff"/>' +
+      '<path d="M18.5 35.5c3.2 2.4 7.8 2.4 11 0c-1.2 2.6-9.8 2.6-11 0z" fill="#e0624d"/>' +
     '</svg>';
   const BALL = 44;
+  let bx = 0, by = 0; // ball centre
 
   function ensureBall() {
     if (ball && document.body.contains(ball)) return ball;
@@ -603,37 +614,43 @@
     ball.type = "button";
     ball.setAttribute("aria-label", "Open Ask AI");
     ball.title = "Ask AI";
-    // drag it like the window (it shares the window's position); a plain click reopens the window
+    // drag it like the window (its centre is the window's centre); a plain click reopens the window.
+    // The pointer is captured so the ball keeps following it, and positions come from the
+    // pointer delta only (no clamping against the window size, which made it jump).
     ball.addEventListener("pointerdown", (e) => {
       if (e.button !== 0) return;
       e.preventDefault();
-      const sx = e.clientX, sy = e.clientY, x0 = geom.x, y0 = geom.y;
+      const sx = e.clientX, sy = e.clientY, x0 = bx, y0 = by;
       let moved = false;
+      try { ball.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
       const move = (ev) => {
         const dx = ev.clientX - sx, dy = ev.clientY - sy;
         if (!moved && Math.hypot(dx, dy) < 4) return;
         moved = true;
-        geom.x = Math.max(4, Math.min(x0 + dx, window.innerWidth - BALL - 4));
-        geom.y = Math.max(4, Math.min(y0 + dy, window.innerHeight - BALL - 4));
+        bx = Math.max(BALL / 2 + 4, Math.min(x0 + dx, window.innerWidth - BALL / 2 - 4));
+        by = Math.max(BALL / 2 + 4, Math.min(y0 + dy, window.innerHeight - BALL / 2 - 4));
         placeBall();
       };
       const up = () => {
-        window.removeEventListener("pointermove", move);
-        window.removeEventListener("pointerup", up);
+        ball.removeEventListener("pointermove", move);
+        ball.removeEventListener("pointerup", up);
+        ball.removeEventListener("pointercancel", up);
         if (!moved) { open(); return; }
+        geom.x = bx - geom.w / 2; geom.y = by - geom.h / 2;
         clampGeom(geom);
         try { localStorage.setItem(GEOM_KEY, JSON.stringify(geom)); } catch (err) { /* ignore */ }
       };
-      window.addEventListener("pointermove", move);
-      window.addEventListener("pointerup", up);
+      ball.addEventListener("pointermove", move);
+      ball.addEventListener("pointerup", up);
+      ball.addEventListener("pointercancel", up);
     });
     document.body.appendChild(ball);
     return ball;
   }
 
   function placeBall() {
-    ball.style.left = geom.x + "px";
-    ball.style.top = geom.y + "px";
+    ball.style.left = bx - BALL / 2 + "px";
+    ball.style.top = by - BALL / 2 + "px";
   }
 
   function showBall() {
@@ -650,10 +667,39 @@
     if (!state.open || minimized) return;
     minimized = true;
     document.documentElement.classList.remove("ask-open", "ask-hot");
-    if (ui.panel) ui.panel.classList.remove("open");
     if (window.CSS && CSS.highlights) CSS.highlights.delete("ask-anchor");
     hideTail();
-    showBall();
+    bx = geom.x + geom.w / 2;
+    by = geom.y + geom.h / 2;
+    const p = ui.panel;
+    p.classList.add("morph", "to-ball");
+    p.style.left = bx - BALL / 2 + "px"; p.style.top = by - BALL / 2 + "px";
+    p.style.width = BALL + "px"; p.style.height = BALL + "px";
+    setTimeout(() => {
+      if (!minimized || ui.panel !== p) return;
+      p.classList.add("noanim");
+      p.classList.remove("open", "morph", "to-ball");
+      applyGeom(geom);
+      showBall();
+      void p.offsetWidth;
+      p.classList.remove("noanim");
+    }, 290);
+  }
+
+  // window grows out of the ball
+  function expandFromBall() {
+    const p = ui.panel;
+    geom.x = bx - geom.w / 2; geom.y = by - geom.h / 2;
+    clampGeom(geom);
+    p.classList.add("noanim", "morph", "to-ball");
+    p.style.left = bx - BALL / 2 + "px"; p.style.top = by - BALL / 2 + "px";
+    p.style.width = BALL + "px"; p.style.height = BALL + "px";
+    p.classList.add("open");
+    void p.offsetWidth;
+    hideBall();
+    p.classList.remove("noanim", "to-ball");
+    applyGeom(geom);
+    setTimeout(() => p.classList.remove("morph"), 300);
   }
 
   /* ---------------- selection chip ---------------- */

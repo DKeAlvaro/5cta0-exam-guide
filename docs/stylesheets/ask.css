@@ -5,7 +5,7 @@
 
 :root {
   --ask-rust: var(--rust, #9b2114);
-  --ask-grad: linear-gradient(135deg, #9b2114 0%, #c0432c 100%);
+  --ask-grad: #a82616;
   --ask-line: rgba(0, 0, 0, .1);
   --ask-soft: rgba(0, 0, 0, .05);
   --ask-muted: var(--md-default-fg-color--light, #6b6259);
@@ -31,10 +31,9 @@
   color: #fff;
   font: 600 .76rem "JetBrains Mono", monospace;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(155, 33, 20, .38);
-  transition: transform .15s ease, box-shadow .15s ease;
+  transition: transform .15s ease;
 }
-#ask-toggle:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(155, 33, 20, .45); }
+#ask-toggle:hover { transform: translateY(-2px); }
 #ask-toggle svg { width: 1.1em; height: 1.1em; display: block; }
 #ask-toggle .dot { width: .5em; height: .5em; border-radius: 50%; background: rgba(255, 255, 255, .5); }
 #ask-toggle.has-key .dot { background: #8fe08b; }
@@ -57,7 +56,6 @@
   background: var(--md-default-bg-color, #fbf8f2);
   color: var(--md-default-fg-color, #1d1b19);
   border-left: 1px solid var(--ask-line);
-  box-shadow: -12px 0 40px rgba(0, 0, 0, .18);
   transform: translateX(105%);
   visibility: hidden;
   transition: transform .22s ease, visibility 0s linear .22s;
@@ -213,12 +211,10 @@
   font: 600 .76rem "JetBrains Mono", monospace;
   white-space: nowrap;
   cursor: pointer;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, .3);
 }
 #ask-select-btn svg { width: 1em; height: 1em; display: block; }
 
 /* ---------- dark scheme ---------- */
-[data-md-color-scheme="slate"] #ask-panel { box-shadow: -12px 0 40px rgba(0, 0, 0, .55); }
 
 [data-md-color-scheme="slate"] #ask-panel .ask-keylink { color: var(--md-accent-fg-color, #e3826f); }
 
@@ -316,7 +312,6 @@
     border: 1px solid var(--ask-line);
     border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 10px 36px rgba(0, 0, 0, .35);
     transform: scale(.97);
     opacity: 0;
     transition: transform .15s ease, opacity .15s ease, visibility 0s linear .15s;
@@ -364,7 +359,7 @@
 #ask-panel .ask-head .ask-quote-text {
   position: absolute; left: 0; right: 0; top: 100%; z-index: 5; margin: 0; max-height: 11em;
   padding: .55rem .85rem; background: var(--md-default-bg-color, #fff); color: var(--md-default-fg-color, #222);
-  border-bottom: 1px solid var(--ask-line); box-shadow: 0 8px 18px rgba(0, 0, 0, .18);
+  border-bottom: 1px solid var(--ask-line);
 }
 #ask-panel .ask-head .ask-quote-text { display: block; -webkit-line-clamp: unset; -webkit-box-orient: unset; overflow-y: auto; max-height: 14em; font-size: .8rem; line-height: 1.55; }
 #ask-panel[data-view="settings"] .ask-head .ask-quote { display: none; }
@@ -434,10 +429,33 @@ html.ask-hot ::highlight(ask-anchor) { background-color: rgba(255, 190, 40, .6);
   padding: 0;
   border: 0;
   border-radius: 50%;
-  background: #b32d1a;
+  background: #a82616;
   cursor: grab;
   touch-action: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 #ask-ball:active { cursor: grabbing; }
 #ask-ball svg { width: 100%; height: 100%; display: block; pointer-events: none; }
+
+/* ---------- window <-> ball morph ---------- */
+@media screen and (min-width: 45em) {
+  #ask-panel.morph {
+    transition: left .28s cubic-bezier(.4, 0, .2, 1), top .28s cubic-bezier(.4, 0, .2, 1), width .28s cubic-bezier(.4, 0, .2, 1),
+      height .28s cubic-bezier(.4, 0, .2, 1), border-radius .28s ease, background-color .28s ease, border-color .28s ease !important;
+  }
+  #ask-panel.morph > * { transition: opacity .14s ease; }
+  #ask-panel.to-ball { background: #a82616; border-color: #a82616; border-radius: 50%; }
+  #ask-panel.to-ball > * { opacity: 0; }
+  #ask-panel.noanim, #ask-panel.noanim > * { transition: none !important; }
+}
+
+/* ---------- hover touches ---------- */
+#ask-panel .ask-head { transition: background-color .2s ease; }
+#ask-panel .ask-head:hover { background: #b32d1a; }
+#ask-panel .ask-title, #ask-panel .ask-head .ask-quote { transition: transform .2s ease; }
+#ask-panel .ask-head:hover .ask-title { transform: translateX(3px); }
+#ask-panel .ask-btn { transition: background-color .15s ease, transform .15s ease; }
+#ask-panel .ask-btn:hover { transform: scale(1.12); }
+@media (prefers-reduced-motion: reduce) { #ask-panel.morph, #ask-panel .ask-head, #ask-panel .ask-btn { transition: none !important; } }
 @media print { #ask-ball, #ask-tail { display: none !important; } }

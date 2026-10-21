@@ -21,15 +21,19 @@ Every signal carries *some* amount of "size". There are two different ways to me
 - A **battery-powered blip**: it transmits for a moment and then goes silent. What matters is the *total* it delivered → **energy** $E_x$.
 - A **power station**: it never stops. The total over forever is infinite and meaningless; what matters is what it delivers *per second on average* → **average power** $P_x$.
 
-That is the entire concept. A signal is called an **energy signal** if its total energy is a finite number, and a **power signal** if its total energy is infinite but its average power per second is a finite non-zero number.
+That is the entire concept. ==A signal is called an **energy signal** if its total energy is a finite number, and a **power signal** if its total energy is infinite but its average power per second is a finite non-zero number.==
 
-**Why we square the signal.** Electrical energy dissipated in a resistor is proportional to *voltage squared* ($v^2/R$), so "energy of a signal" always means "area under $x^2$", never "area under $x$" (which would be zero for any symmetric wiggle and would let positive and negative parts cancel).
+**Why we square the signal.** Electrical energy dissipated in a resistor is proportional to *voltage squared* ($v^2/R$), so =="energy of a signal" always means "area under $x^2$"==, never "area under $x$" (which would be zero for any symmetric wiggle and would let positive and negative parts cancel).
 
 ### 1.2 The two formulas, explained symbol by symbol
 
 **Total energy** (continuous time; for discrete time swap $\int dt$ for $\sum$ over $n$):
 
+<div class="key" markdown>
+
 $$E_x = \int_{-\infty}^{\infty} \lvert x(t)\rvert^2\,dt$$
+
+</div>
 
 - $\lvert x(t)\rvert^2$ = the squared size at instant $t$. (For real signals $\lvert x\rvert^2 = x^2$.)
 - $dt$ = "…times a tiny slice of time" — this is an integral, i.e. **add up the area under $x^2(t)$ over all time**.
@@ -39,7 +43,11 @@ Discrete version: $\displaystyle E_x = \sum_{n=-\infty}^{\infty} \lvert x[n]\rve
 
 **Average power** = energy per unit of time, measured on a window of length $T$ and then letting the window grow forever:
 
+<div class="key" markdown>
+
 $$P_x = \lim_{T\to\infty}\frac{1}{T}\int_{-T/2}^{T/2}\lvert x(t)\rvert^2\,dt$$
+
+</div>
 
 Read it inside-out: $\int_{-T/2}^{T/2}$ = energy in a window of length $T$; $\frac1T\times$ that = **average energy per second over that window**; $\lim_{T\to\infty}$ = now stretch the window forever and see what value the average settles on. Discrete version: replace $\frac1T\int$ by $\frac1N\sum_{n=-N/2}^{N/2}$.
 
@@ -59,11 +67,11 @@ Suppose $E_x$ is a finite number. Then the average over a window of length $T$ i
 
 $$P_x = \lim_{T\to\infty}\frac{E_x}{T} = 0 \qquad\text{(a fixed number divided by something growing forever = 0)}.$$
 
-So: **finite energy ⟹ average power is exactly zero.** That is why the answer to an energy-signal question always ends with "$P=0$", and why a power signal must have $E_x=\infty$.
+So: ==**finite energy ⟹ average power is exactly zero.**== That is why the answer to an energy-signal question always ends with "$P=0$", and why a power signal must have $E_x=\infty$.
 
 ### 1.4 How to classify a signal in 5 seconds
 
-!!! recipe "Recipe: energy / power / neither"
+!!! recipe key "Recipe: energy / power / neither"
     1. **Does it die out?** (tends to 0 as $t\to\pm\infty$, or is non-zero only on a finite stretch, like a pulse) → **energy signal**. Compute $E$ (a sum or an integral of $x^2$), state $P=0$.
     2. **Does it repeat forever?** (a sine, a cosine, any periodic pattern; also random *stationary* signals) → **power signal**. Compute $P$ (the average of $x^2$), state $E=\infty$.
     3. **Does it grow without bound?** (like $e^{t}$) → **neither**.
@@ -123,7 +131,7 @@ $$E = 2\int_{0}^{\infty} 25 e^{-4t}dt = 2\times 25\times \left[\frac{e^{-4t}}{-4
 
 !!! trap "Where points get lost here"
     - Answering $P = A^2/2$ when the tone is **switched on at $t=0$** ($u(t)$): the answer is $A^2/4$.
-    - For an energy signal you must still **write $P = 0$**, and for a power signal **write $E = \infty$**. The question asks for *both* numbers.
+    - ==For an energy signal you must still **write $P = 0$**, and for a power signal **write $E = \infty$**.== The question asks for *both* numbers.
     - $\big(e^{-n}\big)^2 = e^{-2n}$, **not** $e^{-n^2}$. And the geometric series needs $r = e^{-2}$, not $r = e^{-n}$.
     - "Provide only the final answer" means the marker sees **only** your number: write both $E$ and $P$ and label which is which.
 
@@ -133,7 +141,7 @@ $$E = 2\int_{0}^{\infty} 25 e^{-4t}dt = 2\times 25\times \left[\frac{e^{-4t}}{-4
 
 ### 2.1 Why a window exists at all
 
-You never have "the signal, forever". You record $N$ samples and that is all you get. Recording $N$ samples is mathematically the same as **multiplying** the true infinite signal by a *window* $w[n]$ that is 1 inside your recording and 0 outside:
+You never have "the signal, forever". You record $N$ samples and that is all you get. ==Recording $N$ samples is mathematically the same as **multiplying** the true infinite signal by a *window* $w[n]$== that is 1 inside your recording and 0 outside:
 
 $$\tilde{x}[n] = x[n]\cdot w[n],\qquad w[n] = \begin{cases}1 & n = 0,\dots,N-1\\ 0 & \text{everywhere else}\end{cases}$$
 
@@ -146,7 +154,7 @@ That particular shape is the **rectangular window** (a rectangle: 1 inside, 0 ou
 
 ### 2.2 What multiplication does to the spectrum
 
-The rule from [Chapter 0](p0-foundations.md#05-spectrum-what-a-fourier-transform-tells-you): **multiplying signals in time = smearing (convolving) their spectra in frequency**. So the spectrum you compute is not the true spectrum; it is the true spectrum **smeared with the window's own spectrum** $W(e^{j\theta})$:
+The rule from [Chapter 0](p0-foundations.md#05-spectrum-what-a-fourier-transform-tells-you): ==**multiplying signals in time = smearing (convolving) their spectra in frequency**==. So ==the spectrum you compute is not the true spectrum; it is the true spectrum **smeared with the window's own spectrum** $W(e^{j\theta})$==:
 
 $$\text{what you measure} \;=\; \text{true spectrum} \;\otimes\; W(e^{j\theta})$$
 
@@ -173,15 +181,19 @@ Intuition: every true frequency peak gets replaced by a copy of the window's spe
 
 So each window feature causes exactly one problem:
 
+<div class="key" markdown>
+
 | Feature of the window's spectrum | Causes | Symptom |
 |---|---|---|
 | **main lobe width** | loss of **resolution** | two peaks closer than about $2\pi/N$ (i.e. $f_s/N$ Hz) merge into one; peaks look wider and lower than they are |
 | **side lobe height** | spectral **leakage** | background "noise floor" rises; weak tones and spurious peaks get hidden |
 
+</div>
+
 ### 2.4 What you can change, and what it costs
 
-- **Make $N$ bigger** (record longer) → main lobe gets **narrower** → **better resolution**. But the side lobes of a *rectangular* window stay at −13 dB no matter how long the window is. So the exam statement "increase $N$ to reduce leakage" is marked **false**.
-- **Use a smoother window** (triangular: −27 dB, Hann: −32 dB, Hamming: similar) → **less leakage**, but the main lobe becomes **wider** → **worse resolution** for the same $N$. It is always a trade: you buy leakage at the price of resolution.
+- ==**Make $N$ bigger** (record longer) → main lobe gets **narrower** → **better resolution**.== But ==the side lobes of a *rectangular* window stay at −13 dB no matter how long the window is.== So the exam statement "increase $N$ to reduce leakage" is marked **false**.
+- ==**Use a smoother window** (triangular: −27 dB, Hann: −32 dB, Hamming: similar) → **less leakage**, but the main lobe becomes **wider** → **worse resolution**== for the same $N$. It is always a trade: you buy leakage at the price of resolution.
 
 <figure markdown>
 ![Longer N narrows the main lobe but not the side lobes](img/gen/p3_N_lobes.svg)
@@ -206,13 +218,13 @@ So each window feature causes exactly one problem:
 | Output | a **continuous curve** over $\theta \in [-\pi,\pi]$ | **$N$ numbers** at frequencies $\theta_k = 2\pi k/N$ |
 | Who can compute it | nobody (it needs the infinite signal) | a computer, in one go |
 
-The DFT is **the FTD sampled at $N$ evenly spaced frequencies**. Nothing else. The spacing between DFT points is $\theta$-step $= 2\pi/N$, which in Hz is $f_s/N$ ("bin width", [Chapter 0](p0-foundations.md#05-spectrum-what-a-fourier-transform-tells-you)).
+==The DFT is **the FTD sampled at $N$ evenly spaced frequencies**.== Nothing else. ==The spacing between DFT points is $\theta$-step $= 2\pi/N$, which in Hz is $f_s/N$== ("bin width", [Chapter 0](p0-foundations.md#05-spectrum-what-a-fourier-transform-tells-you)).
 
 ### 3.2 Zero padding: what it is
 
 Take your $N$ samples, stick $L-N$ zeros at the end, and compute the **$L$-point** DFT instead. You still only know $N$ real samples; the extra inputs are zeros.
 
-What you get: the $L$-point DFT samples **the same $N$-sample FTD curve** at the finer spacing $2\pi k/L$ (i.e. $f_s/L$ Hz). More points on the *same* curve.
+What you get: ==the $L$-point DFT samples **the same $N$-sample FTD curve** at the finer spacing $2\pi k/L$== (i.e. $f_s/L$ Hz). More points on the *same* curve.
 
 <figure class="anim">
 <video class="anim" src="video/zero_pad.mp4" poster="video/zero_pad.jpg" muted loop playsinline controls preload="none"></video>
@@ -221,14 +233,14 @@ What you get: the $L$-point DFT samples **the same $N$-sample FTD curve** at the
 
 ### 3.3 Why it does not improve resolution
 
-Resolution is set by the **width of the main lobe**, and that width depends only on $N$ and the window — the zeros you appended carry no information, so the curve cannot get any narrower. Zero padding only makes the plot look smoother (it *interpolates* between the old points). Two tones that were merged into one peak before are still merged after.
+==Resolution is set by the **width of the main lobe**, and that width depends only on $N$ and the window== — the zeros you appended carry no information, so the curve cannot get any narrower. ==Zero padding only makes the plot look smoother== (it *interpolates* between the old points). Two tones that were merged into one peak before are still merged after.
 
 <figure markdown>
 ![Zero padding vs more samples for two close tones](img/gen/p3_resolution.svg)
 <figcaption>Two tones only 0.2 rad/sample apart (dotted), closer than $\frac{2\pi}{16}\approx0.39$. Left: 16 samples, plain DFT: one blob. Middle: the same 16 samples zero-padded to 128 points: a smooth curve, still one blob. Right: 64 real samples ($\frac{2\pi}{64}\approx0.1$ apart is now resolvable): two clean peaks. Only real data buys resolution.</figcaption>
 </figure>
 
-!!! trap "Traps (all of these are real exam statements)"
+!!! trap key "Traps (all of these are real exam statements)"
     - "Zero padding increases resolution" → **false**. It increases the *density of frequency samples*, nothing more.
     - "A triangular/Hann window gives higher resolution than rectangular" → **false**. It gives *less leakage*; its main lobe is *wider*, so resolution is worse.
     - "Increasing the window length reduces leakage for a rectangular window" → **false** (side lobes stay at −13 dB). It *does* improve resolution.
