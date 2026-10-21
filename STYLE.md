@@ -61,6 +61,11 @@ This file is the checklist used to convert the remaining pages. The reference im
 | `!!! freq` | how often a pattern comes up in exams (red) |
 | `!!! example` | tiny worked example inside theory |
 
+**Key points.** The sentence that makes the rest of a section obvious gets `==highlighted==`; a whole formula/table
+that is key goes in `<div class="key" markdown>` (blank lines inside); a whole box gets the extra class
+`!!! recipe key "..."`. The header highlighter button (`javascripts/keypoints.js`) fades everything else. Keep it
+sparse: definitions, the one rule per idea, the traps box. Not derivations or worked examples.
+
 ## Pictures and animations
 
 Every theory idea gets a picture next to it, placed right after the paragraph it illustrates, with a caption
