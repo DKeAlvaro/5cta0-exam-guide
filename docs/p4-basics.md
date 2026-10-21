@@ -20,7 +20,7 @@ Think of a smoke detector. It measures a number $x$ (how much smoke particles). 
 - $\mathcal H_0$, the **null** hypothesis: "nothing is there" (no fire; only noise; the student wrote the essay themselves).
 - $\mathcal H_1$, the **alternative**: "something is there" (a fire; a signal; the essay is AI-generated).
 
-Under each story the measurement $x$ follows a different PDF, written $p(x\mid\mathcal H_0)$ and $p(x\mid\mathcal H_1)$ (the "$\mid$" reads "given that"). The two PDFs **overlap**: some values of $x$ could come from either story. That is why mistakes cannot be avoided.
+Under each story the measurement $x$ follows a different PDF, written $p(x\mid\mathcal H_0)$ and $p(x\mid\mathcal H_1)$ (the "$\mid$" reads "given that"). ==The two PDFs **overlap**: some values of $x$ could come from either story. That is why mistakes cannot be avoided.==
 
 A **detector** is a rule that splits all possible values of $x$ into two regions: values where you answer "$\mathcal H_0$" and values where you answer "$\mathcal H_1$". Usually it is a single **threshold** $\gamma$: say $\mathcal H_1$ when $x>\gamma$.
 
@@ -31,18 +31,26 @@ A **detector** is a rule that splits all possible values of $x$ into two regions
 
 Two things can be true and two things you can decide, so there are four combinations:
 
+<div class="key" markdown>
+
 | You decide ↓ / Truth → | $\mathcal H_0$ true | $\mathcal H_1$ true |
 |---|---|---|
 | $\mathcal H_0$ | ① true negative (prob. $1-P_{FA}$) | ② **miss**, false negative, type II error ($P_M$) |
 | $\mathcal H_1$ | ③ **false alarm**, false positive, type I error ($P_{FA}$) | ④ **detection**, true positive ($P_D$) |
 
-Rows are what you **decide**, columns what is **true**. "Positive" = you said $\mathcal H_1$ ("yes, something is there"). The correct decisions are the diagonal (①, ④). *Type I* = rejecting a true $\mathcal H_0$ (the false alarm), *type II* = failing to reject a false $\mathcal H_0$ (the miss).
+</div>
+
+Rows are what you **decide**, columns what is **true**. "Positive" = you said $\mathcal H_1$ ("yes, something is there"). The correct decisions are the diagonal (①, ④). ==*Type I* = rejecting a true $\mathcal H_0$ (the false alarm), *type II* = failing to reject a false $\mathcal H_0$ (the miss).==
 
 ### 1.3 Each probability is an area
 
 You decide $\mathcal H_1$ in some region of $x$ values. Then
 
+<div class="key" markdown>
+
 $$P_{FA}=\int_{\text{decide }\mathcal H_1}p(x\mid\mathcal H_0)\,dx,\qquad P_D=\int_{\text{decide }\mathcal H_1}p(x\mid\mathcal H_1)\,dx,\qquad P_M=1-P_D.$$
+
+</div>
 
 *(Meaning: $P_{FA}$ = the chance that $x$ lands in the "yes" region **when $\mathcal H_0$ is true**; $P_D$ = the same chance **when $\mathcal H_1$ is true**; the integral of a PDF over a region is the area under the curve there, [0.6](p0-foundations.md#random-variable-and-pdf).)*
 
@@ -58,7 +66,7 @@ $$P_{FA}=\int_{\text{decide }\mathcal H_1}p(x\mid\mathcal H_0)\,dx,\qquad P_D=\i
 <figcaption>The same threshold (vertical line) in all three panels. $P_{FA}$ is the part of the $\mathcal H_0$ curve that falls in the "decide $\mathcal H_1$" region. $P_D$ is the part of the $\mathcal H_1$ curve in that region. $P_M$ is the rest of the $\mathcal H_1$ curve. Moving the threshold right lowers $P_{FA}$ but also lowers $P_D$: you trade one error for the other.</figcaption>
 </figure>
 
-!!! recipe "Recipe: shading questions ('indicate $P_{FA}$ and $P_M$ in the plot')"
+!!! recipe key "Recipe: shading questions ('indicate $P_{FA}$ and $P_M$ in the plot')"
     1. Find which side of the threshold is "decide $\mathcal H_1$". Look at the inequality, not your intuition: in Nov 2022 you decide $\mathcal H_1$ for **small** $y$.
     2. $P_{FA}$: shade under the **$\mathcal H_0$** curve on the **$\mathcal H_1$** side.
     3. $P_M$: shade under the **$\mathcal H_1$** curve on the **$\mathcal H_0$** side.
@@ -67,7 +75,7 @@ $$P_{FA}=\int_{\text{decide }\mathcal H_1}p(x\mid\mathcal H_0)\,dx,\qquad P_D=\i
 
 ## 2 · The ROC curve: all thresholds at once
 
-**Plain words.** Each threshold gives one pair $(P_{FA},P_D)$. Sweep the threshold from $+\infty$ (never say yes) to $-\infty$ (always say yes) and plot every pair: $P_D$ on the vertical axis, $P_{FA}$ on the horizontal. The curve is the **receiver operating characteristic (ROC)**. It shows the *whole menu* of trade-offs a detector offers.
+**Plain words.** Each threshold gives one pair $(P_{FA},P_D)$. Sweep the threshold from $+\infty$ (never say yes) to $-\infty$ (always say yes) and ==plot every pair: $P_D$ on the vertical axis, $P_{FA}$ on the horizontal==. The curve is the **receiver operating characteristic (ROC)**. It shows the *whole menu* of trade-offs a detector offers.
 
 !!! example "ROC of the running example, point by point"
     Rule: decide $\mathcal H_1$ if $x>\gamma$; $P_{FA}=Q(\gamma)$, $P_D=Q(\gamma-2)$.
@@ -87,7 +95,7 @@ $$P_{FA}=\int_{\text{decide }\mathcal H_1}p(x\mid\mathcal H_0)\,dx,\qquad P_D=\i
 <figcaption><b>Animation: the table above, continuously.</b> The threshold $\gamma$ slides from right to left over the running example. Blue area = $P_{FA}$ (the part of the $\mathcal H_0$ curve beyond $\gamma$), red area = $P_D$ (the part of the $\mathcal H_1$ curve beyond $\gamma$). Each position gives one green point $(P_{FA},P_D)$; together they draw the ROC from $(0,0)$ to $(1,1)$.</figcaption>
 </figure>
 
-<figure markdown>
+<figure class="key" markdown>
 ![How to read a ROC](img/gen/p4_roc_explain.svg)
 <figcaption>Every ROC starts at (0,0) (never say $\mathcal H_1$) and ends at (1,1) (always say $\mathcal H_1$). The diagonal is guessing (a coin flip has $P_D=P_{FA}$). A good detector bends towards the top-left corner (perfect: $P_{FA}=0$, $P_D=1$). The more separated the two PDFs (higher SNR), the closer to that corner. A curve **below** the diagonal means something was swapped: flip your decision and it goes above.</figcaption>
 </figure>
@@ -101,15 +109,15 @@ $$P_{FA}=\int_{\text{decide }\mathcal H_1}p(x\mid\mathcal H_0)\,dx,\qquad P_D=\i
 
 ## 3 · Neyman–Pearson: which detector is the best one?
 
-For a given threshold rule you get one point on a ROC. But *which rule* is best? You cannot minimise both errors at once (they trade off), so you must pick one thing to fix. **Neyman–Pearson (NP)**: fix the false-alarm probability you can tolerate, $P_{FA}=\alpha$ (say 1 %), and then **maximise $P_D$**.
+For a given threshold rule you get one point on a ROC. But *which rule* is best? You cannot minimise both errors at once (they trade off), so you must pick one thing to fix. ==**Neyman–Pearson (NP)**: fix the false-alarm probability you can tolerate, $P_{FA}=\alpha$ (say 1 %), and then **maximise $P_D$**.==
 
 Why constrain $P_{FA}$ rather than $P_D$? Under $\mathcal H_0$ there is only noise, so its PDF is known and $P_{FA}$ can be computed exactly; under $\mathcal H_1$ the signal strength is often unknown.
 
-The solution is always a **likelihood ratio test** ([next page](p4-lrt.md)): compute $L(x)=\frac{p(x\mid\mathcal H_1)}{p(x\mid\mathcal H_0)}$ and decide $\mathcal H_1$ when $L(x)>\lambda$, with $\lambda$ chosen so that $P_{FA}=\alpha$.
+==The solution is always a **likelihood ratio test**== ([next page](p4-lrt.md)): compute $L(x)=\frac{p(x\mid\mathcal H_1)}{p(x\mid\mathcal H_0)}$ and decide $\mathcal H_1$ when $L(x)>\lambda$, with $\lambda$ chosen so that $P_{FA}=\alpha$.
 
-**Bayesian detection** ([4.3](p4-bayes.md)) is the other classical rule: instead of fixing $P_{FA}$, you assign a **cost** $C_{ij}$ to each wrong decision ($C_{ij}$ = cost of deciding $\mathcal H_i$ when $\mathcal H_j$ is true) and prior probabilities $P_0,P_1$ to the hypotheses, and **minimise the average cost** (the *Bayes risk*). With costs $C_{01}=C_{10}=1$, $C_{00}=C_{11}=0$ the risk is $P_1P_M+P_0P_{FA}$, which is the **total probability of error**.
+**Bayesian detection** ([4.3](p4-bayes.md)) is the other classical rule: instead of fixing $P_{FA}$, you assign a **cost** $C_{ij}$ to each wrong decision ($C_{ij}$ = cost of deciding $\mathcal H_i$ when $\mathcal H_j$ is true) and prior probabilities $P_0,P_1$ to the hypotheses, and ==**minimise the average cost** (the *Bayes risk*)==. ==With costs $C_{01}=C_{10}=1$, $C_{00}=C_{11}=0$ the risk is $P_1P_M+P_0P_{FA}$, which is the **total probability of error**.==
 
-!!! trap "Words that decide the multiple-choice questions"
+!!! trap key "Words that decide the multiple-choice questions"
     - NP: fixed $P_{FA}$ → **maximise** $P_D$ (not minimise, not "fixed $P_D$").
     - Bayes: **minimise** the risk.
     - Type I = false alarm; type II = miss.

@@ -1,6 +1,7 @@
 /* Key points: ==text== renders as <mark>, whole blocks get class "key". Highlighted always. */
 .md-typeset mark { background-color: rgba(255, 210, 0, .42); color: inherit; padding: 0 .12em; border-radius: .2em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 [data-md-color-scheme="slate"] .md-typeset mark { background-color: rgba(255, 200, 40, .24); }
+.md-typeset figure.key { padding: .4rem .6rem; border-left: 4px solid #e0ac00; border-radius: 0 6px 6px 0; background: rgba(255, 210, 0, .12); }
 .md-typeset div.key { margin: 1em 0; padding: .05rem .9rem; border-left: 4px solid #e0ac00; border-radius: 0 6px 6px 0; background: rgba(255, 210, 0, .12); }
 .md-typeset .admonition.key, .md-typeset details.key { box-shadow: 0 0 0 2px rgba(224, 172, 0, .8); }
 

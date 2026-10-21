@@ -17,11 +17,15 @@
 
 **Estimation** = guessing an unknown fixed number $\theta$ (a mean, a rate, an angle) from noisy data $x_1,\dots,x_N$. An **estimator** $\hat\theta=g(x_1,\dots,x_N)$ is a recipe that turns the data into a guess (a hat means "estimate of"). The data is random, so $\hat\theta$ is a random variable too, and it has two quality numbers (the same two as in [3.2 §1.2](p3-nonparametric.md#12-two-ways-a-guess-can-be-bad-bias-and-variance), dartboard picture included):
 
+<div class="key" markdown>
+
 | | Meaning | Formula |
 |---|---|---|
 | **bias** | wrong on average? ($0$ = *unbiased*; $\to0$ as $N\to\infty$ = *asymptotically unbiased*) | $\mathbb E[\hat\theta]-\theta$ |
 | **variance** | how much the guess jumps between datasets | $\operatorname{Var}[\hat\theta]$ |
 | **consistent** | converges to the true $\theta$ as $N\to\infty$ | |
+
+</div>
 
 !!! example "The sample mean, with numbers"
     Samples $x_n\sim\mathcal N(\mu,\sigma^2)$, estimator $\hat\mu=\bar x=\frac1N\sum x_n$. Averaging is linear, so $\mathbb E[\bar x]=\frac1N\cdot N\mu=\mu$: **unbiased**. The variance of a sum of independent samples is the sum of variances, so $\operatorname{Var}[\bar x]=\frac1{N^2}\cdot N\sigma^2=\frac{\sigma^2}N$: with $\sigma^2=4$ and $N=100$ it is $0.04$ (standard deviation $0.2$) and it shrinks to 0 as $N$ grows: **consistent**.
@@ -33,9 +37,13 @@
 
 ### 1.2 The likelihood
 
-Take the PDF of the data, $p(\mathbf x;\theta)$, plug in the numbers you **actually observed**, and read it as a function of $\theta$. That is the **likelihood** $L(\theta)$: how well each candidate $\theta$ explains what you saw. The **maximum likelihood estimate** is the $\theta$ that explains the data best:
+Take the PDF of the data, $p(\mathbf x;\theta)$, plug in the numbers you **actually observed**, and read it as a function of $\theta$. That is the **likelihood** $L(\theta)$: how well each candidate $\theta$ explains what you saw. ==The **maximum likelihood estimate** is the $\theta$ that explains the data best==:
+
+<div class="key" markdown>
 
 $$\hat\theta_{ML}=\arg\max_\theta\ p(\mathbf x;\theta)\qquad(\arg\max=\text{"the value of }\theta\text{ at which it is largest"}).$$
+
+</div>
 
 <figure class="anim">
 <video class="anim" src="video/likelihood_sweep.mp4" poster="video/likelihood_sweep.jpg" muted loop playsinline controls preload="none"></video>
@@ -44,9 +52,13 @@ $$\hat\theta_{ML}=\arg\max_\theta\ p(\mathbf x;\theta)\qquad(\arg\max=\text{"the
 
 For **independent** samples the joint PDF is a product ([0.6](p0-foundations.md#conditional-probability-and-independence)), and the log turns it into a sum:
 
+<div class="key" markdown>
+
 $$L(\theta)=\prod_{n=1}^Np(x_n;\theta),\qquad\ln L(\theta)=\sum_{n=1}^N\ln p(x_n;\theta).$$
 
-**Why the log is allowed.** $\ln$ is *increasing*: if $a\lt b$ then $\ln a<\ln b$. So $L$ and $\ln L$ are largest at the **same** $\theta$ (figure). And sums are far easier to differentiate than products: $\ln(ab)=\ln a+\ln b$, $\ln e^u=u$.
+</div>
+
+**Why the log is allowed.** $\ln$ is *increasing*: if $a\lt b$ then $\ln a<\ln b$. ==So $L$ and $\ln L$ are largest at the **same** $\theta$== (figure). And sums are far easier to differentiate than products: $\ln(ab)=\ln a+\ln b$, $\ln e^u=u$.
 
 <figure markdown>
 ![Likelihood and log-likelihood peak at the same place](img/gen/p2_mle_idea.svg)
@@ -57,7 +69,7 @@ $$L(\theta)=\prod_{n=1}^Np(x_n;\theta),\qquad\ln L(\theta)=\sum_{n=1}^N\ln p(x_n
 
 ### 1.3 The recipe
 
-!!! recipe "Recipe: MLE in 4 steps (+1 check)"
+!!! recipe key "Recipe: MLE in 4 steps (+1 check)"
     1. **Likelihood**: $L(\theta)=\prod_n p(x_n;\theta)$ (independent samples).
     2. **Log**: $\ln L=\sum_n\ln p(x_n;\theta)$. Expand with $\ln(ab)=\ln a+\ln b$, $\ln e^u=u$. Terms without $\theta$ can be dropped.
     3. **Differentiate** with respect to $\theta$.
@@ -71,14 +83,14 @@ $$L(\theta)=\prod_{n=1}^Np(x_n;\theta),\qquad\ln L(\theta)=\sum_{n=1}^N\ln p(x_n
 
 ### 1.4 Properties you get asked about (multiple choice)
 
-- MLE is **asymptotically unbiased**, **asymptotically efficient** (its variance approaches the CRLB, [2.2](p2-crlb.md)) and **asymptotically Gaussian**: $\hat\theta\sim\mathcal N(\theta,\mathcal I^{-1}(\theta))$ for large $N$ ($\mathcal I$ = Fisher information, [2.2](p2-crlb.md)).
-- If an efficient estimator exists, the MLE finds it.
-- It does **not** always reach the CRLB for finite $N$, and it is **not** limited to linear models (it works for any model you can write a PDF for).
-- **Invariance:** the MLE of $\alpha=g(\theta)$ is $g(\hat\theta_{ML})$. So you can estimate a convenient parameter and transform back (used in Nov 2019 3a and Apr 2025 2c).
+- ==MLE is **asymptotically unbiased**, **asymptotically efficient** (its variance approaches the CRLB, [2.2](p2-crlb.md)) and **asymptotically Gaussian**==: $\hat\theta\sim\mathcal N(\theta,\mathcal I^{-1}(\theta))$ for large $N$ ($\mathcal I$ = Fisher information, [2.2](p2-crlb.md)).
+- ==If an efficient estimator exists, the MLE finds it.==
+- ==It does **not** always reach the CRLB for finite $N$==, and it is **not** limited to linear models (it works for any model you can write a PDF for).
+- ==**Invariance:** the MLE of $\alpha=g(\theta)$ is $g(\hat\theta_{ML})$.== So you can estimate a convenient parameter and transform back (used in Nov 2019 3a and Apr 2025 2c).
 
 !!! trap "Traps"
     - The MLE maximises over the **parameter** $\theta$, not over the data $x$.
-    - Normalising constants that do not contain $\theta$ (like $\Gamma(k)$, $\ln x_n$) disappear when you differentiate. Do not waste time on them.
+    - ==Normalising constants that do not contain $\theta$ (like $\Gamma(k)$, $\ln x_n$) disappear when you differentiate.== Do not waste time on them.
     - Constants that **do** contain $\theta$ (like $1/\theta^k$, $\lambda(\theta)$) must stay in.
 
 ### 1.5 Results you will keep meeting (a cross-check list)

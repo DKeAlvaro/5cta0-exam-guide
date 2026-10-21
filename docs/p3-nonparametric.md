@@ -19,7 +19,11 @@
 
 A **random signal** (a microphone in a noisy room, say) is different every time you record it. What stays the same is its *statistics*, and one of them is the **PSD** $P(e^{j\theta})$: "how much power sits at each frequency". It is defined from the autocorrelation ([0.6](p0-foundations.md#random-signals-stationarity-and-autocorrelation)):
 
+<div class="key" markdown>
+
 $$P(e^{j\theta})=\sum_{l=-\infty}^{\infty} r[l]\,e^{-jl\theta}.$$
+
+</div>
 
 ($r[l]$ = how related the signal is to itself $l$ steps later; $\theta$ = frequency in radians per sample; the sum over **all** lags needs infinitely many numbers.)
 
@@ -29,12 +33,16 @@ You have $N$ samples. So you can neither know $r[l]$ exactly nor sum to infinity
 
 Think of throwing darts at a bullseye. The bullseye is the true PSD value at one frequency; every throw is one estimate from one fresh recording.
 
+<div class="key" markdown>
+
 | | Plain meaning | In darts | Formula |
 |---|---|---|---|
 | **Bias** | wrong **on average**: systematic error | all darts land clustered, but off-centre | $\text{bias}=\mathbb E[\hat P]-P$ |
 | **Variance** | wrong **by luck**: jumps around from recording to recording | darts scattered all around | $\operatorname{Var}[\hat P]=\mathbb E\big[(\hat P-\mathbb E[\hat P])^2\big]$ |
 | **Consistent** | gets perfect as $N\to\infty$ (bias → 0 **and** variance → 0) | with enough data, every dart hits the centre | |
 | **Asymptotically unbiased** | bias → 0 as $N\to\infty$ (nothing said about variance) | | |
+
+</div>
 
 <figure markdown>
 ![Bias and variance as darts](img/gen/p3_darts.svg)
@@ -46,7 +54,7 @@ Think of throwing darts at a bullseye. The bullseye is the true PSD value at one
 
 ### 1.3 Where the bias comes from
 
-Any estimate uses only $N$ samples, which is the same as looking at the signal through a **window** ([3.1 §2](p3-windows.md#2-windows-what-cutting-the-signal-to-n-samples-does)). A window smears the spectrum, so on average you see *the true PSD smeared*. Smearing is the bias; it costs resolution and gives leakage. Longer $N$ → thinner main lobe → smaller bias.
+Any estimate uses only $N$ samples, which is the same as looking at the signal through a **window** ([3.1 §2](p3-windows.md#2-windows-what-cutting-the-signal-to-n-samples-does)). ==A window smears the spectrum, so on average you see *the true PSD smeared*. Smearing is the bias==; it costs resolution and gives leakage. Longer $N$ → thinner main lobe → smaller bias.
 
 ---
 
@@ -56,7 +64,11 @@ Any estimate uses only $N$ samples, which is the same as looking at the signal t
 
 **Plain words.** Take the DFT of your $N$ samples, take the squared size of every bin, and divide by $N$.
 
+<div class="key" markdown>
+
 $$\hat P_{per}(e^{j\theta})=\frac1N\Big|\sum_{n=0}^{N-1}x[n]\,e^{-jn\theta}\Big|^2 .$$
+
+</div>
 
 | Symbol | Meaning |
 |---|---|
@@ -74,7 +86,11 @@ $$\hat P_{per}(e^{j\theta})=\frac1N\Big|\sum_{n=0}^{N-1}x[n]\,e^{-jn\theta}\Big|
 
 First the estimate of $r[l]$ (the usual "biased" one):
 
+<div class="key" markdown>
+
 $$\hat r[l]=\frac1N\sum_{n=l}^{N-1}x[n]\,x[n-l],\qquad l=0,\dots,N-1 \quad(\hat r[-l]=\hat r[l]).$$
+
+</div>
 
 (*Meaning:* line the signal up against a copy of itself shifted by $l$, multiply sample by sample, add, divide by $N$. Only $N-l$ products exist, but we still divide by $N$.) Then
 
@@ -90,17 +106,17 @@ $$\hat P_{cor}(e^{j\theta})=\sum_{l=-(N-1)}^{N-1}\hat r[l]\,e^{-jl\theta}=\hat r
 <figcaption><b>Animation: the $\hat r[l]$ of this example, step by step.</b> The orange copy of $x$ slides $l$ boxes to the right; the boxes that overlap are multiplied, the products added and divided by $N=3$. Each result becomes a stem at $+l$ and $-l$. At $l=2$ only one product is left, which is why long lags are the least reliable (and why Blackman–Tukey drops them, section 3.4).</figcaption>
 </figure>
 
-That is not a coincidence: with the $\frac1N$ ("biased") autocorrelation estimate, **the periodogram and the correlogram are the same estimator** (just computed in a different order). If you use the "unbiased" version (divide by $N-l$) the equivalence breaks, and the estimate can even go negative, which a power can never be.
+That is not a coincidence: ==with the $\frac1N$ ("biased") autocorrelation estimate, **the periodogram and the correlogram are the same estimator**== (just computed in a different order). ==If you use the "unbiased" version (divide by $N-l$) the equivalence breaks, and the estimate can even go negative==, which a power can never be.
 
 ### 2.3 Their bias
 
-Why is $\hat r[l]$ called "biased"? Its average is $\mathbb E[\hat r[l]]=\frac{N-l}{N}\,r[l]$ (there are $N-l$ products, each with average $r[l]$, divided by $N$). So every lag is shrunk by the factor $\left(1-\frac{l}{N}\right)$: a **triangle** (the Bartlett window) multiplying $r[l]$.
+Why is $\hat r[l]$ called "biased"? Its average is ==$\mathbb E[\hat r[l]]=\frac{N-l}{N}\,r[l]$== (there are $N-l$ products, each with average $r[l]$, divided by $N$). So every lag is shrunk by the factor $\left(1-\frac{l}{N}\right)$: a **triangle** (the Bartlett window) multiplying $r[l]$.
 
 *Example:* $N=100$ and lag $l=50$: factor $1-\frac{50}{100}=0.5$, the estimate sees only half of the true correlation. A multiplication by a triangle in lag = a **smearing by the triangle's spectrum** in frequency (the rule from [3.1 §2.2](p3-windows.md#22-what-multiplication-does-to-the-spectrum)). So
 
 $$\mathbb E[\hat P]=P\ \otimes\ W_{\text{triangle}}\quad(\text{true PSD smeared}),$$
 
-giving some loss of resolution and some leakage, and **both vanish as $N\to\infty$** (the triangle becomes a thin spike). Therefore the raw estimators are **asymptotically unbiased**.
+giving some loss of resolution and some leakage, and **both vanish as $N\to\infty$** (the triangle becomes a thin spike). ==Therefore the raw estimators are **asymptotically unbiased**.==
 
 <figure markdown>
 ![The biased autocorrelation estimate shrinks long lags](img/gen/p3_rhat_bias.svg)
@@ -109,13 +125,17 @@ giving some loss of resolution and some leakage, and **both vanish as $N\to\inft
 
 ### 2.4 Their variance: the real problem
 
+<div class="key" markdown>
+
 $$\operatorname{Var}\big[\hat P(e^{j\theta})\big]\approx P^2(e^{j\theta}).$$
 
-**Why, in words.** At each frequency the periodogram is the squared size of *one single random number* (that DFT bin). A single random number does not average anything: its typical size is about its mean, so the spread of the estimate is about as big as the estimate itself. **Doubling $N$ gives you twice as many bins, not better bins.** Each bin is still one random draw.
+</div>
+
+**Why, in words.** At each frequency the periodogram is the squared size of *one single random number* (that DFT bin). A single random number does not average anything: its typical size is about its mean, so the spread of the estimate is about as big as the estimate itself. ==**Doubling $N$ gives you twice as many bins, not better bins.**== Each bin is still one random draw.
 
 *Example:* if the true $P=4$, the estimate has variance $\approx16$, a standard deviation of about 4: errors as large as the value being estimated, **for any $N$**.
 
-So the raw estimators are **not consistent**: bias → 0 but variance does **not** → 0. All the other methods in this page exist to fix exactly this.
+==So the raw estimators are **not consistent**: bias → 0 but variance does **not** → 0.== All the other methods in this page exist to fix exactly this.
 
 <figure markdown>
 ![Periodogram of white noise for three record lengths](img/gen/p3_periodogram_N.svg)
@@ -133,11 +153,11 @@ So the raw estimators are **not consistent**: bias → 0 but variance does **not
 
 ### 3.1 The one trick: average several estimates
 
-If you have $K$ **independent** estimates, each with variance $V$, their average has variance $V/K$. (Variances of independent things add, $K\cdot V$; dividing by $K$ divides the variance by $K^2$; net $V/K$, from the rules in [0.6](p0-foundations.md#expectation-variance).) Averaging $K=9$ estimates cuts the variance to $\frac19\approx0.11$ of the original.
+==If you have $K$ **independent** estimates, each with variance $V$, their average has variance $V/K$.== (Variances of independent things add, $K\cdot V$; dividing by $K$ divides the variance by $K^2$; net $V/K$, from the rules in [0.6](p0-foundations.md#expectation-variance).) Averaging $K=9$ estimates cuts the variance to $\frac19\approx0.11$ of the original.
 
 Where do independent estimates come from, when you have a single recording? **Cut the recording into segments** and compute one periodogram per segment. The price: each segment is shorter ($M\lt N$ samples), so each periodogram has a **wider main lobe** (resolution about $2\pi/M$), i.e. **more bias**. Fewer samples per estimate = blurrier estimate. Always the same trade:
 
-!!! idea "The trade in one line"
+!!! idea key "The trade in one line"
     **More, shorter pieces** → lower variance, higher bias (worse resolution). Bartlett, Welch and Blackman–Tukey are three ways of making this trade.
 
 ### 3.2 Bartlett: average non-overlapping segments
@@ -160,7 +180,11 @@ Same idea, but the pieces **overlap** (typically 50 % to 75 %) and each is multi
 
 **Counting segments.** Segment length $L$, hop $D$ (= how many samples you move forward each time = $L\times(1-\text{overlap})$), record length $N$. Segments start at $0,\ D,\ 2D,\dots$ and the last one must still fit: start $\le N-L$. So
 
+<div class="key" markdown>
+
 $$K=\frac{N-L}{D}+1\qquad(\text{round the fraction down}).$$
+
+</div>
 
 <figure markdown>
 ![Welch segments for N=1000, L=200, 50% overlap](img/gen/p3_welch.svg)
@@ -182,6 +206,8 @@ and the estimator is **consistent**. Cost: multiplying by a short $w[l]$ in lag 
 
 ### 3.5 The table to memorise
 
+<div class="key" markdown>
+
 | Method | What it does | Bias | Variance |
 |---|---|---|---|
 | **Periodogram / correlogram** (raw) | $\frac1N\lvert\text{DFT}\rvert^2$ / FT of $\hat r[l]$ | asymptotically unbiased; resolution ≈ $2\pi/N$ | $\approx P^2$, **not consistent** |
@@ -190,12 +216,14 @@ and the estimator is **consistent**. Cost: multiplying by a short $w[l]$ in lag 
 | **Blackman–Tukey** | lag window of length $2M-1\ll N$ on $\hat r[l]$, then FT | increases as $M$ shrinks | $\approx\frac{P^2}{N}\sum w^2$ → 0: **consistent** |
 | **Parametric (AR/MA/ARMA)** | fit a signal model, use its formula | small if the model fits | low; see [3.4](p3-chain.md) |
 
+</div>
+
 <figure markdown>
 ![The four estimators on the same data](img/gen/p3_methods.svg)
 <figcaption>The table as one picture: the same 512 samples, four estimators, true PSD dashed red. Reading order: raw periodogram (right shape, huge jumps) → Bartlett (calm, peak blunted) → Welch (calm, peak sharper than Bartlett for similar calm) → Blackman–Tukey with few lags (calmest, most smeared). Down the list, variance goes down and bias goes up.</figcaption>
 </figure>
 
-!!! trap "Phrases that decide multiple-choice questions"
+!!! trap key "Phrases that decide multiple-choice questions"
     - "Zero padding" never reduces variance; Bartlett averages segments ([3.1 §3](p3-windows.md#dft-ftd-and-zero-padding)).
     - "Variance proportional to $1/K$" is **Bartlett** (independent segments), not Welch.
     - The raw periodogram's problem is **variance** ($\approx P^2$), not bias; bias is a windowing effect that hits *every* signal, random or not.

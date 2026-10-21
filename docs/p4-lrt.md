@@ -17,7 +17,11 @@
 
 You have an observation $x$ and two stories, $\mathcal H_0$ and $\mathcal H_1$. Each story assigns a PDF value to $x$: $p(x\mid\mathcal H_0)$ and $p(x\mid\mathcal H_1)$ — "how plausible is it to see this $x$ if that story were true". The **likelihood ratio** is their ratio:
 
+<div class="key" markdown>
+
 $$L(\mathbf x)=\frac{p(\mathbf x\mid\mathcal H_1)}{p(\mathbf x\mid\mathcal H_0)}\ \underset{\mathcal H_0}{\overset{\mathcal H_1}{\gtrless}}\ \lambda .$$
+
+</div>
 
 Read: "if $L>\lambda$ decide $\mathcal H_1$, otherwise decide $\mathcal H_0$" ($\lambda$ = the **threshold** of the test).
 
@@ -30,7 +34,7 @@ Read: "if $L>\lambda$ decide $\mathcal H_1$, otherwise decide $\mathcal H_0$" ($
 
 ### 1.2 What does the threshold $\lambda$ mean?
 
-- $\lambda=1$: "pick whichever story explains $x$ better". Geometrically it is where the two PDFs **cross**.
+- ==$\lambda=1$: "pick whichever story explains $x$ better". Geometrically it is where the two PDFs **cross**.==
 - $\lambda>1$: you demand $\mathcal H_1$ to be *much* better before saying yes: fewer false alarms, fewer detections.
 - Where $\lambda$ comes from: from a **target $P_{FA}$** (Neyman–Pearson, [4.1](p4-basics.md#3-neymanpearson-which-detector-is-the-best-one)) or from **priors and costs** (Bayes, [4.3](p4-bayes.md): for equal costs $\lambda=P_0/P_1$).
 
@@ -45,7 +49,7 @@ With $N$ **independent and identically distributed (i.i.d.)** samples $x_0,\dots
 
 $$p(\mathbf x\mid\mathcal H_i)=\prod_{n=0}^{N-1}p(x_n\mid\mathcal H_i).$$
 
-Products of exponentials turn into exponentials of **sums** ($e^ae^b=e^{a+b}$), and taking $\ln$ turns the whole product into a sum. That is why test statistics look like $\sum x_n$, $\sum x_n^2$, $\sum\lvert x_n\rvert$.
+==Products of exponentials turn into exponentials of **sums** ($e^ae^b=e^{a+b}$), and taking $\ln$ turns the whole product into a sum.== That is why test statistics look like $\sum x_n$, $\sum x_n^2$, $\sum\lvert x_n\rvert$.
 
 <figure markdown>
 ![More samples separate the two hypotheses](img/gen/p4_more_samples.svg)
@@ -56,7 +60,7 @@ Products of exponentials turn into exponentials of **sums** ($e^ae^b=e^{a+b}$), 
 
 ## 2 · The recipe, with one example done slowly
 
-!!! recipe "Recipe: from LRT to a simple rule"
+!!! recipe key "Recipe: from LRT to a simple rule"
     1. Write $L(\mathbf x)$. For $N$ i.i.d. samples each PDF is a **product** over $n$.
     2. Cancel everything common (the factor $x$ in Rayleigh PDFs, $\frac{1}{\sqrt{2\pi}}$, …).
     3. Take $\ln$ of both sides (the log is increasing, so the inequality direction is unchanged).
@@ -76,6 +80,8 @@ Products of exponentials turn into exponentials of **sums** ($e^ae^b=e^{a+b}$), 
 
 **Typical results** (memorise the shape, not the algebra):
 
+<div class="key" markdown>
+
 | $\mathcal H_0$ vs $\mathcal H_1$ | Test statistic | Decide $\mathcal H_1$ when |
 |---|---|---|
 | Gaussian, mean 0 vs mean $A>0$ | sample mean $\bar x$ | $\bar x$ **large** |
@@ -85,7 +91,9 @@ Products of exponentials turn into exponentials of **sums** ($e^ae^b=e^{a+b}$), 
 | Rayleigh, $\sigma_1>\sigma_0$ | $x$ | $x$ **large** |
 | Known signal $s_n$ in white Gaussian noise | $\sum x_ns_n$ (matched filter) | correlation **large** |
 
-(Rule of thumb: the hypothesis with the **wider** PDF wins in the tails, the narrower one wins near the centre.)
+</div>
+
+(Rule of thumb: ==the hypothesis with the **wider** PDF wins in the tails, the narrower one wins near the centre.==)
 
 <figure markdown>
 ![Wider PDF wins the tails, narrower wins the centre](img/gen/p4_tails.svg)
@@ -97,9 +105,9 @@ Products of exponentials turn into exponentials of **sums** ($e^ae^b=e^{a+b}$), 
 The error probabilities are integrals of the PDFs over the "decide $\mathcal H_1$" region ([4.1 §1.3](p4-basics.md#13-each-probability-is-an-area)). Useful tools:
 
 - Gaussians: standardise and use $Q(z)$ (or the erf table).
-- Exponential $\lambda e^{-\lambda x}$: right tail $P(X>a)=e^{-\lambda a}$, so $\int_a^b\lambda e^{-\lambda x}dx=e^{-\lambda a}-e^{-\lambda b}$ and $P(X\lt a)=1-e^{-\lambda a}$.
-- Rayleigh $\frac x{\sigma^2}e^{-x^2/2\sigma^2}$: right tail $P(X>a)=e^{-a^2/2\sigma^2}$ (substitute $u=\frac{x^2}{2\sigma^2}$, $du=\frac x{\sigma^2}dx$, the integral becomes $\int e^{-u}du$).
-- **Given $P_{FA}=\alpha$, find the threshold:** invert the $P_{FA}$ formula (e.g. $1-e^{-\gamma'}=\alpha\Rightarrow\gamma'=-\ln(1-\alpha)$), then plug it into $P_D$.
+- Exponential $\lambda e^{-\lambda x}$: ==right tail $P(X>a)=e^{-\lambda a}$==, so $\int_a^b\lambda e^{-\lambda x}dx=e^{-\lambda a}-e^{-\lambda b}$ and $P(X\lt a)=1-e^{-\lambda a}$.
+- Rayleigh $\frac x{\sigma^2}e^{-x^2/2\sigma^2}$: ==right tail $P(X>a)=e^{-a^2/2\sigma^2}$== (substitute $u=\frac{x^2}{2\sigma^2}$, $du=\frac x{\sigma^2}dx$, the integral becomes $\int e^{-u}du$).
+- ==**Given $P_{FA}=\alpha$, find the threshold:** invert the $P_{FA}$ formula== (e.g. $1-e^{-\gamma'}=\alpha\Rightarrow\gamma'=-\ln(1-\alpha)$), then plug it into $P_D$.
 
 ---
 

@@ -18,19 +18,27 @@
 
 Before seeing any data you already believe something about $\theta$: that is the **prior** $p(\theta)$ (e.g. "this coin is probably close to fair"). The data update that belief through Bayes' theorem (the same formula as in [1.1](p1-bayes.md), now with a continuous unknown):
 
+<div class="key" markdown>
+
 $$\underbrace{p(\theta\mid\mathbf x)}_{\text{posterior}}=\frac{\overbrace{p(\mathbf x\mid\theta)}^{\text{likelihood}}\ \overbrace{p(\theta)}^{\text{prior}}}{\underbrace{p(\mathbf x)}_{\text{evidence}=\int p(\mathbf x\mid\theta)p(\theta)d\theta}}\ \propto\ p(\mathbf x\mid\theta)\,p(\theta).$$
 
-The posterior is *everything* you know about $\theta$ after the data. The evidence $p(\mathbf x)$ does not depend on $\theta$; it is only the number that makes the area equal 1 (the "$\propto$" means "equal up to such a constant").
+</div>
+
+The posterior is *everything* you know about $\theta$ after the data. ==The evidence $p(\mathbf x)$ does not depend on $\theta$; it is only the number that makes the area equal 1== (the "$\propto$" means "equal up to such a constant").
 
 ### 1.2 From a distribution to one number
 
 You must report a single value $\hat\theta$. Choose a **cost** for being wrong and minimise its posterior average (the **Bayes risk**). Three standard costs, three standard answers:
+
+<div class="key" markdown>
 
 | Cost of error $e=\theta-\hat\theta$ | Best estimate | Name |
 |---|---|---|
 | quadratic $e^2$ | **mean** of the posterior | MMSE (minimum mean square error) |
 | absolute $\lvert e\rvert$ | median of the posterior | |
 | uniform / "hit-or-miss" (cost 0 if $\hat\theta$ is right, 1 otherwise) | **mode** (highest point) of the posterior | MAP (maximum a posteriori) |
+
+</div>
 
 *Why the mean for squared error:* the average cost of reporting $a$ is $\mathbb E[(\theta-a)^2\mid\mathbf x]$; its derivative with respect to $a$ is $2\big(a-\mathbb E[\theta\mid\mathbf x]\big)$, which is zero at $a=\mathbb E[\theta\mid\mathbf x]$. *Why the mode for hit-or-miss:* you are rewarded only for landing on the right value, so bet on the most probable one.
 
@@ -39,9 +47,9 @@ You must report a single value $\hat\theta$. Choose a **cost** for being wrong a
 <figcaption>Left: the three ways of charging for an error. Squared error punishes big misses hard; absolute error grows evenly; hit-or-miss only cares whether you are (almost) exactly right. Right: one skewed posterior and the three answers. Mode (MAP) at the top of the hill, median in the middle of the area, mean (MMSE) dragged right by the long tail. For a symmetric bell all three coincide.</figcaption>
 </figure>
 
-**MAP vs MLE.** MAP maximises likelihood × prior; MLE maximises the likelihood alone. With a flat prior they are equal. With lots of data the likelihood dominates and MAP moves towards the MLE (usually; a prior that rules out the true value never lets go).
+**MAP vs MLE.** ==MAP maximises likelihood × prior; MLE maximises the likelihood alone. With a flat prior they are equal.== With lots of data the likelihood dominates and MAP moves towards the MLE (usually; a prior that rules out the true value never lets go).
 
-**MAP vs MMSE.** Equal when the posterior is symmetric with one peak (e.g. a Gaussian: mean = mode). Different otherwise: skewed or two-peaked posteriors (figures below).
+**MAP vs MMSE.** ==Equal when the posterior is symmetric with one peak (e.g. a Gaussian: mean = mode).== Different otherwise: skewed or two-peaked posteriors (figures below).
 
 !!! example "A coin, with numbers"
     Prior: Beta(2, 3), shape $\propto\theta^1(1-\theta)^2$ (mean $\frac25=0.4$: "probably a bit biased towards tails"). Data: 3 heads, 1 tail → likelihood $\propto\theta^3(1-\theta)^1$. Posterior $\propto\theta^{1+3}(1-\theta)^{2+1}=\theta^4(1-\theta)^3$ → **Beta(5, 4)**.
@@ -54,26 +62,26 @@ You must report a single value $\hat\theta$. Choose a **cost** for being wrong a
 
 ### 1.3 Recipes
 
-!!! recipe "Recipe: MAP"
+!!! recipe key "Recipe: MAP"
     1. Write $\ln p(\mathbf x\mid\theta)+\ln p(\theta)$ (or $\ln p(\theta\mid\mathbf x)$ if the posterior is given). The evidence $p(\mathbf x)$ does not depend on $\theta$: ignore it.
     2. Differentiate with respect to $\theta$, set to 0, solve (exactly the MLE recipe of [2.1](p2-mle.md#13-the-recipe)).
     3. Check the solution lies inside the allowed range of $\theta$ (otherwise the max is at the boundary).
 
-!!! recipe "Recipe: MMSE"
+!!! recipe key "Recipe: MMSE"
     1. You need the **normalised** posterior. If it is not given: posterior = likelihood × prior / (its integral over $\theta$).
     2. $\hat\theta_{MMSE}=\int\theta\,p(\theta\mid\mathbf x)\,d\theta$.
     3. The integrals are almost always of the form $\int_0^\infty\theta^n e^{-s\theta}d\theta=\frac{n!}{s^{n+1}}$.
 
 ### 1.4 Conjugate priors: the shortcut used in recent exams
 
-A prior is **conjugate** to a likelihood when the posterior has the same *shape family* as the prior. Then you never integrate: you just **add exponents**.
+A prior is **conjugate** to a likelihood when the posterior has the same *shape family* as the prior. ==Then you never integrate: you just **add exponents**.==
 
 - Likelihood $\propto\theta^{A}(1-\theta)^{B}$ (Bernoulli, binomial, negative binomial: counts of successes $A$ and failures $B$) + prior Beta($\alpha,\beta$) $\propto\theta^{\alpha-1}(1-\theta)^{\beta-1}$
-  → posterior Beta($\alpha+A,\ \beta+B$), **mode** $=\dfrac{\alpha+A-1}{\alpha+\beta+A+B-2}$.
+  → ==posterior Beta($\alpha+A,\ \beta+B$), **mode** $=\dfrac{\alpha+A-1}{\alpha+\beta+A+B-2}$==.
 - Likelihood $\propto\lambda^{S}e^{-n\lambda}$ (Poisson: $S$ = total count over $n$ days) + prior Gamma($\alpha,\beta$) $\propto\lambda^{\alpha-1}e^{-\beta\lambda}$
-  → posterior Gamma($\alpha+S,\ \beta+n$), **mode** $=\dfrac{\alpha+S-1}{\beta+n}$.
+  → ==posterior Gamma($\alpha+S,\ \beta+n$), **mode** $=\dfrac{\alpha+S-1}{\beta+n}$==.
 
-(The Beta distribution is a flexible bump on $(0,1)$, which is why it is the natural prior for a probability; Beta($\alpha,\beta$) has mode $\frac{\alpha-1}{\alpha+\beta-2}$ and mean $\frac{\alpha}{\alpha+\beta}$. Gamma($\alpha,\beta$) has mode $\frac{\alpha-1}{\beta}$ and mean $\frac\alpha\beta$.)
+(The Beta distribution is a flexible bump on $(0,1)$, which is why it is the natural prior for a probability; ==Beta($\alpha,\beta$) has mode $\frac{\alpha-1}{\alpha+\beta-2}$ and mean $\frac{\alpha}{\alpha+\beta}$. Gamma($\alpha,\beta$) has mode $\frac{\alpha-1}{\beta}$ and mean $\frac\alpha\beta$.==)
 
 <figure class="anim">
 <video class="anim" src="video/bayes_update.mp4" poster="video/bayes_update.jpg" muted loop playsinline controls preload="none"></video>

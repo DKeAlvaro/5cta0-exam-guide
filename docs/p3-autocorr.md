@@ -20,9 +20,11 @@
 
 $$\mathbb E\big\{i[a]\,i[b]\big\}=\begin{cases}\sigma_i^2 & a=b\\ 0 & a\ne b\end{cases}\qquad\Longrightarrow\qquad r_i[0]=\sigma_i^2,\ \ r_i[l\ne0]=0 .$$
 
-Its PSD is $\sum_l r_i[l]e^{-jl\theta}=\sigma_i^2$: **a flat line**, all frequencies equally strong (hence "white", like white light).
+==Its PSD is $\sum_l r_i[l]e^{-jl\theta}=\sigma_i^2$: **a flat line**==, all frequencies equally strong (hence "white", like white light).
 
 ### 1.2 Three recipes that add memory
+
+<div class="key" markdown>
 
 | Model | Recipe in words | Difference equation | $H(z)$ |
 |---|---|---|---|
@@ -30,9 +32,11 @@ Its PSD is $\sum_l r_i[l]e^{-jl\theta}=\sigma_i^2$: **a flat line**, all frequen
 | **AR($p$)** (auto-regressive) | today = fresh noise + a weighted mix of the last $p$ **values of the signal itself** | $x[n]=i[n]-a_1x[n-1]-\dots-a_px[n-p]$ | $\dfrac1{A(z)}=\dfrac1{1+\sum_{k=1}^p a_kz^{-k}}$ |
 | **ARMA($p,q$)** | both | $x[n]=i[n]+\sum b_ki[n-k]-\sum a_kx[n-k]$ | $\dfrac{B(z)}{A(z)}$ |
 
+</div>
+
 (Here $z^{-1}$ just means "delay by one sample": $z^{-k}$ in $H(z)$ ↔ $[n-k]$ in the equation. On the unit circle $z=e^{j\theta}$, so $H(e^{j\theta})$ is the filter's effect at frequency $\theta$.)
 
-!!! trap "The sign convention"
+!!! trap key "The sign convention"
     The $a_k$ are defined with a **minus** in the difference equation. So $x[n]=i[n]+\frac34x[n-1]$ means $a_1=-\frac34$ and $A(z)=1-\frac34z^{-1}$. The $b_k$ come with a **plus**. Get this wrong and every later number is wrong.
 
 <figure markdown>
@@ -45,7 +49,7 @@ Its PSD is $\sum_l r_i[l]e^{-jl\theta}=\sigma_i^2$: **a flat line**, all frequen
 <figcaption><b>Animation: how an AR(1) builds its memory.</b> Each new value is 0.8 × the previous one (faded bar) plus today's kick (grey). Run it forever and you get a smooth wandering signal. At the end a single kick is fed in and nothing else: its echo fades as $0.8^n$ but never reaches exactly 0. That echo is why the AR autocorrelation is a geometric tail (section 3.2).</figcaption>
 </figure>
 
-**How to tell which model it is.** Look at what is on the right-hand side: past **inputs** $i[n-k]$ → MA part (these give the *zeros*). Past **outputs** $x[n-k]$ → AR part (these give the *poles*). Both → ARMA. The orders are the largest delay of each kind.
+**How to tell which model it is.** Look at what is on the right-hand side: ==past **inputs** $i[n-k]$ → MA part (these give the *zeros*). Past **outputs** $x[n-k]$ → AR part (these give the *poles*).== Both → ARMA. The orders are the largest delay of each kind.
 
 !!! example "Three one-liners"
     - $x[n]=i[n]+0.5\,i[n-1]$ → **MA(1)**, $b_1=0.5$.
@@ -58,7 +62,11 @@ Its PSD is $\sum_l r_i[l]e^{-jl\theta}=\sigma_i^2$: **a flat line**, all frequen
 
 **Plain words.** A filter $H$ changes the *size* of every frequency component by $|H(e^{j\theta})|$ (that is what a filter *is*). Power is size squared, so it changes the power at frequency $\theta$ by $|H(e^{j\theta})|^2$. The input is white noise with a flat PSD $\sigma_i^2$. So the output PSD is
 
+<div class="key" markdown>
+
 $$\boxed{P_x(e^{j\theta})=\sigma_i^2\,\lvert H(e^{j\theta})\rvert^2}\quad\Longrightarrow\quad \text{MA: }\sigma_i^2\lvert B\rvert^2,\quad \text{AR: }\frac{\sigma_i^2}{\lvert A\rvert^2},\quad\text{ARMA: }\sigma_i^2\frac{\lvert B\rvert^2}{\lvert A\rvert^2},$$
+
+</div>
 
 with $B=B(e^{j\theta})$, $A=A(e^{j\theta})$.
 
@@ -79,7 +87,7 @@ $$\lvert1+ce^{-j\theta}\rvert^2=(1+ce^{-j\theta})(1+ce^{j\theta})=1+c^2+c(e^{j\t
 !!! example "Check against the autocorrelation (MA(1), $b=0.5$, $\sigma_i^2=1$)"
     By the formula: $P=1+0.25+2(0.5)\cos\theta=1.25+\cos\theta$. By section 3 below, $r[0]=1+0.25=1.25$ and $r[\pm1]=0.5$, so $P=r[0]+2r[1]\cos\theta=1.25+\cos\theta$. Same.
 
-!!! recipe "Recipe: model → PSD"
+!!! recipe key "Recipe: model → PSD"
     1. Read off $b_k$ and $a_k$ (watch the sign!) and $\sigma_i^2$.
     2. Write $P=\sigma_i^2\frac{\lvert1+b_1e^{-j\theta}\rvert^2}{\lvert1+a_1e^{-j\theta}\rvert^2}$ and expand each factor with $1+c^2+2c\cos\theta$.
     3. Clean up the fractions (multiply numerator **and** denominator by the same number).
@@ -88,10 +96,10 @@ $$\lvert1+ce^{-j\theta}\rvert^2=(1+ce^{-j\theta})(1+ce^{j\theta})=1+c^2+c(e^{j\t
 
 ## 3 · The autocorrelation, derived
 
-The method is always the same: **multiply the difference equation by $x[n-l]$ and take the expectation.** Two facts do all the work:
+The method is always the same: ==**multiply the difference equation by $x[n-l]$ and take the expectation.**== Two facts do all the work:
 
-1. **Today's fresh noise is unrelated to the past signal:** $\mathbb E\{i[n]\,x[n-l]\}=0$ for $l\ge1$. (The noise at time $n$ is independent of everything that happened before $n$, and $x[n-l]$ only contains older noise.)
-2. **Today's noise shows up in today's signal with weight 1:** $\mathbb E\{i[n]\,x[n]\}=\sigma_i^2$. More generally $\mathbb E\{i[n-k]\,x[n]\}=\sigma_i^2\,h[k]$, where $h[k]$ is the **impulse response**: the filter's output at time $k$ when fed a single 1 at time 0 ($h[0]=1$, and $h[1]=b_1-a_1$ for ARMA(1,1)).
+1. ==**Today's fresh noise is unrelated to the past signal:** $\mathbb E\{i[n]\,x[n-l]\}=0$ for $l\ge1$.== (The noise at time $n$ is independent of everything that happened before $n$, and $x[n-l]$ only contains older noise.)
+2. ==**Today's noise shows up in today's signal with weight 1:** $\mathbb E\{i[n]\,x[n]\}=\sigma_i^2$.== More generally $\mathbb E\{i[n-k]\,x[n]\}=\sigma_i^2\,h[k]$, where $h[k]$ is the **impulse response**: the filter's output at time $k$ when fed a single 1 at time 0 ($h[0]=1$, and $h[1]=b_1-a_1$ for ARMA(1,1)).
 
 ### 3.1 MA($q$): slide the coefficient list over itself
 
@@ -101,9 +109,13 @@ $$r[l]=\mathbb E\{x[n]x[n-l]\}=\sum_{k}\sum_{m}b_kb_m\,\mathbb E\{i[n-k]\,i[n-l-
 
 By section 1.1 the expectation is $\sigma_i^2$ when the two time indices agree, i.e. $k=l+m$, and 0 otherwise. So only the pairs $(k,m)=(m+l,m)$ survive:
 
+<div class="key" markdown>
+
 $$\boxed{r[l]=\sigma_i^2\sum_{m=0}^{q-|l|}b_{m+|l|}\,b_m,\qquad r[l]=0\ \text{for}\ |l|>q.}$$
 
-In words: **line up the coefficient list with a copy of itself shifted by $l$, multiply the overlapping entries, add, times $\sigma_i^2$.** Past lag $q$ the lists no longer overlap, so $r[l]=0$: the memory of an MA($q$) is *exactly $q$ steps long*. (So the autocorrelation has non-zero values for $|l|\le q$: that is $2q+1$ values, **not** $q$.)
+</div>
+
+In words: ==**line up the coefficient list with a copy of itself shifted by $l$, multiply the overlapping entries, add, times $\sigma_i^2$.**== Past lag $q$ the lists no longer overlap, so $r[l]=0$: ==the memory of an MA($q$) is *exactly $q$ steps long*==. (So the autocorrelation has non-zero values for $|l|\le q$: that is $2q+1$ values, **not** $q$.)
 
 !!! example "MA(2) with $b=[1,\,0.5,\,-0.4]$, $\sigma_i^2=1$"
     - $r[0]=1^2+0.5^2+(-0.4)^2=1+0.25+0.16=1.41$
@@ -125,9 +137,13 @@ $$r[l]=\underbrace{\mathbb E\{i[n]x[n-l]\}}_{=\ \sigma_i^2\text{ if }l=0,\ \ 0\t
 - For $l\ge1$: $r[l]=-a\,r[l-1]$ → each lag is $-a$ times the previous one: $r[l]=(-a)^{l}r[0]$.
 - For $l=0$: $r[0]=\sigma_i^2-a\,r[1]=\sigma_i^2-a(-a\,r[0])=\sigma_i^2+a^2r[0]$, so $r[0]=\dfrac{\sigma_i^2}{1-a^2}$.
 
+<div class="key" markdown>
+
 $$\boxed{r[l]=\frac{\sigma_i^2}{1-a^2}\,(-a)^{|l|}}\qquad(\text{needs }|a|<1\text{ so that the signal does not blow up}).$$
 
-An AR model has **infinite memory**: $r[l]$ never reaches exactly 0, it only decays.
+</div>
+
+==An AR model has **infinite memory**: $r[l]$ never reaches exactly 0, it only decays.==
 
 *Example:* $a=-0.8$, $\sigma_i^2=1$: $r[0]=\frac1{1-0.64}=2.78$, $r[1]=2.78\cdot0.8=2.22$, $r[2]=1.78$, … (slow decay; the signal is smooth).
 
@@ -145,13 +161,17 @@ An AR model has **infinite memory**: $r[l]$ never reaches exactly 0, it only dec
 
 $x[n]=i[n]+b\,i[n-1]-a\,x[n-1]$ with $h[1]=b-a$ (check: set $i=[1,0,0,\dots]$; $x[0]=1$, $x[1]=b-a\cdot1$). Multiplying by $x[n-l]$ and using the two facts:
 
+<div class="key" markdown>
+
 $$r[0]=\sigma_i^2\big(1+b(b-a)\big)-a\,r[1],\qquad r[1]=\sigma_i^2\,b-a\,r[0],\qquad r[l]=-a\,r[l-1]\ \ (l\ge2).$$
+
+</div>
 
 - $l=0$: $r[0]=\mathbb E\{i[n]x[n]\}+b\,\mathbb E\{i[n-1]x[n]\}-a\,r[1]=\sigma_i^2+b\,\sigma_i^2h[1]-a\,r[1]$ (fact 2 twice).
 - $l=1$: $r[1]=\underbrace{\mathbb E\{i[n]x[n-1]\}}_{0}+b\,\underbrace{\mathbb E\{i[n-1]x[n-1]\}}_{\sigma_i^2}-a\,r[0]$.
 - $l\ge2$: both noise terms vanish (fact 1), only the AR part acts.
 
-So: solve the first two as a **2×2 linear system** for $r[0],r[1]$, then each further lag is $-a$ times the previous one.
+So: ==solve the first two as a **2×2 linear system** for $r[0],r[1]$, then each further lag is $-a$ times the previous one.==
 
 ---
 

@@ -15,9 +15,13 @@
 
 You have data $x[n]$ and a model $s[n;\theta]$ with an unknown parameter $\theta$ that should explain it. Choose $\theta$ so that the model is as close as possible to the data, measuring "close" by the sum of the squared differences (squares so that positive and negative errors do not cancel, and big errors count much more):
 
+<div class="key" markdown>
+
 $$J(\theta)=\sum_n\big(x[n]-s[n;\theta]\big)^2,\qquad\hat\theta_{LS}=\arg\min_\theta J(\theta).$$
 
-($\arg\min$ = "the value of $\theta$ where $J$ is smallest"; $J$ is the **cost**.) No PDF of the noise is needed. That is the main difference with MLE ([2.1](p2-mle.md)): if the noise is white Gaussian the two coincide (the Gaussian log-likelihood *is* $-\frac1{2\sigma^2}J$ plus a constant).
+</div>
+
+($\arg\min$ = "the value of $\theta$ where $J$ is smallest"; $J$ is the **cost**.) ==No PDF of the noise is needed.== That is the main difference with MLE ([2.1](p2-mle.md)): ==if the noise is white Gaussian the two coincide== (the Gaussian log-likelihood *is* $-\frac1{2\sigma^2}J$ plus a constant).
 
 !!! example "Smallest possible example: one number from noisy copies"
     Model $x[n]=A+w[n]$, data $x=[2,4,6]$. $J(A)=(2-A)^2+(4-A)^2+(6-A)^2$. Derivative: $-2\big[(2-A)+(4-A)+(6-A)\big]=0\Rightarrow3A=12\Rightarrow\hat A=4$: the **sample mean**. $J(4)=4+0+4=8$ is the smallest possible; e.g. $J(3)=1+1+9=11$.
@@ -34,7 +38,7 @@ Model $y=ax+b$ (slope $a$, intercept $b$) through points $(x_i,y_i)$, $i=1..n$. 
 - $\dfrac{\partial J}{\partial a}=-2\sum_ix_i(y_i-ax_i-b)=0\ \Rightarrow\ \Big(\sum x_i^2\Big)a+\Big(\sum x_i\Big)b=\sum x_iy_i$
 - $\dfrac{\partial J}{\partial b}=-2\sum_i(y_i-ax_i-b)=0\ \Rightarrow\ \Big(\sum x_i\Big)a+n\,b=\sum y_i$
 
-!!! recipe "Recipe: fit a line $y=ax+b$ to points $(x_i,y_i)$"
+!!! recipe key "Recipe: fit a line $y=ax+b$ to points $(x_i,y_i)$"
     1. Compute the five sums $n,\ \sum x,\ \sum x^2,\ \sum y,\ \sum xy$.
     2. Write the 2×2 system above.
     3. Solve with Cramer's rule ([toolbox](toolbox.md#7-solving-things-fast)): for $\begin{cases}p\,a+q\,b=r\\q\,a+n\,b=s\end{cases}$, $\det=pn-q^2$, $a=\frac{rn-qs}{\det}$, $b=\frac{ps-qr}{\det}$.
@@ -49,13 +53,17 @@ Model $y=ax+b$ (slope $a$, intercept $b$) through points $(x_i,y_i)$, $i=1..n$. 
 
 If the signal is a weighted sum of known columns, $\mathbf x=\mathbf H\boldsymbol\theta+\mathbf w$ ($\mathbf H$ is $N\times K$: row $n$ holds the $K$ known numbers that multiply the parameters in sample $n$; $\mathbf w$ = noise), then $J(\boldsymbol\theta)=\lVert\mathbf x-\mathbf H\boldsymbol\theta\rVert^2$. Setting its gradient to zero gives the **normal equations** $\mathbf H^T\mathbf H\hat{\boldsymbol\theta}=\mathbf H^T\mathbf x$, so
 
+<div class="key" markdown>
+
 $$\hat{\boldsymbol\theta}_{LS}=(\mathbf H^T\mathbf H)^{-1}\mathbf H^T\mathbf x.$$
+
+</div>
 
 *Check with the line fit:* $\boldsymbol\theta=[a,b]^T$ and row $i$ of $\mathbf H$ is $[x_i,\ 1]$. Then $\mathbf H^T\mathbf H=\begin{bmatrix}\sum x_i^2&\sum x_i\\\sum x_i&n\end{bmatrix}$ and $\mathbf H^T\mathbf y=\begin{bmatrix}\sum x_iy_i\\\sum y_i\end{bmatrix}$: exactly the 2×2 system above.
 
-- **Geometry:** $\mathbf H\hat{\boldsymbol\theta}$ is the projection of $\mathbf x$ onto the space spanned by the columns of $\mathbf H$. The normal equations say $\mathbf H^T(\mathbf x-\mathbf H\hat{\boldsymbol\theta})=\mathbf 0$: the **error** $\mathbf x-\mathbf H\hat{\boldsymbol\theta}$ is **orthogonal** to every column (it is *not* in that space; the *fit* is). Picture below.
-- $\mathbf H^T\mathbf H$ must be invertible: you need **at least** as many observations as parameters ($N\ge K$), not exactly as many.
-- **Weighted LS:** $J=(\mathbf x-\mathbf H\boldsymbol\theta)^T\mathbf W(\mathbf x-\mathbf H\boldsymbol\theta)$ gives $\hat{\boldsymbol\theta}=(\mathbf H^T\mathbf W\mathbf H)^{-1}\mathbf H^T\mathbf W\mathbf x$ (trust some samples more than others). With $\mathbf W=\mathbf C_x^{-1}$ (inverse noise covariance) this is the **BLUE**, the best linear unbiased estimator.
+- **Geometry:** $\mathbf H\hat{\boldsymbol\theta}$ is the projection of $\mathbf x$ onto the space spanned by the columns of $\mathbf H$. The normal equations say $\mathbf H^T(\mathbf x-\mathbf H\hat{\boldsymbol\theta})=\mathbf 0$: ==the **error** $\mathbf x-\mathbf H\hat{\boldsymbol\theta}$ is **orthogonal** to every column== (it is *not* in that space; the *fit* is). Picture below.
+- $\mathbf H^T\mathbf H$ must be invertible: ==you need **at least** as many observations as parameters ($N\ge K$), not exactly as many.==
+- **Weighted LS:** $J=(\mathbf x-\mathbf H\boldsymbol\theta)^T\mathbf W(\mathbf x-\mathbf H\boldsymbol\theta)$ gives $\hat{\boldsymbol\theta}=(\mathbf H^T\mathbf W\mathbf H)^{-1}\mathbf H^T\mathbf W\mathbf x$ (trust some samples more than others). ==With $\mathbf W=\mathbf C_x^{-1}$ (inverse noise covariance) this is the **BLUE**==, the best linear unbiased estimator.
 
 <figure markdown>
 ![Least squares as an orthogonal projection](img/gen/p2_projection.svg)
@@ -64,8 +72,8 @@ $$\hat{\boldsymbol\theta}_{LS}=(\mathbf H^T\mathbf H)^{-1}\mathbf H^T\mathbf x.$
 
 ### 1.3 Nonlinear models
 
-- **Transformation trick:** if an invertible change of parameter $\alpha=g(\theta)$ makes the model linear, solve for $\hat\alpha$ and map back: $\hat\theta=g^{-1}(\hat\alpha)$.
-- **Otherwise iterate.** **Gauss–Newton**: at the current guess $\boldsymbol\theta_k$ replace the model by its straight-line approximation $\mathbf s(\boldsymbol\theta)\approx\mathbf s(\boldsymbol\theta_k)+\mathbf H(\boldsymbol\theta_k)(\boldsymbol\theta-\boldsymbol\theta_k)$ (with $\mathbf H$ = the table of derivatives of $s[n]$ with respect to each parameter, the **Jacobian**), solve the resulting *linear* LS problem for the step, repeat. **Newton–Raphson** uses the second derivatives of $J$ as well.
+- ==**Transformation trick:** if an invertible change of parameter $\alpha=g(\theta)$ makes the model linear, solve for $\hat\alpha$ and map back==: $\hat\theta=g^{-1}(\hat\alpha)$.
+- **Otherwise iterate.** ==**Gauss–Newton**: at the current guess $\boldsymbol\theta_k$ replace the model by its straight-line approximation== $\mathbf s(\boldsymbol\theta)\approx\mathbf s(\boldsymbol\theta_k)+\mathbf H(\boldsymbol\theta_k)(\boldsymbol\theta-\boldsymbol\theta_k)$ (with $\mathbf H$ = the table of derivatives of $s[n]$ with respect to each parameter, the **Jacobian**), solve the resulting *linear* LS problem for the step, repeat. **Newton–Raphson** uses the second derivatives of $J$ as well.
 
 <figure markdown>
 ![Gauss-Newton iterations](img/gen/p2_gauss_newton.svg)

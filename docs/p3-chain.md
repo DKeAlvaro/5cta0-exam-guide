@@ -18,14 +18,18 @@ You are given $r[0]$, $r[\pm1]$, sometimes $r[\pm2]$, $r[\pm3]$ (estimated from 
 
 ### 1.1 Correlogram (non-parametric): just transform what you have
 
-**Plain words.** The PSD is *defined* as $P(e^{j\theta})=\sum_{l=-\infty}^{\infty}r[l]e^{-jl\theta}$ ([0.6](p0-foundations.md#random-signals-stationarity-and-autocorrelation)). You do not know the lags beyond the ones given, so **assume they are zero** and sum what you have. Pair lag $l$ with lag $-l$ ($r[-l]=r[l]$) and use $e^{jl\theta}+e^{-jl\theta}=2\cos l\theta$:
+**Plain words.** The PSD is *defined* as $P(e^{j\theta})=\sum_{l=-\infty}^{\infty}r[l]e^{-jl\theta}$ ([0.6](p0-foundations.md#random-signals-stationarity-and-autocorrelation)). ==You do not know the lags beyond the ones given, so **assume they are zero** and sum what you have.== Pair lag $l$ with lag $-l$ ($r[-l]=r[l]$) and use $e^{jl\theta}+e^{-jl\theta}=2\cos l\theta$:
+
+<div class="key" markdown>
 
 $$\boxed{\hat P_{corr}(e^{j\theta})=r[0]+2\sum_{k\ge1}r[k]\cos(k\theta)}$$
+
+</div>
 
 !!! example "Numbers: $r[0]=3,\ r[1]=2,\ r[2]=1$"
     $\hat P_{corr}=3+4\cos\theta+2\cos2\theta$. At $\theta=0$ every cosine is 1: $3+4+2=9$ (the sum of all the lags, $3+2\cdot2+2\cdot1$). At $\theta=\pi$: $\cos\pi=-1,\ \cos2\pi=1$: $3-4+2=1$.
 
-**Weakness.** If the true autocorrelation does not really stop at the last lag you used, chopping it there can make the sum **dip below zero**. A real PSD never does. (This is how you reject plots.)
+**Weakness.** If the true autocorrelation does not really stop at the last lag you used, ==chopping it there can make the sum **dip below zero**. A real PSD never does.== (This is how you reject plots.)
 
 <figure markdown>
 ![A truncated correlogram can go negative](img/gen/p3_corr_negative.svg)
@@ -34,7 +38,7 @@ $$\boxed{\hat P_{corr}(e^{j\theta})=r[0]+2\sum_{k\ge1}r[k]\cos(k\theta)}$$
 
 ### 1.2 AR($p$) by Yule–Walker: pretend the signal is AR and fit it
 
-**Idea.** An AR($p$) model $x[n]=i[n]-a_1x[n-1]-\dots-a_px[n-p]$ is determined by $p+1$ numbers: $a_1,\dots,a_p$ and $\sigma_i^2$. Choose them so that the model's autocorrelation matches the first $p+1$ lags you were given. The resulting equations are the **Yule–Walker equations**. Here is where they come from.
+**Idea.** An AR($p$) model $x[n]=i[n]-a_1x[n-1]-\dots-a_px[n-p]$ is determined by $p+1$ numbers: $a_1,\dots,a_p$ and $\sigma_i^2$. ==Choose them so that the model's autocorrelation matches the first $p+1$ lags you were given.== The resulting equations are the **Yule–Walker equations**. Here is where they come from.
 
 **Derivation.** Write the model as $x[n]+a_1x[n-1]+\dots+a_px[n-p]=i[n]$. Multiply by $x[n-l]$ and take expectations (exactly the method of [3.3 §3](p3-autocorr.md#3-the-autocorrelation-derived)):
 
@@ -42,14 +46,22 @@ $$r[l]+a_1r[l-1]+\dots+a_pr[l-p]=\mathbb E\{i[n]\,x[n-l]\}=\begin{cases}\sigma_i
 
 (today's noise is unrelated to the past signal, except for $l=0$). Write this for $l=0,1,\dots,p$ and use $r[-k]=r[k]$:
 
+<div class="key" markdown>
+
 $$\begin{bmatrix}r[0]&r[1]&\cdots&r[p]\\r[1]&r[0]&\cdots&r[p-1]\\\vdots&&\ddots&\vdots\\r[p]&r[p-1]&\cdots&r[0]\end{bmatrix}\begin{bmatrix}1\\a_1\\\vdots\\a_p\end{bmatrix}=\begin{bmatrix}\sigma_i^2\\0\\\vdots\\0\end{bmatrix}$$
 
-**How to solve it.** Rows 2 to $p+1$ contain only the unknown $a$'s: solve those first (a small linear system). Then row 1 gives the noise variance: $\sigma_i^2=r[0]+a_1r[1]+\dots+a_pr[p]$.
+</div>
+
+**How to solve it.** ==Rows 2 to $p+1$ contain only the unknown $a$'s: solve those first (a small linear system). Then row 1 gives the noise variance==: $\sigma_i^2=r[0]+a_1r[1]+\dots+a_pr[p]$.
+
+<div class="key" markdown>
 
 | Order | Coefficients | Noise variance |
 |---|---|---|
 | AR(1) | $a_1=-\dfrac{r[1]}{r[0]}$ (row 2: $r[1]+a_1r[0]=0$) | $\sigma_i^2=r[0]+a_1r[1]$ |
 | AR(2) | solve $\begin{cases}r[0]a_1+r[1]a_2=-r[1]\\r[1]a_1+r[0]a_2=-r[2]\end{cases}$ (rows 2 and 3) | $\sigma_i^2=r[0]+a_1r[1]+a_2r[2]$ |
+
+</div>
 
 **The PSD.** By $P=\sigma_i^2/\lvert A(e^{j\theta})\rvert^2$ ([3.3 §2](p3-autocorr.md#2-the-psd-of-a-model-without-any-autocorrelation)). To turn $\lvert A\rvert^2$ into cosines, multiply $A$ by its conjugate:
 
@@ -65,11 +77,15 @@ The same numbers come out of the *one-step linear predictor* (Wiener filter, see
 
 Model $x[n]=i[n]+b\,i[n-1]$. From [3.3 §3.1](p3-autocorr.md#31-maq-slide-the-coefficient-list-over-itself): $r[0]=\sigma_i^2(1+b^2)$ and $r[1]=\sigma_i^2b$. Match these two to the given $r[0],r[1]$. Dividing the second equation by the first eliminates $\sigma_i^2$:
 
+<div class="key" markdown>
+
 $$\frac{b}{1+b^2}=\frac{r[1]}{r[0]}\ \Longrightarrow\ \boxed{r[1]\,b^2-r[0]\,b+r[1]=0}.$$
 
-A quadratic: two roots, and they are $b$ and $1/b$ (their product is $r[1]/r[1]=1$). Both give exactly the same autocorrelation and the same PSD. **Keep the root with $\lvert b\rvert<1$** (the *minimum-phase* choice, the same choice as in spectral factorisation, [1.4](p1-factorisation.md)). Then $\sigma_i^2=r[1]/b$.
+</div>
 
-!!! idea "Shortcut that saves minutes"
+A quadratic: two roots, and they are $b$ and $1/b$ (their product is $r[1]/r[1]=1$). Both give exactly the same autocorrelation and the same PSD. ==**Keep the root with $\lvert b\rvert<1$**== (the *minimum-phase* choice, the same choice as in spectral factorisation, [1.4](p1-factorisation.md)). ==Then $\sigma_i^2=r[1]/b$.==
+
+!!! idea key "Shortcut that saves minutes"
     Expand the MA(1) PSD: $\sigma_i^2\lvert1+be^{-j\theta}\rvert^2=\sigma_i^2(1+b^2)+2\sigma_i^2b\cos\theta=r[0]+2r[1]\cos\theta$.
     **The MA(1) PSD is just the correlogram truncated at lag 1.** You still have to give $b$ and $\sigma_i^2$ if they are asked, but you can write the PSD immediately and exactly, without the rounding errors of, say, $b\approx-0.127$.
 
@@ -85,7 +101,7 @@ A quadratic: two roots, and they are $b$ and $1/b$ (their product is $r[1]/r[1]=
 <figcaption>Horizontal axis: normalised frequency $\theta$ from $-\pi$ to $\pi$. A PSD of a real signal is symmetric, so only $0\ldots\pi$ really matters. $\theta=0$ is DC (no oscillation), $\theta=\pm\pi$ the fastest possible oscillation. AR(1) with $a_1<0$ (i.e. $x[n]=0.8x[n-1]+\dots$, a smooth slow signal) peaks at 0; $a_1>0$ peaks at $\pi$. MA spectra are smooth and can touch 0. A truncated correlogram can wiggle and even go below zero.</figcaption>
 </figure>
 
-!!! recipe "Recipe: the whole chain"
+!!! recipe key "Recipe: the whole chain"
     1. **Correlogram:** $r[0]+2r[1]\cos\theta+2r[2]\cos2\theta+\dots$
     2. **AR($p$):** write the Yule–Walker matrix; solve the $a$'s from rows 2…; $\sigma_i^2$ from row 1; plug into $\sigma_i^2/\lvert A(e^{j\theta})\rvert^2$ and expand.
     3. **MA(1):** quadratic $r[1]b^2-r[0]b+r[1]=0$, keep $\lvert b\rvert<1$, $\sigma_i^2=r[1]/b$; PSD $=r[0]+2r[1]\cos\theta$.
@@ -96,20 +112,24 @@ A quadratic: two roots, and they are $b$ and $1/b$ (their product is $r[1]/r[1]=
 
 ## 2 · How many AR coefficients? Model order selection
 
-**The problem.** You can choose any order $p$. A bigger $p$ has more freedom, so it can follow the *recorded* data more closely: the residual error variance $\hat\sigma_p^2$ (the average squared difference between data and the model's one-step prediction) **never increases** with $p$. But beyond the true order the extra freedom is spent fitting this record's **noise**, not the signal: this is **overfitting** (spurious peaks, a spectrum that would not generalise to a new record).
+**The problem.** You can choose any order $p$. A bigger $p$ has more freedom, so it can follow the *recorded* data more closely: the residual error variance $\hat\sigma_p^2$ (the average squared difference between data and the model's one-step prediction) **never increases** with $p$. But ==beyond the true order the extra freedom is spent fitting this record's **noise**, not the signal: this is **overfitting**== (spurious peaks, a spectrum that would not generalise to a new record).
 
 **The fix: charge a penalty per parameter.** An **information criterion** adds to the error term a cost that grows with the number of parameters $P=p+1$:
 
+<div class="key" markdown>
+
 $$\text{AIC}(P)=N\ln\hat\sigma_P^2+2P,\qquad \text{FPE}(P)=\frac{N+P}{N-P}\,\hat\sigma_P^2 .$$
 
-($N$ = number of samples.) The first term of the AIC falls as the model improves, the second ($2P$) rises: pick the order with the **minimum** value. FPE does the same through the factor $\frac{N+P}{N-P}$, which grows with $P$.
+</div>
+
+($N$ = number of samples.) The first term of the AIC falls as the model improves, the second ($2P$) rises: ==pick the order with the **minimum** value==. FPE does the same through the factor $\frac{N+P}{N-P}$, which grows with $P$.
 
 <figure markdown>
 ![residual variance vs AIC](img/gen/p3_order.svg)
 <figcaption>The residual variance (left) keeps falling with the order. The AIC (right) first falls, then rises again: its minimum is the order to use.</figcaption>
 </figure>
 
-**One more fact (asked in June 2026).** *Any* PSD can be approximated by an AR model if the order is high enough, even one with deep notches (which an MA/ARMA would describe). Reason: for a minimum-phase $B(z)$, the series $1/B(z)=1+c_1z^{-1}+c_2z^{-2}+\dots$ is an *infinite* AR model. So a notch needs a **very high AR order** (and $N\gg p$ samples to estimate it).
+**One more fact (asked in June 2026).** ==*Any* PSD can be approximated by an AR model if the order is high enough==, even one with deep notches (which an MA/ARMA would describe). Reason: for a minimum-phase $B(z)$, the series $1/B(z)=1+c_1z^{-1}+c_2z^{-2}+\dots$ is an *infinite* AR model. ==So a notch needs a **very high AR order**== (and $N\gg p$ samples to estimate it).
 
 <figure markdown>
 ![AR fits of increasing order approaching a notch](img/gen/p3_ar_notch.svg)
