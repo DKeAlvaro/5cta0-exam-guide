@@ -427,6 +427,9 @@
     if (!ui.quote) return;
     ui.quote.hidden = !state.selection;
     ui.quoteText.textContent = state.selection;
+    if (state.selection.includes("$") && window.renderMathInElement) {
+      renderMathInElement(ui.quoteText, { delimiters: [{ left: "$", right: "$", display: false }], throwOnError: false });
+    }
   }
 
   /* ---------------- open / close ---------------- */
@@ -484,9 +487,21 @@
     return chip;
   }
 
+  // selected text with each formula as its LaTeX source (String(sel) would give the rendered glyphs twice)
+  function selectedText(sel) {
+    if (!sel.rangeCount) return "";
+    const box = document.createElement("div");
+    box.appendChild(sel.getRangeAt(0).cloneContents());
+    box.querySelectorAll(".katex").forEach((k) => {
+      const ann = k.querySelector('annotation[encoding="application/x-tex"]');
+      k.replaceWith(document.createTextNode(" $" + (ann ? ann.textContent.trim() : k.textContent) + "$ "));
+    });
+    return box.textContent.replace(/\s+/g, " ").replace(/\$ ([.,;:)])/g, "$$$1").trim();
+  }
+
   function showChip() {
     const sel = window.getSelection ? window.getSelection() : null;
-    const text = sel ? String(sel).replace(/\s+/g, " ").trim() : "";
+    const text = sel ? selectedText(sel) : "";
     const content = document.querySelector(".md-content__inner");
     const inside = (n) => n && content && content.contains(n.nodeType === 1 ? n : n.parentNode);
     if (!sel || sel.isCollapsed || sel.rangeCount === 0 || text.length < 3 || text.length > MAX_SELECTION ||
