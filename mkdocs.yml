@@ -39,9 +39,9 @@ theme:
     - navigation.instant
     - navigation.instant.progress
     - toc.follow
-    - search.highlight
-    - search.suggest
     - content.tooltips
+
+plugins: []
 
 nav:
   - Start here: index.md
@@ -104,8 +104,6 @@ extra_javascript:
   - https://unpkg.com/katex@0.16.11/dist/contrib/auto-render.min.js
   - javascripts/quiz.js
   - javascripts/ask.js
-  - javascripts/layout.js
-  - javascripts/zen.js
 
 extra_css:
   - https://unpkg.com/katex@0.16.11/dist/katex.min.css
@@ -113,7 +111,6 @@ extra_css:
   - stylesheets/extra.css
   - stylesheets/ask.css
   - stylesheets/layout.css
-  - stylesheets/zen.css
 
 extra:
   generator: false

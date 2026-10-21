@@ -218,18 +218,6 @@
 
   /* ---------------- UI ---------------- */
 
-  function ensureLauncher() {
-    let b = document.getElementById("ask-toggle");
-    if (b) return b;
-    b = el("button", "", ICONS.chat + '<span class="dot"></span><span class="label">Ask</span>');
-    b.id = "ask-toggle";
-    b.type = "button";
-    b.setAttribute("aria-label", "Ask about this page");
-    b.addEventListener("click", () => open());
-    document.body.appendChild(b);
-    return b;
-  }
-
   function buildPanel() {
     ["ask-panel", "ask-backdrop"].forEach((id) => {
       const old = document.getElementById(id);
@@ -353,7 +341,6 @@
     localStorage.setItem(LS.model, state.model);
     snapshot();
     if (chat) { chat.remove(); chat = null; } // rebuilt with the new provider, same conversation
-    updateLauncher();
     setView(state.key ? "chat" : "settings");
   }
 
@@ -369,7 +356,6 @@
   /* ---------------- open / close ---------------- */
 
   function open(opts) {
-    ensureLauncher();
     if (!document.getElementById("ask-panel")) buildPanel();
     if (!state.open) lastFocus = document.activeElement;
     state.open = true;
@@ -380,7 +366,6 @@
       setSelection(opts.selection);
       if (state.key) setView("chat");
     }
-    updateLauncher();
     hideChip();
     if (state.view === "chat" && chat && chat.focusInput && !isTouch()) setTimeout(() => chat.focusInput(), 30);
   }
@@ -390,18 +375,10 @@
     document.documentElement.classList.remove("ask-open");
     if (ui.panel) ui.panel.classList.remove("open");
     if (ui.backdrop) ui.backdrop.classList.remove("open");
-    updateLauncher();
     hideChip();
     if (lastFocus && lastFocus.focus && document.contains(lastFocus)) {
       try { lastFocus.focus({ preventScroll: true }); } catch (e) { /* ignore */ }
     }
-  }
-
-  function updateLauncher() {
-    const b = document.getElementById("ask-toggle");
-    if (!b) return;
-    b.classList.toggle("hidden", state.open);
-    b.classList.toggle("has-key", !!state.key);
   }
 
   /* ---------------- selection chip ---------------- */
@@ -495,15 +472,13 @@
 
   function boot() {
     try {
-      ensureLauncher();
       bindGlobalListeners();
       // instant navigation swaps the body: rebuild the panel, keeping the conversation
       if (state.open && !document.getElementById("ask-panel")) {
         snapshot();
         state.open = false;
         open();
-      } 
-      else updateLauncher();
+      }
     } catch (e) {
       if (window.console && console.warn) console.warn("ask-the-guide failed to start", e);
     }
