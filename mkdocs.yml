@@ -105,6 +105,7 @@ extra_javascript:
   - javascripts/ask.js
   - javascripts/video.js
   - javascripts/layout.js
+  - javascripts/keypoints.js
 
   - javascripts/progress.js
 extra_css:
@@ -113,6 +114,7 @@ extra_css:
   - stylesheets/extra.css
   - stylesheets/ask.css
   - stylesheets/layout.css
+  - stylesheets/keypoints.css
 
 extra:
   generator: false
