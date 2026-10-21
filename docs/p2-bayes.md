@@ -6,7 +6,7 @@
     - Likelihood, MLE and the 4-step recipe ([2.1](p2-mle.md))
     - Conditional probability and Bayes' theorem ([0.6](p0-foundations.md#conditional-probability-and-independence), [1.1](p1-bayes.md))
     - PDF, expectation (mean) of a random variable ([0.6](p0-foundations.md#expectation-variance))
-    - The integral $\int_0^\infty\theta^ne^{-s\theta}d\theta$ ([Toolbox](toolbox.md#3-the-integrals-that-keep-coming-back))
+    - The integral $\int_0^\infty\theta^ne^{-s\theta}d\theta$ ([Toolbox](toolbox.md#4-the-integrals-that-keep-coming-back))
 
     If you read only one thing: **MAP and MMSE both start from the same object, the posterior $p(\theta\mid\mathbf x)\propto p(\mathbf x\mid\theta)\,p(\theta)$ (data fit × prior belief). MAP reports its highest point (the *mode*), MMSE reports its average (the *mean*).**
 
@@ -340,7 +340,7 @@ A prior is **conjugate** to a likelihood when the posterior has the same *shape 
 
     **2g** Find the minimum mean square error estimate $\hat{X}_{\text{MMSE}}$ of $X$ given $Y$. If you were not able to solve f) you can use $P[X = 1|Y] = \frac{1}{e^{-\frac{y}{\sigma^2}} \left( e^{\frac{y}{\sigma^2}} + e^{-\frac{y}{\sigma^2}} \right)}$ and $P[X = -1|Y] = \frac{1}{e^{\frac{y}{\sigma^2}} \left( e^{\frac{y}{\sigma^2}} + e^{-\frac{y}{\sigma^2}} \right)}$. Useful identities: $\frac{e^{2u} - 1}{e^{2u} + 1} = \frac{e^u - e^{-u}}{e^u + e^{-u}} = \tanh(u)$
 
-    **2h** Find the maximum a posterior estimator $\hat{X}_{\text{MAP}}$ of $X$ given the observation $Y$. More specifically, find a threshold value $y_{\text{th}}$ such that a decision on $X$ depends on whether or not this threshold value is exceeded or not. *Hint:* Recall that $X$ is a discrete random variable. Hence, $\hat{X}_{\text{MAP}} = \arg \max_{X \in \{1, -1\}} P[X|Y]$. To check which value of $X$ maximizes the a posterior probability, you simply can check the ratio of the a posteriori probabilities.
+    **2h** Find the maximum a posterior estimator $\hat{X}_{\text{MAP}}$ of $X$ given the observation $Y$. More specifically, find a threshold value $y_{\text{th}}$ such that a decision on $X$ depends on whether or not this threshold value is exceeded or not. *Hint:* Recall that $X$ is a discrete random variable. Hence, $\hat{X}_{\text{MAP}} = \arg \max_{X \in \{1, -1\}} P[X|Y]$. To check which value of $X$ maximizes the a posterior probability, you simply can check the ratio of the a posterior probabilities.
 
 ???+ solution "Solution"
 

@@ -4,7 +4,7 @@
 
 !!! need "Before this page"
     - What a PDF is and that probabilities are areas ([0.6](p0-foundations.md#random-variable-and-pdf)); mean and variance ([0.6](p0-foundations.md#expectation-variance))
-    - Integrals as areas, $\int_0^1x^n\,dx=\frac1{n+1}$, $\int_0^\infty e^{-x}dx=1$ ([0.4](p0-foundations.md#04-the-three-calculations-you-keep-meeting), [Toolbox](toolbox.md#3-the-integrals-that-keep-coming-back))
+    - Integrals as areas, $\int_0^1x^n\,dx=\frac1{n+1}$, $\int_0^\infty e^{-x}dx=1$ ([0.4](p0-foundations.md#04-the-three-calculations-you-keep-meeting), [Toolbox](toolbox.md#4-the-integrals-that-keep-coming-back))
     - Conditional probability and independence ([1.1](p1-bayes.md))
 
     If you read only one thing: **for two random variables, draw the region where the joint PDF is non-zero. Every limit of every integral (normalising, marginal, conditional) is read off that picture.**

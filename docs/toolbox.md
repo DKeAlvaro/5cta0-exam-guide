@@ -20,6 +20,8 @@
 
 $$\ln(ab)=\ln a+\ln b,\qquad \ln\frac ab=\ln a-\ln b,\qquad \ln a^k=k\ln a,\qquad \ln e^{u}=u,\qquad e^{a}e^{b}=e^{a+b}$$
 
+**Why $\ln(ab)=\ln a+\ln b$:** it is just $e^ae^b=e^{a+b}$ read backwards: logs turn multiplication into addition. The other rules in the line follow from it.
+
 **Why we take logs all the time.** The log is increasing, so whatever maximises $f(\theta)$ also maximises $\ln f(\theta)$. And the log turns a product of $N$ terms (likelihood of independent samples) into a sum, which is much easier to differentiate:
 
 $$\ln\prod_{n=1}^{N} f(x_n)=\sum_{n=1}^{N}\ln f(x_n).$$
@@ -40,13 +42,15 @@ The same trick is used in detection: "$L(x)>\lambda$" is the same statement as "
 | sigmoid $\lambda(\theta)=\frac{1}{1+e^{-\theta}}$ | $\lambda(1-\lambda)$ |
 | $g(h(\theta))$ (chain rule) | $g'(h(\theta))\,h'(\theta)$ |
 
+**Where they come from:** the power rule is $\frac d{d\theta}\theta^k=k\theta^{k-1}$ (so $1/\theta=\theta^{-1}$ gives $-\theta^{-2}$). The sigmoid one: $\lambda'=\frac{e^{-\theta}}{(1+e^{-\theta})^2}=\lambda\cdot\frac{e^{-\theta}}{1+e^{-\theta}}=\lambda(1-\lambda)$. The chain rule is "derivative of the outside, evaluated at the inside, times the derivative of the inside".
+
 **Maximum or minimum?** At a point where $f'=0$, if $f''<0$ it is a maximum. For MLE/MAP you want a maximum.
 
 ## 4. The integrals that keep coming back
 
 $$\int_0^\infty e^{-ax}\,dx=\frac1a,\qquad \int_0^\infty x^n e^{-ax}\,dx=\frac{n!}{a^{n+1}}\quad(a>0)$$
 
-So $\int_0^\infty xe^{-ax}dx=1/a^2$ and $\int_0^\infty x^2e^{-ax}dx=2/a^3$. These give every MMSE in this course.
+(Why: substitute $u=ax$ and the integral becomes $\frac{1}{a^{n+1}}\int_0^\infty u^ne^{-u}du=\frac{n!}{a^{n+1}}$, because $\int_0^\infty u^ne^{-u}du=n!$ by integrating by parts $n$ times.) So $\int_0^\infty xe^{-ax}dx=1/a^2$ and $\int_0^\infty x^2e^{-ax}dx=2/a^3$. These give every MMSE in this course.
 
 $$\int_{a}^{b}\lambda e^{-\lambda x}dx=e^{-\lambda a}-e^{-\lambda b}\qquad\text{(exponential tail areas: } P_{FA}, P_D)$$
 
@@ -69,7 +73,9 @@ and for two coefficients:
 
 $$|1+a e^{-j\theta}+b e^{-j2\theta}|^2=1+a^2+b^2+2(a+ab)\cos\theta+2b\cos2\theta .$$
 
-If they ask for the answer "as a function of $\cos\theta$" only, use $\cos2\theta=2\cos^2\theta-1$.
+If they ask for the answer "as a function of $\cos\theta$" only, use $\cos2\theta=2\cos^2\theta-1$ (from $\cos2\theta=\cos^2\theta-\sin^2\theta$ and $\sin^2\theta=1-\cos^2\theta$).
+
+**Why the two-coefficient formula:** multiply $(1+ae^{-j\theta}+be^{-j2\theta})$ by its conjugate. The diagonal terms give $1+a^2+b^2$; the pair $1\cdot ae^{j\theta}$ and $ae^{-j\theta}\cdot1$ gives $2a\cos\theta$; the pair $ae^{-j\theta}\cdot be^{j2\theta}$ and its conjugate gives $2ab\cos\theta$; the pair $1\cdot be^{j2\theta}$ and its conjugate gives $2b\cos2\theta$.
 
 ## 6. Filters, the $z$-variable and the unit circle
 
@@ -85,13 +91,13 @@ $$H(z)=\frac{1+b_1z^{-1}}{1+a_1z^{-1}}.$$
 
 ## 7. Solving things fast
 
-**Quadratic:** $ax^2+bx+c=0\Rightarrow x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$. The two roots of the equations in Part 3 are always $a$ and $1/a$: keep the one with $|{\rm root}|<1$.
+**Quadratic:** $ax^2+bx+c=0\Rightarrow x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$. The two roots of the equations in Part 3 are always $a$ and $1/a$ (their product is $c/a=1$ there): keep the one with $|{\rm root}|<1$.
 
-**2×2 linear system (Cramer's rule):**
+**2×2 linear system (Cramer's rule)** (it comes from eliminating one unknown: multiply the first equation by $s$, the second by $q$, and subtract):
 
 $$\begin{cases}px+qy=e\\ rx+sy=f\end{cases}\quad\Rightarrow\quad x=\frac{es-qf}{ps-qr},\qquad y=\frac{pf-er}{ps-qr}.$$
 
-**Geometric series:** $\sum_{k=0}^\infty a^k=\frac{1}{1-a}$ for $|a|<1$.
+**Geometric series:** $\sum_{k=0}^\infty a^k=\frac{1}{1-a}$ for $|a|<1$. (Why: call the sum $S=1+a+a^2+\dots$; then $aS=a+a^2+\dots=S-1$, so $S(1-a)=1$.)
 
 ## 8. Distributions that appear in the exams
 

@@ -3,7 +3,7 @@
 <p class="lead">One multiple-choice question per exam, usually 0.25–0.3 p. They test two words: <b>stationary</b> (WSS) and <b>ergodic</b>. Once you can picture a process as a stack of signals, both are easy. This page builds that picture first, then gives a two-step test and applies it to every exam question.</p>
 
 !!! need "Before this page"
-    - What a signal is, $x[n]$ vs $x(t)$ ([0.1](p0-foundations.md#01-what-a-signal-is)); cosines ([0.2](p0-foundations.md#02-sine-cosine-frequency)); the identity $\cos\alpha\cos\beta=\frac12[\cos(\alpha+\beta)+\cos(\alpha-\beta)]$ ([Toolbox](toolbox.md#1-trig-and-complex-numbers))
+    - What a signal is, $x[n]$ vs $x(t)$ ([0.1](p0-foundations.md#01-what-a-signal-is)); cosines ([0.2](p0-foundations.md#02-sine-cosine-frequency)); the identity $\cos\alpha\cos\beta=\frac12[\cos(\alpha+\beta)+\cos(\alpha-\beta)]$ ([Toolbox](toolbox.md#5-complex-exponentials-needed-for-every-psd))
     - Expectation (mean) of a random variable ([0.6](p0-foundations.md#expectation-variance)); random signal, autocorrelation, PSD ([0.6](p0-foundations.md#random-signals-stationarity-and-autocorrelation))
 
     If you read only one thing: **a random process is a stack of signals. "Stationary" = the statistics are the same whichever *column* (time) you look at. "Ergodic" = one *row* (one realisation) over time tells you the same as the whole stack at one time.**

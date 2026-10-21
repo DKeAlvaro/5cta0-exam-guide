@@ -61,18 +61,11 @@ This file is the checklist used to convert the remaining pages. The reference im
 | `!!! freq` | how often a pattern comes up in exams (red) |
 | `!!! example` | tiny worked example inside theory |
 
-## Conversion order and known gaps
+## Conversion status
 
-- [x] `p3-windows.md` — done (the reference).
-- [ ] `p3-nonparametric.md`, `p3-autocorr.md`, `p3-chain.md` — need: what a random signal is,
-      expectation/variance, autocorrelation from zero. Add `0.x Probability from zero` to
-      `p0-foundations.md` (or `p0-probability.md`) **before** converting these.
-- [ ] `p2-mle.md`, `p2-crlb.md`, `p2-bayes.md`, `p2-ls.md` — need the probability 0.x too
-      (PDF, expectation, variance, independence, conditional probability).
-- [ ] `p4-basics.md`, `p4-lrt.md`, `p4-bayes.md` — same, plus "hypothesis test" in plain words.
-- [ ] `p1-*.md` — last; they are the least mechanical.
-- [ ] `toolbox.md` — keep as reference, but each identity gets a one-line "why" (it mostly has them).
-- [ ] `exams.md`, `cheatsheet.md` — add "which page explains this" links next to each question.
+All pages are converted: `p0-foundations.md` (with 0.6 probability from zero), Part 1 to Part 4,
+`toolbox.md` (one-line "why" per identity). `exams.md` and `cheatsheet.md` already link every
+question to the page that explains it. New material should follow the same contract.
 
 Each converted page must keep its existing heading anchors (`{#apr25-3a}` etc.): other pages and
 external links point at them.
