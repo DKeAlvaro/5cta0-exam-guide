@@ -147,10 +147,12 @@
   }
 
   const SHADOW_CSS =
-    // desktop: the input floats over the bottom edge, transparent apart from the box itself,
-    // and only shows while the box (or send button) is hovered / focused
-    "@media (min-width:45em){#input{position:absolute!important;left:0;right:0;bottom:0;padding:0!important;background:transparent!important;opacity:0;transition:opacity .15s;pointer-events:none}" +
-    "#input>*{pointer-events:auto}#input:has(:hover),#input:focus-within{opacity:1}}" +
+    // desktop: the input floats over the bottom edge. The whole strip is the hover zone; until then
+    // only a small grey handle shows, and it fades out once the box takes over.
+    "@media (min-width:45em){#input{position:absolute!important;left:0;right:0;bottom:0;min-height:34px;padding:0!important;background:transparent!important}" +
+    "#input>*{opacity:0;transition:opacity .15s}#input:hover>*,#input:focus-within>*{opacity:1}" +
+    "#input::after{content:'';position:absolute;left:50%;bottom:8px;width:44px;height:5px;margin-left:-22px;border-radius:4px;background:rgba(128,128,128,.55);pointer-events:none;transition:opacity .15s}" +
+    "#input:hover::after,#input:focus-within::after{opacity:0}}" +
     "#text-input{padding-right:2.8rem!important;box-sizing:border-box}" +
     ".inner-message-container{width:calc(100% - 8px)!important}" +
     "#text-input{white-space:nowrap!important;overflow:hidden!important;max-height:2.4em!important}" +
