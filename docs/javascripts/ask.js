@@ -102,6 +102,8 @@
   };
 
   const ICONS = {
+    back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>',
+    trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12h10l1-12M9 7V4h6v3"/></svg>',
     close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
     settings: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h9M19 7h1M4 17h3M13 17h7"/><circle cx="16" cy="7" r="2.3"/><circle cx="10" cy="17" r="2.3"/></svg>',
     send: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M6 12l6-6 6 6"/></svg>',
@@ -128,6 +130,7 @@
     history: [],
     busy: false,
     open: false,
+    view: "chat",
   };
   if (LEGACY_MODELS[state.model]) {
     state.model = LEGACY_MODELS[state.model];
@@ -140,7 +143,21 @@
     return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
 
+  // math spans are lifted out before inline formatting so `*` inside them survives
+  function withMath(s, fn) {
+    const saved = [];
+    const masked = s.replace(/\$\$[\s\S]+?\$\$|\$[^$\n]+?\$/g, (m) => {
+      saved.push(m);
+      return "\u0001" + (saved.length - 1) + "\u0001";
+    });
+    return fn(masked).replace(/\u0001(\d+)\u0001/g, (_, i) => saved[+i]);
+  }
+
   function inline(s) {
+    return withMath(s, inlineFmt);
+  }
+
+  function inlineFmt(s) {
     return s
       .replace(/`([^`]+)`/g, "<code>$1</code>")
       .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
@@ -233,127 +250,176 @@
 
   const ui = {};
   let chip = null;
+  let lastFocus = null;
+  const isTouch = () => window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+
+  function el(tag, cls, html) {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (html !== undefined) n.innerHTML = html;
+    return n;
+  }
 
   function ensureLauncher() {
     let b = document.getElementById("ask-toggle");
     if (b) return b;
-    b = document.createElement("button");
+    b = el("button", "", ICONS.chat + '<span class="dot"></span><span class="label">Ask</span>');
     b.id = "ask-toggle";
     b.type = "button";
-    b.title = "Ask about the material on this page";
-    b.innerHTML = ICONS.chat + '<span class="dot"></span><span class="label">Ask</span>';
-    b.addEventListener("click", () => open()); // always open, never toggles
+    b.setAttribute("aria-label", "Ask about this page");
+    b.addEventListener("click", () => open());
     document.body.appendChild(b);
     return b;
   }
 
   function buildPanel() {
-    const old = document.getElementById("ask-panel");
-    if (old) old.remove();
+    ["ask-panel", "ask-backdrop"].forEach((id) => {
+      const old = document.getElementById(id);
+      if (old) old.remove();
+    });
 
-    const wrap = document.createElement("div");
+    const backdrop = el("div");
+    backdrop.id = "ask-backdrop";
+    backdrop.addEventListener("click", close);
+
+    const wrap = el("aside");
     wrap.id = "ask-panel";
+    wrap.setAttribute("role", "dialog");
+    wrap.setAttribute("aria-label", "Ask the guide");
     wrap.innerHTML =
-      '<div class="ask-head">' +
+      '<div class="ask-grab"></div>' +
+      '<header class="ask-head">' +
+        '<button type="button" class="ask-btn ask-back" data-act="back" aria-label="Back to chat">' + ICONS.back + '</button>' +
         '<div class="ask-head-text">' +
           '<span class="ask-title">Ask the guide</span>' +
-          '<span class="ask-sub">5CTA0 tutor &middot; your own API key</span>' +
+          '<span class="ask-sub"></span>' +
         '</div>' +
-        '<button type="button" class="ask-icon" data-act="settings" title="API key settings">' + ICONS.settings + '</button>' +
-        '<button type="button" class="ask-close" data-act="close" title="Close (Esc)">' + ICONS.close + '</button>' +
-      '</div>' +
-      '<div class="ask-settings">' +
-        '<p class="ask-note">The key is kept only in this browser and goes straight to the provider. Nothing passes through this site.</p>' +
-        '<label>Provider <select class="ask-provider"></select></label>' +
-        '<label>API key <input type="password" class="ask-key" placeholder="paste your key" autocomplete="off" spellcheck="false"></label>' +
-        '<label>Base URL <input type="url" class="ask-base" spellcheck="false" placeholder="https://"></label>' +
-        '<label>Model <input type="text" class="ask-model" spellcheck="false"></label>' +
-        '<div class="ask-actions">' +
-          '<button type="button" class="ask-save">Save</button>' +
-          '<a class="ask-keylink" target="_blank" rel="noopener">Get a key</a>' +
-        '</div>' +
-      '</div>' +
-      '<div class="ask-context">' +
-        '<div class="ask-context-head">' +
-          '<span class="ask-context-label">Context</span>' +
-          '<button type="button" class="ask-icon" data-act="clear-ctx" title="Use the whole page instead">' + ICONS.close + '</button>' +
-        '</div>' +
-        '<div class="ask-context-text"></div>' +
-      '</div>' +
-      '<div class="ask-msgs">' +
-        '<div class="ask-empty">' +
-          '<div class="ask-empty-title">Ask anything on this page</div>' +
-          'Select a passage and hit <i>Ask about this</i>, or type below. Maths welcome.' +
-          '<div class="ask-chips">' +
-            '<button type="button" class="ask-chip">Explain this page in 5 bullets</button>' +
-            '<button type="button" class="ask-chip">Quiz me on this topic</button>' +
-            '<button type="button" class="ask-chip">Where do people lose points?</button>' +
+        '<button type="button" class="ask-btn ask-reset" data-act="reset" aria-label="New chat" title="New chat">' + ICONS.trash + '</button>' +
+        '<button type="button" class="ask-btn ask-gear" data-act="settings" aria-label="API key settings" title="API key settings">' + ICONS.settings + '</button>' +
+        '<button type="button" class="ask-btn ask-close" data-act="close" aria-label="Close" title="Close (Esc)">' + ICONS.close + '</button>' +
+      '</header>' +
+      '<div class="ask-body">' +
+        '<div class="ask-msgs"></div>' +
+        '<form class="ask-settings" autocomplete="off">' +
+          '<p class="ask-note">The key stays in this browser and goes straight to the provider. Nothing passes through this site.</p>' +
+          '<label>Provider<select class="ask-provider"></select></label>' +
+          '<label>API key<input type="password" class="ask-key" autocomplete="off" spellcheck="false"></label>' +
+          '<label>Model<input type="text" class="ask-model" spellcheck="false"></label>' +
+          '<label>Base URL (optional)<input type="url" class="ask-base" spellcheck="false"></label>' +
+          '<div class="ask-actions">' +
+            '<button type="submit" class="ask-save">Save</button>' +
+            '<a class="ask-keylink" target="_blank" rel="noopener">Get a key</a>' +
           '</div>' +
-        '</div>' +
+        '</form>' +
       '</div>' +
-      '<form class="ask-form">' +
-        '<textarea class="ask-input" rows="1" placeholder="Ask about the topics on this page"></textarea>' +
-        '<button type="submit" class="ask-send" title="Send">' + ICONS.send + '</button>' +
-      '</form>';
+      '<footer class="ask-foot">' +
+        '<div class="ask-quote" hidden>' +
+          '<div class="ask-quote-text"></div>' +
+          '<button type="button" class="ask-quote-x" data-act="clear-ctx" aria-label="Remove quoted passage">' + ICONS.close + '</button>' +
+        '</div>' +
+        '<form class="ask-form">' +
+          '<textarea class="ask-input" rows="1" enterkeyhint="send"></textarea>' +
+          '<button type="submit" class="ask-send" aria-label="Send">' + ICONS.send + '</button>' +
+        '</form>' +
+      '</footer>';
 
+    document.body.appendChild(backdrop);
     document.body.appendChild(wrap);
 
     ui.panel = wrap;
+    ui.backdrop = backdrop;
+    ui.sub = wrap.querySelector(".ask-sub");
+    ui.body = wrap.querySelector(".ask-body");
+    ui.msgs = wrap.querySelector(".ask-msgs");
     ui.settings = wrap.querySelector(".ask-settings");
     ui.provider = wrap.querySelector(".ask-provider");
     ui.key = wrap.querySelector(".ask-key");
-    ui.base = wrap.querySelector(".ask-base");
     ui.model = wrap.querySelector(".ask-model");
+    ui.base = wrap.querySelector(".ask-base");
     ui.keylink = wrap.querySelector(".ask-keylink");
-    ui.ctxLabel = wrap.querySelector(".ask-context-label");
-    ui.ctxText = wrap.querySelector(".ask-context-text");
-    ui.ctxClear = wrap.querySelector('[data-act="clear-ctx"]');
-    ui.msgs = wrap.querySelector(".ask-msgs");
+    ui.quote = wrap.querySelector(".ask-quote");
+    ui.quoteText = wrap.querySelector(".ask-quote-text");
     ui.input = wrap.querySelector(".ask-input");
     ui.send = wrap.querySelector(".ask-send");
 
     Object.keys(PROVIDERS).forEach((id) => {
-      const o = document.createElement("option");
+      const o = el("option");
       o.value = id;
       o.textContent = PROVIDERS[id].name;
       ui.provider.appendChild(o);
     });
 
-    // delegated clicks (closest() so clicks on inner <svg> work too)
     wrap.addEventListener("click", (e) => {
       const hit = e.target.closest ? e.target.closest("[data-act], .ask-chip") : null;
       if (!hit) return;
-      const act = hit.getAttribute("data-act");
       if (hit.classList.contains("ask-chip")) {
         ui.input.value = hit.textContent.trim();
         send();
         return;
       }
+      const act = hit.getAttribute("data-act");
       if (act === "close") close();
-      else if (act === "settings") ui.settings.classList.toggle("open");
+      else if (act === "settings") setView(state.view === "settings" ? "chat" : "settings");
+      else if (act === "back") setView("chat");
+      else if (act === "reset") resetChat();
       else if (act === "clear-ctx") setSelection("");
     });
 
     ui.provider.addEventListener("change", () => loadProviderFields(ui.provider.value));
-    wrap.querySelector(".ask-save").addEventListener("click", saveSettings);
-
+    ui.settings.addEventListener("submit", (e) => {
+      e.preventDefault();
+      saveSettings();
+    });
     wrap.querySelector(".ask-form").addEventListener("submit", (e) => {
       e.preventDefault();
       send();
     });
     ui.input.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" && !e.shiftKey) {
+      // Enter sends on desktop; on touch keyboards Enter stays a newline
+      if (e.key === "Enter" && !e.shiftKey && !e.isComposing && !isTouch()) {
         e.preventDefault();
         send();
       }
     });
-    ui.input.addEventListener("input", () => {
-      ui.input.style.height = "auto";
-      ui.input.style.height = Math.min(ui.input.scrollHeight, 150) + "px";
-    });
+    ui.input.addEventListener("input", autosize);
 
     loadProviderFields(state.provider);
-    updateContextCard();
+    renderEmpty();
+    updateQuote();
+    setView(state.key ? "chat" : "settings");
+  }
+
+  function autosize() {
+    ui.input.style.height = "auto";
+    ui.input.style.height = Math.min(ui.input.scrollHeight, 130) + "px";
+  }
+
+  function setView(v) {
+    state.view = v;
+    ui.panel.dataset.view = v;
+    ui.sub.textContent = v === "settings" ? "Settings" : pageTitle();
+    if (v === "chat") setTimeout(() => ui.input && ui.input.focus({ preventScroll: true }), 30);
+    else ui.body.scrollTop = 0;
+  }
+
+  function renderEmpty() {
+    ui.msgs.appendChild(el("div", "ask-empty",
+      '<div class="ask-empty-title">Ask anything about this page</div>' +
+      '<p>Highlight a passage and press <b>Ask about this</b>, or just type below.</p>' +
+      '<div class="ask-chips">' +
+        '<button type="button" class="ask-chip">Explain this page in 5 bullets</button>' +
+        '<button type="button" class="ask-chip">Quiz me on this topic</button>' +
+        '<button type="button" class="ask-chip">Where do people lose points?</button>' +
+      '</div>'));
+  }
+
+  function resetChat() {
+    if (state.busy) return;
+    state.history = [];
+    ui.msgs.textContent = "";
+    renderEmpty();
+    setSelection("");
+    ui.input.focus({ preventScroll: true });
   }
 
   function loadProviderFields(id) {
@@ -379,28 +445,22 @@
     localStorage.setItem(LS.key, state.key);
     localStorage.setItem(LS.model, state.model);
     localStorage.setItem(LS.bases, JSON.stringify(state.bases));
-    ui.settings.classList.remove("open");
     updateLauncher();
-    if (state.key) {
-      addMessage("assistant", "Saved. Ask anything about this page — or select a passage and hit *Ask about this*.");
-    }
+    setView("chat");
   }
 
-  /* ---------------- context card ---------------- */
+  /* ---------------- quoted passage ---------------- */
 
   function setSelection(text) {
     state.selection = String(text || "").trim().slice(0, MAX_SELECTION);
-    updateContextCard();
+    updateQuote();
   }
 
-  function updateContextCard() {
-    if (!ui.ctxText) return;
-    const sel = state.selection;
-    ui.ctxLabel.textContent = sel ? "Selected passage" : "Current page";
-    ui.ctxText.textContent = sel || pageTitle();
-    ui.ctxClear.style.display = sel ? "" : "none";
-    ui.ctxText.classList.toggle("selection", !!sel);
-    ui.input.placeholder = sel ? "Ask about the selected passage" : "Ask about the topics on this page";
+  function updateQuote() {
+    if (!ui.quote) return;
+    ui.quote.hidden = !state.selection;
+    ui.quoteText.textContent = state.selection;
+    ui.input.placeholder = state.selection ? "Ask about the quoted passage" : "Ask about this page";
   }
 
   /* ---------------- messages ---------------- */
@@ -410,12 +470,10 @@
     const empty = ui.msgs.querySelector(".ask-empty");
     if (empty && !isThinking) empty.remove();
 
-    const div = document.createElement("div");
-    div.className = "ask-msg " + role.replace(" thinking", "") + (isThinking ? " thinking" : "");
+    const div = el("div", "ask-msg " + role.replace(" thinking", "") + (isThinking ? " thinking" : ""));
     if (role.indexOf("user") === 0) {
       if (quote) {
-        const q = document.createElement("div");
-        q.className = "ask-msg-quote";
+        const q = el("div", "ask-msg-quote");
         q.textContent = quote.length > 220 ? quote.slice(0, 220) + "…" : quote;
         div.appendChild(q);
       }
@@ -425,7 +483,7 @@
       renderMath(div);
     }
     ui.msgs.appendChild(div);
-    ui.msgs.scrollTop = ui.msgs.scrollHeight;
+    ui.body.scrollTop = ui.body.scrollHeight;
     return div;
   }
 
@@ -434,27 +492,36 @@
   function open(opts) {
     ensureLauncher();
     if (!document.getElementById("ask-panel")) buildPanel();
+    if (!state.open) lastFocus = document.activeElement;
     state.open = true;
+    document.documentElement.classList.add("ask-open");
     ui.panel.classList.add("open");
+    ui.backdrop.classList.add("open");
+    if (opts && opts.selection !== undefined) {
+      setSelection(opts.selection);
+      if (state.key) setView("chat");
+    }
     updateLauncher();
-    if (!state.key) ui.settings.classList.add("open");
-    if (opts && opts.selection !== undefined) setSelection(opts.selection);
-    else updateContextCard();
     hideChip();
-    setTimeout(() => ui.input.focus(), 30);
+    if (state.view === "chat") setTimeout(() => ui.input.focus({ preventScroll: true }), 30);
   }
 
   function close() {
     state.open = false;
+    document.documentElement.classList.remove("ask-open");
     if (ui.panel) ui.panel.classList.remove("open");
+    if (ui.backdrop) ui.backdrop.classList.remove("open");
     updateLauncher();
     hideChip();
+    if (lastFocus && lastFocus.focus && document.contains(lastFocus)) {
+      try { lastFocus.focus({ preventScroll: true }); } catch (e) { /* ignore */ }
+    }
   }
 
   function updateLauncher() {
     const b = document.getElementById("ask-toggle");
     if (!b) return;
-    b.classList.toggle("hidden", state.open); // never overlap the panel
+    b.classList.toggle("hidden", state.open);
     b.classList.toggle("has-key", !!state.key);
   }
 
@@ -466,18 +533,19 @@
 
   function ensureChip() {
     if (chip) return chip;
-    chip = document.createElement("button");
+    chip = el("button", "", ICONS.quote + "<span>Ask about this</span>");
     chip.id = "ask-select-btn";
     chip.type = "button";
-    chip.title = "Ask about the selected text";
-    chip.innerHTML = ICONS.quote + "<span>Ask about this</span>";
-    // capture-phase pointerdown first: never hide when the press is ON the chip
+    // keep the text selected while pressing the chip
     chip.addEventListener("pointerdown", (e) => e.preventDefault());
+    chip.addEventListener("mousedown", (e) => e.preventDefault());
     chip.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
       const text = chip.dataset.text || "";
       hideChip();
+      const s = window.getSelection && window.getSelection();
+      if (s && s.removeAllRanges) s.removeAllRanges();
       open({ selection: text });
     });
     document.body.appendChild(chip);
@@ -489,8 +557,8 @@
     const text = sel ? String(sel).replace(/\s+/g, " ").trim() : "";
     const content = document.querySelector(".md-content__inner");
     const inside = (n) => n && content && content.contains(n.nodeType === 1 ? n : n.parentNode);
-    if (!sel || sel.isCollapsed || text.length < 3 || text.length > MAX_SELECTION ||
-        !inside(sel.anchorNode) || !inside(sel.focusNode) || state.open) {
+    if (!sel || sel.isCollapsed || sel.rangeCount === 0 || text.length < 3 || text.length > MAX_SELECTION ||
+        !inside(sel.anchorNode) || !inside(sel.focusNode)) {
       hideChip();
       return;
     }
@@ -504,12 +572,13 @@
     const btn = ensureChip();
     btn.dataset.text = text;
     btn.style.display = "flex";
-    const w = btn.offsetWidth || 120;
+    const w = btn.offsetWidth || 130;
     const x = Math.min(Math.max(8, r.left + r.width / 2 - w / 2), window.innerWidth - w - 8);
-    const above = r.top > 56;
+    // touch browsers draw their own menu above the selection, so go below there
+    const above = !isTouch() && r.top > 56;
+    const y = above ? r.top - 44 : Math.min(r.bottom + (isTouch() ? 44 : 10), window.innerHeight - 52);
     btn.style.left = x + "px";
-    btn.style.top = (above ? r.top - 42 : Math.min(r.bottom + 10, window.innerHeight - 56)) + "px";
-    btn.classList.toggle("below", !above);
+    btn.style.top = y + "px";
   }
 
   /* ---------------- API call ---------------- */
@@ -522,9 +591,8 @@
     const base = (state.bases[state.provider] || p.defaultBase).replace(/\/+$/, "");
     const customBase = base !== p.defaultBase.replace(/\/+$/, "");
     if (!state.key && !customBase) {
-      ui.settings.classList.add("open");
+      setView("settings");
       ui.key.focus();
-      addMessage("assistant", "First add your API key (gear button, top right). It stays in your browser.");
       return;
     }
 
@@ -534,7 +602,7 @@
       : text;
 
     ui.input.value = "";
-    ui.input.style.height = "auto";
+    autosize();
     addMessage("user", text, quote);
     state.history.push({ role: "user", text: apiText });
     if (state.history.length > MAX_TURNS) state.history = state.history.slice(-MAX_TURNS);
@@ -565,15 +633,16 @@
       addMessage("assistant", answer);
     } catch (err) {
       thinking.remove();
+      state.history.pop(); // a failed question must not poison the next request
       addMessage(
         "assistant",
         "**Request failed:** " + String(err.message || err) + "\n\n" +
-        "Check the key, base URL and model in the gear menu, and that your provider allows browser calls."
+        "Check the key, base URL and model in settings, and that your provider allows browser calls."
       );
     } finally {
       state.busy = false;
       ui.send.disabled = false;
-      ui.input.focus();
+      if (state.open && state.view === "chat") ui.input.focus({ preventScroll: true });
     }
   }
 
@@ -585,52 +654,42 @@
     if (listenersBound) return;
     listenersBound = true;
 
-    // hide the chip when pressing anywhere that is not the chip itself
-    document.addEventListener("pointerdown", (e) => {
-      if (chip && chip.style.display !== "none" && chip.contains(e.target)) return;
-      if (e.target.closest && e.target.closest("#ask-panel")) return;
-      hideChip();
-    }, true);
-
     let t = null;
-    const queue = () => {
+    const queue = (ms) => {
       clearTimeout(t);
-      t = setTimeout(showChip, 120);
+      t = setTimeout(showChip, ms);
     };
-    document.addEventListener("mouseup", queue);
-    document.addEventListener("touchend", queue);
+    document.addEventListener("mouseup", () => queue(60));
+    document.addEventListener("touchend", () => queue(350));
     document.addEventListener("keyup", (e) => {
-      if (e.shiftKey || e.key.indexOf("Arrow") === 0) queue();
+      if (e.shiftKey || e.key.indexOf("Arrow") === 0) queue(120);
     });
-    document.addEventListener("selectionchange", queue);
-    window.addEventListener("scroll", hideChip, true);
+    document.addEventListener("selectionchange", () => {
+      const s = window.getSelection();
+      if (!s || s.isCollapsed) hideChip();
+      else if (isTouch()) queue(450);
+    });
+    window.addEventListener("scroll", hideChip, { capture: true, passive: true });
     window.addEventListener("resize", hideChip);
 
     document.addEventListener("keydown", (e) => {
       if (e.key !== "Escape") return;
-      if (chip && chip.style.display !== "none") {
-        hideChip();
-        return;
-      }
-      if (state.open) close();
+      if (chip && chip.style.display !== "none") hideChip();
+      else if (state.open) close();
     });
   }
 
   function boot() {
     try {
       ensureLauncher();
-      updateLauncher();
       bindGlobalListeners();
       if (state.open) open(); // rebuild the panel after an instant navigation
-      else updateContextCard();
+      else updateLauncher();
     } catch (e) {
       if (window.console && console.warn) console.warn("ask-the-guide failed to start", e);
     }
   }
 
-  // Run immediately (this script sits at the end of <body>, so the DOM is ready).
-  // document$ is only used to refresh after instant navigations — never relied on,
-  // because Material's observable can already have emitted before we subscribe.
   boot();
   if (typeof document$ !== "undefined" && document$ && typeof document$.subscribe === "function") {
     try {
