@@ -68,6 +68,11 @@
   let saved = []; // conversation kept across instant navigation (the body is swapped)
   let chip = null;
   let lastFocus = null;
+  let geom = null; // live window geometry (desktop), shared by drag/resize and the anchoring
+  let minimized = false; // clicked outside: the window shrinks to the ball
+  let ball = null;
+  let tail = null;
+  let anchor = null; // { range } of the highlighted passage the window was opened from
   const isTouch = () => window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
 
   function el(tag, cls, html) {
@@ -298,6 +303,10 @@
     ui.keylink = wrap.querySelector(".ask-keylink");
     ui.quote = wrap.querySelector(".ask-quote");
     ui.quoteText = wrap.querySelector(".ask-quote-text");
+    // hovering the quote in the header lights up the passage on the page
+    const hot = (on) => document.documentElement.classList.toggle("ask-hot", on);
+    ui.quote.addEventListener("mouseenter", () => hot(true));
+    ui.quote.addEventListener("mouseleave", () => hot(false));
 
     Object.keys(PROVIDERS).forEach((id) => {
       const o = el("option");
@@ -384,6 +393,7 @@
 
   function bindFloating() {
     const g = loadGeom();
+    geom = g;
     applyGeom(g);
     const save = () => { try { localStorage.setItem(GEOM_KEY, JSON.stringify(g)); } catch (e) { /* ignore */ } };
 
@@ -398,6 +408,7 @@
         save();
       };
       ui.panel.classList.add("dragging");
+      hideTail();
       window.addEventListener("pointermove", move);
       window.addEventListener("pointerup", up);
     }
@@ -473,6 +484,7 @@
 
   function setSelection(text) {
     state.selection = String(text || "").trim().slice(0, MAX_SELECTION);
+    if (!state.selection) clearAnchor();
     if (!ui.quote) return;
     ui.quote.hidden = !state.selection;
     ui.quoteText.textContent = state.selection;
@@ -487,12 +499,20 @@
     if (!document.getElementById("ask-panel")) buildPanel();
     if (!state.open) lastFocus = document.activeElement;
     state.open = true;
+    const wasMin = minimized;
+    minimized = false;
+    hideBall();
     document.documentElement.classList.add("ask-open");
     ui.panel.classList.add("open");
     ui.backdrop.classList.add("open");
     if (opts && opts.selection !== undefined) {
       setSelection(opts.selection);
       if (state.key) setView("chat");
+      if (opts.range) setAnchor(opts.range);
+      if (opts.rect && floating()) placeNear(opts.rect);
+      else hideTail();
+    } else if (wasMin) {
+      showAnchor();
     }
     hideChip();
     if (state.view === "chat" && chat && chat.focusInput && !isTouch()) setTimeout(() => chat.focusInput(), 30);
@@ -500,6 +520,10 @@
 
   function close() {
     state.open = false;
+    minimized = false;
+    hideBall();
+    hideTail();
+    clearAnchor();
     document.documentElement.classList.remove("ask-open");
     if (ui.panel) ui.panel.classList.remove("open");
     if (ui.backdrop) ui.backdrop.classList.remove("open");
@@ -507,6 +531,117 @@
     if (lastFocus && lastFocus.focus && document.contains(lastFocus)) {
       try { lastFocus.focus({ preventScroll: true }); } catch (e) { /* ignore */ }
     }
+  }
+
+  /* ---------------- anchoring: window next to the highlighted text ---------------- */
+
+  const GAP = 14;
+
+  function hideTail() {
+    if (tail) tail.style.display = "none";
+  }
+
+  function placeNear(r) {
+    if (!geom || !ui.panel) return;
+    const pref = loadGeom();
+    const w = Math.min(pref.w, window.innerWidth - 8);
+    const below = window.innerHeight - r.bottom - GAP - 8;
+    const above = r.top - GAP - 8;
+    const down = below >= pref.h || below >= above;
+    const h = Math.max(MIN_H, Math.min(pref.h, down ? below : above));
+    const cx = (r.left + r.right) / 2;
+    geom.w = w;
+    geom.h = h;
+    geom.x = Math.max(4, Math.min(cx - w / 2, window.innerWidth - w - 4));
+    geom.y = down ? r.bottom + GAP : r.top - GAP - h;
+    clampGeom(geom);
+    applyGeom(geom);
+
+    if (!tail || !document.body.contains(tail)) {
+      tail = el("div");
+      tail.id = "ask-tail";
+      document.body.appendChild(tail);
+    }
+    const tx = Math.max(geom.x + 20, Math.min(cx, geom.x + geom.w - 20));
+    tail.className = down ? "below" : "above";
+    tail.style.left = tx + "px";
+    tail.style.top = (down ? geom.y : geom.y + geom.h) + "px";
+    tail.style.display = "block";
+  }
+
+  // keep the passage visibly marked on the page while the window is about it
+  function showAnchor() {
+    if (!anchor || !window.CSS || !CSS.highlights || typeof Highlight === "undefined") return;
+    try { CSS.highlights.set("ask-anchor", new Highlight(anchor.range)); } catch (e) { /* ignore */ }
+  }
+
+  function setAnchor(range) {
+    anchor = { range: range };
+    showAnchor();
+  }
+
+  function clearAnchor() {
+    anchor = null;
+    document.documentElement.classList.remove("ask-hot");
+    if (window.CSS && CSS.highlights) CSS.highlights.delete("ask-anchor");
+  }
+
+  /* ---------------- the ball: what the window becomes when you click away ---------------- */
+
+  const FACE =
+    '<svg viewBox="0 0 48 48" aria-hidden="true">' +
+      '<g class="eyes">' +
+        '<g class="eye"><ellipse cx="17" cy="20" rx="4.2" ry="5" fill="#fff"/><circle class="pupil" cx="17" cy="20.5" r="2.3" fill="#2a0e0a"/></g>' +
+        '<g class="eye eye-r"><ellipse cx="31" cy="20" rx="4.2" ry="5" fill="#fff"/><circle class="pupil" cx="31" cy="20.5" r="2.3" fill="#2a0e0a"/></g>' +
+      '</g>' +
+      '<ellipse cx="10.5" cy="29" rx="3.2" ry="2" fill="#ff9a8a" opacity=".55"/>' +
+      '<ellipse cx="37.5" cy="29" rx="3.2" ry="2" fill="#ff9a8a" opacity=".55"/>' +
+      '<path class="smile" d="M15 29c2.2 6.4 15.8 6.4 18 0" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/>' +
+    '</svg>';
+
+  function ensureBall() {
+    if (ball && document.body.contains(ball)) return ball;
+    ball = el("button", "", FACE);
+    ball.id = "ask-ball";
+    ball.type = "button";
+    ball.setAttribute("aria-label", "Open Ask AI");
+    ball.title = "Ask AI";
+    ball.addEventListener("click", () => open());
+    document.body.appendChild(ball);
+    return ball;
+  }
+
+  function showBall() {
+    const b = ensureBall();
+    b.classList.remove("pop");
+    void b.offsetWidth;
+    b.classList.add("pop");
+    b.style.display = "block";
+  }
+
+  function hideBall() {
+    if (ball) ball.style.display = "none";
+  }
+
+  function minimize() {
+    if (!state.open || minimized) return;
+    minimized = true;
+    document.documentElement.classList.remove("ask-open", "ask-hot");
+    if (ui.panel) ui.panel.classList.remove("open");
+    if (window.CSS && CSS.highlights) CSS.highlights.delete("ask-anchor");
+    hideTail();
+    showBall();
+  }
+
+  // pupils follow the pointer
+  function trackPupils(e) {
+    if (!ball || ball.style.display === "none") return;
+    const b = ball.getBoundingClientRect();
+    const dx = e.clientX - (b.left + b.width / 2), dy = e.clientY - (b.top + b.height / 2);
+    const d = Math.hypot(dx, dy) || 1;
+    const k = Math.min(1, d / 160) * 1.7;
+    const tx = (dx / d) * k, ty = (dy / d) * k;
+    ball.querySelectorAll(".pupil").forEach((p) => { p.style.transform = "translate(" + tx + "px," + ty + "px)"; });
   }
 
   /* ---------------- selection chip ---------------- */
@@ -527,10 +662,11 @@
       e.preventDefault();
       e.stopPropagation();
       const text = chip.dataset.text || "";
+      const range = chip._range, rect = chip._rect;
       hideChip();
       const s = window.getSelection && window.getSelection();
       if (s && s.removeAllRanges) s.removeAllRanges();
-      open({ selection: text });
+      open({ selection: text, range: range, rect: rect });
     });
     document.body.appendChild(chip);
     return chip;
@@ -567,6 +703,8 @@
     }
     const btn = ensureChip();
     btn.dataset.text = text;
+    btn._range = range.cloneRange();
+    btn._rect = { left: r.left, right: r.right, bottom: r.bottom, top: rects.length ? rects[0].top : r.top };
     btn.style.display = "flex";
     const w = btn.offsetWidth || 130;
     const x = Math.min(Math.max(8, r.left + r.width / 2 - w / 2), window.innerWidth - w - 8);
@@ -600,8 +738,16 @@
       if (!s || s.isCollapsed) hideChip();
       else if (isTouch()) queue(450);
     });
-    window.addEventListener("scroll", hideChip, { capture: true, passive: true });
-    window.addEventListener("resize", hideChip);
+    window.addEventListener("scroll", () => { hideChip(); hideTail(); }, { capture: true, passive: true });
+    // click anywhere outside the window: it shrinks to the ball (phones keep the dimmed backdrop)
+    document.addEventListener("pointerdown", (e) => {
+      if (!state.open || minimized || !floating()) return;
+      const t = e.target;
+      if (t && t.closest && t.closest("#ask-panel, #ask-select-btn, #ask-ball")) return;
+      minimize();
+    }, true);
+    document.addEventListener("pointermove", trackPupils, { passive: true });
+    window.addEventListener("resize", () => { hideChip(); hideTail(); });
 
     document.addEventListener("keydown", (e) => {
       if (e.key !== "Escape") return;
@@ -615,9 +761,11 @@
       bindGlobalListeners();
       // instant navigation swaps the body: rebuild the panel, keeping the conversation
       if (state.open && !document.getElementById("ask-panel")) {
+        const wasMin = minimized;
         snapshot();
         state.open = false;
         open();
+        if (wasMin) minimize();
       }
     } catch (e) {
       if (window.console && console.warn) console.warn("ask-the-guide failed to start", e);
