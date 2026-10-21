@@ -1,34 +1,64 @@
 # 1.2 Random variables & joint PDFs
 
-<p class="lead">Two kinds of questions live here: quick multiple choice on what a random variable, expected value or covariance <em>is</em>, and a small calculation on a joint PDF (find the constant, a marginal, a conditional, or check independence). Recent exams have one of each.</p>
+<p class="lead">Two kinds of questions live here: quick multiple choice on what a random variable, expected value or covariance <em>is</em>, and a small calculation on a joint PDF (find the constant, a marginal, a conditional, or check independence). Recent exams have one of each. This page defines every word, shows each operation on a tiny example, and only then turns to the exam questions.</p>
 
-## The idea, from zero
+!!! need "Before this page"
+    - What a PDF is and that probabilities are areas ([0.6](p0-foundations.md#random-variable-and-pdf)); mean and variance ([0.6](p0-foundations.md#expectation-variance))
+    - Integrals as areas, $\int_0^1x^n\,dx=\frac1{n+1}$, $\int_0^\infty e^{-x}dx=1$ ([0.4](p0-foundations.md#04-the-three-calculations-you-keep-meeting), [Toolbox](toolbox.md#3-the-integrals-that-keep-coming-back))
+    - Conditional probability and independence ([1.1](p1-bayes.md))
+
+    If you read only one thing: **for two random variables, draw the region where the joint PDF is non-zero. Every limit of every integral (normalising, marginal, conditional) is read off that picture.**
+
+---
+
+## 1 · The idea, from zero
+
+### 1.1 Random variables: discrete and continuous
 
 A **random variable** (RV) $X$ maps the outcome of an experiment to a **number**: the face of a die, the voltage on a wire, the number of patients.
 
-- **Discrete RV**: it can take a countable list of values (counts, integers, die faces, a phone number). Described by a **PMF** $p_X(x)=P(X=x)$, which sums to 1.
+- **Discrete RV**: it can take a countable list of values (counts, integers, die faces, a phone number). Described by a **PMF** (probability mass function) $p_X(x)=P(X=x)$, which sums to 1.
 - **Continuous RV**: it can take any value in an interval (time, distance, weight, voltage, an *average* of money). Described by a **PDF** $p_X(x)$, which integrates to 1. Probabilities are areas: $P(a\le X\le b)=\int_a^b p_X(x)\,dx$.
 - **CDF** $P_X(x)=P(X\le x)$: always goes from 0 at $-\infty$ to 1 at $+\infty$ and never decreases.
 
+Quick test: *can I list the possible values (0, 1, 2, …), or is it a measurement on a continuum?* Counts are discrete; durations, distances and averages are continuous.
+
+### 1.2 Expected value and variance
+
 **Expected value** = the average outcome, each outcome weighted by its probability:
 
-$$E[X]=\sum_x x\,p_X(x)\quad\text{(discrete)},\qquad E[X]=\int x\,p_X(x)\,dx\quad\text{(continuous)}.$$
+$$\mathbb E[X]=\sum_x x\,p_X(x)\quad\text{(discrete)},\qquad \mathbb E[X]=\int x\,p_X(x)\,dx\quad\text{(continuous)}.$$
 
-It is the long-run average over infinitely many repetitions. It is **not** "the most likely value" and not "the most common value".
+It is the long-run average over infinitely many repetitions. It is **not** "the most likely value" (that is the *mode*) and not "the most common value".
 
-**Variance** = average squared distance from the mean: $\operatorname{Var}[X]=E[(X-\mu)^2]=E[X^2]-\mu^2$.
+!!! example "A die"
+    $\mathbb E[X]=1\cdot\frac16+2\cdot\frac16+\dots+6\cdot\frac16=\frac{21}{6}=3.5$: a value that can never be rolled, but the average of a million rolls. $\mathbb E[X^2]=\frac{91}6=15.17$, so $\operatorname{Var}=15.17-3.5^2=2.92$.
 
-### Two random variables at once
+**Variance** = average squared distance from the mean: $\operatorname{Var}[X]=\mathbb E[(X-\mu)^2]=\mathbb E[X^2]-\mu^2$.
 
-A **joint PDF** $p_{X,Y}(x,y)$ describes $X$ and $Y$ together. Three operations:
+### 1.3 Two random variables at once
+
+A **joint PDF** $p_{X,Y}(x,y)$ describes $X$ and $Y$ together (a surface over the $(x,y)$ plane; probabilities are *volumes*; the total volume is 1). Three operations:
 
 | Operation | Formula | In words |
 |---|---|---|
-| **Marginal** | $p_X(x)=\int p_{X,Y}(x,y)\,dy$ | forget $Y$ by summing/integrating over all its values |
-| **Conditional** | $p_{X\mid Y}(x\mid y)=\dfrac{p_{X,Y}(x,y)}{p_Y(y)}$ | slice at a fixed $y$ and renormalise |
+| **Marginal** | $p_X(x)=\int p_{X,Y}(x,y)\,dy$ | forget $Y$ by summing/integrating over all its values (for a table of probabilities: **sum each row**) |
+| **Conditional** | $p_{X\mid Y}(x\mid y)=\dfrac{p_{X,Y}(x,y)}{p_Y(y)}$ | slice the surface at a fixed $y$ and renormalise so the slice has area 1 |
 | **Independence** | $p_{X,Y}(x,y)=p_X(x)\,p_Y(y)$ for all $x,y$ | knowing $Y$ tells nothing about $X$ |
 
-**Covariance** $\operatorname{Cov}[X,Y]=E[(X-\mu_X)(Y-\mu_Y)]=E[XY]-\mu_X\mu_Y$. Its sign tells the direction of the relation. It has **no upper bound** and **depends on the units** (measure in grams instead of kg and it changes 1000×). The **correlation coefficient** $\rho=\frac{\operatorname{Cov}}{\sigma_X\sigma_Y}$ fixes that: it is always between $-1$ and $1$.
+!!! example "Tiny example: uniform on a triangle"
+    $p_{X,Y}=2$ on the triangle $0\le y\le x\le1$ (area $\frac12$, so height 2 makes the volume $\frac12\cdot2=1$ ✓). Marginal of $Y$: at height $y$, $x$ runs from $y$ to 1, so $p_Y(y)=\int_y^12\,dx=2(1-y)$. Conditional: $p_{X\mid Y}=\frac{2}{2(1-y)}=\frac{1}{1-y}$ on $y\le x\le1$: a flat slice. This is not independent, because the region is a triangle: knowing $y$ changes the possible range of $x$.
+
+### 1.4 Covariance and correlation
+
+**Covariance** $\operatorname{Cov}[X,Y]=\mathbb E[(X-\mu_X)(Y-\mu_Y)]=\mathbb E[XY]-\mu_X\mu_Y$: the average product of the two deviations from the means. If large $X$ comes with large $Y$ the product is positive; if large $X$ comes with small $Y$ it is negative.
+
+!!! example "Numbers"
+    Three equally likely pairs $(1,2),(2,3),(3,7)$. Means: $\mu_X=2$, $\mu_Y=4$. Products of deviations: $(-1)(-2)=2,\ (0)(-1)=0,\ (1)(3)=3$. Average: $\frac{5}{3}=1.67>0$. If $Y$ is measured in other units (×10), the covariance becomes $16.7$.
+
+Its sign tells the direction of the relation. It has **no upper bound** and **depends on the units**. The **correlation coefficient** $\rho=\frac{\operatorname{Cov}}{\sigma_X\sigma_Y}$ fixes that: it is always between $-1$ and $1$ and does not change with units. Independent variables have zero covariance (the reverse is not true in general).
+
+For two Gaussians, the covariance matrix $\begin{bmatrix}\sigma_x^2&\operatorname{Cov}\\\operatorname{Cov}&\sigma_y^2\end{bmatrix}$ decides the shape of the contour lines of the joint PDF (see Jan 2025 1b).
 
 !!! recipe "Recipe: joint PDF questions"
     1. **Draw the region** where the PDF is non-zero. This is the step that gives you the integration limits.
@@ -59,13 +89,18 @@ A **joint PDF** $p_{X,Y}(x,y)$ describes $X$ and $Y$ together. Three operations:
     2. Determine whether $X$ and $Y$ are independent, and briefly justify why. [0.25]
 
 ???+ solution "Solution"
-    **Region:** the unit square, so for every $x$ the variable $y$ runs from 0 to 1.
+
+    **What is being asked?** (1) Integrate $y$ out. (2) Decide whether the joint factorises.
+
+    **Step 1 — the region.** The unit square $0\le x\le1$, $0\le y\le1$: for every $x$, $y$ runs from 0 to 1 (right panel above).
+
+    **Step 2 — marginal of $X$** (treat $x$ as a constant, $\int_0^1y\,dy=\frac12$):
 
     $$p_X(x)=\int_0^1 6x^2y\,dy=6x^2\Big[\tfrac{y^2}{2}\Big]_0^1=3x^2,\qquad 0\le x\le1.$$
 
-    Same for $Y$: $p_Y(y)=\int_0^1 6x^2y\,dx=6y\cdot\frac13=2y$, $0\le y\le1$.
+    **Step 3 — marginal of $Y$** (same way, $\int_0^1x^2dx=\frac13$): $p_Y(y)=\int_0^1 6x^2y\,dx=6y\cdot\frac13=2y$, $0\le y\le1$.
 
-    Check: $p_X(x)p_Y(y)=3x^2\cdot2y=6x^2y=p_{X,Y}(x,y)$ everywhere, and the support is a rectangle.
+    **Step 4 — independence test.** $p_X(x)p_Y(y)=3x^2\cdot2y=6x^2y=p_{X,Y}(x,y)$ everywhere, and the support is a rectangle.
 
     !!! answer "Answer"
         1. $p_X(x)=3x^2$ for $0\le x\le1$, 0 otherwise.
@@ -85,17 +120,20 @@ A **joint PDF** $p_{X,Y}(x,y)$ describes $X$ and $Y$ together. Three operations:
     Find the constant $c$.
 
 ???+ solution "Solution"
-    **Region:** the triangle under the line $x+y=1$ (middle panel above). The note gives the limits: for fixed $y\in[0,1]$, $x$ goes from 0 to $1-y$.
 
-    Inner integral (over $x$):
+    **What is being asked?** The total volume under the surface must be 1; solve for the unknown constant $c$.
+
+    **Step 1 — the region.** The triangle under the line $x+y=1$ (middle panel above). The note gives the limits: for fixed $y\in[0,1]$, $x$ goes from 0 to $1-y$.
+
+    **Step 2 — inner integral over $x$** ($\int_0^{a}x\,dx=\frac{a^2}{2}$, with $a=1-y$):
 
     $$\int_0^{1-y}(cx+1)\,dx=\frac{c(1-y)^2}{2}+(1-y).$$
 
-    Outer integral (over $y$), substitute $u=1-y$:
+    **Step 3 — outer integral over $y$**, substitute $u=1-y$ (limits stay 0 to 1): $\int_0^1\left(\frac{c\,u^2}{2}+u\right)du=\frac{c}{2}\cdot\frac13+\frac12=\frac c6+\frac12.$
 
-    $$\int_0^1\left(\frac{c\,u^2}{2}+u\right)du=\frac c6+\frac12.$$
+    **Step 4 — normalise:** $\frac c6+\frac12=1\Rightarrow c=3$.
 
-    Set the total to 1: $\frac c6+\frac12=1\Rightarrow c=3$.
+    (Check by splitting: $\iint1=$ area of the triangle $=\frac12$; $\iint x=\int_0^1x(1-x)dx=\frac16$; so $\frac c6+\frac12$ ✓.)
 
     !!! answer "Answer"
         $c=3$
@@ -112,21 +150,26 @@ A **joint PDF** $p_{X,Y}(x,y)$ describes $X$ and $Y$ together. Three operations:
     **Note: provide only the final answer. No passages will be checked.**
 
 ???+ solution "Solution"
-    **Region:** the triangle below the diagonal (left panel above). For a fixed $y$, $x$ runs from $y$ up to 1.
+
+    **What is being asked?** Exactly the tiny example of [1.3](#13-two-random-variables-at-once), with the domains spelled out.
+
+    **Step 1 — the region.** The triangle below the diagonal (left panel above). For a fixed $y$, $x$ runs from $y$ up to 1.
+
+    **Step 2 — marginal:**
 
     $$p_Y(y)=\int_y^1 2\,dx=2(1-y),\qquad 0\le y\le1.$$
 
-    Conditional = joint / marginal, on the slice at that $y$:
+    **Step 3 — conditional = joint / marginal**, on the slice at that $y$:
 
     $$p_{X\mid Y}(x\mid y)=\frac{2}{2(1-y)}=\frac1{1-y},\qquad y\le x\le1\ \ (0\le y<1).$$
 
-    So given $Y=y$, $X$ is **uniform on $[y,1]$**. That makes sense: the joint is flat, so every point of the slice is equally likely.
+    So given $Y=y$, $X$ is **uniform on $[y,1]$** (a flat slice of width $1-y$ has height $\frac1{1-y}$, area 1 ✓).
+
+    !!! trap "Domain of the conditional"
+        The review slides write the domain of $p_{X\mid Y}$ as "$0\le y\le 1$". That is the range of the *given* $y$. The variable of the conditional PDF is $x$, and it lives on $y\le x\le1$. Write both and you are safe.
 
     !!! answer "Answer"
         $p_Y(y)=2(1-y)$ for $0\le y\le1$ (0 otherwise); $\;p_{X\mid Y}(x\mid y)=\dfrac{1}{1-y}$ for $y\le x\le1$ (0 otherwise).
-
-!!! trap "Domain of the conditional"
-    The review slides write the domain of $p_{X\mid Y}$ as "$0\le y\le 1$". That is the range of the *given* $y$. The variable of the conditional PDF is $x$, and it lives on $y\le x\le1$. Write both and you are safe.
 
 ### June 2024 resit · 1c {#jun24-1c}
 
@@ -142,9 +185,18 @@ A **joint PDF** $p_{X,Y}(x,y)$ describes $X$ and $Y$ together. Three operations:
     a) 1  b) 4  c) 1/2  d) 2
 
 ???+ solution "Solution"
-    Region: below the diagonal, unbounded. For fixed $x$, $y$ runs from 0 to $x$:
 
-    $$\int_0^\infty\!\!\int_0^x ce^{-x}e^{-y}\,dy\,dx=c\int_0^\infty e^{-x}(1-e^{-x})\,dx=c\left(1-\tfrac12\right)=\frac c2=1.$$
+    **What is being asked?** Total volume $=1$, solve for $c$.
+
+    **Step 1 — the region.** Below the diagonal, unbounded to the right. For fixed $x$, $y$ runs from 0 to $x$.
+
+    **Step 2 — inner integral:** $\int_0^xe^{-y}dy=1-e^{-x}$.
+
+    **Step 3 — outer integral:**
+
+    $$\int_0^\infty\!\!\int_0^x ce^{-x}e^{-y}\,dy\,dx=c\int_0^\infty e^{-x}(1-e^{-x})\,dx=c\left(\int_0^\infty e^{-x}dx-\int_0^\infty e^{-2x}dx\right)=c\left(1-\tfrac12\right)=\frac c2.$$
+
+    **Step 4:** $\frac c2=1\Rightarrow c=2$.
 
     !!! answer "Answer"
         **(d) $c=2$**
@@ -165,7 +217,14 @@ A **joint PDF** $p_{X,Y}(x,y)$ describes $X$ and $Y$ together. Three operations:
     - (d) $p_X(0)=7/24$, $p_X(1)=5/12$, $p_X(2)=7/24$, 0 otherwise
 
 ???+ solution "Solution"
-    Marginal of $X$ = **sum each row** (sum over all values of $Y$). With denominator 24: row $X=0$: $4+6+3=13$, row $X=1$: $3+4+4=11$. Check: $13+11=24$ ✓. Options (c) and (d) are wrong at a glance: $X$ only takes values 0 and 1.
+
+    **What is being asked?** The marginal of $X$ from a table: forget $Y$ by **summing each row** ([1.3](#13-two-random-variables-at-once)).
+
+    **Step 1 — common denominator 24:** $\frac16=\frac4{24}$, $\frac14=\frac6{24}$, $\frac18=\frac3{24}$.
+
+    **Step 2 — row sums.** Row $X=0$: $\frac{4+6+3}{24}=\frac{13}{24}$. Row $X=1$: $\frac{3+4+4}{24}=\frac{11}{24}$. Check: $13+11=24$ ✓.
+
+    **Step 3 — eliminate.** Options (c) and (d) mention $X=2$, which never occurs in the table.
 
     !!! answer "Answer"
         **(b)** $p_X(0)=13/24$, $p_X(1)=11/24$
@@ -182,14 +241,18 @@ A **joint PDF** $p_{X,Y}(x,y)$ describes $X$ and $Y$ together. Three operations:
     ![Four contour plots A–D](img/exam/jan25-1b-contours.jpg)
 
 ???+ solution "Solution"
+
+    **What is being asked?** Which picture is impossible when the covariance (the off-diagonal entry) is **zero**.
+
     **How to read a contour plot:** each closed curve connects points with the same density, like height lines on a map. The centre is the mean. The shape tells you the covariance matrix:
 
     <figure markdown>
     ![What the covariance matrix does to the contours](img/gen/p1_gauss_contours.svg)
     </figure>
 
-    - Zeros off the diagonal (no covariance) → ellipses **aligned with the axes**. Longer along the axis with the bigger variance (A: taller in $y$; D: wider in $x$), a circle if the variances are equal (B).
-    - A **tilted** ellipse means that large $x$ tends to come with large $y$, i.e. positive covariance. That needs a non-zero off-diagonal entry.
+    **Step 1 — zero off-diagonal.** No covariance → ellipses **aligned with the axes**. Longer along the axis with the bigger variance (A: taller in $y$; D: wider in $x$), a circle if the variances are equal (B).
+
+    **Step 2 — the odd one out.** A **tilted** ellipse means that large $x$ tends to come with large $y$ (or small $y$), i.e. a non-zero covariance, which needs a non-zero off-diagonal entry. That is impossible here.
 
     !!! answer "Answer"
         **C** (the tilted ellipse needs $\operatorname{Cov}(X,Y)\neq0$)
@@ -209,7 +272,8 @@ A **joint PDF** $p_{X,Y}(x,y)$ describes $X$ and $Y$ together. Three operations:
     - (d) It is the weighted average of the probability mass function over over all possible outcomes.
 
 ???+ solution "Solution"
-    $E[X]=\sum_x x\,p_X(x)$: the outcomes averaged with weights $p_X(x)$. The official clarification says (d) should read "the average of the outcomes, weighted by the probability mass function". The same question appeared in the 2021 practice exam ([1c below](#pe21-1c)).
+
+    **What is being asked?** The definition of $\mathbb E[X]$ ([1.2](#12-expected-value-and-variance)): $\sum_x x\,p_X(x)$, the outcomes averaged with weights $p_X(x)$. (a) and (b) are other kinds of averages; (c) is just $\sum p_X=1$. The official clarification says (d) should read "the average of the outcomes, weighted by the probability mass function". The same question appeared in the 2021 practice exam ([1c below](#pe21-1c)).
 
     !!! answer "Answer"
         **(d)**
@@ -228,7 +292,8 @@ A **joint PDF** $p_{X,Y}(x,y)$ describes $X$ and $Y$ together. Three operations:
     | 5 | The average amount spent on electricity each July by a randomly selected household in a certain state. |
 
 ???+ solution "Solution"
-    Ask: *can I count the possible values (0, 1, 2, …), or is it a measurement on a continuum?* Durations, distances and averages are measurements; "number of …" is a count.
+
+    **What is being asked?** Apply the quick test of [1.1](#11-random-variables-discrete-and-continuous): can the possible values be listed (0, 1, 2, …), or is it a measurement on a continuum? Durations, distances and averages are measurements; "number of …" is a count.
 
     !!! answer "Answer"
         1 continuous · 2 discrete · 3 continuous · 4 discrete · 5 continuous
@@ -244,9 +309,12 @@ A **joint PDF** $p_{X,Y}(x,y)$ describes $X$ and $Y$ together. Three operations:
     - d) Each picture represents a random process, and the color of each pixel is a realization of the random process, hence a random signal.
 
 ???+ solution "Solution"
+
+    **What is being asked?** The vocabulary of [0.6](p0-foundations.md#random-signals-stationarity-and-autocorrelation): a **random process** is the whole *ensemble* of possible signals; **one recording of it** (one picture here) is a *realisation*, i.e. a random signal.
+
     - (a) No: integers 0–255 are a countable set, so the colour is **discrete**.
-    - (b) Yes: the **set** of all pictures is the random process (the ensemble); **one** picture is one realisation = a random signal (indexed by pixel position instead of time).
-    - (c) Nothing in the text tells you the statistics are the same at every pixel position, so you cannot claim WSS.
+    - (b) **Yes**: one picture is one realisation (indexed by pixel position instead of time).
+    - (c) Nothing in the text says the statistics are the same at every pixel position, so you cannot claim wide-sense stationarity.
     - (d) Swaps the roles: one pixel value is a single random **variable**, not a signal.
 
     !!! answer "Answer"
@@ -263,7 +331,12 @@ A **joint PDF** $p_{X,Y}(x,y)$ describes $X$ and $Y$ together. Three operations:
     - d) All of the above.
 
 ???+ solution "Solution"
-    All three are true. Covariance can be any size (no upper bound) and changes when you change units: in the review slides the same physical force/mass experiment gives Cov = 1.30 in N·kg and 19 in lbf·lb, while $\rho\approx0.9$ in both. Its sign shows the direction. The correlation **coefficient** is the scaled, bounded version.
+
+    **What is being asked?** Which properties of the covariance are true ([1.4](#14-covariance-and-correlation)).
+
+    **Step 1.** (a) true: it can be any size. (b) true: positive when the two move together, negative when they move oppositely. (c) true: change the units and it scales (the review slides: the same force/mass experiment gives Cov = 1.30 in N·kg and 19 in lbf·lb, while $\rho\approx0.9$ in both).
+
+    **Step 2.** All three are true. The correlation **coefficient** is the scaled, bounded version.
 
     !!! answer "Answer"
         **(d)** All of the above
@@ -279,7 +352,8 @@ A **joint PDF** $p_{X,Y}(x,y)$ describes $X$ and $Y$ together. Three operations:
     - d) It is the integral of the probability mass function over the range on which the random variable is defined.
 
 ???+ solution "Solution"
-    $E[X]=\sum x\,p(x)$, outcomes weighted by their probabilities. (d) is just $\sum p(x)=1$.
+
+    **What is being asked?** Same as [April 2025 1b](#apr25-1b): $\mathbb E[X]=\sum x\,p(x)$, outcomes weighted by their probabilities. (d) is just $\sum p(x)=1$.
 
     !!! answer "Answer"
         **(b)**
@@ -292,11 +366,14 @@ A **joint PDF** $p_{X,Y}(x,y)$ describes $X$ and $Y$ together. Three operations:
     a) 0.1468  b) 0.3355  c) 0.1678  d) 0.2936
 
 ???+ solution "Solution"
-    "Exactly $k$ successes in $n$ independent tries with success probability $p$" is the **binomial** distribution:
 
-    $$P(6)=\binom86(0.8)^6(0.2)^2=28\cdot0.2621\cdot0.04=0.2936.$$
+    **What is being asked?** "Exactly $k$ successes in $n$ independent tries, each with success probability $p$" is the **binomial** distribution.
 
-    ($\binom86=\frac{8\cdot7}{2}=28$ counts the ways to choose which 2 throws are missed.)
+    **Step 1 — one particular sequence.** Say the first 6 throws go in and the last 2 miss: probability $0.8^6\cdot0.2^2$ (independent throws multiply).
+
+    **Step 2 — how many sequences?** Choose which 2 of the 8 throws are misses: $\binom82=\frac{8\cdot7}{2}=28$ ($=\binom86$).
+
+    **Step 3 — multiply:** $P(6)=28\cdot0.8^6\cdot0.2^2=28\cdot0.262144\cdot0.04=0.2936$.
 
     !!! answer "Answer"
         **(d) 0.2936**
@@ -312,7 +389,8 @@ A **joint PDF** $p_{X,Y}(x,y)$ describes $X$ and $Y$ together. Three operations:
     - D. most common value over an infinite number of observations of the variable.
 
 ???+ solution "Solution"
-    A and D describe the **mode**, C the maximum. The expected value is the long-run average. Example: for a die, $E[X]=3.5$, a value that never occurs.
+
+    **What is being asked?** The meaning of $\mathbb E[X]$ ([1.2](#12-expected-value-and-variance)). A and D describe the **mode**, C the maximum. The expected value is the long-run average. Example: for a die, $\mathbb E[X]=3.5$, a value that never occurs.
 
     !!! answer "Answer"
         **B**
@@ -328,7 +406,22 @@ A **joint PDF** $p_{X,Y}(x,y)$ describes $X$ and $Y$ together. Three operations:
     - D. Let $X$ be the time it takes for you to get to university in the morning.
 
 ???+ solution "Solution"
-    Weight and time are measurements (continuous). "Number of 4s" is a count; a phone number comes from a countable list.
+
+    **What is being asked?** Apply the "can I list the values?" test ([1.1](#11-random-variables-discrete-and-continuous)). Weight (A) and time (D) are measurements: continuous. "Number of 4s" (B) is a count; a phone number (C) comes from a countable list.
 
     !!! answer "Answer"
         **B and C**
+
+*[random variable]: a number whose value depends on the outcome of an experiment.
+*[discrete]: takes values from a countable list (counts, integers).
+*[continuous]: takes any value in an interval (measurements).
+*[PMF]: probability mass function: P(X = x) for a discrete variable; sums to 1.
+*[PDF]: probability density function: area under it between a and b is the probability of landing there; integrates to 1.
+*[CDF]: cumulative distribution function P(X ≤ x); goes from 0 to 1.
+*[expected value]: the probability-weighted average of the outcomes; the long-run average.
+*[marginal]: the PDF of one variable obtained by integrating the other out of the joint PDF.
+*[conditional PDF]: the joint PDF divided by the marginal of the given variable; a renormalised slice.
+*[covariance]: average product of the deviations from the means; sign gives direction, size depends on units.
+*[correlation coefficient]: covariance divided by the two standard deviations; between −1 and 1.
+*[binomial]: the number of successes in n independent tries with success probability p.
+*[realisation]: one actual recording of a random process.
