@@ -147,6 +147,8 @@
   }
 
   const SHADOW_CSS =
+    "#text-input{padding-right:2.8rem!important;box-sizing:border-box}" +
+    ".inner-message-container{width:calc(100% - 8px)!important}" +
     "#text-input{white-space:nowrap!important;overflow:hidden!important;max-height:2.4em!important}" +
     "[contenteditable]:empty:before{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}" +
     ".katex{font-size:1.05em;display:inline-block;max-width:100%;overflow-x:auto;overflow-y:hidden;vertical-align:middle}" +
@@ -326,7 +328,7 @@
   /* ---------------- floating window: drag + resize (desktop) ---------------- */
 
   const GEOM_KEY = "ssp-ask-geom";
-  const MIN_W = 300, MIN_H = 260;
+  const MIN_W = 300, MIN_H = 130;
   const floating = () => window.matchMedia && window.matchMedia("(min-width: 45em)").matches;
 
   function clampGeom(g) {
