@@ -337,3 +337,12 @@
   #ask-panel .ask-settings { padding: .2rem; }
 }
 @media screen and (max-width: 44.9375em) { #ask-panel .ask-resize { display: none; } }
+
+/* quote: only the "Ask about this" label until hovered/focused */
+#ask-panel .ask-quote { padding-top: .35rem; padding-bottom: .35rem; }
+#ask-panel .ask-quote-label { margin-bottom: 0; }
+#ask-panel .ask-quote-main:not(:hover):not(:focus) .ask-quote-text { display: none; }
+#ask-panel .ask-quote-main:hover .ask-quote-text,
+#ask-panel .ask-quote-main:focus .ask-quote-text { margin-top: .25rem; }
+#ask-panel .ask-quote-main { outline: none; }
+#ask-panel .ask-quote-x { width: 1.6rem; height: 1.6rem; }

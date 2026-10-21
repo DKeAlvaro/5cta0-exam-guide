@@ -233,7 +233,7 @@
     const wrap = el("aside");
     wrap.id = "ask-panel";
     wrap.setAttribute("role", "dialog");
-    wrap.setAttribute("aria-label", "Ask the guide");
+    wrap.setAttribute("aria-label", "Ask");
     wrap.innerHTML =
       '<div class="ask-grab"></div>' +
       '<div class="ask-resize ask-resize-nw" data-edge="nw"></div>' +
@@ -241,14 +241,13 @@
       '<header class="ask-head">' +
         '<button type="button" class="ask-btn ask-back" data-act="back" aria-label="Back to chat">' + ICONS.back + '</button>' +
         '<div class="ask-head-text">' +
-          '<span class="ask-title">Ask the guide</span>' +
         '</div>' +
         '<button type="button" class="ask-btn ask-reset" data-act="reset" aria-label="New chat" title="New chat">' + ICONS.trash + '</button>' +
         '<button type="button" class="ask-btn ask-gear" data-act="settings" aria-label="API key settings" title="API key settings">' + ICONS.settings + '</button>' +
         '<button type="button" class="ask-btn ask-close" data-act="close" aria-label="Close" title="Close (Esc)">' + ICONS.close + '</button>' +
       '</header>' +
       '<div class="ask-quote" hidden>' +
-        '<div class="ask-quote-main"><div class="ask-quote-label">Highlighted passage</div><div class="ask-quote-text"></div></div>' +
+        '<div class="ask-quote-main" tabindex="0"><div class="ask-quote-label">Ask about this</div><div class="ask-quote-text"></div></div>' +
         '<button type="button" class="ask-quote-x" data-act="clear-ctx" aria-label="Remove highlighted passage">' + ICONS.close + '</button>' +
       '</div>' +
       '<div class="ask-body">' +
