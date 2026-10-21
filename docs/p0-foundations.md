@@ -178,7 +178,93 @@ Example: $f_s = 50$ Hz and $N = 24$ samples → $\frac{50}{24}\approx 2.08$ Hz a
 
 ---
 
-## 0.6 Word book (everything else the guide says without warning)
+## 0.6 Probability from zero
+
+Parts 1, 2 and 4 live on this. Nothing here needs more than the integrals of [0.4](#04-the-three-calculations-you-keep-meeting).
+
+### Random variable and PDF
+
+**Plain words.** A **random variable** $X$ is a number whose value you do not know until you look: the roll of a die, the voltage noise on a wire at 3:00:00 pm. You cannot predict the value, but you can say *which values are likely*.
+
+For a number that can land anywhere on a line (a voltage), "the probability that $X$ is exactly 0.5" is zero (there are infinitely many possible values). So instead we describe a random variable with a **PDF** (probability density function) $p(x)$, a curve with one rule:
+
+> **The area under the curve between $a$ and $b$ is the probability that $X$ lands between $a$ and $b$.** The total area under the whole curve is 1 (something must happen).
+
+!!! example "Two PDFs with real numbers"
+    - **Uniform on $[0,2]$**: $p(x)=\tfrac12$ for $0\le x\le 2$, zero elsewhere. Total area $=\tfrac12\cdot 2 = 1$ ✓. $P(0.5<X<1.5)=$ width $\times$ height $=1\times\tfrac12=0.5$.
+    - **Exponential**: $p(x)=e^{-x}$ for $x\ge0$. Total area $=\int_0^\infty e^{-x}dx = [-e^{-x}]_0^\infty = 0-(-1)=1$ ✓. $P(X>1)=\int_1^\infty e^{-x}dx = e^{-1}\approx0.368$.
+
+Careful: the *height* $p(x)$ is **not** a probability (it can be bigger than 1, for example a uniform on $[0,0.1]$ has height 10). Only **areas** are probabilities.
+
+### Expectation, variance
+
+**Expectation** (mean) $\mathbb E[X]$ = the long-run average of $X$ if you could repeat the experiment forever. Formula: weight every value by how likely it is and add up:
+
+$$\mathbb E[X]=\int_{-\infty}^{\infty} x\,p(x)\,dx,\qquad \mathbb E[g(X)]=\int g(x)\,p(x)\,dx .$$
+
+(For a die: $\mathbb E[X]=\tfrac16(1+2+\dots+6)=3.5$. The uniform on $[0,2]$ has mean $1$, the middle, as you would guess.)
+
+**Variance** $\sigma^2=\operatorname{Var}(X)=\mathbb E\big[(X-\mu)^2\big]$ ($\mu=\mathbb E[X]$): the average squared distance from the mean, i.e. *how spread out $X$ is*. **Standard deviation** $\sigma=\sqrt{\sigma^2}$ has the same units as $X$.
+
+Handy rewriting (expand the square: $\mathbb E[X^2-2\mu X+\mu^2]=\mathbb E[X^2]-2\mu^2+\mu^2$):
+
+$$\operatorname{Var}(X)=\mathbb E[X^2]-\mu^2 .$$
+
+Die: $\mathbb E[X^2]=\tfrac16(1+4+9+16+25+36)=\tfrac{91}{6}=15.17$, so $\operatorname{Var}=15.17-3.5^2=15.17-12.25=2.92$.
+
+Three rules you will use constantly (the first one is just "averaging is linear"):
+
+| Rule | Meaning |
+|---|---|
+| $\mathbb E[aX+b]=a\mathbb E[X]+b$ | scaling and shifting move the mean the same way |
+| $\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$ | shifting does not change spread; scaling by $a$ scales spread by $a$, variance by $a^2$ |
+| $\operatorname{Var}(X+Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)$ **if $X,Y$ independent** | independent randomness adds up in variance |
+
+### Conditional probability and independence
+
+$P(A\mid B)$ = "the probability of $A$ **given that we already know** $B$ happened". Restrict to the cases where $B$ is true and ask how many of those also have $A$:
+
+$$P(A\mid B)=\frac{P(A\cap B)}{P(B)}\qquad(A\cap B=\text{"both A and B"}).$$
+
+$A$ and $B$ are **independent** when knowing $B$ tells you nothing about $A$: $P(A\mid B)=P(A)$, equivalently $P(A\cap B)=P(A)P(B)$. Two coin flips: $P(\text{both heads})=\tfrac12\cdot\tfrac12=\tfrac14$. For random variables the same idea reads: **$X,Y$ are independent iff the joint PDF factorises, $p(x,y)=p(x)\,p(y)$** (this is used again in [1.2](p1-rv.md) and in every estimation problem with "independent samples").
+
+### The Gaussian (bell curve)
+
+$$p(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\;e^{-\frac{(x-\mu)^2}{2\sigma^2}}\qquad\text{written }X\sim\mathcal N(\mu,\sigma^2).$$
+
+- $\mu$ = centre of the bell (the mean), $\sigma^2$ = variance (the width). The prefactor $\frac1{\sqrt{2\pi\sigma^2}}$ only exists to make the total area equal 1.
+- About 68 % of the area lies within $\pm\sigma$ of $\mu$, 95 % within $\pm2\sigma$, 99.7 % within $\pm3\sigma$.
+- **Standardising:** if $X\sim\mathcal N(\mu,\sigma^2)$ then $\frac{X-\mu}{\sigma}\sim\mathcal N(0,1)$ (shift by the mean, divide by the spread). So any Gaussian question reduces to the standard one.
+- **$Q$-function:** $Q(x)=P(Z>x)$ for $Z\sim\mathcal N(0,1)$ = the area of the right tail beyond $x$. Symmetry gives $Q(-x)=1-Q(x)$ and $Q(0)=\tfrac12$. From the 68/95/99.7 numbers: $Q(1)=\frac{1-0.683}{2}=0.1587$, $Q(2)=\frac{1-0.954}{2}=0.023$. Exams that give you an erf table want exactly this: $Q(x)=\tfrac12\big(1-\operatorname{erf}(x/\sqrt2)\big)$.
+- **Sums:** independent Gaussians added together are Gaussian again, with the **means added and the variances added**.
+
+### Likelihood: the same formula read backwards
+
+A PDF with a parameter, e.g. $p(y;\theta)$, answers "*given* the parameter $\theta$, how likely is each data value $y$?". Estimation reverses the question: **the data $y$ are fixed (you measured them), which $\theta$ makes them most plausible?** Same formula, now plotted against $\theta$, and called the **likelihood**.
+
+!!! example "One sample, unknown mean"
+    You measure $y=3$ from $\mathcal N(\theta,1)$ with $\theta$ unknown: $p(3;\theta)=\frac1{\sqrt{2\pi}}e^{-(3-\theta)^2/2}$. As a function of $\theta$ this is a bell centred at $\theta=3$: the most plausible mean is the measurement itself. That is the whole idea of maximum likelihood ([2.1](p2-mle.md)).
+
+### Random signals: stationarity and autocorrelation
+
+A **random signal** (random process) is a list of random variables $x[0],x[1],x[2],\dots$: every time you record it you get a different list (a "realisation"). Two statistics describe it:
+
+- **Mean** $\mu_x=\mathbb E[x[n]]$.
+- **Autocorrelation** $r[l]=\mathbb E\big[x[n]\,x[n-l]\big]$: how strongly the signal at time $n$ is related, *on average*, to the signal $l$ steps earlier ($l$ = the **lag**).
+
+The process is **stationary** (wide-sense) when $\mu_x$ and $r[l]$ do **not depend on $n$**: the statistics look the same at any time. Facts you will use:
+
+1. $r[0]=\mathbb E[x[n]^2]$ = the **average power** (the random-signal twin of $P_x$ in [3.1](p3-windows.md#1-energy-vs-power-which-one-is-this-signal)). It is the largest value: $|r[l]|\le r[0]$.
+2. $r[-l]=r[l]$ for real signals (symmetric in the lag).
+3. **White noise** has no relation between different times: $r[0]=\sigma^2$ and $r[l]=0$ for $l\ne0$.
+4. The **PSD** (power spectral density: how the power is spread over frequency) is the FTD of the autocorrelation:
+$$P(\theta)=\sum_{l=-\infty}^{\infty} r[l]\,e^{-jl\theta}=r[0]+2\sum_{l=1}^{\infty} r[l]\cos(l\theta)\quad(\text{real, symmetric }r).$$
+    Example: $r[0]=1,\ r[\pm1]=0.5$, zero otherwise → $P(\theta)=1+2(0.5)\cos\theta=1+\cos\theta$. Check: $P(0)=2=1+0.5+0.5$ (the sum of all $r[l]$), and $P\ge0$ everywhere, as a power must be.
+5. **Ergodic** means one long recording is as good as many short ones: averaging over *time* in a single record gives the same answer as averaging over *realisations*. This is what lets us estimate $r[l]$ from a single record ([3.2](p3-nonparametric.md)).
+
+---
+
+## 0.7 Word book (everything else the guide says without warning)
 
 | Word | What it means here |
 |---|---|
@@ -204,8 +290,10 @@ Example: $f_s = 50$ Hz and $N = 24$ samples → $\frac{50}{24}\approx 2.08$ Hz a
 ## Where to go next
 
 - Doing **Part 3** (start with [3.1 Signals, windows, zero padding](p3-windows.md)): sections 0.1, 0.2, 0.4, 0.5 of this page are everything you need.
-- Doing **Part 2** (estimation): section 0.4 (derivatives + logs → [Toolbox](toolbox.md#2-logs-and-exponentials)) and the word book.
-- Doing **Part 1** (probability) or **Part 4** (detection): the word book, plus [1.2 Random variables & joint PDFs](p1-rv.md) which builds probability from zero.
+- Doing **Part 2** (estimation) or **Part 4** (detection): section 0.6 (probability from zero), then 0.4 (derivatives + logs → [Toolbox](toolbox.md#2-logs-and-exponentials)).
+- Doing **Part 1** (probability): section 0.6, then [1.1 Bayes](p1-bayes.md).
+- Doing **3.2 – 3.4**: section 0.6 (autocorrelation, PSD) first.
+- Any word you do not know: the word book 0.7.
 
 *[signal]: a number that changes over time, e.g. a voltage or a measurement per second.
 *[sample]: one recorded number of a discrete-time signal, $x[n]$ at a given integer $n$.
@@ -219,3 +307,12 @@ Example: $f_s = 50$ Hz and $N = 24$ samples → $\frac{50}{24}\approx 2.08$ Hz a
 *[dB]: decibel, a logarithmic scale for magnitudes: $20\log_{10}|X|$.
 *[convolution]: smearing one function with another; multiplying in time equals convolving in frequency.
 *[PSD]: power spectral density: how a random signal's power is spread over frequency.
+*[random variable]: a number whose value is not known until you look; described by a PDF.
+*[PDF]: probability density function p(x): the area under it between a and b is the probability of landing between a and b.
+*[expectation]: E[X], the probability-weighted average value of X.
+*[variance]: Var(X) = E[(X − mean)²]: how spread out X is.
+*[likelihood]: the PDF of the measured data viewed as a function of the unknown parameter.
+*[Q-function]: Q(x), the area of the standard Gaussian's right tail beyond x.
+*[stationary]: statistics (mean, autocorrelation) do not change with time.
+*[autocorrelation]: r[l] = E[x[n]x[n−l]]: how related a random signal is to itself l steps later.
+*[ergodic]: a time average over one long record equals the average over many records.
