@@ -386,3 +386,12 @@
 #ask-panel .ask-head .ask-quote-text { padding: .3rem .6rem; font-size: .76rem; line-height: 1.4; max-height: 10em; }
 #ask-panel .ask-head .ask-quote { align-self: flex-start; width: fit-content; max-width: 100%; }
 #ask-panel .ask-head .ask-quote-main { flex: 0 0 auto; }
+
+/* ---------- desktop: only the content by default; header + input appear on hover ---------- */
+@media screen and (min-width: 45em) {
+  #ask-panel { --ask-input-bg: var(--md-default-bg-color, #fbf8f2); }
+  #ask-panel .ask-head { position: absolute; top: 0; left: 0; right: 0; z-index: 4; opacity: 0; pointer-events: none; transition: opacity .15s ease; }
+  #ask-panel:hover .ask-head, #ask-panel:focus-within .ask-head, #ask-panel.dragging .ask-head,
+  #ask-panel[data-view="settings"] .ask-head { opacity: 1; pointer-events: auto; }
+  #ask-panel[data-view="settings"] .ask-body { padding-top: 2.4rem; }
+}
