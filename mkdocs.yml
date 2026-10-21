@@ -4,7 +4,6 @@ site_url: https://dkealvaro.github.io/5cta0-exam-guide/
 use_directory_urls: false
 repo_url: https://github.com/DKeAlvaro/5cta0-exam-guide
 repo_name: 5cta0-exam-guide
-copyright: Built from the 5CTA0 (TU/e) exams, keys, review slides and course reader 2026-27. Not official material.
 
 theme:
   name: material
@@ -104,6 +103,7 @@ extra_javascript:
   - https://unpkg.com/katex@0.16.11/dist/contrib/auto-render.min.js
   - javascripts/quiz.js
   - javascripts/ask.js
+  - javascripts/layout.js
 
 extra_css:
   - https://unpkg.com/katex@0.16.11/dist/katex.min.css
