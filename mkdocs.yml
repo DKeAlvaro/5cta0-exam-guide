@@ -115,3 +115,6 @@ extra_css:
 
 extra:
   generator: false
+
+hooks:
+  - hooks/cachebust.py
