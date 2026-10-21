@@ -26,7 +26,7 @@
       name: "OpenAI",
       keyHint: "sk-...",
       keyUrl: "https://platform.openai.com/api-keys",
-      defaultModel: "gpt-4o-mini",
+      defaultModel: "gpt-6-luna",
       connection: (key, model) => ({ openAI: { key: key, chat: { model: model } } }),
     },
     openrouter: {
@@ -164,10 +164,11 @@
       textInput: {
         placeholder: { text: "Ask about this page, or highlight a passage", style: { color: d ? "#9a948c" : "#6b6259" } },
         styles: {
-          container: { borderRadius: "14px", border: "1px solid " + (d ? "rgba(255,255,255,.2)" : "rgba(0,0,0,.18)"), background: d ? "#1d1b19" : "#fff", boxShadow: "none", marginBottom: "6px", width: "96%" },
+          container: { borderRadius: "14px", border: "1px solid " + (d ? "rgba(255,255,255,.2)" : "rgba(0,0,0,.18)"), background: d ? "#1d1b19" : "#fff", boxShadow: "none", marginBottom: "8px", width: "calc(100% - 16px)" },
           text: { color: fg, fontSize: "14px" },
         },
       },
+      submitButtonStyles: { position: "inside-right", submit: { container: { default: { bottom: "6px", right: "10px" } } } },
     };
   }
 
