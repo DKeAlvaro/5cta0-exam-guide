@@ -251,13 +251,11 @@
         '<button type="button" class="ask-btn ask-back" data-act="back" aria-label="Back to chat">' + ICONS.back + '</button>' +
         '<div class="ask-head-text">' +
           '<span class="ask-title">Ask the guide</span>' +
-          '<span class="ask-sub"></span>' +
         '</div>' +
         '<button type="button" class="ask-btn ask-reset" data-act="reset" aria-label="New chat" title="New chat">' + ICONS.trash + '</button>' +
         '<button type="button" class="ask-btn ask-gear" data-act="settings" aria-label="API key settings" title="API key settings">' + ICONS.settings + '</button>' +
         '<button type="button" class="ask-btn ask-close" data-act="close" aria-label="Close" title="Close (Esc)">' + ICONS.close + '</button>' +
       '</header>' +
-      '<div class="ask-ctx"><span class="ask-ctx-dot"></span><span class="ask-ctx-text"></span></div>' +
       '<div class="ask-quote" hidden>' +
         '<div class="ask-quote-main"><div class="ask-quote-label">Highlighted passage</div><div class="ask-quote-text"></div></div>' +
         '<button type="button" class="ask-quote-x" data-act="clear-ctx" aria-label="Remove highlighted passage">' + ICONS.close + '</button>' +
@@ -281,7 +279,6 @@
 
     ui.panel = wrap;
     ui.backdrop = backdrop;
-    ui.sub = wrap.querySelector(".ask-sub");
     ui.body = wrap.querySelector(".ask-body");
     ui.chatHost = wrap.querySelector(".ask-chat-host");
     ui.settings = wrap.querySelector(".ask-settings");
@@ -289,7 +286,6 @@
     ui.key = wrap.querySelector(".ask-key");
     ui.model = wrap.querySelector(".ask-model");
     ui.keylink = wrap.querySelector(".ask-keylink");
-    ui.ctx = wrap.querySelector(".ask-ctx-text");
     ui.quote = wrap.querySelector(".ask-quote");
     ui.quoteText = wrap.querySelector(".ask-quote-text");
 
@@ -319,14 +315,12 @@
 
     loadProviderFields(state.provider);
     setSelection(state.selection);
-    updateContext();
     setView(state.key ? "chat" : "settings");
   }
 
   function setView(v) {
     state.view = v;
     ui.panel.dataset.view = v;
-    ui.sub.textContent = v === "settings" ? "Settings" : pageTitle();
     if (v === "chat") {
       mountChat().then(() => {
         if (chat && chat.focusInput && !isTouch()) chat.focusInput();
@@ -365,13 +359,6 @@
 
   /* ---------------- context + highlighted passage ---------------- */
 
-  function updateContext() {
-    if (!ui.ctx) return;
-    const n = pageContext().length;
-    ui.ctx.textContent = "Reading: " + pageTitle() + " (" + (n / 1000).toFixed(1) + "k chars)";
-    if (ui.sub && state.view === "chat") ui.sub.textContent = pageTitle();
-  }
-
   function setSelection(text) {
     state.selection = String(text || "").trim().slice(0, MAX_SELECTION);
     if (!ui.quote) return;
@@ -389,7 +376,6 @@
     document.documentElement.classList.add("ask-open");
     ui.panel.classList.add("open");
     ui.backdrop.classList.add("open");
-    updateContext();
     if (opts && opts.selection !== undefined) {
       setSelection(opts.selection);
       if (state.key) setView("chat");
@@ -516,7 +502,7 @@
         snapshot();
         state.open = false;
         open();
-      } else if (state.open) updateContext();
+      } 
       else updateLauncher();
     } catch (e) {
       if (window.console && console.warn) console.warn("ask-the-guide failed to start", e);

@@ -104,6 +104,7 @@ extra_javascript:
   - https://unpkg.com/katex@0.16.11/dist/contrib/auto-render.min.js
   - javascripts/quiz.js
   - javascripts/ask.js
+  - javascripts/layout.js
   - javascripts/zen.js
 
 extra_css:
@@ -111,6 +112,7 @@ extra_css:
   - https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap
   - stylesheets/extra.css
   - stylesheets/ask.css
+  - stylesheets/layout.css
   - stylesheets/zen.css
 
 extra:

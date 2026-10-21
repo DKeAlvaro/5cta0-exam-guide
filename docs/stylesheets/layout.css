@@ -1,0 +1,23 @@
+/* Minimal reading layout: content only; sidebars opt-in via the header buttons. */
+@media screen and (min-width: 60em) {
+  html:not(.show-nav) .md-sidebar--primary { display: none; }
+  html:not(.show-toc) .md-sidebar--secondary { display: none; }
+  .md-main__inner { max-width: 78rem; }
+  .md-content { flex: 0 1 46rem; min-width: 0; margin: 0 auto; }
+  .md-content__inner { margin-left: 1.2rem; margin-right: 1.2rem; }
+}
+.md-header__source { display: none; }
+.layout-btns { display: none; gap: .1rem; margin-right: .4rem; }
+@media screen and (min-width: 60em) { .layout-btns { display: flex; } }
+.layout-btn { display: grid; place-items: center; width: 2.3rem; height: 2.3rem; padding: 0; border: 0; border-radius: 50%; background: transparent; color: #fff; opacity: .7; cursor: pointer; transition: opacity .15s, background .15s; }
+.layout-btn:hover { opacity: 1; background: rgba(255, 255, 255, .15); }
+.layout-btn.active { opacity: 1; background: rgba(255, 255, 255, .22); }
+.layout-btn svg { width: 1.2rem; height: 1.2rem; display: block; }
+/* Zen sits next to Ask instead of over the text */
+html #zen-toggle { left: auto; right: 6.4rem; bottom: 1rem; padding: .62em 1em; opacity: .85; }
+html #zen-toggle:hover { opacity: 1; }
+/* the Ask drawer pushes the page instead of covering it */
+@media screen and (min-width: 60em) {
+  html.ask-open .md-main { margin-right: 26rem; }
+  html.ask-open .md-header, html.ask-open .md-tabs { padding-right: 26rem; }
+}
