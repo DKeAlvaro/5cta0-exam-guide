@@ -163,9 +163,9 @@
       chatStyle: { width: "100%", height: "100%", border: "none", background: "transparent", borderRadius: "0" },
       messageStyles: {
         default: {
-          shared: { bubble: { maxWidth: "94%", padding: ".5rem .75rem", overflow: "hidden", overflowWrap: "anywhere", fontSize: Math.round(14 * zoom * 10) / 10 + "px", lineHeight: "1.5", color: fg } },
+          shared: { bubble: { maxWidth: "94%", padding: ".5rem .75rem", overflow: "hidden", overflowWrap: "anywhere", fontSize: "14px", lineHeight: "1.5", color: fg } },
           user: { bubble: { background: "linear-gradient(135deg,#9b2114,#c0432c)", color: "#fff" } },
-          intro: { bubble: { background: "transparent", border: "none", color: d ? "#b9b1a7" : "#6b6259", fontSize: Math.round(13 * zoom * 10) / 10 + "px", padding: ".2rem .2rem" } },
+          intro: { bubble: { background: "transparent", border: "none", color: d ? "#b9b1a7" : "#6b6259", fontSize: "13px", padding: ".2rem .2rem" } },
           ai: { bubble: { background: soft, border: "1px solid " + (d ? "rgba(255,255,255,.13)" : "rgba(0,0,0,.1)") } },
         },
       },
@@ -173,7 +173,7 @@
         placeholder: { text: "Ask about this page, or highlight a passage", style: { color: d ? "#9a948c" : "#6b6259" } },
         styles: {
           container: { borderRadius: "14px", border: "1px solid " + (d ? "rgba(255,255,255,.2)" : "rgba(0,0,0,.18)"), background: d ? "#1d1b19" : "#fff", boxShadow: "none", marginBottom: "8px", width: "calc(100% - 16px)" },
-          text: { color: fg, fontSize: Math.round(14 * zoom * 10) / 10 + "px" },
+          text: { color: fg, fontSize: "14px" },
         },
       },
       submitButtonStyles: { position: "inside-right", submit: { container: { default: { bottom: "6px", right: "10px" } } } },
@@ -209,6 +209,7 @@
           const st = document.createElement("style");
           st.textContent = SHADOW_CSS;
           chat.shadowRoot.appendChild(st);
+          applyZoom();
         }
       }, 50);
     }, () => {
@@ -353,7 +354,22 @@
   function setZoom(z) {
     zoom = Math.round(Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, z)) * 10) / 10;
     try { localStorage.setItem(ZOOM_KEY, String(zoom)); } catch (e) { /* ignore */ }
-    if (chat) chatSettings(chat);
+    applyZoom();
+  }
+
+  // Zoom only restyles the messages (CSS inside the shadow root): re-setting Deep Chat's
+  // properties would wipe the typed question and move the send button.
+  function applyZoom() {
+    if (!chat || !chat.shadowRoot) return;
+    let st = chat.shadowRoot.getElementById("ask-zoom-style");
+    if (!st) {
+      st = document.createElement("style");
+      st.id = "ask-zoom-style";
+      chat.shadowRoot.appendChild(st);
+    }
+    st.textContent =
+      ".message-bubble,.ai-message-text,.user-message-text,.error-message-text{font-size:" + Math.round(14 * zoom * 10) / 10 + "px!important}" +
+      ".message-bubble .katex{font-size:1.05em!important}";
   }
 
   function bindFloating() {
