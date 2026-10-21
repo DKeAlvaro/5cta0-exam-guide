@@ -121,91 +121,7 @@
   -webkit-overflow-scrolling: touch;
   padding: 1rem .9rem;
 }
-#ask-panel .ask-msgs { display: flex; flex-direction: column; gap: .65rem; }
-#ask-panel[data-view="settings"] .ask-msgs { display: none; }
 #ask-panel[data-view="chat"] .ask-settings { display: none; }
-#ask-panel[data-view="settings"] .ask-foot { display: none; }
-
-/* ---------- messages ---------- */
-#ask-panel .ask-msg {
-  max-width: 92%;
-  padding: .6rem .8rem;
-  border-radius: 14px;
-  font-size: .86rem;
-  line-height: 1.55;
-  overflow-wrap: anywhere;
-}
-#ask-panel .ask-msg.user {
-  align-self: flex-end;
-  background: var(--ask-grad);
-  color: #fff;
-  border-bottom-right-radius: 4px;
-  white-space: pre-wrap;
-}
-#ask-panel .ask-msg.assistant {
-  align-self: flex-start;
-  background: var(--ask-soft);
-  border: 1px solid var(--ask-line);
-  border-bottom-left-radius: 4px;
-}
-#ask-panel .ask-msg.thinking { color: var(--ask-muted); font-style: italic; animation: ask-pulse 1.1s ease-in-out infinite; }
-@keyframes ask-pulse { 0%, 100% { opacity: .45; } 50% { opacity: .9; } }
-
-#ask-panel .ask-msg-quote {
-  margin: 0 0 .45rem;
-  padding: .3rem .55rem;
-  border-left: 3px solid rgba(255, 255, 255, .7);
-  background: rgba(255, 255, 255, .16);
-  border-radius: 5px;
-  font-size: .74rem;
-  font-style: italic;
-}
-#ask-panel .ask-msg p { margin: 0 0 .5em; }
-#ask-panel .ask-msg p:last-child { margin-bottom: 0; }
-#ask-panel .ask-msg h1,
-#ask-panel .ask-msg h2,
-#ask-panel .ask-msg h3,
-#ask-panel .ask-msg h4 { font: 700 .92rem "Fraunces", Georgia, serif; margin: .6em 0 .3em; }
-#ask-panel .ask-msg ul,
-#ask-panel .ask-msg ol { margin: .25em 0 .55em; padding-left: 1.25em; }
-#ask-panel .ask-msg li { margin: .15em 0; }
-#ask-panel .ask-msg pre {
-  margin: .45em 0;
-  padding: .6em .7em;
-  border-radius: 9px;
-  background: #2a2420;
-  color: #f5f0e8;
-  overflow-x: auto;
-  font-size: .74rem;
-  line-height: 1.5;
-}
-#ask-panel .ask-msg code {
-  font-family: "JetBrains Mono", monospace;
-  font-size: .8em;
-  padding: .1em .35em;
-  border-radius: 5px;
-  background: rgba(0, 0, 0, .1);
-}
-#ask-panel .ask-msg pre code { padding: 0; background: none; }
-#ask-panel .ask-msg .katex-display { margin: .5em 0; overflow-x: auto; overflow-y: hidden; }
-
-/* ---------- empty state ---------- */
-#ask-panel .ask-empty { padding: 1.2rem .3rem; text-align: center; color: var(--ask-muted); font-size: .82rem; line-height: 1.55; }
-#ask-panel .ask-empty p { margin: .3rem 0 0; }
-#ask-panel .ask-empty-title { font: 700 1.05rem "Fraunces", Georgia, serif; color: var(--md-default-fg-color, #1d1b19); }
-#ask-panel .ask-chips { display: flex; flex-direction: column; gap: .45rem; margin-top: 1rem; }
-#ask-panel .ask-chip {
-  padding: .6rem .9rem;
-  border: 1px solid var(--ask-line);
-  border-radius: 12px;
-  background: transparent;
-  color: inherit;
-  font: 500 .76rem "JetBrains Mono", monospace;
-  text-align: left;
-  cursor: pointer;
-  transition: border-color .15s ease, color .15s ease;
-}
-#ask-panel .ask-chip:hover { border-color: var(--ask-rust); color: var(--ask-rust); }
 
 /* ---------- settings view ---------- */
 #ask-panel .ask-note { margin: 0 0 .4rem; font-size: .76rem; line-height: 1.5; color: var(--ask-muted); }
@@ -246,12 +162,6 @@
 #ask-panel .ask-keylink { font: 600 .74rem "JetBrains Mono", monospace; color: var(--ask-rust); }
 
 /* ---------- composer ---------- */
-#ask-panel .ask-foot {
-  flex: none;
-  padding: .6rem .75rem calc(.7rem + env(safe-area-inset-bottom, 0px));
-  border-top: 1px solid var(--ask-line);
-  background: var(--md-default-bg-color, #fbf8f2);
-}
 #ask-panel .ask-quote {
   display: flex;
   align-items: flex-start;
@@ -288,37 +198,6 @@
 }
 #ask-panel .ask-quote-x:hover { background: var(--ask-soft); }
 #ask-panel .ask-quote-x svg { width: 1rem; height: 1rem; display: block; pointer-events: none; }
-#ask-panel .ask-form { display: flex; gap: .5rem; align-items: flex-end; }
-#ask-panel .ask-input {
-  flex: 1;
-  min-width: 0;
-  resize: none;
-  max-height: 130px;
-  box-sizing: border-box;
-  padding: .6rem .8rem;
-  border: 1px solid var(--ask-line);
-  border-radius: 14px;
-  background: transparent;
-  color: inherit;
-  font: 400 16px/1.4 inherit; /* 16px stops iOS zooming on focus */
-}
-#ask-panel .ask-input:focus { outline: none; border-color: var(--ask-rust); box-shadow: 0 0 0 3px rgba(155, 33, 20, .15); }
-#ask-panel .ask-send {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 2.6rem;
-  height: 2.6rem;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: var(--ask-grad);
-  color: #fff;
-  cursor: pointer;
-}
-#ask-panel .ask-send:disabled { opacity: .4; cursor: default; }
-#ask-panel .ask-send svg { width: 1.2rem; height: 1.2rem; display: block; }
-
 /* ---------- "Ask about this" chip ---------- */
 #ask-select-btn {
   position: fixed;
@@ -340,9 +219,7 @@
 
 /* ---------- dark scheme ---------- */
 [data-md-color-scheme="slate"] #ask-panel { box-shadow: -12px 0 40px rgba(0, 0, 0, .55); }
-[data-md-color-scheme="slate"] #ask-panel .ask-msg pre { background: rgba(0, 0, 0, .5); }
-[data-md-color-scheme="slate"] #ask-panel .ask-msg code { background: rgba(255, 255, 255, .12); }
-[data-md-color-scheme="slate"] #ask-panel .ask-chip:hover,
+
 [data-md-color-scheme="slate"] #ask-panel .ask-keylink { color: var(--md-accent-fg-color, #e3826f); }
 
 /* ---------- phones: bottom sheet ---------- */
@@ -393,7 +270,6 @@
     border-radius: 4px;
     background: rgba(255, 255, 255, .5);
   }
-  #ask-panel .ask-msg { max-width: 96%; }
 
   /* stop the page behind the sheet from scrolling */
   html.ask-open, html.ask-open body { overflow: hidden; }
@@ -403,3 +279,18 @@
   #ask-panel, #ask-backdrop { transition: none !important; }
 }
 @media print { #ask-toggle, #ask-panel, #ask-backdrop, #ask-select-btn { display: none !important; } }
+
+/* ---------- chat host, context line, highlighted passage ---------- */
+#ask-panel .ask-body { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+#ask-panel .ask-chat-host { flex: 1 1 auto; min-height: 0; position: relative; }
+#ask-panel .ask-chat { position: absolute; inset: 0; display: flex; }
+#ask-panel[data-view="settings"] .ask-chat-host,
+#ask-panel[data-view="settings"] .ask-ctx,
+#ask-panel[data-view="settings"] .ask-quote { display: none; }
+#ask-panel[data-view="settings"] .ask-body { overflow-y: auto; padding: 1rem .9rem; display: block; }
+#ask-panel .ask-fail { padding: 1.2rem; color: var(--ask-muted); font-size: .85rem; }
+#ask-panel .ask-ctx { flex: none; display: flex; align-items: center; gap: .5em; padding: .4rem .9rem; border-bottom: 1px solid var(--ask-line); font: 500 .68rem "JetBrains Mono", monospace; color: var(--ask-muted); }
+#ask-panel .ask-ctx-dot { flex: none; width: .5em; height: .5em; border-radius: 50%; background: #3fa34d; }
+#ask-panel .ask-ctx-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#ask-panel .ask-quote { flex: none; margin: 0; padding: .5rem .5rem .5rem .8rem; border-radius: 0; border-bottom: 1px solid var(--ask-line); background: var(--ask-soft); }
+#ask-panel .ask-quote-text { max-height: 6.5em; font-size: .78rem; }
