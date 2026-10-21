@@ -346,3 +346,17 @@
 #ask-panel .ask-quote-main:focus .ask-quote-text { margin-top: .25rem; }
 #ask-panel .ask-quote-main { outline: none; }
 #ask-panel .ask-quote-x { width: 1.6rem; height: 1.6rem; }
+
+/* quote lives in the header row; its text drops down over the chat on hover */
+#ask-panel .ask-head { position: relative; }
+#ask-panel .ask-head .ask-quote { position: static; display: flex; align-items: center; gap: .2rem; padding: 0; margin: 0; border: 0; background: none; color: #fff; }
+#ask-panel .ask-head .ask-quote[hidden] { display: none; }
+#ask-panel .ask-head .ask-quote-main { flex: 0 1 auto; padding: .25rem 0; cursor: default; }
+#ask-panel .ask-head .ask-quote-label { color: #fff; margin: 0; font-size: .7rem; }
+#ask-panel .ask-head .ask-quote-x { color: #fff; }
+#ask-panel .ask-head .ask-quote-x:hover { background: rgba(255, 255, 255, .18); }
+#ask-panel .ask-head .ask-quote-text {
+  position: absolute; left: 0; right: 0; top: 100%; z-index: 5; margin: 0; max-height: 11em;
+  padding: .55rem .85rem; background: var(--md-default-bg-color, #fff); color: var(--md-default-fg-color, #222);
+  border-bottom: 1px solid var(--ask-line); box-shadow: 0 8px 18px rgba(0, 0, 0, .18);
+}

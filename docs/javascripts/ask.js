@@ -241,15 +241,15 @@
       '<header class="ask-head">' +
         '<button type="button" class="ask-btn ask-back" data-act="back" aria-label="Back to chat">' + ICONS.back + '</button>' +
         '<div class="ask-head-text">' +
+          '<div class="ask-quote" hidden>' +
+            '<div class="ask-quote-main" tabindex="0"><div class="ask-quote-label">Ask about this</div><div class="ask-quote-text"></div></div>' +
+            '<button type="button" class="ask-quote-x" data-act="clear-ctx" aria-label="Remove highlighted passage">' + ICONS.close + '</button>' +
+          '</div>' +
         '</div>' +
         '<button type="button" class="ask-btn ask-reset" data-act="reset" aria-label="New chat" title="New chat">' + ICONS.trash + '</button>' +
         '<button type="button" class="ask-btn ask-gear" data-act="settings" aria-label="API key settings" title="API key settings">' + ICONS.settings + '</button>' +
         '<button type="button" class="ask-btn ask-close" data-act="close" aria-label="Close" title="Close (Esc)">' + ICONS.close + '</button>' +
       '</header>' +
-      '<div class="ask-quote" hidden>' +
-        '<div class="ask-quote-main" tabindex="0"><div class="ask-quote-label">Ask about this</div><div class="ask-quote-text"></div></div>' +
-        '<button type="button" class="ask-quote-x" data-act="clear-ctx" aria-label="Remove highlighted passage">' + ICONS.close + '</button>' +
-      '</div>' +
       '<div class="ask-body">' +
         '<div class="ask-chat-host"></div>' +
         '<form class="ask-settings" autocomplete="off">' +
