@@ -28,3 +28,14 @@ document.addEventListener("copy", (e) => {
   e.clipboardData.setData("text/plain", box.textContent);
   e.preventDefault();
 });
+
+// Definition tooltips (abbr) are plain text built by the theme at hover time: typeset the math inside them.
+new MutationObserver(() => {
+  document.querySelectorAll(".md-tooltip2__inner").forEach((el) => {
+    if (!el.textContent.includes("$")) return;
+    renderMathInElement(el, {
+      delimiters: [{ left: "$$", right: "$$", display: false }, { left: "$", right: "$", display: false }],
+      throwOnError: false
+    });
+  });
+}).observe(document.body, { childList: true, subtree: true, characterData: true });
