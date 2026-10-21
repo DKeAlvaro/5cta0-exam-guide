@@ -1,28 +1,57 @@
 # 4.1 Errors, ROC, Neyman–Pearson
 
-<p class="lead">Detection = deciding between two explanations of the data. This page covers the vocabulary that every Part 4 question uses (the four outcomes, $P_{FA}$, $P_D$, $P_M$, ROC curves, Neyman–Pearson) and the multiple-choice questions built on it.</p>
+<p class="lead">Detection = deciding between two explanations of the data. This page covers the vocabulary that every Part 4 question uses (the four outcomes, $P_{FA}$, $P_D$, $P_M$, ROC curves, Neyman–Pearson) and the multiple-choice questions built on it. It starts from a smoke detector and ends with the exam questions.</p>
 
-## The idea, from zero
+!!! need "Before this page"
+    - A PDF is a curve whose **area** is a probability ([0.6](p0-foundations.md#random-variable-and-pdf))
+    - The Gaussian $\mathcal N(\mu,\sigma^2)$ and the tail function $Q(x)$ ([0.6](p0-foundations.md#the-gaussian-bell-curve))
+    - An integral is an area ([0.4](p0-foundations.md#04-the-three-calculations-you-keep-meeting))
 
-Two hypotheses:
+    If you read only one thing: **a detector looks at a number, compares it with a threshold, and says "yes" or "no". Two different mistakes are possible (false alarm, miss), and moving the threshold trades one for the other. Everything on this page is a picture of that trade.**
 
-- $\mathcal H_0$, the **null** hypothesis: "nothing there" (only noise, no device, the student wrote it).
-- $\mathcal H_1$, the **alternative**: "something there" (signal present, device transmitting, AI-generated).
+---
 
-Under each hypothesis the observation $x$ has a different PDF, $p(x\mid\mathcal H_0)$ and $p(x\mid\mathcal H_1)$. Because the two PDFs overlap, some values of $x$ could come from either, so mistakes are unavoidable. A **detector** splits the axis of possible $x$ into a region where you say $\mathcal H_0$ and a region where you say $\mathcal H_1$, usually with a threshold.
+## 1 · The setting, from zero
 
-### The four outcomes
+### 1.1 Two stories about the data
+
+Think of a smoke detector. It measures a number $x$ (how much smoke particles). There are two possible **hypotheses** (stories) about the world:
+
+- $\mathcal H_0$, the **null** hypothesis: "nothing is there" (no fire; only noise; the student wrote the essay themselves).
+- $\mathcal H_1$, the **alternative**: "something is there" (a fire; a signal; the essay is AI-generated).
+
+Under each story the measurement $x$ follows a different PDF, written $p(x\mid\mathcal H_0)$ and $p(x\mid\mathcal H_1)$ (the "$\mid$" reads "given that"). The two PDFs **overlap**: some values of $x$ could come from either story. That is why mistakes cannot be avoided.
+
+A **detector** is a rule that splits all possible values of $x$ into two regions: values where you answer "$\mathcal H_0$" and values where you answer "$\mathcal H_1$". Usually it is a single **threshold** $\gamma$: say $\mathcal H_1$ when $x>\gamma$.
+
+!!! example "The running example (numbers used below)"
+    $\mathcal H_0$: $x\sim\mathcal N(0,1)$ (noise only). $\mathcal H_1$: $x\sim\mathcal N(2,1)$ (noise plus a signal of strength 2). Threshold $\gamma=1$: decide $\mathcal H_1$ whenever $x>1$.
+
+### 1.2 The four outcomes
+
+Two things can be true and two things you can decide, so there are four combinations:
 
 | You decide ↓ / Truth → | $\mathcal H_0$ true | $\mathcal H_1$ true |
 |---|---|---|
-| $\mathcal H_0$ | ① true negative ($1-P_{FA}$) | ② **miss**, false negative, type II error ($P_M$) |
+| $\mathcal H_0$ | ① true negative (prob. $1-P_{FA}$) | ② **miss**, false negative, type II error ($P_M$) |
 | $\mathcal H_1$ | ③ **false alarm**, false positive, type I error ($P_{FA}$) | ④ **detection**, true positive ($P_D$) |
 
-Rows are what you **decide**, columns what is **true**. "Positive" = you said $\mathcal H_1$. Type I = rejecting a true $\mathcal H_0$.
+Rows are what you **decide**, columns what is **true**. "Positive" = you said $\mathcal H_1$ ("yes, something is there"). The correct decisions are the diagonal (①, ④). *Type I* = rejecting a true $\mathcal H_0$ (the false alarm), *type II* = failing to reject a false $\mathcal H_0$ (the miss).
 
-### Each probability is an area
+### 1.3 Each probability is an area
+
+You decide $\mathcal H_1$ in some region of $x$ values. Then
 
 $$P_{FA}=\int_{\text{decide }\mathcal H_1}p(x\mid\mathcal H_0)\,dx,\qquad P_D=\int_{\text{decide }\mathcal H_1}p(x\mid\mathcal H_1)\,dx,\qquad P_M=1-P_D.$$
+
+*(Meaning: $P_{FA}$ = the chance that $x$ lands in the "yes" region **when $\mathcal H_0$ is true**; $P_D$ = the same chance **when $\mathcal H_1$ is true**; the integral of a PDF over a region is the area under the curve there, [0.6](p0-foundations.md#random-variable-and-pdf).)*
+
+!!! example "Numbers for the running example"
+    Threshold $\gamma=1$, decide $\mathcal H_1$ for $x>1$. Standardise (subtract the mean, divide by $\sigma=1$) and use $Q$:
+
+    - $P_{FA}=P(x>1\mid\mathcal H_0)=Q\!\left(\frac{1-0}{1}\right)=Q(1)=0.1587$
+    - $P_D=P(x>1\mid\mathcal H_1)=Q\!\left(\frac{1-2}{1}\right)=Q(-1)=1-Q(1)=0.8413$
+    - $P_M=1-P_D=0.1587$
 
 <figure markdown>
 ![P_FA, P_D and P_M as areas](img/gen/p4_regions.svg)
@@ -34,18 +63,47 @@ $$P_{FA}=\int_{\text{decide }\mathcal H_1}p(x\mid\mathcal H_0)\,dx,\qquad P_D=\i
     2. $P_{FA}$: shade under the **$\mathcal H_0$** curve on the **$\mathcal H_1$** side.
     3. $P_M$: shade under the **$\mathcal H_1$** curve on the **$\mathcal H_0$** side.
 
-### ROC curve
+---
 
-Sweep the threshold from $+\infty$ to $-\infty$ and plot $P_D$ (vertical) against $P_{FA}$ (horizontal). That is the **receiver operating characteristic**.
+## 2 · The ROC curve: all thresholds at once
+
+**Plain words.** Each threshold gives one pair $(P_{FA},P_D)$. Sweep the threshold from $+\infty$ (never say yes) to $-\infty$ (always say yes) and plot every pair: $P_D$ on the vertical axis, $P_{FA}$ on the horizontal. The curve is the **receiver operating characteristic (ROC)**. It shows the *whole menu* of trade-offs a detector offers.
+
+!!! example "ROC of the running example, point by point"
+    Rule: decide $\mathcal H_1$ if $x>\gamma$; $P_{FA}=Q(\gamma)$, $P_D=Q(\gamma-2)$.
+
+    | $\gamma$ | $P_{FA}=Q(\gamma)$ | $P_D=Q(\gamma-2)$ |
+    |---|---|---|
+    | 3 | 0.0013 | $Q(1)=0.1587$ |
+    | 2 | 0.0228 | $Q(0)=0.5$ |
+    | 1 | 0.1587 | $Q(-1)=0.8413$ |
+    | 0 | 0.5 | $Q(-2)=0.9772$ |
+    | −1 | 0.8413 | $Q(-3)=0.9987$ |
+
+    Add the end points $(0,0)$ ($\gamma=+\infty$) and $(1,1)$ ($\gamma=-\infty$) and join: a curve that bows up towards the top-left.
 
 <figure markdown>
 ![How to read a ROC](img/gen/p4_roc_explain.svg)
-<figcaption>Every ROC starts at (0,0) (never say $\mathcal H_1$) and ends at (1,1) (always say $\mathcal H_1$). The diagonal is guessing. A good detector bends towards the top-left corner (perfect: $P_{FA}=0$, $P_D=1$). The more separated the two PDFs (higher SNR), the closer to that corner. A curve **below** the diagonal means something was swapped: flip your decision and it goes above.</figcaption>
+<figcaption>Every ROC starts at (0,0) (never say $\mathcal H_1$) and ends at (1,1) (always say $\mathcal H_1$). The diagonal is guessing (a coin flip has $P_D=P_{FA}$). A good detector bends towards the top-left corner (perfect: $P_{FA}=0$, $P_D=1$). The more separated the two PDFs (higher SNR), the closer to that corner. A curve **below** the diagonal means something was swapped: flip your decision and it goes above.</figcaption>
 </figure>
 
-### Neyman–Pearson
+---
 
-Fix the false-alarm probability you can tolerate, $P_{FA}=\alpha$, and **maximise $P_D$**. The solution is always a **likelihood ratio test** (next page): $L(x)=\frac{p(x\mid\mathcal H_1)}{p(x\mid\mathcal H_0)}\gtrless\lambda$, with $\lambda$ chosen so that $P_{FA}=\alpha$. Why constrain $P_{FA}$? Under $\mathcal H_0$ there is only noise, so its PDF is known and $P_{FA}$ can be computed.
+## 3 · Neyman–Pearson: which detector is the best one?
+
+For a given threshold rule you get one point on a ROC. But *which rule* is best? You cannot minimise both errors at once (they trade off), so you must pick one thing to fix. **Neyman–Pearson (NP)**: fix the false-alarm probability you can tolerate, $P_{FA}=\alpha$ (say 1 %), and then **maximise $P_D$**.
+
+Why constrain $P_{FA}$ rather than $P_D$? Under $\mathcal H_0$ there is only noise, so its PDF is known and $P_{FA}$ can be computed exactly; under $\mathcal H_1$ the signal strength is often unknown.
+
+The solution is always a **likelihood ratio test** ([next page](p4-lrt.md)): compute $L(x)=\frac{p(x\mid\mathcal H_1)}{p(x\mid\mathcal H_0)}$ and decide $\mathcal H_1$ when $L(x)>\lambda$, with $\lambda$ chosen so that $P_{FA}=\alpha$.
+
+**Bayesian detection** ([4.3](p4-bayes.md)) is the other classical rule: instead of fixing $P_{FA}$, you assign a **cost** $C_{ij}$ to each wrong decision ($C_{ij}$ = cost of deciding $\mathcal H_i$ when $\mathcal H_j$ is true) and prior probabilities $P_0,P_1$ to the hypotheses, and **minimise the average cost** (the *Bayes risk*). With costs $C_{01}=C_{10}=1$, $C_{00}=C_{11}=0$ the risk is $P_1P_M+P_0P_{FA}$, which is the **total probability of error**.
+
+!!! trap "Words that decide the multiple-choice questions"
+    - NP: fixed $P_{FA}$ → **maximise** $P_D$ (not minimise, not "fixed $P_D$").
+    - Bayes: **minimise** the risk.
+    - Type I = false alarm; type II = miss.
+    - The decision region is read from the inequality, not from your intuition about "bigger = more likely".
 
 ---
 
@@ -67,7 +125,14 @@ Fix the false-alarm probability you can tolerate, $P_{FA}=\alpha$, and **maximis
     - (d) 1 = false negative/miss/type II error, 2 = true negative, 3 = true positive/detection, 4 = false positive/false alarm/type I error
 
 ???+ solution "Solution"
-    The diagonal (1, 4) holds the correct decisions. Cell 2 = said $\mathcal H_0$ while $\mathcal H_1$ was true = miss. Cell 3 = said $\mathcal H_1$ while $\mathcal H_0$ was true = false alarm. (b) swaps 1 and 4; (c) swaps the error types; (d) calls the diagonal errors.
+
+    **What is being asked?** Name the four cells of the table of [section 1.2](#12-the-four-outcomes).
+
+    **Step 1 — the diagonal.** Cells 1 and 4 are "decision = truth" → correct decisions: cell 1 is a true negative (said $\mathcal H_0$, was $\mathcal H_0$), cell 4 a true positive (detection).
+
+    **Step 2 — the off-diagonal.** Cell 2: said $\mathcal H_0$ while $\mathcal H_1$ was true → **miss** (false negative, type II). Cell 3: said $\mathcal H_1$ while $\mathcal H_0$ was true → **false alarm** (false positive, type I).
+
+    **Step 3 — compare with the options.** (a) matches exactly. (b) swaps 1 and 4; (c) swaps the two error types; (d) calls the correct diagonal "errors".
 
     !!! answer "Answer"
         **(a)**
@@ -83,7 +148,12 @@ Fix the false-alarm probability you can tolerate, $P_{FA}=\alpha$, and **maximis
     - (d) the probability of false alarm is equal to the probability of detection.
 
 ???+ solution "Solution"
-    NP: fix $P_{FA}=\alpha$, maximise $P_D$. (c) sounds similar but fixes the wrong quantity; (d) is the coin-flip diagonal.
+
+    **What is being asked?** The definition of Neyman–Pearson ([section 3](#3-neymanpearson-which-detector-is-the-best-one)).
+
+    **Step 1.** NP fixes $P_{FA}=\alpha$ and maximises $P_D$. That is (b).
+
+    **Step 2 — why not the others.** (a) says *minimise* $P_D$ (the worst detector). (c) fixes the wrong quantity. (d) describes the diagonal of the ROC, i.e. guessing.
 
     !!! answer "Answer"
         **(b)**
@@ -98,7 +168,14 @@ Fix the false-alarm probability you can tolerate, $P_{FA}=\alpha$, and **maximis
     - c) With the Neyman-Pearson test, for a fixed probability of false alarm, the probability of detection is minimized.
 
 ???+ solution "Solution"
-    Risk is **minimised** (a ✗), $P_D$ is **maximised** (c ✗). With 0/1 costs the Bayes risk is $P_0P_{FA}+P_1P_M$, the total probability of error (b ✓). See [4.3](p4-bayes.md).
+
+    **What is being asked?** Check each statement against the definitions of NP and Bayes ([section 3](#3-neymanpearson-which-detector-is-the-best-one)).
+
+    **Step 1 — (a).** The Bayes detector **minimises** the risk, not maximises. False.
+
+    **Step 2 — (c).** NP **maximises** $P_D$ at fixed $P_{FA}$. False.
+
+    **Step 3 — (b).** With $C_{01}=C_{10}=1$ and $C_{00}=C_{11}=0$, the risk (average cost) is $1\cdot P(\text{decide }\mathcal H_0,\mathcal H_1\text{ true})+1\cdot P(\text{decide }\mathcal H_1,\mathcal H_0\text{ true})=P_1P_M+P_0P_{FA}$, which *is* the total probability of error. Minimising the risk then minimises that error. **True.**
 
     !!! answer "Answer"
         **(b)**
@@ -113,7 +190,14 @@ Fix the false-alarm probability you can tolerate, $P_{FA}=\alpha$, and **maximis
     - c With the Neyman-Pearson test, for a fixed probability of false alarm, the probability of detection is maximised.
 
 ???+ solution "Solution"
-    (a) and (c) are the definitions: true. (b) is also true: with $C_{01}=C_{10}=10$ the risk is $10\,P_e$, and multiplying all costs by the same factor does not change the threshold $\lambda=\frac{(C_{10}-C_{00})P_0}{(C_{01}-C_{11})P_1}$. The official 2026 solutions confirm: **as printed, all three statements are true**, so there is no false one. Same family as April 2024 4a, with the "max/min" words flipped.
+
+    **What is being asked?** Find the one false statement — but this is the same family as April 2024 4a with the verbs flipped.
+
+    **Step 1 — (a) and (c)** are the definitions (risk **minimised**, $P_D$ **maximised**): true.
+
+    **Step 2 — (b).** With $C_{01}=C_{10}=10$ the risk is $10\,(P_1P_M+P_0P_{FA})=10\,P_e$. Multiplying all costs by the same factor does not move the minimum, so it still minimises $P_e$ ([4.3](p4-bayes.md): the threshold $\lambda=\frac{(C_{10}-C_{00})P_0}{(C_{01}-C_{11})P_1}$ is unchanged because the factor 10 cancels). True as well.
+
+    The official 2026 solutions confirm: **as printed, all three statements are true**, so there is no false one.
 
     !!! answer "Answer"
         No option is false (official key). If this reappears, check each verb: risk **min**, $P_D$ **max**.
@@ -133,7 +217,14 @@ Fix the false-alarm probability you can tolerate, $P_{FA}=\alpha$, and **maximis
     - d) $P_d$ and $P_{fa}$ are switched.
 
 ???+ solution "Solution"
-    Below the diagonal means $P_d<P_{fa}$: the decision is "upside down". Each of (b), (c), (d) flips it: inverting the ratio decides the wrong way, using the CDF $P(y<t)$ gives $1-P_d$ instead of $P_d$, and swapping the axes mirrors the curve. A wrong variance changes *how good* the test is, not its direction: a likelihood ratio test computed from the PDFs you assume still lands above the diagonal.
+
+    **What is being asked?** Which of the four causes would **not** push the ROC below the diagonal.
+
+    **Step 1 — what "below the diagonal" means.** $P_d<P_{fa}$: the decision is upside down (worse than a coin flip).
+
+    **Step 2 — (b), (c), (d) all flip the decision.** Inverting the ratio decides the wrong way (b). The CDF is $P(y<t)$, but detection is $P(y>t)$; using the CDF gives $1-P_d$ (c). Swapping the axes mirrors the curve about the diagonal (d).
+
+    **Step 3 — (a).** A wrong variance changes *how good* the test is (how far the curve is from the diagonal), not its direction: a likelihood ratio test built from PDFs you assumed still lands above the diagonal.
 
     !!! answer "Answer"
         **(a)**
@@ -149,7 +240,24 @@ Fix the false-alarm probability you can tolerate, $P_{FA}=\alpha$, and **maximis
     - d) The t-statistic is a random variable itself.
 
 ???+ solution "Solution"
-    $t$ measures how many standard errors $\hat\mu$ is away from the $\mathcal H_0$ mean. Larger $N$ → larger $|t|$ (a ✓). Larger $\hat\sigma$ → smaller $|t|$ (b ✓). It is computed from random data, so it is random (d ✓). (c) is backwards: a **large** $|t|$ is evidence against $\mathcal H_0$. (The t-statistic is no longer in the reader; low priority.)
+
+    **What is being asked?** Which statement about $t$ is wrong. (The t-statistic is no longer in the reader; low priority.)
+
+    **Symbols in this question**
+
+    | Symbol | Meaning |
+    |---|---|
+    | $\mu$ | the mean claimed by $\mathcal H_0$ |
+    | $\hat\mu$ | the mean you measured from the data (a hat = estimate) |
+    | $\hat\sigma$ | the standard deviation you measured |
+    | $N$ | number of samples |
+    | $\hat\sigma/\sqrt N$ | the *standard error*: how much $\hat\mu$ itself wobbles |
+
+    **Step 1 — read $t$ in words.** $t=\dfrac{\text{distance of the measured mean from the }\mathcal H_0\text{ mean}}{\text{typical wobble of the measured mean}}$: "how many standard errors away from $\mathcal H_0$ am I?"
+
+    **Step 2 — test each option.** (a) larger $N$ → smaller standard error → bigger $\lvert t\rvert$ → more significant ✓. (b) larger $\hat\sigma$ → bigger standard error → smaller $\lvert t\rvert$ → less significant ✓. (d) it is computed from random data, so it is random ✓.
+
+    **Step 3 — (c).** Backwards: a **large** $\lvert t\rvert$ is evidence **against** $\mathcal H_0$; a small $t$ means the data fit $\mathcal H_0$ well.
 
     !!! answer "Answer"
         **(c)**
@@ -168,11 +276,22 @@ Fix the false-alarm probability you can tolerate, $P_{FA}=\alpha$, and **maximis
     TABLE II: $(y_{th},\mu)$ = $(-1,1)$, $(-1,2)$, $(0,1)$, $(0,2)$, $(1,1)$, $(1,2)$, $(2,1)$, $(2,2)$, $(3,1)$, $(3,2)$; fill in $P_d$ and $P_{fa}$.
 
 ???+ solution "Solution"
-    You decide $\mathcal H_1$ when $y>y_{th}$, so both are **right tails** (1 − CDF):
 
-    $$P_{fa}=\tfrac12\Big[1-\operatorname{erf}\Big(\tfrac{y_{th}}{\sqrt2}\Big)\Big],\qquad P_d=\tfrac12\Big[1-\operatorname{erf}\Big(\tfrac{y_{th}-\mu}{\sqrt2}\Big)\Big].$$
+    **What is being asked?** For each pair (threshold, mean $\mu$) compute one point $(P_{fa},P_d)$, then plot them as ROC curves. This is the running example of [section 2](#2-the-roc-curve-all-thresholds-at-once) with a table instead of $Q$.
 
-    Read the erf table at $x=y_{th}$ for $P_{fa}$ and at $x=y_{th}-\mu$ for $P_d$:
+    **Symbols in this question**
+
+    | Symbol | Meaning |
+    |---|---|
+    | $y_{th}$ | the threshold: decide $\mathcal H_1$ when $y>y_{th}$ |
+    | $\mu$ | mean under $\mathcal H_1$ (under $\mathcal H_0$ the mean is 0); $\sigma=1$ |
+    | erf table | gives $\operatorname{erf}(x/\sqrt2)$ for $x=-3\dots3$, i.e. the Gaussian CDF in disguise |
+
+    **Step 1 — right tails, not the CDF.** The formula given is $P(y<y_{th})$. We decide $\mathcal H_1$ for $y>y_{th}$, so each probability is **1 minus** the CDF:
+
+    $$P_{fa}=\tfrac12\Big[1-\operatorname{erf}\Big(\tfrac{y_{th}-0}{\sqrt2}\Big)\Big],\qquad P_d=\tfrac12\Big[1-\operatorname{erf}\Big(\tfrac{y_{th}-\mu}{\sqrt2}\Big)\Big].$$
+
+    **Step 2 — read the table.** The table is indexed by $x=y_{th}$ for $P_{fa}$ and by $x=y_{th}-\mu$ for $P_d$. Example, row $(y_{th},\mu)=(-1,1)$: $P_{fa}$ needs $x=-1$: $\operatorname{erf}=-0.683$ → $\frac12(1+0.683)=0.8415$. $P_d$ needs $x=-1-1=-2$: $\operatorname{erf}=-0.954$ → $\frac12(1+0.954)=0.977$.
 
     | $y_{th}$ | $\mu$ | $y_{th}-\mu$ | $P_d$ | $P_{fa}$ |
     |---|---|---|---|---|
@@ -187,9 +306,25 @@ Fix the false-alarm probability you can tolerate, $P_{FA}=\alpha$, and **maximis
     | 3 | 1 | 2 | 0.023 | 0.0015 |
     | 3 | 2 | 1 | 0.1585 | 0.0015 |
 
-    ![ROC points](img/gen/p4_roc_pe21.svg)
+    **Step 3 — plot.** Each row is one point $(P_{fa},P_d)$. Join the five points of $\mu=1$ (and add $(0,0)$, $(1,1)$), then the five of $\mu=2$. $\mu=2$ lies above $\mu=1$: more separation between the means (higher SNR) gives a better detector.
 
-    Each threshold gives one point $(P_{fa},P_d)$; add (0,0) and (1,1) and connect. $\mu=2$ lies above $\mu=1$: more separation between the means (higher SNR) gives a better detector.
+    ![ROC points](img/gen/p4_roc_pe21.svg)
 
     !!! trap "Read the CDF formula carefully"
         The text gives $P(y<y_{th})$. Detection and false alarm are $P(y>y_{th})$, so use **1 minus** it. Using the CDF directly is exactly the mistake from [1e](#pe21-1e) that puts the ROC below the diagonal.
+
+    !!! answer "Answer"
+        The table above; ROC curves through those points, the $\mu=2$ curve above the $\mu=1$ curve.
+
+*[hypothesis]: a possible explanation of the data; H₀ = nothing there, H₁ = something there.
+*[null hypothesis]: H₀, "nothing is there" (only noise).
+*[detector]: a rule that turns the observation into a decision H₀ or H₁, usually by a threshold.
+*[threshold]: the value above which you decide H₁.
+*[false alarm]: deciding H₁ when H₀ is true (type I error); probability P_FA.
+*[miss]: deciding H₀ when H₁ is true (type II error); probability P_M = 1 − P_D.
+*[detection]: deciding H₁ when H₁ is true; probability P_D.
+*[ROC]: receiver operating characteristic: P_D against P_FA as the threshold sweeps.
+*[Neyman–Pearson]: fix P_FA = α, maximise P_D; solved by a likelihood ratio test.
+*[Bayes risk]: the average cost of the decisions, weighted by priors and costs; the Bayes detector minimises it.
+*[prior]: P₀, P₁: how likely each hypothesis is before looking at the data.
+*[SNR]: signal-to-noise ratio: how strong the signal is compared with the noise.
