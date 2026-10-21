@@ -590,14 +590,11 @@
 
   const FACE =
     '<svg viewBox="0 0 48 48" aria-hidden="true">' +
-      '<g class="eyes">' +
-        '<g class="eye"><ellipse cx="17" cy="20" rx="4.2" ry="5" fill="#fff"/><circle class="pupil" cx="17" cy="20.5" r="2.3" fill="#2a0e0a"/></g>' +
-        '<g class="eye eye-r"><ellipse cx="31" cy="20" rx="4.2" ry="5" fill="#fff"/><circle class="pupil" cx="31" cy="20.5" r="2.3" fill="#2a0e0a"/></g>' +
-      '</g>' +
-      '<ellipse cx="10.5" cy="29" rx="3.2" ry="2" fill="#ff9a8a" opacity=".55"/>' +
-      '<ellipse cx="37.5" cy="29" rx="3.2" ry="2" fill="#ff9a8a" opacity=".55"/>' +
-      '<path class="smile" d="M15 29c2.2 6.4 15.8 6.4 18 0" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/>' +
+      '<circle cx="17" cy="19" r="3" fill="#fff"/>' +
+      '<circle cx="31" cy="19" r="3" fill="#fff"/>' +
+      '<path d="M14 28c2.5 7 17.5 7 20 0" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>' +
     '</svg>';
+  const BALL = 44;
 
   function ensureBall() {
     if (ball && document.body.contains(ball)) return ball;
@@ -606,16 +603,42 @@
     ball.type = "button";
     ball.setAttribute("aria-label", "Open Ask AI");
     ball.title = "Ask AI";
-    ball.addEventListener("click", () => open());
+    // drag it like the window (it shares the window's position); a plain click reopens the window
+    ball.addEventListener("pointerdown", (e) => {
+      if (e.button !== 0) return;
+      e.preventDefault();
+      const sx = e.clientX, sy = e.clientY, x0 = geom.x, y0 = geom.y;
+      let moved = false;
+      const move = (ev) => {
+        const dx = ev.clientX - sx, dy = ev.clientY - sy;
+        if (!moved && Math.hypot(dx, dy) < 4) return;
+        moved = true;
+        geom.x = Math.max(4, Math.min(x0 + dx, window.innerWidth - BALL - 4));
+        geom.y = Math.max(4, Math.min(y0 + dy, window.innerHeight - BALL - 4));
+        placeBall();
+      };
+      const up = () => {
+        window.removeEventListener("pointermove", move);
+        window.removeEventListener("pointerup", up);
+        if (!moved) { open(); return; }
+        clampGeom(geom);
+        try { localStorage.setItem(GEOM_KEY, JSON.stringify(geom)); } catch (err) { /* ignore */ }
+      };
+      window.addEventListener("pointermove", move);
+      window.addEventListener("pointerup", up);
+    });
     document.body.appendChild(ball);
     return ball;
   }
 
+  function placeBall() {
+    ball.style.left = geom.x + "px";
+    ball.style.top = geom.y + "px";
+  }
+
   function showBall() {
     const b = ensureBall();
-    b.classList.remove("pop");
-    void b.offsetWidth;
-    b.classList.add("pop");
+    placeBall();
     b.style.display = "block";
   }
 
@@ -631,17 +654,6 @@
     if (window.CSS && CSS.highlights) CSS.highlights.delete("ask-anchor");
     hideTail();
     showBall();
-  }
-
-  // pupils follow the pointer
-  function trackPupils(e) {
-    if (!ball || ball.style.display === "none") return;
-    const b = ball.getBoundingClientRect();
-    const dx = e.clientX - (b.left + b.width / 2), dy = e.clientY - (b.top + b.height / 2);
-    const d = Math.hypot(dx, dy) || 1;
-    const k = Math.min(1, d / 160) * 1.7;
-    const tx = (dx / d) * k, ty = (dy / d) * k;
-    ball.querySelectorAll(".pupil").forEach((p) => { p.style.transform = "translate(" + tx + "px," + ty + "px)"; });
   }
 
   /* ---------------- selection chip ---------------- */
@@ -709,8 +721,8 @@
     const w = btn.offsetWidth || 130;
     const x = Math.min(Math.max(8, r.left + r.width / 2 - w / 2), window.innerWidth - w - 8);
     // touch browsers draw their own menu above the selection, so go below there
-    const above = !isTouch() && r.top > 56;
-    const y = above ? r.top - 44 : Math.min(r.bottom + (isTouch() ? 44 : 10), window.innerHeight - 52);
+    const above = !isTouch() && r.top > 44;
+    const y = above ? r.top - 38 : Math.min(r.bottom + (isTouch() ? 44 : 6), window.innerHeight - 52);
     btn.style.left = x + "px";
     btn.style.top = y + "px";
   }
@@ -746,7 +758,6 @@
       if (t && t.closest && t.closest("#ask-panel, #ask-select-btn, #ask-ball")) return;
       minimize();
     }, true);
-    document.addEventListener("pointermove", trackPupils, { passive: true });
     window.addEventListener("resize", () => { hideChip(); hideTail(); });
 
     document.addEventListener("keydown", (e) => {

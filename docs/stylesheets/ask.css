@@ -427,34 +427,17 @@ html.ask-hot ::highlight(ask-anchor) { background-color: rgba(255, 190, 40, .6);
 /* ---------- the ball ---------- */
 #ask-ball {
   position: fixed;
-  right: 1.1rem;
-  bottom: 1.1rem;
   z-index: 30;
   display: none;
-  width: 3.4rem;
-  height: 3.4rem;
+  width: 44px;
+  height: 44px;
   padding: 0;
   border: 0;
   border-radius: 50%;
-  background: radial-gradient(circle at 32% 26%, #d9573f 0%, #b32d1a 55%, #8a1c10 100%);
-  box-shadow: 0 8px 20px rgba(155, 33, 20, .45), inset 0 -3px 6px rgba(0, 0, 0, .18);
-  cursor: pointer;
-  animation: ask-bob 3.6s ease-in-out infinite;
-  transition: transform .15s ease;
+  background: #b32d1a;
+  cursor: grab;
+  touch-action: none;
 }
-#ask-ball.pop { animation: ask-pop .45s cubic-bezier(.3, 1.6, .5, 1), ask-bob 3.6s ease-in-out .45s infinite; }
-#ask-ball svg { width: 100%; height: 100%; display: block; overflow: visible; }
-#ask-ball .eye { transform-box: fill-box; transform-origin: center; animation: ask-blink 4.6s infinite; }
-#ask-ball .eye-r { animation-delay: .04s; }
-#ask-ball .pupil { transition: transform .08s linear; }
-#ask-ball .smile { transform-box: fill-box; transform-origin: center; transition: transform .2s ease; }
-#ask-ball:hover { transform: scale(1.14) rotate(-6deg); animation-play-state: paused; }
-#ask-ball:hover .smile { transform: scale(1.18, 1.35); }
-#ask-ball:hover .eye-r { animation: ask-wink 1.2s ease-in-out infinite; }
-#ask-ball:active { transform: scale(.92); }
-@keyframes ask-bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -4px; } }
-@keyframes ask-pop { from { transform: scale(0) rotate(-40deg); } to { transform: scale(1) rotate(0); } }
-@keyframes ask-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.08); } }
-@keyframes ask-wink { 0%, 100% { transform: scaleY(1); } 30%, 70% { transform: scaleY(.1); } }
-@media (prefers-reduced-motion: reduce) { #ask-ball, #ask-ball .eye { animation: none !important; } }
+#ask-ball:active { cursor: grabbing; }
+#ask-ball svg { width: 100%; height: 100%; display: block; pointer-events: none; }
 @media print { #ask-ball, #ask-tail { display: none !important; } }
