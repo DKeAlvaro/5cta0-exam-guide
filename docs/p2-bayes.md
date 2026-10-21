@@ -1,28 +1,52 @@
 # 2.3 Bayesian estimation: MAP and MMSE
 
-<p class="lead">In Bayesian estimation the unknown θ is itself random, with a <b>prior</b> distribution. Recent exams ask for a MAP almost every time, often with a prior that makes the algebra trivial (Beta, Gamma). MMSE shows up less often but is quick once you know the three integrals.</p>
+<p class="lead">In Bayesian estimation the unknown θ is itself random, with a <b>prior</b> distribution. Recent exams ask for a MAP almost every time, often with a prior that makes the algebra trivial (Beta, Gamma). MMSE shows up less often but is quick once you know the three integrals. This page starts from "what do you believe before the data?" and ends with the exam derivations.</p>
 
-## The idea, from zero
+!!! need "Before this page"
+    - Likelihood, MLE and the 4-step recipe ([2.1](p2-mle.md))
+    - Conditional probability and Bayes' theorem ([0.6](p0-foundations.md#conditional-probability-and-independence), [1.1](p1-bayes.md))
+    - PDF, expectation (mean) of a random variable ([0.6](p0-foundations.md#expectation-variance))
+    - The integral $\int_0^\infty\theta^ne^{-s\theta}d\theta$ ([Toolbox](toolbox.md#3-the-integrals-that-keep-coming-back))
 
-Before seeing data you already believe something about $\theta$: the **prior** $p(\theta)$. The data update that belief through Bayes' theorem (the same formula as in [1.1](p1-bayes.md)):
+    If you read only one thing: **MAP and MMSE both start from the same object, the posterior $p(\theta\mid\mathbf x)\propto p(\mathbf x\mid\theta)\,p(\theta)$ (data fit × prior belief). MAP reports its highest point (the *mode*), MMSE reports its average (the *mean*).**
+
+---
+
+## 1 · The idea, from zero
+
+### 1.1 Prior, likelihood, posterior
+
+Before seeing any data you already believe something about $\theta$: that is the **prior** $p(\theta)$ (e.g. "this coin is probably close to fair"). The data update that belief through Bayes' theorem (the same formula as in [1.1](p1-bayes.md), now with a continuous unknown):
 
 $$\underbrace{p(\theta\mid\mathbf x)}_{\text{posterior}}=\frac{\overbrace{p(\mathbf x\mid\theta)}^{\text{likelihood}}\ \overbrace{p(\theta)}^{\text{prior}}}{\underbrace{p(\mathbf x)}_{\text{evidence}=\int p(\mathbf x\mid\theta)p(\theta)d\theta}}\ \propto\ p(\mathbf x\mid\theta)\,p(\theta).$$
 
-The posterior is everything you know about $\theta$ after the data. To give **one number**, choose a cost for being wrong and minimise its expected value (the **Bayes risk**):
+The posterior is *everything* you know about $\theta$ after the data. The evidence $p(\mathbf x)$ does not depend on $\theta$; it is only the number that makes the area equal 1 (the "$\propto$" means "equal up to such a constant").
+
+### 1.2 From a distribution to one number
+
+You must report a single value $\hat\theta$. Choose a **cost** for being wrong and minimise its posterior average (the **Bayes risk**). Three standard costs, three standard answers:
 
 | Cost of error $e=\theta-\hat\theta$ | Best estimate | Name |
 |---|---|---|
 | quadratic $e^2$ | **mean** of the posterior | MMSE (minimum mean square error) |
 | absolute $\lvert e\rvert$ | median of the posterior | |
-| uniform / "hit-or-miss" | **mode** (peak) of the posterior | MAP (maximum a posteriori) |
+| uniform / "hit-or-miss" (cost 0 if $\hat\theta$ is right, 1 otherwise) | **mode** (highest point) of the posterior | MAP (maximum a posteriori) |
 
-**MAP vs MLE.** MAP maximises likelihood × prior; MLE maximises the likelihood alone. With a flat prior they are equal. With lots of data the likelihood dominates and MAP moves towards the MLE.
+*Why the mean for squared error:* the average cost of reporting $a$ is $\mathbb E[(\theta-a)^2\mid\mathbf x]$; its derivative with respect to $a$ is $2\big(a-\mathbb E[\theta\mid\mathbf x]\big)$, which is zero at $a=\mathbb E[\theta\mid\mathbf x]$. *Why the mode for hit-or-miss:* you are rewarded only for landing on the right value, so bet on the most probable one.
 
-**MAP vs MMSE.** Equal when the posterior is symmetric with one peak (e.g. Gaussian). Different otherwise: skewed or two-peaked posteriors (see the figures below).
+**MAP vs MLE.** MAP maximises likelihood × prior; MLE maximises the likelihood alone. With a flat prior they are equal. With lots of data the likelihood dominates and MAP moves towards the MLE (usually; a prior that rules out the true value never lets go).
+
+**MAP vs MMSE.** Equal when the posterior is symmetric with one peak (e.g. a Gaussian: mean = mode). Different otherwise: skewed or two-peaked posteriors (figures below).
+
+!!! example "A coin, with numbers"
+    Prior: Beta(2, 3), shape $\propto\theta^1(1-\theta)^2$ (mean $\frac25=0.4$: "probably a bit biased towards tails"). Data: 3 heads, 1 tail → likelihood $\propto\theta^3(1-\theta)^1$. Posterior $\propto\theta^{1+3}(1-\theta)^{2+1}=\theta^4(1-\theta)^3$ → **Beta(5, 4)**.
+    MLE $=\frac34=0.75$. MAP $=$ mode $=\frac{5-1}{5+4-2}=\frac47=0.571$. MMSE $=$ mean $=\frac59=0.556$. The prior pulled all Bayesian answers away from the MLE towards its own mean.
+
+### 1.3 Recipes
 
 !!! recipe "Recipe: MAP"
     1. Write $\ln p(\mathbf x\mid\theta)+\ln p(\theta)$ (or $\ln p(\theta\mid\mathbf x)$ if the posterior is given). The evidence $p(\mathbf x)$ does not depend on $\theta$: ignore it.
-    2. Differentiate with respect to $\theta$, set to 0, solve.
+    2. Differentiate with respect to $\theta$, set to 0, solve (exactly the MLE recipe of [2.1](p2-mle.md#13-the-recipe)).
     3. Check the solution lies inside the allowed range of $\theta$ (otherwise the max is at the boundary).
 
 !!! recipe "Recipe: MMSE"
@@ -30,13 +54,16 @@ The posterior is everything you know about $\theta$ after the data. To give **on
     2. $\hat\theta_{MMSE}=\int\theta\,p(\theta\mid\mathbf x)\,d\theta$.
     3. The integrals are almost always of the form $\int_0^\infty\theta^n e^{-s\theta}d\theta=\frac{n!}{s^{n+1}}$.
 
-!!! idea "Conjugate priors: the shortcut used in recent exams"
-    If the prior has the same shape as the likelihood in $\theta$, the posterior has that shape too, and you just **add exponents**:
+### 1.4 Conjugate priors: the shortcut used in recent exams
 
-    - Likelihood $\propto\theta^{A}(1-\theta)^{B}$ (Bernoulli, binomial, negative binomial) + prior Beta($\alpha,\beta$) $\propto\theta^{\alpha-1}(1-\theta)^{\beta-1}$
-      → posterior Beta($\alpha+A,\ \beta+B$), **mode** $=\dfrac{\alpha+A-1}{\alpha+\beta+A+B-2}$.
-    - Likelihood $\propto\lambda^{S}e^{-n\lambda}$ (Poisson) + prior Gamma($\alpha,\beta$) $\propto\lambda^{\alpha-1}e^{-\beta\lambda}$
-      → posterior Gamma($\alpha+S,\ \beta+n$), **mode** $=\dfrac{\alpha+S-1}{\beta+n}$.
+A prior is **conjugate** to a likelihood when the posterior has the same *shape family* as the prior. Then you never integrate: you just **add exponents**.
+
+- Likelihood $\propto\theta^{A}(1-\theta)^{B}$ (Bernoulli, binomial, negative binomial: counts of successes $A$ and failures $B$) + prior Beta($\alpha,\beta$) $\propto\theta^{\alpha-1}(1-\theta)^{\beta-1}$
+  → posterior Beta($\alpha+A,\ \beta+B$), **mode** $=\dfrac{\alpha+A-1}{\alpha+\beta+A+B-2}$.
+- Likelihood $\propto\lambda^{S}e^{-n\lambda}$ (Poisson: $S$ = total count over $n$ days) + prior Gamma($\alpha,\beta$) $\propto\lambda^{\alpha-1}e^{-\beta\lambda}$
+  → posterior Gamma($\alpha+S,\ \beta+n$), **mode** $=\dfrac{\alpha+S-1}{\beta+n}$.
+
+(The Beta distribution is a flexible bump on $(0,1)$, which is why it is the natural prior for a probability; Beta($\alpha,\beta$) has mode $\frac{\alpha-1}{\alpha+\beta-2}$ and mean $\frac{\alpha}{\alpha+\beta}$. Gamma($\alpha,\beta$) has mode $\frac{\alpha-1}{\beta}$ and mean $\frac\alpha\beta$.)
 
 ---
 
@@ -68,23 +95,36 @@ The posterior is everything you know about $\theta$ after the data. To give **on
     where the Beta function is defined as $B(\alpha, \beta) = \Gamma(\alpha)\Gamma(\beta)/\Gamma(\alpha + \beta).$
 
 ???+ solution "Solution"
-    **Likelihood.** $n=5$ rounds, $k=2$, $\sum x_i=3+5+4+6+4=22$:
 
-    $$L(\theta)=\prod_{i=1}^5\binom{x_i-1}{1}\theta^2(1-\theta)^{x_i-2}=\Big[\prod_i(x_i-1)\Big]\theta^{2n}(1-\theta)^{\sum x_i-2n}=360\,\theta^{10}(1-\theta)^{12}.$$
+    **What is being asked?** The data are five counts of "patients screened until 2 eligible ones were found". Write the likelihood of $\theta$, multiply by the Beta prior to get the posterior, and report its peak.
 
-    ($\prod(x_i-1)=2\cdot4\cdot3\cdot5\cdot3=360$, a constant that does not matter.) In words: 10 eligible patients and 12 non-eligible ones were seen in total.
+    **Symbols in this question**
 
-    **Posterior** ∝ likelihood × prior, with prior $\propto\theta^{1}(1-\theta)^{2}$:
+    | Symbol | Meaning |
+    |---|---|
+    | $\theta$ | probability that one patient is eligible (unknown) |
+    | $k=2$ | number of eligible patients we wait for in each round |
+    | $x_i$ | patients screened in round $i$: $3,5,4,6,4$ |
+    | $n=5$ | number of rounds |
+    | $\binom{x-1}{k-1}$ | a counting factor that does not contain $\theta$ |
 
-    $$p(\theta\mid\mathbf x)\propto\theta^{10}(1-\theta)^{12}\cdot\theta^{1}(1-\theta)^{2}=\theta^{11}(1-\theta)^{14}\;\Rightarrow\;\theta\mid\mathbf x\sim\text{Beta}(12,\,15).$$
+    **Step 1 — likelihood** (rounds independent → product). With $k=2$, $\binom{x_i-1}{1}=x_i-1$. In round $i$: $k=2$ eligible patients (factor $\theta^2$) and $x_i-2$ non-eligible ones (factor $(1-\theta)^{x_i-2}$). Over 5 rounds, $\sum x_i=3+5+4+6+4=22$:
 
-    Normalised: $p(\theta\mid\mathbf x)=\frac{1}{B(12,15)}\theta^{11}(1-\theta)^{14}$, $0<\theta<1$.
+    $$L(\theta)=\prod_{i=1}^5(x_i-1)\,\theta^2(1-\theta)^{x_i-2}=\Big[\prod_i(x_i-1)\Big]\theta^{2n}(1-\theta)^{\sum x_i-2n}=360\,\theta^{10}(1-\theta)^{12}.$$
 
-    **MAP:** $\frac{d}{d\theta}\big[11\ln\theta+14\ln(1-\theta)\big]=\frac{11}{\theta}-\frac{14}{1-\theta}=0\Rightarrow11(1-\theta)=14\theta\Rightarrow\hat\theta=\frac{11}{25}.$
+    ($\prod(x_i-1)=2\cdot4\cdot3\cdot5\cdot3=360$, a constant that does not matter. In words: in total 10 eligible and 12 non-eligible patients were seen.)
+
+    **Step 2 — posterior** ∝ likelihood × prior, with the prior Beta(2, 3) $\propto\theta^{2-1}(1-\theta)^{3-1}=\theta^{1}(1-\theta)^{2}$ ([conjugate rule](#14-conjugate-priors-the-shortcut-used-in-recent-exams): add exponents):
+
+    $$p(\theta\mid\mathbf x)\propto\theta^{10}(1-\theta)^{12}\cdot\theta^{1}(1-\theta)^{2}=\theta^{11}(1-\theta)^{14}\;\Rightarrow\;\theta\mid\mathbf x\sim\text{Beta}(12,\,15)$$
+
+    (exponent 11 = $\alpha'-1$ so $\alpha'=12$; exponent 14 = $\beta'-1$ so $\beta'=15$). Normalised: $p(\theta\mid\mathbf x)=\frac{1}{B(12,15)}\theta^{11}(1-\theta)^{14}$, $0<\theta<1$.
+
+    **Step 3 — MAP.** $\ln p=11\ln\theta+14\ln(1-\theta)+\text{const}$; $\frac{d}{d\theta}=\frac{11}{\theta}-\frac{14}{1-\theta}=0\Rightarrow11(1-\theta)=14\theta\Rightarrow\hat\theta=\frac{11}{25}=0.44$.
 
     ![prior, likelihood and posterior](img/gen/p2_beta_post.svg)
 
-    The MLE alone would be $10/22=0.455$. The prior Beta(2,3) leans towards smaller θ (its mean is 0.4), so it pulls the estimate slightly down.
+    The MLE alone would be $10/22=0.455$. The prior Beta(2,3) has mean $0.4$ and leans towards smaller $\theta$, so it pulls the estimate slightly down.
 
     !!! answer "Answer"
         $L(\theta)\propto\theta^{10}(1-\theta)^{12}$; posterior Beta(12, 15); $\hat\theta_{MAP}=\dfrac{11}{25}=0.44$
@@ -100,19 +140,26 @@ The posterior is everything you know about $\theta$ after the data. To give **on
     - Compare the MAP estimate with the MLE and explain the effect of the prior.
 
 ???+ solution "Solution"
-    **Likelihood.** $n=6$, $\sum x_i=2+4+3+5+2+4=20$:
 
-    $$L(\lambda)=\prod_{i=1}^6\frac{\lambda^{x_i}e^{-\lambda}}{x_i!}=\frac{\lambda^{20}e^{-6\lambda}}{\prod_i x_i!}\propto\lambda^{20}e^{-6\lambda}.$$
+    **What is being asked?** Daily spike counts follow a Poisson law (the PMF of "how many events in a day when the average is $\lambda$": $P(X=x)=\frac{\lambda^xe^{-\lambda}}{x!}$). Find the posterior with a Gamma prior, its peak (MAP), and compare with the MLE.
 
-    **Posterior** ∝ $\lambda^{20}e^{-6\lambda}\cdot\lambda^{2}e^{-2\lambda}=\lambda^{22}e^{-8\lambda}$, i.e. **Gamma($\alpha'=23$, $\beta'=8$)**.
+    **Symbols in this question.** $\lambda$: average spikes per day (unknown); $x_i$: the six counts; $n=6$; $S=\sum x_i=2+4+3+5+2+4=20$; $\alpha=3,\beta=2$: the prior's parameters.
 
-    **MAP:** $\frac{d}{d\lambda}\big[22\ln\lambda-8\lambda\big]=\frac{22}{\lambda}-8=0\Rightarrow\hat\lambda_{MAP}=\frac{22}{8}=2.75.$
+    **Step 1 — likelihood** (independent days → product):
 
-    **MLE:** $\frac{d}{d\lambda}[20\ln\lambda-6\lambda]=0\Rightarrow\hat\lambda_{ML}=\frac{20}{6}=\bar x\approx3.33.$
+    $$L(\lambda)=\prod_{i=1}^6\frac{\lambda^{x_i}e^{-\lambda}}{x_i!}=\frac{\lambda^{20}e^{-6\lambda}}{\prod_i x_i!}\propto\lambda^{20}e^{-6\lambda}$$
+
+    (exponents add: $\lambda^{\sum x_i}$ and $e^{-n\lambda}$; the factorials do not contain $\lambda$).
+
+    **Step 2 — posterior** ∝ $\lambda^{20}e^{-6\lambda}\cdot\lambda^{2}e^{-2\lambda}=\lambda^{22}e^{-8\lambda}$ (prior: $\lambda^{\alpha-1}e^{-\beta\lambda}=\lambda^2e^{-2\lambda}$), i.e. **Gamma($\alpha'=23$, $\beta'=8$)** ($\alpha'-1=22$).
+
+    **Step 3 — MAP.** $\frac{d}{d\lambda}\big[22\ln\lambda-8\lambda\big]=\frac{22}{\lambda}-8=0\Rightarrow\hat\lambda_{MAP}=\frac{22}{8}=2.75.$
+
+    **Step 4 — MLE** (the same without the prior): $\frac{d}{d\lambda}[20\ln\lambda-6\lambda]=0\Rightarrow\hat\lambda_{ML}=\frac{20}{6}=\bar x\approx3.33.$
 
     ![prior, likelihood and posterior](img/gen/p2_gamma_post.svg)
 
-    **Effect of the prior.** The prior Gamma(3, 2) has mean $\alpha/\beta=1.5$ spikes/day, lower than the data suggest. It acts like **2 extra days** ($\beta=2$) with **2 extra spikes** ($\alpha-1=2$): $\hat\lambda_{MAP}=\frac{20+2}{6+2}$. So the MAP is pulled from 3.33 towards the prior belief (shrinkage). With more days of data the prior's weight shrinks and MAP → MLE.
+    **Step 5 — effect of the prior.** The prior Gamma(3, 2) has mean $\alpha/\beta=1.5$ spikes/day, lower than the data suggest. It acts like **2 extra days** ($\beta=2$) with **2 extra spikes** ($\alpha-1=2$): $\hat\lambda_{MAP}=\frac{20+2}{6+2}$. So the MAP is pulled from 3.33 towards the prior belief (shrinkage). With more days of data the prior's weight shrinks and MAP → MLE.
 
     !!! answer "Answer"
         Posterior Gamma(23, 8); $\hat\lambda_{MAP}=2.75$, $\hat\lambda_{ML}=3.33$; the prior pulls the estimate down towards its own mean (1.5) and its influence fades as $n$ grows.
@@ -127,9 +174,14 @@ The posterior is everything you know about $\theta$ after the data. To give **on
     Derive the MAP estimate of $\theta$.
 
 ???+ solution "Solution"
-    The posterior is already given, so go straight to step 1. Call the exponents $a=\beta_1-1+k_1N_1$ and $b=\beta_0-1+k_0N_0$ to keep it readable ($k_0,k_1$ are known positive constants).
 
-    $$\ln p(\theta\mid\mathcal D)=a\ln\theta+b\ln(1-\theta)\quad\Rightarrow\quad\frac{a}{\theta}-\frac{b}{1-\theta}=0\quad\Rightarrow\quad a(1-\theta)=b\theta.$$
+    **What is being asked?** The posterior is **given**, so skip the Bayes step: find its peak.
+
+    **Symbols in this question.** $N_1,N_0$: counts of Y and N; $\beta_1,\beta_0,k_1,k_0$: known positive constants; $\theta$: probability of Y. To keep it readable call the exponents $a=\beta_1-1+k_1N_1$ and $b=\beta_0-1+k_0N_0$, so $p\propto\theta^a(1-\theta)^b$.
+
+    **Step 1 — log and differentiate:** $\ln p=a\ln\theta+b\ln(1-\theta)$; $\ \frac{d}{d\theta}=\frac a\theta-\frac b{1-\theta}$.
+
+    **Step 2 — set to 0:** $\frac a\theta=\frac b{1-\theta}\Rightarrow a(1-\theta)=b\theta\Rightarrow\theta=\frac{a}{a+b}$.
 
     !!! answer "Answer"
         $\hat\theta_{MAP}=\dfrac{a}{a+b}=\dfrac{\beta_1-1+k_1N_1}{\beta_1+\beta_0-2+k_1N_1+k_0N_0}$
@@ -148,13 +200,20 @@ The posterior is everything you know about $\theta$ after the data. To give **on
     Derive the MAP for the parameter $\theta$. Hint: The derivative of the logistic sigmoid is $\frac{\partial \lambda(\theta)}{\partial \theta} = \lambda(\theta)(1 - \lambda(\theta))$.
 
 ???+ solution "Solution"
-    Identical structure to [April 2025 2c](p2-mle.md#apr25-2c) (MLE). Solve for $\lambda$, then invert the sigmoid.
 
-    $$\ln p=\ln\lambda-\ln2-\frac x2\lambda,\qquad\frac{\partial\ln p}{\partial\theta}=(1-\lambda)-\frac x2\lambda(1-\lambda)=(1-\lambda)\Big(1-\frac{x}{2}\lambda\Big)=0.$$
+    **What is being asked?** The posterior is given and $\theta$ hides inside the sigmoid $\lambda(\theta)$. Same structure as [April 2025 2c](p2-mle.md#apr25-2c) (the MLE version, explained step by step there): solve for $\lambda$, then invert the sigmoid $\theta=\ln\frac{\lambda}{1-\lambda}$.
 
-    So $\lambda(\hat\theta)=\frac2x$, and $\hat\theta=\ln\frac{\lambda}{1-\lambda}=\ln\frac{2/x}{1-2/x}=\ln\frac{2}{x-2}$.
+    **Step 1 — log:** $\ln p=\ln\lambda-\ln2-\frac x2\lambda$.
 
-    Valid when $\frac2x<1$, i.e. $x>2$. For $1<x\le2$ the derivative stays positive: no finite maximum.
+    **Step 2 — derivative** (chain rule, $\lambda'=\lambda(1-\lambda)$, $\frac{\lambda'}{\lambda}=1-\lambda$):
+
+    $$\frac{\partial\ln p}{\partial\theta}=(1-\lambda)-\frac x2\lambda(1-\lambda)=(1-\lambda)\Big(1-\frac{x}{2}\lambda\Big)=0.$$
+
+    **Step 3 — solve.** $1-\lambda=0$ would need $\theta\to\infty$, so $\lambda(\hat\theta)=\frac2x$.
+
+    **Step 4 — back to $\theta$:** $\hat\theta=\ln\frac{\lambda}{1-\lambda}=\ln\frac{2/x}{1-2/x}=\ln\frac{2}{x-2}$ (multiply top and bottom by $x$).
+
+    Valid when $\lambda=\frac2x<1$, i.e. $x>2$. For $1<x\le2$ the derivative stays positive: no finite maximum.
 
     !!! answer "Answer"
         $\hat\theta_{MAP}=\ln\dfrac{2}{x-2}=-\ln\!\left(\dfrac x2-1\right)$, for $x>2$
@@ -183,19 +242,22 @@ The posterior is everything you know about $\theta$ after the data. To give **on
     **2g** Find the maximum a posteriori estimator.
 
 ???+ solution "Solution"
-    **2f (MMSE = posterior mean).** Write $s=x+a$:
 
-    $$\hat\theta_{MMSE}=\int_0^\infty\theta\cdot s^2\theta e^{-s\theta}d\theta=s^2\int_0^\infty\theta^2e^{-s\theta}d\theta=s^2\cdot\frac{2}{s^3}=\frac{2}{x+a}.$$
+    **What is being asked?** From the same given posterior: its **mean** (2f, MMSE) and its **peak** (2g, MAP).
 
-    (With the hint: substitute $y=s\theta$; $\int_0^\infty y^2e^{-y}dy=\big[-e^{-y}(y^2+2y+2)\big]_0^\infty=2$.)
+    **Symbols in this question.** $\theta$: the unknown rate; $x$: the single observation; $a$: the prior's rate; to shorten, write $s=x+a$ (a positive number).
 
-    **2g (MAP = posterior peak).**
+    **Step 1 — 2f: MMSE = posterior mean.**
 
-    $$\frac{d}{d\theta}\big[\ln\theta-s\theta\big]=\frac1\theta-s=0\Rightarrow\hat\theta_{MAP}=\frac{1}{x+a}.$$
+    $$\hat\theta_{MMSE}=\int_0^\infty\theta\cdot s^2\theta e^{-s\theta}d\theta=s^2\int_0^\infty\theta^2e^{-s\theta}d\theta.$$
+
+    **Step 2 — the integral.** Substitute $y=s\theta$ ($\theta=y/s$, $d\theta=dy/s$): $\int_0^\infty\theta^2e^{-s\theta}d\theta=\frac1{s^3}\int_0^\infty y^2e^{-y}dy=\frac{1}{s^3}\Big[-e^{-y}(y^2+2y+2)\Big]_0^\infty=\frac{1}{s^3}(0+2)=\frac2{s^3}$ (the hint). So $\hat\theta_{MMSE}=s^2\cdot\frac{2}{s^3}=\frac{2}{x+a}$.
+
+    **Step 3 — 2g: MAP = posterior peak.** $\ln p=\ln\theta-s\theta+\text{const}$; $\frac d{d\theta}=\frac1\theta-s=0\Rightarrow\hat\theta_{MAP}=\frac1{x+a}$.
 
     ![posterior with MAP and MMSE](img/gen/p2_nov22_post.svg)
 
-    The posterior is skewed to the right, so its mean lies right of its peak: MMSE = 2 × MAP here.
+    The posterior is skewed to the right (long tail), so its mean lies to the right of its peak: MMSE = 2 × MAP here.
 
     !!! answer "Answer"
         2f: $\hat\theta_{MMSE}=\dfrac{2}{x+a}$  2g: $\hat\theta_{MAP}=\dfrac{1}{x+a}$
@@ -216,19 +278,22 @@ The posterior is everything you know about $\theta$ after the data. To give **on
     For this exercise, we restrict our attention to $|x| > 2$.
 
 ???+ solution "Solution"
-    **Read the posterior:** two unit-variance Gaussian bumps, one at $+x$ with weight $c$ and one at $-x$ with weight $1-c$.
 
-    **2f.** The mean of a mixture is the weighted mean of the bump centres:
+    **What is being asked?** A posterior that is a *mixture* of two Gaussian bumps. Find its mean (MMSE) for two weights, and read the peak (MAP) from a sketch.
+
+    **Reading the posterior.** Each term is $c\times\mathcal N(\theta;\,x,1)$: a unit-variance bump centred at $+x$ with weight $c$, plus a bump centred at $-x$ with weight $1-c$.
+
+    **Step 1 — 2f: the mean of a mixture is the weighted mean of the bump centres** (the mean is linear, and each bump's mean is its centre, which is what the hint integral says):
 
     $$\hat\theta_{MMSE}=c\cdot x+(1-c)(-x)=x(2c-1).$$
 
     $c=\frac12\Rightarrow0$; $\quad c=\frac34\Rightarrow\frac x2$.
 
-    **2g.** With $|x|>2$ the bumps barely overlap, so the peaks sit at $\pm x$:
+    **Step 2 — 2g: sketch.** With $|x|>2$ the two bumps are more than 4 standard deviations apart, so they barely overlap and the peaks sit at $\pm x$:
 
     ![mixture posterior](img/gen/p2_mixture.svg)
 
-    - $c=\frac12$: two equally high peaks → MAP $=\pm x$ (not unique). The MMSE (0) lands where the posterior is almost zero.
+    - $c=\frac12$: two equally high peaks → MAP $=\pm x$ (not unique). The MMSE (0) lands where the posterior is almost zero: a perfectly *valid* answer that is never a likely value.
     - $c=\frac34$: the peak at $+x$ is three times taller → MAP $\approx x$.
 
     !!! answer "Answer"
@@ -246,15 +311,20 @@ The posterior is everything you know about $\theta$ after the data. To give **on
     **2h** Find the Bayesian minimum mean square error estimator.
 
 ???+ solution "Solution"
-    **2g.** Bayes, with the evidence as the normalising integral. Everything that does not contain $\theta$ ($\frac1x$, $\frac1a$) cancels between numerator and denominator:
 
-    $$p(\theta\mid x)=\frac{e^{-\theta x}e^{-a\theta}}{\int_0^\infty e^{-\theta(x+a)}d\theta}=\frac{e^{-\theta(x+a)}}{1/(x+a)}=(x+a)\,e^{-\theta(x+a)},\quad\theta>0.$$
+    **What is being asked?** 2g: the full Bayes computation, including the normalising integral (the evidence). 2h: its mean.
 
-    An exponential distribution with rate $x+a$.
+    **Step 1 — numerator.** $p(x\mid\theta)p(\theta)=\frac1xe^{-\theta x}\cdot\frac1ae^{-a\theta}=\frac1{ax}e^{-\theta(x+a)}$. The constant $\frac1{ax}$ does not contain $\theta$ and will cancel with the same constant in the denominator.
 
-    **2h.** Mean of an exponential = 1/rate:
+    **Step 2 — evidence** (integrate the numerator over $\theta$; the given integral $\int e^{c\theta}=\frac1ce^{c\theta}$ with $c=-(x+a)$): $\int_0^\infty e^{-\theta(x+a)}d\theta=\frac{1}{x+a}$.
 
-    $$\hat\theta_{MMSE}=\int_0^\infty\theta(x+a)e^{-\theta(x+a)}d\theta=(x+a)\cdot\frac{1}{(x+a)^2}=\frac{1}{x+a}.$$
+    **Step 3 — posterior:**
+
+    $$p(\theta\mid x)=\frac{e^{-\theta(x+a)}}{1/(x+a)}=(x+a)\,e^{-\theta(x+a)},\quad\theta>0,$$
+
+    an exponential distribution with rate $x+a$.
+
+    **Step 4 — 2h: mean of an exponential = 1/rate.** Directly: $\hat\theta_{MMSE}=\int_0^\infty\theta(x+a)e^{-\theta(x+a)}d\theta=(x+a)\cdot\frac{1}{(x+a)^2}=\frac{1}{x+a}$ (using $\int_0^\infty\theta e^{-s\theta}d\theta=\frac1{s^2}$).
 
     !!! answer "Answer"
         $p(\theta\mid x)=(x+a)e^{-(x+a)\theta}$ for $\theta>0$; $\ \hat\theta_{MMSE}=\dfrac{1}{x+a}$
@@ -270,24 +340,29 @@ The posterior is everything you know about $\theta$ after the data. To give **on
 
     **2g** Find the minimum mean square error estimate $\hat{X}_{\text{MMSE}}$ of $X$ given $Y$. If you were not able to solve f) you can use $P[X = 1|Y] = \frac{1}{e^{-\frac{y}{\sigma^2}} \left( e^{\frac{y}{\sigma^2}} + e^{-\frac{y}{\sigma^2}} \right)}$ and $P[X = -1|Y] = \frac{1}{e^{\frac{y}{\sigma^2}} \left( e^{\frac{y}{\sigma^2}} + e^{-\frac{y}{\sigma^2}} \right)}$. Useful identities: $\frac{e^{2u} - 1}{e^{2u} + 1} = \frac{e^u - e^{-u}}{e^u + e^{-u}} = \tanh(u)$
 
-    **2h** Find the maximum a posterior estimator $\hat{X}_{\text{MAP}}$ of $X$ given the observation $Y$. More specifically, find a threshold value $y_{\text{th}}$ such that a decision on $X$ depends on whether or not this threshold value is exceeded or not. *Hint:* Recall that $X$ is a discrete random variable. Hence, $\hat{X}_{\text{MAP}} = \arg \max_{X \in \{1, -1\}} P[X|Y]$. To check which value of $X$ maximizes the a posterior probability, you simply can check the ratio of the a posterior probabilities.
+    **2h** Find the maximum a posterior estimator $\hat{X}_{\text{MAP}}$ of $X$ given the observation $Y$. More specifically, find a threshold value $y_{\text{th}}$ such that a decision on $X$ depends on whether or not this threshold value is exceeded or not. *Hint:* Recall that $X$ is a discrete random variable. Hence, $\hat{X}_{\text{MAP}} = \arg \max_{X \in \{1, -1\}} P[X|Y]$. To check which value of $X$ maximizes the a posterior probability, you simply can check the ratio of the a posteriori probabilities.
 
 ???+ solution "Solution"
-    **Reading the diagram:** a bit $X=\pm1$ is sent, Gaussian noise is added, you see $Y$. Given $X=1$, $Y\sim\mathcal N(1,\sigma^2)$; given $X=-1$, $Y\sim\mathcal N(-1,\sigma^2)$.
 
-    **2f.** Bayes with two hypotheses and equal priors ½ (they cancel, and so do the Gaussian constants):
+    **What is being asked?** A bit $X=\pm1$ (equally likely) is sent; noise is added; you see $Y$. (2f) the probability of each bit given $Y$; (2g) the posterior mean; (2h) the most probable bit as a rule on $y$. This is a detection problem in disguise ([4.3](p4-bayes.md)).
 
-    $$P[X=1\mid y]=\frac{e^{-(y-1)^2/2\sigma^2}}{e^{-(y-1)^2/2\sigma^2}+e^{-(y+1)^2/2\sigma^2}},\qquad P[X=-1\mid y]=\frac{e^{-(y+1)^2/2\sigma^2}}{e^{-(y-1)^2/2\sigma^2}+e^{-(y+1)^2/2\sigma^2}}.$$
+    **Symbols in this question.** $X\in\{+1,-1\}$ sent bit; $N\sim\mathcal N(0,\sigma^2)$ noise; $Y=X+N$ observation. Given $X=+1$: $Y\sim\mathcal N(1,\sigma^2)$; given $X=-1$: $Y\sim\mathcal N(-1,\sigma^2)$.
 
-    Since $(y+1)^2-(y-1)^2=4y$, these simplify to $P[X=1\mid y]=\frac{1}{1+e^{-2y/\sigma^2}}$ and $P[X=-1\mid y]=\frac{1}{1+e^{2y/\sigma^2}}$.
+    **Step 1 — 2f: Bayes with two hypotheses.** Equal priors ($\tfrac12$ each) and the Gaussian prefactors cancel:
 
-    **2g.** For a discrete variable the posterior mean is a sum:
+    $$P[X=1\mid y]=\frac{e^{-(y-1)^2/2\sigma^2}}{e^{-(y-1)^2/2\sigma^2}+e^{-(y+1)^2/2\sigma^2}}.$$
 
-    $$\hat X_{MMSE}=(+1)P[X=1\mid y]+(-1)P[X=-1\mid y]=\frac{e^{-(y-1)^2/2\sigma^2}-e^{-(y+1)^2/2\sigma^2}}{e^{-(y-1)^2/2\sigma^2}+e^{-(y+1)^2/2\sigma^2}}=\frac{e^{2y/\sigma^2}-1}{e^{2y/\sigma^2}+1}=\tanh\!\left(\frac{y}{\sigma^2}\right).$$
+    **Step 2 — simplify.** Divide top and bottom by the top term: the ratio of the bottom to the top term is $e^{[(y-1)^2-(y+1)^2]/2\sigma^2}=e^{-4y/2\sigma^2}=e^{-2y/\sigma^2}$ (because $(y+1)^2-(y-1)^2=4y$). So
 
-    (Divide numerator and denominator by $e^{-(y+1)^2/2\sigma^2}$.) Note: the MMSE estimate is a number between −1 and 1, usually not ±1 itself.
+    $$P[X=1\mid y]=\frac{1}{1+e^{-2y/\sigma^2}},\qquad P[X=-1\mid y]=\frac{1}{1+e^{2y/\sigma^2}}.$$
 
-    **2h.** Pick the value with the larger posterior:
+    **Step 3 — 2g: posterior mean of a two-valued variable** is a weighted sum, with $r=e^{2y/\sigma^2}$ (so $P[X=1\mid y]=\frac{r}{1+r}$, $P[X=-1\mid y]=\frac1{1+r}$):
+
+    $$\hat X_{MMSE}=(+1)\frac{r}{1+r}+(-1)\frac1{1+r}=\frac{r-1}{r+1}=\frac{e^{2y/\sigma^2}-1}{e^{2y/\sigma^2}+1}=\tanh\!\left(\frac{y}{\sigma^2}\right)$$
+
+    (the given identity with $u=y/\sigma^2$). Note: the MMSE estimate is a number between $-1$ and $1$, usually not $\pm1$ itself.
+
+    **Step 4 — 2h: MAP picks the larger posterior.** Their ratio is $\frac{P[X=1\mid y]}{P[X=-1\mid y]}=r=e^{2y/\sigma^2}$, which is $>1$ exactly when $2y/\sigma^2>0$, i.e. $y>0$:
 
     $$\frac{P[X=1\mid y]}{P[X=-1\mid y]}=e^{2y/\sigma^2}\ \underset{-1}{\overset{+1}{\gtrless}}\ 1\iff y\ \underset{-1}{\overset{+1}{\gtrless}}\ 0.$$
 
@@ -302,11 +377,20 @@ The posterior is everything you know about $\theta$ after the data. To give **on
     Now consider the case where $p(\theta)$ is also a random variable with PDF $p(\theta) = \lambda \exp[-\lambda\theta]$. Find the MAP estimator for the parameter $\theta$. The answer does **not** have to be in the form $\hat{\theta} = f(x, \lambda)$.
 
 ???+ solution "Solution"
-    $$\ln p(\mathbf x\mid\theta)+\ln p(\theta)=\text{const}-2N\ln\theta-\frac{1}{2\theta^2}\sum x^2[n]+\ln\lambda-\lambda\theta$$
 
-    $$\frac{\partial}{\partial\theta}:\quad-\frac{2N}{\theta}+\frac{1}{\theta^3}\sum x^2[n]-\lambda=0\;\Longleftrightarrow\;\lambda\theta^3+2N\theta^2-\sum x^2[n]=0.$$
+    **What is being asked?** The MLE of 3a, plus an exponential prior on $\theta$. MAP = maximise $\ln p(\mathbf x\mid\theta)+\ln p(\theta)$.
 
-    A cubic: no neat closed form needed (the question says so). Sanity check: with $\lambda\to0$ (flat prior) it gives back the MLE $\theta^2=\frac{1}{2N}\sum x^2$.
+    **Step 1 — log of likelihood × prior:**
+
+    $$\ln p(\mathbf x\mid\theta)+\ln p(\theta)=\text{const}-2N\ln\theta-\frac{1}{2\theta^2}\sum x^2[n]+\ln\lambda-\lambda\theta.$$
+
+    **Step 2 — differentiate:** $-\frac{2N}{\theta}+\frac{1}{\theta^3}\sum x^2[n]-\lambda=0$. (The prior adds the constant $-\lambda$.)
+
+    **Step 3 — clear the denominators.** Multiply by $\theta^3$: $-2N\theta^2+\sum x^2[n]-\lambda\theta^3=0$, i.e.
+
+    $$\lambda\theta^3+2N\theta^2-\sum x^2[n]=0.$$
+
+    A cubic: no neat closed form is needed (the question says so). Sanity check: with $\lambda\to0$ (flat prior) it gives back the MLE $\theta^2=\frac{1}{2N}\sum x^2$ ✓.
 
     !!! answer "Answer"
         $\hat\theta_{MAP}$ is the positive root of $\lambda\theta^3+2N\theta^2-\sum_n x^2[n]=0$
@@ -327,26 +411,31 @@ The posterior is everything you know about $\theta$ after the data. To give **on
     Below some useful integrals: $\int f g' dx = fg - \int f' g dx$, $\int e^{ax} dx = \frac{1}{a} e^{ax}$, $\int x e^{ax} dx = \left( \frac{x}{a} - \frac{1}{a^2} \right) e^{ax}$, $\int x^2 e^{ax} dx = \left( \frac{x^2}{a} - \frac{2x}{a^2} + \frac{2}{a^3} \right) e^{ax}$
 
 ???+ solution "Solution"
-    Like the official key, use one observation $x$ (for $N$ samples replace $\lambda$ by $\lambda^N$ and $x$ by $\sum x_i$).
 
-    **(b1) The formula.**
+    **What is being asked?** A flat prior on $[0,2]$ (every rate between 0 and 2 equally believed, impossible outside). (b) the posterior mean, with the formula written out and the integrals evaluated. (c) the posterior peak.
+
+    **Symbols in this question.** $\lambda$: the unknown rate; $x$: one observation (like the official key; for $N$ samples replace $\lambda$ by $\lambda^N$ and $x$ by $\sum x_i$); $p(\lambda)=\frac12$ on $[0,2]$.
+
+    **Step 1 — (b1) the formula.** MMSE = posterior mean. The posterior is likelihood × prior, normalised over the allowed range $[0,2]$:
 
     $$\hat\lambda_{MMSE}=\int_0^2\lambda\,p(\lambda\mid x)\,d\lambda,\qquad p(\lambda\mid x)=\frac{\lambda e^{-\lambda x}\cdot\frac12}{\int_0^2\lambda e^{-\lambda x}\cdot\frac12\,d\lambda},\ 0\le\lambda\le2.$$
 
-    The $\frac12$ cancels: $\hat\lambda_{MMSE}=\dfrac{\int_0^2\lambda^2e^{-\lambda x}d\lambda}{\int_0^2\lambda e^{-\lambda x}d\lambda}$.
+    The constant $\frac12$ cancels: $\hat\lambda_{MMSE}=\dfrac{\int_0^2\lambda^2e^{-\lambda x}d\lambda}{\int_0^2\lambda e^{-\lambda x}d\lambda}$.
 
-    **(b2) The integrals** (use the given ones with $a=-x$, from 0 to 2):
+    **Step 2 — (b2) the integrals.** Use the given antiderivatives with $a=-x$ and evaluate from 0 to 2:
 
     $$\int_0^2\lambda e^{-\lambda x}d\lambda=\frac{1-e^{-2x}(1+2x)}{x^2},\qquad\int_0^2\lambda^2e^{-\lambda x}d\lambda=\frac{2-e^{-2x}(4x^2+4x+2)}{x^3}.$$
 
-    Divide:
+    **Step 3 — divide:**
 
-    $$\hat\lambda_{MMSE}=\frac{2}{x}\cdot\frac{1-e^{-2x}(2x^2+2x+1)}{1-e^{-2x}(1+2x)}=\frac2x\left(1-\frac{2x^2e^{-2x}}{1-e^{-2x}(1+2x)}\right).$$
+    $$\hat\lambda_{MMSE}=\frac{2}{x}\cdot\frac{1-e^{-2x}(2x^2+2x+1)}{1-e^{-2x}(1+2x)}=\frac2x\left(1-\frac{2x^2e^{-2x}}{1-e^{-2x}(1+2x)}\right)$$
+
+    (the numerator $1-e^{-2x}(2x^2+2x+1)$ equals the denominator minus $2x^2e^{-2x}$).
 
     !!! trap "Official key is off by a factor 2"
         The key prints $x^2e^{-2x}$ inside the bracket instead of $2x^2e^{-2x}$. Numerical check at $x=0.7$: the true posterior mean is 1.166; the key's formula gives 2.011, which is impossible because $\lambda\le2$.
 
-    **(c) MAP.** Posterior ∝ $\lambda^Ne^{-\lambda\sum x_i}$ on $[0,2]$. Derivative of the log: $\frac N\lambda-\sum x_i=0\Rightarrow\lambda=\frac{N}{\sum x_i}$, the same as the MLE, because a flat prior does not change where the peak is. The prior does cut the range off at 2, so if $N/\sum x_i>2$ the maximum is at the boundary.
+    **Step 4 — (c) MAP.** The posterior is $\propto\lambda^Ne^{-\lambda\sum x_i}$ on $[0,2]$ (the flat prior adds only a constant). Derivative of the log: $\frac N\lambda-\sum x_i=0\Rightarrow\lambda=\frac{N}{\sum x_i}$, the same as the MLE, because a flat prior does not change where the peak is. The prior does cut the range off at 2, so if $N/\sum x_i>2$ the maximum sits at the boundary $2$.
 
     !!! answer "Answer"
         (b) $\hat\lambda_{MMSE}=\dfrac2x\left(1-\dfrac{2x^2e^{-2x}}{1-e^{-2x}(1+2x)}\right)$  (c) $\hat\lambda_{MAP}=\min\!\left(\dfrac{N}{\sum_i x_i},\,2\right)$ (key: $N/\sum x_i$)
@@ -365,7 +454,8 @@ The posterior is everything you know about $\theta$ after the data. To give **on
     - (c) The MAP estimate depends on both the likelihood and the prior, and therefore cannot be computed without specifying a prior distribution.
 
 ???+ solution "Solution"
-    No official key is available for this paper, so here is the reasoning.
+
+    **What is being asked?** One true statement. No official key is available for this paper, so this is the reasoning.
 
     - (a) False: MAP = posterior **mode**, MMSE = posterior **mean**. They differ for skewed or multimodal posteriors ([Nov 2022 2f/2g](#nov22-2f)).
     - (b) The usual intuition (the likelihood dominates for large $N$) is right, but "**regardless of the choice of prior**" is too strong: a prior that is zero around the true value (e.g. uniform on $[0,2]$ when the truth is 3, like [Jan 2019 2c](#jan19-2b)) keeps the MAP away from the MLE forever.
@@ -384,7 +474,8 @@ The posterior is everything you know about $\theta$ after the data. To give **on
     - c) In Bayesian estimation, the minimum mean square error estimator and the maximum posterior estimator will always result in a different estimate.
 
 ???+ solution "Solution"
-    (c) is false: for a Gaussian (symmetric, unimodal) posterior, mean = mode, so MMSE = MAP.
+
+    **What is being asked?** The one false statement. (a) and (b) are definitions. (c) is false because of the word "always": for a Gaussian (symmetric, one-peak) posterior, mean = mode, so MMSE = MAP ([1.2](#12-from-a-distribution-to-one-number)).
 
     !!! answer "Answer"
         **(c)**
@@ -399,8 +490,11 @@ The posterior is everything you know about $\theta$ after the data. To give **on
     - (c) In Bayesian estimation, the minimum mean square error estimator and the maximum posterior estimator will always result in a different estimate.
 
 ???+ solution "Solution"
+
+    **What is being asked?** The cost → estimate table of [1.2](#12-from-a-distribution-to-one-number): MMSE = posterior **mean**; the maximum of the posterior is the MAP; "always different" is false.
+
     !!! answer "Answer"
-        **(a)** MMSE = posterior **mean**
+        **(a)**
 
 ### January 2022 resit · 2d {#jan22-2d}
 
@@ -412,6 +506,9 @@ The posterior is everything you know about $\theta$ after the data. To give **on
     - (c) The minimum mean square error estimator and the maximum aposterior estimator will always result in a different estimate.
 
 ???+ solution "Solution"
+
+    **What is being asked?** Same trio as April 2024 2b: the MMSE is the posterior **mean** ([1.2](#12-from-a-distribution-to-one-number)).
+
     !!! answer "Answer"
         **(b)**
 
@@ -425,7 +522,24 @@ The posterior is everything you know about $\theta$ after the data. To give **on
     - (c) Minimizing Bayes Risk for the uniform error cost function results in the minimum mean square error estimator.
 
 ???+ solution "Solution"
-    (a) Backwards: incorporating a prior is exactly what makes them Bayesian. (c) Uniform cost → **MAP**; quadratic cost → MMSE.
+
+    **What is being asked?** One true statement about the Bayes risk ([1.2](#12-from-a-distribution-to-one-number)).
+
+    - (a) Backwards: incorporating a prior is exactly what makes an estimator Bayesian.
+    - (b) **True**: the Bayes risk is the cost $C(e)$ averaged over $\theta$ (posterior) and over the data; the Bayesian estimate minimises it.
+    - (c) Wrong cost: the uniform (hit-or-miss) cost gives the **MAP**; the quadratic cost gives the MMSE.
 
     !!! answer "Answer"
         **(b)**
+
+*[prior]: p(θ): what you believe about θ before seeing the data.
+*[posterior]: p(θ | x) ∝ p(x | θ) p(θ): what you believe about θ after the data.
+*[MAP]: maximum a posteriori: the peak (mode) of the posterior.
+*[MMSE]: minimum mean square error: the mean of the posterior.
+*[mode]: the value where a PDF is highest.
+*[conjugate prior]: a prior whose posterior has the same shape family, so updating = adding exponents.
+*[Beta]: a flexible bump on (0,1); shape θ^(α−1)(1−θ)^(β−1); the natural prior for a probability.
+*[Gamma]: a bump on (0,∞); shape λ^(α−1)e^(−βλ); mean α/β, mode (α−1)/β.
+*[Poisson]: the distribution of event counts per interval with average rate λ: λ^x e^(−λ)/x!.
+*[evidence]: p(x) = ∫p(x | θ)p(θ)dθ: only a normalising constant for the posterior.
+*[Bayes risk]: the average cost of an estimator over both the parameter and the data.
