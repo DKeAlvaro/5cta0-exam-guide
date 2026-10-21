@@ -535,6 +535,7 @@
     if (state.open && !minimized && floating() && ui.panel && geom && ui.panel.classList.contains("open")) {
       const p = ui.panel;
       const cx = geom.x + geom.w / 2, cy = geom.y + geom.h / 2;
+      p.style.setProperty("--pw", geom.w + "px");
       p.classList.add("morph", "to-ball");
       p.style.left = cx - BALL / 2 + "px"; p.style.top = cy - BALL / 2 + "px";
       p.style.width = BALL + "px"; p.style.height = BALL + "px";
@@ -545,7 +546,7 @@
         applyGeom(geom);
         void p.offsetWidth;
         p.classList.remove("noanim");
-      }, 290);
+      }, 380);
       finishClose(true);
       return;
     }
@@ -697,7 +698,8 @@
     bx = geom.x + geom.w / 2;
     by = geom.y + geom.h / 2;
     const p = ui.panel;
-    p.classList.add("morph", "to-ball");
+    p.style.setProperty("--pw", geom.w + "px");
+      p.classList.add("morph", "to-ball");
     p.style.left = bx - BALL / 2 + "px"; p.style.top = by - BALL / 2 + "px";
     p.style.width = BALL + "px"; p.style.height = BALL + "px";
     setTimeout(() => {
@@ -708,12 +710,13 @@
       showBall();
       void p.offsetWidth;
       p.classList.remove("noanim");
-    }, 290);
+    }, 380);
   }
 
   // window grows out of a point (the ball, or the highlighted text); header and body fade in after
   function growFrom(cx, cy) {
     const p = ui.panel;
+    p.style.setProperty("--pw", geom.w + "px");
     p.classList.add("noanim", "morph", "to-ball", "grow");
     p.style.left = cx - BALL / 2 + "px"; p.style.top = cy - BALL / 2 + "px";
     p.style.width = BALL + "px"; p.style.height = BALL + "px";
@@ -721,7 +724,7 @@
     void p.offsetWidth;
     p.classList.remove("noanim", "to-ball");
     applyGeom(geom);
-    setTimeout(() => p.classList.remove("morph", "grow"), 520);
+    setTimeout(() => p.classList.remove("morph", "grow"), 620);
   }
 
   function expandFromBall() {

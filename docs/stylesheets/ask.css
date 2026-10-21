@@ -412,7 +412,7 @@
 }
 #ask-tail.below { background: #9b2114; border-color: #9b2114; clip-path: polygon(0 0, 100% 0, 0 100%); }
 @keyframes ask-tail-in { from { opacity: 0; } to { opacity: 1; } }
-#ask-tail { animation: ask-tail-in .2s ease .26s both; }
+#ask-tail { animation: ask-tail-in .2s ease .34s both; }
 #ask-tail.above { clip-path: polygon(100% 0, 100% 100%, 0 100%); }
 @media screen and (max-width: 44.9375em) { #ask-tail { display: none !important; } }
 
@@ -441,17 +441,22 @@ html.ask-hot ::highlight(ask-anchor) { background-color: rgba(255, 190, 40, .6);
 #ask-ball svg { width: 100%; height: 100%; display: block; pointer-events: none; }
 
 /* ---------- window <-> ball morph ---------- */
+@keyframes ask-in { from { opacity: 0; } }
+@keyframes ask-face-in { from { opacity: 0; transform: scale(.6); } }
 @media screen and (min-width: 45em) {
   #ask-panel.morph {
-    transition: left .28s cubic-bezier(.4, 0, .2, 1), top .28s cubic-bezier(.4, 0, .2, 1), width .28s cubic-bezier(.4, 0, .2, 1),
-      height .28s cubic-bezier(.4, 0, .2, 1), border-radius .28s ease, background-color .28s ease, border-color .28s ease !important;
+    transition: left .36s cubic-bezier(.65, 0, .35, 1), top .36s cubic-bezier(.65, 0, .35, 1), width .36s cubic-bezier(.65, 0, .35, 1),
+      height .36s cubic-bezier(.65, 0, .35, 1), border-radius .36s cubic-bezier(.65, 0, .35, 1), background-color .36s ease, border-color .36s ease !important;
+    will-change: left, top, width, height;
   }
-  @keyframes ask-in { from { opacity: 0; } }
-  #ask-panel.grow > * { animation: ask-in .2s ease .22s backwards; }
-  #ask-panel.morph.to-ball > * { transition: opacity .1s ease !important; }
-  #ask-panel.to-ball { background: #a82616; border-color: #a82616; border-radius: 50%; }
+  /* keep the content at full width while the box resizes, so the text never reflows mid-animation */
+  #ask-panel.morph > .ask-head, #ask-panel.morph > .ask-body { width: var(--pw); flex: none; }
+  #ask-panel.morph.to-ball > * { transition: opacity .12s ease !important; }
+  #ask-panel.to-ball { background: #a82616; border-color: #a82616; border-radius: 22px; }
   #ask-panel.to-ball > * { opacity: 0 !important; }
+  #ask-panel.grow > * { animation: ask-in .2s ease .3s backwards; }
   #ask-panel.noanim, #ask-panel.noanim > * { transition: none !important; }
 }
+#ask-ball svg { animation: ask-face-in .2s ease backwards; }
 
 @media print { #ask-ball, #ask-tail { display: none !important; } }
