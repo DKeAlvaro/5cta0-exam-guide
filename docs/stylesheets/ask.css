@@ -294,3 +294,5 @@
 #ask-panel .ask-ctx-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 #ask-panel .ask-quote { flex: none; margin: 0; padding: .5rem .5rem .5rem .8rem; border-radius: 0; border-bottom: 1px solid var(--ask-line); background: var(--ask-soft); }
 #ask-panel .ask-quote-text { max-height: 6.5em; font-size: .78rem; }
+[data-md-color-scheme="slate"] #ask-panel .ask-ctx { color: #b9b1a7; }
+[data-md-color-scheme="slate"] #ask-panel .ask-quote-text { color: #e4ded6; }

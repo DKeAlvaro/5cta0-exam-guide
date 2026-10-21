@@ -45,8 +45,8 @@ This guide assumes **zero prior knowledge**: every term is defined where it firs
 2. Read **[Chapter 0 · From zero](p0-foundations.md)** (30–45 min, once). It builds the background the whole course uses: what a signal is, frequency, complex numbers, the little bit of calculus (integrals, limits, geometric series), what a spectrum is, probability from zero (PDF, mean, variance, Gaussian, likelihood, autocorrelation), and a word book of every term the exams use. If a sentence anywhere in the guide confuses you, the missing piece is in that chapter.
 3. Keep the **[Toolbox](toolbox.md)** open as a reference (it is not a chapter to study): the identity tables the solutions quote (logs, derivatives, the recurring integrals, $|1+ae^{-j\theta}|^2$, 2×2 systems).
 4. Go through the parts in this order: **Part 3 → Part 2 → Part 4 → Part 1**. Part 3 is the most mechanical and has the most points.
-5. Every question has a **Solution** block: *what is being asked* → *the symbols involved* → *every step with its justification* → a boxed **answer**. Turn on **Quiz mode** (button bottom-right) to hide all solutions and try first.
-6. Two days before: do **April 2025** and **June 2026** from [Every exam](exams.md) in quiz mode, timed, then print the [A4 sheet](cheatsheet.md).
+5. Every question has a **Solution** block: *what is being asked* → *the symbols involved* → *every step with its justification* → a boxed **answer**. Solutions start hidden (quiz mode is always on): try first, then open them.
+6. Two days before: do **April 2025** and **June 2026** from [Every exam](exams.md) timed, then print the [A4 sheet](cheatsheet.md).
 7. Stuck on something? Hit **Ask** (button bottom-right), or **select any text** and press *Ask about this* to question that exact passage. It uses **your own API key** (Gemini, OpenAI or OpenRouter — custom base URL supported for proxies), kept in your browser only — nothing is stored on this site.
 
 !!! idea "Box legend"

@@ -7,7 +7,6 @@
 
   const KEY = "ssp-zen";
   const root = document.documentElement;
-  let bar = null;
   let toggle = null;
 
   function isOn() { return root.classList.contains("zen"); }
@@ -27,28 +26,37 @@
       toggle.addEventListener("click", () => set(!isOn()));
       document.body.appendChild(toggle);
     }
-    if (!bar) {
-      bar = document.createElement("nav");
-      bar.id = "zen-nav";
-      bar.setAttribute("aria-label", "Zen navigation");
-      bar.innerHTML = '<a class="zen-prev" hidden></a><a class="zen-next" hidden></a>';
-      document.body.appendChild(bar);
-    }
     toggle.textContent = isOn() ? "Exit zen" : "Zen";
+  }
+
+  function makeBar(cls) {
+    const nav = document.createElement("nav");
+    nav.className = "zen-nav " + cls;
+    nav.setAttribute("aria-label", "Zen navigation");
+    nav.innerHTML = '<a class="zen-prev" hidden></a><a class="zen-next" hidden></a>';
+    return nav;
   }
 
   function refreshLinks() {
     ensureUi();
-    [["prev", ".md-footer__link--prev", "← "], ["next", ".md-footer__link--next", ""]].forEach((c) => {
-      const a = bar.querySelector(".zen-" + c[0]);
+    document.querySelectorAll(".zen-nav").forEach((n) => n.remove());
+    const inner = document.querySelector(".md-content__inner");
+    if (!inner) return;
+    const top = makeBar("zen-top"), bottom = makeBar("zen-bottom");
+    inner.prepend(top);
+    inner.append(bottom);
+    [["prev", ".md-footer__link--prev"], ["next", ".md-footer__link--next"]].forEach((c) => {
       const src = document.querySelector(c[1]);
-      if (!src) { a.hidden = true; return; }
+      if (!src) return;
       const t = src.querySelector(".md-ellipsis");
       const title = (t ? t.textContent : src.textContent).replace(/\s+/g, " ").trim()
         .replace(/^(Previous|Next)\s*/, "");
-      a.href = src.getAttribute("href");
-      a.textContent = c[0] === "prev" ? "← " + title : title + " →";
-      a.hidden = false;
+      [top, bottom].forEach((bar) => {
+        const a = bar.querySelector(".zen-" + c[0]);
+        a.href = src.getAttribute("href");
+        a.textContent = c[0] === "prev" ? "← " + title : title + " →";
+        a.hidden = false;
+      });
     });
   }
 

@@ -1,10 +1,10 @@
 # Every exam, question by question
 
-<p class="lead">The same questions as in the topic pages, but grouped by exam paper, newest first. Use this to sit a <b>mock exam</b>: turn on Quiz mode, open each link, answer on paper, then check. The last column is the short answer for a quick self-check.</p>
+<p class="lead">The same questions as in the topic pages, but grouped by exam paper, newest first. Use this to sit a <b>mock exam</b>: open each link, answer on paper, then check. The last column is the short answer for a quick self-check.</p>
 
 !!! recipe "Mock-exam protocol (3 h, like the real thing)"
     1. Pick **June 2026** or **April 2025** (closest to the October 2026 format).
-    2. Quiz mode ON. Work on paper, no notes except your A4 sheet.
+    2. Work on paper, no notes except your A4 sheet.
     3. Mark yourself with the short answers below, then read the full solution of everything you missed.
     4. Write every mistake on your A4 sheet as a one-line "trap".
 
