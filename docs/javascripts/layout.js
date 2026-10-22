@@ -10,6 +10,11 @@
     nav: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h10M4 18h16"/></svg>',
     toc: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg>',
   };
+  // edge tabs point at the index they pull out
+  const HINT_ICONS = {
+    nav: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>',
+    toc: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>',
+  };
   const TITLES = { nav: "Chapters", toc: "On this page" };
 
   // both indexes are visible unless the reader hid them
@@ -26,7 +31,7 @@
   // Left edge -> chapters, right edge -> on-this-page. The panel only exists
   // while the pointer is on its side of the screen; leave and it disappears.
   const PANEL = { nav: ".md-sidebar--primary", toc: ".md-sidebar--secondary" };
-  const OPEN = 12; // px from the edge that opens a panel
+  const OPEN = 24; // px from the edge that opens a panel (covers the edge tab)
   const KEEP = 26; // extra px of room before it closes again
   const WIDTH = { nav: 194, toc: 194 };
   const wide = window.matchMedia("(min-width: 60em)");
@@ -93,8 +98,8 @@
 
   function ensureButtons() {
     const inner = document.querySelector(".md-header__inner");
-    if (!inner || inner.querySelector(".layout-btn")) return;
-    ["nav", "toc"].forEach((k) => {
+    if (!inner) return;
+    if (!inner.querySelector(".layout-btn")) ["nav", "toc"].forEach((k) => {
       const b = document.createElement("button");
       b.type = "button";
       b.className = "layout-btn layout-btn-" + k;
@@ -110,6 +115,16 @@
       if (k === "nav") inner.insertBefore(b, inner.firstChild);
       else inner.appendChild(b);
     });
+
+    // thin tabs on the window edges: hint that a hidden index slides out here
+    if (!document.querySelector(".edge-hint")) ["nav", "toc"].forEach((k) => {
+      const t = document.createElement("div");
+      t.className = "edge-hint edge-hint-" + k;
+      t.setAttribute("aria-hidden", "true");
+      t.innerHTML = HINT_ICONS[k];
+      document.body.appendChild(t);
+    });
+
     apply();
   }
 

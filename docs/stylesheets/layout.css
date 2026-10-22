@@ -3,34 +3,78 @@
 @media screen and (min-width: 76.25em) {
   .md-content { flex: 1 1 auto; min-width: 0; }
 }
+/* Hidden indexes wait just off-screen so they can slide in and out smoothly. */
 @media screen and (min-width: 60em) {
-  html:not(.show-nav) .md-sidebar--primary { display: none; }
-  html:not(.show-toc) .md-sidebar--secondary { display: none; }
-}
-/* hovering the window edge slides the hidden index over the page (no reflow) */
-@media screen and (min-width: 60em) {
-  html:not(.show-nav).peek-nav .md-sidebar--primary,
-  html:not(.show-toc).peek-toc .md-sidebar--secondary {
+  html:not(.show-nav) .md-sidebar--primary,
+  html:not(.show-toc) .md-sidebar--secondary {
     display: block;
     position: fixed;
     z-index: 5;
     top: var(--ssp-peek-top, 0px) !important;
     height: calc(100vh - var(--ssp-peek-top, 0px)) !important;
-    background-color: var(--md-default-bg-color);
-    box-shadow: var(--md-shadow-z2);
     padding-left: .3rem;
     padding-right: .3rem;
+    background-color: var(--md-default-bg-color);
+    background-color: color-mix(in srgb, var(--md-default-fg-color) 4%, var(--md-default-bg-color));
+    box-shadow: 0 .1rem 1.6rem rgba(0, 0, 0, .22);
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform .38s cubic-bezier(.22, .68, .12, 1), opacity .26s ease, visibility 0s linear .38s;
+  }
+  html:not(.show-nav) .md-sidebar--primary { left: 0; transform: translateX(calc(-100% - 1.5rem)); }
+  html:not(.show-toc) .md-sidebar--secondary { right: 0; transform: translateX(calc(100% + 1.5rem)); }
+  html:not(.show-nav).peek-nav .md-sidebar--primary,
+  html:not(.show-toc).peek-toc .md-sidebar--secondary {
+    transform: none;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transition: transform .38s cubic-bezier(.22, .68, .12, 1), opacity .18s ease, visibility 0s;
   }
   html:not(.show-nav).peek-nav .md-sidebar--primary .md-sidebar__scrollwrap,
   html:not(.show-toc).peek-toc .md-sidebar--secondary .md-sidebar__scrollwrap { max-height: 100%; }
-  html:not(.show-nav).peek-nav .md-sidebar--primary { left: 0; }
-  html:not(.show-toc).peek-toc .md-sidebar--secondary { right: 0; }
+}
+
+/* Edge tabs: a thin sliver on each side that says "a hidden index slides out here". */
+.edge-hint { display: none; }
+@media screen and (min-width: 60em) {
+  .edge-hint {
+    position: fixed;
+    top: 50%;
+    z-index: 3;
+    display: none;
+    place-items: center;
+    width: 1.1rem;
+    height: 4.6rem;
+    transform: translateY(-50%);
+    background: var(--md-primary-fg-color);
+    color: var(--md-primary-bg-color);
+    opacity: .16;
+    pointer-events: none;
+  }
+  .edge-hint-nav { left: 0; border-radius: 0 .5rem .5rem 0; }
+  .edge-hint-toc { right: 0; border-radius: .5rem 0 0 .5rem; }
+  .edge-hint svg { width: .62rem; height: .62rem; display: block; opacity: .9; }
+  html:not(.show-nav):not(.peek-nav) .edge-hint-nav,
+  html:not(.show-toc):not(.peek-toc) .edge-hint-toc { display: grid; }
 }
 @media screen and (min-width: 60em) and (prefers-reduced-motion: no-preference) {
-  html:not(.show-nav).peek-nav .md-sidebar--primary { animation: ssp-peek-left .16s ease-out; }
-  html:not(.show-toc).peek-toc .md-sidebar--secondary { animation: ssp-peek-right .16s ease-out; }
-  @keyframes ssp-peek-left { from { opacity: 0; transform: translateX(-.6rem); } }
-  @keyframes ssp-peek-right { from { opacity: 0; transform: translateX(.6rem); } }
+  /* a slow breath so the sliver reads as something you can pull */
+  html:not(.show-nav):not(.peek-nav) .edge-hint-nav,
+  html:not(.show-toc):not(.peek-toc) .edge-hint-toc { animation: ssp-hint 4.5s ease-in-out infinite; }
+  html:not(.show-nav):not(.peek-nav) .edge-hint-nav { animation-delay: .3s; }
+  @keyframes ssp-hint {
+    0%, 100% { opacity: .16; }
+    50% { opacity: .34; }
+  }
+}
+@media screen and (prefers-reduced-motion: reduce) {
+  html:not(.show-nav) .md-sidebar--primary,
+  html:not(.show-toc) .md-sidebar--secondary,
+  html:not(.show-nav).peek-nav .md-sidebar--primary,
+  html:not(.show-toc).peek-toc .md-sidebar--secondary { transition: none; transform: none; }
+  .edge-hint { animation: none; }
 }
 .layout-btn { display: none; }
 @media screen and (min-width: 60em) { .layout-btn { display: grid; } }
@@ -64,4 +108,25 @@
 /* breathing room on both sides on wide screens: content block is narrower than the window */
 @media screen and (min-width: 76.25em) {
   .md-main__inner { max-width: 1280px; margin-left: auto; margin-right: auto; }
+}
+
+/* When a hidden index slides in, its entries follow with a light stagger. */
+@media screen and (min-width: 60em) and (prefers-reduced-motion: no-preference) {
+  .md-sidebar .md-nav__list > .md-nav__item { --ssp-i: 0; }
+  .md-sidebar .md-nav__list > .md-nav__item:nth-child(2) { --ssp-i: 1; }
+  .md-sidebar .md-nav__list > .md-nav__item:nth-child(3) { --ssp-i: 2; }
+  .md-sidebar .md-nav__list > .md-nav__item:nth-child(4) { --ssp-i: 3; }
+  .md-sidebar .md-nav__list > .md-nav__item:nth-child(5) { --ssp-i: 4; }
+  .md-sidebar .md-nav__list > .md-nav__item:nth-child(6) { --ssp-i: 5; }
+  .md-sidebar .md-nav__list > .md-nav__item:nth-child(7) { --ssp-i: 6; }
+  .md-sidebar .md-nav__list > .md-nav__item:nth-child(8) { --ssp-i: 7; }
+  .md-sidebar .md-nav__list > .md-nav__item:nth-child(n + 9) { --ssp-i: 8; }
+  html:not(.show-nav).peek-nav .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item,
+  html:not(.show-toc).peek-toc .md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item {
+    animation: ssp-peek-item .32s cubic-bezier(.3, .6, .2, 1) backwards;
+    animation-delay: calc(var(--ssp-i, 0) * 18ms);
+  }
+  html:not(.show-toc).peek-toc .md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item { animation-name: ssp-peek-item-r; }
+  @keyframes ssp-peek-item { from { opacity: 0; transform: translateX(-.5rem); } }
+  @keyframes ssp-peek-item-r { from { opacity: 0; transform: translateX(.5rem); } }
 }
