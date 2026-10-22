@@ -7,6 +7,31 @@
   html:not(.show-nav) .md-sidebar--primary { display: none; }
   html:not(.show-toc) .md-sidebar--secondary { display: none; }
 }
+/* hovering the window edge slides the hidden index over the page (no reflow) */
+@media screen and (min-width: 60em) {
+  html:not(.show-nav).peek-nav .md-sidebar--primary,
+  html:not(.show-toc).peek-toc .md-sidebar--secondary {
+    display: block;
+    position: fixed;
+    z-index: 5;
+    top: var(--ssp-peek-top, 0px) !important;
+    height: calc(100vh - var(--ssp-peek-top, 0px)) !important;
+    background-color: var(--md-default-bg-color);
+    box-shadow: var(--md-shadow-z2);
+    padding-left: .3rem;
+    padding-right: .3rem;
+  }
+  html:not(.show-nav).peek-nav .md-sidebar--primary .md-sidebar__scrollwrap,
+  html:not(.show-toc).peek-toc .md-sidebar--secondary .md-sidebar__scrollwrap { max-height: 100%; }
+  html:not(.show-nav).peek-nav .md-sidebar--primary { left: 0; }
+  html:not(.show-toc).peek-toc .md-sidebar--secondary { right: 0; }
+}
+@media screen and (min-width: 60em) and (prefers-reduced-motion: no-preference) {
+  html:not(.show-nav).peek-nav .md-sidebar--primary { animation: ssp-peek-left .16s ease-out; }
+  html:not(.show-toc).peek-toc .md-sidebar--secondary { animation: ssp-peek-right .16s ease-out; }
+  @keyframes ssp-peek-left { from { opacity: 0; transform: translateX(-.6rem); } }
+  @keyframes ssp-peek-right { from { opacity: 0; transform: translateX(.6rem); } }
+}
 .layout-btn { display: none; }
 @media screen and (min-width: 60em) { .layout-btn { display: grid; } }
 .layout-btn { place-items: center; flex: none; width: 2.3rem; height: 2.3rem; padding: 0; border: 0; border-radius: 50%; background: transparent; color: #fff; opacity: .6; cursor: pointer; transition: opacity .15s, background .15s; }

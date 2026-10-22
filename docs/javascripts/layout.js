@@ -16,10 +16,80 @@
   const on = (k) => localStorage.getItem(KEYS[k]) !== "0";
 
   function apply() {
+    root.classList.remove("peek-nav", "peek-toc");
     root.classList.toggle("show-nav", on("nav"));
     root.classList.toggle("show-toc", on("toc"));
     document.querySelectorAll(".layout-btn").forEach((b) => b.classList.toggle("active", on(b.dataset.k)));
   }
+
+  // ---- hover the window edge to peek at a hidden index --------------------
+  // Left edge -> chapters, right edge -> on-this-page. The panel only exists
+  // while the pointer is on its side of the screen; leave and it disappears.
+  const PANEL = { nav: ".md-sidebar--primary", toc: ".md-sidebar--secondary" };
+  const OPEN = 12; // px from the edge that opens a panel
+  const KEEP = 26; // extra px of room before it closes again
+  const WIDTH = { nav: 194, toc: 194 };
+  const wide = window.matchMedia("(min-width: 60em)");
+
+  const peeking = (k) => root.classList.contains("peek-" + k);
+
+  function measure(k) {
+    const el = document.querySelector(PANEL[k]);
+    if (el && el.offsetWidth) WIDTH[k] = el.offsetWidth;
+  }
+
+  function hidePeek(k) {
+    if (!peeking(k)) return;
+    measure(k);
+    root.classList.remove("peek-" + k);
+  }
+
+  function showPeek(k) {
+    if (on(k)) {
+      hidePeek(k); // already pinned open by the header button
+      return;
+    }
+    if (!peeking(k)) {
+      root.classList.add("peek-" + k);
+      placePeek();
+    }
+    measure(k);
+  }
+
+  // the panel starts under the header while the header is on screen, so the
+  // header buttons stay clickable; once it scrolled away the panel takes the top
+  function placePeek() {
+    if (!peeking("nav") && !peeking("toc")) return;
+    const header = document.querySelector(".md-header");
+    const bottom = header ? header.getBoundingClientRect().bottom : 0;
+    root.style.setProperty("--ssp-peek-top", (bottom > 0 ? bottom : 0) + "px");
+  }
+
+  function track(e) {
+    if (!wide.matches) {
+      hidePeek("nav");
+      hidePeek("toc");
+      return;
+    }
+    const x = e.clientX;
+    const right = window.innerWidth - x;
+    const leftLimit = peeking("nav") ? WIDTH.nav + KEEP : OPEN;
+    const rightLimit = peeking("toc") ? WIDTH.toc + KEEP : OPEN;
+    if (x <= leftLimit) showPeek("nav");
+    else hidePeek("nav");
+    if (right <= rightLimit) showPeek("toc");
+    else hidePeek("toc");
+  }
+
+  function trackOut() {
+    hidePeek("nav");
+    hidePeek("toc");
+  }
+
+  document.addEventListener("mousemove", track, { passive: true });
+  document.addEventListener("mouseleave", trackOut);
+  window.addEventListener("blur", trackOut);
+  window.addEventListener("scroll", placePeek, { passive: true });
 
   function ensureButtons() {
     const inner = document.querySelector(".md-header__inner");
