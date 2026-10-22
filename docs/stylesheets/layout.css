@@ -16,11 +16,11 @@
     padding-right: .3rem;
     background-color: var(--md-default-bg-color);
     background-color: color-mix(in srgb, var(--md-default-fg-color) 4%, var(--md-default-bg-color));
-    box-shadow: 0 .1rem 1.6rem rgba(0, 0, 0, .22);
+    box-shadow: 0 0 2.2rem rgba(0, 0, 0, .26);
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
-    transition: transform .38s cubic-bezier(.22, .68, .12, 1), opacity .26s ease, visibility 0s linear .38s;
+    transition: transform .5s cubic-bezier(.4, 0, .2, 1), opacity .28s ease, visibility 0s linear .5s;
   }
   html:not(.show-nav) .md-sidebar--primary { left: 0; transform: translateX(calc(-100% - 1.5rem)); }
   html:not(.show-toc) .md-sidebar--secondary { right: 0; transform: translateX(calc(100% + 1.5rem)); }
@@ -30,51 +30,61 @@
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
-    transition: transform .38s cubic-bezier(.22, .68, .12, 1), opacity .18s ease, visibility 0s;
+    transition: transform .55s cubic-bezier(.4, 0, .2, 1), opacity .22s ease, visibility 0s;
   }
   html:not(.show-nav).peek-nav .md-sidebar--primary .md-sidebar__scrollwrap,
   html:not(.show-toc).peek-toc .md-sidebar--secondary .md-sidebar__scrollwrap { max-height: 100%; }
 }
 
-/* Edge tabs: a thin sliver on each side that says "a hidden index slides out here". */
+/* Edge light: the whole window edge glows softly, so it reads as "pull anywhere here". */
 .edge-hint { display: none; }
 @media screen and (min-width: 60em) {
   .edge-hint {
     position: fixed;
-    top: 50%;
+    top: 0;
+    bottom: 0;
     z-index: 3;
     display: none;
-    place-items: center;
-    width: 1.1rem;
-    height: 4.6rem;
-    transform: translateY(-50%);
-    background: var(--md-primary-fg-color);
-    color: var(--md-primary-bg-color);
-    opacity: .16;
+    width: .9rem;
     pointer-events: none;
+    opacity: .55;
+    transition: opacity .3s ease, width .3s ease;
   }
-  .edge-hint-nav { left: 0; border-radius: 0 .5rem .5rem 0; }
-  .edge-hint-toc { right: 0; border-radius: .5rem 0 0 .5rem; }
-  .edge-hint svg { width: .62rem; height: .62rem; display: block; opacity: .9; }
+  .edge-hint-nav {
+    left: 0;
+    background: linear-gradient(to right, color-mix(in srgb, var(--md-primary-fg-color) 55%, transparent), transparent);
+  }
+  .edge-hint-toc {
+    right: var(--ssp-sb, 0px);
+    background: linear-gradient(to left, color-mix(in srgb, var(--md-primary-fg-color) 55%, transparent), transparent);
+  }
+  /* the light grows as the pointer approaches, before the panel opens */
+  html.near-nav:not(.show-nav):not(.peek-nav) .edge-hint-nav,
+  html.near-toc:not(.show-toc):not(.peek-toc) .edge-hint-toc { opacity: 1; width: 1.6rem; }
   html:not(.show-nav):not(.peek-nav) .edge-hint-nav,
-  html:not(.show-toc):not(.peek-toc) .edge-hint-toc { display: grid; }
+  html:not(.show-toc):not(.peek-toc) .edge-hint-toc { display: block; }
 }
 @media screen and (min-width: 60em) and (prefers-reduced-motion: no-preference) {
-  /* a slow breath so the sliver reads as something you can pull */
   html:not(.show-nav):not(.peek-nav) .edge-hint-nav,
-  html:not(.show-toc):not(.peek-toc) .edge-hint-toc { animation: ssp-hint 4.5s ease-in-out infinite; }
-  html:not(.show-nav):not(.peek-nav) .edge-hint-nav { animation-delay: .3s; }
+  html:not(.show-toc):not(.peek-toc) .edge-hint-toc { animation: ssp-hint 6s ease-in-out infinite; }
+  html:not(.show-nav):not(.peek-nav) .edge-hint-nav { animation-delay: .6s; }
   @keyframes ssp-hint {
-    0%, 100% { opacity: .16; }
-    50% { opacity: .34; }
+    0%, 100% { opacity: .42; }
+    50% { opacity: .7; }
   }
 }
+/* reduced motion still gets a soft fade instead of an abrupt pop */
 @media screen and (prefers-reduced-motion: reduce) {
   html:not(.show-nav) .md-sidebar--primary,
   html:not(.show-toc) .md-sidebar--secondary,
   html:not(.show-nav).peek-nav .md-sidebar--primary,
-  html:not(.show-toc).peek-toc .md-sidebar--secondary { transition: none; transform: none; }
-  .edge-hint { animation: none; }
+  html:not(.show-toc).peek-toc .md-sidebar--secondary {
+    transform: none;
+    transition: opacity .2s ease, visibility 0s linear .2s;
+  }
+  html:not(.show-nav).peek-nav .md-sidebar--primary,
+  html:not(.show-toc).peek-toc .md-sidebar--secondary { transition: opacity .2s ease, visibility 0s; }
+  .edge-hint { animation: none; transition: none; }
 }
 .layout-btn { display: none; }
 @media screen and (min-width: 60em) { .layout-btn { display: grid; } }
@@ -123,8 +133,8 @@
   .md-sidebar .md-nav__list > .md-nav__item:nth-child(n + 9) { --ssp-i: 8; }
   html:not(.show-nav).peek-nav .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item,
   html:not(.show-toc).peek-toc .md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item {
-    animation: ssp-peek-item .32s cubic-bezier(.3, .6, .2, 1) backwards;
-    animation-delay: calc(var(--ssp-i, 0) * 18ms);
+    animation: ssp-peek-item .5s cubic-bezier(.4, 0, .2, 1) backwards;
+    animation-delay: calc(var(--ssp-i, 0) * 26ms);
   }
   html:not(.show-toc).peek-toc .md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item { animation-name: ssp-peek-item-r; }
   @keyframes ssp-peek-item { from { opacity: 0; transform: translateX(-.5rem); } }
