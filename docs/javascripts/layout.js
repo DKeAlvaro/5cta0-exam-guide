@@ -29,6 +29,7 @@
   const OPEN = 30; // px from the edge that opens a panel
   const NEAR = 110; // px from the edge where the edge light starts to grow
   const KEEP = 34; // extra px of room before it closes again
+  const DWELL = 140; // ms the pointer must rest at the edge before a panel opens
   const WIDTH = { nav: 194, toc: 194 };
   const wide = window.matchMedia("(min-width: 60em)");
 
@@ -47,9 +48,26 @@
   }
 
   function hidePeek(k) {
+    cancelOpen(k);
     if (!peeking(k)) return;
     measure(k);
     root.classList.remove("peek-" + k);
+  }
+
+  const timers = {};
+  function cancelOpen(k) {
+    clearTimeout(timers[k]);
+    timers[k] = 0;
+  }
+
+  // open only after the pointer rests at the edge, so sweeping past (or reaching
+  // for the page scrollbar) does not make the panel pop in
+  function requestPeek(k) {
+    if (peeking(k) || timers[k]) return;
+    timers[k] = setTimeout(() => {
+      timers[k] = 0;
+      showPeek(k);
+    }, DWELL);
   }
 
   function showPeek(k) {
@@ -85,9 +103,10 @@
     const rightLimit = peeking("toc") ? WIDTH.toc + KEEP : OPEN;
     root.classList.toggle("near-nav", x <= NEAR);
     root.classList.toggle("near-toc", right <= NEAR);
-    if (x <= leftLimit) showPeek("nav");
+    const onScrollbar = right < 0; // pointer is on the page scrollbar itself
+    if (x <= leftLimit) (peeking("nav") ? showPeek : requestPeek)("nav");
     else hidePeek("nav");
-    if (right <= rightLimit) showPeek("toc");
+    if (right <= rightLimit && !(onScrollbar && !peeking("toc"))) (peeking("toc") ? showPeek : requestPeek)("toc");
     else hidePeek("toc");
   }
 

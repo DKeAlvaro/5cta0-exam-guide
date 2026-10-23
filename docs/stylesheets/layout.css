@@ -55,7 +55,7 @@
     background: linear-gradient(to right, color-mix(in srgb, var(--md-primary-fg-color) 55%, transparent), transparent);
   }
   .edge-hint-toc {
-    right: var(--ssp-sb, 0px);
+    right: 0; /* fixed already stops at the page scrollbar */
     background: linear-gradient(to left, color-mix(in srgb, var(--md-primary-fg-color) 55%, transparent), transparent);
   }
   /* the light grows as the pointer approaches, before the panel opens */

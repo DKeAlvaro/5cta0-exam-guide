@@ -247,7 +247,23 @@
 #progress-count { opacity: .6; margin-right: auto; }
 #progress-bar .link { border: 0; padding: 0; opacity: .6; text-decoration: underline; }
 #progress-bar .link:hover { opacity: 1; }
-.md-nav--primary a.md-nav__link.done::after { content: " ¹3"; opacity: .6; }
+/* completed pages: green check badge drawn in CSS (no font glyph) */
+.md-nav--primary a.md-nav__link.done::after {
+  content: "";
+  display: inline-block;
+  flex: none;
+  width: .95em;
+  height: .95em;
+  margin-left: .45em;
+  vertical-align: -.12em;
+  border-radius: 50%;
+  background-color: #2e9d57;
+  -webkit-mask: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.3 8.3l2.5 2.5 4.9-5' fill='none' stroke='white' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+}
+.md-nav--primary a.md-nav__link.done { color: var(--md-default-fg-color--light); }
+.md-nav--primary a.md-nav__link.done.md-nav__link--active { color: var(--md-typeset-a-color); }
 
 /* formulas select as one unit (click/drag over one grabs the whole thing) */
 .md-typeset .katex { user-select: all; -webkit-user-select: all; }
