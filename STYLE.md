@@ -95,3 +95,22 @@ question to the page that explains it. New material should follow the same contr
 
 Each converted page must keep its existing heading anchors (`{#apr25-3a}` etc.): other pages and
 external links point at them.
+
+## Exam course (`docs/e*.md`, the main path since 2026-10-23)
+
+Feedback that triggered it: the long guide was too much and "written for someone who already knows". The exam
+course is 13 short lessons, one per recurring question type, and is what the home page and the nav lead with. The
+old pages live under "Deep dive" and are not linked from the lessons except as optional reading.
+
+Lesson template (keep it to this, nothing more):
+`# n.m Title` → `<div class="meta">` (frequency, points, minutes) → **What the exam asks** → **The idea in one
+minute** (plain words + one interactive widget) → **The recipe** (`!!! recipe key`) → **Watch it once** (real exam
+box + `<div class="stepper" markdown>` with steps separated by `***`) → **Your turn** (real exam box + closed
+`??? solution "Check your answer"`) → **Traps** (`!!! trap key`, max 4 bullets). Theory MC goes in a
+`<div class="tf" markdown>` table (Statement | T/F | Why) which `widgets.js` turns into True/False cards.
+
+Widgets (`docs/javascripts/widgets.js` + `stylesheets/widgets.css`), markup `<div class="widget" data-w="..."
+data-preset="...">`: `bayes`, `region` (tabs 0–2), `ensemble`, `pole` (`data-preset="factor"`, `data-a`),
+`likelihood`, `posterior`, `ls`, `corr` (`jun26`/`apr25`), `welch`, `lrt` (`data-priors="1"`, `data-case`).
+Each plays once when it scrolls into view; any touch stops the autoplay. Test them headless with Playwright +
+the local Chrome (`executable_path`), serving `site/` with `python -m http.server`.
