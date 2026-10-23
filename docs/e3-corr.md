@@ -2,6 +2,8 @@
 
 <div class="meta"><span class="hot">In 7 of 9 exams</span><span>0.4–0.5 p, +0.25 for the plot</span><span>20 min</span></div>
 
+<figure class="pod"><video src="video/pod_ep2_spectral.mp4" poster="video/pod_ep2_spectral.jpg" controls playsinline preload="none"></video><figcaption><b>Watch first: podcast episode 2, Spectral: correlogram, AR, MA</b> (with sound). Answer every purple YOUR TURN out loud before the countdown ends; pause if you need more time. <a href="podcast.html">All 5 episodes</a>.</figcaption></figure>
+
 ## What the exam asks
 
 "Here are a few autocorrelation values $r[0]$, $r[\pm1]$, $r[\pm2]$. Compute the **correlogram** estimate of the power spectral density, as a function of cosines." Then often: "which plot shows your PSD?" This is the easiest half point of the exam.

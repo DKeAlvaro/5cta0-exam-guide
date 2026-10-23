@@ -144,3 +144,8 @@
 .md-typeset .meta span { padding: .15rem .6rem; border-radius: 999px; background: var(--paper-2); font-weight: 600; }
 .md-typeset .meta span.hot { background: rgba(155,33,20,.12); color: var(--md-primary-fg-color); }
 [data-md-color-scheme="slate"] .md-typeset .meta span.hot { color: #f0907c; }
+
+/* ---------- podcast videos (with sound, never autoplay) ---------- */
+.md-typeset figure.pod { margin: .4em 0 1.6em; }
+.md-typeset figure.pod video { display: block; width: 100%; border-radius: 8px; background: #000; }
+.md-typeset figure.pod figcaption { font-size: .78rem; margin-top: .4rem; }

@@ -118,3 +118,16 @@ data-preset="...">`: `bayes`, `region` (tabs 0–2), `ensemble`, `pole` (`data-p
 `likelihood`, `posterior`, `ls`, `corr` (`jun26`/`apr25`), `welch`, `lrt` (`data-priors="1"`, `data-case`).
 Each plays once when it scrolls into view; any touch stops the autoplay. Test them headless with Playwright +
 the local Chrome (`executable_path`), serving `site/` with `python -m http.server`.
+
+## Video podcast (`scripts/podcast/`, 2026-10-24)
+
+Five episodes (English, zero knowledge): Ava explains, Ben asks the beginner questions, maths on screen, subtitles in a
+band at the bottom. Active recall is the point: before each key step `self.think(spoken, shown, secs)` shows a purple
+YOUR TURN strip with a countdown, then the answer comes. Keep that pattern in any new episode.
+
+- `podkit.py`: `Pod` scene. `say(who, text, *anims)` (who = `'T'` Ava / `'S'` Ben) synthesises with edge-tts (cached in
+  `%TEMP%/ssp_pod_audio`), `add_sound`s it, swaps the subtitle, plays the animations, waits for the voice.
+  `put/write/wipe` manage the board (everything above the band). Spoken text must be speakable ("H one", "P F A").
+- `prefetch.py` synthesises every line in parallel first (sequential TTS is slow).
+- `render.py [--test|--dry] Scene` → `docs/video/pod_<snake>.mp4` + `.jpg`; `run_all.py` renders all and mails each.
+- `docs/podcast.md` lists them; each lesson embeds its episode (`<figure class="pod">`, sound, no autoplay).

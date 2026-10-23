@@ -44,6 +44,7 @@ plugins: []
 nav:
   - Start here: index.md
   - "New · Exam course":
+      - Podcast (watch first): podcast.md
       - Block 1 · Probability (1.5 p):
           - 1.1 Bayes word problems: e1-bayes.md
           - 1.2 Joint PDFs: e1-joint.md

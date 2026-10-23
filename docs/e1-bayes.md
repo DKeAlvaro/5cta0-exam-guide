@@ -2,6 +2,8 @@
 
 <div class="meta"><span class="hot">In 7 of the last 7 exams</span><span>0.25–0.3 points</span><span>15 min</span></div>
 
+<figure class="pod"><video src="video/pod_ep5_probability.mp4" poster="video/pod_ep5_probability.jpg" controls playsinline preload="none"></video><figcaption><b>Watch first: podcast episode 5, Block 1: Bayes, joint PDFs, ergodic, factorisation</b> (with sound). Answer every purple YOUR TURN out loud before the countdown ends; pause if you need more time. <a href="podcast.html">All 5 episodes</a>.</figcaption></figure>
+
 ## What the exam asks
 
 Several **sources** (machines, scanners) make items; each source has its own failure rate. Two questions:

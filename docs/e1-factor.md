@@ -2,6 +2,8 @@
 
 <div class="meta"><span class="hot">In 5 of the last 5 exams</span><span>0.25–0.75 points</span><span>25 min</span></div>
 
+<figure class="pod"><video src="video/pod_ep5_probability.mp4" poster="video/pod_ep5_probability.jpg" controls playsinline preload="none"></video><figcaption><b>Watch first: podcast episode 5, Block 1: Bayes, joint PDFs, ergodic, factorisation</b> (with sound). Answer every purple YOUR TURN out loud before the countdown ends; pause if you need more time. <a href="podcast.html">All 5 episodes</a>.</figcaption></figure>
+
 ## What the exam asks
 
 "A random signal has PSD $P_x(e^{j\theta})=\dfrac{N}{A+B\cos\theta}$. Find the **innovation filter** $L(z)$ and the **noise variance** $\sigma_i^2$." Every time, the same shape. Sometimes also an MC: "the innovation filter must be **minimum phase**".

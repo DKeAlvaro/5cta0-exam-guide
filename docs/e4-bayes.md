@@ -2,6 +2,8 @@
 
 <div class="meta"><span class="hot">Theory MC in 6 of 6 recent exams</span><span>Bayes test in 3 of the last 3</span><span>0.5–1.5 points</span><span>25 min</span></div>
 
+<figure class="pod"><video src="video/pod_ep1_detection.mp4" poster="video/pod_ep1_detection.jpg" controls playsinline preload="none"></video><figcaption><b>Watch first: podcast episode 1, Detection: the likelihood ratio test</b> (with sound). Answer every purple YOUR TURN out loud before the countdown ends; pause if you need more time. <a href="podcast.html">All 5 episodes</a>.</figcaption></figure>
+
 Needs [4.1 Likelihood ratio test](e4-lrt.md) first.
 
 ## What the exam asks

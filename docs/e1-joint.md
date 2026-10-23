@@ -2,6 +2,8 @@
 
 <div class="meta"><span class="hot">In 4 of the last 4 exams</span><span>0.3–0.5 points</span><span>25 min</span></div>
 
+<figure class="pod"><video src="video/pod_ep5_probability.mp4" poster="video/pod_ep5_probability.jpg" controls playsinline preload="none"></video><figcaption><b>Watch first: podcast episode 5, Block 1: Bayes, joint PDFs, ergodic, factorisation</b> (with sound). Answer every purple YOUR TURN out loud before the countdown ends; pause if you need more time. <a href="podcast.html">All 5 episodes</a>.</figcaption></figure>
+
 ## What the exam asks
 
 You get a formula $p_{X,Y}(x,y)$ that is non-zero only on some **region** of the $(x,y)$ plane. They ask some of: **(a)** find the constant $c$, **(b)** the marginal $p_X(x)$ or $p_Y(y)$ **with its domain**, **(c)** the conditional $p_{X\mid Y}(x\mid y)$, **(d)** are $X$ and $Y$ independent? Usually "final answer only".

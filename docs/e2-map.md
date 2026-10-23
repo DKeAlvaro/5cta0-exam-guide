@@ -2,6 +2,8 @@
 
 <div class="meta"><span class="hot">In 7 of 9 exams</span><span>1–1.5 points (often twice per paper)</span><span>30 min</span></div>
 
+<figure class="pod"><video src="video/pod_ep3_estimation.mp4" poster="video/pod_ep3_estimation.jpg" controls playsinline preload="none"></video><figcaption><b>Watch first: podcast episode 3, Estimation: MLE and MAP</b> (with sound). Answer every purple YOUR TURN out loud before the countdown ends; pause if you need more time. <a href="podcast.html">All 5 episodes</a>.</figcaption></figure>
+
 Needs [2.1 MLE](e2-mle.md) first.
 
 ## What the exam asks

@@ -2,6 +2,8 @@
 
 <div class="meta"><span class="hot">AR in 7 of 9 exams</span><span>MA(1) in 3</span><span>1–1.5 points</span><span>35 min</span></div>
 
+<figure class="pod"><video src="video/pod_ep2_spectral.mp4" poster="video/pod_ep2_spectral.jpg" controls playsinline preload="none"></video><figcaption><b>Watch first: podcast episode 2, Spectral: correlogram, AR, MA</b> (with sound). Answer every purple YOUR TURN out loud before the countdown ends; pause if you need more time. <a href="podcast.html">All 5 episodes</a>.</figcaption></figure>
+
 Needs [3.1 Correlogram](e3-corr.md) first.
 
 ## What the exam asks

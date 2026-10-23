@@ -2,6 +2,8 @@
 
 <div class="meta"><span class="hot">In 6 of the last 6 exams</span><span>0.5 point each</span><span>15 min</span></div>
 
+<figure class="pod"><video src="video/pod_ep4_quiz.mp4" poster="video/pod_ep4_quiz.jpg" controls playsinline preload="none"></video><figcaption><b>Watch first: podcast episode 4, Rapid-fire true or false</b> (with sound). Answer every purple YOUR TURN out loud before the countdown ends; pause if you need more time. <a href="podcast.html">All 5 episodes</a>.</figcaption></figure>
+
 Needs [2.1 MLE](e2-mle.md) and [2.2 MAP](e2-map.md).
 
 ## What the exam asks

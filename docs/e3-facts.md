@@ -2,6 +2,8 @@
 
 <div class="meta"><span class="hot">In 8 of 9 exams</span><span>0.25–1 point</span><span>30 min</span></div>
 
+<figure class="pod"><video src="video/pod_ep4_quiz.mp4" poster="video/pod_ep4_quiz.jpg" controls playsinline preload="none"></video><figcaption><b>Watch first: podcast episode 4, Rapid-fire true or false</b> (with sound). Answer every purple YOUR TURN out loud before the countdown ends; pause if you need more time. <a href="podcast.html">All 5 episodes</a>.</figcaption></figure>
+
 ## What the exam asks
 
 Multiple choice ("which statement is TRUE"), a **matching table** (which estimator does what), a quick **"how many Welch segments"** count, and once an **energy vs power** signal. All of it is a small set of facts. Learn the facts, then do the cards at the bottom until you get them all right.
