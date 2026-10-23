@@ -267,3 +267,10 @@
 
 /* formulas select as one unit (click/drag over one grabs the whole thing) */
 .md-typeset .katex { user-select: all; -webkit-user-select: all; }
+
+/* ---------- left menu: new course vs old guide (javascripts/navsections.js) ---------- */
+.md-nav--primary .nav-new > .md-nav__link { font-weight: 700; color: var(--md-typeset-a-color); }
+.md-nav--primary .nav-new .md-nav__item--nested > .md-nav__link { font-weight: 600; }
+.md-nav--primary .nav-old { margin-top: .7rem; padding-top: .5rem; border-top: 1px solid var(--md-default-fg-color--lightest); }
+.md-nav--primary .nav-old > .md-nav__link { font-weight: 700; color: var(--md-default-fg-color--light); }
+.md-nav--primary .nav-old > .md-nav .md-nav__link:not(.md-nav__link--active) { color: var(--md-default-fg-color--light); }

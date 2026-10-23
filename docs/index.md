@@ -56,4 +56,4 @@ From the three most recent papers (April 2024, April 2025, June 2026):
 - Stuck on a sentence? Select it and press **Ask about this** (bottom-right **Ask** button; it uses your own API key).
 
 !!! idea "The old, long guide is still here"
-    Every exam question from 2019 to 2026 with full theory is under **Deep dive** in the menu. You do not need it to pass. Open it only if a lesson leaves you with a question.
+    Every exam question from 2019 to 2026 with full theory is in the menu under **Old · Long guide** (collapsed at the bottom). You do not need it to pass. Open it only if a lesson leaves you with a question.

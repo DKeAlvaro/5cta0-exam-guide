@@ -31,7 +31,6 @@ theme:
     logo: material/sine-wave
     repo: fontawesome/brands/github
   features:
-    - navigation.sections
     - navigation.top
     - navigation.footer
     - navigation.tracking
@@ -44,26 +43,27 @@ plugins: []
 
 nav:
   - Start here: index.md
-  - Block 1 · Probability (1.5 p):
-      - 1.1 Bayes word problems: e1-bayes.md
-      - 1.2 Joint PDFs: e1-joint.md
-      - 1.3 Stationary and ergodic: e1-wss.md
-      - 1.4 Spectral factorisation: e1-factor.md
-  - Block 2 · Estimation (3–3.5 p):
-      - 2.1 Maximum likelihood: e2-mle.md
-      - 2.2 MAP with a prior: e2-map.md
-      - 2.3 Least-squares line: e2-ls.md
-      - 2.4 Theory questions: e2-facts.md
-  - Block 3 · Spectral estimation (3 p):
-      - 3.1 Correlogram, pick the plot: e3-corr.md
-      - 3.2 AR and MA models: e3-arma.md
-      - 3.3 Periodogram, Welch, theory: e3-facts.md
-  - Block 4 · Detection (2–2.5 p):
-      - 4.1 Likelihood ratio test: e4-lrt.md
-      - 4.2 Priors, costs, theory: e4-bayes.md
-  - Mock exams with answers: exams.md
-  - A4 cheat sheet: cheatsheet.md
-  - Deep dive (old long guide):
+  - "New · Exam course":
+      - Block 1 · Probability (1.5 p):
+          - 1.1 Bayes word problems: e1-bayes.md
+          - 1.2 Joint PDFs: e1-joint.md
+          - 1.3 Stationary and ergodic: e1-wss.md
+          - 1.4 Spectral factorisation: e1-factor.md
+      - Block 2 · Estimation (3–3.5 p):
+          - 2.1 Maximum likelihood: e2-mle.md
+          - 2.2 MAP with a prior: e2-map.md
+          - 2.3 Least-squares line: e2-ls.md
+          - 2.4 Theory questions: e2-facts.md
+      - Block 3 · Spectral estimation (3 p):
+          - 3.1 Correlogram, pick the plot: e3-corr.md
+          - 3.2 AR and MA models: e3-arma.md
+          - 3.3 Periodogram, Welch, theory: e3-facts.md
+      - Block 4 · Detection (2–2.5 p):
+          - 4.1 Likelihood ratio test: e4-lrt.md
+          - 4.2 Priors, costs, theory: e4-bayes.md
+      - Mock exams with answers: exams.md
+      - A4 cheat sheet: cheatsheet.md
+  - "Old · Long guide (deep dive)":
       - The exam, decoded: patterns.md
       - Chapter 0 · From zero: p0-foundations.md
       - Toolbox: toolbox.md
@@ -123,6 +123,7 @@ extra_javascript:
 
   - javascripts/progress.js
   - javascripts/widgets.js
+  - javascripts/navsections.js
 extra_css:
   - https://unpkg.com/katex@0.16.11/dist/katex.min.css
   - https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap

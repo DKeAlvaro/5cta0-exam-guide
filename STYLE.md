@@ -100,7 +100,11 @@ external links point at them.
 
 Feedback that triggered it: the long guide was too much and "written for someone who already knows". The exam
 course is 13 short lessons, one per recurring question type, and is what the home page and the nav lead with. The
-old pages live under "Deep dive" and are not linked from the lessons except as optional reading.
+old pages live in the collapsible nav section "Old · Long guide (deep dive)" and are not linked from the lessons
+except as optional reading. Nav = two collapsible top sections ("New · Exam course", "Old · ...", no
+`navigation.sections`); `javascripts/navsections.js` tags them `.nav-new`/`.nav-old` (styled in `extra.css`) and on
+desktop opens the course, closes the old guide, and remembers the reader's toggles (localStorage `ssp-nav-open`).
+Section titles must keep starting with "New"/"Old".
 
 Lesson template (keep it to this, nothing more):
 `# n.m Title` → `<div class="meta">` (frequency, points, minutes) → **What the exam asks** → **The idea in one
