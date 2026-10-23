@@ -774,6 +774,9 @@
     return box.textContent.replace(/\s+/g, " ").replace(/\$ ([.,;:)])/g, "$$$1").trim();
   }
 
+  let lastUp = null;
+  document.addEventListener("mouseup", (e) => { lastUp = { x: e.clientX, y: e.clientY, t: Date.now() }; }, true);
+
   function showChip() {
     const sel = window.getSelection ? window.getSelection() : null;
     const text = sel ? selectedText(sel) : "";
@@ -797,11 +800,16 @@
     btn._rect = { left: r.left, right: r.right, bottom: r.bottom, top: rects.length ? rects[0].top : r.top };
     btn.style.display = "flex";
     const w = btn.offsetWidth || 130;
-    const x = Math.min(Math.max(8, r.left + r.width / 2 - w / 2), window.innerWidth - w - 8);
+    // mouse: sit right under the pointer where the drag ended, if that is on the selection
+    const p = !isTouch() && lastUp && Date.now() - lastUp.t < 1500 ? lastUp : null;
+    const nearSel = p && p.y >= r.top - 12 && p.y <= r.bottom + 12;
+    const cx = nearSel ? p.x : r.left + r.width / 2;
+    const x = Math.min(Math.max(8, cx - w / 2), window.innerWidth - w - 8);
     // touch browsers draw their own menu above the selection, so go below there
-    const above = !isTouch() && r.top > 44;
+    const above = !isTouch() && !nearSel && r.top > 44;
     const h = btn.offsetHeight || 30;
-    const y = above ? r.top - h - 2 : Math.min(r.bottom + (isTouch() ? 44 : 2), window.innerHeight - 52);
+    const y = nearSel ? Math.min(Math.max(p.y, r.bottom) + 6, window.innerHeight - 52)
+      : above ? r.top - h - 2 : Math.min(r.bottom + (isTouch() ? 44 : 2), window.innerHeight - 52);
     btn.style.left = x + "px";
     btn.style.top = y + "px";
   }
