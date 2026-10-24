@@ -88,9 +88,12 @@ On the calculator: $0.1^{1/6}=e^{\ln(0.1)/6}=e^{-0.3838}\approx0.681$. No log wa
     $$\mathcal{H}_0 : p(x; \mathcal{H}_0) = \frac{1}{2}e^{-|x|}\qquad\text{and}\qquad\mathcal{H}_1 : p(x; \mathcal{H}_1) = e^{-2|x|}.$$
 
     Each observation $x_n$ of the vector $\mathbf{x}$ (length $N$) is independent and identically distributed.
+
     **4c** Show that the likelihood ratio test takes the form $\sum_{n=0}^{N-1} |x_n| \underset{\mathcal{H}_1}{\overset{\mathcal{H}_0}{\gtrless}} \gamma'$ and determine $\gamma'$.
+
     **4d** For $N = 1$, with $Y=|X|$: $p(y; \mathcal{H}_0) = e^{-y}$, $p(y; \mathcal{H}_1) = 2e^{-2y}$. Indicate $P_{FA}$ and $P_M$ for $\gamma' = 1$ in the plot.
     ![pdfs of y](img/exam/nov22-4d.jpg)
+
     **4e** For a $P_{FA} = 0.1$ calculate the threshold $\gamma'$, and the probability of detection $P_D$ for it.
 
 <div class="stepper" markdown>
