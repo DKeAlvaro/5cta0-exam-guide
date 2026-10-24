@@ -39,7 +39,9 @@ The top of the bottom curve is where its slope is zero. That is the whole method
 
 !!! exam "Final exam, April 2024 · 2c · 1 p"
     For the data vector $\mathbf{x} = \{x_1, \dots, x_N\}$ consisting of independent samples with probability density function
+
     $$p(x_n | \theta) = \frac{x_n}{2\theta} e^{-\frac{x_n^2}{2\theta}},$$
+
     derive the MLE for the parameter $\theta$.
 
 <div class="stepper" markdown>

@@ -51,7 +51,9 @@ Now switch to the **Nov 2022** tab. There the $\mathcal H_1$ curve is the one th
 
 !!! exam "Final exam, 13 April 2025 · 4a · 0.5 p"
     You are conducting a likelihood ratio test using a single datapoint $x$, $0 < x < 1$ whereby $p(x) = k_1 \theta x^{k_2 \theta - 1}$. Two hypothesis can be distinguished
+
     $$\mathcal{H}_0 : \theta = 3, \qquad \mathcal{H}_1 : \theta = 6.$$
+
     If $\lambda = 0.2$, $k_1 = 1$, and $k_2 = 2$, what is the value for $x$ for which $\mathcal{H}_1$ should be accepted?
 
 <div class="stepper" markdown>
@@ -82,7 +84,9 @@ On the calculator: $0.1^{1/6}=e^{\ln(0.1)/6}=e^{-0.3838}\approx0.681$. No log wa
 
 !!! exam "Final exam, 7 November 2022 · 4c (0.5 p), 4d (0.25 p), 4e (0.5 p)"
     Under the two hypotheses, a single observation $x$ admits a zero mean Laplacian distribution, but with different variances:
+
     $$\mathcal{H}_0 : p(x; \mathcal{H}_0) = \frac{1}{2}e^{-|x|}\qquad\text{and}\qquad\mathcal{H}_1 : p(x; \mathcal{H}_1) = e^{-2|x|}.$$
+
     Each observation $x_n$ of the vector $\mathbf{x}$ (length $N$) is independent and identically distributed.
     **4c** Show that the likelihood ratio test takes the form $\sum_{n=0}^{N-1} |x_n| \underset{\mathcal{H}_1}{\overset{\mathcal{H}_0}{\gtrless}} \gamma'$ and determine $\gamma'$.
     **4d** For $N = 1$, with $Y=|X|$: $p(y; \mathcal{H}_0) = e^{-y}$, $p(y; \mathcal{H}_1) = 2e^{-2y}$. Indicate $P_{FA}$ and $P_M$ for $\gamma' = 1$ in the plot.
@@ -170,7 +174,9 @@ $P_D=\int_0^{\gamma'}2e^{-2y}\,dy=1-e^{-2\gamma'}=1-(e^{-\gamma'})^2=1-0.81=\mat
         The further apart $\sigma_0$ and $\sigma_1$, the less the two curves overlap, so for the same $P_{FA}$ you get a higher $P_D$ (ROC closer to the top-left corner). Here $P_{FA}=e^{-\gamma^2/(2\sigma_0^2)}$ and $P_D=e^{-\gamma^2/(2\sigma_1^2)}$. Try it in the widget, tab Jun 2026.
 
 !!! exam "Final exam, April 2024 · 4b · 1.5 p"
+
     $$\mathcal{H}_0: p(y) = \frac{1}{\sqrt{2\pi}} e^{-\frac{y^2}{2}}\qquad \mathcal{H}_1: p(y) = \frac{1}{4} e^{-\frac{y}{2}},\qquad y > 0.$$
+
     Sketch the likelihoods. For a threshold $\gamma = 1$, indicate $P_{FA}$ and $P_M$, and calculate $P_D$ and $P_{FA}$. Use $Q(x) = \int_x^{\infty} \frac{1}{\sqrt{2\pi}} e^{-\frac{u^2}{2}} du$. No need for exact numerical values.
 
 ??? solution "Check your answer"

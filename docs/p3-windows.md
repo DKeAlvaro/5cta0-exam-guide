@@ -279,12 +279,14 @@ Every solution below starts with *what the question is actually asking*, then sh
 
     1. *Classify.* A sine repeats every $2\pi/\omega$ seconds and never dies out → **power signal** → by [section 1.3](#13-why-the-two-categories-can-never-overlap) its energy is infinite: $E = \infty$.
     2. *Compute $P$.* The average of a squared sine over many periods is $\frac12$ (the identity $\sin^2 = \frac{1-\cos 2\omega t}{2}$, with the cosine part averaging away — full working in [Example A](#15-every-example-the-exams-use-computed-from-scratch)):
+
         $$P = \frac{A^2}{2}.$$
 
     **Signal 2: $x[n] = e^{-n}$, $n\ge 0$.**
 
     1. *Classify.* The samples shrink to zero ($e^{-n}\to0$) and are zero before $n=0$ → it dies out → **energy signal** → $P = 0$.
     2. *Compute $E$.* Square each sample and add them all up:
+
         $$E = \sum_{n=0}^{\infty}\big(e^{-n}\big)^2 = \sum_{n=0}^{\infty}\big(e^{-2}\big)^{n} \overset{\text{geom. series}}{=} \frac{1}{1-e^{-2}} = \frac{1}{0.8647}\approx 1.1565 .$$
 
     !!! answer "Answer"

@@ -29,15 +29,21 @@ A **model** is a recipe that makes the signal out of white noise $i[n]$ (pure ra
 ## The recipes
 
 !!! recipe key "AR(1)"
+
     $$a_1=-\frac{r[1]}{r[0]},\qquad \sigma_i^2=r[0]+a_1r[1],\qquad P_{AR}(e^{j\theta})=\frac{\sigma_i^2}{1+a_1^2+2a_1\cos\theta}.$$
 
 !!! recipe key "AR(2): Yule–Walker"
     1. **Equations** (this is what "state the Yule–Walker equations in matrix form" wants):
+
     $$\begin{bmatrix}r[0]&r[1]\\ r[1]&r[0]\end{bmatrix}\begin{bmatrix}a_1\\ a_2\end{bmatrix}=-\begin{bmatrix}r[1]\\ r[2]\end{bmatrix}$$
+
     2. **Solve** the 2×2 (with $D=r[0]^2-r[1]^2$):
+
     $$a_1=\frac{-r[1]\,(r[0]-r[2])}{D},\qquad a_2=\frac{r[1]^2-r[0]\,r[2]}{D}.$$
+
     3. **Noise power**: $\sigma_i^2=r[0]+a_1r[1]+a_2r[2]$.
     4. **PSD**: $P_{AR}=\dfrac{\sigma_i^2}{|A|^2}$ with
+
     $$|A|^2=1+a_1^2+a_2^2+2(a_1+a_1a_2)\cos\theta+2a_2\cos2\theta.$$
 
 !!! recipe key "MA(1)"

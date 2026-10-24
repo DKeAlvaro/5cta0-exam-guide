@@ -81,8 +81,10 @@ With a **plus** sign, $(1+az^{-1})(1+az)=(1+a^2)+2a\cos\theta$.
     3. **Keep the root with $|a|<1$.**
     4. $C=\beta/(2a)$.
     5. With $C_n,b$ from the numerator and $C_d,a$ from the denominator:
-       $$\sigma_i^2=\frac{C_n}{C_d},\qquad L(z)=\frac{1\pm bz^{-1}}{1\pm az^{-1}}$$
-       using the same sign as the cosine term (minus cos ↔ minus in $L$).
+
+        $$\sigma_i^2=\frac{C_n}{C_d},\qquad L(z)=\frac{1\pm bz^{-1}}{1\pm az^{-1}}$$
+
+        using the same sign as the cosine term (minus cos ↔ minus in $L$).
     6. **Check** at $\theta=0$: $\sigma_i^2\,\frac{(1\pm b)^2}{(1\pm a)^2}$ must equal $P(e^{j0})$.
 
 !!! example "Smallest possible example: $P=\dfrac{5}{4}+\cos\theta$ (a numerator only)"
