@@ -310,27 +310,33 @@ The error probabilities are integrals of the PDFs over the "decide $\mathcal H_1
     | $\gamma'$ | the new threshold on the statistic $\sum\lvert x_n\rvert$ |
     | $y=\lvert x\rvert$ | the absolute value of one sample (an exponential random variable) |
 
-    **Step 1 — 4c: likelihood ratio of $N$ i.i.d. samples** ([1.3](#13-many-samples-products-become-sums)):
+    **Step 1 — 4c: ratio for one sample.** $\dfrac{e^{-2|x|}}{\frac12e^{-|x|}}$. Dividing by $\frac12$ = multiplying by 2, and $\frac{e^a}{e^b}=e^{a-b}$, so it is $2e^{-2|x|+|x|}=2e^{-|x|}$ (because $-2|x|+|x|=-|x|$).
 
-    $$L(\mathbf x)=\frac{\prod_ne^{-2|x_n|}}{\prod_n\frac12e^{-|x_n|}}=\frac{e^{-2\sum|x_n|}}{2^{-N}e^{-\sum|x_n|}}=2^Ne^{-\sum_n|x_n|}\ \underset{\mathcal H_0}{\overset{\mathcal H_1}{\gtrless}}\ \gamma.$$
+    **Step 2 — ratio for $N$ i.i.d. samples** ([1.3](#13-many-samples-products-become-sums)). Independent: the joint PDF is the product of the single-sample PDFs, so the ratio is the product of $N$ copies of $2e^{-|x_n|}$:
 
-    **Step 2 — take $\ln$:** $N\ln2-\sum_n|x_n|\ \gtrless\ \ln\gamma$. Move $N\ln2$ to the right: $-\sum_n|x_n|\gtrless\ln\gamma-N\ln2$.
+    $$L(\mathbf x)=\prod_{n=0}^{N-1}2e^{-|x_n|}=2^N\,e^{-|x_0|}e^{-|x_1|}\cdots e^{-|x_{N-1}|}=2^Ne^{-\sum_n|x_n|}\ \underset{\mathcal H_0}{\overset{\mathcal H_1}{\gtrless}}\ \gamma.$$
 
-    **Step 3 — multiply by $-1$.** This **flips the inequality and the labels** ($\mathcal H_1$ was on top of "$>$", now it sits under "$<$"):
+    The $N$ factors of 2 give $2^N$; $e^ae^b=e^{a+b}$ merges the exponentials into one with exponent $-(|x_0|+\dots+|x_{N-1}|)=-\sum_n|x_n|$. Check, $N=3$, $\mathbf x=(0.5,-1,0.5)$: $\sum|x_n|=2$, $L=2^3e^{-2}=8\cdot0.1353\approx1.083$.
+
+    **Step 3 — take $\ln$** (increasing, so the direction stays): $\ln(2^N)=N\ln2$ and $\ln e^u=u$ give $N\ln2-\sum_n|x_n|\ \gtrless\ \ln\gamma$. Subtract $N\ln2$ (no flip): $-\sum_n|x_n|\gtrless\ln\gamma-N\ln2$.
+
+    **Step 4 — multiply by $-1$.** Negative number, so the inequality **flips and the labels swap** ($-3>-5$ becomes $3<5$). $\mathcal H_1$ was on top of "$>$", now it sits under "$<$":
 
     $$\sum_{n=0}^{N-1}|x_n|\ \underset{\mathcal H_1}{\overset{\mathcal H_0}{\gtrless}}\ \gamma'=N\ln2-\ln\gamma.$$
 
+    Reading the notation: the hypothesis **under** the sign is chosen when the left side is smaller, the one **on top** when it is bigger. So "decide $\mathcal H_1$ if $\sum|x_n|<\gamma'$".
+
     So $\mathcal H_1$ (the *narrower* Laplacian) is chosen when the samples are **small** (sum below $\gamma'$). That agrees with intuition: $e^{-2|x|}$ is concentrated near 0.
 
-    **Step 4 — 4d: which side is "decide $\mathcal H_1$"?** Small $y$: $y<\gamma'=1$.
+    **Step 5 — 4d: which side is "decide $\mathcal H_1$"?** Small $y$: $y<\gamma'=1$.
 
     ![shading](img/gen/p4_nov22_y.svg)
 
     $P_{FA}$ = area under the **solid** $\mathcal H_0$ curve for $0\le y<1$. $P_M$ = area under the **dashed** $\mathcal H_1$ curve for $y>1$. (Not "the tail on the right" as usual: the hint is about exactly this.)
 
-    **Step 5 — 4e: threshold for $P_{FA}=0.1$.** Decide $\mathcal H_1$ for $y<\gamma'$, so $P_{FA}=\int_0^{\gamma'}e^{-y}dy=1-e^{-\gamma'}=0.1\Rightarrow e^{-\gamma'}=0.9\Rightarrow\gamma'=-\ln0.9\approx0.105$.
+    **Step 6 — 4e: threshold for $P_{FA}=0.1$.** Decide $\mathcal H_1$ for $y<\gamma'$, so $P_{FA}=\int_0^{\gamma'}e^{-y}dy=1-e^{-\gamma'}=0.1\Rightarrow e^{-\gamma'}=0.9\Rightarrow\gamma'=-\ln0.9\approx0.105$.
 
-    **Step 6 — $P_D$** with the same threshold and the $\mathcal H_1$ PDF: $P_D=\int_0^{\gamma'}2e^{-2y}dy=1-e^{-2\gamma'}=1-(e^{-\gamma'})^2=1-0.9^2=1-0.81=0.19$.
+    **Step 7 — $P_D$** with the same threshold and the $\mathcal H_1$ PDF: $P_D=\int_0^{\gamma'}2e^{-2y}dy=1-e^{-2\gamma'}=1-(e^{-\gamma'})^2=1-0.9^2=1-0.81=0.19$.
 
     !!! answer "Answer"
         4c: $\gamma'=N\ln2-\ln\gamma$ (decide $\mathcal H_1$ when $\sum|x_n|<\gamma'$). 4d: shaded as above. 4e: $\gamma'=-\ln0.9\approx0.105$, $P_D=0.19$.

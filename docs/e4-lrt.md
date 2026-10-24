@@ -91,28 +91,55 @@ On the calculator: $0.1^{1/6}=e^{\ln(0.1)/6}=e^{-0.3838}\approx0.681$. No log wa
 
 <div class="stepper" markdown>
 
-**Step 1 · Ratio for one sample.** $\dfrac{e^{-2|x|}}{\frac12e^{-|x|}}=2e^{-2|x|+|x|}=2e^{-|x|}$.
-For $N$ independent samples you multiply $N$ of these: $\prod_n 2e^{-|x_n|}=2^N e^{-\sum_n|x_n|}$.
+**Step 1 · Ratio for ONE sample.** Same recipe as always: $\dfrac{p(x\mid\mathcal H_1)}{p(x\mid\mathcal H_0)}$. Here that is
+
+$$\frac{e^{-2|x|}}{\tfrac12\,e^{-|x|}}.$$
+
+Two small moves. (i) Dividing by $\tfrac12$ is the same as multiplying by 2, so the $\tfrac12$ becomes a $2$ in front. (ii) Two powers of $e$ divided: $\dfrac{e^{a}}{e^{b}}=e^{a-b}$ (subtract the exponents). With $a=-2|x|$ and $b=-|x|$:
+
+$$2\,e^{-2|x|-(-|x|)}=2\,e^{-2|x|+|x|}=2\,e^{-|x|}\qquad(\text{because }-2|x|+|x|=-|x|).$$
 
 ***
 
-**Step 2 · Log.** Test: $2^Ne^{-\sum|x_n|}>\gamma$. Take $\ln$: $N\ln2-\sum_n|x_n|>\ln\gamma$.
+**Step 2 · Ratio for $N$ samples.** The samples are independent, so the PDF of the whole vector is the **product** of the PDFs of each sample (that is what "independent" buys you, see [1.3](p4-lrt.md#13-many-samples-products-become-sums)). The same factor $2e^{-|x_n|}$ appears once per sample, $n=0,1,\dots,N-1$:
+
+$$L(\mathbf x)=\prod_{n=0}^{N-1}2\,e^{-|x_n|}=\underbrace{2\cdot2\cdots2}_{N\text{ times}}\cdot e^{-|x_0|}\,e^{-|x_1|}\cdots e^{-|x_{N-1}|}=2^N\,e^{-\sum_n|x_n|}.$$
+
+The last equality uses $e^{a}e^{b}=e^{a+b}$ (multiplying powers of $e$ adds the exponents), so all the $e^{-|x_n|}$ merge into one $e$ whose exponent is $-(|x_0|+\dots+|x_{N-1}|)=-\sum_n|x_n|$.
+Tiny check, $N=3$, $\mathbf x=(0.5,\,-1,\,0.5)$: $\sum|x_n|=0.5+1+0.5=2$, so $L=2^3e^{-2}=8\cdot0.1353=1.083$.
+
+The test is: decide $\mathcal H_1$ if $L(\mathbf x)>\gamma$ (the threshold called $\lambda$ above; the exam calls it $\gamma$, and it is a number we are free to choose). So:
+
+$$2^N\,e^{-\sum_n|x_n|}>\gamma.$$
 
 ***
 
-**Step 3 · Isolate the sum, and FLIP.** Move $N\ln 2$: $-\sum|x_n|>\ln\gamma-N\ln2$. Multiply by $-1$, so $>$ becomes $<$:
+**Step 3 · Take $\ln$ to get rid of the $e$.** $\ln$ is increasing, so $>$ stays $>$. Use $\ln(ab)=\ln a+\ln b$, $\ln(2^N)=N\ln2$ and $\ln e^{u}=u$:
 
-$$\sum_n|x_n|\lt N\ln2-\ln\gamma=\gamma'.$$
-
-So we decide $\mathcal H_1$ when the sum is **small**, which is why the exam writes $\mathcal H_0$ on top of the $\gtrless$ sign. Answer 4c: $\gamma'=N\ln2-\ln\gamma$.
+$$N\ln2-\sum_n|x_n|>\ln\gamma.$$
 
 ***
 
-**Step 4 · Shade (4d).** Decide $\mathcal H_1$ when $y<1$. $P_{FA}$ = area under the $\mathcal H_0$ curve $e^{-y}$ **left** of 1. $P_M$ = area under the $\mathcal H_1$ curve $2e^{-2y}$ **right** of 1. (Check it in the widget above, tab Nov 2022.)
+**Step 4 · Isolate the sum, and FLIP.** First subtract $N\ln2$ from both sides (no flip, it is only a subtraction):
+
+$$-\sum_n|x_n|>\ln\gamma-N\ln2.$$
+
+Now the sum has a minus sign in front and we want it alone, so multiply both sides by $-1$. A negative number: the inequality **flips** ($>$ becomes $<$), and the right side changes sign:
+
+$$\sum_n|x_n|\lt N\ln2-\ln\gamma=:\gamma'.$$
+
+Check the flip with numbers: $-3>-5$ is true; multiply by $-1$: $3<5$ (true), whereas $3>5$ would be false.
+
+So we decide $\mathcal H_1$ when the sum is **small**. In the exam's notation, "decide $\mathcal H_1$ when the sum is below $\gamma'$" is written $\sum|x_n|\ \underset{\mathcal H_1}{\overset{\mathcal H_0}{\gtrless}}\ \gamma'$: the symbol under the sign ($\mathcal H_1$) is the one chosen when the left side is **smaller**, the one on top ($\mathcal H_0$) when it is **bigger**. That is exactly the form asked in 4c. It makes sense: $\mathcal H_1$ is the narrow curve $e^{-2|x|}$, concentrated near 0, so small $|x_n|$ point to it.
+Answer 4c: $\gamma'=N\ln2-\ln\gamma$.
 
 ***
 
-**Step 5 · Threshold from $P_{FA}$ (4e).**
+**Step 5 · Shade (4d).** Decide $\mathcal H_1$ when $y<1$. $P_{FA}$ = area under the $\mathcal H_0$ curve $e^{-y}$ **left** of 1. $P_M$ = area under the $\mathcal H_1$ curve $2e^{-2y}$ **right** of 1. (Check it in the widget above, tab Nov 2022.)
+
+***
+
+**Step 6 · Threshold from $P_{FA}$ (4e).**
 $P_{FA}=\int_0^{\gamma'}e^{-y}\,dy=\big[-e^{-y}\big]_0^{\gamma'}=1-e^{-\gamma'}$. Set it to 0.1: $e^{-\gamma'}=0.9$, so $\gamma'=-\ln0.9\approx\mathbf{0.105}$.
 
 $P_D=\int_0^{\gamma'}2e^{-2y}\,dy=1-e^{-2\gamma'}=1-(e^{-\gamma'})^2=1-0.81=\mathbf{0.19}$.
