@@ -174,16 +174,63 @@ $P_D=\int_0^{\gamma'}2e^{-2y}\,dy=1-e^{-2\gamma'}=1-(e^{-\gamma'})^2=1-0.81=\mat
     - Discuss how the separation between $\sigma_0$ and $\sigma_1$ affects detection performance.
 
 ??? solution "Check your answer"
-    **Ratio.** The $x$ in front cancels:
-    $\dfrac{\frac{x}{\sigma_1^2}e^{-x^2/(2\sigma_1^2)}}{\frac{x}{\sigma_0^2}e^{-x^2/(2\sigma_0^2)}}=\dfrac{\sigma_0^2}{\sigma_1^2}\exp\!\Big(\dfrac{x^2}{2}\Big(\dfrac1{\sigma_0^2}-\dfrac1{\sigma_1^2}\Big)\Big)>\eta.$
+    **What is being asked?** Turn "the two PDFs, compared with the number $\eta$" into a simple rule on $x$ ("decide $H_1$ if $x>\gamma$"), then say what happens when $\sigma_0$ and $\sigma_1$ are close together or far apart. Same steps as [the recipe](#the-recipe).
 
-    **Log.** $\ln\dfrac{\sigma_0^2}{\sigma_1^2}+\dfrac{x^2}{2}\Big(\dfrac1{\sigma_0^2}-\dfrac1{\sigma_1^2}\Big)>\ln\eta$.
+    **Symbols in this question**
 
-    **Isolate.** Because $\sigma_1>\sigma_0$, the bracket $\frac1{\sigma_0^2}-\frac1{\sigma_1^2}=\frac{\sigma_1^2-\sigma_0^2}{\sigma_0^2\sigma_1^2}$ is **positive**: no flip.
+    | Symbol | Meaning |
+    |---|---|
+    | $X$ | the measured envelope; a Rayleigh variable is always $\ge 0$ |
+    | $\sigma_0,\sigma_1$ | the Rayleigh scale: the bigger $\sigma$, the bigger the typical envelope ($\sigma_1\gt\sigma_0$) |
+    | $\eta$ | the threshold on the **ratio** — the $\lambda$ of [the idea in one minute](#the-idea-in-one-minute); this exam calls it $\eta$ |
+    | $\gamma$ | the threshold on **$x$** we have to find |
+
+    **Step 1 · Ratio, with the $x$ cancelling.** $\mathcal H_1$ on top, $\mathcal H_0$ at the bottom, and we decide $H_1$ when the result is bigger than $\eta$:
+
+    $$L(x)=\frac{p(x\mid H_1)}{p(x\mid H_0)}=\frac{\dfrac{x}{\sigma_1^2}\,e^{-x^2/(2\sigma_1^2)}}{\dfrac{x}{\sigma_0^2}\,e^{-x^2/(2\sigma_0^2)}}\ >\ \eta.$$
+
+    The $x$ in front of both PDFs is the same, so it cancels. Two bookkeeping moves are left: dividing by $\frac{1}{\sigma_0^2}$ is multiplying by $\sigma_0^2$, and $\dfrac{e^{a}}{e^{b}}=e^{a-b}$ (subtract the exponents):
+
+    $$L(x)=\frac{\sigma_0^2}{\sigma_1^2}\;e^{-\frac{x^2}{2\sigma_1^2}+\frac{x^2}{2\sigma_0^2}}=\frac{\sigma_0^2}{\sigma_1^2}\exp\!\Big(\frac{x^2}{2}\Big(\frac{1}{\sigma_0^2}-\frac{1}{\sigma_1^2}\Big)\Big),$$
+
+    where the exponent was put over the common denominator $\sigma_0^2\sigma_1^2$:
+
+    $$-\frac{x^2}{2\sigma_1^2}+\frac{x^2}{2\sigma_0^2}=\frac{x^2}{2}\Big(\frac{1}{\sigma_0^2}-\frac{1}{\sigma_1^2}\Big)=\frac{x^2}{2}\cdot\frac{\sigma_1^2-\sigma_0^2}{\sigma_0^2\sigma_1^2}.$$
+
+    **Step 2 · Log both sides.** $\ln$ is increasing, so $>$ stays $>$. Use $\ln(ab)=\ln a+\ln b$ and $\ln e^{u}=u$:
+
+    $$\ln\frac{\sigma_0^2}{\sigma_1^2}+\frac{x^2}{2}\cdot\frac{\sigma_1^2-\sigma_0^2}{\sigma_0^2\sigma_1^2}\ >\ \ln\eta.$$
+
+    **Step 3 · Isolate $x^2$ (no flip).** Because $\sigma_1\gt\sigma_0$, the bracket $\frac{\sigma_1^2-\sigma_0^2}{\sigma_0^2\sigma_1^2}$ is **positive**, so dividing by it later will **not** flip the inequality.
+
+    Move the constant to the right: $\ln\frac{\sigma_0^2}{\sigma_1^2}=-\ln\frac{\sigma_1^2}{\sigma_0^2}$ (because $\ln(1/a)=-\ln a$), so adding $\ln\frac{\sigma_1^2}{\sigma_0^2}$ to both sides turns the right side into $\ln\eta+\ln\frac{\sigma_1^2}{\sigma_0^2}=\ln\!\Big(\eta\frac{\sigma_1^2}{\sigma_0^2}\Big)$:
+
+    $$\frac{x^2}{2}\cdot\frac{\sigma_1^2-\sigma_0^2}{\sigma_0^2\sigma_1^2}\ >\ \ln\!\Big(\eta\frac{\sigma_1^2}{\sigma_0^2}\Big).$$
+
+    Now multiply by $2$ and divide by the bracket — dividing by a fraction is multiplying by its upside-down twin $\frac{\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}$:
+
+    $$x^2\ >\ \frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\Big(\eta\frac{\sigma_1^2}{\sigma_0^2}\Big).$$
+
+    **Step 4 · Square root, and read the rule.** $x\ge 0$ and the square root is increasing, so still no flip:
+
+    $$x\ >\ \gamma=\sqrt{\dfrac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\Big(\eta\,\dfrac{\sigma_1^2}{\sigma_0^2}\Big)}.$$
+
+    Sanity check: $\sigma_1\gt\sigma_0$ means $H_1$ is the **wider** curve, so it is the taller one for large $x$: big envelope → $H_1$. ✓ (If $\eta\,\sigma_1^2/\sigma_0^2\le 1$ the number inside the $\ln$ is $\le 1$, the root is not positive, and every $x$ decides $H_1$.)
+
+    **Step 5 · The second part: how much $\sigma_0$ and $\sigma_1$ matter.** $P_{FA}$ is the area under the $H_0$ curve to the right of $\gamma$:
+
+    $$P_{FA}=\int_\gamma^\infty\frac{x}{\sigma_0^2}e^{-x^2/(2\sigma_0^2)}\,dx=e^{-\gamma^2/(2\sigma_0^2)},$$
+
+    where the substitution $u=\frac{x^2}{2\sigma_0^2}$, $du=\frac{x}{\sigma_0^2}dx$ turns the integral into $\int e^{-u}du=e^{-u}$. The same integral with $\sigma_1$ gives $P_D$, so
+
+    $$P_D=e^{-\gamma^2/(2\sigma_1^2)}=\Big(e^{-\gamma^2/(2\sigma_0^2)}\Big)^{\sigma_0^2/\sigma_1^2}=P_{FA}^{\,\sigma_0^2/\sigma_1^2}.$$
+
+    Numbers: $\sigma_1=2\sigma_0$ gives $P_D=P_{FA}^{1/4}$; at $P_{FA}=0.01$ that is $P_D=0.01^{0.25}=e^{\ln(0.01)/4}=e^{-1.151}=0.32$. With $\sigma_1=3\sigma_0$: $P_D=0.01^{1/9}=e^{-4.605/9}=e^{-0.512}=0.60$.
+    So: the further apart $\sigma_0$ and $\sigma_1$, the less the two curves overlap and the more you detect for the same false-alarm rate (the ROC moves to the top-left corner). When $\sigma_1\to\sigma_0$ the exponent $\to 1$, $P_D\to P_{FA}$: no better than guessing.
 
     !!! answer "Answer"
         Decide $H_1$ if $x>\gamma=\sqrt{\dfrac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\Big(\eta\,\dfrac{\sigma_1^2}{\sigma_0^2}\Big)}$.
-        The further apart $\sigma_0$ and $\sigma_1$, the less the two curves overlap, so for the same $P_{FA}$ you get a higher $P_D$ (ROC closer to the top-left corner). Here $P_{FA}=e^{-\gamma^2/(2\sigma_0^2)}$ and $P_D=e^{-\gamma^2/(2\sigma_1^2)}$. Try it in the widget, tab Jun 2026.
+        Here $P_{FA}=e^{-\gamma^2/(2\sigma_0^2)}$ and $P_D=e^{-\gamma^2/(2\sigma_1^2)}=P_{FA}^{\,\sigma_0^2/\sigma_1^2}$. The further apart $\sigma_0$ and $\sigma_1$, the less the curves overlap and the higher $P_D$ for the same $P_{FA}$. Try it in the widget above, tab Jun 2026.
 
 !!! exam "Final exam, April 2024 · 4b · 1.5 p"
 
@@ -192,12 +239,59 @@ $P_D=\int_0^{\gamma'}2e^{-2y}\,dy=1-e^{-2\gamma'}=1-(e^{-\gamma'})^2=1-0.81=\mat
     Sketch the likelihoods. For a threshold $\gamma = 1$, indicate $P_{FA}$ and $P_M$, and calculate $P_D$ and $P_{FA}$. Use $Q(x) = \int_x^{\infty} \frac{1}{\sqrt{2\pi}} e^{-\frac{u^2}{2}} du$. No need for exact numerical values.
 
 ??? solution "Check your answer"
-    **Ratio > 1, then log.** $\ln\frac14-\frac y2-\ln\frac1{\sqrt{2\pi}}+\frac{y^2}{2}>0$, i.e. $\frac{y^2}{2}-\frac y2+\ln\frac{\sqrt{2\pi}}{4}>0$. Numbers: $\ln\frac{2.5066}{4}=\ln0.6267=-0.4674$. Multiply by 2: $y^2-y-0.9348>0$.
+    **What is being asked?** Draw both curves, find the $y$ where one overtakes the other, and compute the two shaded areas.
 
-    **Solve the quadratic** $y^2-y-0.9348=0$: $y=\frac{1\pm\sqrt{1+3.739}}{2}=\frac{1\pm2.177}{2}$. Only the positive root matters ($y>0$): $y_{th}=1.588$. The parabola is positive to the right of it, so decide $\mathcal H_1$ for $y>1.588$.
+    **First, the trap in the wording: which threshold is "$\gamma=1$"?** It is the threshold on the **likelihood ratio** (the $\lambda$ of [the idea in one minute](#the-idea-in-one-minute)): decide $\mathcal H_1$ when $\dfrac{p(y\mid\mathcal H_1)}{p(y\mid\mathcal H_0)}>1$, which simply means "decide the story whose curve is **higher**". It is **not** a value of $y$. (The exam reuses the letter: in the Rayleigh question above, $\gamma$ was a threshold on $x$.)
+
+    **Step 1 · Sketch.** $\frac{1}{\sqrt{2\pi}}=0.3989\approx 0.40$ and $\frac14=0.25$. So the $\mathcal H_0$ curve starts at $0.40$ at $y=0$ and falls fast (the Gaussian tail $e^{-y^2/2}$), while the $\mathcal H_1$ curve starts at $0.25$ and falls slowly (the exponential $e^{-y/2}$). $\mathcal H_0$ is taller near $0$, $\mathcal H_1$ is taller far out: they cross exactly once.
+
+    **Step 2 · The ratio $>1$, then log both sides.**
+
+    $$\frac{\frac14\,e^{-y/2}}{\frac{1}{\sqrt{2\pi}}\,e^{-y^2/2}}\ >\ 1.$$
+
+    Take $\ln$ of both sides (increasing, so $>$ stays $>$). One log per factor, using $\ln\frac{a}{b}=\ln a-\ln b$, $\ln e^{u}=u$ and $\ln 1=0$ — the two numbers on top give $\ln\frac14$, the $e$ on top gives $-\frac y2$, and the two at the bottom come with a minus sign ($-\ln\frac{1}{\sqrt{2\pi}}$ and $-\big(-\frac{y^2}{2}\big)=+\frac{y^2}{2}$):
+
+    $$\ln\tfrac14-\tfrac y2-\ln\tfrac{1}{\sqrt{2\pi}}+\tfrac{y^2}{2}\ >\ 0.$$
+
+    Clean the constants: $-\ln\frac{1}{\sqrt{2\pi}}=+\ln\sqrt{2\pi}$, and $\ln\frac14+\ln\sqrt{2\pi}=\ln\frac{\sqrt{2\pi}}{4}$ (because $\ln a+\ln b=\ln ab$):
+
+    $$\frac{y^2}{2}-\frac y2+\ln\frac{\sqrt{2\pi}}{4}\ >\ 0.$$
+
+    Numbers: $\sqrt{2\pi}=2.5066$, $\frac{2.5066}{4}=0.6267$, $\ln 0.6267=-0.4674$, so
+
+    $$\frac{y^2}{2}-\frac y2-0.4674\ >\ 0.$$
+
+    **Step 3 · Clear the halves.** Multiply by 2 (positive → no flip):
+
+    $$y^2-y-0.9348\ >\ 0.$$
+
+    **Step 4 · Solve the quadratic.** Set $y^2-y-0.9348=0$ and use $y=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$ with $a=1$, $b=-1$, $c=-0.9348$:
+
+    $$y=\frac{1\pm\sqrt{1+4(0.9348)}}{2}=\frac{1\pm\sqrt{4.739}}{2}=\frac{1\pm2.177}{2},$$
+
+    ($\sqrt{4.739}=2.177$), so the two roots are $1.588$ and $-0.588$. Only $y>0$ exists in this problem, so the only threshold in range is $y_{th}=1.588$.
+
+    **Step 5 · Which side decides $\mathcal H_1$?** The parabola $y^2-y-0.9348$ opens **upward** (the $y^2$ term is positive), so it is positive **outside** the roots: left of $-0.588$ and right of $1.588$. On $y>0$ that leaves $y>1.588$: decide $\mathcal H_1$ for $y>1.588$. It matches the sketch — far out, the slow exponential is the taller curve.
+
+    **Step 6 · Shade.** "Decide $\mathcal H_1$" is the region to the **right** of 1.588. So $P_{FA}$ ($\mathcal H_0$ true, we say $\mathcal H_1$) is the area under the **$\mathcal H_0$** curve right of 1.588, and $P_M$ ($\mathcal H_1$ true, we say $\mathcal H_0$) is the area under the **$\mathcal H_1$** curve **left** of 1.588.
+
+    **Step 7 · Integrate.** $P_{FA}$ first — that integral *is* the $Q$ the question hands you:
+
+    $$P_{FA}=\int_{1.588}^{\infty}\frac{1}{\sqrt{2\pi}}e^{-y^2/2}\,dy=Q(1.588)$$
+
+    (≈ 0.056 if you look it up, but the exam says no number needed).
+
+    For $P_D$: the derivative of $e^{-y/2}$ is $-\frac12 e^{-y/2}$, so $\frac14 e^{-y/2}$ integrates to $-\frac12 e^{-y/2}$:
+
+    $$P_D=\int_{1.588}^{\infty}\frac14 e^{-y/2}\,dy=\Big[-\tfrac12 e^{-y/2}\Big]_{1.588}^{\infty}=0-\big(-\tfrac12 e^{-0.794}\big)=\tfrac12 e^{-0.794}=0.5\cdot 0.452=0.226$$
+
+    ($1.588/2=0.794$, and $e^{-0.794}=0.452$). For completeness, $P_M=\int_0^{1.588}\frac14 e^{-y/2}dy=\frac12\big(1-e^{-0.794}\big)=0.274$.
+
+    !!! trap "These densities are not normalised"
+        As printed, each curve integrates to $\frac12$ on $y>0$ (they are two-sided curves cut in half), which is why $P_D+P_M=\frac12$ here and not 1. Use them as printed and say so. If you normalise (×2) all probabilities double ($P_{FA}=2Q(1.588)$, $P_D=e^{-0.794}$) and then $P_M=1-P_D$; the threshold $y_{th}=1.588$ is the same either way.
 
     !!! answer "Answer"
-        Decide $\mathcal H_1$ if $y>1.588$. $P_{FA}=\int_{1.588}^\infty\frac1{\sqrt{2\pi}}e^{-y^2/2}dy=Q(1.588)$; $P_D=\int_{1.588}^\infty\frac14e^{-y/2}dy=\frac12e^{-0.794}$. Sketch: half-bell starting at 0.40 vs a slow exponential starting at 0.25; shade $\mathcal H_0$ right of 1.588 ($P_{FA}$) and $\mathcal H_1$ left of it ($P_M$).
+        Decide $\mathcal H_1$ if $y>1.588$. $P_{FA}=Q(1.588)$; $P_D=\frac12 e^{-0.794}\approx 0.23$; $P_M\approx 0.27$ (as printed). Sketch: the $\mathcal H_0$ curve is a half-bell starting at 0.40, the $\mathcal H_1$ curve a slow exponential starting at 0.25; shade $\mathcal H_0$ right of 1.588 ($P_{FA}$) and $\mathcal H_1$ left of it ($P_M$).
 
 ## Traps
 
