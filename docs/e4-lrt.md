@@ -133,7 +133,7 @@ Check the flip with numbers: $-3>-5$ is true; multiply by $-1$: $3<5$ (true), wh
 So we decide $\mathcal H_1$ when the sum is **small**. In the exam's notation, "decide $\mathcal H_1$ when the sum is below $\gamma'$" is written $\sum|x_n|\ \underset{\mathcal H_1}{\overset{\mathcal H_0}{\gtrless}}\ \gamma'$: the symbol under the sign ($\mathcal H_1$) is the one chosen when the left side is **smaller**, the one on top ($\mathcal H_0$) when it is **bigger**. That is exactly the form asked in 4c. It makes sense: $\mathcal H_1$ is the narrow curve $e^{-2|x|}$, concentrated near 0, so small $|x_n|$ point to it.
 **Answer 4c** (this is the form the exam asks to show):
 
-$$\sum_{n=0}^{N-1} |x_n| \underset{\mathcal{H}_1}{\overset{\mathcal{H}_0}{\gtrless}} \gamma\'\,,\qquad \gamma\'=N\ln2-\ln\gamma.$$
+$$\sum_{n=0}^{N-1} |x_n| \underset{\mathcal{H}_1}{\overset{\mathcal{H}_0}{\gtrless}} \gamma'\,,\qquad \gamma'=N\ln2-\ln\gamma.$$
 
 Read: if the sum is bigger than $\gamma'$ decide $\mathcal H_0$, if it is smaller decide $\mathcal H_1$.
 

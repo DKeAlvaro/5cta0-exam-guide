@@ -341,7 +341,7 @@ The error probabilities are integrals of the PDFs over the "decide $\mathcal H_1
     !!! answer "Answer"
         4c:
 
-        $$\sum_{n=0}^{N-1} |x_n| \underset{\mathcal{H}_1}{\overset{\mathcal{H}_0}{\gtrless}} \gamma\'\,,\qquad \gamma\'=N\ln2-\ln\gamma.$$
+        $$\sum_{n=0}^{N-1} |x_n| \underset{\mathcal{H}_1}{\overset{\mathcal{H}_0}{\gtrless}} \gamma'\,,\qquad \gamma'=N\ln2-\ln\gamma.$$
 
         i.e. decide $\mathcal H_1$ when $\sum|x_n|<\gamma'$. 4d: shaded as above. 4e: $\gamma'=-\ln0.9\approx0.105$, $P_D=0.19$.
 
