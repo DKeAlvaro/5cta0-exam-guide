@@ -670,7 +670,24 @@
     btn(bar, "▶ Play", () => play(), "main");
     function syncRange() { const c = C[cur]; sg.inp.min = c.x0 + 0.01; sg.inp.max = c.x1 - 0.01; sg.set(clamp(gam, c.x0 + 0.01, c.x1 - 0.01)); }
     const X0 = 40, X1 = 440, YB = 262, YT = 52;
-    drag(svg, (p) => { if (priors || p.x > X1 + 10) return; const c = C[cur]; sg.set(+clamp(lin(X0, X1, c.x0, c.x1)(p.x), c.x0 + 0.01, c.x1 - 0.01).toFixed(2)); });
+    // priors mode: the threshold is fixed by the prior, so dragging the line moves the prior
+    // (bisection on the prior: the Bayes threshold is monotone in P1, so one prior hits the pointer)
+    function priorFor(target) {
+      const c = C[cur], f = (p1) => c.bayes(1 - p1, p1);
+      const inc = f(0.05) < f(0.95);
+      let a = 0.05, b = 0.95;
+      for (let i = 0; i < 30; i++) {
+        const m = (a + b) / 2;
+        if ((f(m) < target) === inc) a = m; else b = m;
+      }
+      return clamp((a + b) / 2, 0.05, 0.95);
+    }
+    drag(svg, (p) => {
+      if (p.x > X1 + 10) return;
+      const c = C[cur];
+      const target = clamp(lin(X0, X1, c.x0, c.x1)(p.x), c.x0 + 0.01, c.x1 - 0.01);
+      if (priors) sp.set(+priorFor(target).toFixed(2)); else sg.set(+target.toFixed(2));
+    });
     function errs(c, t) {
       const pfa = c.side === ">" ? 1 - c.F0(t) : c.F0(t);
       const pm = c.side === ">" ? c.F1(t) : 1 - c.F1(t);
@@ -726,7 +743,7 @@
       const rule = c.side === ">" ? "x>\\gamma" : "y\\lt\\gamma";
       let t = "Decide $H_1$ when $" + rule + "$. <b>Blue area</b> $=P_{FA}=" + fmt(pfa, 3) + "$: $H_0$ was true but we said $H_1$ (it is the part of the $H_0$ curve inside the \"decide $H_1$\" zone). <b>Red area</b> $=P_M=" + fmt(pm, 3) + "$: $H_1$ was true and we missed it. $P_D=1-P_M=" + fmt(1 - pm, 3) + "$.";
       if (cur === 1) t += " Here $H_1$ is the curve that is <b>taller near 0</b>, so we decide $H_1$ for <b>small</b> $y$: the rule points left.";
-      if (priors) t = "Each curve is multiplied by its prior ($P_0=" + fmt(1 - P1) + "$, $P_1=" + fmt(P1) + "$). With equal costs Bayes decides $H_1$ wherever the red hill is above the blue one: the threshold is where they <b>cross</b>, $\\gamma=" + fmt(gam) + "$. Raise $P(H_1)$ and the crossing moves so that $H_1$ wins more often: a bigger prior makes $H_1$ <b>easier</b>, never harder. Error areas now total $P_e=P_0P_{FA}+P_1P_M=" + fmt((1 - P1) * pfa + P1 * pm, 3) + "$.";
+      if (priors) t = "Each curve is multiplied by its prior ($P_0=" + fmt(1 - P1) + "$, $P_1=" + fmt(P1) + "$). With equal costs Bayes decides $H_1$ wherever the red hill is above the blue one: the threshold is where they <b>cross</b>, $\\gamma=" + fmt(gam) + "$. <b>Drag the crossing in the picture (or the slider)</b>: raising $P(H_1)$ moves it so that $H_1$ wins more often — a bigger prior makes $H_1$ <b>easier</b>, never harder. Error areas now total $P_e=P_0P_{FA}+P_1P_M=" + fmt((1 - P1) * pfa + P1 * pm, 3) + "$.";
       else t += " Drag the line (or the slider): pushing it to cut false alarms always adds misses. The ROC dot shows that trade-off.";
       tex(cap, t);
     }

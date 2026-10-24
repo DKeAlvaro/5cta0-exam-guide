@@ -13,7 +13,7 @@ Needs [4.1 Likelihood ratio test](e4-lrt.md) first.
 
 ## The idea in one minute
 
-If devices are present only 10 % of the time, a measurement has to be **more convincing** before you say "device". Bayes does exactly that: it multiplies each curve by its prior and decides $\mathcal H_1$ wherever the weighted $\mathcal H_1$ curve is the taller one. Slide the prior and watch the threshold move.
+If devices are present only 10 % of the time, a measurement has to be **more convincing** before you say "device". Bayes does exactly that: it multiplies each curve by its prior and decides $\mathcal H_1$ wherever the weighted $\mathcal H_1$ curve is the taller one. Drag the crossing in the picture (or slide the prior) and watch the threshold move.
 
 <div class="widget" data-w="lrt" data-priors="1"></div>
 

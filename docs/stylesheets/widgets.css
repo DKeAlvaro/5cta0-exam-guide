@@ -62,7 +62,7 @@
 .md-typeset .w-tabs .w-btn.on { background: rgba(31,95,174,.13); border-color: var(--w-sea); font-weight: 700; }
 .md-typeset .w-count { opacity: .65; font-variant-numeric: tabular-nums; }
 .md-typeset .w-sl { display: inline-flex; align-items: center; gap: .35rem; }
-.md-typeset .w-sl input[type="range"] { width: 7.5rem; accent-color: var(--md-primary-fg-color); }
+.md-typeset .w-sl input[type="range"] { width: 8.5rem; height: 1.9rem; margin: 0; accent-color: var(--md-primary-fg-color); }
 .md-typeset .w-sl-val { min-width: 2.6em; font-variant-numeric: tabular-nums; font-weight: 700; }
 
 /* svg vocabulary */
