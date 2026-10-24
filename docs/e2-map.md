@@ -38,6 +38,7 @@ Notice: with little data the MAP sits between the prior and the MLE; press **×4
 
 !!! exam "Resit, June 2026 · 2d"
     Daily pollution spike counts $X_i \sim \text{Poisson}(\lambda)$; observed $x = \{2, 4, 3, 5, 2, 4\}$. Gamma prior $p(\lambda) \propto \lambda^{\alpha-1}e^{-\beta\lambda}$ with $\alpha = 3$, $\beta = 2$.
+
     Write the likelihood, derive the posterior, find the MAP, compare it with the MLE and explain the effect of the prior.
 
 <div class="stepper" markdown>
@@ -65,6 +66,7 @@ The prior has mean $\alpha/\beta=1.5$, so it **pulls the estimate down** from 3.
 
 !!! exam "Resit, June 2026 · 2c"
     Patients are screened until $k = 2$ eligible ones are found; $X_i \sim \text{NegBin}(k, \theta)$ with PMF $P(X = x \mid \theta) = \binom{x-1}{k-1} \theta^k (1-\theta)^{x-k}$. Observed $x = \{3, 5, 4, 6, 4\}$. Prior $\theta \sim \text{Beta}(\alpha = 2, \beta = 3)$, i.e. $p(\theta)\propto\theta^{\alpha-1}(1-\theta)^{\beta-1}$.
+
     Write the likelihood, derive the posterior, compute the MAP.
 
 ??? solution "Check your answer"

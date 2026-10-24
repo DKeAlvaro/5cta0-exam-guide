@@ -60,6 +60,7 @@ A **model** is a recipe that makes the signal out of white noise $i[n]$ (pure ra
 
 !!! exam "Resit, June 2026 · 3d · 1 p"
     $r_x[0] = 3, \ r_x[1] = 2, \ r_x[2] = 1$. Model the process as AR(2): $x[n] = i[n] - a_1 x[n-1] - a_2 x[n-2]$, $i[n]$ zero-mean white noise with variance $\sigma_i^2$.
+
     - State the Yule-Walker equations in matrix form. [0.1]
     - Calculate $a_1$ and $a_2$. [0.4]
     - Calculate $\sigma_i^2$. [0.2]
@@ -100,7 +101,9 @@ With $\cos2\theta=2\cos^2\theta-1$ (only $\cos\theta$ left): $\dfrac{10}{5\cos^2
 
 !!! exam "Final exam, 13 April 2025 · 3e (0.5 p), 3f (0.5 p)"
     $r[0] = 2, \quad r[\pm 1] = -\frac{1}{4}, \quad r[\pm 2] = -\frac{3}{16}$.
+
     **3e** Model the signal as an AR(1) process, find the parameters and the PSD $P_{AR}(e^{j\theta})$ as a function of cosines.
+
     **3f** Model the signal as an MA(1) process, find the parameters and the PSD $P_{MA}(e^{j\theta})$ as a function of cosines.
 
 <div class="stepper" markdown>
@@ -132,7 +135,9 @@ $P_{MA}=r[0]+2r[1]\cos\theta=2-0.5\cos\theta$.
 
 !!! exam "Final exam, 7 November 2022 · 3f, 3g · 0.75 p each"
     A process has $r[0]=1$, $r[1]=-\frac18$, $r[2]=-\frac{3}{32}$.
+
     **3f** Model $x[k]$ as an AR(1) signal and calculate $P_{AR1}(e^{j\theta})$.
+
     **3g** Model $x[k]$ as an MA(1) signal and calculate $P_{MA1}(e^{j\theta})$. Decimal numbers are fine.
 
 ??? solution "Check your answer"

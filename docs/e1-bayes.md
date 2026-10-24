@@ -40,6 +40,7 @@ $$P(D)=\sum_k P(D\mid M_k)\,P(M_k)\qquad\qquad P(M_k\mid D)=\frac{P(D\mid M_k)\,
 
 !!! exam "Resit, June 2026 · 1b · 0.3 p"
     Machines $M_1$, $M_2$, $M_3$ produce 40 %, 35 % and 25 % of the chips. The probability that a chip is defective is 2 % for $M_1$, 4 % for $M_2$, and 5 % for $M_3$. **Provide only the final answer.**
+
     1. What is the probability that a randomly selected chip will be defective? [0.15]
     2. If a chip is found to be defective, what is the probability that it was produced by $M_2$? [0.15]
 
@@ -65,6 +66,7 @@ $$P(D)=\sum_k P(D\mid M_k)\,P(M_k)\qquad\qquad P(M_k\mid D)=\frac{P(D\mid M_k)\,
 
 !!! exam "Final exam, 13 April 2025 · 1a · 0.3 p"
     85 % of the images from CT1 have sufficient quality; for CT2 and CT3 it is 90 % and 66 %. Each day CT1 scans 18 patients, CT2 22, CT3 15. Images are mixed at random before quality control. **Provide only the final answer.**
+
     1. What is the probability that one image will NOT pass the quality test?
     2. What is the probability that a bad quality image comes from CT2?
 

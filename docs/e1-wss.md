@@ -39,6 +39,7 @@ Try the four tabs. In each, compare the red line (time average of row 1) with th
 
 !!! exam "Final exam, April 2024 · 1d · 0.3 p"
     For the following random processes, indicate if they are WSS and ergodic in the mean:
+
     1. $X(t) = \cos(t + U)$, where $U \sim Uniform(0, 2\pi)$
     2. $X(t) = A \cos(t)$, where $A \sim N(1, 2)$
 

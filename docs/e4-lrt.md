@@ -161,6 +161,7 @@ $P_D=\int_0^{\gamma'}2e^{-2y}\,dy=1-e^{-2\gamma'}=1-(e^{-\gamma'})^2=1-0.81=\mat
 
 !!! exam "Resit, June 2026 · 4b · 1 p"
     A wireless sensor measures the received signal envelope $X$. Under $H_0$ (no device present), $X \sim \text{Rayleigh}(\sigma_0)$. Under $H_1$ (device present), $X \sim \text{Rayleigh}(\sigma_1)$, with $\sigma_1 > \sigma_0 > 0$, both known. The Rayleigh pdf is $p(x \mid \sigma) = \frac{x}{\sigma^2} \exp\left(-\frac{x^2}{2\sigma^2}\right)$, $x \geq 0$.
+
     - Construct the likelihood-ratio test for a threshold $\eta$.
     - Discuss how the separation between $\sigma_0$ and $\sigma_1$ affects detection performance.
 

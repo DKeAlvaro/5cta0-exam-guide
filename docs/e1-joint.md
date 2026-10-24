@@ -83,6 +83,7 @@ Check: $\int_0^12(1-y)\,dy=2\cdot\frac12=1$ ✓.
 
 !!! exam "Resit, June 2026 · 1c · 0.5 p"
     $p_{X,Y}(x, y) = 6x^2y$ for $0 \leq x \leq 1$ and $0 \leq y \leq 1$, 0 otherwise. **Final answer only.**
+
     1. Find the marginal PDF $p_X(x)$ and indicate its domain. [0.25]
     2. Determine whether $X$ and $Y$ are independent, and briefly justify why. [0.25]
 

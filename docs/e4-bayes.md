@@ -82,7 +82,9 @@ Compared with $\eta=1$ the threshold is **higher**: devices are rare, so we need
 
 !!! exam "Final exam, 7 November 2022 · 4f, 4g · 0.5 p each"
     $p(y;\mathcal H_0)=e^{-y}$, $p(y;\mathcal H_1)=2e^{-2y}$ for $y\ge0$. Priors $P_0 = 0.4$ and $P_1 = 0.6$; costs $C_{1,1} = C_{0,0} = 0$, $C_{0,1} = C_{1,0} = 1$, so we decide $\mathcal H_1$ when $p(y|\mathcal{H}_1)P_1 > p(y|\mathcal{H}_0)P_0$.
+
     **4f** Find the threshold $\gamma''$, i.e. the value of $y$ for which $p(y|\mathcal{H}_1)P_1 = p(y|\mathcal{H}_0)P_0$.
+
     **4g** Determine $P_M$ and $P_{FA}$ for this test.
 
 ??? solution "Check your answer"

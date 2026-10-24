@@ -65,9 +65,12 @@ Watch it being built term by term (June 2026 numbers):
 
 !!! exam "Final exam, 13 April 2025 · 3d (0.5 p) and 3g (0.25 p)"
     $r[0] = 2, \quad r[\pm 1] = -\frac{1}{4}, \quad r[\pm 2] = -\frac{3}{16}$.
+
     **3d** Use the correlogram method to calculate the PSD. Express $P_{corr}(e^{j\theta})$ as a function of cosines.
+
     **3g** (after also fitting AR(1) and MA(1), see [3.2](e3-arma.md)) Which plot shows the correct PSDs?
     ![Plots A–D](img/exam/apr25-3g.jpg)
+
     (a) Plot D (b) Plot C (c) Plot B (d) Plot A
 
 ??? solution "Check your answer"
