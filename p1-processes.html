@@ -1,0 +1,2385 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Every 5CTA0 Statistical Signal Processing exam question (2019–2026), solved step by step, organised by the patterns that keep coming back.">
+      
+      
+      
+        <link rel="canonical" href="https://dkealvaro.github.io/5cta0-exam-guide/p1-processes.html">
+      
+      
+        <link rel="prev" href="p1-rv.html">
+      
+      
+        <link rel="next" href="p1-factorisation.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>1.3 Random processes - 5CTA0 · Pass the exam</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css?v=1792856532">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css?v=1792856532">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+4:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Source Serif 4";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0.16.11/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap">
+    
+      <link rel="stylesheet" href="stylesheets/extra.css?v=1792856532">
+    
+      <link rel="stylesheet" href="stylesheets/ask.css?v=1792856532">
+    
+      <link rel="stylesheet" href="stylesheets/layout.css?v=1792856532">
+    
+      <link rel="stylesheet" href="stylesheets/keypoints.css?v=1792856532">
+    
+      <link rel="stylesheet" href="stylesheets/widgets.css?v=1792856532">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#13-random-processes-stationarity-ergodicity-autocorrelation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-header__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            5CTA0 · Pass the exam
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1.3 Random processes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-nav__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    5CTA0 · Pass the exam
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New · Exam course
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    New · Exam course
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="podcast.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Podcast (watch first)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 1 · Probability (1.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 1 · Probability (1.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes word problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-joint.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-wss.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Stationary and ergodic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-factor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-map.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 MAP with a prior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Least-squares line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Theory questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-corr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Correlogram, pick the plot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-arma.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 AR and MA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Periodogram, Welch, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Likelihood ratio test
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Priors, costs, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exams.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mock exams with answers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cheatsheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 cheat sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Old · Long guide (deep dive)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Old · Long guide (deep dive)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="patterns.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The exam, decoded
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p0-foundations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 0 · From zero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="toolbox.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toolbox
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes & total probability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-rv.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Random variables & joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Random processes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="p1-processes.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Random processes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-idea-from-zero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 · The idea, from zero
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 · The idea, from zero">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-a-process-is-a-stack-of-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 A process is a stack of signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-wide-sense-stationary-wss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Wide-sense stationary (WSS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-ergodic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Ergodic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-autocorrelation-what-a-valid-one-looks-like" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Autocorrelation: what a valid one looks like
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exam questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exam questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jun26-1d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        June 2026 resit · 1d
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr25-1d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2025 exam · 1d
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan22-1c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2022 resit · 1c
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr24-1d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2024 exam · 1d
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nov22-1c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2022 exam · 1c
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan20-1a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2020 retake · 1a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nov19-1a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2019 exam · 1a
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-factorisation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-crlb.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 CRLB & Fisher information
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Bayesian estimation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Least squares
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-windows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Signals, windows, zero padding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-nonparametric.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 Non-parametric estimators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-autocorr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Autocorrelation of ARMA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-chain.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.4 Correlogram → AR → MA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-basics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Errors, ROC, Neyman–Pearson
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Likelihood ratio tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.3 Bayesian detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-idea-from-zero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 · The idea, from zero
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 · The idea, from zero">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-a-process-is-a-stack-of-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 A process is a stack of signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-wide-sense-stationary-wss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Wide-sense stationary (WSS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-ergodic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Ergodic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-autocorrelation-what-a-valid-one-looks-like" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Autocorrelation: what a valid one looks like
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exam questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exam questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jun26-1d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        June 2026 resit · 1d
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr25-1d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2025 exam · 1d
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan22-1c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2022 resit · 1c
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr24-1d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2024 exam · 1d
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nov22-1c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2022 exam · 1c
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan20-1a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2020 retake · 1a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nov19-1a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2019 exam · 1a
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="13-random-processes-stationarity-ergodicity-autocorrelation">1.3 Random processes: stationarity, ergodicity, autocorrelation<a class="headerlink" href="#13-random-processes-stationarity-ergodicity-autocorrelation" title="Permanent link">#</a></h1>
+<p class="lead">One multiple-choice question per exam, usually 0.25–0.3 p. They test two words: <b>stationary</b> (WSS) and <b>ergodic</b>. Once you can picture a process as a stack of signals, both are easy. This page builds that picture first, then gives a two-step test and applies it to every exam question.</p>
+
+<div class="admonition need">
+<p class="admonition-title">Before this page</p>
+<ul>
+<li>What a signal is, <span class="arithmatex">\(x[n]\)</span> vs <span class="arithmatex">\(x(t)\)</span> (<a href="p0-foundations.html#01-what-a-signal-is">0.1</a>); cosines (<a href="p0-foundations.html#02-sine-cosine-frequency">0.2</a>); the identity <span class="arithmatex">\(\cos\alpha\cos\beta=\frac12[\cos(\alpha+\beta)+\cos(\alpha-\beta)]\)</span> (<a href="toolbox.html#5-complex-exponentials-needed-for-every-psd">Toolbox</a>)</li>
+<li>Expectation (mean) of a random variable (<a href="p0-foundations.html#expectation-variance">0.6</a>); random signal, autocorrelation, PSD (<a href="p0-foundations.html#random-signals-stationarity-and-autocorrelation">0.6</a>)</li>
+</ul>
+<p>If you read only one thing: <strong>a <abbr title="a collection (ensemble) of signals; each experiment run gives one signal.">random process</abbr> is a stack of signals. "Stationary" = the statistics are the same whichever <em>column</em> (time) you look at. "Ergodic" = one <em>row</em> (one <abbr title="one actual signal drawn from a random process.">realisation</abbr>) over time tells you the same as the whole stack at one time.</strong></p>
+</div>
+<hr />
+<h2 id="1-the-idea-from-zero">1 · The idea, from zero<a class="headerlink" href="#1-the-idea-from-zero" title="Permanent link">#</a></h2>
+<h3 id="11-a-process-is-a-stack-of-signals">1.1 A process is a stack of signals<a class="headerlink" href="#11-a-process-is-a-stack-of-signals" title="Permanent link">#</a></h3>
+<p>A <strong><abbr title="a collection (ensemble) of signals; each experiment run gives one signal.">random process</abbr></strong> <span class="arithmatex">\(X(t)\)</span> (or <span class="arithmatex">\(X[n]\)</span> in discrete time) is a <strong>collection of signals</strong>. Each time you run the experiment you get one whole signal, called a <strong><abbr title="one actual signal drawn from a random process.">realisation</abbr></strong>. The collection of all possible realisations is the <strong><abbr title="the collection of all possible realisations of a random process.">ensemble</abbr></strong>. Picture a table: <mark>each <strong>row</strong> is one <abbr title="one actual signal drawn from a random process.">realisation</abbr>, each <strong>column</strong> is one time instant.</mark></p>
+<p>Two ways to average:</p>
+<ul>
+<li><strong>Ensemble average</strong> (down a column): fix a time <span class="arithmatex">\(t\)</span>, average over <em>all realisations</em>. This is <span class="arithmatex">\(\mathbb E[X(t)]\)</span>.</li>
+<li><strong>Time average</strong> (along a row): take <em>one</em> <abbr title="one actual signal drawn from a random process.">realisation</abbr> and average it over time, <span class="arithmatex">\(\frac1N\sum_n x[n]\)</span>.</li>
+</ul>
+<figure class="anim">
+<video class="anim" src="video/ensemble.mp4" poster="video/ensemble.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation: the two averages.</b> Five realisations of $\cos(t+U)$. A red column sweeps across time: the average down the column is 0 wherever it stands (stationary mean). Then one row is averaged along time (orange): it also goes to 0, the same as the column average, so the process is ergodic in the mean. Last, each row gets its own frozen level $A$: row 1 now averages to $-1$, while the column average is $0.28$. One row can no longer tell you about the stack: not ergodic.</figcaption>
+</figure>
+
+<figure>
+<p><img alt="Four example processes" src="img/gen/p1_processes.svg" /></p>
+<figcaption>Top left: $\cos(t+U)$. Every realisation wiggles around 0, so the time average of any one of them equals the ensemble mean 0. Top right: $A\cos t$. The ensemble mean is $\cos t$, which changes with time. Bottom left: dice. Every row is i.i.d. rolls, so time averages are the same for every row. Bottom right: the Nov 2022 process. $A$ is drawn once per realisation, so the spread differs from row to row.</figcaption>
+</figure>
+<h3 id="12-wide-sense-stationary-wss">1.2 Wide-sense stationary (<abbr title="wide-sense stationary: constant mean and autocorrelation that depends only on the lag.">WSS</abbr>)<a class="headerlink" href="#12-wide-sense-stationary-wss" title="Permanent link">#</a></h3>
+<p>The statistics up to second order do not depend on <em>when</em> you look:</p>
+<ol>
+<li><mark>The mean is constant: <span class="arithmatex">\(\mathbb E[X(t)]=\mu\)</span> for all <span class="arithmatex">\(t\)</span></mark> (every column has the same average).</li>
+<li>The autocorrelation <span class="arithmatex">\(r(t_1,t_2)=\mathbb E[X(t_1)X(t_2)]\)</span> <mark>depends only on the lag <span class="arithmatex">\(\tau=t_2-t_1\)</span></mark> (how related two columns are depends on how far apart they are, not on where they sit).</li>
+</ol>
+<p><em>Examples.</em> White noise: constant mean 0, <span class="arithmatex">\(r[l]=\sigma^2\delta[l]\)</span> → <abbr title="wide-sense stationary: constant mean and autocorrelation that depends only on the lag.">WSS</abbr>. A signal whose average power grows with time (a volume knob turned up): mean or <span class="arithmatex">\(r(t,t)\)</span> depends on <span class="arithmatex">\(t\)</span> → not <abbr title="wide-sense stationary: constant mean and autocorrelation that depends only on the lag.">WSS</abbr>.</p>
+<h3 id="13-ergodic">1.3 Ergodic<a class="headerlink" href="#13-ergodic" title="Permanent link">#</a></h3>
+<p><strong>Ergodic</strong>: you can learn the <abbr title="the collection of all possible realisations of a random process.">ensemble</abbr> statistics from <strong>one</strong> (infinitely long) <abbr title="one actual signal drawn from a random process.">realisation</abbr>, because <mark>the <abbr title="average of one realisation over time.">time average</abbr> along a row equals the <abbr title="average over all realisations at a fixed time.">ensemble average</abbr> down a column</mark>. <mark>The course requires a process to be stationary before it can be <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr>.</mark></p>
+<ul>
+<li><strong>Ergodic in the mean</strong>: <span class="arithmatex">\(\frac1N\sum x[n]\to\mathbb E[X]\)</span> for every <abbr title="one actual signal drawn from a random process.">realisation</abbr>.</li>
+<li><strong>Ergodic in the variance / autocorrelation</strong>: the same for <span class="arithmatex">\(x^2\)</span> or <span class="arithmatex">\(x[n]x[n+l]\)</span>.</li>
+</ul>
+<p><mark>The thing that breaks ergodicity is a <strong>random quantity drawn once per <abbr title="one actual signal drawn from a random process.">realisation</abbr> and then frozen</strong></mark> (an amplitude <span class="arithmatex">\(A\)</span>, a range): each row then has its own personality, and no row alone can reveal the average over personalities.</p>
+<div class="admonition recipe key">
+<p class="admonition-title">Recipe: is it <abbr title="wide-sense stationary: constant mean and autocorrelation that depends only on the lag.">WSS</abbr>? is it <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr>?</p>
+<ol>
+<li>Compute <span class="arithmatex">\(\mathbb E[X(t)]\)</span>. If it depends on <span class="arithmatex">\(t\)</span> → <strong>not <abbr title="wide-sense stationary: constant mean and autocorrelation that depends only on the lag.">WSS</abbr></strong> → not <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr>. Stop.</li>
+<li>Compute <span class="arithmatex">\(\mathbb E[X(t_1)X(t_2)]\)</span>. Use <span class="arithmatex">\(\cos\alpha\cos\beta=\tfrac12[\cos(\alpha+\beta)+\cos(\alpha-\beta)]\)</span> when there are cosines. If only <span class="arithmatex">\(t_1-t_2\)</span> survives → <abbr title="wide-sense stationary: constant mean and autocorrelation that depends only on the lag.">WSS</abbr>.</li>
+<li>For ergodicity, look for a random quantity that is <strong>drawn once per <abbr title="one actual signal drawn from a random process.">realisation</abbr> and then frozen</strong> (an amplitude <span class="arithmatex">\(A\)</span>, the size of the range). Any statistic that depends on it differs from <abbr title="one actual signal drawn from a random process.">realisation</abbr> to <abbr title="one actual signal drawn from a random process.">realisation</abbr> → not <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr> in that statistic. A random <strong>phase</strong> <span class="arithmatex">\(U\)</span> that is uniform over <span class="arithmatex">\([0,2\pi)\)</span> does not hurt the mean: every <abbr title="one actual signal drawn from a random process.">realisation</abbr> still averages to 0.</li>
+<li>If everything is drawn fresh at every time step (i.i.d. samples: dice, white noise), the process is <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr> in everything.</li>
+</ol>
+</div>
+<h3 id="14-autocorrelation-what-a-valid-one-looks-like">1.4 Autocorrelation: what a valid one looks like<a class="headerlink" href="#14-autocorrelation-what-a-valid-one-looks-like" title="Permanent link">#</a></h3>
+<p>For a real <abbr title="wide-sense stationary: constant mean and autocorrelation that depends only on the lag.">WSS</abbr> signal, <span class="arithmatex">\(r[l]=\mathbb E\{x[n]\,x[n-l]\}\)</span> must satisfy:</p>
+<ol>
+<li><mark><strong>Symmetric</strong>: <span class="arithmatex">\(r[-l]=r[l]\)</span></mark> (the relation of <span class="arithmatex">\(x[n]\)</span> with <span class="arithmatex">\(x[n-l]\)</span> is the same as of <span class="arithmatex">\(x[n]\)</span> with <span class="arithmatex">\(x[n+l]\)</span>).</li>
+<li><mark><strong>Peak at zero lag</strong>: <span class="arithmatex">\(r[0]\ge|r[l]|\)</span></mark> (<span class="arithmatex">\(r[0]=\mathbb E[x^2]\)</span> is the power; nothing can be more related to <span class="arithmatex">\(x[n]\)</span> than <span class="arithmatex">\(x[n]\)</span> itself).</li>
+<li><mark><strong>Non-negative spectrum</strong>: the PSD <span class="arithmatex">\(P(e^{j\theta})=\sum_l r[l]e^{-jl\theta}\)</span> (<abbr title="the PSD is the Fourier transform of the autocorrelation.">Wiener–Khinchin</abbr>) must be <span class="arithmatex">\(\ge0\)</span> for every <span class="arithmatex">\(\theta\)</span></mark>.</li>
+</ol>
+<p><mark>White noise has <span class="arithmatex">\(r[l]=\sigma^2\delta[l]\)</span> (correlated only with itself) and a flat PSD <span class="arithmatex">\(P=\sigma^2\)</span>.</mark></p>
+<figure>
+<p><img alt="Valid and invalid autocorrelations" src="img/gen/p1_valid_r.svg" /></p>
+<figcaption>The three checks, in the order you should apply them. Green passes all three. The second fails symmetry at a glance. The third has $r[\pm1]=1.2&gt;r[0]=1$, impossible because nothing can resemble $x[n]$ more than $x[n]$ itself. The fourth is the sneaky one: symmetric, highest at 0, but its PSD $1+1.8\cos\theta$ goes negative near $\theta=\pi$ (red), so it is not a valid autocorrelation.</figcaption>
+</figure>
+<p>The <strong><abbr title="r_xy[l] = E{x[n] y[n−l]}: how related two signals are at lag l.">cross-correlation</abbr></strong> between two signals is <span class="arithmatex">\(r_{xy}[l]=\mathbb E\{x[n]\,y[n-l]\}\)</span>. For <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr> signals you estimate it from data as <span class="arithmatex">\(\hat r_{xy}[l]=\frac1N\sum_n x[n]\,y[n-l]\)</span> (slide <span class="arithmatex">\(y\)</span> along <span class="arithmatex">\(x\)</span>, multiply the overlapping samples, add, divide by <span class="arithmatex">\(N\)</span>).</p>
+<hr />
+<h2 id="exam-questions">Exam questions<a class="headerlink" href="#exam-questions" title="Permanent link">#</a></h2>
+<h3 id="jun26-1d">June 2026 resit · 1d<a class="headerlink" href="#jun26-1d" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Resit Q4, June 2026 · 1d · 0.25 p</p>
+<p>Which of the following conditions is required for a <abbr title="a collection (ensemble) of signals; each experiment run gives one signal.">random process</abbr> to be considered Wide-Sense Stationary (<abbr title="wide-sense stationary: constant mean and autocorrelation that depends only on the lag.">WSS</abbr>)?</p>
+<ul>
+<li>(a) Time averages of all its individual realizations are strictly equal to its <abbr title="the collection of all possible realisations of a random process.">ensemble</abbr> averages.</li>
+<li>(b) Its mean is constant and its autocorrelation function depends only on the time difference (lag).</li>
+<li>&copy; Its probability density function remains strictly constant over all time indices.</li>
+<li>(d) Its power spectral density is a constant value across all frequencies.</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> The definition of <abbr title="wide-sense stationary: constant mean and autocorrelation that depends only on the lag.">WSS</abbr> (<a href="#12-wide-sense-stationary-wss">1.2</a>).</p>
+<ul>
+<li>(a) That is the definition of <strong><abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr></strong> (time averages = <abbr title="the collection of all possible realisations of a random process.">ensemble</abbr> averages).</li>
+<li>(b) <strong><abbr title="wide-sense stationary: constant mean and autocorrelation that depends only on the lag.">WSS</abbr></strong>: constant mean and autocorrelation that depends only on the lag.</li>
+<li>&copy; That is (first-order) <strong>strict-sense</strong> stationarity, more than <abbr title="wide-sense stationary: constant mean and autocorrelation that depends only on the lag.">WSS</abbr> asks for.</li>
+<li>(d) That describes <strong>white</strong> noise.</li>
+</ul>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(b)</strong></p>
+</div>
+</details>
+<h3 id="apr25-1d">April 2025 exam · 1d<a class="headerlink" href="#apr25-1d" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q3, 13 April 2025 · 1d · 0.25 p</p>
+<p><em>(The question text was missing from the printed exam. The official clarification gives it:)</em> Suppose we have infinitely many fair dice and we define a <abbr title="a collection (ensemble) of signals; each experiment run gives one signal.">random process</abbr> <span class="arithmatex">\(X[n]\)</span> as the <abbr title="the collection of all possible realisations of a random process.">ensemble</abbr> of the random signals <span class="arithmatex">\(x_i[n]\)</span> obtained by rolling each die infinitely many times and recording the number on the upward face of the die. Which of the following statements is true?</p>
+<ul>
+<li>(a) The process is <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr>, but only in the mean.</li>
+<li>(b) The process is <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr> in both mean and variance.</li>
+<li>&copy; <span class="arithmatex">\(E[X[n]] = E[x_i[n]] = 0, \forall i\)</span></li>
+<li>(d) The process is stationary but not <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr>.</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> Picture the stack: each row is one die rolled again and again; the <abbr title="the collection of all possible realisations of a random process.">ensemble</abbr> has infinitely many rows. Is it <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr>, and in what?</p>
+<p><strong>Step 1 — structure.</strong> Every die is fair and every roll is independent, so every row is an i.i.d. sequence with the <strong>same</strong> distribution. Nothing is drawn once per row: no frozen quantity (<a href="#13-ergodic">1.3</a>).</p>
+<p><strong>Step 2 — time averages.</strong> For any single row, the average of many rolls tends to the <abbr title="the collection of all possible realisations of a random process.">ensemble</abbr> mean <span class="arithmatex">\(3.5\)</span>, and its average squared deviation tends to the <abbr title="the collection of all possible realisations of a random process.">ensemble</abbr> variance <span class="arithmatex">\(\frac{35}{12}\)</span> (the die example of <a href="p1-rv.html#12-expected-value-and-variance">1.2</a>: mean 3.5, variance 2.92). So the process is <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr> in the mean <strong>and</strong> the variance.</p>
+<p><strong>Step 3 — the options.</strong> (a) too weak (it is <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr> in more). &copy; wrong: the mean is <span class="arithmatex">\(3.5\)</span>, not 0. (d) wrong: it is <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr>.</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(b)</strong> <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr> in both mean and variance</p>
+</div>
+</details>
+<h3 id="jan22-1c">January 2022 resit · 1c<a class="headerlink" href="#jan22-1c" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Resit, 24 January 2022 · 1c · 0.3 p</p>
+<p>Suppose we have infinitely many fair dice and we define a <abbr title="a collection (ensemble) of signals; each experiment run gives one signal.">random process</abbr> as the <abbr title="the collection of all possible realisations of a random process.">ensemble</abbr> of the random signals obtained by rolling each die infinitely many times and recording the number on the upward face. Which of the following statements is true?</p>
+<ul>
+<li>a) This <abbr title="a collection (ensemble) of signals; each experiment run gives one signal.">random process</abbr> is not <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr>, but it is stationary.</li>
+<li>b) This <abbr title="a collection (ensemble) of signals; each experiment run gives one signal.">random process</abbr> is <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr> in the mean and variance.</li>
+<li>c) This <abbr title="a collection (ensemble) of signals; each experiment run gives one signal.">random process</abbr> is <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr> in the mean, but not in the variance.</li>
+<li>d) None of the above.</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> The same question as April 2025: i.i.d. rolls from identical dice, so one row tells you everything (<a href="#apr25-1d">above</a>). Ergodic in the mean and in the variance.</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(b)</strong></p>
+</div>
+</details>
+<h3 id="apr24-1d">April 2024 exam · 1d<a class="headerlink" href="#apr24-1d" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q3, April 2024 · 1d · 0.3 p</p>
+<p>For the following random processes, indicate if they are <abbr title="wide-sense stationary: constant mean and autocorrelation that depends only on the lag.">WSS</abbr> and <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr> in the mean:</p>
+<ol>
+<li><span class="arithmatex">\(X(t) = \cos(t + U)\)</span>, where <span class="arithmatex">\(U \sim Uniform(0, 2\pi)\)</span></li>
+<li><span class="arithmatex">\(X(t) = A \cos(t)\)</span>, where <span class="arithmatex">\(A \sim N(1, 2)\)</span></li>
+</ol>
+<p>The following formula might be useful:</p>
+<div class="arithmatex">\[\cos(\alpha) \cos(\beta) = \frac{\cos(\alpha + \beta) + \cos(\alpha - \beta)}{2}\]</div>
+<table>
+<thead>
+<tr>
+<th>Random process</th>
+<th><abbr title="wide-sense stationary: constant mean and autocorrelation that depends only on the lag.">WSS</abbr> (Yes/No)</th>
+<th>Ergodic in the mean (Yes/No)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> Apply the recipe of <a href="#13-ergodic">1.3</a> to two processes.</p>
+<p><strong>Symbols in this question.</strong> <span class="arithmatex">\(U\)</span>: a random <strong>phase</strong>, drawn once per <abbr title="one actual signal drawn from a random process.">realisation</abbr>, uniform on <span class="arithmatex">\([0,2\pi)\)</span>. <span class="arithmatex">\(A\)</span>: a random <strong>amplitude</strong>, drawn once per <abbr title="one actual signal drawn from a random process.">realisation</abbr> (normal with mean 1).</p>
+<p><strong>Process 1 — Step 1, the mean.</strong> Averaging <span class="arithmatex">\(\cos(t+U)\)</span> over a uniform phase covers a full period, so <span class="arithmatex">\(\mathbb E[X(t)]=\frac1{2\pi}\int_0^{2\pi}\cos(t+u)\,du=0\)</span> for every <span class="arithmatex">\(t\)</span>. Constant ✓.</p>
+<p><strong>Step 2 — the autocorrelation</strong>, with the hint (<span class="arithmatex">\(\alpha=t_1+U\)</span>, <span class="arithmatex">\(\beta=t_2+U\)</span>):</p>
+<div class="arithmatex">\[\mathbb E[\cos(t_1+U)\cos(t_2+U)]=\tfrac12\mathbb E[\cos(t_1+t_2+2U)]+\tfrac12\cos(t_1-t_2)=\tfrac12\cos(t_1-t_2).\]</div>
+<p>The first term averages to 0 (<span class="arithmatex">\(2U\)</span> also sweeps full periods). Only the lag <span class="arithmatex">\(t_1-t_2\)</span> survives → <strong><abbr title="wide-sense stationary: constant mean and autocorrelation that depends only on the lag.">WSS</abbr></strong>.</p>
+<p><strong>Step 3 — <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr>?</strong> Every <abbr title="one actual signal drawn from a random process.">realisation</abbr> is a cosine that averages to 0 over time, equal to the <abbr title="the collection of all possible realisations of a random process.">ensemble</abbr> mean → <strong><abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr> in the mean</strong>. (The random phase is frozen per row, but it does not change the average.)</p>
+<p><strong>Process 2 — Step 1.</strong> <span class="arithmatex">\(\mathbb E[X(t)]=\mathbb E[A]\cos t=\cos t\)</span> depends on <span class="arithmatex">\(t\)</span> → <strong>not <abbr title="wide-sense stationary: constant mean and autocorrelation that depends only on the lag.">WSS</abbr></strong> → not <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr>. In the figure above: one <abbr title="one actual signal drawn from a random process.">realisation</abbr> <span class="arithmatex">\(a\cos t\)</span> averages to 0 over time, while the <abbr title="the collection of all possible realisations of a random process.">ensemble</abbr> mean is <span class="arithmatex">\(\cos t\)</span>.</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><abbr title="wide-sense stationary: constant mean and autocorrelation that depends only on the lag.">WSS</abbr></th>
+<th>Ergodic in the mean</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>2</td>
+<td>No</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+</div>
+</details>
+<h3 id="nov22-1c">November 2022 exam · 1c<a class="headerlink" href="#nov22-1c" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q1, 7 November 2022 · 1c · 0.25 p</p>
+<p>A <abbr title="a collection (ensemble) of signals; each experiment run gives one signal.">random process</abbr> <span class="arithmatex">\(X(t)\)</span> is represented by a random number generator. For each realization of the <abbr title="a collection (ensemble) of signals; each experiment run gives one signal.">random process</abbr>, the random number generator samples randomly (with equal probability) infinitely many numbers between <span class="arithmatex">\(-A\)</span> and <span class="arithmatex">\(A\)</span>. Random variable <span class="arithmatex">\(A\)</span> follows a normal distribution with mean <span class="arithmatex">\(\mu_A = 1\)</span> and <span class="arithmatex">\(\sigma_A = 2\)</span>. Which of the following statements is TRUE?</p>
+<ul>
+<li>a) The <abbr title="a collection (ensemble) of signals; each experiment run gives one signal.">random process</abbr> is NOT <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr>. The mean of the process is constant and equal to <span class="arithmatex">\(\mu_{X(t)} = 1\)</span></li>
+<li>b) The <abbr title="a collection (ensemble) of signals; each experiment run gives one signal.">random process</abbr> is <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr>. The mean of the process is constant and equal to <span class="arithmatex">\(\mu_{X(t)} = 1\)</span></li>
+<li>c) The <abbr title="a collection (ensemble) of signals; each experiment run gives one signal.">random process</abbr> is NOT <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr>. The mean of the process is constant and equal to <span class="arithmatex">\(\mu_{X(t)} = 0\)</span></li>
+<li>d) The <abbr title="a collection (ensemble) of signals; each experiment run gives one signal.">random process</abbr> is <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr>. The mean of the process is constant and equal to <span class="arithmatex">\(\mu_{X(t)} = 0\)</span></li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> The frozen quantity here is <span class="arithmatex">\(A\)</span>: it is drawn once per <abbr title="one actual signal drawn from a random process.">realisation</abbr>, and then that row's samples are uniform on <span class="arithmatex">\([-A,A]\)</span>. Find the mean, then decide ergodicity.</p>
+<p><strong>Step 1 — the mean.</strong> Given <span class="arithmatex">\(A=a\)</span>, each sample is uniform on <span class="arithmatex">\([-a,a]\)</span>, which has mean 0. Averaging over <span class="arithmatex">\(A\)</span> too: <span class="arithmatex">\(\mathbb E[X]=0\)</span>. This kills options (a) and (b).</p>
+<p><strong>Step 2 — <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr> in the mean?</strong> One <abbr title="one actual signal drawn from a random process.">realisation</abbr> has a fixed <span class="arithmatex">\(a\)</span> and i.i.d. samples with mean 0, so its <abbr title="average of one realisation over time.">time average</abbr> → 0 = <abbr title="the collection of all possible realisations of a random process.">ensemble</abbr> mean. <strong>Yes.</strong></p>
+<p><strong>Step 3 — <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr> in the variance?</strong> One <abbr title="one actual signal drawn from a random process.">realisation</abbr> has time-averaged power <span class="arithmatex">\(a^2/3\)</span> (the power of a uniform on <span class="arithmatex">\([-a,a]\)</span>), which depends on the <span class="arithmatex">\(a\)</span> drawn for that row. The <abbr title="the collection of all possible realisations of a random process.">ensemble</abbr> power is <span class="arithmatex">\(\mathbb E[A^2]/3=(\sigma_A^2+\mu_A^2)/3=(4+1)/3=\frac53\)</span>. Different rows give different values → <strong>No.</strong> (The process is still <abbr title="wide-sense stationary: constant mean and autocorrelation that depends only on the lag.">WSS</abbr>: <span class="arithmatex">\(\mathbb E[X[n]X[n+k]]=\tfrac53\delta[k]\)</span>.)</p>
+<p><strong>Step 4 — which option?</strong> It comes down to what "<abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr>" means in the question. The <strong>official 2026 key</strong> says: <em>"<abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr>" is meant as <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr> in the mean</em> → (d). The 2026-27 review slides marked &copy; instead ("not <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr>"). If this exact question shows up again, (d) follows the latest key. If they say "<abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr> in the variance/autocorrelation", the answer is "not <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr>".</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(d)</strong> per the official key (<abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr> in the mean, mean = 0)</p>
+</div>
+</details>
+<h3 id="jan20-1a">January 2020 retake · 1a<a class="headerlink" href="#jan20-1a" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Retake exam, 20 January 2020 · Exercise 1(a) · 0.25 p</p>
+<p>Looking at Figure 1, which sequences are legitimate auto-correlation functions</p>
+<p><img alt="Figure 1: r_A, r_B, r_C, r_D" src="img/exam/jan20-1a-autocorr.jpg" /></p>
+<ul>
+<li>A. Only <span class="arithmatex">\(r_B[l]\)</span>.</li>
+<li>B. Only <span class="arithmatex">\(r_D[l]\)</span>.</li>
+<li>C. <span class="arithmatex">\(r_A[l]\)</span> and <span class="arithmatex">\(r_B[l]\)</span>.</li>
+<li>D. <span class="arithmatex">\(r_B[l]\)</span> and <span class="arithmatex">\(r_D[l]\)</span>.</li>
+<li>E. <span class="arithmatex">\(r_C[l]\)</span> and <span class="arithmatex">\(r_D[l]\)</span>.</li>
+<li>F. All.</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> Check each plotted sequence against the rules of <a href="#14-autocorrelation-what-a-valid-one-looks-like">1.4</a>. Each stem is one lag <span class="arithmatex">\(l\)</span>, its height is <span class="arithmatex">\(r[l]\)</span>.</p>
+<ul>
+<li><span class="arithmatex">\(r_A\)</span>: <span class="arithmatex">\(r_A[0]=1\)</span> but <span class="arithmatex">\(r_A[\pm1]=-1.5\)</span>, so <span class="arithmatex">\(\lvert r[1]\rvert&gt;r[0]\)</span>: <strong>peak at zero lag fails</strong> ✗.</li>
+<li><span class="arithmatex">\(r_C\)</span>: not symmetric (<span class="arithmatex">\(r_C[-3]=0.8\)</span> but <span class="arithmatex">\(r_C[3]=0.5\)</span>; <span class="arithmatex">\(r_C[-2]=1\)</span> but <span class="arithmatex">\(r_C[2]=1.5\)</span>): <strong>symmetry fails</strong> ✗.</li>
+<li><span class="arithmatex">\(r_D\)</span>: negative on the left, positive on the right: <strong>symmetry fails</strong> ✗.</li>
+<li><span class="arithmatex">\(r_B\)</span>: symmetric, peak <span class="arithmatex">\(r_B[0]=2\)</span> at zero lag ✓.</li>
+</ul>
+<p>Expected answer: only <span class="arithmatex">\(r_B\)</span>.</p>
+<div class="admonition trap">
+<p class="admonition-title">Strictly speaking</p>
+<p>The third rule (PSD ≥ 0) fails for <span class="arithmatex">\(r_B\)</span> too: <span class="arithmatex">\(P(e^{j\theta})=2-3\cos\theta+\cos2\theta=(2\cos\theta-1)(\cos\theta-1)\)</span> is negative for <span class="arithmatex">\(|\theta|&lt;\pi/3\)</span>. The question only meant the two quick checks, so answer A, but know that symmetry and a peak at 0 are necessary, not sufficient.</p>
+<p><img alt="PSD of r_B" src="img/gen/p1_rB_psd.svg" /></p>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>A</strong> (only <span class="arithmatex">\(r_B\)</span>), per the key</p>
+</div>
+</details>
+<h3 id="nov19-1a">November 2019 exam · 1a<a class="headerlink" href="#nov19-1a" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Written exam, 4 November 2019 · Exercise 1(a) · 1 p</p>
+<p>Let <span class="arithmatex">\(x[n]\)</span> and <span class="arithmatex">\(y[n]\)</span> be two random signals. Suppose we observe <span class="arithmatex">\(x[n]\)</span> and <span class="arithmatex">\(y[n]\)</span> in a limited time window as shown in Fig. 1 below. Assuming <span class="arithmatex">\(x[n]\)</span> and <span class="arithmatex">\(y[n]\)</span> to be <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr>, what is the <abbr title="r_xy[l] = E{x[n] y[n−l]}: how related two signals are at lag l.">cross-correlation</abbr> <span class="arithmatex">\(r_{xy}[\tau]\)</span>?</p>
+<p><img alt="Figure 1: x[n] and y[n]" src="img/exam/nov19-1a-xy.jpg" /></p>
+<ul>
+<li>A. <span class="arithmatex">\(r_{xy}[0] = 5/4\)</span>, <span class="arithmatex">\(r_{xy}[1] = -8/4\)</span>, <span class="arithmatex">\(r_{xy}[2] = 11/4\)</span>, <span class="arithmatex">\(r_{xy}[3] = -7/4\)</span>, <span class="arithmatex">\(r_{xy}[4] = 1\)</span>, <span class="arithmatex">\(r_{xy}[5] = 1/4\)</span> and zero elsewhere</li>
+<li>B. <span class="arithmatex">\(r_{xy}[0] = 5/4\)</span>, <span class="arithmatex">\(r_{xy}[1] = 8/4\)</span>, <span class="arithmatex">\(r_{xy}[2] = 11/4\)</span>, <span class="arithmatex">\(r_{xy}[3] = 7/4\)</span>, <span class="arithmatex">\(r_{xy}[4] = 1\)</span>, <span class="arithmatex">\(r_{xy}[5] = 1/4\)</span> and zero elsewhere</li>
+<li>C. <span class="arithmatex">\(r_{xy}[0] = 5/4\)</span>, <span class="arithmatex">\(r_{xy}[1] = -8/4\)</span>, <span class="arithmatex">\(r_{xy}[2] = 13/4\)</span>, <span class="arithmatex">\(r_{xy}[3] = 7/4\)</span> and zero elsewhere</li>
+<li>D. <span class="arithmatex">\(r_{xy}[0] = 5/4\)</span>, <span class="arithmatex">\(r_{xy}[1] = 8/4\)</span>, <span class="arithmatex">\(r_{xy}[2] = 13/4\)</span>, <span class="arithmatex">\(r_{xy}[3] = 7/4\)</span> and zero elsewhere</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> Estimate the <abbr title="r_xy[l] = E{x[n] y[n−l]}: how related two signals are at lag l.">cross-correlation</abbr> of two short signals by sliding one over the other.</p>
+<p><strong>Symbols in this question.</strong> <span class="arithmatex">\(x[n]=[1,1,1,0]\)</span> and <span class="arithmatex">\(y[n]=[1,3,3,5]\)</span> for <span class="arithmatex">\(n=0,1,2,3\)</span> (read from the stems); <span class="arithmatex">\(N=4\)</span> samples; <span class="arithmatex">\(\tau\)</span> or <span class="arithmatex">\(l\)</span>: the lag.</p>
+<p><strong>Step 1 — <abbr title="time averages of one realisation equal the ensemble averages.">ergodic</abbr> → <abbr title="average of one realisation over time.">time average</abbr>.</strong> "Ergodic" lets us replace the expectation <span class="arithmatex">\(\mathbb E\{\cdot\}\)</span> by a <abbr title="average of one realisation over time.">time average</abbr> over the <span class="arithmatex">\(N=4\)</span> samples (<a href="#14-autocorrelation-what-a-valid-one-looks-like">1.4</a>): <span class="arithmatex">\(\hat r_{xy}[l]=\frac14\sum_n x[n]\,y[n-l]\)</span>.</p>
+<p><strong>Step 2 — slide <span class="arithmatex">\(y\)</span> along <span class="arithmatex">\(x\)</span></strong> and add the products where both exist:</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(l\)</span></th>
+<th>products</th>
+<th><span class="arithmatex">\(\hat r_{xy}[l]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(-3\)</span></td>
+<td><span class="arithmatex">\(x_0y_3=5\)</span></td>
+<td><span class="arithmatex">\(5/4\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(-2\)</span></td>
+<td><span class="arithmatex">\(x_0y_2+x_1y_3=3+5\)</span></td>
+<td><span class="arithmatex">\(8/4\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(-1\)</span></td>
+<td><span class="arithmatex">\(x_0y_1+x_1y_2+x_2y_3=3+3+5\)</span></td>
+<td><span class="arithmatex">\(11/4\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(0\)</span></td>
+<td><span class="arithmatex">\(1\cdot1+1\cdot3+1\cdot3+0\cdot5\)</span></td>
+<td><span class="arithmatex">\(7/4\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(1\)</span></td>
+<td><span class="arithmatex">\(x_1y_0+x_2y_1+x_3y_2=1+3+0\)</span></td>
+<td><span class="arithmatex">\(4/4\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(2\)</span></td>
+<td><span class="arithmatex">\(x_2y_0+x_3y_1=1+0\)</span></td>
+<td><span class="arithmatex">\(1/4\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 3 — compare.</strong> These are exactly the numbers of option B, but B puts them at lags <span class="arithmatex">\(0\dots5\)</span> instead of <span class="arithmatex">\(-3\dots2\)</span>. All values are positive (all samples are <span class="arithmatex">\(\ge0\)</span>), which rules out A and C immediately. The official key: <em>"Due to mistake, there is no correct answer. The closest is B, but the correct answer should be shifted by 3."</em></p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>B</strong> (the right values, shifted by 3 lags; strictly no option is correct)</p>
+</div>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="p1-rv.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 1.2 Random variables &amp; joint PDFs">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                1.2 Random variables & joint PDFs
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="p1-factorisation.html" class="md-footer__link md-footer__link--next" aria-label="Next: 1.4 Spectral factorisation">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                1.4 Spectral factorisation
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.footer", "navigation.tracking", "navigation.instant", "navigation.instant.progress", "toc.follow", "content.tooltips"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js?v=1792856532"></script>
+      
+        <script src="javascripts/katex.js?v=1792856532"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="javascripts/quiz.js?v=1792856532"></script>
+      
+        <script src="javascripts/ask.js?v=1792856532"></script>
+      
+        <script src="javascripts/video.js?v=1792856532"></script>
+      
+        <script src="javascripts/layout.js?v=1792856532"></script>
+      
+        <script src="javascripts/keypoints.js?v=1792856532"></script>
+      
+        <script src="javascripts/progress.js?v=1792856532"></script>
+      
+        <script src="javascripts/widgets.js?v=1792856532"></script>
+      
+        <script src="javascripts/navsections.js?v=1792856532"></script>
+      
+    
+  </body>
+</html>

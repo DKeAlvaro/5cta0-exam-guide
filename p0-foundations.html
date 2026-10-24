@@ -1,0 +1,2668 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Every 5CTA0 Statistical Signal Processing exam question (2019–2026), solved step by step, organised by the patterns that keep coming back.">
+      
+      
+      
+        <link rel="canonical" href="https://dkealvaro.github.io/5cta0-exam-guide/p0-foundations.html">
+      
+      
+        <link rel="prev" href="patterns.html">
+      
+      
+        <link rel="next" href="toolbox.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Chapter 0 · From zero - 5CTA0 · Pass the exam</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css?v=1792856532">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css?v=1792856532">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+4:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Source Serif 4";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0.16.11/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap">
+    
+      <link rel="stylesheet" href="stylesheets/extra.css?v=1792856532">
+    
+      <link rel="stylesheet" href="stylesheets/ask.css?v=1792856532">
+    
+      <link rel="stylesheet" href="stylesheets/layout.css?v=1792856532">
+    
+      <link rel="stylesheet" href="stylesheets/keypoints.css?v=1792856532">
+    
+      <link rel="stylesheet" href="stylesheets/widgets.css?v=1792856532">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#0-from-zero-signals-frequency-spectra" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-header__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            5CTA0 · Pass the exam
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 0 · From zero
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-nav__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    5CTA0 · Pass the exam
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New · Exam course
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    New · Exam course
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="podcast.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Podcast (watch first)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 1 · Probability (1.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 1 · Probability (1.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes word problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-joint.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-wss.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Stationary and ergodic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-factor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-map.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 MAP with a prior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Least-squares line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Theory questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-corr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Correlogram, pick the plot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-arma.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 AR and MA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Periodogram, Welch, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Likelihood ratio test
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Priors, costs, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exams.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mock exams with answers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cheatsheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 cheat sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Old · Long guide (deep dive)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Old · Long guide (deep dive)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="patterns.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The exam, decoded
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 0 · From zero
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="p0-foundations.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 0 · From zero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#01-what-a-signal-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1 What a signal is
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#02-sine-cosine-frequency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2 Sine, cosine, frequency
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#03-complex-numbers-and-ejtheta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.3 Complex numbers and \(e^{j\theta}\)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#04-the-three-calculations-you-keep-meeting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4 The three calculations you keep meeting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.4 The three calculations you keep meeting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integrals-and-sums-how-much-in-total" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integrals and sums: "how much in total"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limits-what-happens-if-you-keep-going-forever" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limits: "what happens if you keep going forever"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-geometric-series-add-up-a-shrinking-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The geometric series: "add up a shrinking list"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trig-identities-the-two-that-appear-in-every-energy-calculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trig identities: the two that appear in every energy calculation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#05-spectrum-what-a-fourier-transform-tells-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5 Spectrum: what a Fourier transform tells you
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#06-probability-from-zero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6 Probability from zero
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.6 Probability from zero">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#random-variable-and-pdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Random variable and PDF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expectation-variance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expectation, variance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-probability-and-independence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditional probability and independence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-gaussian-bell-curve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Gaussian (bell curve)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#likelihood-the-same-formula-read-backwards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Likelihood: the same formula read backwards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#random-signals-stationarity-and-autocorrelation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Random signals: stationarity and autocorrelation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#07-word-book-everything-else-the-guide-says-without-warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7 Word book (everything else the guide says without warning)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-go-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to go next
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="toolbox.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toolbox
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes & total probability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-rv.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Random variables & joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-processes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Random processes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-factorisation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-crlb.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 CRLB & Fisher information
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Bayesian estimation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Least squares
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-windows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Signals, windows, zero padding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-nonparametric.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 Non-parametric estimators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-autocorr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Autocorrelation of ARMA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-chain.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.4 Correlogram → AR → MA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-basics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Errors, ROC, Neyman–Pearson
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Likelihood ratio tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.3 Bayesian detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#01-what-a-signal-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1 What a signal is
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#02-sine-cosine-frequency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2 Sine, cosine, frequency
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#03-complex-numbers-and-ejtheta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.3 Complex numbers and \(e^{j\theta}\)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#04-the-three-calculations-you-keep-meeting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4 The three calculations you keep meeting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.4 The three calculations you keep meeting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integrals-and-sums-how-much-in-total" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integrals and sums: "how much in total"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limits-what-happens-if-you-keep-going-forever" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limits: "what happens if you keep going forever"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-geometric-series-add-up-a-shrinking-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The geometric series: "add up a shrinking list"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trig-identities-the-two-that-appear-in-every-energy-calculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trig identities: the two that appear in every energy calculation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#05-spectrum-what-a-fourier-transform-tells-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5 Spectrum: what a Fourier transform tells you
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#06-probability-from-zero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6 Probability from zero
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.6 Probability from zero">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#random-variable-and-pdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Random variable and PDF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expectation-variance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expectation, variance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-probability-and-independence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditional probability and independence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-gaussian-bell-curve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Gaussian (bell curve)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#likelihood-the-same-formula-read-backwards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Likelihood: the same formula read backwards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#random-signals-stationarity-and-autocorrelation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Random signals: stationarity and autocorrelation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#07-word-book-everything-else-the-guide-says-without-warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7 Word book (everything else the guide says without warning)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-go-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to go next
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="0-from-zero-signals-frequency-spectra">0 · From zero: signals, frequency, spectra<a class="headerlink" href="#0-from-zero-signals-frequency-spectra" title="Permanent link">#</a></h1>
+<p class="lead">This chapter assumes <b>nothing</b>. Every other page of the guide uses the words and formulas defined here. If a step anywhere else in the guide confuses you, the reason is on this page. Read it slowly; it is the only page where being slow matters. The rest of the guide only asks you to <i>use</i> these ideas, never to re-derive them.</p>
+
+<div class="admonition idea">
+<p class="admonition-title">How to read this page</p>
+<p>Each section goes: <strong>plain words → tiny concrete example with real numbers → the formula → what the exam expects you to do with it.</strong> If you already know a section, skip it. If a word is underlined like this: <em>[<abbr title="one recorded number of a discrete-time signal, $x[n]$ at a given integer $n$.">sample</abbr>]</em>, tap/hover it for a one-line definition.</p>
+</div>
+<hr />
+<h2 id="01-what-a-signal-is">0.1 What a <abbr title="a number that changes over time, e.g. a voltage or a measurement per second.">signal</abbr> is<a class="headerlink" href="#01-what-a-signal-is" title="Permanent link">#</a></h2>
+<p><strong>Plain words.</strong> A <abbr title="a number that changes over time, e.g. a voltage or a measurement per second.">signal</abbr> is just <em>a number that changes over time</em>. The voltage on a microphone cable, the temperature in a room, the daily closing price of a stock. That is all "<abbr title="a number that changes over time, e.g. a voltage or a measurement per second.">signal</abbr>" means. The course never deals with anything more exotic than that.</p>
+<p>There are two kinds, and the notation tells you which one you are looking at:</p>
+<table>
+<thead>
+<tr>
+<th>Kind</th>
+<th>Written</th>
+<th>Time index</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Continuous-time</strong></td>
+<td><span class="arithmatex">\(x(t)\)</span></td>
+<td><span class="arithmatex">\(t\)</span> is any real number</td>
+<td>the physical, real-world <abbr title="a number that changes over time, e.g. a voltage or a measurement per second.">signal</abbr> (voltage that exists at every instant)</td>
+</tr>
+<tr>
+<td><strong>Discrete-time</strong></td>
+<td><span class="arithmatex">\(x[n]\)</span></td>
+<td><span class="arithmatex">\(n = \dots,-1,0,1,2,\dots\)</span> only integers</td>
+<td>a <strong>list of numbers</strong>: one measurement per time step</td>
+</tr>
+</tbody>
+</table>
+<p>Two notation rules that look like pedantry but will save you points:</p>
+<ol>
+<li><mark><strong>Round brackets = continuous</strong> (<span class="arithmatex">\(x(t)\)</span>), <strong>square brackets = discrete</strong> (<span class="arithmatex">\(x[n]\)</span>).</mark> The exam uses this consistently. If you see <span class="arithmatex">\(x[n]\)</span> you are summing (<span class="arithmatex">\(\sum\)</span>); if you see <span class="arithmatex">\(x(t)\)</span> you are integrating (<span class="arithmatex">\(\int\)</span>).</li>
+<li><span class="arithmatex">\(n\)</span> is a <em>count</em> (0, 1, 2, …), so nothing "happens between" <span class="arithmatex">\(n=3\)</span> and <span class="arithmatex">\(n=4\)</span>.</li>
+</ol>
+<p><strong>Sampling</strong> is how you get the second kind from the first: you measure <span class="arithmatex">\(x(t)\)</span> once every <span class="arithmatex">\(T_s\)</span> seconds and throw away everything in between.</p>
+<div class="key">
+<div class="arithmatex">\[x[n] = x(nT_s),\qquad T_s=\frac{1}{f_s}\ \text{seconds between samples}\]</div>
+</div>
+<p><span class="arithmatex">\(f_s\)</span> is the <strong><abbr title="$f_s$, how many numbers per second are recorded; $T_s = 1/f_s$ seconds apart.">sample rate</abbr></strong> in <abbr title="hertz, cycles per second.">Hz</abbr> (samples per second). Example: audio at <span class="arithmatex">\(f_s=50\)</span> <abbr title="hertz, cycles per second.">Hz</abbr> means you keep one number every <span class="arithmatex">\(1/50=0.02\)</span> s. The exam loves to give you <span class="arithmatex">\(f_s\)</span> because the <em>digital</em> frequency of a <abbr title="a single pure cosine/sine wiggle at one frequency.">tone</abbr> depends on it (next section).</p>
+<figure>
+<p><img alt="Continuous signal and its samples" src="img/gen/p0_sampling.svg" /></p>
+<figcaption>Left: $x(t)$ has a value at every instant. Right: sampling keeps only the red dots, one every $T_s$ seconds. The list of red heights <i>is</i> $x[n]$; the grey curve between them is thrown away. The horizontal axis now counts samples ($n=0,1,2,\dots$), not seconds.</figcaption>
+</figure>
+<div class="admonition trap">
+<p class="admonition-title">The exam's favourite corner</p>
+<p>A discrete <abbr title="a number that changes over time, e.g. a voltage or a measurement per second.">signal</abbr> can only wiggle as fast as "up, down, up, down" (<span class="arithmatex">\(+1,-1,+1,-1,\dots\)</span>). Anything faster is <em>impossible</em> to represent with one <abbr title="one recorded number of a discrete-time signal, $x[n]$ at a given integer $n$.">sample</abbr> per step. That fastest wiggle corresponds to half the <abbr title="$f_s$, how many numbers per second are recorded; $T_s = 1/f_s$ seconds apart.">sample rate</abbr>.</p>
+</div>
+<hr />
+<h2 id="02-sine-cosine-frequency">0.2 Sine, cosine, frequency<a class="headerlink" href="#02-sine-cosine-frequency" title="Permanent link">#</a></h2>
+<p><strong>Plain words.</strong> <span class="arithmatex">\(\sin\)</span> and <span class="arithmatex">\(\cos\)</span> describe smooth, repeating wiggles. They repeat every <span class="arithmatex">\(2\pi \approx 6.28\)</span> units of their argument. A <abbr title="a single pure cosine/sine wiggle at one frequency.">tone</abbr> is one of these wiggles with an amplitude (how tall) and a frequency (how fast).</p>
+<p>Continuous-time version:</p>
+<div class="arithmatex">\[x(t) = A\sin(\omega t) \;=\; A\sin(2\pi f t)\]</div>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Name</th>
+<th>Unit</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(A\)</span></td>
+<td>amplitude</td>
+<td>volts (whatever <span class="arithmatex">\(x\)</span> measures)</td>
+<td>how tall the wiggle is</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(f\)</span></td>
+<td>frequency</td>
+<td><strong><abbr title="hertz, cycles per second.">Hz</abbr></strong> = cycles per second</td>
+<td>how many full wiggles per second</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\omega\)</span></td>
+<td>angular frequency</td>
+<td>rad/s</td>
+<td>same thing as <span class="arithmatex">\(f\)</span>, in "radians per second": <span class="arithmatex">\(\omega = 2\pi f\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(T=1/f\)</span></td>
+<td>period</td>
+<td>s</td>
+<td>time for one full wiggle</td>
+</tr>
+</tbody>
+</table>
+<figure>
+<p><img alt="Amplitude and period of a sine" src="img/gen/p0_sine.svg" /></p>
+<figcaption>Read $A$ off the height of the peak and $T$ off the distance between two identical points (here two upward zero crossings). The orange tone squeezes 3 full wiggles into each second: $f=3$ Hz, $T=\frac13$ s.</figcaption>
+</figure>
+<p><strong>Why <span class="arithmatex">\(\omega = 2\pi f\)</span>?</strong> One full cycle is <span class="arithmatex">\(2\pi\)</span> radians. Doing <span class="arithmatex">\(f\)</span> cycles per second means the angle <span class="arithmatex">\(2\pi f t\)</span> grows by <span class="arithmatex">\(2\pi\)</span> every <span class="arithmatex">\(1/f\)</span> seconds. Both notations appear in exams (<span class="arithmatex">\(A\sin(\omega t)\)</span> and <span class="arithmatex">\(A\sin(2\pi f t)\)</span> are the <em>same <abbr title="a number that changes over time, e.g. a voltage or a measurement per second.">signal</abbr></em>).</p>
+<p><strong>Discrete version.</strong> For <span class="arithmatex">\(x[n]\)</span> the angle is <span class="arithmatex">\(\theta n\)</span>, with <span class="arithmatex">\(\theta\)</span> measured in <strong>radians per <abbr title="one recorded number of a discrete-time signal, $x[n]$ at a given integer $n$.">sample</abbr></strong>:</p>
+<div class="key">
+<div class="arithmatex">\[x[n] = A\cos(\theta n),\qquad \theta = 2\pi\frac{f}{f_s}\ \text{(radians per sample)}\]</div>
+</div>
+<p>and <mark><span class="arithmatex">\(\theta\)</span> always lives between <span class="arithmatex">\(-\pi\)</span> and <span class="arithmatex">\(\pi\)</span></mark> (outside that range the same wiggle comes back — you cannot tell fast wiggles from slow ones once they are sampled).</p>
+<p><strong>Tiny worked example (this exact one is an exam question).</strong> <span class="arithmatex">\(f=25\)</span> <abbr title="hertz, cycles per second.">Hz</abbr> sampled at <span class="arithmatex">\(f_s=50\)</span> <abbr title="hertz, cycles per second.">Hz</abbr>:</p>
+<div class="arithmatex">\[\theta = 2\pi\cdot\frac{25}{50} = \pi \qquad\Rightarrow\qquad x[n]=\cos(\pi n) = (-1)^n = 1,-1,1,-1,\dots\]</div>
+<p>So a 25 <abbr title="hertz, cycles per second.">Hz</abbr> <abbr title="a single pure cosine/sine wiggle at one frequency.">tone</abbr> sampled 50 times per second is the fastest possible wiggle: it lands exactly on <span class="arithmatex">\(\theta=\pi\)</span>, the top of the range. Nice to have in your head: <mark><strong><span class="arithmatex">\(f = f_s/2\)</span> is the fastest digital wiggle</strong></mark> (the <em>Nyquist</em> frequency).</p>
+<figure>
+<p><img alt="Sampling at the Nyquist frequency and aliasing" src="img/gen/p0_alias.svg" /></p>
+<figcaption>Left: the exam example. 25 Hz at $f_s=50$ Hz gives exactly one sample on each peak and each trough: $+1,-1,+1,\dots$. Right: why $\theta$ only lives in $[-\pi,\pi]$. A 40 Hz tone ($\theta=1.6\pi$) passes through exactly the same red dots as a 10 Hz tone ($\theta=0.4\pi$). From the samples alone you cannot tell them apart, so every $\theta$ outside $[-\pi,\pi]$ is "the same" as one inside (add or subtract $2\pi$).</figcaption>
+</figure>
+<figure class="anim">
+<video class="anim" src="video/sampling_alias.mp4" poster="video/sampling_alias.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation.</b> The frequency of the blue tone rises from 1 Hz to 9 Hz while the sampler keeps one red dot every 0.1 s. At 5 Hz ($f_s/2$) the dots alternate $+1,-1$. Above it the dots trace a slower orange tone: 9 Hz sampled at 10 Hz looks exactly like 1 Hz.</figcaption>
+</figure>
+
+<div class="admonition example">
+<p class="admonition-title">What the exam asks about this</p>
+<ul>
+<li>Convert between <span class="arithmatex">\(\omega\)</span> and <span class="arithmatex">\(f\)</span> (<span class="arithmatex">\(\omega = 2\pi f\)</span>).</li>
+<li>Given <span class="arithmatex">\(f\)</span> and <span class="arithmatex">\(f_s\)</span>, compute <span class="arithmatex">\(\theta = 2\pi f/f_s\)</span>.</li>
+<li>Recognise <span class="arithmatex">\(A\sin(\omega t)\)</span> as <em>periodic</em> (this decides energy vs power, section 0.5 → page 3.1).</li>
+</ul>
+</div>
+<hr />
+<h2 id="03-complex-numbers-and-ejtheta">0.3 Complex numbers and <span class="arithmatex">\(e^{j\theta}\)</span><a class="headerlink" href="#03-complex-numbers-and-ejtheta" title="Permanent link">#</a></h2>
+<p><strong>Plain words.</strong> You do not need to like complex numbers. You only need one fact, and then one formula. The fact: <mark><strong>the exam writes cosines as complex exponentials because it makes the algebra shorter.</strong></mark> That is the entire reason. Nothing deeper.</p>
+<p><strong>The fact.</strong> <span class="arithmatex">\(j\)</span> is the symbol for <span class="arithmatex">\(\sqrt{-1}\)</span> (engineers write <span class="arithmatex">\(j\)</span>, mathematicians write <span class="arithmatex">\(i\)</span>; same thing). A complex number is a pair <span class="arithmatex">\((a,b)\)</span> written <span class="arithmatex">\(a+jb\)</span>, and it can be drawn as an arrow in a plane: <span class="arithmatex">\(a\)</span> to the right, <span class="arithmatex">\(b\)</span> up.</p>
+<table>
+<thead>
+<tr>
+<th>Notation</th>
+<th>Read as</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(z = a+jb\)</span></td>
+<td>"z"</td>
+<td>the number: right <span class="arithmatex">\(a\)</span>, up <span class="arithmatex">\(b\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(j\)</span></td>
+<td>"j"</td>
+<td><span class="arithmatex">\(\sqrt{-1}\)</span>, so <span class="arithmatex">\(j^2=-1\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(z^*=a-jb\)</span></td>
+<td>"z conjugate"</td>
+<td>same number mirrored down</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\lvert z\rvert=\sqrt{a^2+b^2}\)</span></td>
+<td>"magnitude of z"</td>
+<td>the length of the arrow</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(e^{j\theta}\)</span></td>
+<td>"e to the j theta"</td>
+<td>the arrow of length 1 at angle <span class="arithmatex">\(\theta\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>The formula (Euler).</strong> The arrow of length 1 at angle <span class="arithmatex">\(\theta\)</span> is exactly <span class="arithmatex">\(\cos\theta + j\sin\theta\)</span>:</p>
+<div class="arithmatex">\[e^{j\theta}=\cos\theta+j\sin\theta,\qquad \lvert e^{j\theta}\rvert = 1\]</div>
+<p>From it, adding and subtracting the two mirror images kills the sine part:</p>
+<div class="key">
+<div class="arithmatex">\[e^{j\theta}+e^{-j\theta}=2\cos\theta \qquad\Longrightarrow\qquad \boxed{\cos\theta=\frac{e^{j\theta}+e^{-j\theta}}{2}}\]</div>
+</div>
+<p>and subtracting kills the cosine part: <span class="arithmatex">\(e^{j\theta}-e^{-j\theta}=2j\sin\theta\)</span>.</p>
+<figure>
+<p><img alt="Complex numbers as arrows and the unit circle" src="img/gen/p0_complex.svg" /></p>
+<figcaption>Left: $3+2j$ is the arrow "3 right, 2 up"; its length $|z|$ is Pythagoras; the conjugate $z^*$ is its mirror image below the real axis. Right: $e^{j\theta}$ always has length 1, so its tip runs along the circle. Its shadow on the real axis (green) is $\cos\theta$, its height (orange) is $\sin\theta$. Adding the mirror arrow $e^{-j\theta}$ cancels the heights and doubles the shadow: the red arrow $2\cos\theta$.</figcaption>
+</figure>
+<figure class="anim">
+<video class="anim" src="video/phasor.mp4" poster="video/phasor.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation.</b> The arrow $e^{j\theta}$ turns as $\theta$ grows; its shadow on the real axis draws $\cos\theta$ on the right. Then the mirror arrow $e^{-j\theta}$ turns the other way: their sum never leaves the real axis and draws $2\cos\theta$. That is the whole reason a cosine can be written as $\frac{e^{j\theta}+e^{-j\theta}}{2}$.</figcaption>
+</figure>
+
+<p><strong>Why anyone bothers.</strong> <span class="arithmatex">\(\cos(\theta)\)</span> is awkward to multiply and to raise to powers; <span class="arithmatex">\(e^{j\theta}\)</span> is trivial (<span class="arithmatex">\(e^{j\theta}e^{j\phi}=e^{j(\theta+\phi)}\)</span>). So the course rewrites every <abbr title="a single pure cosine/sine wiggle at one frequency.">tone</abbr> as two complex exponentials, does easy algebra, and converts back. You will see <span class="arithmatex">\(e^{-j k\theta}\)</span> appear inside sums everywhere in Part 3 — it is just "a cosine in disguise".</p>
+<p><strong>Squared magnitude, the thing you actually compute.</strong> <mark>For any complex <span class="arithmatex">\(w\)</span>, <span class="arithmatex">\(\lvert w\rvert^2 = w\,w^*\)</span>.</mark> Example that appears on literally every spectral-estimation exam:</p>
+<div class="key">
+<div class="arithmatex">\[\lvert 1+ae^{-j\theta}\rvert^2=(1+ae^{-j\theta})(1+ae^{+j\theta}) = 1+a^2+a(e^{j\theta}+e^{-j\theta}) = 1+a^2+2a\cos\theta\]</div>
+</div>
+<p>which is a <strong>real</strong> number (no <span class="arithmatex">\(j\)</span> left), and that is why the answer always ends up as a formula in <span class="arithmatex">\(\cos\theta\)</span>. Full details in the <a href="toolbox.html#5-complex-exponentials-needed-for-every-psd">Toolbox</a>.</p>
+<hr />
+<h2 id="04-the-three-calculations-you-keep-meeting">0.4 The three calculations you keep meeting<a class="headerlink" href="#04-the-three-calculations-you-keep-meeting" title="Permanent link">#</a></h2>
+<h3 id="integrals-and-sums-how-much-in-total">Integrals and sums: "how much in total"<a class="headerlink" href="#integrals-and-sums-how-much-in-total" title="Permanent link">#</a></h3>
+<ul>
+<li><span class="arithmatex">\(\displaystyle\int_a^b f(t)\,dt\)</span> = the <strong>area</strong> under <span class="arithmatex">\(f(t)\)</span> between <span class="arithmatex">\(a\)</span> and <span class="arithmatex">\(b\)</span>. Used when time is continuous (<span class="arithmatex">\(x(t)\)</span>).</li>
+<li><span class="arithmatex">\(\displaystyle\sum_{n=0}^{N-1} f[n]\)</span> = <strong>add up</strong> the values <span class="arithmatex">\(f[0]+f[1]+\dots+f[N-1]\)</span>. Used when time is discrete (<span class="arithmatex">\(x[n]\)</span>).</li>
+</ul>
+<p>They are the same idea ("total up a quantity over time"); one for smooth time, one for counted time. <strong><span class="arithmatex">\(\sum\)</span> goes with square brackets, <span class="arithmatex">\(\int\)</span> goes with round brackets.</strong></p>
+<figure>
+<p><img alt="An integral is an area, a sum adds bars" src="img/gen/p0_integral_sum.svg" /></p>
+<figcaption>The same shape $e^{-2t}$ totalled two ways. Left: continuous time, the total is the shaded area, $\frac12$. Right: discrete time, the total is the sum of the bar heights, $1.1565$. The two numbers differ because the bars are not the area (the first bar alone is 1 tall); never mix the two formulas.</figcaption>
+</figure>
+<p>Worked example you will need on page 3.1:</p>
+<div class="arithmatex">\[\int_0^\infty e^{-2t}\,dt = \left[\frac{e^{-2t}}{-2}\right]_0^\infty = \frac{e^{-\infty}}{-2}-\frac{e^{0}}{-2} = 0-\Big(-\frac12\Big)=\frac12 .\]</div>
+<p>Rules used (both in the <a href="toolbox.html#4-the-integrals-that-keep-coming-back">Toolbox</a>): <span class="arithmatex">\(\int e^{at}dt = e^{at}/a\)</span>, and <span class="arithmatex">\(e^{-\infty}=0\)</span>.</p>
+<h3 id="limits-what-happens-if-you-keep-going-forever">Limits: "what happens if you keep going forever"<a class="headerlink" href="#limits-what-happens-if-you-keep-going-forever" title="Permanent link">#</a></h3>
+<div class="arithmatex">\[\lim_{T\to\infty}\frac{1}{T}\int_{-T/2}^{T/2}\dots dt\]</div>
+<p>reads: "average over a window of length <span class="arithmatex">\(T\)</span>, then let that window grow without bound". It is a <em>procedure</em>, not a scary object: compute the average for a window of length <span class="arithmatex">\(T\)</span>, then see what value that average settles on as <span class="arithmatex">\(T\)</span> gets huge.</p>
+<p><strong>The one limit fact you need:</strong> for any fixed number <span class="arithmatex">\(c\)</span>,</p>
+<div class="key">
+<div class="arithmatex">\[\lim_{T\to\infty}\frac{c}{T}=0 .\]</div>
+</div>
+<p>This single fact is why "finite energy ⟹ average power is zero" (page 3.1) and why "a cosine averaged over infinitely many periods gives exactly half its peak-square" (next).</p>
+<figure>
+<p><img alt="A limit is where the average settles" src="img/gen/p0_limit.svg" /></p>
+<figcaption>Left: the average of $\cos^2 t$ over a window of length $T$, computed for every $T$. For short windows it depends on where the window happens to cut a wiggle; as $T$ grows the leftover piece $\frac{\sin T}{2T}$ shrinks and the average settles on $\frac12$. That settling value is the limit. Right: any fixed number divided by a growing $T$ sinks to 0, however big the number is.</figcaption>
+</figure>
+<h3 id="the-geometric-series-add-up-a-shrinking-list">The geometric series: "add up a shrinking list"<a class="headerlink" href="#the-geometric-series-add-up-a-shrinking-list" title="Permanent link">#</a></h3>
+<div class="key">
+<div class="arithmatex">\[\sum_{n=0}^{\infty} r^n = 1 + r + r^2 + \dots = \frac{1}{1-r}\qquad\text{for } \lvert r\rvert &lt; 1\]</div>
+</div>
+<p>Where it comes from: the finite sum is <span class="arithmatex">\(1+r+\dots+r^N = \dfrac{1-r^{N+1}}{1-r}\)</span> (multiply by <span class="arithmatex">\((1-r)\)</span> and watch everything cancel). If <span class="arithmatex">\(\lvert r\rvert&lt;1\)</span> then <span class="arithmatex">\(r^{N+1}\to 0\)</span>, leaving <span class="arithmatex">\(\frac{1}{1-r}\)</span>.</p>
+<figure>
+<p><img alt="Geometric series filling up to its limit" src="img/gen/p0_geometric.svg" /></p>
+<figcaption>Left: with $r=\frac12$ every new piece fills exactly half of the gap that is left before 2, so you get as close to 2 as you like but never pass it: $\frac{1}{1-\frac12}=2$. Right: the running totals for $r=\frac12$ and for the exam's $r=e^{-2}\approx0.135$. The smaller $r$, the faster the total levels off (here at 1.1565 after only 3 terms).</figcaption>
+</figure>
+<p><strong>Worked example (an exam answer, exactly):</strong> <span class="arithmatex">\(E=\sum_{n=0}^\infty e^{-2n}\)</span> is a geometric series with <span class="arithmatex">\(r=e^{-2}\approx0.135\)</span>:</p>
+<div class="arithmatex">\[E = \frac{1}{1-e^{-2}} = \frac{1}{1-0.1353} = \frac{1}{0.8647}\approx 1.1565 .\]</div>
+<h3 id="trig-identities-the-two-that-appear-in-every-energy-calculation">Trig identities: the two that appear in every energy calculation<a class="headerlink" href="#trig-identities-the-two-that-appear-in-every-energy-calculation" title="Permanent link">#</a></h3>
+<p>Start from <span class="arithmatex">\(\cos(2\alpha) = 1-2\sin^2\alpha\)</span> and rearrange:</p>
+<div class="key">
+<div class="arithmatex">\[\boxed{\sin^2\alpha = \frac{1-\cos(2\alpha)}{2}}\qquad\qquad \boxed{\cos^2\alpha = \frac{1+\cos(2\alpha)}{2}}\]</div>
+</div>
+<p>Why these matter: energy and power formulas contain <span class="arithmatex">\(x(t)^2\)</span>, and squaring a sine gives you <span class="arithmatex">\(\sin^2\)</span>, which the identity splits into <strong>a constant (<span class="arithmatex">\(\tfrac12\)</span>) plus a wiggle at double frequency (<span class="arithmatex">\(\cos 2\alpha\)</span>)</strong>. <mark>The constant is what survives averaging; the wiggle averages to zero.</mark> That is the whole trick behind "<span class="arithmatex">\(P = A^2/2\)</span>".</p>
+<figure>
+<p><img alt="Why the average of sine squared is one half" src="img/gen/p0_sin2.svg" /></p>
+<figcaption>Left: $\sin\alpha$ is positive half the time and negative half the time, so its average is 0. Squaring flips the negative halves up: $\sin^2\alpha$ is never negative and wiggles twice as fast, between 0 and 1. Right: it wiggles symmetrically around $\frac12$; the green humps above the dashed line have exactly the area of the orange dips below it, so the average height is $\frac12$. A tone of amplitude $A$ squares to $A^2\sin^2$, whose average is $\frac{A^2}{2}$.</figcaption>
+</figure>
+<hr />
+<h2 id="05-spectrum-what-a-fourier-transform-tells-you">0.5 Spectrum: what a Fourier transform tells you<a class="headerlink" href="#05-spectrum-what-a-fourier-transform-tells-you" title="Permanent link">#</a></h2>
+<p><strong>Plain words.</strong> Any <abbr title="a number that changes over time, e.g. a voltage or a measurement per second.">signal</abbr> can be described as "a mixture of pure tones of different frequencies". The <strong><abbr title="the recipe of how much of each frequency a signal contains.">spectrum</abbr></strong> of a <abbr title="a number that changes over time, e.g. a voltage or a measurement per second.">signal</abbr> is the recipe: <em>how much of each frequency is in there</em>. A <abbr title="a single pure cosine/sine wiggle at one frequency.">tone</abbr> at 250 <abbr title="hertz, cycles per second.">Hz</abbr> and nothing else has a <abbr title="the recipe of how much of each frequency a signal contains.">spectrum</abbr> with a single bump at 250 <abbr title="hertz, cycles per second.">Hz</abbr>. Two tones = two bumps. Noise = a flat smear over all frequencies.</p>
+<p>The <strong>Fourier transform</strong> is the machine that turns "<abbr title="a number that changes over time, e.g. a voltage or a measurement per second.">signal</abbr> vs time" into "recipe vs frequency". It is a <em>change of description</em>, nothing is lost or added — same <abbr title="a number that changes over time, e.g. a voltage or a measurement per second.">signal</abbr>, different label on the horizontal axis.</p>
+<figure>
+<p><img alt="The same signal in time and in frequency" src="img/gen/p0_spectrum.svg" /></p>
+<figcaption>Left: what a microphone records, a 5 Hz tone plus a weaker 12 Hz tone (dashed), added up into the black curve. Right: the recipe. One pair of spikes per tone, at $\pm5$ Hz and $\pm12$ Hz, each spike half the tone's amplitude (point 3 below explains the pair and the half). Hard to read on the left, obvious on the right.</figcaption>
+</figure>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Symbol</th>
+<th>Input</th>
+<th>Output</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><abbr title="Fourier transform for discrete-time signals, $X(e^{j\theta})=\sum_n x[n]e^{-jn\theta}$: a continuous curve over frequency.">FTD</abbr></strong> (Fourier transform for discrete-time signals)</td>
+<td><span class="arithmatex">\(X(e^{j\theta}) = \sum_n x[n]\,e^{-jn\theta}\)</span></td>
+<td>the whole infinite list <span class="arithmatex">\(x[n]\)</span></td>
+<td>a <strong>continuous curve</strong> in <span class="arithmatex">\(\theta\in[-\pi,\pi]\)</span></td>
+<td>theory; what the true <abbr title="the recipe of how much of each frequency a signal contains.">spectrum</abbr> <em>is</em></td>
+</tr>
+<tr>
+<td><strong><abbr title="discrete Fourier transform: the $N$ numbers you compute from $N$ samples; samples of the FTD.">DFT</abbr></strong> (discrete Fourier transform)</td>
+<td><span class="arithmatex">\(X[k] = \sum_{n=0}^{N-1} x[n]\,e^{-j2\pi kn/N}\)</span></td>
+<td>your <strong><span class="arithmatex">\(N\)</span> recorded samples</strong></td>
+<td><strong><span class="arithmatex">\(N\)</span> numbers</strong></td>
+<td>what a computer can actually compute</td>
+</tr>
+</tbody>
+</table>
+<p>Three things worth memorising about this pair:</p>
+<ol>
+<li><mark><strong>The <abbr title="Fourier transform for discrete-time signals, $X(e^{j\theta})=\sum_n x[n]e^{-jn\theta}$: a continuous curve over frequency.">FTD</abbr> is a curve, the <abbr title="discrete Fourier transform: the $N$ numbers you compute from $N$ samples; samples of the FTD.">DFT</abbr> is a list of <span class="arithmatex">\(N\)</span> numbers that samples that curve.</strong></mark> The exam draws both in the same figure and asks you to match them (that is question 3a of January 2022).</li>
+<li><strong><span class="arithmatex">\(\theta\)</span> is "frequency" in radians per <abbr title="one recorded number of a discrete-time signal, $x[n]$ at a given integer $n$.">sample</abbr></strong>, and <span class="arithmatex">\(\theta = 2\pi f/f_s\)</span>, so <span class="arithmatex">\(\theta=\pi\)</span> ↔ <span class="arithmatex">\(f = f_s/2\)</span> (the fastest wiggle, section 0.2).</li>
+<li><mark>A pure, never-ending cosine of amplitude <span class="arithmatex">\(A\)</span> has exactly <strong>two</strong> infinitely thin spikes in its <abbr title="the recipe of how much of each frequency a signal contains.">spectrum</abbr>, at <span class="arithmatex">\(\theta = \pm\theta_0\)</span></mark>, each of height <span class="arithmatex">\(\propto A/2\)</span>. Two, because <span class="arithmatex">\(\cos\theta = \tfrac12(e^{j\theta}+e^{-j\theta})\)</span>: one spike for each of the two complex exponentials. This is why every <abbr title="the recipe of how much of each frequency a signal contains.">spectrum</abbr> picture of a cosine shows a peak on the left <em>and</em> one mirrored on the right.</li>
+</ol>
+<p><strong><abbr title="discrete Fourier transform: the $N$ numbers you compute from $N$ samples; samples of the FTD.">DFT</abbr> bins.</strong> The <span class="arithmatex">\(N\)</span> <abbr title="discrete Fourier transform: the $N$ numbers you compute from $N$ samples; samples of the FTD.">DFT</abbr> values sit at evenly spaced frequencies. The spacing is</p>
+<div class="key">
+<div class="arithmatex">\[\text{bin width} = \frac{f_s}{N}\ \text{Hz}.\]</div>
+</div>
+<p>Example: <span class="arithmatex">\(f_s = 50\)</span> <abbr title="hertz, cycles per second.">Hz</abbr> and <span class="arithmatex">\(N = 24\)</span> samples → <span class="arithmatex">\(\frac{50}{24}\approx 2.08\)</span> <abbr title="hertz, cycles per second.">Hz</abbr> apart. The <span class="arithmatex">\(k\)</span>-th number <span class="arithmatex">\(X[k]\)</span> is "how much of the <abbr title="a single pure cosine/sine wiggle at one frequency.">tone</abbr> at frequency <span class="arithmatex">\(k\cdot 2.08\)</span> <abbr title="hertz, cycles per second.">Hz</abbr> is present". <em>Bin</em> = one of those <span class="arithmatex">\(N\)</span> frequency slots.</p>
+<figure>
+<p><img alt="FTD curve and DFT samples at the bins" src="img/gen/p0_ftd_dft.svg" /></p>
+<figcaption>That exact example with a 10 Hz tone. Grey: the FTD of the 24 samples, a smooth curve. Blue dots: the DFT, the same curve read off every 2.08 Hz (only 0 to 25 Hz shown; the other half is the mirror image). 10 Hz falls between two bins, so no dot sits on the true peak. The top axis gives the same frequencies as $\theta$: $f_s/2=25$ Hz is $\theta=\pi$.</figcaption>
+</figure>
+<p><strong>Decibels (<abbr title="decibel, a logarithmic scale for magnitudes: $20\log_{10}|X|$.">dB</abbr>).</strong> Spectra figures are drawn on a log scale: <mark><span class="arithmatex">\(\lvert X\rvert_{\text{dB}} = 20\log_{10}\lvert X\rvert\)</span></mark>. So 0 <abbr title="decibel, a logarithmic scale for magnitudes: $20\log_{10}|X|$.">dB</abbr> = height 1, −20 <abbr title="decibel, a logarithmic scale for magnitudes: $20\log_{10}|X|$.">dB</abbr> = height 0.1, −40 <abbr title="decibel, a logarithmic scale for magnitudes: $20\log_{10}|X|$.">dB</abbr> = height 0.01. When a figure says "the weak <abbr title="a single pure cosine/sine wiggle at one frequency.">tone</abbr> is 34 <abbr title="decibel, a logarithmic scale for magnitudes: $20\log_{10}|X|$.">dB</abbr> below the strong one", it means its amplitude is about <span class="arithmatex">\(10^{-34/20}\approx 0.02\)</span> times the big one. <abbr title="decibel, a logarithmic scale for magnitudes: $20\log_{10}|X|$.">dB</abbr> exists purely so you can see tiny and huge things in the same plot.</p>
+<figure>
+<p><img alt="Linear scale vs dB scale" src="img/gen/p0_db.svg" /></p>
+<figcaption>The same spectrum twice: a 10 Hz tone plus an 18 Hz tone 50 times weaker. On the linear scale (left) the weak tone is a bump of height 0.02, invisible. On the dB scale (right) every factor of 10 gets the same vertical room (20 dB), so the weak tone stands out clearly at $-34$ dB.</figcaption>
+</figure>
+<hr />
+<h2 id="06-probability-from-zero">0.6 Probability from zero<a class="headerlink" href="#06-probability-from-zero" title="Permanent link">#</a></h2>
+<p>Parts 1, 2 and 4 live on this. Nothing here needs more than the integrals of <a href="#04-the-three-calculations-you-keep-meeting">0.4</a>.</p>
+<h3 id="random-variable-and-pdf">Random variable and <abbr title="probability density function p(x): the area under it between a and b is the probability of landing between a and b.">PDF</abbr><a class="headerlink" href="#random-variable-and-pdf" title="Permanent link">#</a></h3>
+<p><strong>Plain words.</strong> A <strong><abbr title="a number whose value is not known until you look; described by a PDF.">random variable</abbr></strong> <span class="arithmatex">\(X\)</span> is a number whose value you do not know until you look: the roll of a die, the voltage noise on a wire at 3:00:00 pm. You cannot predict the value, but you can say <em>which values are likely</em>.</p>
+<p>For a number that can land anywhere on a line (a voltage), "the probability that <span class="arithmatex">\(X\)</span> is exactly 0.5" is zero (there are infinitely many possible values). So instead we describe a <abbr title="a number whose value is not known until you look; described by a PDF.">random variable</abbr> with a <strong><abbr title="probability density function p(x): the area under it between a and b is the probability of landing between a and b.">PDF</abbr></strong> (probability density function) <span class="arithmatex">\(p(x)\)</span>, a curve with one rule:</p>
+<blockquote>
+<p><mark><strong>The area under the curve between <span class="arithmatex">\(a\)</span> and <span class="arithmatex">\(b\)</span> is the probability that <span class="arithmatex">\(X\)</span> lands between <span class="arithmatex">\(a\)</span> and <span class="arithmatex">\(b\)</span>.</strong></mark> The total area under the whole curve is 1 (something must happen).</p>
+</blockquote>
+<div class="admonition example">
+<p class="admonition-title">Two PDFs with real numbers</p>
+<ul>
+<li><strong>Uniform on <span class="arithmatex">\([0,2]\)</span></strong>: <span class="arithmatex">\(p(x)=\tfrac12\)</span> for <span class="arithmatex">\(0\le x\le 2\)</span>, zero elsewhere. Total area <span class="arithmatex">\(=\tfrac12\cdot 2 = 1\)</span> ✓. <span class="arithmatex">\(P(0.5\lt X&lt;1.5)=\)</span> width <span class="arithmatex">\(\times\)</span> height <span class="arithmatex">\(=1\times\tfrac12=0.5\)</span>.</li>
+<li><strong>Exponential</strong>: <span class="arithmatex">\(p(x)=e^{-x}\)</span> for <span class="arithmatex">\(x\ge0\)</span>. Total area <span class="arithmatex">\(=\int_0^\infty e^{-x}dx = [-e^{-x}]_0^\infty = 0-(-1)=1\)</span> ✓. <span class="arithmatex">\(P(X&gt;1)=\int_1^\infty e^{-x}dx = e^{-1}\approx0.368\)</span>.</li>
+</ul>
+</div>
+<p>Careful: the <em>height</em> <span class="arithmatex">\(p(x)\)</span> is <strong>not</strong> a probability (it can be bigger than 1, for example a uniform on <span class="arithmatex">\([0,0.1]\)</span> has height 10). <mark>Only <strong>areas</strong> are probabilities.</mark></p>
+<figure>
+<p><img alt="Probabilities are areas under the PDF" src="img/gen/p0_pdfs.svg" /></p>
+<figcaption>The two examples above and the warning, drawn. Each shaded area is a probability: width × height for the flat PDF, an integral for the curved one. The third panel is a valid PDF even though its height is 10, because its total area is still exactly 1.</figcaption>
+</figure>
+<h3 id="expectation-variance">Expectation, <abbr title="Var(X) = E[(X − mean)²]: how spread out X is.">variance</abbr><a class="headerlink" href="#expectation-variance" title="Permanent link">#</a></h3>
+<p><strong>Expectation</strong> (mean) <span class="arithmatex">\(\mathbb E[X]\)</span> = the long-run average of <span class="arithmatex">\(X\)</span> if you could repeat the experiment forever. Formula: weight every value by how likely it is and add up:</p>
+<div class="key">
+<div class="arithmatex">\[\mathbb E[X]=\int_{-\infty}^{\infty} x\,p(x)\,dx,\qquad \mathbb E[g(X)]=\int g(x)\,p(x)\,dx .\]</div>
+</div>
+<p>(For a die: <span class="arithmatex">\(\mathbb E[X]=\tfrac16(1+2+\dots+6)=3.5\)</span>. The uniform on <span class="arithmatex">\([0,2]\)</span> has mean <span class="arithmatex">\(1\)</span>, the middle, as you would guess.)</p>
+<p><strong>Variance</strong> <span class="arithmatex">\(\sigma^2=\operatorname{Var}(X)=\mathbb E\big[(X-\mu)^2\big]\)</span> (<span class="arithmatex">\(\mu=\mathbb E[X]\)</span>): the average squared distance from the mean, i.e. <em>how spread out <span class="arithmatex">\(X\)</span> is</em>. <strong>Standard deviation</strong> <span class="arithmatex">\(\sigma=\sqrt{\sigma^2}\)</span> has the same units as <span class="arithmatex">\(X\)</span>.</p>
+<p>Handy rewriting (expand the square: <span class="arithmatex">\(\mathbb E[X^2-2\mu X+\mu^2]=\mathbb E[X^2]-2\mu^2+\mu^2\)</span>):</p>
+<div class="key">
+<div class="arithmatex">\[\operatorname{Var}(X)=\mathbb E[X^2]-\mu^2 .\]</div>
+</div>
+<p>Die: <span class="arithmatex">\(\mathbb E[X^2]=\tfrac16(1+4+9+16+25+36)=\tfrac{91}{6}=15.17\)</span>, so <span class="arithmatex">\(\operatorname{Var}=15.17-3.5^2=15.17-12.25=2.92\)</span>.</p>
+<figure>
+<p><img alt="Expectation is the balance point, variance is the spread" src="img/gen/p0_expectation.svg" /></p>
+<figcaption>The mean is where the shape would balance on a finger (red triangle). Left: the die balances at 3.5, a value it can never show. Middle: $e^{-x}$ is tallest at 0 but balances at 1, because its long right tail pulls the balance point over. Right: two PDFs with the same mean 0; the arrows span $\pm\sigma$. A bigger variance means the values spread further from the mean.</figcaption>
+</figure>
+<p>Three rules you will use constantly (the first one is just "averaging is linear"):</p>
+<div class="key">
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\mathbb E[aX+b]=a\mathbb E[X]+b\)</span></td>
+<td>scaling and shifting move the mean the same way</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)\)</span></td>
+<td>shifting does not change spread; scaling by <span class="arithmatex">\(a\)</span> scales spread by <span class="arithmatex">\(a\)</span>, <abbr title="Var(X) = E[(X − mean)²]: how spread out X is.">variance</abbr> by <span class="arithmatex">\(a^2\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\operatorname{Var}(X+Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)\)</span> <strong>if <span class="arithmatex">\(X,Y\)</span> independent</strong></td>
+<td>independent randomness adds up in <abbr title="Var(X) = E[(X − mean)²]: how spread out X is.">variance</abbr></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="conditional-probability-and-independence">Conditional probability and independence<a class="headerlink" href="#conditional-probability-and-independence" title="Permanent link">#</a></h3>
+<p><span class="arithmatex">\(P(A\mid B)\)</span> = "the probability of <span class="arithmatex">\(A\)</span> <strong>given that we already know</strong> <span class="arithmatex">\(B\)</span> happened". Restrict to the cases where <span class="arithmatex">\(B\)</span> is true and ask how many of those also have <span class="arithmatex">\(A\)</span>:</p>
+<div class="key">
+<div class="arithmatex">\[P(A\mid B)=\frac{P(A\cap B)}{P(B)}\qquad(A\cap B=\text{"both A and B"}).\]</div>
+</div>
+<p><span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> are <strong>independent</strong> when knowing <span class="arithmatex">\(B\)</span> tells you nothing about <span class="arithmatex">\(A\)</span>: <span class="arithmatex">\(P(A\mid B)=P(A)\)</span>, equivalently <span class="arithmatex">\(P(A\cap B)=P(A)P(B)\)</span>. Two coin flips: <span class="arithmatex">\(P(\text{both heads})=\tfrac12\cdot\tfrac12=\tfrac14\)</span>. For random variables the same idea reads: <mark><strong><span class="arithmatex">\(X,Y\)</span> are independent iff the joint <abbr title="probability density function p(x): the area under it between a and b is the probability of landing between a and b.">PDF</abbr> factorises, <span class="arithmatex">\(p(x,y)=p(x)\,p(y)\)</span></strong></mark> (this is used again in <a href="p1-rv.html">1.2</a> and in every estimation problem with "independent samples").</p>
+<h3 id="the-gaussian-bell-curve">The Gaussian (bell curve)<a class="headerlink" href="#the-gaussian-bell-curve" title="Permanent link">#</a></h3>
+<div class="key">
+<div class="arithmatex">\[p(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\;e^{-\frac{(x-\mu)^2}{2\sigma^2}}\qquad\text{written }X\sim\mathcal N(\mu,\sigma^2).\]</div>
+</div>
+<ul>
+<li><span class="arithmatex">\(\mu\)</span> = centre of the bell (the mean), <span class="arithmatex">\(\sigma^2\)</span> = <abbr title="Var(X) = E[(X − mean)²]: how spread out X is.">variance</abbr> (the width). The prefactor <span class="arithmatex">\(\frac1{\sqrt{2\pi\sigma^2}}\)</span> only exists to make the total area equal 1.</li>
+<li>About 68 % of the area lies within <span class="arithmatex">\(\pm\sigma\)</span> of <span class="arithmatex">\(\mu\)</span>, 95 % within <span class="arithmatex">\(\pm2\sigma\)</span>, 99.7 % within <span class="arithmatex">\(\pm3\sigma\)</span>.</li>
+<li><strong>Standardising:</strong> <mark>if <span class="arithmatex">\(X\sim\mathcal N(\mu,\sigma^2)\)</span> then <span class="arithmatex">\(\frac{X-\mu}{\sigma}\sim\mathcal N(0,1)\)</span></mark> (shift by the mean, divide by the spread). So any Gaussian question reduces to the standard one.</li>
+<li><strong><span class="arithmatex">\(Q\)</span>-function:</strong> <mark><span class="arithmatex">\(Q(x)=P(Z&gt;x)\)</span> for <span class="arithmatex">\(Z\sim\mathcal N(0,1)\)</span> = the area of the right tail beyond <span class="arithmatex">\(x\)</span></mark>. Symmetry gives <span class="arithmatex">\(Q(-x)=1-Q(x)\)</span> and <span class="arithmatex">\(Q(0)=\tfrac12\)</span>. From the 68/95/99.7 numbers: <span class="arithmatex">\(Q(1)=\frac{1-0.683}{2}=0.1587\)</span>, <span class="arithmatex">\(Q(2)=\frac{1-0.954}{2}=0.023\)</span>. Exams that give you an erf table want exactly this: <span class="arithmatex">\(Q(x)=\tfrac12\big(1-\operatorname{erf}(x/\sqrt2)\big)\)</span>.</li>
+<li><strong>Sums:</strong> <mark>independent Gaussians added together are Gaussian again, with the <strong>means added and the variances added</strong></mark>.</li>
+</ul>
+<figure>
+<p><img alt="Gaussian areas and the Q function" src="img/gen/p0_gauss.svg" /></p>
+<figcaption>Left: the darker the band, the closer to the mean; the arrows below give the area inside $\pm1,\pm2,\pm3\,\sigma$. Right: $Q(1)$ is the red tail beyond $z=1$. The orange tail on the left has the same area by symmetry, which is why $Q(-1)=1-Q(1)$: everything except the left tail.</figcaption>
+</figure>
+<h3 id="likelihood-the-same-formula-read-backwards">Likelihood: the same formula read backwards<a class="headerlink" href="#likelihood-the-same-formula-read-backwards" title="Permanent link">#</a></h3>
+<p>A <abbr title="probability density function p(x): the area under it between a and b is the probability of landing between a and b.">PDF</abbr> with a parameter, e.g. <span class="arithmatex">\(p(y;\theta)\)</span>, answers "<em>given</em> the parameter <span class="arithmatex">\(\theta\)</span>, how likely is each data value <span class="arithmatex">\(y\)</span>?". Estimation reverses the question: <mark><strong>the data <span class="arithmatex">\(y\)</span> are fixed (you measured them), which <span class="arithmatex">\(\theta\)</span> makes them most plausible?</strong></mark> Same formula, now plotted against <span class="arithmatex">\(\theta\)</span>, and called the <strong><abbr title="the PDF of the measured data viewed as a function of the unknown parameter.">likelihood</abbr></strong>.</p>
+<div class="admonition example">
+<p class="admonition-title">One <abbr title="one recorded number of a discrete-time signal, $x[n]$ at a given integer $n$.">sample</abbr>, unknown mean</p>
+<p>You measure <span class="arithmatex">\(y=3\)</span> from <span class="arithmatex">\(\mathcal N(\theta,1)\)</span> with <span class="arithmatex">\(\theta\)</span> unknown: <span class="arithmatex">\(p(3;\theta)=\frac1{\sqrt{2\pi}}e^{-(3-\theta)^2/2}\)</span>. As a function of <span class="arithmatex">\(\theta\)</span> this is a bell centred at <span class="arithmatex">\(\theta=3\)</span>: the most plausible mean is the measurement itself. That is the whole idea of maximum <abbr title="the PDF of the measured data viewed as a function of the unknown parameter.">likelihood</abbr> (<a href="p2-mle.html">2.1</a>).</p>
+</div>
+<figure>
+<p><img alt="PDF read over the data vs likelihood read over the parameter" src="img/gen/p0_likelihood.svg" /></p>
+<figcaption>Left: three candidate models ($\theta=1,3,5$), each a bell over the possible data. The dashed line is the one value you measured, $y=3$; each dot is how high that model's bell is there. Right: collect those heights for every possible $\theta$ and you get the likelihood. The three dots reappear on it, and its peak marks the best $\theta$.</figcaption>
+</figure>
+<h3 id="random-signals-stationarity-and-autocorrelation">Random signals: stationarity and <abbr title="r[l] = E[x[n]x[n−l]]: how related a random signal is to itself l steps later.">autocorrelation</abbr><a class="headerlink" href="#random-signals-stationarity-and-autocorrelation" title="Permanent link">#</a></h3>
+<p>A <strong>random <abbr title="a number that changes over time, e.g. a voltage or a measurement per second.">signal</abbr></strong> (random process) is a list of random variables <span class="arithmatex">\(x[0],x[1],x[2],\dots\)</span>: every time you record it you get a different list (a "realisation"). Two statistics describe it:</p>
+<ul>
+<li><strong>Mean</strong> <span class="arithmatex">\(\mu_x=\mathbb E[x[n]]\)</span>.</li>
+<li><strong>Autocorrelation</strong> <mark><span class="arithmatex">\(r[l]=\mathbb E\big[x[n]\,x[n-l]\big]\)</span>: how strongly the <abbr title="a number that changes over time, e.g. a voltage or a measurement per second.">signal</abbr> at time <span class="arithmatex">\(n\)</span> is related, <em>on average</em>, to the <abbr title="a number that changes over time, e.g. a voltage or a measurement per second.">signal</abbr> <span class="arithmatex">\(l\)</span> steps earlier</mark> (<span class="arithmatex">\(l\)</span> = the <strong>lag</strong>).</li>
+</ul>
+<figure>
+<p><img alt="Autocorrelation as how tilted the scatter cloud is" src="img/gen/p0_autocorr.svg" /></p>
+<figcaption>What $r[l]$ measures. Take one long recording (left) and plot every value against the value $l$ steps earlier. For $l=1$ (green) the points line up along a tilted cloud: when $x[n-1]$ is high, $x[n]$ is usually high too, so the average product $x[n]x[n-1]$ is large. For $l=20$ (orange) the cloud is round: no relation, average product near 0. The stems on the right are those average products for every lag.</figcaption>
+</figure>
+<p>The process is <strong><abbr title="statistics (mean, autocorrelation) do not change with time.">stationary</abbr></strong> (wide-sense) <mark>when <span class="arithmatex">\(\mu_x\)</span> and <span class="arithmatex">\(r[l]\)</span> do <strong>not depend on <span class="arithmatex">\(n\)</span></strong></mark>: the statistics look the same at any time. Facts you will use:</p>
+<ol>
+<li><mark><span class="arithmatex">\(r[0]=\mathbb E[x[n]^2]\)</span> = the <strong>average power</strong></mark> (the random-<abbr title="a number that changes over time, e.g. a voltage or a measurement per second.">signal</abbr> twin of <span class="arithmatex">\(P_x\)</span> in <a href="p3-windows.html#1-energy-vs-power-which-one-is-this-signal">3.1</a>). It is the largest value: <span class="arithmatex">\(|r[l]|\le r[0]\)</span>.</li>
+<li><mark><span class="arithmatex">\(r[-l]=r[l]\)</span> for real signals</mark> (symmetric in the lag).</li>
+<li><mark><strong>White noise</strong> has no relation between different times: <span class="arithmatex">\(r[0]=\sigma^2\)</span> and <span class="arithmatex">\(r[l]=0\)</span> for <span class="arithmatex">\(l\ne0\)</span>.</mark></li>
+<li>
+<p><mark>The <strong><abbr title="power spectral density: how a random signal's power is spread over frequency.">PSD</abbr></strong> (power spectral density: how the power is spread over frequency) is the <abbr title="Fourier transform for discrete-time signals, $X(e^{j\theta})=\sum_n x[n]e^{-jn\theta}$: a continuous curve over frequency.">FTD</abbr> of the <abbr title="r[l] = E[x[n]x[n−l]]: how related a random signal is to itself l steps later.">autocorrelation</abbr></mark>:</p>
+<div class="arithmatex">\[P(\theta)=\sum_{l=-\infty}^{\infty} r[l]\,e^{-jl\theta}=r[0]+2\sum_{l=1}^{\infty} r[l]\cos(l\theta)\quad(\text{real, symmetric }r).\]</div>
+<p>Example: <span class="arithmatex">\(r[0]=1,\ r[\pm1]=0.5\)</span>, zero otherwise → <span class="arithmatex">\(P(\theta)=1+2(0.5)\cos\theta=1+\cos\theta\)</span>. Check: <span class="arithmatex">\(P(0)=2=1+0.5+0.5\)</span> (the sum of all <span class="arithmatex">\(r[l]\)</span>), and <span class="arithmatex">\(P\ge0\)</span> everywhere, as a power must be (figure below).</p>
+</li>
+<li>
+<p><strong>Ergodic</strong> means <mark>one long recording is as good as many short ones</mark>: averaging over <em>time</em> in a single record gives the same answer as averaging over <em>realisations</em>. This is what lets us estimate <span class="arithmatex">\(r[l]\)</span> from a single record (<a href="p3-nonparametric.html">3.2</a>).</p>
+</li>
+</ol>
+<figure>
+<p><img alt="Autocorrelation and its PSD" src="img/gen/p0_r_psd.svg" /></p>
+<figcaption>The example of fact 4 as a pair of pictures: three stems in lag (left) become one smooth bump in frequency (right). Neighbouring samples resemble each other (positive $r[\pm1]$), so the signal changes slowly: its power sits at low frequencies, near $\theta=0$.</figcaption>
+</figure>
+<hr />
+<h2 id="07-word-book-everything-else-the-guide-says-without-warning">0.7 Word book (everything else the guide says without warning)<a class="headerlink" href="#07-word-book-everything-else-the-guide-says-without-warning" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Word</th>
+<th>What it means here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><abbr title="a single pure cosine/sine wiggle at one frequency.">tone</abbr> / component</strong></td>
+<td>one pure cosine (a single-frequency wiggle) inside a <abbr title="a number that changes over time, e.g. a voltage or a measurement per second.">signal</abbr></td>
+</tr>
+<tr>
+<td><strong>periodic</strong></td>
+<td>repeats forever: <span class="arithmatex">\(x(t+T)=x(t)\)</span> for some fixed <span class="arithmatex">\(T\)</span> (sines, cosines, any repeating pattern)</td>
+</tr>
+<tr>
+<td><strong><abbr title="statistics (mean, autocorrelation) do not change with time.">stationary</abbr></strong></td>
+<td>"random, but its statistical properties (mean, power) do not change over time" — the random-<abbr title="a number that changes over time, e.g. a voltage or a measurement per second.">signal</abbr> version of "same forever"</td>
+</tr>
+<tr>
+<td><strong>lag <span class="arithmatex">\(l\)</span></strong></td>
+<td>how much you shift a <abbr title="a number that changes over time, e.g. a voltage or a measurement per second.">signal</abbr> before comparing it with itself (<span class="arithmatex">\(l\)</span> samples back)</td>
+</tr>
+<tr>
+<td><strong><abbr title="r[l] = E[x[n]x[n−l]]: how related a random signal is to itself l steps later.">autocorrelation</abbr> <span class="arithmatex">\(r[l]\)</span></strong></td>
+<td>"how similar is the <abbr title="a number that changes over time, e.g. a voltage or a measurement per second.">signal</abbr> to itself <span class="arithmatex">\(l\)</span> steps later", on average. <span class="arithmatex">\(r[0]\)</span> = average power</td>
+</tr>
+<tr>
+<td><strong><abbr title="power spectral density: how a random signal's power is spread over frequency.">PSD</abbr></strong> (power spectral density)</td>
+<td>the <abbr title="the recipe of how much of each frequency a signal contains.">spectrum</abbr> for random signals: how the <em>power</em> is spread over frequencies</td>
+</tr>
+<tr>
+<td><strong><abbr title="smearing one function with another; multiplying in time equals convolving in frequency.">convolution</abbr></strong></td>
+<td>"smear one thing with another". Multiplying signals in time = smearing (convolving) their spectra. You never compute one by hand in this course; you only use the <em>consequence</em></td>
+</tr>
+<tr>
+<td><strong>main lobe</strong></td>
+<td>the big central bump of a window's <abbr title="the recipe of how much of each frequency a signal contains.">spectrum</abbr> (page 3.1)</td>
+</tr>
+<tr>
+<td><strong>side lobes</strong></td>
+<td>the smaller ripples left and right of the main lobe (page 3.1)</td>
+</tr>
+<tr>
+<td><strong>resolution</strong></td>
+<td>ability to see two nearby tones as two separate peaks</td>
+</tr>
+<tr>
+<td><strong>leakage</strong></td>
+<td>power of one <abbr title="a single pure cosine/sine wiggle at one frequency.">tone</abbr> showing up at wrong frequencies, hiding weaker tones</td>
+</tr>
+<tr>
+<td><strong>bias</strong></td>
+<td>an estimator is biased if it is wrong <em>on average</em> (systematically)</td>
+</tr>
+<tr>
+<td><strong><abbr title="Var(X) = E[(X − mean)²]: how spread out X is.">variance</abbr></strong></td>
+<td>how much an estimator jumps around between different datasets</td>
+</tr>
+<tr>
+<td><strong>MLE / MAP / MMSE</strong></td>
+<td>three recipes for guessing a number from data (Part 2)</td>
+</tr>
+<tr>
+<td><strong>hypothesis <span class="arithmatex">\(\mathcal H_0/\mathcal H_1\)</span></strong></td>
+<td>"<span class="arithmatex">\(\mathcal H_0\)</span> = nothing is there", "<span class="arithmatex">\(\mathcal H_1\)</span> = the <abbr title="a number that changes over time, e.g. a voltage or a measurement per second.">signal</abbr>/event is there" (Part 4)</td>
+</tr>
+<tr>
+<td><strong><span class="arithmatex">\(P_{FA}\)</span> / <span class="arithmatex">\(P_D\)</span></strong></td>
+<td>probability of false alarm / probability of detection (Part 4)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="where-to-go-next">Where to go next<a class="headerlink" href="#where-to-go-next" title="Permanent link">#</a></h2>
+<ul>
+<li>Doing <strong>Part 3</strong> (start with <a href="p3-windows.html">3.1 Signals, windows, zero padding</a>): sections 0.1, 0.2, 0.4, 0.5 of this page are everything you need.</li>
+<li>Doing <strong>Part 2</strong> (estimation) or <strong>Part 4</strong> (detection): section 0.6 (probability from zero), then 0.4 (derivatives + logs → <a href="toolbox.html#2-logs-and-exponentials">Toolbox</a>).</li>
+<li>Doing <strong>Part 1</strong> (probability): section 0.6, then <a href="p1-bayes.html">1.1 Bayes</a>.</li>
+<li>Doing <strong>3.2 – 3.4</strong>: section 0.6 (<abbr title="r[l] = E[x[n]x[n−l]]: how related a random signal is to itself l steps later.">autocorrelation</abbr>, <abbr title="power spectral density: how a random signal's power is spread over frequency.">PSD</abbr>) first.</li>
+<li>Any word you do not know: the word book 0.7.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="patterns.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: The exam, decoded">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                The exam, decoded
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="toolbox.html" class="md-footer__link md-footer__link--next" aria-label="Next: Toolbox">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Toolbox
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.footer", "navigation.tracking", "navigation.instant", "navigation.instant.progress", "toc.follow", "content.tooltips"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js?v=1792856532"></script>
+      
+        <script src="javascripts/katex.js?v=1792856532"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="javascripts/quiz.js?v=1792856532"></script>
+      
+        <script src="javascripts/ask.js?v=1792856532"></script>
+      
+        <script src="javascripts/video.js?v=1792856532"></script>
+      
+        <script src="javascripts/layout.js?v=1792856532"></script>
+      
+        <script src="javascripts/keypoints.js?v=1792856532"></script>
+      
+        <script src="javascripts/progress.js?v=1792856532"></script>
+      
+        <script src="javascripts/widgets.js?v=1792856532"></script>
+      
+        <script src="javascripts/navsections.js?v=1792856532"></script>
+      
+    
+  </body>
+</html>

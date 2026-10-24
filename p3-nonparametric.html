@@ -1,0 +1,3038 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Every 5CTA0 Statistical Signal Processing exam question (2019–2026), solved step by step, organised by the patterns that keep coming back.">
+      
+      
+      
+        <link rel="canonical" href="https://dkealvaro.github.io/5cta0-exam-guide/p3-nonparametric.html">
+      
+      
+        <link rel="prev" href="p3-windows.html">
+      
+      
+        <link rel="next" href="p3-autocorr.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>3.2 Non-parametric estimators - 5CTA0 · Pass the exam</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css?v=1792856532">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css?v=1792856532">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+4:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Source Serif 4";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0.16.11/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap">
+    
+      <link rel="stylesheet" href="stylesheets/extra.css?v=1792856532">
+    
+      <link rel="stylesheet" href="stylesheets/ask.css?v=1792856532">
+    
+      <link rel="stylesheet" href="stylesheets/layout.css?v=1792856532">
+    
+      <link rel="stylesheet" href="stylesheets/keypoints.css?v=1792856532">
+    
+      <link rel="stylesheet" href="stylesheets/widgets.css?v=1792856532">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#32-non-parametric-estimators-periodogram-correlogram-bartlett-welch-blackmantukey" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-header__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            5CTA0 · Pass the exam
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3.2 Non-parametric estimators
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-nav__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    5CTA0 · Pass the exam
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New · Exam course
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    New · Exam course
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="podcast.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Podcast (watch first)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 1 · Probability (1.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 1 · Probability (1.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes word problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-joint.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-wss.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Stationary and ergodic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-factor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-map.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 MAP with a prior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Least-squares line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Theory questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-corr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Correlogram, pick the plot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-arma.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 AR and MA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Periodogram, Welch, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Likelihood ratio test
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Priors, costs, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exams.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mock exams with answers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cheatsheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 cheat sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Old · Long guide (deep dive)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Old · Long guide (deep dive)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="patterns.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The exam, decoded
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p0-foundations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 0 · From zero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="toolbox.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toolbox
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes & total probability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-rv.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Random variables & joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-processes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Random processes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-factorisation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-crlb.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 CRLB & Fisher information
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Bayesian estimation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Least squares
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-windows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Signals, windows, zero padding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 Non-parametric estimators
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="p3-nonparametric.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 Non-parametric estimators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-problem-guessing-a-psd-from-one-recording" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 · The problem: guessing a PSD from one recording
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 · The problem: guessing a PSD from one recording">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-what-we-want-in-plain-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 What we want, in plain words
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-two-ways-a-guess-can-be-bad-bias-and-variance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Two ways a guess can be bad: bias and variance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-where-the-bias-comes-from" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Where the bias comes from
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-the-two-raw-estimators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 · The two raw estimators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 · The two raw estimators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-periodogram-direct-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Periodogram ("direct" method)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-correlogram-indirect-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Correlogram ("indirect" method)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-their-bias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Their bias
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-their-variance-the-real-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Their variance: the real problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-the-three-fixes-and-why-they-all-cost-bias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 · The three fixes, and why they all cost bias
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 · The three fixes, and why they all cost bias">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-the-one-trick-average-several-estimates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 The one trick: average several estimates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-bartlett-average-non-overlapping-segments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Bartlett: average non-overlapping segments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-welch-wosa-overlapping-windowed-segments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Welch (WOSA): overlapping, windowed segments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-blackmantukey-trust-only-the-short-lags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Blackman–Tukey: trust only the short lags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-the-table-to-memorise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 The table to memorise
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exam questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exam questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jun26-3a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        June 2026 resit · 3a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jun26-3b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        June 2026 resit · 3b
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr25-3b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2025 exam · 3b
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr25-3c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2025 exam · 3c
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr24-3a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2024 exam · 3a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nov22-3a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2022 exam · 3a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan20-1b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2020 retake · 1b
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nov19-1c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2019 exam · 1c
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan19-1c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2019 retake · 1c
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-autocorr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Autocorrelation of ARMA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-chain.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.4 Correlogram → AR → MA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-basics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Errors, ROC, Neyman–Pearson
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Likelihood ratio tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.3 Bayesian detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-problem-guessing-a-psd-from-one-recording" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 · The problem: guessing a PSD from one recording
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 · The problem: guessing a PSD from one recording">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-what-we-want-in-plain-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 What we want, in plain words
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-two-ways-a-guess-can-be-bad-bias-and-variance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Two ways a guess can be bad: bias and variance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-where-the-bias-comes-from" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Where the bias comes from
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-the-two-raw-estimators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 · The two raw estimators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 · The two raw estimators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-periodogram-direct-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Periodogram ("direct" method)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-correlogram-indirect-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Correlogram ("indirect" method)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-their-bias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Their bias
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-their-variance-the-real-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Their variance: the real problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-the-three-fixes-and-why-they-all-cost-bias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 · The three fixes, and why they all cost bias
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 · The three fixes, and why they all cost bias">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-the-one-trick-average-several-estimates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 The one trick: average several estimates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-bartlett-average-non-overlapping-segments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Bartlett: average non-overlapping segments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-welch-wosa-overlapping-windowed-segments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Welch (WOSA): overlapping, windowed segments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-blackmantukey-trust-only-the-short-lags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Blackman–Tukey: trust only the short lags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-the-table-to-memorise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 The table to memorise
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exam questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exam questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jun26-3a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        June 2026 resit · 3a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jun26-3b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        June 2026 resit · 3b
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr25-3b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2025 exam · 3b
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr25-3c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2025 exam · 3c
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr24-3a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2024 exam · 3a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nov22-3a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2022 exam · 3a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan20-1b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2020 retake · 1b
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nov19-1c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2019 exam · 1c
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan19-1c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2019 retake · 1c
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="32-non-parametric-estimators-periodogram-correlogram-bartlett-welch-blackmantukey">3.2 Non-parametric estimators: <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr>, <abbr title="the FT of the estimated autocorrelation; equal to the periodogram when the biased 1/N estimate is used.">correlogram</abbr>, <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr>, <abbr title="average of the periodograms of overlapping, windowed segments (also called WOSA).">Welch</abbr>, <abbr title="correlogram with a short window on the autocorrelation lags; consistent.">Blackman–Tukey</abbr><a class="headerlink" href="#32-non-parametric-estimators-periodogram-correlogram-bartlett-welch-blackmantukey" title="Permanent link">#</a></h1>
+<p class="lead">Every exam has at least one theory question here, usually a multiple choice or a "match the statement to the method" table. It all comes down to one idea and one table. The idea: <b>you only have a short noisy recording, so every spectrum you compute is a <i>guess</i></b>, and a guess can be wrong in two different ways (<i>bias</i> and <i>variance</i>). The table: what each method does to those two things. This page builds both from nothing.</p>
+
+<div class="admonition need">
+<p class="admonition-title">Before this page</p>
+<ul>
+<li>What a signal and a sample are, <span class="arithmatex">\(x[n]\)</span> (<a href="p0-foundations.html#01-what-a-signal-is">0.1</a>)</li>
+<li>What a spectrum, the FTD, the DFT and a bin are (<a href="p0-foundations.html#05-spectrum-what-a-fourier-transform-tells-you">0.5</a>)</li>
+<li>Random variable, mean, <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> (<a href="p0-foundations.html#06-probability-from-zero">0.6</a>)</li>
+<li>Random signal, autocorrelation <span class="arithmatex">\(r[l]\)</span>, PSD (<a href="p0-foundations.html#random-signals-stationarity-and-autocorrelation">0.6</a>)</li>
+<li>Windows, main lobe, side lobes, resolution, leakage (<a href="p3-windows.html#2-windows-what-cutting-the-signal-to-n-samples-does">3.1</a>)</li>
+</ul>
+<p>If you read only one thing: <strong>the PSD says how the power of a <em>random</em> signal is spread over frequencies. You never see the true PSD; you see one noisy recording and compute an <em>estimate</em>.</strong></p>
+</div>
+<hr />
+<h2 id="1-the-problem-guessing-a-psd-from-one-recording">1 · The problem: guessing a PSD from one recording<a class="headerlink" href="#1-the-problem-guessing-a-psd-from-one-recording" title="Permanent link">#</a></h2>
+<h3 id="11-what-we-want-in-plain-words">1.1 What we want, in plain words<a class="headerlink" href="#11-what-we-want-in-plain-words" title="Permanent link">#</a></h3>
+<p>A <strong>random signal</strong> (a microphone in a noisy room, say) is different every time you record it. What stays the same is its <em>statistics</em>, and one of them is the <strong>PSD</strong> <span class="arithmatex">\(P(e^{j\theta})\)</span>: "how much power sits at each frequency". It is defined from the autocorrelation (<a href="p0-foundations.html#random-signals-stationarity-and-autocorrelation">0.6</a>):</p>
+<div class="key">
+<div class="arithmatex">\[P(e^{j\theta})=\sum_{l=-\infty}^{\infty} r[l]\,e^{-jl\theta}.\]</div>
+</div>
+<p>(<span class="arithmatex">\(r[l]\)</span> = how related the signal is to itself <span class="arithmatex">\(l\)</span> steps later; <span class="arithmatex">\(\theta\)</span> = frequency in radians per sample; the sum over <strong>all</strong> lags needs infinitely many numbers.)</p>
+<p>You have <span class="arithmatex">\(N\)</span> samples. So you can neither know <span class="arithmatex">\(r[l]\)</span> exactly nor sum to infinity. You must build an <strong><abbr title="a recipe that turns the recorded samples into a guess of an unknown quantity.">estimator</abbr></strong>: a recipe that turns your <span class="arithmatex">\(N\)</span> samples into a guess <span class="arithmatex">\(\hat P(e^{j\theta})\)</span> (the hat means "estimate of").</p>
+<h3 id="12-two-ways-a-guess-can-be-bad-bias-and-variance">1.2 Two ways a guess can be bad: <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr> and <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr><a class="headerlink" href="#12-two-ways-a-guess-can-be-bad-bias-and-variance" title="Permanent link">#</a></h3>
+<p>Think of throwing darts at a bullseye. The bullseye is the true PSD value at one frequency; every throw is one estimate from one fresh recording.</p>
+<div class="key">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Plain meaning</th>
+<th>In darts</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bias</strong></td>
+<td>wrong <strong>on average</strong>: systematic error</td>
+<td>all darts land clustered, but off-centre</td>
+<td><span class="arithmatex">\(\text{bias}=\mathbb E[\hat P]-P\)</span></td>
+</tr>
+<tr>
+<td><strong>Variance</strong></td>
+<td>wrong <strong>by luck</strong>: jumps around from recording to recording</td>
+<td>darts scattered all around</td>
+<td><span class="arithmatex">\(\operatorname{Var}[\hat P]=\mathbb E\big[(\hat P-\mathbb E[\hat P])^2\big]\)</span></td>
+</tr>
+<tr>
+<td><strong>Consistent</strong></td>
+<td>gets perfect as <span class="arithmatex">\(N\to\infty\)</span> (<abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr> → 0 <strong>and</strong> <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> → 0)</td>
+<td>with enough data, every dart hits the centre</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Asymptotically unbiased</strong></td>
+<td><abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr> → 0 as <span class="arithmatex">\(N\to\infty\)</span> (nothing said about <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr>)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure>
+<p><img alt="Bias and variance as darts" src="img/gen/p3_darts.svg" /></p>
+<figcaption>Each blue × is the estimate from one recording; the red star is their average. <b>Bias</b> = how far the star is from the centre. <b>Variance</b> = how scattered the crosses are. The raw periodogram behaves like the second board (right on average, wildly scattered); the fixes in section 3 move it towards the third (calm, slightly off).</figcaption>
+</figure>
+<div class="admonition example">
+<p class="admonition-title">Tiny numbers</p>
+<p>True value <span class="arithmatex">\(P=4\)</span>. Five recordings give estimates <span class="arithmatex">\(3.1,\ 4.9,\ 1.2,\ 7.0,\ 3.8\)</span>. Their average is <span class="arithmatex">\(20/5=4.0\)</span>: no <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr>. But they spread between 1.2 and 7.0: huge <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr>. Another method gives <span class="arithmatex">\(5.1,\ 5.0,\ 4.9,\ 5.0,\ 5.0\)</span>: tiny <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> but average 5.0, a <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr> of <span class="arithmatex">\(+1\)</span>. Averaging trades one for the other, and that is the whole story of this page.</p>
+</div>
+<h3 id="13-where-the-bias-comes-from">1.3 Where the <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr> comes from<a class="headerlink" href="#13-where-the-bias-comes-from" title="Permanent link">#</a></h3>
+<p>Any estimate uses only <span class="arithmatex">\(N\)</span> samples, which is the same as looking at the signal through a <strong>window</strong> (<a href="p3-windows.html#2-windows-what-cutting-the-signal-to-n-samples-does">3.1 §2</a>). <mark>A window smears the spectrum, so on average you see <em>the true PSD smeared</em>. Smearing is the <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr></mark>; it costs resolution and gives leakage. Longer <span class="arithmatex">\(N\)</span> → thinner main lobe → smaller <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr>.</p>
+<hr />
+<h2 id="2-the-two-raw-estimators">2 · The two raw estimators<a class="headerlink" href="#2-the-two-raw-estimators" title="Permanent link">#</a></h2>
+<h3 id="21-periodogram-direct-method">2.1 Periodogram ("direct" method)<a class="headerlink" href="#21-periodogram-direct-method" title="Permanent link">#</a></h3>
+<p><strong>Plain words.</strong> Take the DFT of your <span class="arithmatex">\(N\)</span> samples, take the squared size of every bin, and divide by <span class="arithmatex">\(N\)</span>.</p>
+<div class="key">
+<div class="arithmatex">\[\hat P_{per}(e^{j\theta})=\frac1N\Big|\sum_{n=0}^{N-1}x[n]\,e^{-jn\theta}\Big|^2 .\]</div>
+</div>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(N\)</span></td>
+<td>number of samples you recorded</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\sum_{n=0}^{N-1}x[n]e^{-jn\theta}\)</span></td>
+<td>the FTD of your <span class="arithmatex">\(N\)</span> samples = the DFT when <span class="arithmatex">\(\theta=2\pi k/N\)</span> (<a href="p0-foundations.html#05-spectrum-what-a-fourier-transform-tells-you">0.5</a>): "how much of frequency <span class="arithmatex">\(\theta\)</span> is present"</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\lvert\cdot\rvert^2\)</span></td>
+<td>squared size: a <strong>power-like</strong> quantity, as in <a href="p3-windows.html#1-energy-vs-power-which-one-is-this-signal">3.1 §1</a> (energy = squares added)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\frac1N\)</span></td>
+<td>energy over <span class="arithmatex">\(N\)</span> samples divided by <span class="arithmatex">\(N\)</span> = <strong>average power</strong>; without it the estimate would grow with the record length</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition example">
+<p class="admonition-title">Tiny example: <span class="arithmatex">\(x=[1,1,1,1]\)</span> (<span class="arithmatex">\(N=4\)</span>)</p>
+<p>At <span class="arithmatex">\(\theta=0\)</span> the DFT is <span class="arithmatex">\(1+1+1+1=4\)</span>, so <span class="arithmatex">\(\hat P(0)=\frac{4^2}{4}=4\)</span>. At the other three bins (<span class="arithmatex">\(\theta=\frac{2\pi}{4},\pi,\frac{3\pi}{2}\)</span>) the DFT is exactly 0. Sanity check: the average of the <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> over the 4 bins is <span class="arithmatex">\(\frac{4+0+0+0}{4}=1\)</span>, which is exactly the average power of the data, <span class="arithmatex">\(\frac{1^2+1^2+1^2+1^2}{4}=1\)</span>. (That is Parseval: <em>the <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> redistributes the same power over frequencies.</em>)</p>
+</div>
+<h3 id="22-correlogram-indirect-method">2.2 Correlogram ("indirect" method)<a class="headerlink" href="#22-correlogram-indirect-method" title="Permanent link">#</a></h3>
+<p><strong>Plain words.</strong> Estimate the autocorrelation <span class="arithmatex">\(r[l]\)</span> from the data, then plug it into the PSD definition (cut at the lags you can estimate).</p>
+<p>First the estimate of <span class="arithmatex">\(r[l]\)</span> (the usual "biased" one):</p>
+<div class="key">
+<div class="arithmatex">\[\hat r[l]=\frac1N\sum_{n=l}^{N-1}x[n]\,x[n-l],\qquad l=0,\dots,N-1 \quad(\hat r[-l]=\hat r[l]).\]</div>
+</div>
+<p>(<em>Meaning:</em> line the signal up against a copy of itself shifted by <span class="arithmatex">\(l\)</span>, multiply sample by sample, add, divide by <span class="arithmatex">\(N\)</span>. Only <span class="arithmatex">\(N-l\)</span> products exist, but we still divide by <span class="arithmatex">\(N\)</span>.) Then</p>
+<div class="arithmatex">\[\hat P_{cor}(e^{j\theta})=\sum_{l=-(N-1)}^{N-1}\hat r[l]\,e^{-jl\theta}=\hat r[0]+2\sum_{l=1}^{N-1}\hat r[l]\cos(l\theta).\]</div>
+<div class="admonition example">
+<p class="admonition-title">Tiny example: <span class="arithmatex">\(x=[1,2,3]\)</span> (<span class="arithmatex">\(N=3\)</span>)</p>
+<p><span class="arithmatex">\(\hat r[0]=\frac{1+4+9}{3}=\frac{14}{3}\)</span>, <span class="arithmatex">\(\ \hat r[1]=\frac{2\cdot1+3\cdot2}{3}=\frac83\)</span>, <span class="arithmatex">\(\ \hat r[2]=\frac{3\cdot1}{3}=1\)</span>.
+At <span class="arithmatex">\(\theta=0\)</span> (all cosines equal 1): <span class="arithmatex">\(\hat P_{cor}(0)=\frac{14}3+2\cdot\frac83+2\cdot1=\frac{14+16+6}{3}=12\)</span>.
+Periodogram at <span class="arithmatex">\(\theta=0\)</span>: <span class="arithmatex">\(\frac{(1+2+3)^2}{3}=\frac{36}{3}=12\)</span>. <strong>Same number.</strong></p>
+</div>
+<figure class="anim">
+<video class="anim" src="video/slide_corr.mp4" poster="video/slide_corr.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation: the $\hat r[l]$ of this example, step by step.</b> The orange copy of $x$ slides $l$ boxes to the right; the boxes that overlap are multiplied, the products added and divided by $N=3$. Each result becomes a stem at $+l$ and $-l$. At $l=2$ only one product is left, which is why long lags are the least reliable (and why Blackman–Tukey drops them, section 3.4).</figcaption>
+</figure>
+
+<p>That is not a coincidence: <mark>with the <span class="arithmatex">\(\frac1N\)</span> ("biased") autocorrelation estimate, <strong>the <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> and the <abbr title="the FT of the estimated autocorrelation; equal to the periodogram when the biased 1/N estimate is used.">correlogram</abbr> are the same <abbr title="a recipe that turns the recorded samples into a guess of an unknown quantity.">estimator</abbr></strong></mark> (just computed in a different order). <mark>If you use the "unbiased" version (divide by <span class="arithmatex">\(N-l\)</span>) the equivalence breaks, and the estimate can even go negative</mark>, which a power can never be.</p>
+<h3 id="23-their-bias">2.3 Their <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr><a class="headerlink" href="#23-their-bias" title="Permanent link">#</a></h3>
+<p>Why is <span class="arithmatex">\(\hat r[l]\)</span> called "biased"? Its average is <mark><span class="arithmatex">\(\mathbb E[\hat r[l]]=\frac{N-l}{N}\,r[l]\)</span></mark> (there are <span class="arithmatex">\(N-l\)</span> products, each with average <span class="arithmatex">\(r[l]\)</span>, divided by <span class="arithmatex">\(N\)</span>). So every lag is shrunk by the factor <span class="arithmatex">\(\left(1-\frac{l}{N}\right)\)</span>: a <strong>triangle</strong> (the <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr> window) multiplying <span class="arithmatex">\(r[l]\)</span>.</p>
+<p><em>Example:</em> <span class="arithmatex">\(N=100\)</span> and lag <span class="arithmatex">\(l=50\)</span>: factor <span class="arithmatex">\(1-\frac{50}{100}=0.5\)</span>, the estimate sees only half of the true correlation. A multiplication by a triangle in lag = a <strong>smearing by the triangle's spectrum</strong> in frequency (the rule from <a href="p3-windows.html#22-what-multiplication-does-to-the-spectrum">3.1 §2.2</a>). So</p>
+<div class="arithmatex">\[\mathbb E[\hat P]=P\ \otimes\ W_{\text{triangle}}\quad(\text{true PSD smeared}),\]</div>
+<p>giving some loss of resolution and some leakage, and <strong>both vanish as <span class="arithmatex">\(N\to\infty\)</span></strong> (the triangle becomes a thin spike). <mark>Therefore the raw estimators are <strong><abbr title="the bias tends to 0 as N grows (variance not mentioned).">asymptotically unbiased</abbr></strong>.</mark></p>
+<figure>
+<p><img alt="The biased autocorrelation estimate shrinks long lags" src="img/gen/p3_rhat_bias.svg" /></p>
+<figcaption>Grey: a true autocorrelation. Blue: what the $\frac1N$ estimate gives on average. Every lag is multiplied by the orange triangle $1-\frac{l}{N}$, so lag 10 of 20 keeps only half its value and the last lag almost nothing. For $N=1000$ the triangle would be almost flat over the first lags, which is why this bias disappears as $N$ grows.</figcaption>
+</figure>
+<h3 id="24-their-variance-the-real-problem">2.4 Their <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr>: the real problem<a class="headerlink" href="#24-their-variance-the-real-problem" title="Permanent link">#</a></h3>
+<div class="key">
+<div class="arithmatex">\[\operatorname{Var}\big[\hat P(e^{j\theta})\big]\approx P^2(e^{j\theta}).\]</div>
+</div>
+<p><strong>Why, in words.</strong> At each frequency the <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> is the squared size of <em>one single random number</em> (that DFT bin). A single random number does not average anything: its typical size is about its mean, so the spread of the estimate is about as big as the estimate itself. <mark><strong>Doubling <span class="arithmatex">\(N\)</span> gives you twice as many bins, not better bins.</strong></mark> Each bin is still one random draw.</p>
+<p><em>Example:</em> if the true <span class="arithmatex">\(P=4\)</span>, the estimate has <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> <span class="arithmatex">\(\approx16\)</span>, a standard deviation of about 4: errors as large as the value being estimated, <strong>for any <span class="arithmatex">\(N\)</span></strong>.</p>
+<p><mark>So the raw estimators are <strong>not <abbr title="bias and variance both tend to 0 as the record length N grows.">consistent</abbr></strong>: <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr> → 0 but <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> does <strong>not</strong> → 0.</mark> All the other methods in this page exist to fix exactly this.</p>
+<figure>
+<p><img alt="Periodogram of white noise for three record lengths" src="img/gen/p3_periodogram_N.svg" /></p>
+<figcaption>Periodograms of white noise (true PSD = 1, red) from 64, 256 and 1024 samples. More samples give more bins (more points across), but every bin still jumps between about 0 and 5: the spread around the true value does not shrink. That is "variance $\approx P^2$ for any $N$".</figcaption>
+</figure>
+<figure class="anim">
+<video class="anim" src="video/periodogram_average.mp4" poster="video/periodogram_average.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation: the problem and the fix.</b> First $N$ grows from 64 to 4096: the periodogram gets denser, not calmer. Then the same 4096 samples are cut into $K=4,16,64$ pieces and the pieces' periodograms are averaged (Bartlett): the curve settles onto the true value 1. The price, a coarser frequency resolution $2\pi/M$, is shown in the figures of section 3.</figcaption>
+</figure>
+
+<hr />
+<h2 id="3-the-three-fixes-and-why-they-all-cost-bias">3 · The three fixes, and why they all cost <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr><a class="headerlink" href="#3-the-three-fixes-and-why-they-all-cost-bias" title="Permanent link">#</a></h2>
+<h3 id="31-the-one-trick-average-several-estimates">3.1 The one trick: average several estimates<a class="headerlink" href="#31-the-one-trick-average-several-estimates" title="Permanent link">#</a></h3>
+<p><mark>If you have <span class="arithmatex">\(K\)</span> <strong>independent</strong> estimates, each with <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> <span class="arithmatex">\(V\)</span>, their average has <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> <span class="arithmatex">\(V/K\)</span>.</mark> (Variances of independent things add, <span class="arithmatex">\(K\cdot V\)</span>; dividing by <span class="arithmatex">\(K\)</span> divides the <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> by <span class="arithmatex">\(K^2\)</span>; net <span class="arithmatex">\(V/K\)</span>, from the rules in <a href="p0-foundations.html#expectation-variance">0.6</a>.) Averaging <span class="arithmatex">\(K=9\)</span> estimates cuts the <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> to <span class="arithmatex">\(\frac19\approx0.11\)</span> of the original.</p>
+<p>Where do independent estimates come from, when you have a single recording? <strong>Cut the recording into segments</strong> and compute one <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> per segment. The price: each segment is shorter (<span class="arithmatex">\(M\lt N\)</span> samples), so each <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> has a <strong>wider main lobe</strong> (resolution about <span class="arithmatex">\(2\pi/M\)</span>), i.e. <strong>more <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr></strong>. Fewer samples per estimate = blurrier estimate. Always the same trade:</p>
+<div class="admonition idea key">
+<p class="admonition-title">The trade in one line</p>
+<p><strong>More, shorter pieces</strong> → lower <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr>, higher <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr> (worse resolution). <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr>, <abbr title="average of the periodograms of overlapping, windowed segments (also called WOSA).">Welch</abbr> and <abbr title="correlogram with a short window on the autocorrelation lags; consistent.">Blackman–Tukey</abbr> are three ways of making this trade.</p>
+</div>
+<h3 id="32-bartlett-average-non-overlapping-segments">3.2 <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr>: average non-overlapping segments<a class="headerlink" href="#32-bartlett-average-non-overlapping-segments" title="Permanent link">#</a></h3>
+<p>Cut the <span class="arithmatex">\(N\)</span> samples into <span class="arithmatex">\(K\)</span> <strong>non-overlapping</strong> pieces of length <span class="arithmatex">\(M=N/K\)</span>, take the <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> of each, average. Since the pieces do not share samples, they are (nearly) independent, so</p>
+<div class="arithmatex">\[\operatorname{Var}\approx\frac{P^2}{K}\qquad(\text{proportional to }1/K),\qquad\text{resolution}\approx\frac{2\pi}{M}\ (\text{worse}).\]</div>
+<figure>
+<p><img alt="Bartlett averaging of segment periodograms" src="img/gen/p3_bartlett.svg" /></p>
+<figcaption>A signal with a peak near $\theta=1$ (true PSD in red, dB scale). Grey: the periodograms of the 8 separate pieces, each one noisy in its own way. Blue: their average. The noise largely cancels; the price is visible at the peak, which comes out lower and wider because each piece has only 128 samples.</figcaption>
+</figure>
+<h3 id="33-welch-wosa-overlapping-windowed-segments">3.3 <abbr title="average of the periodograms of overlapping, windowed segments (also called WOSA).">Welch</abbr> (<abbr title="Weighted Overlapped Segment Averaging = Welch's method.">WOSA</abbr>): overlapping, windowed segments<a class="headerlink" href="#33-welch-wosa-overlapping-windowed-segments" title="Permanent link">#</a></h3>
+<p>Same idea, but the pieces <strong>overlap</strong> (typically 50 % to 75 %) and each is multiplied by a smooth <strong>window</strong> (Hann, Hamming…) before its <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr>. (<abbr title="Weighted Overlapped Segment Averaging = Welch's method.">WOSA</abbr> = <em>Weighted Overlapped Segment Averaging</em>.)</p>
+<ul>
+<li>Overlap lets you fit <strong>more</strong> segments, or <strong>longer</strong> ones, from the same data → less <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr> than <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr> for the same <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> reduction.</li>
+<li>But overlapping segments <strong>share samples</strong>, so they are correlated, so averaging them helps <strong>less than <span class="arithmatex">\(1/K\)</span></strong>. The <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> still drops compared to the raw <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr>, and is <em>larger than <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr>'s with the same <span class="arithmatex">\(K\)</span></em>.</li>
+</ul>
+<p><strong>Counting segments.</strong> Segment length <span class="arithmatex">\(L\)</span>, <abbr title="how many samples the start of the next segment moves; D = L(1 − overlap).">hop</abbr> <span class="arithmatex">\(D\)</span> (= how many samples you move forward each time = <span class="arithmatex">\(L\times(1-\text{overlap})\)</span>), record length <span class="arithmatex">\(N\)</span>. Segments start at <span class="arithmatex">\(0,\ D,\ 2D,\dots\)</span> and the last one must still fit: start <span class="arithmatex">\(\le N-L\)</span>. So</p>
+<div class="key">
+<div class="arithmatex">\[K=\frac{N-L}{D}+1\qquad(\text{round the fraction down}).\]</div>
+</div>
+<figure>
+<p><img alt="Welch segments for N=1000, L=200, 50% overlap" src="img/gen/p3_welch.svg" /></p>
+<figcaption>June 2026 3b: segments of 200 samples that start every 100 samples. The last one starts at 800 and ends at 999, so there are 9.</figcaption>
+</figure>
+<h3 id="34-blackmantukey-trust-only-the-short-lags">3.4 <abbr title="correlogram with a short window on the autocorrelation lags; consistent.">Blackman–Tukey</abbr>: trust only the short lags<a class="headerlink" href="#34-blackmantukey-trust-only-the-short-lags" title="Permanent link">#</a></h3>
+<p>The estimates <span class="arithmatex">\(\hat r[l]\)</span> at <strong>large lags</strong> are built from very few products (<span class="arithmatex">\(N-l\)</span> of them), so they are the noisiest; yet the <abbr title="the FT of the estimated autocorrelation; equal to the periodogram when the biased 1/N estimate is used.">correlogram</abbr> adds them all in. <abbr title="correlogram with a short window on the autocorrelation lags; consistent.">Blackman–Tukey</abbr> <strong>multiplies <span class="arithmatex">\(\hat r[l]\)</span> by a <abbr title="a window applied to the autocorrelation lags r[l] (not to the data).">lag window</abbr> <span class="arithmatex">\(w[l]\)</span></strong> that is non-zero only for <span class="arithmatex">\(|l|\lt M\)</span> with <span class="arithmatex">\(M\ll N\)</span>, <em>then</em> takes the FT. Throwing away the noisy long lags kills the <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr>, so the <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> is</p>
+<div class="arithmatex">\[\operatorname{Var}\approx\frac{P^2}{N}\sum_l w^2[l]\ \to\ 0\ \text{as }N\to\infty\text{ (keeping }M\text{ fixed or growing slowly)},\]</div>
+<p>and the <abbr title="a recipe that turns the recorded samples into a guess of an unknown quantity.">estimator</abbr> is <strong><abbr title="bias and variance both tend to 0 as the record length N grows.">consistent</abbr></strong>. Cost: multiplying by a short <span class="arithmatex">\(w[l]\)</span> in lag = smearing by a wide spectrum in frequency = <strong>more <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr></strong> (the shorter <span class="arithmatex">\(M\)</span>, the more).</p>
+<figure>
+<p><img alt="Blackman-Tukey lag window" src="img/gen/p3_bt.svg" /></p>
+<figcaption>Left: the estimated autocorrelation of 256 samples (grey). Beyond the first few lags it is mostly noise, because each value there averages only a few products. The lag window (orange) keeps the first 20 lags and fades them out; blue is what survives. Right: transforming all lags gives the jumpy periodogram (grey); transforming only the kept ones gives the smooth blue curve, slightly blurred around the peak.</figcaption>
+</figure>
+<h3 id="35-the-table-to-memorise">3.5 The table to memorise<a class="headerlink" href="#35-the-table-to-memorise" title="Permanent link">#</a></h3>
+<div class="key">
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>What it does</th>
+<th>Bias</th>
+<th>Variance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Periodogram / <abbr title="the FT of the estimated autocorrelation; equal to the periodogram when the biased 1/N estimate is used.">correlogram</abbr></strong> (raw)</td>
+<td><span class="arithmatex">\(\frac1N\lvert\text{DFT}\rvert^2\)</span> / FT of <span class="arithmatex">\(\hat r[l]\)</span></td>
+<td><abbr title="the bias tends to 0 as N grows (variance not mentioned).">asymptotically unbiased</abbr>; resolution ≈ <span class="arithmatex">\(2\pi/N\)</span></td>
+<td><span class="arithmatex">\(\approx P^2\)</span>, <strong>not <abbr title="bias and variance both tend to 0 as the record length N grows.">consistent</abbr></strong></td>
+</tr>
+<tr>
+<td><strong><abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr></strong></td>
+<td><span class="arithmatex">\(K\)</span> <strong>non-overlapping</strong> segments (<span class="arithmatex">\(M=N/K\)</span>), average the periodograms</td>
+<td><strong>increases</strong> (resolution ≈ <span class="arithmatex">\(2\pi/M\)</span>)</td>
+<td><span class="arithmatex">\(\approx P^2/K\)</span></td>
+</tr>
+<tr>
+<td><strong><abbr title="average of the periodograms of overlapping, windowed segments (also called WOSA).">Welch</abbr> / <abbr title="Weighted Overlapped Segment Averaging = Welch's method.">WOSA</abbr></strong></td>
+<td><strong>overlapping</strong> (50–75 %), <strong>windowed</strong> segments, average</td>
+<td>increases <strong>less</strong> than <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr></td>
+<td>decreases, but <strong>not</strong> as <span class="arithmatex">\(1/K\)</span> (correlated segments)</td>
+</tr>
+<tr>
+<td><strong><abbr title="correlogram with a short window on the autocorrelation lags; consistent.">Blackman–Tukey</abbr></strong></td>
+<td><abbr title="a window applied to the autocorrelation lags r[l] (not to the data).">lag window</abbr> of length <span class="arithmatex">\(2M-1\ll N\)</span> on <span class="arithmatex">\(\hat r[l]\)</span>, then FT</td>
+<td>increases as <span class="arithmatex">\(M\)</span> shrinks</td>
+<td><span class="arithmatex">\(\approx\frac{P^2}{N}\sum w^2\)</span> → 0: <strong><abbr title="bias and variance both tend to 0 as the record length N grows.">consistent</abbr></strong></td>
+</tr>
+<tr>
+<td><strong>Parametric (AR/MA/ARMA)</strong></td>
+<td>fit a signal model, use its formula</td>
+<td>small if the model fits</td>
+<td>low; see <a href="p3-chain.html">3.4</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure>
+<p><img alt="The four estimators on the same data" src="img/gen/p3_methods.svg" /></p>
+<figcaption>The table as one picture: the same 512 samples, four estimators, true PSD dashed red. Reading order: raw periodogram (right shape, huge jumps) → Bartlett (calm, peak blunted) → Welch (calm, peak sharper than Bartlett for similar calm) → Blackman–Tukey with few lags (calmest, most smeared). Down the list, variance goes down and bias goes up.</figcaption>
+</figure>
+<div class="admonition trap key">
+<p class="admonition-title">Phrases that decide multiple-choice questions</p>
+<ul>
+<li>"Zero padding" never reduces <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr>; <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr> averages segments (<a href="p3-windows.html#dft-ftd-and-zero-padding">3.1 §3</a>).</li>
+<li>"Variance proportional to <span class="arithmatex">\(1/K\)</span>" is <strong><abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr></strong> (independent segments), not <abbr title="average of the periodograms of overlapping, windowed segments (also called WOSA).">Welch</abbr>.</li>
+<li>The raw <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr>'s problem is <strong><abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr></strong> (<span class="arithmatex">\(\approx P^2\)</span>), not <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr>; <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr> is a windowing effect that hits <em>every</em> signal, random or not.</li>
+<li><abbr title="average of the periodograms of overlapping, windowed segments (also called WOSA).">Welch</abbr>'s <span class="arithmatex">\(K\)</span> with 50 % overlap is <strong>not</strong> <span class="arithmatex">\(N/L\)</span>: it is <span class="arithmatex">\(2N/L-1\)</span>.</li>
+</ul>
+</div>
+<hr />
+<h2 id="exam-questions">Exam questions<a class="headerlink" href="#exam-questions" title="Permanent link">#</a></h2>
+<h3 id="jun26-3a">June 2026 resit · 3a<a class="headerlink" href="#jun26-3a" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Resit Q4, June 2026 · 3a · 0.25 p</p>
+<p>Which of the following statements regarding the standard <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> as an <abbr title="a recipe that turns the recorded samples into a guess of an unknown quantity.">estimator</abbr> of the Power Spectral Density (PSD) is TRUE?</p>
+<ul>
+<li>a) Increasing the length of the data window on which the <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> is calculated decreases spectral leakage</li>
+<li>b) The <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> is not a <abbr title="bias and variance both tend to 0 as the record length N grows.">consistent</abbr> <abbr title="a recipe that turns the recorded samples into a guess of an unknown quantity.">estimator</abbr> because its <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> does not tend to zero as the data record length <span class="arithmatex">\(N \rightarrow \infty\)</span>.</li>
+<li>c) Applying a data window (e.g., a Hamming window) improves the frequency resolution (main lobe width) of the <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr>.</li>
+<li>d) <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr>'s method decreases the <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> of the <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> by zero-padding the original sequence.</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> Pick the one true statement about the <em>raw</em> <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr>. Check each against <a href="#24-their-variance-the-real-problem">section 2.4</a> (<abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr>) and <a href="p3-windows.html#24-what-you-can-change-and-what-it-costs">3.1 §2.4</a> (windows).</p>
+<p><strong>Step 1 — (a).</strong> A longer record narrows the main lobe (better <em>resolution</em>), but the side-lobe height of a rectangular window does not change, so <em>leakage</em> is not reduced. False.</p>
+<p><strong>Step 2 — (b).</strong> <span class="arithmatex">\(\operatorname{Var}\approx P^2\)</span> whatever <span class="arithmatex">\(N\)</span> is, so the <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> does not tend to 0, so the <abbr title="a recipe that turns the recorded samples into a guess of an unknown quantity.">estimator</abbr> is not <abbr title="bias and variance both tend to 0 as the record length N grows.">consistent</abbr>. This is exactly <a href="#24-their-variance-the-real-problem">section 2.4</a>. <strong>True.</strong></p>
+<p><strong>Step 3 — &copy;.</strong> A smooth window like Hamming <strong>widens</strong> the main lobe (worse resolution) and lowers the side lobes (less leakage). It improves leakage, not resolution. False.</p>
+<p><strong>Step 4 — (d).</strong> <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr> reduces <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> by <strong>averaging segments</strong> (<a href="#32-bartlett-average-non-overlapping-segments">3.2</a>), not by zero padding. False.</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(b)</strong></p>
+</div>
+</details>
+<h3 id="jun26-3b">June 2026 resit · 3b<a class="headerlink" href="#jun26-3b" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Resit Q4, June 2026 · 3b · 0.5 p</p>
+<p>You are given a data record of <span class="arithmatex">\(N = 1000\)</span> samples. You want to estimate the power spectral density using <abbr title="average of the periodograms of overlapping, windowed segments (also called WOSA).">Welch</abbr>'s method to reduce the <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> of your estimate. You choose a segment length of <span class="arithmatex">\(L = 200\)</span> samples and an overlap of 50%.</p>
+<p><strong>Please provide only the final answer. The workout will not be checked.</strong></p>
+<ol>
+<li>How many segments <span class="arithmatex">\(K\)</span> will be averaged? [0.25]</li>
+<li>With the simplifying assumption that the segments are statistically independent, what is the ratio of the <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> of your <abbr title="average of the periodograms of overlapping, windowed segments (also called WOSA).">Welch</abbr> estimate to the <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> of a single standard <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> of length <span class="arithmatex">\(L\)</span>? [0.25]</li>
+</ol>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> (1) How many 200-sample pieces fit if each starts halfway into the previous one. (2) By what factor does averaging that many independent estimates shrink the <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr>.</p>
+<p><strong>Symbols in this question</strong></p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(N=1000\)</span></td>
+<td>samples in the whole record</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(L=200\)</span></td>
+<td>samples in one segment</td>
+</tr>
+<tr>
+<td>overlap 50 %</td>
+<td>consecutive segments share half their samples</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(D\)</span></td>
+<td><abbr title="how many samples the start of the next segment moves; D = L(1 − overlap).">hop</abbr> = how far the start moves each time</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(K\)</span></td>
+<td>number of segments</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 1 — the <abbr title="how many samples the start of the next segment moves; D = L(1 − overlap).">hop</abbr>.</strong> 50 % of <span class="arithmatex">\(L=200\)</span> is shared, so the next segment starts <span class="arithmatex">\(D=200\cdot(1-0.5)=100\)</span> samples later.</p>
+<p><strong>Step 2 — count the segments</strong> with the formula of <a href="#33-welch-wosa-overlapping-windowed-segments">3.3</a>: <span class="arithmatex">\(K=\frac{N-L}{D}+1=\frac{1000-200}{100}+1=8+1=9\)</span>. (Check with the figure: starts at <span class="arithmatex">\(0,100,\dots,800\)</span> = 9 values; the last one ends at sample 999.)</p>
+<p><strong>Step 3 — the <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> ratio.</strong> Averaging <span class="arithmatex">\(K\)</span> independent estimates divides the <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> by <span class="arithmatex">\(K\)</span> (<a href="#31-the-one-trick-average-several-estimates">3.1</a>), so the ratio is <span class="arithmatex">\(\frac1K=\frac19\approx0.111\)</span>.</p>
+<div class="admonition trap">
+<p class="admonition-title">Not 5 segments</p>
+<p><span class="arithmatex">\(N/L=1000/200=5\)</span> is the <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr> count (no overlap). With 50 % overlap you get <span class="arithmatex">\(2\cdot5-1=9\)</span>.</p>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<ol>
+<li><span class="arithmatex">\(K=9\)</span>  2. <span class="arithmatex">\(\operatorname{Var}_{Welch}/\operatorname{Var}_{single}=1/9\approx0.11\)</span></li>
+</ol>
+</div>
+</details>
+<h3 id="apr25-3b">April 2025 exam · 3b<a class="headerlink" href="#apr25-3b" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q3, 13 April 2025 · 3b · 0.25 p</p>
+<p>Which of the following statements on spectral estimation is TRUE?</p>
+<ul>
+<li>a) The problem of <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr> in the spectral estimate affects both deterministic and stochastic signals.</li>
+<li>b) Zero-padding prior to applying the discrete Fourier transform can improve the spectral resolution of the spectral estimate, i.e. the ability to distinguish spectral peaks.</li>
+<li>c) The "raw" <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> achieves better performance in terms of <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr>, but worse in terms of <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> compared to the "raw" <abbr title="the FT of the estimated autocorrelation; equal to the periodogram when the biased 1/N estimate is used.">correlogram</abbr>.</li>
+<li>d) The type of window used to window the signal affects both the <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr> and the <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> of the spectral estimate obtained using the "raw" <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr>.</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> One true statement. Each one is a claim about where <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr> and <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> come from (<a href="#12-two-ways-a-guess-can-be-bad-bias-and-variance">section 1.2</a>, <a href="#13-where-the-bias-comes-from">1.3</a>).</p>
+<p><strong>Step 1 — (a).</strong> Bias comes from looking through a finite window, and <em>every</em> recording is windowed, deterministic or random (<a href="#13-where-the-bias-comes-from">1.3</a>). Random signals have the extra problem of <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> on top. <strong>True.</strong></p>
+<p><strong>Step 2 — (b).</strong> Zero padding only interpolates the same curve (<a href="p3-windows.html#33-why-it-does-not-improve-resolution">3.1 §3.3</a>). False.</p>
+<p><strong>Step 3 — &copy;.</strong> With the biased <span class="arithmatex">\(\hat r\)</span> the raw <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> and the raw <abbr title="the FT of the estimated autocorrelation; equal to the periodogram when the biased 1/N estimate is used.">correlogram</abbr> are the same <abbr title="a recipe that turns the recorded samples into a guess of an unknown quantity.">estimator</abbr> (<a href="#22-correlogram-indirect-method">2.2</a>, the <span class="arithmatex">\([1,2,3]\)</span> example gives 12 in both). Same <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr>, same <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr>. False.</p>
+<p><strong>Step 4 — (d).</strong> The window shape changes the main-lobe/side-lobe shape, i.e. the <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr>. The <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> of the raw <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> stays <span class="arithmatex">\(\approx P^2\)</span> (<a href="#24-their-variance-the-real-problem">2.4</a>). False.</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(a)</strong></p>
+</div>
+</details>
+<h3 id="apr25-3c">April 2025 exam · 3c<a class="headerlink" href="#apr25-3c" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q3, 13 April 2025 · 3c · 0.5 p</p>
+<p>In the table below, fill in to which power spectral density (PSD) <abbr title="a recipe that turns the recorded samples into a guess of an unknown quantity.">estimator</abbr> each statement is referring. <strong>Note: only one answer is correct for each statement.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Statement</th>
+<th>PSD-<abbr title="a recipe that turns the recorded samples into a guess of an unknown quantity.">estimator</abbr></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. PSD is estimated by dividing the total signal length in different non-overlapping segments, and averaging the periodograms obtained on each segement.</td>
+<td></td>
+</tr>
+<tr>
+<td>2. PSD is estimated by calculating the modulus squared of the N-point DFT of the random signal, and dividing by the signal length N.</td>
+<td></td>
+</tr>
+<tr>
+<td>3. PSD is estimated by using a model of the form <span class="arithmatex">\(P(e^{j\theta}) = \sigma_i^2 \left\lvert \frac{1 + \sum_q b_q e^{-jq\theta}}{1 + \sum_p a_p e^{-jp\theta}} \right\rvert^2\)</span></td>
+<td></td>
+</tr>
+<tr>
+<td>4. PSD is estimated by calculating the L-point DFT of the estimated autocorrelation function of the signal (L=number of lags), after applying a window of length M&lt;L to the autocorrelation function.</td>
+<td></td>
+</tr>
+<tr>
+<td>5. PSD is estimated by dividing the total signal length in different overlapping segments, and averaging the periodograms obtained on each segment.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> Match each description to one method. Each description contains a <strong>keyword</strong> that identifies it:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Keyword in the statement</th>
+<th>Method</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>non-overlapping</strong> segments, averaged</td>
+<td><strong><abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr></strong></td>
+<td><a href="#32-bartlett-average-non-overlapping-segments">3.2</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>modulus squared of the DFT</strong> divided by <span class="arithmatex">\(N\)</span></td>
+<td><strong>Periodogram</strong></td>
+<td>the formula of <a href="#21-periodogram-direct-method">2.1</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>a <strong>ratio of two polynomials</strong> in <span class="arithmatex">\(e^{-j\theta}\)</span> (a <em>model</em>)</td>
+<td><strong>ARMA</strong> (parametric)</td>
+<td>numerator <span class="arithmatex">\(b_q\)</span> = MA part, denominator <span class="arithmatex">\(a_p\)</span> = AR part (<a href="p3-chain.html">3.4</a>)</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>window on the autocorrelation</strong> (<span class="arithmatex">\(M\lt L\)</span>), then FT</td>
+<td><strong><abbr title="correlogram with a short window on the autocorrelation lags; consistent.">Blackman–Tukey</abbr></strong></td>
+<td><a href="#34-blackmantukey-trust-only-the-short-lags">3.4</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>overlapping</strong> segments, averaged</td>
+<td><strong><abbr title="average of the periodograms of overlapping, windowed segments (also called WOSA).">Welch</abbr> (<abbr title="Weighted Overlapped Segment Averaging = Welch's method.">WOSA</abbr>)</strong></td>
+<td><a href="#33-welch-wosa-overlapping-windowed-segments">3.3</a></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p>1 <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr> · 2 Periodogram · 3 ARMA (parametric) model · 4 <abbr title="correlogram with a short window on the autocorrelation lags; consistent.">Blackman–Tukey</abbr> · 5 <abbr title="average of the periodograms of overlapping, windowed segments (also called WOSA).">Welch</abbr> (<abbr title="Weighted Overlapped Segment Averaging = Welch's method.">WOSA</abbr>)</p>
+</div>
+</details>
+<h3 id="apr24-3a">April 2024 exam · 3a<a class="headerlink" href="#apr24-3a" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q3, April 2024 · 3a · 0.9 p</p>
+<p>Indicate which spectral estimation method(s) fit each of the following description. Multiple answer are possible, and answer can be repeated. If multiple answers are possible, please indicate them all.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Description</th>
+<th>Method(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Estimates the power spectral density by modeling the random signal as a linear random signal model.</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Divides the signal into segments, allowing overlap between the segments.</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Is a <abbr title="bias and variance both tend to 0 as the record length N grows.">consistent</abbr> <abbr title="a recipe that turns the recorded samples into a guess of an unknown quantity.">estimator</abbr> of the power spectral density.</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Estimates the power spectrum as the Fourier transform of the autocorrelation function.</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>The <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr> of the power spectral density estimate is proportional to the square of the true spectrum.</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Averages multiple <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> estimates.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> For each row, list every method it describes. No official key exists for this paper; the reasoning is from the table in <a href="#35-the-table-to-memorise">3.5</a>.</p>
+<p><strong>Step 1 — row 1.</strong> "A linear random signal model" = AR, MA, ARMA: the <strong>parametric</strong> methods.</p>
+<p><strong>Step 2 — row 2.</strong> Overlap → <strong><abbr title="average of the periodograms of overlapping, windowed segments (also called WOSA).">Welch</abbr> (<abbr title="Weighted Overlapped Segment Averaging = Welch's method.">WOSA</abbr>)</strong> only; <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr>'s segments do not overlap.</p>
+<p><strong>Step 3 — row 3.</strong> Consistent = <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> → 0. The reader calls <strong><abbr title="correlogram with a short window on the autocorrelation lags; consistent.">Blackman–Tukey</abbr></strong> <abbr title="bias and variance both tend to 0 as the record length N grows.">consistent</abbr> (<a href="#34-blackmantukey-trust-only-the-short-lags">3.4</a>). <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr> and <abbr title="average of the periodograms of overlapping, windowed segments (also called WOSA).">Welch</abbr> also have <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> → 0 if the number of segments grows with <span class="arithmatex">\(N\)</span>, so listing them is defensible. The raw <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr>/<abbr title="the FT of the estimated autocorrelation; equal to the periodogram when the biased 1/N estimate is used.">correlogram</abbr> are <strong>not</strong> <abbr title="bias and variance both tend to 0 as the record length N grows.">consistent</abbr> (<a href="#24-their-variance-the-real-problem">2.4</a>).</p>
+<p><strong>Step 4 — row 4.</strong> The FT of the autocorrelation → <strong><abbr title="the FT of the estimated autocorrelation; equal to the periodogram when the biased 1/N estimate is used.">correlogram</abbr></strong> and <strong><abbr title="correlogram with a short window on the autocorrelation lags; consistent.">Blackman–Tukey</abbr></strong> (a windowed <abbr title="the FT of the estimated autocorrelation; equal to the periodogram when the biased 1/N estimate is used.">correlogram</abbr>).</p>
+<p><strong>Step 5 — row 5.</strong> Careful: what is proportional to <span class="arithmatex">\(P^2\)</span> is the <strong><abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr></strong> of the raw <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr>/<abbr title="the FT of the estimated autocorrelation; equal to the periodogram when the biased 1/N estimate is used.">correlogram</abbr>, not the <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr>. As printed no method fits; if "<abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr>" was meant: <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> and <abbr title="the FT of the estimated autocorrelation; equal to the periodogram when the biased 1/N estimate is used.">correlogram</abbr>.</p>
+<p><strong>Step 6 — row 6.</strong> Averaging periodograms → <strong><abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr></strong> and <strong><abbr title="average of the periodograms of overlapping, windowed segments (also called WOSA).">Welch</abbr></strong>.</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p>1 AR/MA/ARMA · 2 <abbr title="average of the periodograms of overlapping, windowed segments (also called WOSA).">Welch</abbr> · 3 <abbr title="correlogram with a short window on the autocorrelation lags; consistent.">Blackman–Tukey</abbr> (+ <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr>, <abbr title="average of the periodograms of overlapping, windowed segments (also called WOSA).">Welch</abbr> with <span class="arithmatex">\(K\to\infty\)</span>) · 4 <abbr title="the FT of the estimated autocorrelation; equal to the periodogram when the biased 1/N estimate is used.">correlogram</abbr>, <abbr title="correlogram with a short window on the autocorrelation lags; consistent.">Blackman–Tukey</abbr> · 5 none as written (<abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> ∝ <span class="arithmatex">\(P^2\)</span> for <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr>/<abbr title="the FT of the estimated autocorrelation; equal to the periodogram when the biased 1/N estimate is used.">correlogram</abbr>) · 6 <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr>, <abbr title="average of the periodograms of overlapping, windowed segments (also called WOSA).">Welch</abbr></p>
+</div>
+</details>
+<h3 id="nov22-3a">November 2022 exam · 3a<a class="headerlink" href="#nov22-3a" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q1, 7 November 2022 · 3a · 0.25 p</p>
+<p>In the context of non-parametric spectral estimation, which of the following statements is TRUE?</p>
+<ul>
+<li>a) Compared to the <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr>, the <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr> method with K segments allows a reduction of the <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> of the estimated spectrum proportional to 1/K. However, the <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr> increases.</li>
+<li>b) Compared to the <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr>, the <abbr title="Weighted Overlapped Segment Averaging = Welch's method.">WOSA</abbr> method with K segments allows a reduction of the <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> of the estimated spectrum proportional to 1/K. However, the <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr> increases.</li>
+<li>c) Compared to the <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr>, the <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr> method with K segments allows a reduction of the <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> of the estimated spectrum proportional to 1/K. The <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr> also decreases, but not proportionally to 1/K.</li>
+<li>d) Compared to the <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr>, the <abbr title="Weighted Overlapped Segment Averaging = Welch's method.">WOSA</abbr> method with K segments allows a reduction of the <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> of the estimated spectrum proportional to 1/K. The <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr> also decreases, but not proportionally to 1/K.</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> Two switches: <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr> or <abbr title="Weighted Overlapped Segment Averaging = Welch's method.">WOSA</abbr>? Bias up or down?</p>
+<p><strong>Step 1 — <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr> or <abbr title="Weighted Overlapped Segment Averaging = Welch's method.">WOSA</abbr>?</strong> "Proportional to <span class="arithmatex">\(1/K\)</span>" needs <em>independent</em> segments, i.e. <strong><abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr></strong> (<a href="#32-bartlett-average-non-overlapping-segments">3.2</a>). <abbr title="Weighted Overlapped Segment Averaging = Welch's method.">WOSA</abbr>'s overlapping segments are correlated (<a href="#33-welch-wosa-overlapping-windowed-segments">3.3</a>). This removes (b) and (d).</p>
+<p><strong>Step 2 — <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr> up or down?</strong> Segments are shorter than the full record (<span class="arithmatex">\(M=N/K\)</span>), so the main lobe is wider and the <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr> <strong>increases</strong> (<a href="#31-the-one-trick-average-several-estimates">3.1</a>). This removes &copy;.</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(a)</strong></p>
+</div>
+</details>
+<h3 id="jan20-1b">January 2020 retake · 1b<a class="headerlink" href="#jan20-1b" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Retake exam, 20 January 2020 · Exercise 1(b) · 0.25 p</p>
+<p>Select the correct answer regarding the <abbr title="average of the periodograms of overlapping, windowed segments (also called WOSA).">Welch</abbr>'s method for non-parametric spectral estimation, also known as <abbr title="Weighted Overlapped Segment Averaging = Welch's method.">WOSA</abbr>:</p>
+<ul>
+<li>A. It consists of averaging <span class="arithmatex">\(K\)</span> different periodograms, obtained from <span class="arithmatex">\(K\)</span> segments of the observed random signal, not allowing overlap between the segments. The <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> is lower than the <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr>, proportionally to <span class="arithmatex">\(1/K\)</span>.</li>
+<li>B. It consists of averaging <span class="arithmatex">\(K\)</span> different periodograms, obtained from <span class="arithmatex">\(K\)</span> segments of the observed random signal, allowing overlap between the segments. The <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> is lower than <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr>'s method, but not proportionally to <span class="arithmatex">\(1/K\)</span>.</li>
+<li>C. It consists of averaging <span class="arithmatex">\(K\)</span> different periodograms, obtained from <span class="arithmatex">\(K\)</span> segments of the observed random signal, not allowing overlap between the segments. The <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> is larger than <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr>'s method, but lower than the <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr>.</li>
+<li>D. It consists of averaging <span class="arithmatex">\(K\)</span> different periodograms, obtained from <span class="arithmatex">\(K\)</span> segments of the observed random signal, allowing overlap between the segments. The <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> is larger than <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr>'s method, but lower than the <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr>.</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> Which description is <abbr title="average of the periodograms of overlapping, windowed segments (also called WOSA).">Welch</abbr>, with the right comparison of variances.</p>
+<p><strong>Step 1 — overlap.</strong> <abbr title="average of the periodograms of overlapping, windowed segments (also called WOSA).">Welch</abbr> <strong>allows overlap</strong>, so A and C (which say "not allowing overlap") are out.</p>
+<p><strong>Step 2 — the <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr>.</strong> For the same <span class="arithmatex">\(K\)</span>, overlapping segments are correlated, so averaging helps less than <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr>'s <span class="arithmatex">\(1/K\)</span>: the <abbr title="average of the periodograms of overlapping, windowed segments (also called WOSA).">Welch</abbr> <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> is <strong>larger than <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr>'s</strong> but still lower than the raw <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> (<a href="#33-welch-wosa-overlapping-windowed-segments">3.3</a>). B says "lower than <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr>'s", which is backwards. D says it right.</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>D</strong></p>
+</div>
+</details>
+<h3 id="nov19-1c">November 2019 exam · 1c<a class="headerlink" href="#nov19-1c" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Written exam, 4 November 2019 · Exercise 1&copy; · 1.5 p</p>
+<p>Complete Table 2, which provides an overview of non-parametric spectral estimation methods. Answers can be descriptive. In other words, formulas are not necessary. Please use the template table in the answer sheet and limit your answers to the assigned space in each entry of the table.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Description (basic idea)</th>
+<th>Bias</th>
+<th>Variance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Periodogram</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Correlogram</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr>'s <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><abbr title="Weighted Overlapped Segment Averaging = Welch's method.">WOSA</abbr></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Blackman-Tukey</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> Fill the 5 × 3 table of <a href="#35-the-table-to-memorise">3.5</a> from memory. The official key only filled the <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> row; the full table follows.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Description</th>
+<th>Bias</th>
+<th>Variance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Periodogram</td>
+<td><span class="arithmatex">\(\frac1N\lvert\text{FT of the data}\rvert^2\)</span></td>
+<td>FT of the biased <span class="arithmatex">\(\hat r\)</span>: smoothed by a triangular window; <abbr title="the bias tends to 0 as N grows (variance not mentioned).">asymptotically unbiased</abbr></td>
+<td>∝ <span class="arithmatex">\(P^2\)</span>; does not decrease with <span class="arithmatex">\(N\)</span> (not <abbr title="bias and variance both tend to 0 as the record length N grows.">consistent</abbr>)</td>
+</tr>
+<tr>
+<td>Correlogram</td>
+<td>FT of the estimated autocorrelation (lags up to <span class="arithmatex">\(N-1\)</span>)</td>
+<td>same as <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> (equivalent with biased <span class="arithmatex">\(\hat r\)</span>; the unbiased <span class="arithmatex">\(\hat r\)</span> can give negative PSD)</td>
+<td>∝ <span class="arithmatex">\(P^2\)</span>, not <abbr title="bias and variance both tend to 0 as the record length N grows.">consistent</abbr></td>
+</tr>
+<tr>
+<td><abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr></td>
+<td>average <span class="arithmatex">\(K\)</span> periodograms of non-overlapping segments of length <span class="arithmatex">\(M=N/K\)</span></td>
+<td>larger (resolution <span class="arithmatex">\(\approx2\pi/M\)</span>)</td>
+<td>≈ <span class="arithmatex">\(P^2/K\)</span></td>
+</tr>
+<tr>
+<td><abbr title="Weighted Overlapped Segment Averaging = Welch's method.">WOSA</abbr> (<abbr title="average of the periodograms of overlapping, windowed segments (also called WOSA).">Welch</abbr>)</td>
+<td>average periodograms of overlapping, windowed segments</td>
+<td>larger than raw, but less than <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr> (longer segments)</td>
+<td>reduced, but not as <span class="arithmatex">\(1/K\)</span> (correlated segments)</td>
+</tr>
+<tr>
+<td><abbr title="correlogram with a short window on the autocorrelation lags; consistent.">Blackman–Tukey</abbr></td>
+<td>window <span class="arithmatex">\(\hat r[l]\)</span> with a short <abbr title="a window applied to the autocorrelation lags r[l] (not to the data).">lag window</abbr> (<span class="arithmatex">\(M\ll N\)</span>), then FT</td>
+<td>larger for shorter <span class="arithmatex">\(M\)</span> (convolution with the window spectrum)</td>
+<td>≈ <span class="arithmatex">\(\frac{P^2}{N}\sum w^2[l]\)</span> → 0: <abbr title="bias and variance both tend to 0 as the record length N grows.">consistent</abbr></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="jan19-1c">January 2019 retake · 1c<a class="headerlink" href="#jan19-1c" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Written exam, 21 January 2019 · Exercise 1&copy; · 0.5 p (1 or 2 answers correct)</p>
+<p>In the context of non-parametric spectral estimation methods, which ones of the following statements are true?</p>
+<ul>
+<li>A. In <abbr title="average of the periodograms of K non-overlapping segments.">Bartlett</abbr>'s method, the <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr> of the estimated power spectrum increases as the length of the window <span class="arithmatex">\(M\)</span> of each raw <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> decreases.</li>
+<li>B. In <abbr title="average of the periodograms of overlapping, windowed segments (also called WOSA).">Welch</abbr>'s <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> with overlap of 50%, the <abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> of the power spectrum estimate decreases as <span class="arithmatex">\(1/K\)</span>, with <span class="arithmatex">\(K\)</span> equal to the number of raw <abbr title="(1/N)|DFT of the data|²; the direct PSD estimate.">periodogram</abbr> estimates.</li>
+<li>C. The Blackman-Tukey <abbr title="the FT of the estimated autocorrelation; equal to the periodogram when the biased 1/N estimate is used.">correlogram</abbr> is a <abbr title="bias and variance both tend to 0 as the record length N grows.">consistent</abbr> <abbr title="a recipe that turns the recorded samples into a guess of an unknown quantity.">estimator</abbr> of the power spectrum.</li>
+<li>D. In general, zero-padding increases spectral resolution.</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> Mark every true statement (one or two are).</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Verdict</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td><strong>true</strong></td>
+<td>shorter segment <span class="arithmatex">\(M\)</span> → wider main lobe → more <abbr title="how far the estimator's average value is from the truth (systematic error).">bias</abbr> (<a href="#31-the-one-trick-average-several-estimates">3.1</a>)</td>
+</tr>
+<tr>
+<td>B</td>
+<td>false</td>
+<td>overlapping segments are correlated, so no exact <span class="arithmatex">\(1/K\)</span> (<a href="#33-welch-wosa-overlapping-windowed-segments">3.3</a>)</td>
+</tr>
+<tr>
+<td>C</td>
+<td><strong>true</strong></td>
+<td><abbr title="how much the estimate jumps around from one recording to the next.">variance</abbr> → 0 (<a href="#34-blackmantukey-trust-only-the-short-lags">3.4</a>)</td>
+</tr>
+<tr>
+<td>D</td>
+<td>false</td>
+<td>zero padding only interpolates (<a href="p3-windows.html#dft-ftd-and-zero-padding">3.1 §3</a>)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>A and C</strong></p>
+</div>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="p3-windows.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 3.1 Signals, windows, zero padding">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                3.1 Signals, windows, zero padding
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="p3-autocorr.html" class="md-footer__link md-footer__link--next" aria-label="Next: 3.3 Autocorrelation of ARMA models">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                3.3 Autocorrelation of ARMA models
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.footer", "navigation.tracking", "navigation.instant", "navigation.instant.progress", "toc.follow", "content.tooltips"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js?v=1792856532"></script>
+      
+        <script src="javascripts/katex.js?v=1792856532"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="javascripts/quiz.js?v=1792856532"></script>
+      
+        <script src="javascripts/ask.js?v=1792856532"></script>
+      
+        <script src="javascripts/video.js?v=1792856532"></script>
+      
+        <script src="javascripts/layout.js?v=1792856532"></script>
+      
+        <script src="javascripts/keypoints.js?v=1792856532"></script>
+      
+        <script src="javascripts/progress.js?v=1792856532"></script>
+      
+        <script src="javascripts/widgets.js?v=1792856532"></script>
+      
+        <script src="javascripts/navsections.js?v=1792856532"></script>
+      
+    
+  </body>
+</html>

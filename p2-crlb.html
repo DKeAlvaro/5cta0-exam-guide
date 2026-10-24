@@ -1,0 +1,2334 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Every 5CTA0 Statistical Signal Processing exam question (2019–2026), solved step by step, organised by the patterns that keep coming back.">
+      
+      
+      
+        <link rel="canonical" href="https://dkealvaro.github.io/5cta0-exam-guide/p2-crlb.html">
+      
+      
+        <link rel="prev" href="p2-mle.html">
+      
+      
+        <link rel="next" href="p2-bayes.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>2.2 CRLB & Fisher information - 5CTA0 · Pass the exam</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css?v=1792856532">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css?v=1792856532">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+4:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Source Serif 4";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0.16.11/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap">
+    
+      <link rel="stylesheet" href="stylesheets/extra.css?v=1792856532">
+    
+      <link rel="stylesheet" href="stylesheets/ask.css?v=1792856532">
+    
+      <link rel="stylesheet" href="stylesheets/layout.css?v=1792856532">
+    
+      <link rel="stylesheet" href="stylesheets/keypoints.css?v=1792856532">
+    
+      <link rel="stylesheet" href="stylesheets/widgets.css?v=1792856532">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#22-crlb-fisher-information" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-header__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            5CTA0 · Pass the exam
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2.2 CRLB & Fisher information
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-nav__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    5CTA0 · Pass the exam
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New · Exam course
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    New · Exam course
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="podcast.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Podcast (watch first)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 1 · Probability (1.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 1 · Probability (1.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes word problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-joint.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-wss.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Stationary and ergodic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-factor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-map.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 MAP with a prior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Least-squares line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Theory questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-corr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Correlogram, pick the plot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-arma.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 AR and MA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Periodogram, Welch, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Likelihood ratio test
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Priors, costs, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exams.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mock exams with answers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cheatsheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 cheat sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Old · Long guide (deep dive)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Old · Long guide (deep dive)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="patterns.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The exam, decoded
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p0-foundations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 0 · From zero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="toolbox.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toolbox
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes & total probability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-rv.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Random variables & joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-processes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Random processes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-factorisation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 CRLB & Fisher information
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="p2-crlb.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 CRLB & Fisher information
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-idea-from-zero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 · The idea, from zero
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 · The idea, from zero">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-sharp-peak-or-flat-hill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Sharp peak or flat hill?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-the-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 The bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-when-the-bound-does-not-exist-regularity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 When the bound does not exist (regularity)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-questions-computations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exam questions: computations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exam questions: computations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nov22-2e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2022 exam · 2e
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nov19-3b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2019 exam · 3b
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pe21-2a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practice exam 2021 · 2a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan22-2e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2022 resit · 2e
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-questions-multiple-choice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exam questions: multiple choice
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exam questions: multiple choice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nov22-2a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2022 exam · 2a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr24-2a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2024 exam · 2a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1-23-2a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q1 2023 resit · 2a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan22-2a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2022 resit · 2a
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Bayesian estimation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Least squares
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-windows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Signals, windows, zero padding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-nonparametric.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 Non-parametric estimators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-autocorr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Autocorrelation of ARMA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-chain.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.4 Correlogram → AR → MA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-basics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Errors, ROC, Neyman–Pearson
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Likelihood ratio tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.3 Bayesian detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-idea-from-zero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 · The idea, from zero
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 · The idea, from zero">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-sharp-peak-or-flat-hill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Sharp peak or flat hill?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-the-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 The bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-when-the-bound-does-not-exist-regularity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 When the bound does not exist (regularity)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-questions-computations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exam questions: computations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exam questions: computations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nov22-2e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2022 exam · 2e
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nov19-3b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2019 exam · 3b
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pe21-2a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practice exam 2021 · 2a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan22-2e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2022 resit · 2e
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-questions-multiple-choice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exam questions: multiple choice
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exam questions: multiple choice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nov22-2a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2022 exam · 2a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr24-2a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2024 exam · 2a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1-23-2a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q1 2023 resit · 2a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan22-2a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2022 resit · 2a
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="22-crlb-fisher-information">2.2 <abbr title="Cramér–Rao lower bound: the smallest variance any unbiased estimator can have, 1/𝓘(θ).">CRLB</abbr> &amp; <abbr title="𝓘(θ) = −E[second derivative of ln p]: how sharply peaked the log-likelihood is.">Fisher information</abbr><a class="headerlink" href="#22-crlb-fisher-information" title="Permanent link">#</a></h1>
+<p class="lead">The Cramér–Rao lower bound says how good <em>any</em> unbiased estimator can possibly be. Exams ask three things: a multiple choice on the definitions (this one repeats almost word for word), "compute the Fisher information / CRLB", and "can you even compute the CRLB here?" (no, if the support depends on θ). This page builds the idea from a picture of a hill.</p>
+
+<div class="admonition need">
+<p class="admonition-title">Before this page</p>
+<ul>
+<li>Likelihood, log-likelihood, bias and variance of an estimator (<a href="p2-mle.html">2.1</a>)</li>
+<li>Expectation of a function of a random variable, <span class="arithmatex">\(\mathbb E[g(X)]\)</span> (<a href="p0-foundations.html#expectation-variance">0.6</a>)</li>
+<li>First and second derivatives (<a href="p0-foundations.html#04-the-three-calculations-you-keep-meeting">0.4</a>, <a href="toolbox.html#2-logs-and-exponentials">Toolbox</a>)</li>
+</ul>
+<p>If you read only one thing: <strong>the <abbr title="𝓘(θ) = −E[second derivative of ln p]: how sharply peaked the log-likelihood is.">Fisher information</abbr> is how sharply peaked the log-likelihood is. A sharp peak means the data pin <span class="arithmatex">\(\theta\)</span> down precisely, so the best possible variance <span class="arithmatex">\(1/\mathcal I\)</span> is small.</strong></p>
+</div>
+<hr />
+<h2 id="1-the-idea-from-zero">1 · The idea, from zero<a class="headerlink" href="#1-the-idea-from-zero" title="Permanent link">#</a></h2>
+<h3 id="11-sharp-peak-or-flat-hill">1.1 Sharp peak or flat hill?<a class="headerlink" href="#11-sharp-peak-or-flat-hill" title="Permanent link">#</a></h3>
+<p>Plot the log-likelihood of <span class="arithmatex">\(\theta\)</span> for the data you have (<a href="p2-mle.html#12-the-likelihood">2.1</a>). Its top is the MLE. Two situations:</p>
+<ul>
+<li><strong>Sharp peak:</strong> moving <span class="arithmatex">\(\theta\)</span> a little away from the top makes the data much less likely, so only values very close to the top are plausible. <span class="arithmatex">\(\theta\)</span> is pinned down: <strong>small variance</strong> is possible.</li>
+<li><strong>Flat hill:</strong> many different <span class="arithmatex">\(\theta\)</span> explain the data almost equally well. <span class="arithmatex">\(\theta\)</span> cannot be pinned down: <strong>large variance</strong>.</li>
+</ul>
+<figure>
+<p><img alt="Sharp vs flat log-likelihood and the spread of the estimates" src="img/gen/p2_sharp_flat.svg" /></p>
+<figcaption>Left: log-likelihoods of a Gaussian mean from 5 samples (orange) and 50 samples (blue), both with their top set to 0. The arrows mark how far $\mu$ can move before the log-likelihood drops by $\frac12$: about $\pm\frac{1}{\sqrt N}$. The sharper curve allows a much smaller range. Right: repeat the experiment 5000 times and histogram the MLE. The spread matches the bound, $\frac{1}{\mathcal I}=\frac{1}{N}$, exactly.</figcaption>
+</figure>
+<p>"How sharp" = how strongly the curve bends downward at the top = the size of the <strong>second derivative</strong> (it is negative at a peak; a sharp peak has a very negative one). <mark>The <strong><abbr title="𝓘(θ) = −E[second derivative of ln p]: how sharply peaked the log-likelihood is.">Fisher information</abbr></strong> is this bend, averaged over the random data:</mark></p>
+<div class="key">
+<div class="arithmatex">\[\mathcal I(\theta)=-\mathbb E\!\left[\frac{\partial^2\ln p(\mathbf x;\theta)}{\partial\theta^2}\right]=\mathbb E\!\left[\left(\frac{\partial\ln p(\mathbf x;\theta)}{\partial\theta}\right)^2\right]\ \ (&gt;0).\]</div>
+</div>
+<p>(The two forms are equal under the <abbr title="E[score] = 0, i.e. derivative and integral can be swapped; fails when the support depends on θ.">regularity condition</abbr> below. <span class="arithmatex">\(\frac{\partial\ln p}{\partial\theta}\)</span> is called the <strong><abbr title="the first derivative of the log-likelihood with respect to θ.">score</abbr></strong>.)</p>
+<div class="admonition example">
+<p class="admonition-title">Constant in Gaussian noise, with numbers</p>
+<p><span class="arithmatex">\(x_n=\mu+w_n\)</span>, <span class="arithmatex">\(w_n\sim\mathcal N(0,\sigma^2)\)</span> i.i.d. Then <span class="arithmatex">\(\ln p=-\frac{1}{2\sigma^2}\sum(x_n-\mu)^2+\text{const}\)</span>. First derivative: <span class="arithmatex">\(\frac1{\sigma^2}\sum(x_n-\mu)\)</span>. Second derivative: <span class="arithmatex">\(-\frac N{\sigma^2}\)</span> (it does not even depend on the data). So <span class="arithmatex">\(\mathcal I=\frac N{\sigma^2}\)</span>.
+With <span class="arithmatex">\(\sigma^2=1\)</span>, <span class="arithmatex">\(N=100\)</span>: <span class="arithmatex">\(\mathcal I=100\)</span>, a very sharp peak (the log-likelihood drops by <span class="arithmatex">\(\tfrac12\)</span> when <span class="arithmatex">\(\mu\)</span> moves only <span class="arithmatex">\(0.1\)</span> from the top), and the bound below is <span class="arithmatex">\(\frac1{100}=0.01\)</span>.</p>
+</div>
+<h3 id="12-the-bound">1.2 The bound<a class="headerlink" href="#12-the-bound" title="Permanent link">#</a></h3>
+<p><strong>Cramér–Rao lower bound.</strong> For every <strong>unbiased</strong> estimator,</p>
+<div class="key">
+<div class="arithmatex">\[\operatorname{Var}[\hat\theta]\ \ge\ \frac{1}{\mathcal I(\theta)}.\]</div>
+</div>
+<p>In the example: <span class="arithmatex">\(\operatorname{Var}[\hat\mu]\ge\frac{\sigma^2}N\)</span>, and the sample mean has variance exactly <span class="arithmatex">\(\sigma^2/N\)</span> (<a href="p2-mle.html#11-estimation-from-zero">2.1 §1.1</a>): it <strong>reaches</strong> the bound, so it is optimal.</p>
+<p>Facts that get tested:</p>
+<ul>
+<li><mark>For <span class="arithmatex">\(N\)</span> i.i.d. observations, <span class="arithmatex">\(\mathcal I(\theta)=N\,i(\theta)\)</span> with <span class="arithmatex">\(i(\theta)\)</span> the information of <strong>one</strong> observation</mark> (log-likelihoods add, so their second derivatives add). So <mark>the bound <span class="arithmatex">\(\frac{1}{N\,i(\theta)}\)</span> <strong>decreases as <span class="arithmatex">\(1/N\)</span></strong></mark> ("linearly" in the sense of the old key).</li>
+<li><mark>The bound is the <strong>reciprocal</strong> of the information, not the information itself.</mark> And <mark>the information is <strong>positive</strong>, never negative</mark>.</li>
+<li><mark>An unbiased estimator whose variance <strong>equals</strong> the bound is <strong><abbr title="an unbiased estimator whose variance equals the CRLB.">efficient</abbr></strong>.</mark> Nothing unbiased can go below it.</li>
+<li><mark>Equality holds iff the <abbr title="the first derivative of the log-likelihood with respect to θ.">score</abbr> can be written as <span class="arithmatex">\(\frac{\partial\ln p}{\partial\theta}=\mathcal I(\theta)\,\big(g(\mathbf x)-\theta\big)\)</span>; then <span class="arithmatex">\(g(\mathbf x)\)</span> is the <abbr title="an unbiased estimator whose variance equals the CRLB.">efficient</abbr> estimator.</mark> (Used backwards in Practice exam 2021 2a.)</li>
+</ul>
+<h3 id="13-when-the-bound-does-not-exist-regularity">1.3 When the bound does <em>not</em> exist (regularity)<a class="headerlink" href="#13-when-the-bound-does-not-exist-regularity" title="Permanent link">#</a></h3>
+<p>The theorem needs <span class="arithmatex">\(\mathbb E\!\left[\frac{\partial\ln p}{\partial\theta}\right]=0\)</span>. Why that holds normally: <span class="arithmatex">\(\int p(x;\theta)dx=1\)</span> for every <span class="arithmatex">\(\theta\)</span>; differentiate both sides; if you may swap <span class="arithmatex">\(\frac d{d\theta}\)</span> and <span class="arithmatex">\(\int\)</span>, you get <span class="arithmatex">\(\int\frac{\partial p}{\partial\theta}dx=0\)</span>, and since <span class="arithmatex">\(\frac{\partial p}{\partial\theta}=p\,\frac{\partial\ln p}{\partial\theta}\)</span> this says <span class="arithmatex">\(\mathbb E[\text{score}]=0\)</span>.</p>
+<p><mark>The swap <strong>fails when the <abbr title="the set of x values where the PDF is non-zero.">support</abbr> of <span class="arithmatex">\(p(x;\theta)\)</span> depends on <span class="arithmatex">\(\theta\)</span></strong> (e.g. <span class="arithmatex">\(0\le x\le\theta\)</span>)</mark>: the moving integration limit adds an extra term. <mark>Then the <abbr title="Cramér–Rao lower bound: the smallest variance any unbiased estimator can have, 1/𝓘(θ).">CRLB</abbr> cannot be derived.</mark></p>
+<figure>
+<p><img alt="Uniform on 0 to theta: a moving edge and a cliff-shaped likelihood" src="img/gen/p2_regularity.svg" /></p>
+<figcaption>Left: for $\mathcal U[0,\theta]$ the place where the PDF stops moves with $\theta$. That moving edge is the "support depends on $\theta$" condition. Right: the likelihood is 0 for $\theta$ below the largest sample and $\theta^{-N}$ above it, so its maximum is a cliff edge, not a smooth hilltop. There is no "curvature at the top" to measure, and the CRLB machinery does not apply.</figcaption>
+</figure>
+<div class="admonition recipe key">
+<p class="admonition-title">Recipe: compute the <abbr title="Cramér–Rao lower bound: the smallest variance any unbiased estimator can have, 1/𝓘(θ).">CRLB</abbr></p>
+<ol>
+<li>Log-likelihood <span class="arithmatex">\(\ln p(\mathbf x;\theta)\)</span> (sum over samples).</li>
+<li>Differentiate <strong>twice</strong> with respect to <span class="arithmatex">\(\theta\)</span>.</li>
+<li>Take the expected value: replace every data term by its mean (<span class="arithmatex">\(\mathbb E[x_n]\)</span>, <span class="arithmatex">\(\mathbb E[x_n^2]\)</span>, …). The exam often gives these as a hint.</li>
+<li><span class="arithmatex">\(\mathcal I(\theta)=-\mathbb E[\cdot]\)</span>, <span class="arithmatex">\(\ \text{CRLB}=1/\mathcal I(\theta)\)</span>.</li>
+</ol>
+</div>
+<hr />
+<h2 id="exam-questions-computations">Exam questions: computations<a class="headerlink" href="#exam-questions-computations" title="Permanent link">#</a></h2>
+<h3 id="nov22-2e">November 2022 exam · 2e<a class="headerlink" href="#nov22-2e" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q1, 7 November 2022 · 2e · 0.5 p</p>
+<p><em>(Same model as <a href="p2-mle.html#nov22-2d">2d</a>: <span class="arithmatex">\(\mathbf x=A[\cos\theta,\ \sin\theta]^T+\mathbf w\)</span>, white Gaussian noise with variance <span class="arithmatex">\(\sigma^2\)</span>.)</em></p>
+<p>Derive the <abbr title="𝓘(θ) = −E[second derivative of ln p]: how sharply peaked the log-likelihood is.">Fisher information</abbr> <span class="arithmatex">\(\mathcal{I}(\theta)\)</span>. <strong>Hint:</strong> The expected values of <span class="arithmatex">\(x_1\)</span> and <span class="arithmatex">\(x_2\)</span> are <span class="arithmatex">\(A \cos(\theta)\)</span> and <span class="arithmatex">\(A \sin(\theta)\)</span>, respectively.</p>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> How much information one observation of the noisy point carries about the angle <span class="arithmatex">\(\theta\)</span>.</p>
+<p><strong>Symbols in this question.</strong> <span class="arithmatex">\(x_1,x_2\)</span>: observed coordinates (random); <span class="arithmatex">\(A\)</span>: known radius; <span class="arithmatex">\(\sigma^2\)</span>: noise variance; <span class="arithmatex">\(\theta\)</span>: unknown angle.</p>
+<p><strong>Step 1 — first derivative</strong> (already computed in <a href="p2-mle.html#nov22-2d">2d</a>): <span class="arithmatex">\(\frac{\partial\ln p}{\partial\theta}=\frac{A}{\sigma^2}(-x_1\sin\theta+x_2\cos\theta)\)</span>.</p>
+<p><strong>Step 2 — second derivative</strong> (<span class="arithmatex">\(\frac d{d\theta}\sin\theta=\cos\theta\)</span>, <span class="arithmatex">\(\frac d{d\theta}\cos\theta=-\sin\theta\)</span>):</p>
+<div class="arithmatex">\[\frac{\partial^2\ln p}{\partial\theta^2}=\frac{A}{\sigma^2}(-x_1\cos\theta-x_2\sin\theta).\]</div>
+<p><strong>Step 3 — expectation.</strong> Replace <span class="arithmatex">\(x_1\)</span> and <span class="arithmatex">\(x_2\)</span> by their means (the hint): <span class="arithmatex">\(\mathbb E[\cdot]=\frac{A}{\sigma^2}\big(-A\cos^2\theta-A\sin^2\theta\big)=-\frac{A^2}{\sigma^2}(\cos^2\theta+\sin^2\theta)=-\frac{A^2}{\sigma^2}\)</span>.</p>
+<p><strong>Step 4 — sign.</strong> <span class="arithmatex">\(\mathcal I(\theta)=-\mathbb E[\cdot]=\dfrac{A^2}{\sigma^2}\)</span>.</p>
+<p>Interpretation: the angle is easier to estimate when the circle is big (<span class="arithmatex">\(A\)</span>) compared with the noise (<span class="arithmatex">\(\sigma\)</span>). The <abbr title="Cramér–Rao lower bound: the smallest variance any unbiased estimator can have, 1/𝓘(θ).">CRLB</abbr> is <span class="arithmatex">\(\sigma^2/A^2\)</span>. (Information does not depend on <span class="arithmatex">\(\theta\)</span> itself: every angle is equally easy.)</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><span class="arithmatex">\(\mathcal I(\theta)=\dfrac{A^2}{\sigma^2}\)</span></p>
+</div>
+</details>
+<h3 id="nov19-3b">November 2019 exam · 3b<a class="headerlink" href="#nov19-3b" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Written exam, 4 November 2019 · Exercise 3(b) · 1 p</p>
+<p><em>(Same model as <a href="p2-mle.html#nov19-3a">3a</a>: i.i.d. <span class="arithmatex">\(p(x;\theta)=\frac{x}{\theta^2}e^{-x^2/(2\theta^2)}\)</span>, <span class="arithmatex">\(x\ge0\)</span>.)</em></p>
+<p>(b) Find the Cramer-Rao Lower Bound for the MLE.</p>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> The smallest variance any unbiased estimator of <span class="arithmatex">\(\theta\)</span> can have for <span class="arithmatex">\(N\)</span> samples of this Rayleigh PDF.</p>
+<p><strong>Step 1 — first derivative</strong> (from 3a): <span class="arithmatex">\(\frac{\partial\ln L}{\partial\theta}=-\frac{2N}{\theta}+\frac{1}{\theta^3}\sum x^2[n]\)</span>.</p>
+<p><strong>Step 2 — second derivative</strong> (<span class="arithmatex">\(\frac d{d\theta}\frac1\theta=-\frac1{\theta^2}\)</span>, <span class="arithmatex">\(\frac d{d\theta}\theta^{-3}=-3\theta^{-4}\)</span>):</p>
+<div class="arithmatex">\[\frac{\partial^2\ln L}{\partial\theta^2}=\frac{2N}{\theta^2}-\frac{3}{\theta^4}\sum x^2[n].\]</div>
+<p><strong>Step 3 — expectation.</strong> The only random thing is <span class="arithmatex">\(\sum x^2[n]\)</span>; for this Rayleigh PDF <span class="arithmatex">\(\mathbb E[x^2]=2\theta^2\)</span> (toolbox table), so <span class="arithmatex">\(\mathbb E\big[\sum x^2[n]\big]=N\cdot2\theta^2\)</span>:</p>
+<div class="arithmatex">\[\mathbb E\!\left[\frac{\partial^2\ln L}{\partial\theta^2}\right]=\frac{2N}{\theta^2}-\frac{3\cdot2N\theta^2}{\theta^4}=\frac{2N-6N}{\theta^2}=-\frac{4N}{\theta^2}\quad\Rightarrow\quad\mathcal I(\theta)=\frac{4N}{\theta^2}.\]</div>
+<p>(If you do not remember <span class="arithmatex">\(\mathbb E[x^2]\)</span>: <span class="arithmatex">\(\int_0^\infty x^2\frac{x}{\theta^2}e^{-x^2/2\theta^2}dx=2\theta^2\)</span> with the substitution <span class="arithmatex">\(u=x^2/2\theta^2\)</span>.)</p>
+<p><strong>Step 4 — the bound:</strong> <span class="arithmatex">\(\text{CRLB}=\dfrac1{\mathcal I}=\dfrac{\theta^2}{4N}\)</span>.</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><span class="arithmatex">\(\operatorname{Var}(\hat\theta)\ge\dfrac{\theta^2}{4N}\)</span> (the key writes <span class="arithmatex">\(\hat\theta^2/4N\)</span>, i.e. the bound evaluated at the estimate)</p>
+</div>
+</details>
+<h3 id="pe21-2a">Practice exam 2021 · 2a<a class="headerlink" href="#pe21-2a" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Practice exam, 28 October 2021 · 2a · 1 p</p>
+<p>Given the minimum variance unbiased estimator (<abbr title="minimum variance unbiased estimator.">MVUE</abbr>) <span class="arithmatex">\(\hat{\theta} = \sum_{n=0}^{N-1} x[n]/N\)</span> with variance <span class="arithmatex">\(\sigma_{\hat{\theta}}^2 = A^2/N\)</span>, find the probability density function (PDF) <span class="arithmatex">\(p(\mathbf{x}; \theta)\)</span> for the data vector <span class="arithmatex">\(\mathbf{x}\)</span> that consists of data points <span class="arithmatex">\(x[n]\)</span>, <span class="arithmatex">\(n \in \{0, 1, \dots, N-1\}\)</span>. Use the <abbr title="minimum variance unbiased estimator.">MVUE</abbr> condition and show the derivation of the PDF. Assume independent identically distributed noise samples act on the signal model that generates the data samples.</p>
+<p><strong>Hint:</strong> Use this trick if needed: <span class="arithmatex">\(\int (x+a)dx = x^2/2 + ax + b\)</span> and <span class="arithmatex">\(b\)</span> can be chosen as <span class="arithmatex">\(b = a^2/2\)</span> to obtain <span class="arithmatex">\(\int (x+a)dx = 0.5(x+a)^2\)</span>.</p>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> This is the <abbr title="Cramér–Rao lower bound: the smallest variance any unbiased estimator can have, 1/𝓘(θ).">CRLB</abbr> run <strong>backwards</strong>. You are told the estimator (<span class="arithmatex">\(\bar x\)</span>) is the best possible one (it reaches the bound) and its variance; find the PDF that makes that true.</p>
+<p><strong>Symbols in this question.</strong> <span class="arithmatex">\(\hat\theta=\bar x\)</span>: the estimator (the sample mean); <span class="arithmatex">\(\sigma^2_{\hat\theta}=A^2/N\)</span>: its variance, which means each sample has noise variance <span class="arithmatex">\(A^2\)</span> (here <span class="arithmatex">\(A^2\)</span> is a <em>noise variance</em>, not an amplitude); <span class="arithmatex">\(\theta\)</span>: the unknown constant.</p>
+<p><strong>Step 1 — information.</strong> An <abbr title="minimum variance unbiased estimator.">MVUE</abbr> reaches the bound: <span class="arithmatex">\(\operatorname{Var}[\hat\theta]=\frac1{\mathcal I(\theta)}=\frac{A^2}{N}\)</span>, so <span class="arithmatex">\(\mathcal I(\theta)=\frac{N}{A^2}\)</span>.</p>
+<p><strong>Step 2 — the equality condition</strong> (<a href="#12-the-bound">1.2</a>): <span class="arithmatex">\(\frac{\partial\ln p}{\partial\theta}=\mathcal I(\theta)\big(g(\mathbf x)-\theta\big)\)</span> with <span class="arithmatex">\(g(\mathbf x)=\bar x\)</span>:</p>
+<div class="arithmatex">\[\frac{\partial\ln p}{\partial\theta}=\frac{N}{A^2}(\bar x-\theta)=\frac{1}{A^2}\sum_{n=0}^{N-1}\big(x[n]-\theta\big)\qquad\big(N\bar x=\textstyle\sum x[n]\big).\]</div>
+<p><strong>Step 3 — integrate over <span class="arithmatex">\(\theta\)</span></strong> (the hint: <span class="arithmatex">\(\int(x[n]-\theta)\,d\theta=-\frac12(x[n]-\theta)^2+\text{const}\)</span>):</p>
+<div class="arithmatex">\[\ln p(\mathbf x;\theta)=-\frac{1}{2A^2}\sum_{n=0}^{N-1}(x[n]-\theta)^2+C.\]</div>
+<p><strong>Step 4 — exponentiate and fix the constant</strong> so that the PDF integrates to 1 (it is a product of <span class="arithmatex">\(N\)</span> Gaussians, each with normalisation <span class="arithmatex">\(\frac1{\sqrt{2\pi A^2}}\)</span>):</p>
+<div class="arithmatex">\[p(\mathbf x;\theta)=\frac{1}{(2\pi A^2)^{N/2}}\exp\!\left(-\frac{1}{2A^2}\sum_{n=0}^{N-1}(x[n]-\theta)^2\right).\]</div>
+<p>So the data model is <span class="arithmatex">\(x[n]=\theta+w[n]\)</span> with <span class="arithmatex">\(w[n]\)</span> i.i.d. <span class="arithmatex">\(\mathcal N(0,A^2)\)</span>: a constant in white Gaussian noise (the example of <a href="#11-sharp-peak-or-flat-hill">1.1</a>).</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><span class="arithmatex">\(p(\mathbf x;\theta)=(2\pi A^2)^{-N/2}\exp\!\left(-\frac{1}{2A^2}\sum_n(x[n]-\theta)^2\right)\)</span></p>
+</div>
+</details>
+<h3 id="jan22-2e">January 2022 resit · 2e<a class="headerlink" href="#jan22-2e" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Resit, 24 January 2022 · 2e · 0.5 p</p>
+<p>Let</p>
+<div class="arithmatex">\[p(x; \theta) = \begin{cases} \frac{2}{\theta}x, &amp; \text{for } 0 \leq x \leq \theta, \\ 0, &amp; \text{else} \end{cases}\]</div>
+<p>be the probability density function of an observation <span class="arithmatex">\(X\)</span>. Check whether or not it is possible to derive the Cramer Rao lower bound. In case it is possible, derive the Cramer Rao lower bound. If it is not possible, justify why.</p>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> Decide whether the <abbr title="E[score] = 0, i.e. derivative and integral can be swapped; fails when the support depends on θ.">regularity condition</abbr> of <a href="#13-when-the-bound-does-not-exist-regularity">1.3</a> holds.</p>
+<p><strong>Step 1 — look at the <abbr title="the set of x values where the PDF is non-zero.">support</abbr> first.</strong> <span class="arithmatex">\(0\le x\le\theta\)</span>: the range of <span class="arithmatex">\(x\)</span> depends on <span class="arithmatex">\(\theta\)</span>. That is exactly the situation where the swap of <span class="arithmatex">\(\frac d{d\theta}\)</span> and <span class="arithmatex">\(\int dx\)</span> fails.</p>
+<p><strong>Step 2 — verify it with numbers</strong> (the official clarification corrects the PDF to <span class="arithmatex">\(\frac{2}{\theta^2}x\)</span> so that it integrates to 1: <span class="arithmatex">\(\int_0^\theta\frac{2x}{\theta^2}dx=\frac{\theta^2}{\theta^2}=1\)</span> ✓):</p>
+<ul>
+<li><span class="arithmatex">\(\frac{d}{d\theta}\int_0^\theta p\,dx=\frac{d}{d\theta}(1)=0\)</span>,</li>
+<li><span class="arithmatex">\(\int_0^\theta\frac{\partial p}{\partial\theta}dx=\int_0^\theta\!-\frac{4x}{\theta^3}dx=-\frac{4}{\theta^3}\cdot\frac{\theta^2}{2}=-\frac2\theta\ne0\)</span>.</li>
+</ul>
+<p>The two are not equal, so differentiation and integration cannot be swapped (the moving upper limit adds a boundary term), so <span class="arithmatex">\(\mathbb E[\partial\ln p/\partial\theta]\neq0\)</span> and the proof of the bound breaks.</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>Not possible:</strong> the <abbr title="the set of x values where the PDF is non-zero.">support</abbr> depends on <span class="arithmatex">\(\theta\)</span>, so the <abbr title="E[score] = 0, i.e. derivative and integral can be swapped; fails when the support depends on θ.">regularity condition</abbr> is violated and the <abbr title="Cramér–Rao lower bound: the smallest variance any unbiased estimator can have, 1/𝓘(θ).">CRLB</abbr> does not apply.</p>
+</div>
+</details>
+<hr />
+<h2 id="exam-questions-multiple-choice">Exam questions: multiple choice<a class="headerlink" href="#exam-questions-multiple-choice" title="Permanent link">#</a></h2>
+<h3 id="nov22-2a">November 2022 exam · 2a<a class="headerlink" href="#nov22-2a" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q1, 7 November 2022 · 2a · 0.25 p</p>
+<p>Which of the following statements about the <abbr title="𝓘(θ) = −E[second derivative of ln p]: how sharply peaked the log-likelihood is.">Fisher information</abbr> <span class="arithmatex">\(\mathcal{I}(\theta)\)</span> is TRUE?</p>
+<ul>
+<li>(a) The <abbr title="𝓘(θ) = −E[second derivative of ln p]: how sharply peaked the log-likelihood is.">Fisher information</abbr> for <span class="arithmatex">\(N\)</span> identical and independent distributed observations is <span class="arithmatex">\(Ni(\theta)\)</span>, where <span class="arithmatex">\(i(\theta)\)</span> is the <abbr title="𝓘(θ) = −E[second derivative of ln p]: how sharply peaked the log-likelihood is.">Fisher information</abbr> for a single observation.</li>
+<li>(b) The variance of any unbiased estimator is lower bounded by the <abbr title="𝓘(θ) = −E[second derivative of ln p]: how sharply peaked the log-likelihood is.">Fisher information</abbr>, i.e., <span class="arithmatex">\(\text{Var}(\hat{\theta}) \geq \mathcal{I}(\theta)\)</span>.</li>
+<li>&copy; The <abbr title="𝓘(θ) = −E[second derivative of ln p]: how sharply peaked the log-likelihood is.">Fisher information</abbr> <span class="arithmatex">\(\mathcal{I}(\theta)\)</span> is strictly negative.</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> One true statement among the three standard facts (<a href="#12-the-bound">1.2</a>).</p>
+<ul>
+<li>(a) <strong>True</strong>: information of independent observations adds.</li>
+<li>(b) False: the bound is <span class="arithmatex">\(1/\mathcal I\)</span>, the <em>reciprocal</em>.</li>
+<li>&copy; False: <span class="arithmatex">\(\mathcal I\)</span> is the expected <em>square</em> of the <abbr title="the first derivative of the log-likelihood with respect to θ.">score</abbr>, so it is positive.</li>
+</ul>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(a)</strong></p>
+</div>
+</details>
+<h3 id="apr24-2a">April 2024 exam · 2a<a class="headerlink" href="#apr24-2a" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q3, April 2024 · 2a · 0.5 p</p>
+<p>Which of the following statements is TRUE?</p>
+<ul>
+<li>a) The variance of any unbiased estimator is lower bounded by the <abbr title="𝓘(θ) = −E[second derivative of ln p]: how sharply peaked the log-likelihood is.">Fisher information</abbr>, i.e., <span class="arithmatex">\(Var(\hat{\theta}) \geq \mathcal{I}(\theta)\)</span>.</li>
+<li>b) The <abbr title="𝓘(θ) = −E[second derivative of ln p]: how sharply peaked the log-likelihood is.">Fisher information</abbr> is strictly negative.</li>
+<li>c) The <abbr title="𝓘(θ) = −E[second derivative of ln p]: how sharply peaked the log-likelihood is.">Fisher information</abbr> for <span class="arithmatex">\(N\)</span> identical and independently distributed observations is <span class="arithmatex">\(N i(\theta)\)</span>, where <span class="arithmatex">\(i(\theta)\)</span> is the <abbr title="𝓘(θ) = −E[second derivative of ln p]: how sharply peaked the log-likelihood is.">Fisher information</abbr> for a single observation.</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> The same three statements as Nov 2022, shuffled: (a) false (needs <span class="arithmatex">\(1/\mathcal I\)</span>), (b) false (positive), &copy; true (adds over i.i.d. samples).</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>&copy;</strong></p>
+</div>
+</details>
+<h3 id="q1-23-2a">Q1 2023 resit · 2a<a class="headerlink" href="#q1-23-2a" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Resit Q1 2023 · 2a (shown in the Part 2 review lecture)</p>
+<p>Which of the following statements is FALSE? (exactly one)</p>
+<ul>
+<li>(a) The <abbr title="𝓘(θ) = −E[second derivative of ln p]: how sharply peaked the log-likelihood is.">Fisher information</abbr> for <span class="arithmatex">\(N\)</span> i.i.d. observations is <span class="arithmatex">\(N \cdot i(\theta)\)</span>, where <span class="arithmatex">\(i(\theta)\)</span> is the <abbr title="𝓘(θ) = −E[second derivative of ln p]: how sharply peaked the log-likelihood is.">Fisher information</abbr> for a single observation.</li>
+<li>(b) The variance of any unbiased estimator satisfies <span class="arithmatex">\(\text{Var}(\hat{\theta}) \geq \mathcal{I}(\theta)\)</span>.</li>
+<li>&copy; The <abbr title="𝓘(θ) = −E[second derivative of ln p]: how sharply peaked the log-likelihood is.">Fisher information</abbr> is strictly positive.</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> Same family, but now find the <strong>false</strong> one. Read the question word!</p>
+<p>(a) true, &copy; true, (b) false: the bound is <span class="arithmatex">\(1/\mathcal I(\theta)\)</span>, not <span class="arithmatex">\(\mathcal I(\theta)\)</span>.</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(b)</strong> (the bound is <span class="arithmatex">\(1/\mathcal I(\theta)\)</span>)</p>
+</div>
+</details>
+<h3 id="jan22-2a">January 2022 resit · 2a<a class="headerlink" href="#jan22-2a" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Resit, 24 January 2022 · 2a · 0.3 p</p>
+<p>Which of the following statements about the Cramer Rao lower bound is true?</p>
+<ul>
+<li>(a) The Cramer Rao lower bound can always be derived.</li>
+<li>(b) For identical and independent distributed observations, the Cramer Rao lower bound decreases linearly with the number of observations.</li>
+<li>&copy; An estimator whose variance is lower than the Cramer Rao lower bound is called <abbr title="an unbiased estimator whose variance equals the CRLB.">efficient</abbr>.</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> One true statement about the bound.</p>
+<ul>
+<li>(a) False: only when the regularity conditions hold (<a href="#13-when-the-bound-does-not-exist-regularity">1.3</a>, Jan 2022 2e).</li>
+<li>(b) <strong>True</strong> (as the key reads it): <span class="arithmatex">\(\text{CRLB}=\frac{1}{N\,i(\theta)}\)</span> shrinks proportionally to <span class="arithmatex">\(1/N\)</span>.</li>
+<li>&copy; False: <abbr title="an unbiased estimator whose variance equals the CRLB.">efficient</abbr> means variance <strong>equal</strong> to the bound; going below it is impossible for unbiased estimators.</li>
+</ul>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(b)</strong></p>
+</div>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="p2-mle.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 2.1 Maximum likelihood">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                2.1 Maximum likelihood
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="p2-bayes.html" class="md-footer__link md-footer__link--next" aria-label="Next: 2.3 Bayesian estimation">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                2.3 Bayesian estimation
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.footer", "navigation.tracking", "navigation.instant", "navigation.instant.progress", "toc.follow", "content.tooltips"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js?v=1792856532"></script>
+      
+        <script src="javascripts/katex.js?v=1792856532"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="javascripts/quiz.js?v=1792856532"></script>
+      
+        <script src="javascripts/ask.js?v=1792856532"></script>
+      
+        <script src="javascripts/video.js?v=1792856532"></script>
+      
+        <script src="javascripts/layout.js?v=1792856532"></script>
+      
+        <script src="javascripts/keypoints.js?v=1792856532"></script>
+      
+        <script src="javascripts/progress.js?v=1792856532"></script>
+      
+        <script src="javascripts/widgets.js?v=1792856532"></script>
+      
+        <script src="javascripts/navsections.js?v=1792856532"></script>
+      
+    
+  </body>
+</html>
