@@ -108,7 +108,7 @@ The prior has mean $\alpha/\beta=1.5$, so it **pulls the estimate down** from 3.
     Posterior $p(\theta | x) = \frac{\lambda(\theta)}{2} e^{-\frac{\lambda(\theta)}{2}x}, \ x > 1$, with $\lambda(\theta) = \frac{1}{1+e^{-\theta}}$. Derive the MAP for $\theta$. Hint: $\frac{\partial \lambda}{\partial \theta} = \lambda(1 - \lambda)$.
 
 ??? solution "Check your answer"
-    **What is being asked?** The posterior is given with the parameter hidden inside $\lambda(\theta)=\frac{1}{1+e^{-\theta}}$. Same structure as the sigmoid MLE in [2.1](e2-mle.md#your-turn).
+    **What is being asked?** The posterior is given with the parameter hidden inside $\lambda(\theta)=\frac{1}{1+e^{-\theta}}$. Same structure as the sigmoid MLE in [2.1, exercise 7](e2-mle.md#7-april-2025-2c-sigmoid-use-the-trick-at-the-bottom-of-box-2a).
 
     **Step 1 · Best $\lambda$ first.** $\theta$ only appears through $\lambda$, and $\lambda(\theta)$ is one-to-one, so maximise in $\lambda$ and convert at the end.
 
