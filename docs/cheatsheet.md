@@ -29,7 +29,10 @@ First draw the region on $x$–$y$ axes: **every integral below takes its limits
 - **"Independent?"** → YES only if the region is a rectangle AND $p(x,y)=p_X(x)\cdot p_Y(y)$.<br>
   *Jun26:* square, and $3x^2\cdot2y=6x^2y$ → independent. A triangle region → never independent.
 
-Integral: $\int x^n\,dx=\frac{x^{n+1}}{n+1}$; plug in the top limit minus the bottom limit.
+**Doing the double integral** (the *Apr25* one above, step by step). $\int_0^1\!\int_0^{1-y}(cx+1)\,dx\,dy$:<br>
+**(a)** inner $dx$ first — treat $y$ as a plain number: $\int_0^{1-y}(cx+1)dx=\big[\frac{cx^2}{2}+x\big]_0^{1-y}=\frac{c(1-y)^2}{2}+(1-y)$. Top limit minus bottom; at the bottom every $x$ is 0. **The answer still holding $y$ is normal.**<br>
+**(b)** now in $y$ — expand first, $(1-y)^2=1-2y+y^2$: $\int_0^1(1-y)dy=\big[y-\frac{y^2}{2}\big]_0^1=\frac12$ · $\int_0^1\frac{(1-y)^2}{2}dy=\big[-\frac{(1-y)^3}{6}\big]_0^1=\frac16$ → total $\frac c6+\frac12=1$ → $c=3$.<br>
+Rules: $\int x^n dx=\frac{x^{n+1}}{n+1}$ · $\int k\,dx=kx$ · $\int(a-y)^n dy=-\frac{(a-y)^{n+1}}{n+1}$ · always top limit minus bottom · expand powers before integrating.
 
 ### 1B · WSS / ergodic (multiple choice)
 

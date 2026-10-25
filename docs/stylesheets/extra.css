@@ -245,13 +245,13 @@
   .md-main__inner { margin: 0 !important; }
   .md-content { max-width: none !important; }
   .md-content__inner { margin: 0 !important; padding: 0 !important; }
-  .md-typeset .cheat { font-size: 9pt; line-height: 1.14; }
+  .md-typeset .cheat { font-size: 9pt; line-height: 1.08; }
   .md-typeset .cheat .katex { font-size: .97em; }
   .md-typeset .cheat h1 { font-size: 8pt; margin: 0 0 .1em; }
   .md-typeset .cheat h2 { font-size: 1.15em; margin: .3em 0 .1em; break-after: avoid; }
   .md-typeset .cheat h3 { font-size: 1.05em; margin: .3em 0 .08em; break-after: avoid; }
   .md-typeset .cheat p.see { break-after: avoid; }
-  .md-typeset .cheat p, .md-typeset .cheat ul, .md-typeset .cheat ol { margin: .08em 0; }
+  .md-typeset .cheat p, .md-typeset .cheat ul, .md-typeset .cheat ol { margin: .04em 0; }
   .md-typeset .cheat li { margin-bottom: .02em; }
   .md-typeset .cheat .katex-display, .md-typeset .cheat div.arithmatex { margin: .05em 0; }
   .cheat-cols { column-count: 2; column-gap: 1.2em; column-rule: 1px solid #ddd; }
