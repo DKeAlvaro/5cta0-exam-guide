@@ -109,9 +109,25 @@ Compared with $\eta=1$ the threshold is **higher**: devices are rare, so we need
     **4g** Determine $P_M$ and $P_{FA}$ for this test.
 
 ??? solution "Check your answer"
-    **4f.** $0.6\cdot2e^{-2y}=0.4\,e^{-y}$ → divide by $0.4e^{-2y}$: $3=e^{y}$ → $\gamma''=\ln3\approx1.10$. Near $y=0$ the weighted $\mathcal H_1$ curve ($1.2$) is above the $\mathcal H_0$ one ($0.4$), so decide $\mathcal H_1$ for $y<\ln3$.
+    **What is being asked?** Two exponential densities with unequal priors. 4f: the $y$ where the two **prior-weighted** curves cross. 4g: the two error probabilities of the rule that comes from that crossing.
 
-    **4g.** $P_{FA}=\int_0^{\ln3}e^{-y}dy=1-e^{-\ln3}=1-\frac13=\frac23$. $P_M=\int_{\ln3}^\infty2e^{-2y}dy=e^{-2\ln3}=\frac19$.
+    **4f · Step 1 · Write the weighted curves.** Each density gets multiplied by its prior: $p(y\mid\mathcal H_1)P_1=0.6\cdot2e^{-2y}=1.2\,e^{-2y}$ and $p(y\mid\mathcal H_0)P_0=0.4\,e^{-y}$.
+
+    **4f · Step 2 · At $y=0$ which is higher?** $1.2\,e^{0}=1.2$ versus $0.4\,e^{0}=0.4$: the weighted $\mathcal H_1$ curve starts **higher**. Since $e^{-2y}$ dies faster than $e^{-y}$, the curves cross exactly once — the threshold.
+
+    **4f · Step 3 · Set them equal.** $1.2\,e^{-2y}=0.4\,e^{-y}$. Divide both sides by $0.4\,e^{-2y}$: $\dfrac{1.2}{0.4}=e^{-y}e^{2y}=e^{y}$ → $3=e^{y}$ → $\gamma''=\ln3\approx1.10$.
+
+    **4f · Step 4 · The rule.** $\mathcal H_1$ wins left of the crossing (where its weighted curve is taller): **decide $\mathcal H_1$ for $y<\ln3$**, $\mathcal H_0$ for $y>\ln3$. (This detector decides $\mathcal H_1$ for *small* $y$ — the densities make small values the $\mathcal H_1$ side.)
+
+    **4g · Step 5 · $P_{FA}$.** False alarm = decide $\mathcal H_1$ while $\mathcal H_0$ is true, i.e. $y<\ln3$ with the $\mathcal H_0$ density:
+
+    $$P_{FA}=\int_0^{\ln3}e^{-y}dy=\Big[-e^{-y}\Big]_0^{\ln3}=1-e^{-\ln3}=1-\frac13=\frac23.$$
+
+    **4g · Step 6 · $P_M$.** Miss = decide $\mathcal H_0$ while $\mathcal H_1$ is true, i.e. $y>\ln3$ with the $\mathcal H_1$ density:
+
+    $$P_M=\int_{\ln3}^{\infty}2e^{-2y}dy=\Big[-e^{-2y}\Big]_{\ln3}^{\infty}=e^{-2\ln3}=\frac{1}{3^2}=\frac19.$$
+
+    **4g · Step 7 · Sanity check.** Both areas are between 0 and 1 ✓. The total error of the test is $0.4\cdot\frac23+0.6\cdot\frac19=0.267+0.067=0.33$, better than the best lazy rule (always decide $\mathcal H_1$: error $P_0=0.4$) ✓.
 
     !!! answer "Answer"
         $\gamma''=\ln3\approx1.10$ (decide $\mathcal H_1$ for $y<\ln 3$); $P_{FA}=\frac23$, $P_M=\frac19$.

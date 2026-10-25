@@ -74,8 +74,17 @@ Watch it being built term by term (June 2026 numbers):
     (a) Plot D (b) Plot C (c) Plot B (d) Plot A
 
 ??? solution "Check your answer"
-    $P_{corr}=2+2(-\frac14)\cos\theta+2(-\frac3{16})\cos2\theta=2-\frac12\cos\theta-\frac38\cos2\theta$.
-    Ends: $P(0)=2-0.5-0.375=1.125$, $P(\pi)=2+0.5-0.375=2.125$. So it **rises** from about 1.1 to about 2.1. The AR(1) and MA(1) fits of 3.2 also rise (1.56 → 2.57 and 1.5 → 2.5). Press play below to see all three.
+    **What is being asked?** 3d: turn the three $r[k]$ numbers into a PSD estimate ("a function of cosines"). 3g: look at a picture with four plots and pick the one matching the three curves (the correlogram above plus the AR(1) and MA(1) fits of [3.2](e3-arma.md)).
+
+    **Step 1 · Template.** One term per given lag, $r[0]$ **not** doubled, the $\pm k$ pairs doubled:
+
+    $$\hat P_{corr}=r[0]+2r[1]\cos\theta+2r[2]\cos2\theta.$$
+
+    **Step 2 · Numbers.** $2+2\!\left(-\frac14\right)\cos\theta+2\!\left(-\frac3{16}\right)\cos2\theta=2-\frac12\cos\theta-\frac38\cos2\theta$.
+
+    **Step 3 · Both ends of the plot** (the trick for 3g). At $\theta=0$ every cosine is $1$: $P(0)=2-0.5-0.375=1.125$. At $\theta=\pi$: $\cos\pi=-1$, $\cos2\pi=+1$, so $P(\pi)=2+0.5-0.375=2.125$. The curve **rises** from about 1.1 to about 2.1.
+
+    **Step 4 · The other two curves.** The AR(1) and MA(1) fits of 3.2 also rise: $1.56\to2.57$ and $1.5\to2.5$. Press play below to see all three together: the right plot is the one where all three go up and end at those values.
 
     <div class="widget" data-w="corr" data-preset="apr25"></div>
 
@@ -86,7 +95,15 @@ Watch it being built term by term (June 2026 numbers):
     $r[0]=\frac{25}{16}$, $r[\pm1]=-\frac34$, $r[\pm2]=\frac12$, $r[\pm3]=-\frac12$. Using the correlogram method, give an estimate of the PSD as a function of cosines.
 
 ??? solution "Check your answer"
-    Four lags, so four terms: $\frac{25}{16}+2(-\frac34)\cos\theta+2(\frac12)\cos2\theta+2(-\frac12)\cos3\theta$.
+    **What is being asked?** The correlogram sum with **four** given lags: $k=0,1,2,3$.
+
+    **Step 1 · Template, one term per lag.** $\hat P=r[0]+2r[1]\cos\theta+2r[2]\cos2\theta+2r[3]\cos3\theta$ (the 2 only on the $\pm k$ pairs, never on $r[0]$).
+
+    **Step 2 · Numbers.** $\frac{25}{16}+2\!\left(-\frac34\right)\cos\theta+2\!\left(\frac12\right)\cos2\theta+2\!\left(-\frac12\right)\cos3\theta$.
+
+    **Step 3 · Tidy up.** $2\cdot(-\frac34)=-\frac32$, $2\cdot\frac12=1$, $2\cdot(-\frac12)=-1$.
+
+    **Step 4 · Sanity check.** $P(0)=\frac{25}{16}-\frac32+1-1=\frac{25-24}{16}=\frac1{16}>0$ ✓ (a PSD can never be negative).
 
     !!! answer "Answer"
         $P_{corr}=\frac{25}{16}-\frac32\cos\theta+\cos2\theta-\cos3\theta$.

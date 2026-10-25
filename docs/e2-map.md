@@ -70,9 +70,19 @@ The prior has mean $\alpha/\beta=1.5$, so it **pulls the estimate down** from 3.
     Write the likelihood, derive the posterior, compute the MAP.
 
 ??? solution "Check your answer"
-    **Likelihood.** Each sample gives $\theta^2(1-\theta)^{x_i-2}$ (the binomial coefficient has no $\theta$, drop it). Five samples: $\theta^{10}(1-\theta)^{\sum x_i-10}=\theta^{10}(1-\theta)^{12}$ (since $\sum x_i=22$).
+    **What is being asked?** Likelihood × prior → posterior → its top (the MAP).
 
-    **Times prior** $\theta^{1}(1-\theta)^{2}$: posterior $\propto\theta^{11}(1-\theta)^{14}$ → Beta(12, 15).
+    **Step 1 · One sample.** $P(X=x\mid\theta)=\binom{x-1}{k-1}\theta^{k}(1-\theta)^{x-k}$ with $k=2$: $\binom{x-1}{1}\theta^{2}(1-\theta)^{x-2}$. The binomial coefficient $\binom{x-1}{1}=x-1$ is just a number with **no $\theta$**, so it disappears (we only keep the $\theta$ parts).
+
+    **Step 2 · Five samples, exponents add.** Multiply the five likelihoods: $\theta$ gets exponent $2\times5=10$, and $(1-\theta)$ gets $\sum_i(x_i-2)=\sum x_i-2\cdot5=22-10=12$. So $L\propto\theta^{10}(1-\theta)^{12}$.
+
+    **Step 3 · Times the prior.** Beta(2, 3): $p(\theta)\propto\theta^{2-1}(1-\theta)^{3-1}=\theta^{1}(1-\theta)^{2}$. Add the exponents (same base):
+
+    $$p(\theta\mid x)\propto\theta^{10+1}(1-\theta)^{12+2}=\theta^{11}(1-\theta)^{14}.$$
+
+    **Step 4 · Name it.** $\theta^{a-1}(1-\theta)^{b-1}$ with $a-1=11$, $b-1=14$: **Beta(12, 15)**.
+
+    **Step 5 · Top of the posterior.** Beta top $=\dfrac{a-1}{a+b-2}=\dfrac{11}{11+14}=\dfrac{11}{25}=0.44$.
 
     !!! answer "Answer"
         Posterior Beta(12, 15); $\hat\theta_{MAP}=\frac{12-1}{12+15-2}=\frac{11}{25}=0.44$. (This is exactly the widget's starting position.)
@@ -81,7 +91,15 @@ The prior has mean $\alpha/\beta=1.5$, so it **pulls the estimate down** from 3.
     A binary experiment is repeated $N$ times; $N_1$ = number of Ys, $N_0$ = number of Ns, $\theta$ = probability of a Y. The posterior is $p(\theta | \mathcal{D}) = \theta^{\beta_1 - 1 + k_1 N_1} (1 - \theta)^{\beta_0 - 1 + k_0 N_0}$. Derive the MAP estimate of $\theta$.
 
 ??? solution "Check your answer"
-    Call the exponents $A=\beta_1-1+k_1N_1$ and $B=\beta_0-1+k_0N_0$. $\ln p=A\ln\theta+B\ln(1-\theta)$; derivative $\frac A\theta-\frac B{1-\theta}=0$ → $\theta=\frac A{A+B}$.
+    **What is being asked?** The posterior is already given: find the $\theta$ on its top.
+
+    **Step 1 · Name the exponents.** $p(\theta\mid\mathcal D)=\theta^{A}(1-\theta)^{B}$ with $A=\beta_1-1+k_1N_1$ and $B=\beta_0-1+k_0N_0$. ($N_1$ Ys each contribute one $\theta$, $N_0$ Ns each one $(1-\theta)$.)
+
+    **Step 2 · Log.** $\ln p=A\ln\theta+B\ln(1-\theta)$.
+
+    **Step 3 · Differentiate.** $\frac{A}{\theta}-\frac{B}{1-\theta}=0$ (using $\frac{d}{d\theta}\ln\theta=\frac1\theta$ and $\frac{d}{d\theta}\ln(1-\theta)=-\frac1{1-\theta}$).
+
+    **Step 4 · Solve.** $A(1-\theta)=B\theta$ → $A=(A+B)\theta$ → $\theta=\dfrac{A}{A+B}$. Fill $A$ and $B$ back in.
 
     !!! answer "Answer"
         $\hat\theta_{MAP}=\dfrac{\beta_1-1+k_1N_1}{\beta_1+\beta_0-2+k_1N_1+k_0N_0}$
@@ -90,7 +108,15 @@ The prior has mean $\alpha/\beta=1.5$, so it **pulls the estimate down** from 3.
     Posterior $p(\theta | x) = \frac{\lambda(\theta)}{2} e^{-\frac{\lambda(\theta)}{2}x}, \ x > 1$, with $\lambda(\theta) = \frac{1}{1+e^{-\theta}}$. Derive the MAP for $\theta$. Hint: $\frac{\partial \lambda}{\partial \theta} = \lambda(1 - \lambda)$.
 
 ??? solution "Check your answer"
-    Same trick as the sigmoid MLE in [2.1](e2-mle.md#your-turn): best $\lambda$ first. $\ln p=\ln\lambda-\ln2-\frac x2\lambda$; derivative $\frac1\lambda-\frac x2=0$ → $\lambda=\frac2x$. Then $1+e^{-\theta}=\frac x2$ → $\theta=-\ln(\frac x2-1)$.
+    **What is being asked?** The posterior is given with the parameter hidden inside $\lambda(\theta)=\frac{1}{1+e^{-\theta}}$. Same structure as the sigmoid MLE in [2.1](e2-mle.md#your-turn).
+
+    **Step 1 · Best $\lambda$ first.** $\theta$ only appears through $\lambda$, and $\lambda(\theta)$ is one-to-one, so maximise in $\lambda$ and convert at the end.
+
+    **Step 2 · Log.** $\ln p=\ln\!\big(\tfrac{\lambda}{2}e^{-\frac{\lambda x}{2}}\big)=\ln\lambda-\ln2-\dfrac{x}{2}\lambda$.
+
+    **Step 3 · Differentiate.** $\dfrac1\lambda-\dfrac x2=0$ → $\hat\lambda=\dfrac2x$.
+
+    **Step 4 · Back to $\theta$.** $\dfrac{1}{1+e^{-\theta}}=\dfrac2x$ → $1+e^{-\theta}=\dfrac x2$ → $e^{-\theta}=\dfrac x2-1$ → $\theta=-\ln\!\big(\dfrac x2-1\big)$. The $\ln$ needs $\frac x2-1>0$, i.e. $x>2$.
 
     !!! answer "Answer"
         $\hat\theta_{MAP}=-\ln\!\left(\dfrac x2-1\right)=\ln\dfrac{2}{x-2}$, for $x>2$.

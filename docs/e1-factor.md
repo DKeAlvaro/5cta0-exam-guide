@@ -73,7 +73,23 @@ $a=\dfrac{61\pm\sqrt{61^2-4\cdot30\cdot30}}{60}=\dfrac{61\pm\sqrt{3721-3600}}{60
     A random signal $x[n]$ has PSD $P(e^{j\theta}) = \dfrac{7}{25 - 24 \cos(\theta)}$. Find the innovation filter $L(z)$ and the variance of the input noise $\sigma_i^2$.
 
 ??? solution "Check your answer"
-    $C(1+a^2)=25$, $2Ca=-24$. Divide: $\frac{1+a^2}{2a}=-\frac{25}{24}$ → $24a^2+50a+24=0$ → $12a^2+25a+12=0$ → $a=\frac{-25\pm\sqrt{625-576}}{24}=\frac{-25\pm7}{24}$: $-\frac34$ or $-\frac43$. Keep $a=-\frac34$. $C=\frac{-24}{2(-\frac34)}=16$ (check $16\cdot\frac{25}{16}=25$ ✓). $\sigma_i^2=\frac7{16}$.
+    **What is being asked?** Write $P=\dfrac{7}{25-24\cos\theta}$ in the shape $\dfrac{\sigma_i^2}{1+a^2+2a\cos\theta}$, and read off $L(z)=\dfrac{1}{1+az^{-1}}$ and $\sigma_i^2$.
+
+    **Step 1 · Match the shape.** We need $25-24\cos\theta=C\,(1+a^2+2a\cos\theta)$ for some $C$ and $a$: then $P=\dfrac{7}{C(1+a^2+2a\cos\theta)}=\dfrac{7/C}{1+a^2+2a\cos\theta}$, which is the wanted shape with $\sigma_i^2=7/C$. Compare the constant part and the cosine part:
+
+    $$C(1+a^2)=25,\qquad 2Ca=-24$$
+
+    (the minus sign is because the exam prints $-24\cos\theta$).
+
+    **Step 2 · Divide to eliminate $C$.** $\dfrac{C(1+a^2)}{2Ca}=\dfrac{25}{-24}$ → $\dfrac{1+a^2}{2a}=-\dfrac{25}{24}$.
+
+    **Step 3 · Clear the denominators.** Multiply by $24\cdot 2a$: $24(1+a^2)=-25\cdot 2a$ → $24a^2+50a+24=0$ → (everything ÷ 2) $12a^2+25a+12=0$.
+
+    **Step 4 · Quadratic formula.** $a=\dfrac{-25\pm\sqrt{25^2-4\cdot12\cdot12}}{2\cdot12}=\dfrac{-25\pm\sqrt{625-576}}{24}=\dfrac{-25\pm7}{24}$: $a=-\dfrac{18}{24}=-\dfrac34$ or $a=-\dfrac{32}{24}=-\dfrac43$.
+
+    **Step 5 · Keep the root inside the unit circle.** $|-\frac34|=0.75<1$ ✓, $|-\frac43|=1.33>1$ ✗. So $a=-\frac34$ and $L(z)=\dfrac{1}{1-\frac34 z^{-1}}$ (the minus in front of $\frac34z^{-1}$ is the negative $a$).
+
+    **Step 6 · $C$, then $\sigma_i^2$.** $C=\dfrac{-24}{2a}=\dfrac{-24}{-3/2}=16$. Check: $16\big(1+\frac{9}{16}\big)=16+9=25$ ✓. And $\sigma_i^2=\dfrac{N}{C}=\dfrac{7}{16}$ (not $\frac{7}{1}$: the $C$ must go).
 
     !!! answer "Answer"
         $L(z)=\dfrac{1}{1-\frac34z^{-1}}$, $\quad\sigma_i^2=\dfrac7{16}$.
@@ -82,7 +98,17 @@ $a=\dfrac{61\pm\sqrt{61^2-4\cdot30\cdot30}}{60}=\dfrac{61\pm\sqrt{3721-3600}}{60
     $P_x(e^{j\theta}) = \dfrac{1}{\frac{5}{3} - \cos(\theta)}$. Find $\sigma_i^2$ and the innovation filter $L(z)$.
 
 ??? solution "Check your answer"
-    $C(1+a^2)=\frac53$, $2Ca=-1$. Divide: $\frac{1+a^2}{2a}=-\frac53$ → $3a^2+10a+3=0$ → $a=\frac{-10\pm8}{6}$: $-\frac13$ or $-3$. Keep $-\frac13$. $C=\frac{-1}{-2/3}=\frac32$ (check $\frac32\cdot\frac{10}9=\frac53$ ✓). $\sigma_i^2=\frac{1}{3/2}=\frac23$.
+    **What is being asked?** Same as the previous exercise: $P=\dfrac{1}{\frac53-\cos\theta}$ → $\dfrac{\sigma_i^2}{1+a^2+2a\cos\theta}$.
+
+    **Step 1 · Match.** $\frac53-\cos\theta=C(1+a^2+2a\cos\theta)$, so $C(1+a^2)=\frac53$ and $2Ca=-1$ (the cosine comes with $-1$).
+
+    **Step 2 · Divide.** $\dfrac{1+a^2}{2a}=-\dfrac53$ → $3(1+a^2)=-10a$ → $3a^2+10a+3=0$.
+
+    **Step 3 · Quadratic.** $a=\dfrac{-10\pm\sqrt{100-36}}{6}=\dfrac{-10\pm8}{6}$: $-\dfrac13$ or $-3$.
+
+    **Step 4 · Keep $|a|<1$.** $|-\frac13|<1$ ✓, $|-3|>1$ ✗ → $a=-\frac13$, $L(z)=\dfrac{1}{1-\frac13z^{-1}}$.
+
+    **Step 5 · $C$ and $\sigma_i^2$.** $C=\dfrac{-1}{2a}=\dfrac{-1}{-2/3}=\frac32$ (check: $\frac32\big(1+\frac19\big)=\frac32\cdot\frac{10}9=\frac53$ ✓). Then $\sigma_i^2=\dfrac{N}{C}=\dfrac{1}{3/2}=\frac23$.
 
     !!! answer "Answer"
         $L(z)=\dfrac{1}{1-\frac13z^{-1}}$, $\quad\sigma_i^2=\dfrac23$.
@@ -91,6 +117,12 @@ $a=\dfrac{61\pm\sqrt{61^2-4\cdot30\cdot30}}{60}=\dfrac{61\pm\sqrt{3721-3600}}{60
     Which condition is required for a rational filter $H(z)$ to be the innovation filter obtained through spectral factorisation of a PSD? (a) minimum phase: all poles and zeros inside (or on) the unit circle. (b) maximum phase: all outside. (c) real impulse response with strict linear phase. (d) all-pass.
 
 ??? solution "Check your answer"
+    **What is being asked?** Which property must the factor $H(z)$ have to count as *the* innovation filter?
+
+    **Step 1 · Why one answer is forced.** A PSD can be written as $\sigma_i^2|H|^2$ in many ways (the mirror root $a$ vs $1/a$ gives the same $|H|^2$), so without a rule there would be no unique answer. The rule the course takes: **minimum phase** — all poles and zeros inside (or on) the unit circle. Then $H$ is stable and causal and has a stable inverse, which is what "innovations" (white input) needs.
+
+    **Step 2 · Kill the others.** (b) maximum phase is the mirror choice, outside the circle. (c) linear phase is a filter-design wish, unrelated. (d) all-pass means $|H|$ is flat, so the PSD would be flat too — only white noise.
+
     !!! answer "Answer"
         **(a)** minimum phase. That is why we always keep $|a|<1$.
 

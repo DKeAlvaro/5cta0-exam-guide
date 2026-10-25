@@ -88,8 +88,20 @@ Check: $\int_0^12(1-y)\,dy=2\cdot\frac12=1$ ✓.
     2. Determine whether $X$ and $Y$ are independent, and briefly justify why. [0.25]
 
 ??? solution "Check your answer"
-    The region is the unit square (third tab), so every slice runs from 0 to 1.
-    $p_X(x)=\int_0^16x^2y\,dy=6x^2\cdot\frac12=3x^2$. Likewise $p_Y(y)=\int_0^16x^2y\,dx=6y\cdot\frac13=2y$. Product: $3x^2\cdot2y=6x^2y$ = the joint. ✓
+    **What is being asked?** (1) the marginal $p_X(x)$ with its domain, (2) are $X$ and $Y$ independent?
+
+    **Step 1 · The region.** $0\le x\le1$ and $0\le y\le1$: the unit square (third tab of the widget). So every slice runs from 0 to 1, and the domain of the marginal is $0\le x\le1$.
+
+    **Step 2 · Marginal = integrate the $y$ away.** $p_X(x)=\int p(x,y)\,dy$ along the slice at that $x$:
+
+    $$p_X(x)=\int_0^1 6x^2y\,dy=6x^2\int_0^1 y\,dy=6x^2\cdot\Big[\frac{y^2}{2}\Big]_0^1=6x^2\cdot\frac12=3x^2.$$
+
+    The $6x^2$ comes out of the integral because it has no $y$ in it (the [integral rule above](#the-recipe)).
+
+    **Step 3 · Check that it is a PDF.** $\int_0^1 3x^2\,dx=\big[x^3\big]_0^1=1$ ✓.
+
+    **Step 4 · Independence.** Need $p(x,y)=p_X(x)\,p_Y(y)$ **everywhere**. Get $p_Y(y)$ the same way: $p_Y(y)=\int_0^1 6x^2y\,dx=6y\int_0^1 x^2\,dx=6y\cdot\frac13=2y$.
+    Product: $3x^2\cdot 2y=6x^2y$ = the joint ✓, and the region is a rectangle ✓. Both conditions hold → independent.
 
     !!! answer "Answer"
         1. $p_X(x)=3x^2$ for $0\le x\le1$, 0 otherwise. 2. **Independent**: the support is a rectangle and $p_{X,Y}=p_X\,p_Y=3x^2\cdot2y$.

@@ -73,9 +73,19 @@ $$P(D)=\sum_k P(D\mid M_k)\,P(M_k)\qquad\qquad P(M_k\mid D)=\frac{P(D\mid M_k)\,
     2. What is the probability that a bad quality image comes from CT2?
 
 ??? solution "Check your answer"
-    Two twists: the counts are already given (18 + 22 + 15 = 55 patients, use them instead of 1000), and the rates are for **good** images, so bad = 1 − good: 15 %, 10 %, 34 %.
+    **What is being asked?** (1) the probability that a random image fails, (2) given that it failed, the probability that it came from CT2.
 
-    Bad: $18\times0.15=2.7$, $\ 22\times0.10=2.2$, $\ 15\times0.34=5.1$. Pile: $10$.
+    **Step 0 · Two twists.** The counts are already given (18 + 22 + 15 = 55 patients per day), so use those instead of 1000. And the rates are for **good** images ("85 % have sufficient quality"), so bad $=1-$good: 15 %, 10 % and 34 %.
+
+    **Step 1 · Split by scanner.** 18 images from CT1, 22 from CT2, 15 from CT3.
+
+    **Step 2 · Bad ones per scanner.** count × bad rate: $18\times0.15=2.7$, $\ 22\times0.10=2.2$, $\ 15\times0.34=5.1$.
+
+    **Step 3 · The pile of bad images.** $2.7+2.2+5.1=10$ out of 55.
+
+    **Step 4 · First answer.** $P(\text{bad})=\dfrac{\text{bad}}{\text{all}}=\dfrac{10}{55}=0.18$.
+
+    **Step 5 · Second answer.** "Given that it is bad" means: look only inside the pile of 10. CT2 contributes 2.2 of them, so $P(\text{CT2}\mid\text{bad})=\dfrac{2.2}{10}=0.22$. Divide by the **pile**, not by 55.
 
     !!! answer "Answer"
         1. $10/55=0.18$. 2. $2.2/10=0.22$.
@@ -84,9 +94,17 @@ $$P(D)=\sum_k P(D\mid M_k)\,P(M_k)\qquad\qquad P(M_k\mid D)=\frac{P(D\mid M_k)\,
     The probability of having tuberculosis (TB) is 0.0005, and a test for TB is 99 % accurate. What is the probability one has TB if one tests positive? **Provide only the final answer.**
 
 ??? solution "Check your answer"
-    "99 % accurate" = sick people test positive 99 % of the time **and** healthy people test negative 99 % of the time (so 1 % of healthy people test positive).
+    **What is being asked?** The test came back positive: what is the probability that you really have TB?
 
-    1 000 000 people: 500 have TB → 495 test positive. 999 500 are healthy → 1 % = 9 995 test positive. Pile of positives: $495+9995=10490$.
+    **Step 1 · "99 % accurate" cuts both ways.** Sick people test positive 99 % of the time **and** healthy people test negative 99 % of the time. So **1 % of the healthy people also test positive** — that is the whole trap.
+
+    **Step 2 · A big pile of people.** The probability 0.0005 is tiny, so take 1 000 000 people (the recipe's trick): $1\,000\,000\times0.0005=500$ have TB, the other $999\,500$ do not.
+
+    **Step 3 · Positive tests in each group.** Sick: $500\times0.99=495$. Healthy: $999\,500\times0.01=9\,995$ (1 % of a huge group is still a lot).
+
+    **Step 4 · The pile of positives.** $495+9\,995=10\,490$.
+
+    **Step 5 · Divide.** $P(\text{TB}\mid +)=\dfrac{\text{sick positives}}{\text{all positives}}=\dfrac{495}{10\,490}=0.047$.
 
     !!! answer "Answer"
         $P(TB\mid+)=\frac{495}{10490}\approx0.047$. Only about 5 %: most positives are healthy people, because healthy people are so many more.

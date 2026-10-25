@@ -57,7 +57,24 @@ $$y=\frac1{14}x+\frac{45}{14}\approx0.071x+3.21$$
     Find the least-squares line for $\{(0,1),(1,3),(2,4)\}$.
 
 ??? solution "Check your answer"
-    $\bar x=1$, $\bar y=\frac83$. Deviations $x$: $-1,0,1$; $y$: $-\frac53,\frac13,\frac43$. Products: $\frac53+0+\frac43=3$. Squares: $1+0+1=2$. $a=\frac32$, $b=\frac83-\frac32=\frac76$.
+    **What is being asked?** The line $y=ax+b$ that minimises the sum of squared misses, for the three points $(0,1),(1,3),(2,4)$.
+
+    **Step 1 · Means.** $\bar x=\frac{0+1+2}{3}=1$, $\ \bar y=\frac{1+3+4}{3}=\frac83$.
+
+    **Step 2 · Table** (same as the [recipe](#the-recipe)):
+
+    | $x$ | $y$ | $x-\bar x$ | $y-\bar y$ | product | $(x-\bar x)^2$ |
+    |---|---|---|---|---|---|
+    | 0 | 1 | $-1$ | $-\frac53$ | $\frac53$ | $1$ |
+    | 1 | 3 | $0$ | $\frac13$ | $0$ | $0$ |
+    | 2 | 4 | $1$ | $\frac43$ | $\frac43$ | $1$ |
+    | | | | **sum** | $3$ | $2$ |
+
+    **Step 3 · Slope.** $a=\dfrac{\text{sum of products}}{\text{sum of squares}}=\dfrac32$.
+
+    **Step 4 · Intercept.** $b=\bar y-a\bar x=\dfrac83-\dfrac32\cdot1=\dfrac{16-9}{6}=\dfrac76$.
+
+    **Step 5 · Check.** The line must pass through $(\bar x,\bar y)$: $1.5\cdot1+\frac76=\frac32+\frac76=\frac{16}{6}=\frac83$ ✓.
 
     !!! answer "Answer"
         $y=1.5x+\frac76\approx1.5x+1.17$

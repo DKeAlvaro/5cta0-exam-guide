@@ -80,7 +80,15 @@ The first part is again a cosine averaged over full turns of $U$: 0. Left: $\fra
     Suppose we have infinitely many fair dice and define a random process as the ensemble of the random signals obtained by rolling each die infinitely many times and recording the number on the upward face. Which statement is true?
 
 ??? solution "Check your answer"
-    Every die is the same fair die and every roll is independent. Rolled forever, one die shows each face $\frac16$ of the time, so its time average is $3.5$ and its spread is the spread of one roll, exactly like the column (first tab of the widget).
+    **What is being asked?** Which statement about "infinitely many dice, each rolled forever" is true — mainly: is this process ergodic?
+
+    **Step 1 · What a row is.** One die rolled forever is one realisation. Its **time average**: a fair die shows each face in $\frac16$ of its rolls, so the average is $1\cdot\frac16+\dots+6\cdot\frac16=3.5$.
+
+    **Step 2 · What a column is.** Fix a time $n$ and look at all dice at once (**ensemble**): each face again in $\frac16$ of them, so the ensemble average is the same 3.5.
+
+    **Step 3 · Compare.** Time average of any single row $=$ ensemble mean → **ergodic in the mean**. The same argument for the spread (the variance $\frac{35}{12}$ of one roll) → **also ergodic in the variance**.
+
+    **Step 4 · Kill the wrong options.** "Only in the mean" understates it. "$E[X]=0$" confuses dice with zero-mean noise: the mean here is 3.5.
 
     !!! answer "Answer"
         **Ergodic in both the mean and the variance** (option (b) both times). Not "only in the mean", and not "$E[X]=0$" (it is 3.5).

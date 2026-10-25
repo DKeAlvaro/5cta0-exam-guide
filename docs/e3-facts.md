@@ -102,5 +102,19 @@ Recording only $N$ samples = multiplying the signal by a **window**. In the spec
     1. Non-overlapping segments, average their periodograms. 2. $\frac1N|\text{N-point DFT}|^2$. 3. Model $\sigma_i^2\left|\frac{1+\sum b_qe^{-jq\theta}}{1+\sum a_pe^{-jp\theta}}\right|^2$. 4. DFT of the estimated autocorrelation after a window of length $M\lt L$. 5. Overlapping segments, average their periodograms.
 
 ??? solution "Check your answer"
+    **What is being asked?** Match five one-line descriptions with the five estimation methods. Each line contains one giveaway word — find it and the match is forced.
+
+    **Step 1 · "Non-overlapping segments, average their periodograms."** Cutting into blocks that do not overlap and averaging is exactly **Bartlett**. (The averaging is what lowers the variance.)
+
+    **Step 2 · "$\frac1N|\text{N-point DFT}|^2$."** That is the definition of the **periodogram**: the squared magnitude of the DFT, scaled by $1/N$. No segments, no model.
+
+    **Step 3 · "Model $\sigma_i^2\left|\frac{1+\sum b_qe^{-jq\theta}}{1+\sum a_pe^{-jp\theta}}\right|^2$."** A rational function $|B/A|^2$ of a white noise power = a **parametric** model, and with both a numerator ($b_q$) and a denominator ($a_p$) it is **ARMA**. (Only $a$'s → AR, only $b$'s → MA.)
+
+    **Step 4 · "DFT of the estimated autocorrelation after a window of length $M\lt L$."** The giveaway is that the autocorrelation gets **windowed** (truncated/smoothed at $M$) and then transformed: that is **Blackman–Tukey**.
+
+    **Step 5 · "Overlapping segments, average their periodograms."** Same as Bartlett but with overlap: **Welch**. (Overlap + window is Welch's improvement over Bartlett.)
+
+    **Step 6 · Check the pairs.** The two easy to swap are 1 vs 5: the only difference is the word "non-overlapping" vs "overlapping". Bartlett = no overlap, Welch = overlap.
+
     !!! answer "Answer"
         1 Bartlett · 2 Periodogram · 3 ARMA (parametric) · 4 Blackman–Tukey · 5 Welch

@@ -96,13 +96,21 @@ Meaning: a Gamma variable has mean $k\theta$, so the MLE says "average recovery 
     Consider the likelihood $p(x|\theta) = 3\lambda(\theta)e^{-4\frac{\lambda(\theta)x}{7}}, \ x > 1$, where $\lambda(\theta) = \frac{1}{1+e^{-\theta}}$ (logistic sigmoid). Derive the MLE for $\theta$. Hint: $\frac{\partial \lambda(\theta)}{\partial \theta} = \lambda(\theta)(1 - \lambda(\theta))$.
 
 ??? solution "Check your answer"
-    **Trick: find the best $\lambda$ first, then turn it into $\theta$.** (Allowed: the MLE is *invariant*, if $\lambda=\lambda(\theta)$ is one-to-one, $\hat\lambda=\lambda(\hat\theta)$.)
+    **What is being asked?** One sample $x$ with $p(x\mid\theta)=3\lambda(\theta)e^{-\frac47\lambda(\theta)x}$ and $\lambda(\theta)=\frac{1}{1+e^{-\theta}}$ (the logistic sigmoid). Find the $\theta$ that makes this $x$ most likely.
 
-    **Log.** $\ln p=\ln3+\ln\lambda-\frac{4x}{7}\lambda$.
+    **Step 0 · The trick: solve for $\lambda$ first.** $\theta$ only appears through $\lambda$, and $\lambda(\theta)$ is one-to-one (it goes from 0 to 1 as $\theta$ goes from $-\infty$ to $+\infty$). So the best $\lambda$ gives the best $\theta$: the MLE is *invariant* (also in the [recipe's trap list](#traps)).
 
-    **Differentiate in $\lambda$.** $\frac1\lambda-\frac{4x}7=0$ → $\hat\lambda=\frac{7}{4x}$. (With the hint and the chain rule you get $(\frac1\lambda-\frac{4x}7)\lambda(1-\lambda)=0$: the same thing.)
+    **Step 1 · Log.** $\ln p=\ln\!\big(3\lambda e^{-\frac47\lambda x}\big)=\ln3+\ln\lambda-\frac{4x}{7}\lambda$, using $\ln(ab)=\ln a+\ln b$ and $\ln e^{u}=u$.
 
-    **Back to $\theta$.** $\frac1{1+e^{-\theta}}=\frac7{4x}$ → $1+e^{-\theta}=\frac{4x}7$ → $e^{-\theta}=\frac{4x}7-1$ → $\theta=-\ln(\frac{4x}7-1)$.
+    **Step 2 · Differentiate in $\lambda$.** $\frac{d}{d\lambda}\ln\lambda=\frac1\lambda$, and $\frac{d}{d\lambda}\big(-\frac{4x}{7}\lambda\big)=-\frac{4x}{7}$ (a constant times $\lambda$). Set to 0:
+
+    $$\frac1\lambda-\frac{4x}{7}=0\ \Longrightarrow\ \hat\lambda=\frac{7}{4x}.$$
+
+    (If you differentiate in $\theta$ directly with the hint, the chain rule gives $\big(\frac1\lambda-\frac{4x}7\big)\lambda(1-\lambda)=0$: the same answer, plus the extra factor $\lambda(1-\lambda)$ which is never 0.)
+
+    **Step 3 · Back to $\theta$.** $\dfrac{1}{1+e^{-\theta}}=\dfrac{7}{4x}$. Flip both fractions: $1+e^{-\theta}=\dfrac{4x}{7}$ → $e^{-\theta}=\dfrac{4x}{7}-1$. Take $\ln$: $-\theta=\ln\!\big(\frac{4x}{7}-1\big)$, so $\theta=-\ln\!\big(\frac{4x}{7}-1\big)$.
+
+    **Step 4 · When is this allowed?** The $\ln$ needs a positive number: $\frac{4x}{7}-1>0$ → $x>\frac74$.
 
     !!! answer "Answer"
         $\hat\theta_{ML}=-\ln\!\left(\dfrac{4x}{7}-1\right)$, valid for $x>\frac74$ (the log needs a positive number).

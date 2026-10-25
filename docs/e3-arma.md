@@ -141,9 +141,25 @@ $P_{MA}=r[0]+2r[1]\cos\theta=2-0.5\cos\theta$.
     **3g** Model $x[k]$ as an MA(1) signal and calculate $P_{MA1}(e^{j\theta})$. Decimal numbers are fine.
 
 ??? solution "Check your answer"
-    **AR(1).** $a_1=-\frac{-1/8}{1}=\frac18$; $\sigma_i^2=1+\frac18(-\frac18)=\frac{63}{64}$; denominator $1+\frac1{64}+\frac14\cos\theta=\frac{65+16\cos\theta}{64}$.
+    **What is being asked?** Fit the given $r[k]$ ($r[0]=1$, $r[1]=-\frac18$, $r[2]=-\frac3{32}$) first with an AR(1), then with an MA(1), and write each model's PSD.
 
-    **MA(1).** $\frac{r[0]}{r[1]}=-8$ again, so $b_1\approx-0.127$; $\sigma_i^2=\frac{-0.125}{-0.127}\approx0.98$; $P=1+2(-\frac18)\cos\theta$.
+    **AR(1)**
+
+    **Step 1 · Coefficient.** [Recipe](#the-recipes): $a_1=-\dfrac{r[1]}{r[0]}=-\dfrac{-1/8}{1}=\dfrac18$ (the minus is the course convention $x[n]=-a_1x[n-1]+i[n]$).
+
+    **Step 2 · Noise power.** $\sigma_i^2=r[0]+a_1r[1]=1+\frac18\!\left(-\frac18\right)=1-\frac1{64}=\dfrac{63}{64}$.
+
+    **Step 3 · Denominator.** $1+a_1^2+2a_1\cos\theta=1+\frac1{64}+\frac14\cos\theta=\dfrac{65+16\cos\theta}{64}$.
+
+    **Step 4 · Divide.** $P_{AR1}=\dfrac{63/64}{(65+16\cos\theta)/64}=\dfrac{63}{65+16\cos\theta}$ (the 64s cancel).
+
+    **MA(1)**
+
+    **Step 5 · Quadratic for $b_1$.** $\dfrac{r[0]}{r[1]}=\dfrac{1}{-1/8}=-8$, so $\dfrac{1+b_1^2}{b_1}=-8$ → $b_1^2+8b_1+1=0$ → $b_1=\dfrac{-8\pm\sqrt{64-4}}{2}=-4\pm\sqrt{15}$, i.e. $-0.127$ or $-7.87$.
+
+    **Step 6 · Keep $|b_1|<1$.** $|-0.127|<1$ ✓ → $b_1\approx-0.127$ (same root-picking as spectral factorisation).
+
+    **Step 7 · Noise and PSD.** $\sigma_i^2=\dfrac{r[1]}{b_1}=\dfrac{-0.125}{-0.127}\approx0.98$. And $P_{MA}=r[0]+2r[1]\cos\theta=1-\frac14\cos\theta$ (the correlogram cut after lag 1 — you do not even need $b_1$ for the PSD itself).
 
     !!! answer "Answer"
         $P_{AR1}=\dfrac{63}{65+16\cos\theta}$; $\quad P_{MA1}\approx1-0.25\cos\theta$ ($b_1\approx-0.13$, $\sigma_i^2\approx0.98$).
@@ -152,10 +168,19 @@ $P_{MA}=r[0]+2r[1]\cos\theta=2-0.5\cos\theta$.
     $r[0]=\frac{25}{16}$, $r[\pm1]=-\frac34$, $r[\pm2]=\frac12$. Model the signal as an AR(2) process. Find the model parameters.
 
 ??? solution "Check your answer"
-    $D=\frac{625}{256}-\frac{9}{16}=\frac{625-144}{256}=\frac{481}{256}$.
-    $a_1=\frac{-(-\frac34)(\frac{25}{16}-\frac12)}{D}=\frac{\frac34\cdot\frac{17}{16}}{481/256}=\frac{51/64}{481/256}=\frac{204}{481}$.
-    $a_2=\frac{\frac9{16}-\frac{25}{16}\cdot\frac12}{D}=\frac{\frac{18-25}{32}}{481/256}=\frac{-7/32}{481/256}=-\frac{56}{481}$.
-    $\sigma_i^2=\frac{25}{16}+\frac{204}{481}(-\frac34)+(-\frac{56}{481})(\frac12)\approx1.5625-0.3181-0.0582=1.19$.
+    **What is being asked?** AR(2) = three unknowns $a_1,a_2,\sigma_i^2$ fitted to $r[0]=\frac{25}{16}$, $r[1]=-\frac34$, $r[2]=\frac12$. Exactly the [AR(2) recipe](#the-recipes).
+
+    **Step 1 · Yule–Walker.** $\begin{bmatrix}r[0]&r[1]\\ r[1]&r[0]\end{bmatrix}\begin{bmatrix}a_1\\ a_2\end{bmatrix}=-\begin{bmatrix}r[1]\\ r[2]\end{bmatrix}$, i.e. $\begin{bmatrix}\frac{25}{16}&-\frac34\\[2pt]-\frac34&\frac{25}{16}\end{bmatrix}\begin{bmatrix}a_1\\ a_2\end{bmatrix}=\begin{bmatrix}\frac34\\[2pt]-\frac12\end{bmatrix}$.
+
+    **Step 2 · Determinant.** $D=r[0]^2-r[1]^2=\frac{625}{256}-\frac{9}{16}=\frac{625-144}{256}=\frac{481}{256}$.
+
+    **Step 3 · $a_1$.** $a_1=\dfrac{-r[1](r[0]-r[2])}{D}=\dfrac{\frac34\left(\frac{25}{16}-\frac12\right)}{481/256}=\dfrac{\frac34\cdot\frac{17}{16}}{481/256}=\dfrac{51}{64}\cdot\dfrac{256}{481}=\dfrac{204}{481}\approx0.424$.
+
+    **Step 4 · $a_2$.** $a_2=\dfrac{r[1]^2-r[0]\,r[2]}{D}=\dfrac{\frac{9}{16}-\frac{25}{32}}{481/256}=\dfrac{\frac{18-25}{32}}{481/256}=\dfrac{-7}{32}\cdot\dfrac{256}{481}=-\dfrac{56}{481}\approx-0.116$.
+
+    **Step 5 · Noise power** (plus signs, with the $a$'s found): $\sigma_i^2=r[0]+a_1r[1]+a_2r[2]=1.5625+0.424(-0.75)+(-0.116)(0.5)=1.5625-0.3181-0.0582\approx1.19$.
+
+    **Step 6 · Check.** Row 1 of Yule–Walker: $\frac{25}{16}a_1-\frac34a_2=\frac{25}{16}\cdot\frac{204}{481}-\frac34\cdot\left(-\frac{56}{481}\right)=0.6627+0.0873=0.75=\frac34$ ✓.
 
     !!! answer "Answer"
         $a_1=\frac{204}{481}\approx0.424$, $a_2=-\frac{56}{481}\approx-0.116$, $\sigma_i^2\approx1.19$.
