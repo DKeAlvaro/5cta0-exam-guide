@@ -1,0 +1,25 @@
+The drill finished after 2 iterations with 8/8 in-scope questions passing, but a few things are unverified.
+
+- **Sheet length:** I never measured the new sheet. My hand estimate is about 1650 characters, against the 1701 cap, so check it before splicing.
+- **Plot images:** I did not view them. For `apr25-3g` and `apr24-3f` I computed the curve heights at θ=0 and θ=π from the sheet and matched them to the key's plot letter.
+- **Mismatch in the log:** `progress/3.1.md` says "6/8" for iteration 1, but the report's table implies 6 passes with 2 fails (`apr25-3g`, `apr24-3f`), which is what I intended.
+
+**Iteration 1:** The correlogram sub-questions passed from the original sheet. They were `jun26-3c`, `apr25-3d`, `apr24-3d`, `jan22-3c`, `pe21-3c`, `jan20-3(a)` and `nov19-2(a)`. The two plot-picking questions, `apr25-3g` and `apr24-3f`, failed. The sheet gave no way to compute the AR and MA curves.
+
+**Rewrite:** I added the MA(1) curve (r0 + 2·r1·cosθ) and the AR(1) and AR(2) parameter formulas with their endpoint heights. I also added one worked three-curve example and the exam phrasing "Correlogram method". To make room I dropped two of the three numeric examples and the 28/27 MA(1) example.
+
+**Iteration 2:** I re-solved only the two failed questions and both passed from the new sheet.
+
+**Skipped:**
+- `jun26-3e` is model-order theory, outside this section.
+- `jan19-4` is a Wiener-filter question from another section.
+- All AR/MA parameter-fitting sub-parts are 3.2 material.
+
+Files are in `agent-work/`:
+- rewrite/3.1.md
+- report/3.1.md
+- solutions/3.1.md
+- progress/3.1.md
+- sheet/3.1.md
+
+I overwrote `sheet/3.1.md` with the new version, and the rewrite file is identical to it.

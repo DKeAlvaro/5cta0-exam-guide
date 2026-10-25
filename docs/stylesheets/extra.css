@@ -201,7 +201,7 @@
 .md-typeset .cheat p, .md-typeset .cheat ul { margin: .2em 0; }
 .md-typeset .cheat .katex-display { margin: .2em 0; }
 .cheat-cols { column-count: 2; column-gap: 1.4em; }
-.cheat-cols > div { break-inside: avoid; margin-bottom: .55em; }
+.cheat-cols > div { break-inside: avoid; margin-bottom: .45em; }
 /* tables must never be wider than their column */
 .md-typeset .cheat table:not([class]) { width: 100%; table-layout: fixed; }
 .md-typeset .cheat table:not([class]) th, .md-typeset .cheat table:not([class]) td { word-break: break-word; }
@@ -215,9 +215,9 @@
   .md-main__inner { margin: 0 !important; }
   .md-content { max-width: none !important; }
   .md-content__inner { margin: 0 !important; padding: 0 !important; }
-  .md-typeset .cheat { font-size: 7.6pt; line-height: 1.22; }
+  .md-typeset .cheat { font-size: 7.5pt; line-height: 1.16; }
   .md-typeset .cheat h1 { font-size: 10pt; margin: 0 0 .2em; }
-  .md-typeset .cheat h2 { margin: .45em 0 .15em; }
+  .md-typeset .cheat h2 { margin: .45em 0 .15em; break-inside: avoid; break-after: avoid; }
   .md-typeset .cheat p, .md-typeset .cheat ul { margin: .12em 0; }
   .md-typeset .cheat .katex-display { margin: .12em 0; }
   .cheat-cols { column-count: 3; column-gap: .9em; }

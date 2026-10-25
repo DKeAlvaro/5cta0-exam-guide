@@ -1,0 +1,72 @@
+{
+  "1.1": {
+    "title": "Bayes word problems (counts)",
+    "chars": 1355,
+    "questions": 11
+  },
+  "1.2": {
+    "title": "Joint PDF: c, marginal, conditional, independent",
+    "chars": 1424,
+    "questions": 12
+  },
+  "1.3": {
+    "title": "WSS and ergodic",
+    "chars": 935,
+    "questions": 7
+  },
+  "1.4": {
+    "title": "Spectral factorisation",
+    "chars": 993,
+    "questions": 6
+  },
+  "2.1": {
+    "title": "Maximum likelihood (MLE)",
+    "chars": 1796,
+    "questions": 12
+  },
+  "2.2": {
+    "title": "MAP with a prior",
+    "chars": 2199,
+    "questions": 15
+  },
+  "2.3": {
+    "title": "Least squares",
+    "chars": 971,
+    "questions": 5
+  },
+  "2.4": {
+    "title": "CRLB",
+    "chars": 844,
+    "questions": 8
+  },
+  "2.5": {
+    "title": "MC words",
+    "chars": 604,
+    "questions": 12
+  },
+  "3.1": {
+    "title": "Correlogram + pick the plot",
+    "chars": 1361,
+    "questions": 10
+  },
+  "3.2": {
+    "title": "AR / MA from r[k]",
+    "chars": 2695,
+    "questions": 15
+  },
+  "3.3": {
+    "title": "Periodogram, Bartlett, Welch, windows",
+    "chars": 1954,
+    "questions": 15
+  },
+  "4.1": {
+    "title": "Likelihood-ratio test",
+    "chars": 3946,
+    "questions": 10
+  },
+  "4.2": {
+    "title": "Bayesian detection",
+    "chars": 2313,
+    "questions": 12
+  }
+}

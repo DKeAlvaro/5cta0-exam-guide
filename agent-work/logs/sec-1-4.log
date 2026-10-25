@@ -1,0 +1,7 @@
+All 6 questions passed on the first iteration using the current sheet, so I didn't rewrite it and no re-solve was needed. The progress log has the per-question lines and the `[done]` line.
+
+- **Grading:** the numeric questions (apr25-1e, apr24-1e, nov22-1d) came out right with the root formula on the sheet. jan24-1f is the sheet's own worked example, so it matched option (c). jun26-1e matched the sheet's "minimum phase" line, giving (a).
+- **jan22-1d:** I answered (c) by the sheet's rule for an already-factorised form, and the key agrees. The question as printed has a minus sign in the denominator cosine where the given factorisation needs a plus. The sheet has no step for checking that a given factorisation matches P, so a stricter version of this question could fail.
+- **Deliverables:** `rewrite/1.4.md` is the unchanged sheet block (993 chars). The report in `report/1.4.md` has no wording-gap rows, since no paraphrase failed, and no out-of-scope questions.
+
+I didn't commit or push anything, and the files above are the only ones written.

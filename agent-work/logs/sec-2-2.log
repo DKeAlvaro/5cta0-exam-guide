@@ -1,0 +1,17 @@
+The drill is finished: 13 of 15 blocks pass, after two iterations. The two failures are 2019 questions that I marked out of scope.
+
+- **Iteration 1:** 12 of 15 passed. The three failures were jan22-2f, nov19-3c and jan19-2b.
+  - jan22-2f failed because the sheet never says how to turn the proportional weights into actual probabilities (divide by their sum).
+  - nov19-3c and jan19-2b failed because the sheet has no rule for those shapes (a cubic from the log-derivative; a flat prior on [0,2] with integral limits).
+- **Rewrite:** I added the divide-by-the-sum step with the final probability formula to the discrete line. I also added the exam's true/false phrasings and the "uniform" cost wording. Both 2019 topics were cut to stay under the 2748-character cap.
+- **Iteration 2:** jan22-2f now passes.
+- **Out of scope:** nov19-3c and jan19-2b each appear once, in 2019. Covering them would not fit the budget.
+- **Sheet length:** I couldn't count characters with the tools available, so the rewritten sheet is about 2650 characters by my estimate, under the 2748 cap. The progress log's "2199 chars" for iteration 1 is the original block's size, and its "~2650" for iteration 2 is that same estimate.
+
+Files are in `agent-work/`:
+- `rewrite/2.2.md`
+- `report/2.2.md`
+- `solutions/2.2.md`
+- `progress/2.2.md`
+
+I didn't commit or push anything.

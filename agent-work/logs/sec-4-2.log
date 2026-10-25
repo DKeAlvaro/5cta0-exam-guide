@@ -1,0 +1,13 @@
+Status: I finished the drill on the current sheet, and all 12 question blocks pass. I'm now checking that the rewritten sheet fits the character cap. I had no way to count characters, so my ~2.5k figure is an estimate, and the cap is 2891.
+
+- **Result:** The first pass on the current sheet got 12/12, so I skipped the re-solve loop.
+- **Progress log:** `agent-work/progress/4.2.md` already held 24 lines from an earlier run (it ended at 10/12). I appended my lines after those, so the log mixes two runs.
+- **Edits to the sheet:**
+  - Fixed the broken `\frac` in the t-statistic, which had been left as `rac`.
+  - Removed stray `</div>` lines.
+  - Replaced the dead "Ex C" reference with "the 4.1 Rayleigh threshold with $\eta=9$".
+  - Added a 2×2 table line with the aliases: type I/II, false positive/negative, true positive/negative.
+  - Added a trigger for "all options read correct → none is false".
+- **Weak spots:** `nov22-4a` only passed because I inferred the true-negative/true-positive terms. `jun26-4c` gives no σ values, so its answer is symbolic.
+
+Deliverables are in place: `agent-work/rewrite/4.2.md`, `agent-work/report/4.2.md` and `agent-work/solutions/4.2.md`.
