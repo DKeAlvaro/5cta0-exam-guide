@@ -27,7 +27,7 @@ Press **Next step** on each yellow box to go through it one step at a time — c
     2. Differentiate with respect to $\theta$ (terms without $\theta$ disappear).
     3. Set it $=0$ and solve for $\theta$. That is $\hat\theta$.
 
-    **How to take $\ln$ of a pdf:** write the pdf as $\frac{\text{above}}{\text{below}}\cdot e^{u}$ (it is pieces multiplied, some in a fraction). Then each piece becomes one term: piece **above the line** → $+\ln(\text{it})$ · piece **below the line** → $-\ln(\text{it})$ · $e^{u}$ → just $u$ (the $e$ disappears). Two pieces below the line split: $-\ln(2\theta)=-\ln 2-\ln\theta$. A power $\theta^k$ below the line → $-k\ln\theta$.
+    **How to take $\ln$ of a pdf:** write the pdf as $\frac{\text{above}}{\text{below}}\cdot e^{u}$ (it is pieces multiplied, some in a fraction). Then each piece becomes one term: a piece $a$ **above the line** → $+\ln a$ · a piece $b$ **below the line** → $-\ln b$ · $e^{u}$ → just $u$ (the $e$ disappears). Two pieces below the line split: $-\ln(2\theta)=-\ln 2-\ln\theta$. A power $\theta^k$ below the line → $-k\ln\theta$.
 
     **Derivatives:** $\ln\theta\to\frac1\theta$ · $\frac1\theta\to-\frac1{\theta^2}$ · $\theta^k\to k\theta^{k-1}$ · $e^{c\theta}\to ce^{c\theta}$.
 
@@ -472,7 +472,7 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
 ## Traps
 
 !!! trap "Where points are lost (each one is a line of the sheet you skipped)"
-    - Forgetting the $-N\ln\theta$ that comes from the $\frac1\theta$ in front (sheet: "a piece below the line → $-\ln(\text{it})$"). It is half of the answer.
+    - Forgetting the $-N\ln\theta$ that comes from the $\frac1\theta$ in front (sheet: "a piece $b$ below the line → $-\ln b$"). It is half of the answer.
     - Wrong sign on $\frac{d}{d\theta}\frac1\theta=-\frac1{\theta^2}$ — minus times minus gives a **plus** in the derivative (sheet's derivative list).
     - Leaving the denominators in when solving $=0$ and then messing up the algebra. The sheet says: **multiply by the denominators first**.
     - Writing only the final formula on a "derive" question. The sheet's 3 steps are the 3 things the grader pays for.
