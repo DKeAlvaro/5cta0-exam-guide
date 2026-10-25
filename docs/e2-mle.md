@@ -4,6 +4,16 @@
 
 <figure class="pod"><video src="video/pod_ep3_estimation.mp4" poster="video/pod_ep3_estimation.jpg" controls playsinline preload="none"></video><figcaption><b>Watch first: podcast episode 3, Estimation: MLE and MAP</b> (with sound). Answer every purple YOUR TURN out loud before the countdown ends; pause if you need more time. <a href="podcast.html">All 5 episodes</a>.</figcaption></figure>
 
+## The idea in one minute
+
+$\theta$ is a knob on the model. For each knob position, the model says how likely our data were. The **MLE** $\hat\theta$ is the knob position that makes **the data we actually saw** most likely.
+
+"How likely the data were" = the product of the PDF heights at the data points (independent samples → multiply). Move the knob below: each red stick is one point's height, and the bottom curve adds up their logs.
+
+<div class="widget" data-w="likelihood"></div>
+
+The top of the bottom curve is where its slope is zero. That is the whole method: **write it, take the log, differentiate, set to 0**. We take the log because it turns the product into a sum (easy to differentiate) and does not move the top.
+
 ## How to fight this section with the sheet
 
 The exam says **"derive the MLE"** → you open **box 2A** on your A4 sheet and do its 3 steps with the pdf they gave you. That is the whole method. Every question below is the same box with a different pdf, so read one solution with the sheet in your hand and the rest are copies.
@@ -449,12 +459,6 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
 
 !!! answer "Answer"
     **D**
-
-## Why this works (read once)
-
-$\theta$ is a knob on the model. For each knob position, the model says how likely your data were: the product of the pdf heights at the data points. The **MLE** is the knob position that makes the data you actually saw most likely. The top of that curve is where its slope is zero — that is why the sheet says *differentiate and set to 0*. We take the $\ln$ first because it turns the product into a sum (easy to differentiate) and does not move the top.
-
-<div class="widget" data-w="likelihood"></div>
 
 ## Traps
 
