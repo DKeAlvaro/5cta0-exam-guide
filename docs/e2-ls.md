@@ -41,7 +41,7 @@ What each line of the box means:
 | "$x[n]=\theta+\text{noise}$ → $\hat\theta=\bar x$" | box 2C already did the LS for you: this is the case $h[n]=1$ |
 | "$x[n]=\ln\theta+\text{noise}$ → $\hat\theta=e^{\bar x}$" | the "transform the problem into a linear one" trick, already solved — write this line down |
 
-**Write this in the margin of your sheet** (the box stops here, but the exams do not). The A4 is yours: own notes are allowed.
+**This is now printed on your A4**, at the bottom of box 2C under "**Beyond a straight line**". The three numbered steps of the box stop at the straight line; the exams do not.
 
 - **Cost and estimator.** $J(\theta)=\displaystyle\sum_n\big(x[n]-s[n;\theta]\big)^2$, and $\hat\theta=\arg\min_\theta J$. That is the definition of "least squares"; write it when they ask "what kind of estimator".
 - **Linear in one amplitude.** If $s[n]=A\,h[n]$ (any shape $h$, one unknown $A$): $\hat A=\dfrac{\sum_n x[n]h[n]}{\sum_n h[n]^2}$.

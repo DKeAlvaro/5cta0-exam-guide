@@ -22,12 +22,9 @@ $$P(D)=\sum_k P(D\mid M_k)\,P(M_k)\qquad\qquad P(M_k\mid D)=\frac{P(D\mid M_k)\,
 
 Here is the honest bad news: **your A4 sheet has no box for this question type.** Box 1A is the joint PDF, 1B is WSS, 1C is spectral factorisation — the word problems are not on the sheet, and that is deliberate (they need no formulas).
 
-It is also the question that appears in **7 of the last 7 exams**, so you do not want to improvise it. Two things:
+It is also the question that appears in **7 of the last 7 exams**, so you do not want to improvise it. **The recipe is now printed on your A4 as box 1D** — nothing to write in any margin. The **Calculations** strip at the bottom of the sheet does the arithmetic for you (fractions, $\ln$, $e$).
 
-1. **Write the recipe below in the margin of your sheet.** You are allowed your own notes on that A4, and this is the single most valuable thing to put there.
-2. The **Numbers** and **Calculations** strips at the bottom of the sheet do the arithmetic for you (fractions, $\ln$, $e$).
-
-!!! sheet "Write this in the margin of your sheet — the recipe the sheet does not carry"
+!!! sheet "Box 1D, exactly as it is printed on the sheet"
     **IF YOU SEE** groups (machines, scanners, students, patients) with counts or shares, a rate inside each group, and a probability is asked.
 
     1. **Total.** Counts given → items = those counts, total = their sum. Only percentages → pretend total $=1000$ (1 000 000 if a rate is tiny, like 0.0005).

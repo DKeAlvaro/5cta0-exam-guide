@@ -6,7 +6,7 @@ hide:
 
 <h1 class="noprint">A4 cheat sheet</h1>
 
-<p class="noprint">You may bring <b>one A4, both sides, own notes</b>. This sheet fills both sides: print <a href="cheatsheet.pdf"><code>cheatsheet.pdf</code></a> at 100 %, or Ctrl/Cmd + P → A4, margins minimal, untick "headers and footers", scale 80 %.</p>
+<p class="noprint">You may bring <b>one A4, both sides, own notes</b>. This sheet fills both sides: print <a href="cheatsheet.pdf"><code>cheatsheet.pdf</code></a> at 100 %, or Ctrl/Cmd + P → A4, margins minimal, untick "headers and footers", scale 77 %.</p>
 <div class="cheat" markdown>
 <div class="cheat-cols" markdown>
 
@@ -65,6 +65,22 @@ IF YOU SEE $P(\theta)=\dfrac{\text{number}}{A+B\cos\theta}$ + "spectral factoris
 
 Multiple choice "what must the innovation filter be?" → **minimum phase**: all poles and zeros inside the unit circle (Jun26 a).
 
+### 1D · Bayes word problems (counts)
+
+IF YOU SEE groups (machines, scanners, students, patients) with counts or shares + "what is the probability that…" / "if it is found to be…, which group"
+{: .see }
+
+1. **Total**: counts given → sum them. Only % → pretend total $=1000$.
+2. Items$_k=$ share$_k\times$total.
+3. **Pick "bad"** = the event asked, or the one after "given / if / found to be / has / tested positive". Asked **NOT** pass when a pass rate is given → bad rate $=1-$pass rate.
+4. Bad$_k=$ bad rate$_k\times$items$_k$.
+5. $P(\text{bad})=\dfrac{\sum_k \text{bad}_k}{\text{total}}$.
+6. $P(k\mid\text{bad})=\dfrac{\text{bad}_k}{\sum_k \text{bad}_k}$ — **divide by the pile of bad, not by the total.**
+
+Wording: defective, fail, NOT pass, positive, infected, "actually present" → **bad** · "false positive 3 %" = 3 % **of the healthy** · "detects 95 % when present" = 95 % of the ill · "99 % accurate" = both groups classified right · "mixed at random" = step 5.
+
+*Jun26* 40/35/25 %, defect 2/4/5 %: bad $=0.4(0.02)+0.35(0.04)+0.25(0.05)=0.0325$; $M_2$ given bad $=\frac{0.35\cdot0.04}{0.0325}=0.43$.
+
 ## PART 2 · Estimation (3–3.5 p)
 
 ### 2A · Maximum likelihood (MLE)
@@ -79,7 +95,8 @@ IF YOU SEE a pdf $p(x\mid\theta)$, samples $x_1..x_N$, "maximum likelihood", "de
 **How to take $\ln$ of a pdf:** write the pdf as $\frac{\text{above}}{\text{below}}\cdot e^{u}$ (it is pieces multiplied, some in a fraction). Then each piece becomes one term: a piece $a$ **above the line** → $+\ln a$ · a piece $b$ **below the line** → $-\ln b$ · $e^{u}$ → just $u$ (the $e$ disappears). Two pieces below the line split: $-\ln(2\theta)=-\ln 2-\ln\theta$. A power $\theta^k$ below the line → $-k\ln\theta$.
 Derivatives: $\ln\theta\to\frac1\theta$ · $\theta^k\to k\theta^{k-1}$ · $\frac1\theta\to-\frac1{\theta^2}$ · $e^{c\theta}\to ce^{c\theta}$.
 Solving $=0$: multiply the equation by the denominators ($\theta^2$, $\theta$, …) first — that does not change the root.
-**Trap:** if the pdf only exists for $x$ up to something containing $\theta$ (uniform on $[0,\theta]$), these 3 steps are useless — $\hat\theta=\max_n x_n$.
+**Trap:** if the pdf only exists for $x$ up to something containing $\theta$ (uniform on $[0,\theta]$), these 3 steps are useless — $\hat\theta=\max_n x_n$, and **the CRLB does not exist**.
+**Fisher info / CRLB** from that same derivative: $i(\theta)=-\mathrm E\big[\frac{\partial^2\ln p}{\partial\theta^2}\big]$ for one sample; $N$ samples → $\mathcal I=N i(\theta)$; **CRLB** $=\frac{1}{N i(\theta)}$.
 
 *Apr24* $\frac{x}{2\theta}e^{-x^2/2\theta}$: one sample gives $\ln x-\ln2-\ln\theta-\frac{x^2}{2\theta}$, so $\ln L=\sum\ln x_n-N\ln2-N\ln\theta-\frac{\sum x_n^2}{2\theta}$ → $-\frac N\theta+\frac{\sum x_n^2}{2\theta^2}=0$ → $\hat\theta=\frac1{2N}\sum x_n^2$.
 
@@ -128,6 +145,8 @@ IF YOU SEE points $(x,y)$ + "least squares"/"least-squares"/"LSE", "linear funct
 *Apr25* $(0,3),(2,4),(3,3)$: $\bar x=\frac53$, $\bar y=\frac{10}3$, $a=\frac{1/3}{14/3}=\frac1{14}$, $b=\frac{45}{14}$ → $y=\frac1{14}x+\frac{45}{14}$.
 
 Also: $x[n]=\theta+\text{noise}$ → $\hat\theta=\bar x$. $x[n]=\ln\theta+\text{noise}$ → $\hat\theta=e^{\bar x}$.
+
+**Beyond a straight line.** $J(\theta)=\sum_n(x[n]-s[n;\theta])^2$, $\hat\theta=\arg\min J$ — write this when they ask "what kind of estimator". One amplitude $s[n]=Ah[n]$: $\hat A=\dfrac{\sum x[n]h[n]}{\sum h[n]^2}$. Linear model $x=\mathbf H\theta+w$: $\hat\theta=(\mathbf H^T\mathbf H)^{-1}\mathbf H^Tx$; the **error** $x-\mathbf H\hat\theta$ is orthogonal to the columns of $\mathbf H$ (it is the error, **not** $\hat\theta$); WLS with $\mathbf W=\mathbf C_x^{-1}$ = **BLUE**. Nonlinear: transform it (the $e^{\bar x}$ line), or iterate **Gauss–Newton** $\theta_{k+1}=\theta_k+(\mathbf G^T\mathbf G)^{-1}\mathbf G^T(x-s(\theta_k))$, $\mathbf G[:,i]=\frac{\partial s}{\partial\theta_i}$ — Newton–Raphson works too, "only Gauss–Newton" is **false**.
 
 ### 2D · Part 2 true / false
 
@@ -375,9 +394,7 @@ Get the letter alone: $e^{ky}=A$ → $y=\frac{\ln A}{k}$ · $x^k=a$ → $x=a^{1/
 
 **Cosines.** $\cos\alpha\cos\beta=\frac{\cos(\alpha+\beta)+\cos(\alpha-\beta)}2$ (printed in the Nov22 question).
 
-## Numbers
-
-$\ln2=0.693$ · $\ln3=1.099$ · $\ln10=2.303$ · $e^{-1}=0.368$ · $e^{-2}=0.135$ · $\sqrt{2\pi}=2.51$ · $Q(1.28)=0.10$ · $Q(1.645)=0.05$ · $Q(1.96)=0.025$ · $Q(2.33)=0.01$.
+**Numbers.** $\ln2=0.693$ · $\ln3=1.099$ · $\ln10=2.303$ · $e^{-1}=0.368$ · $e^{-2}=0.135$ · $\sqrt{2\pi}=2.51$ · $Q(1.28)=0.10$ · $Q(1.645)=0.05$ · $Q(1.96)=0.025$ · $Q(2.33)=0.01$.
 
 </div>
 </div>

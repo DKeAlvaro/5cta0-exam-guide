@@ -245,7 +245,7 @@
   .md-main__inner { margin: 0 !important; }
   .md-content { max-width: none !important; }
   .md-content__inner { margin: 0 !important; padding: 0 !important; }
-  .md-typeset .cheat { font-size: 9pt; line-height: 1.08; }
+  .md-typeset .cheat { font-size: 9pt; line-height: 1.05; }
   .md-typeset .cheat .katex { font-size: .97em; }
   .md-typeset .cheat h1 { font-size: 8pt; margin: 0 0 .1em; }
   .md-typeset .cheat h2 { font-size: 1.15em; margin: .3em 0 .1em; break-after: avoid; }
@@ -257,7 +257,7 @@
   .cheat-cols { column-count: 2; column-gap: 1.2em; column-rule: 1px solid #ddd; }
   /* on paper, pack the columns full: let blocks split, keep tables whole */
   .cheat-cols > div { break-inside: auto; margin-bottom: .12em; }
-  .md-typeset .cheat .cheat-cols table:not([class]) { break-inside: avoid; font-size: .85em; }
+  .md-typeset .cheat .cheat-cols table:not([class]) { break-inside: auto; font-size: .85em; }
   .md-typeset .cheat .cheat-cols table:not([class]) th, .md-typeset .cheat .cheat-cols table:not([class]) td { padding: .06em .22em; }
   .pagebreak { break-before: auto; }
 }
