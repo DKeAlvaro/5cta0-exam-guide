@@ -10,41 +10,6 @@ hide:
 <div class="cheat" markdown>
 <div class="cheat-cols" markdown>
 
-## 1.1 · Bayes word problems (counts)
-Use this when the question splits items into groups (machines, scanners, students, patients), gives a share or count per group and a rate inside each group, and asks for a probability. Counts or a table → this sheet. A pdf or density is given → not this (use 1.2 / 2.1). A survival formula $\Pr[T\ge t]$ → Ex 5.
-
-Symbols: $k$ = group number (1, 2, 3…). share$_k$ = fraction of all items made by group $k$. items$_k$ = number of items group $k$ makes. bad$_k$ = number of bad items group $k$ makes. "Bad" = the event we count. $P(\cdot)$ = probability of the event inside.
-
-**Recipe** (the bracket says why the step is legal)
-1. **Total.** Counts given → total = sum of the counts. Only percentages → pretend total = 1000 (use 1 000 000 when a rate is under 1 %, like 0.0005, so that the group counts stay whole numbers). [The answer is a ratio, so any total gives the same answer.]
-2. **items$_k$ = share$_k$ × total.** [share$_k$ is a fraction of all items, so it scales the total.]
-3. **Pick "bad".** Bad = the event asked, or the event after "given / if / found to be / has passed / positive". If the question gives the rate of the *opposite* event and you need this one, flip it: rate = 1 − the given rate (the two events split the group in two, so their rates add to 1). So "NOT pass" asked with a pass rate given → bad rate = 1 − pass rate; "no experience" given when you need "experience" → 1 − 0.15 = 0.85. Asked pass with the pass rate given → bad rate = pass rate, no subtraction.
-4. **bad$_k$ = bad rate$_k$ × items$_k$.** [A group's bad items are its bad fraction of its own items.]
-5. **Event with no "given":** $P(\text{bad})$ = (bad$_1$ + bad$_2$ + …) / total. [Items are mixed at random, so a random item is bad with probability (all bad) ÷ (all items). This is the law of total probability.]
-6. **Event with a "given" condition:** $P(k\mid\text{bad})$ = bad$_k$ / (sum of all bad). [Given the condition, only that pile is left, so the denominator is the pile, not the total.]
-
-**How the exam words pick the step.** The question is either a plain chance or a chance *inside a known pile*. Read the sentence for a condition.
-- **Condition given → step 6.** When the question says "found to be defective", "given a bad chip", "if the patient has passed", "tests positive", "that chose psychology", "a bad quality image comes from CT2", "has had experience", the event after those words has already happened: the item is inside that pile. So the answer is a share *of the pile*: $P(k\mid\text{bad}) = \text{bad}_k / (\text{all bad})$. The denominator is the pile, never the total.
-- **No condition → step 5.** When the question just asks for a chance with nothing known yet — "a randomly selected chip will be defective", "a car will pass", "the probability of choosing Engineering" — the item is a random one out of the whole lot: $P(\text{bad}) = (\text{all bad}) / \text{total}$.
-- "$\Pr[TB]$" in an exam means $P(\text{ill}\mid +)$: the chance of being ill *given* that the test came out positive, so a condition is given → step 6.
-- "99 % accurate" means both: 99 % of ill people test positive **and** 99 % of healthy people test negative. So 1 % of the healthy test positive by mistake.
-
-**Ex 1 · machines (jun26-1b, Q1 and Q2).** M1 makes 40 % of chips (2 % defective), M2 makes 35 % (4 %), M3 makes 25 % (5 %). Step 1: total = 1000 chips. Step 2: M1 makes $0.40 \times 1000 = 400$ chips, M2 makes $0.35 \times 1000 = 350$, M3 makes $0.25 \times 1000 = 250$. Step 4: defective from M1 = $0.02 \times 400 = 8$; from M2 = $0.04 \times 350 = 14$; from M3 = $0.05 \times 250 = 12.5$. Pile = $8+14+12.5 = 34.5$.
-- Q1 "a randomly selected chip will be defective": no "given" → step 5: $P(D) = 34.5 / 1000 = 0.0345$ (answer 0.0345).
-- Q2 "found to be defective, produced by M2": given → step 6: $P(M_2\mid D) = 14 / 34.5 = 0.406 \approx 0.41$. The denominator is the defective pile, since the chip is already known to be defective; 14 is the M2 part of that pile.
-
-**Ex 3 · screening (apr24-1b TB).** Items = people. "Has TB if one tests positive": ill is wanted, positive is the given → step 6.
-TB: rate 0.0005 is tiny, so total = 1 000 000 people. Ill = $0.0005 \times 10^6 = 500$; healthy = $999\,500$. Ill and positive = $0.99 \times 500 = 495$; healthy and positive (the 1 % wrong) = $0.01 \times 999\,500 = 9\,995$. Positive pile = $495 + 9\,995 = 10\,490$. $P(TB\mid+) = 495 / 10\,490 = 0.047$. The numerator is ill-and-positive; the denominator is all positives, because positive is given.
-
-**Ex 4 · table (jan25-1a).** Items = students; total = all 8 cells = $45+27+8+10+22+42+20+26 = 200$.
-- Q1 "given psychology, the student is female": given pile = psychology column = $10+26 = 36$ (male 10 + female 26). Wanted cell = female psychology = 26. $P = 26/36 = 0.722 \approx 0.72$.
-
-**Ex 5 · lifetime (apr24-1a).** $T$ = lifetime in years, $t$ = time in years, $\Pr[T \ge t] = e^{-t/5}$ = probability still working at $t$. Given $T\ge2$, the product either still works at 3 or breaks in year 3, and these add to 1, so $P(\text{breaks}) = 1 - P(T\ge3\mid T\ge2)$.
-$P(T\ge3\mid T\ge2) = \Pr[T\ge3]/\Pr[T\ge2]$ [conditional probability; $T\ge3$ lies inside $T\ge2$, so the overlap is $T\ge3$] $= e^{-3/5}/e^{-2/5} = e^{-3/5+2/5} = e^{-1/5} = 0.8187$. The exponent rule is $\frac{e^a}{e^b}=e^{a-b}$ (dividing powers of $e$ subtracts the exponents), and $e^{-1/5}=e^{-0.2}=0.8187$ comes from the calculator. Breaks in year 3 = $1 - 0.8187 = 0.18$ → (d).
-
-**Yes/no and "always true" statements**
-- Independent ⇔ $P(A\mid B) = P(A)$ ⇔ $P(A\cap B) = P(A)P(B)$. So "$P(A\mid B)=P(A)$" is always true for independent events (jun26-1a: d). "$P(A\mid B)=P(B)$" is not.
-
 ## 1.2 · Joint PDF: $c$, marginal, conditional, independent
 
 **Use this** when two variables $X,Y$ come with a joint function $p(x,y)$: a formula (continuous, integrate) or a table (discrete, add). A single variable's PDF belongs to 2.1. Plain counts per group are not this recipe.
@@ -331,7 +296,7 @@ Symbols: $\theta$ (theta) = the unknown parameter we want; $\hat\theta$ = its es
 
 **Theory words the true/false options use**
 - **Bayes' rule:** $P(A\mid B)=\dfrac{P(B\mid A)P(A)}{P(B)}$. Read: update the chance of $A$ after seeing $B$, by scaling with how likely $B$ is under $A$.
-- **Law of total probability:** $P(B)=\sum_k P(B\mid A_k)P(A_k)$ over all groups — the same as step 5 of 1.1.
+- **Law of total probability:** $P(B)=\sum_k P(B\mid A_k)P(A_k)$: split into all groups, weigh each group's chance of $B$ by the group's share, and add.
 - **Union:** $P(A\cup B)=P(A)+P(B)-P(A\cap B)$ ("A or B", the overlap counted twice, so subtract it once). If $A$ and $B$ cannot happen together, $P(A\cup B)=P(A)+P(B)$.
 - **CDF** $F(x)=P(X\le x)$: the accumulated probability up to $x$. For a continuous pdf, $F(x)=\int_{-\infty}^x p(u)\,du$, and $P(a<X\le b)=F(b)-F(a)$.
 - **Relative frequency:** the fraction of trials landing in an event after many repetitions; it approaches the probability.

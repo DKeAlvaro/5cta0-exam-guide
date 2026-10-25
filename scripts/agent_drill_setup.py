@@ -24,11 +24,8 @@ WORK = ROOT / "agent-work"
 #   mc_from: only multiple-choice blocks from these pages (section 2.5)
 #   scope: extra instruction for multi-part blocks (3.1 vs 3.2 share p3-chain)
 SECTIONS = {
-    "1.1": {
-        "title": "Bayes word problems (counts)",
-        "pages": ["p1-bayes"],
-        "scope": "",
-    },
+    # 1.1 (Bayes word problems) dropped from the sheet 2026-10-25 — Álvaro: "quita la de bayes,
+    # deberia saberla ya". Its exam questions live in agent-work/questions/1.1.md if ever needed.
     "1.2": {
         "title": "Joint PDF: c, marginal, conditional, independent",
         "pages": ["p1-rv"],
