@@ -53,7 +53,7 @@ def chrome_path() -> str | None:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--scale", type=float, default=0.83)
+    ap.add_argument("--scale", type=float, default=0.82)
     ap.add_argument("--no-build", action="store_true")
     ap.add_argument("--open", action="store_true")
     args = ap.parse_args()

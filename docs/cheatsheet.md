@@ -6,7 +6,7 @@ hide:
 
 <h1 class="noprint">A4 cheat sheet</h1>
 
-<p class="noprint">You may bring <b>one A4, both sides, own notes</b>. This sheet fills both sides: print <a href="cheatsheet.pdf"><code>cheatsheet.pdf</code></a> at 100 %, or Ctrl/Cmd + P → A4, margins minimal, untick "headers and footers", scale 83 %.</p>
+<p class="noprint">You may bring <b>one A4, both sides, own notes</b>. This sheet fills both sides: print <a href="cheatsheet.pdf"><code>cheatsheet.pdf</code></a> at 100 %, or Ctrl/Cmd + P → A4, margins minimal, untick "headers and footers", scale 82 %.</p>
 <div class="cheat" markdown>
 <div class="cheat-cols" markdown>
 
@@ -14,7 +14,7 @@ hide:
 
 ### 1A · Joint PDF $p(x,y)$
 
-IF YOU SEE a formula $p(x,y)$ on a region + "find $c$" / "marginal" / "conditional" / "independent"
+IF YOU SEE a joint PDF/PMF $p(x,y)$ on a region + "find $c$" / "marginal" / "conditional" / "independent" / "domain"
 {: .see }
 
 First draw the region on $x$–$y$ axes: **every integral below takes its limits from that picture**, never from the formula.
@@ -33,7 +33,7 @@ Integral: $\int x^n\,dx=\frac{x^{n+1}}{n+1}$; plug in the top limit minus the bo
 
 ### 1B · WSS / ergodic (multiple choice)
 
-IF YOU SEE "wide-sense stationary", "ergodic", dice, random phase, random amplitude
+IF YOU SEE "WSS"/"wide-sense stationary"/"stationary", "ergodic", dice, random phase, random amplitude
 {: .see }
 
 - **WSS** = the mean is constant AND the autocorrelation depends only on the lag $\tau$ (not on $t$). Jun26: pick the option saying exactly this.
@@ -48,7 +48,7 @@ IF YOU SEE "wide-sense stationary", "ergodic", dice, random phase, random amplit
 
 ### 1C · Spectral factorisation
 
-IF YOU SEE $P(\theta)=\dfrac{\text{number}}{A+B\cos\theta}$ + "spectral factorisation", "innovation filter $L(z)$", "$\sigma_i^2$"
+IF YOU SEE $P(\theta)=\dfrac{\text{number}}{A+B\cos\theta}$ + "spectral factorisation"/"factorization", "innovation filter $L(z)$", "$\sigma_i^2$"
 {: .see }
 
 1. Two candidate roots: $r=\dfrac{A\pm\sqrt{A^2-B^2}}{B}$. Keep the one between $-1$ and $1$. Call it $a$.
@@ -66,7 +66,7 @@ Multiple choice "what must the innovation filter be?" → **minimum phase**: all
 
 ### 2A · Maximum likelihood (MLE)
 
-IF YOU SEE a pdf $p(x\mid\theta)$, samples $x_1..x_N$, "maximum likelihood", "derive the MLE"
+IF YOU SEE a pdf $p(x\mid\theta)$, samples $x_1..x_N$, "maximum likelihood", "derive the MLE", "find an estimator", "estimate of …"
 {: .see }
 
 1. Take $\ln$ of ONE sample's pdf, then put $\sum_n$ in front. That is $\ln L$. A term without $x_n$ gets multiplied by $N$.
@@ -87,7 +87,7 @@ Solving $=0$: multiply the equation by the denominators ($\theta^2$, $\theta$, �
 
 ### 2B · MAP with a prior (Beta / Gamma)
 
-IF YOU SEE "prior", "posterior", "MAP", "maximum a posteriori", Beta, Gamma
+IF YOU SEE "prior", "posterior", "MAP", "maximum a posteriori"/"a-posteriori", "MMSE"/"minimum mean square error", "Bayesian estimator", Beta, Gamma
 {: .see }
 
 1. Likelihood: write each observation's probability, keep only the parts with $\theta$, multiply them all (exponents add).
@@ -114,7 +114,7 @@ One observation $x$ gives: Poisson count → $\lambda^{x}e^{-\lambda}$ · "$k$-t
 
 ### 2C · Least-squares line
 
-IF YOU SEE points $(x,y)$ + "least squares", "linear function"
+IF YOU SEE points $(x,y)$ + "least squares"/"least-squares"/"LSE", "linear function", "fit a line"
 {: .see }
 
 1. Means $\bar x$ and $\bar y$.
@@ -126,6 +126,9 @@ IF YOU SEE points $(x,y)$ + "least squares", "linear function"
 Also: $x[n]=\theta+\text{noise}$ → $\hat\theta=\bar x$. $x[n]=\ln\theta+\text{noise}$ → $\hat\theta=e^{\bar x}$.
 
 ### 2D · Part 2 true / false
+
+IF YOU SEE "which of the following statements" (in Part 2) about MLE, MAP, MMSE, Fisher, CRLB
+{: .see }
 
 
 | Statement | T / F |
@@ -161,7 +164,7 @@ $r[k]$ = autocorrelation at lag $k$ (the given numbers). Rewrite cosines: $\cos2
 
 ### 3A · Correlogram
 
-IF YOU SEE $r[0],r[1],r[2]\dots$ + "correlogram", "only these lags", "PSD as a function of $\cos\theta$"
+IF YOU SEE $r[0],r[1],r[2]\dots$ + "correlogram", "only these lags", "PSD as a function of $\cos\theta$", correlation values given
 {: .see }
 
 $P(\theta)=r[0]+2r[1]\cos\theta+2r[2]\cos2\theta+2r[3]\cos3\theta$. Stop at the last lag given. $r[0]$ is NOT doubled.
@@ -207,7 +210,7 @@ If they ask for $b$ and $\sigma^2$: solve $b^2-\frac{r[0]}{r[1]}\,b+1=0$, keep t
 
 ### 3E · Model from an equation
 
-IF YOU SEE $x[n]=\dots$ + "which kind of process", "autocorrelation of $x$"
+IF YOU SEE $x[n]=\dots$ + "which kind of process", "calculate the autocorrelation of $x$"
 {: .see }
 
 - Only $i[n],i[n-1],\dots$ on the right → **MA($q$)**, $q$ = biggest delay. Old $x[n-k]$ on the right too → **ARMA($p,q$)**, $p$ = biggest $x$ delay.
@@ -218,7 +221,7 @@ IF YOU SEE $x[n]=\dots$ + "which kind of process", "autocorrelation of $x$"
 
 ### 3F · Pick the plot
 
-IF YOU SEE "which plot", "which figure"
+IF YOU SEE "which plot", "which figure", "plots A–D", "match the plot"
 {: .see }
 
 Work out each PSD at $\theta=0$ (all cosines $=1$) and at $\theta=\pi$ ($\cos\theta=-1$, $\cos2\theta=1$, $\cos3\theta=-1$). Pick the plot with those heights. Only a correlogram can go below 0.
@@ -227,7 +230,7 @@ Work out each PSD at $\theta=0$ (all cosines $=1$) and at $\theta=\pi$ ($\cos\th
 
 ### 3G · Welch / Bartlett count
 
-IF YOU SEE $N$ samples, segment length $L$, overlap %
+IF YOU SEE "Welch"/"Bartlett"/"WOSA", $N$ samples, segment length $L$, overlap %, "how many segments"
 {: .see }
 
 Step $D=L\times(1-\text{overlap})$. Segments $K=\frac{N-L}{D}+1$ (round the fraction down). Variance ratio vs one periodogram $=\frac1K$. Bartlett (no overlap): $K=\frac NL$.
@@ -236,7 +239,7 @@ Step $D=L\times(1-\text{overlap})$. Segments $K=\frac{N-L}{D}+1$ (round the frac
 
 ### 3H · Energy or power signal
 
-IF YOU SEE "energy or power signal"
+IF YOU SEE "energy or power signal", "total energy", "average power"
 {: .see }
 
 - Dies out or has finite length → **energy**: $E=\sum\lvert x\rvert^2$ is finite, power $=0$.
@@ -247,7 +250,7 @@ IF YOU SEE "energy or power signal"
 
 ### 3I · Name the method
 
-IF YOU SEE a table of descriptions to fill with method names
+IF YOU SEE a table of descriptions to fill with method names, "name the method", bias/variance to match
 {: .see }
 
 | The description says… | Method |
@@ -261,6 +264,9 @@ IF YOU SEE a table of descriptions to fill with method names
 | "averages periodograms" | Bartlett and Welch |
 
 ### 3J · Part 3 true / false
+
+IF YOU SEE "which of the following statements" (in Part 3) about PSD, windows, periodogram, Welch
+{: .see }
 
 
 | Statement | T / F |
@@ -287,7 +293,7 @@ $H_0$ = nothing there, $H_1$ = something there. $P_{FA}$ = decide $H_1$ when $H_
 
 ### 4A · Likelihood-ratio test
 
-IF YOU SEE two pdfs (one for $H_0$, one for $H_1$) + "likelihood ratio test", "when accept $H_1$", threshold $\lambda,\gamma,\eta$
+IF YOU SEE two pdfs (one for $H_0$, one for $H_1$) + "binary hypothesis"/"hypothesis testing", "likelihood ratio test", "when accept $H_1$", threshold $\lambda,\gamma,\eta$, "$P_{FA}$"/"$P_D$"
 {: .see }
 
 1. $L(x)=\dfrac{p(x\mid H_1)}{p(x\mid H_0)}$. Cancel what appears on top and bottom. $N$ samples → multiply them ($e^ae^b=e^{a+b}$).
@@ -317,7 +323,7 @@ Tails: Gaussian $N(0,1)$: $P(x\gt t)=Q(t)$ (table) · exponential $ce^{-cx}$: $P
 
 ### 4B · Priors and costs (Bayes)
 
-IF YOU SEE priors $P(H_0),P(H_1)$, costs $C_{ij}$, "posterior"
+IF YOU SEE priors $P(H_0),P(H_1)$, costs $C_{ij}$, "posterior", "Bayesian hypothesis test", "$P_M$" / "miss"
 {: .see }
 
 $C_{ij}$ = cost of deciding $i$ when $j$ is true. $C_{10}$ = false alarm cost, $C_{01}$ = miss cost.
@@ -330,6 +336,9 @@ $C_{ij}$ = cost of deciding $i$ when $j$ is true. $C_{10}$ = false alarm cost, $
   *Nov22:* $0.6\cdot2e^{-2y}=0.4\,e^{-y}$ → $e^{-y}=\frac13$ → $y=\ln3$; decide $H_1$ for $y\lt\ln3$. $P_{FA}=1-e^{-\ln3}=\frac23$, $P_M=e^{-2\ln3}=\frac19$.
 
 ### 4C · Part 4 true / false
+
+IF YOU SEE "which of the following statements" (in Part 4) about hypothesis testing, $P_{FA}$, errors
+{: .see }
 
 
 | Statement | T / F |
@@ -364,7 +373,7 @@ Get the letter alone: $e^{ky}=A$ → $y=\frac{\ln A}{k}$ · $x^k=a$ → $x=a^{1/
 
 ## Numbers
 
-$\ln2=0.693$ · $\ln3=1.099$ · $\ln4=1.386$ · $\ln10=2.303$ · $\ln0.9=-0.105$ · $e^{-1}=0.368$ · $e^{-2}=0.135$ · $\sqrt{2\pi}=2.51$ · $Q(1.28)=0.10$ · $Q(1.645)=0.05$ · $Q(1.96)=0.025$ · $Q(2.33)=0.01$ · $Q(0)=0.5$.
+$\ln2=0.693$ · $\ln3=1.099$ · $\ln10=2.303$ · $e^{-1}=0.368$ · $e^{-2}=0.135$ · $\sqrt{2\pi}=2.51$ · $Q(1.28)=0.10$ · $Q(1.645)=0.05$ · $Q(1.96)=0.025$ · $Q(2.33)=0.01$.
 
 </div>
 </div>

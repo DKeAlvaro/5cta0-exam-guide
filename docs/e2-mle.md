@@ -21,7 +21,7 @@ The exam says **"derive the MLE"** → you open **box 2A** on your A4 sheet and 
 Each step below names **the sheet's term it uses**, term by term: which pieces sit above the line, which below, which rule turns each one into the next line. Press **Next step** to go one at a time — cover the step, do it yourself, then reveal it.
 
 !!! sheet "Box 2A, exactly as it is printed on the sheet"
-    **IF YOU SEE** a pdf $p(x\mid\theta)$, samples $x_1..x_N$, "maximum likelihood", "derive the MLE"
+    **IF YOU SEE** a pdf $p(x\mid\theta)$, samples $x_1..x_N$, "maximum likelihood", "derive the MLE", "find an estimator", "estimate of …"
 
     1. Take $\ln$ of ONE sample's pdf, then put $\sum_n$ in front. That is $\ln L$. A term without $x_n$ gets multiplied by $N$.
     2. Differentiate with respect to $\theta$ (terms without $\theta$ disappear).
