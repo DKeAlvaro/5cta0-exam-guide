@@ -208,24 +208,26 @@
 @media screen and (max-width: 44.9375em) { .cheat-cols { column-count: 1; } }
 
 @media print {
-  @page { size: A4; margin: 7mm; }
+  @page { size: A4; margin: 3mm; }
   .md-header, .md-tabs, .md-sidebar, .md-footer, .md-source-file, .md-content__button, .noprint { display: none !important; }
   /* study UI has no business on paper */
   #progress-bar, .kp-btn, .layout-btn, .edge-hint, #ask-ball, #ask-tail, #ask-toggle, #ask-panel, #ask-backdrop { display: none !important; }
   .md-main__inner { margin: 0 !important; }
   .md-content { max-width: none !important; }
   .md-content__inner { margin: 0 !important; padding: 0 !important; }
-  .md-typeset .cheat { font-size: 7.5pt; line-height: 1.16; }
-  .md-typeset .cheat h1 { font-size: 10pt; margin: 0 0 .2em; }
-  .md-typeset .cheat h2 { margin: .45em 0 .15em; break-inside: avoid; break-after: avoid; }
-  .md-typeset .cheat p, .md-typeset .cheat ul { margin: .12em 0; }
-  .md-typeset .cheat .katex-display { margin: .12em 0; }
-  .cheat-cols { column-count: 3; column-gap: .9em; }
+  .md-typeset .cheat { font-size: 5.4pt; line-height: 1.02; }
+  .md-typeset .cheat .katex { font-size: .97em; }
+  .md-typeset .cheat h1 { font-size: 8pt; margin: 0 0 .1em; }
+  .md-typeset .cheat h2 { font-size: 1em; margin: .22em 0 .06em; break-inside: avoid; break-after: avoid; }
+  .md-typeset .cheat h3 { margin: .16em 0 .04em; }
+  .md-typeset .cheat p, .md-typeset .cheat ul { margin: .04em 0; }
+  .md-typeset .cheat .katex-display, .md-typeset .cheat div.arithmatex { margin: .05em 0; }
+  .cheat-cols { column-count: 3; column-gap: .55em; }
   /* on paper, pack the columns full: let blocks split, keep tables whole */
-  .cheat-cols > div { break-inside: auto; margin-bottom: .3em; }
-  .md-typeset .cheat .cheat-cols table:not([class]) { break-inside: avoid; font-size: .92em; }
-  .md-typeset .cheat .cheat-cols table:not([class]) th, .md-typeset .cheat .cheat-cols table:not([class]) td { padding: .15em .4em; }
-  .pagebreak { break-before: page; }
+  .cheat-cols > div { break-inside: auto; margin-bottom: .12em; }
+  .md-typeset .cheat .cheat-cols table:not([class]) { break-inside: avoid; font-size: .85em; }
+  .md-typeset .cheat .cheat-cols table:not([class]) th, .md-typeset .cheat .cheat-cols table:not([class]) td { padding: .06em .22em; }
+  .pagebreak { break-before: auto; }
 }
 
 /* tighter display math */
