@@ -44,20 +44,41 @@ $C_{ij}$ = cost of **deciding $\mathcal H_i$ when $\mathcal H_j$ is true**. So $
 
 ## Watch it once: June 2026 · 4c and April 2025 · 4c
 
-!!! exam "Resit, June 2026 · 4c · 1 p"
-    *(Same Rayleigh sensor as [4.1 Your turn](e4-lrt.md#your-turn).)* Now assume prior probabilities $P(H_0) = 0.9$, $P(H_1) = 0.1$. Assume equal costs for false alarms and miss-detections. When should the sensor accept $H_1$?
+!!! exam "Resit, June 2026 · 4b + 4c · 1 p each"
+    **4b** A wireless sensor detects the presence of a transmitting device by measuring the received signal envelope $X$ (in mV). Under normal operating conditions the envelope follows a Rayleigh distribution due to multipath fading. Two hypotheses are proposed:
+
+    1. Under $H_0$ (no device present), $X \sim \text{Rayleigh}(\sigma_0)$.
+    2. Under $H_1$ (device present), $X \sim \text{Rayleigh}(\sigma_1)$,
+
+    with $\sigma_1 > \sigma_0 > 0$, both known. The Rayleigh pdf with scale parameter $\sigma$ is $p(x \mid \sigma) = \frac{x}{\sigma^2} \exp\left(-\frac{x^2}{2\sigma^2}\right)$, $x \geq 0$.
+
+    - Construct the likelihood-ratio test for a threshold $\eta$.
+    - Discuss how the separation between $\sigma_0$ and $\sigma_1$ affects detection performance.
+
+    **4c** Now assume prior probabilities $P(H_0) = 0.9$, $P(H_1) = 0.1$, reflecting the fact that a transmitting device is present only 10 % of the time. Assume equal costs for false alarms and miss-detections. When should the sensor accept $H_1$?
 
 <div class="stepper" markdown>
 
-**Step 1 · λ.** Equal costs (0/1): $\lambda=\dfrac{P_0}{P_1}=\dfrac{0.9}{0.1}=9$.
+**Step 1 · $\lambda$.** Equal costs (0/1), so the Bayes threshold is the ratio of the priors: $\lambda=\dfrac{P_0}{P_1}=\dfrac{0.9}{0.1}=9$. This is the $\eta$ of 4b: decide $H_1$ when the ratio of the two PDFs is bigger than 9.
 
 ***
 
-**Step 2 · Reuse the LRT.** In 4.1 we found: decide $H_1$ if $x>\sqrt{\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\ln\big(\eta\frac{\sigma_1^2}{\sigma_0^2}\big)}$. Put $\eta=9$:
+**Step 2 · Reuse the LRT of 4b.** The ratio of the two Rayleigh PDFs (the $x$ in front cancels), logged and solved for $x$, gives "decide $H_1$ if $x>\gamma$" with
+
+$$\gamma=\sqrt{\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\Big(\eta\frac{\sigma_1^2}{\sigma_0^2}\Big)}$$
+
+(full derivation in [4.1 Your turn](e4-lrt.md#your-turn)). Put $\eta=9$:
 
 $$x>\sqrt{\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\Big(\frac{9\sigma_1^2}{\sigma_0^2}\Big)}.$$
 
-Compared with $\eta=1$ the threshold is **higher**: devices are rare, so we need a bigger envelope before we believe one is there.
+***
+
+**Step 3 · Numbers, to see the effect.** Take $\sigma_0=1$, $\sigma_1=2$: the factor in front is $\frac{2\cdot1\cdot4}{4-1}=\frac83=2.67$.
+
+- With $\eta=1$ (no prior): $\gamma=\sqrt{2.67\ln 4}=\sqrt{2.67\cdot1.386}=\sqrt{3.70}=1.92$.
+- With $\eta=9$ (the 10 % prior): $\gamma=\sqrt{2.67\ln 36}=\sqrt{2.67\cdot3.584}=\sqrt{9.56}=3.09$.
+
+Compared with $\eta=1$ the threshold is **higher**: devices are rare, so we need a bigger envelope before we believe one is there. That is exactly what the prior does — it moves the line, not the curves.
 
 </div>
 
