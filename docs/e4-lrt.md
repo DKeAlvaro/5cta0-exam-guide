@@ -63,7 +63,7 @@ Now switch to the **Nov 2022** tab. There the $\mathcal H_1$ curve is the one th
     1. **Ratio.** Write $\dfrac{p(x\mid\mathcal H_1)}{p(x\mid\mathcal H_0)}>\lambda$. Cancel what you can. With $N$ independent samples, each PDF is a product over $n$, so the ratio is a product too.
     2. **Log both sides.** $\ln$ keeps the direction of $>$ (it is an increasing function). Use $\ln(ab)=\ln a+\ln b$, $\ln e^{u}=u$, $\ln x^k=k\ln x$.
     3. **Isolate $x$** (or $\sum x_n$, $\sum x_n^2$, ...). Every time you multiply or divide by a **negative** number, **flip** the inequality.
-    4. **Write the rule**: "decide $\mathcal H_1$ if $x>\gamma$" (or $<$), with $\gamma$ written in terms of $\lambda$.
+    4. **Write the rule**: "decide $\mathcal H_1$ if $x>\gamma$" (or $<$), with $\gamma$ written in terms of $\lambda$. **Which way?** Plug one value on each side of $\gamma$ into the ratio: the side where the ratio beats $\lambda$ is the $\mathcal H_1$ side.
     5. **Errors.** $P_{FA}=\int p(x\mid\mathcal H_0)\,dx$ over the decide-$\mathcal H_1$ zone; $P_D=\int p(x\mid\mathcal H_1)\,dx$ over the same zone; $P_M=1-P_D$.
 
 ## Watch it once: April 2025 · 4a
