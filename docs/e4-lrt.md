@@ -32,6 +32,8 @@ After a bit of algebra this always becomes a cut on the $x$ axis: a **threshold*
 | $P_M$ | $\mathcal H_1$ true, you said $\mathcal H_0$ | miss | the $\mathcal H_1$ curve, in the "decide $\mathcal H_0$" zone |
 | $P_D=1-P_M$ | $\mathcal H_1$ true, you said $\mathcal H_1$ | detection | the $\mathcal H_1$ curve, in the "decide $\mathcal H_1$" zone |
 
+Who puts the number $\lambda$ there? Two classical answers. **Neyman–Pearson**: you cannot shrink both errors at once, so fix the false alarms you can tolerate ($P_{FA}=\alpha$, say 1 %) and **maximise $P_D$** — and the test that does it is exactly this ratio, with $\lambda$ chosen so that $P_{FA}=\alpha$ (that is what 4e below asks). **Bayes** ([4.2](e4-bayes.md)): give each mistake a price and each hypothesis a prior, and minimise the average cost. Either way you end up comparing the ratio with a number.
+
 Drag the threshold. Watch the blue area ($P_{FA}$) and the red area ($P_M$): you can never shrink both at once.
 
 <div class="widget" data-w="lrt"></div>
@@ -292,6 +294,55 @@ $P_D=\int_0^{\gamma'}2e^{-2y}\,dy=1-e^{-2\gamma'}=1-(e^{-\gamma'})^2=1-0.81=\mat
 
     !!! answer "Answer"
         Decide $\mathcal H_1$ if $y>1.588$. $P_{FA}=Q(1.588)$; $P_D=\frac12 e^{-0.794}\approx 0.23$; $P_M\approx 0.27$ (as printed). Sketch: the $\mathcal H_0$ curve is a half-bell starting at 0.40, the $\mathcal H_1$ curve a slow exponential starting at 0.25; shade $\mathcal H_0$ right of 1.588 ($P_{FA}$) and $\mathcal H_1$ left of it ($P_M$).
+
+## The theory questions: test yourself
+
+The multiple choice recycles the same sentences. Two definitions first, then the cards.
+
+<div class="key" markdown>
+
+- **Neyman–Pearson (NP)**: fix the false alarms you can tolerate ($P_{FA}=\alpha$) and **maximise $P_D$**. Its solution is always a **likelihood ratio test**, with the $\lambda$ that delivers that $P_{FA}$. (Bayesian detection instead **minimises** the risk: that side of the MC is in [4.2](e4-bayes.md#the-theory-questions-test-yourself).)
+- **Errors are unavoidable**: the two PDFs overlap, so some $x$ could come from either story. No threshold makes $P_{FA}$ and $P_M$ zero together; it only trades one for the other.
+
+</div>
+
+**The matched filter** (a whole LRT in one line): a **known** signal $s_n$ buried in white Gaussian noise. The recipe gives
+
+$$\sum_{n}x_n\,s_n\ \underset{\mathcal H_0}{\overset{\mathcal H_1}{\gtrless}}\ \lambda'$$
+
+— multiply the data with the pattern, sample by sample, and add (**correlate**). Three facts the MC swaps: it **maximises the output SNR**; as a filter its impulse response is the **time-reversed** signal $h[n]=s[N-1-n]$ (writing $h[n]=s[n]$ is the classic wrong option); and with **correlated** noise you first whiten and then correlate (so "only for uncorrelated noise" is false).
+
+**What the ratio collapses to.** Every LRT ends as "one number computed from the data, compared with a threshold". Which number depends only on what changes between $\mathcal H_0$ and $\mathcal H_1$:
+
+| $\mathcal H_0$ vs $\mathcal H_1$ | decide $\mathcal H_1$ when |
+|---|---|
+| Gaussian, mean 0 vs mean $A>0$ (same $\sigma$) | $\bar x$ (or $\sum x_n$) **large** |
+| Gaussian, same mean, $\sigma_1^2\gt\sigma_0^2$ | energy $\sum x_n^2$ **large** |
+| Laplacian, $\mathcal H_1$ narrower | $\sum\lvert x_n\rvert$ **small** (the flip!) |
+| Rayleigh, $\sigma_1\gt\sigma_0$ | $x$ **large** |
+| known signal $s_n$ in white noise | $\sum x_n s_n$ **large** (matched filter) |
+
+<div class="tf" markdown>
+
+| Statement | | Why |
+|---|---|---|
+| In the 2×2 table, the diagonal cells are the correct ones (true negative, true positive); the other two are the **miss** = false negative = **type II** error and the **false alarm** = false positive = **type I** error. | T | "Positive" means "we said $\mathcal H_1$". Nov 2022 4a is this table with the cells shuffled: answer (a). |
+| Both hypotheses can generate the same observation $\mathbf x$, so a wrong decision cannot be avoided. | T | The PDFs overlap. Nov 2022 4a opens with exactly this sentence. |
+| There is a threshold that makes $P_{FA}$ and $P_M$ both zero. | F | Overlapping PDFs: moving the threshold trades one error for the other. |
+| The Neyman–Pearson test fixes $P_{FA}$ and then **maximises** $P_D$. | T | That is its definition (Nov 2022 4b, Apr 2024 4a). |
+| The Neyman–Pearson test fixes $P_{FA}$ and then **minimises** $P_D$. | F | Nobody wants fewer detections. This is the flipped-verb option (Apr 2024 4a (c), Apr 2025 4b (c)). |
+| The test that solves the Neyman–Pearson problem is a likelihood ratio test. | T | The Neyman–Pearson lemma: that is why we keep computing these ratios. |
+| The likelihood ratio test needs the priors $P_0,P_1$. | F | It only uses the two PDFs. Priors enter the **Bayes** threshold $\lambda=P_0/P_1$ ([4.2](e4-bayes.md)). |
+| Taking $\ln$ of the likelihood ratio changes the decisions of the test. | F | $\ln$ is increasing, so $L>\lambda$ and $\ln L>\ln\lambda$ decide the same. The log only makes the algebra easy. |
+| An ROC curve has $P_D$ on the vertical axis and $P_{FA}$ on the horizontal, and a good detector bows to the top-left corner. | T | It runs from $(0,0)$ (never say $\mathcal H_1$) to $(1,1)$ (always); the diagonal is guessing. |
+| An ROC below the diagonal is caused by using a wrong $\sigma$ in your model. | F | A wrong $\sigma$ only flattens the curve. Below the diagonal means the decision is **flipped**: $\mathcal H_0/\mathcal H_1$ swapped in the ratio, $P_D$ computed with the CDF instead of the tail, or the two axes swapped (Practice exam 2021 1e: the wrong $\sigma$ is the one that *cannot* be the reason). |
+| The matched filter maximises the output SNR for a known signal in white noise. | T | Its defining property; Jan 2022 4a (a). |
+| The matched filter has impulse response $h[n]=s[n]$. | F | $h[n]=s[N-1-n]$, time-reversed, so that convolution becomes correlation. |
+| The matched filter can only be applied when the noise samples are uncorrelated. | F | With correlated noise: whiten first, then correlate. |
+| To decide between two zero-mean Gaussians that differ only in their variance, the LRT compares the energy $\sum x_n^2$ with a threshold. | T | The "energy detector": more variance shows up as more energy (Practice exam 2021 4b, Nov 2019). |
+| When $\mathcal H_1$ is the **narrower** PDF, the test decides $\mathcal H_1$ for **large** values of the statistic. | F | The narrow curve wins near the centre, so the rule flips: decide $\mathcal H_1$ when $\sum\lvert x_n\rvert$ is **small** (Nov 2022 4c). |
+
+</div>
 
 ## Traps
 
