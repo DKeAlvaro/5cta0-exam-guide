@@ -6,7 +6,7 @@ hide:
 
 <h1 class="noprint">A4 cheat sheet</h1>
 
-<p class="noprint">You may bring <b>one A4, both sides, own notes</b>. This sheet fills both sides: print <a href="cheatsheet.pdf"><code>cheatsheet.pdf</code></a> at 100 %, or Ctrl/Cmd + P → A4, margins minimal, untick "headers and footers", scale 77 %.</p>
+<p class="noprint">You may bring <b>one A4, both sides, own notes</b>. This sheet fills both sides: print <a href="cheatsheet.pdf"><code>cheatsheet.pdf</code></a> at 100 %, or Ctrl/Cmd + P → A4, margins minimal, untick "headers and footers", scale 75 %.</p>
 <div class="cheat" markdown>
 <div class="cheat-cols" markdown>
 
@@ -41,6 +41,7 @@ IF YOU SEE "WSS"/"wide-sense stationary"/"stationary", "ergodic", dice, random p
 
 - **WSS** = the mean is constant AND the autocorrelation depends only on the lag $\tau$ (not on $t$). Jun26: pick the option saying exactly this.
 - **Ergodic** = averaging ONE signal over time gives the same as averaging over all signals.
+- **Test it:** is $\mathrm E[x(t)]$ constant in $t$? Does $r(t_1,t_2)$ only depend on $t_1-t_2$? Both yes → WSS. Ergodic: does one long realisation visit every value? Random **phase** → yes, random **amplitude** → no.
 
 | The process | WSS? | Ergodic? |
 |---|---|---|
@@ -122,6 +123,9 @@ IF YOU SEE "prior", "posterior", "MAP", "maximum a posteriori"/"a-posteriori", "
 
 Prior Beta$(a,b)$ = $\theta^{a-1}(1-\theta)^{b-1}$. Prior Gamma$(a,b)$ = $\lambda^{a-1}e^{-b\lambda}$.
 One observation $x$ gives: Poisson count → $\lambda^{x}e^{-\lambda}$ · "$k$-th success on trial $x$" → $\theta^k(1-\theta)^{x-k}$ · "$k$ successes in $n$ tries" → $\theta^k(1-\theta)^{n-k}$ · exponential → $\lambda e^{-\lambda x}$.
+
+**Posterior not in the table?** Do it by hand: **MAP** $=\arg\max_\theta p(\theta\mid x)$ = the peak · **MMSE** $=\int\theta\,p(\theta\mid x)\,d\theta$ = its mean (use the Calculations integrals). Truncate first if the prior has a range.
+**Prior with a range** (uniform on $[a,b]$): the posterior is only $\propto$ the likelihood inside $[a,b]$; if the peak would land outside, the MAP is the nearest endpoint $a$ or $b$.
 
 *Jun26-2c:* $\theta^2(1-\theta)^{x-2}$ with $x=3,5,4,6,4$. Multiply the 5: the $\theta$ exponent is $2$ five times $=10$; the $(1-\theta)$ exponent is $(3-2)+(5-2)+(4-2)+(6-2)+(4-2)=12$ → $\theta^{10}(1-\theta)^{12}$ (likelihood). Prior Beta(2,3) adds $\theta^{2-1}(1-\theta)^{3-1}=\theta^1(1-\theta)^2$ → $\theta^{11}(1-\theta)^{14}$ → posterior Beta(12,15), MAP $=\frac{11}{25}=0.44$.
 
@@ -389,8 +393,7 @@ Get the letter alone: $e^{ky}=A$ → $y=\frac{\ln A}{k}$ · $x^k=a$ → $x=a^{1/
 **Sums.** $\sum_{n\ge0}q^n=\frac1{1-q}$ for $|q|\lt1$ · $\sum_n x_n=N\bar x$ · $\sum_n c=Nc$.<br>
 *Apr25:* $\sum_{n\ge0}e^{-2n}=\frac1{1-0.135}=1.1565$.
 
-**Fractions & equations.** $\frac ab\pm\frac cd=\frac{ad\pm bc}{bd}$ · $\frac ab\div\frac cd=\frac{ad}{bc}$ · $\frac ab=\frac cd$ → $ad=bc$ · $ax^2+bx+c=0$ → $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$ · multiplying by a negative flips $\gt$ into $\lt$ · $\lvert x\rvert\gt t$ = two cases.<br>
-*Apr25-2C:* $\frac{1/3}{14/3}=\frac1{14}$. *Nov22-1b:* $\frac16+\frac14+\frac18=\frac{4+6+3}{24}=\frac{13}{24}$ (common denominator 24).
+**Fractions & equations.** $\frac ab\pm\frac cd=\frac{ad\pm bc}{bd}$ · $\frac ab\div\frac cd=\frac{ad}{bc}$ · $\frac ab=\frac cd$ → $ad=bc$ · $ax^2+bx+c=0$ → $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$ · multiplying by a negative flips $\gt$ into $\lt$ · $\lvert x\rvert\gt t$ = two cases. Common denominator to add: $\frac16+\frac14+\frac18=\frac{4+6+3}{24}=\frac{13}{24}$.
 
 **Cosines.** $\cos\alpha\cos\beta=\frac{\cos(\alpha+\beta)+\cos(\alpha-\beta)}2$ (printed in the Nov22 question).
 
