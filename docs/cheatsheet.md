@@ -6,7 +6,7 @@ hide:
 
 # A4 cheat sheet
 
-<p class="noprint">You may bring <b>one A4, both sides, own notes</b>. This page prints as a dense A4 (Ctrl/Cmd + P → A4, scale "fit", margins minimal; it fits on two sides). Better still: copy it by hand and add your own traps, writing it is half the studying.</p>
+<p class="noprint">You may bring <b>one A4, both sides, own notes</b>. This page fits on <b>one side</b>: Ctrl/Cmd + P → A4, margins minimal, untick "headers and footers", scale 100–115 %. Leave the back for your own traps. Better still: copy it by hand — writing it is half the studying.</p>
 
 <div class="cheat" markdown>
 <div class="cheat-cols" markdown>
