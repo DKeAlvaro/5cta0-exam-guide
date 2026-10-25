@@ -55,16 +55,15 @@ IF YOU SEE "WSS"/"wide-sense stationary"/"stationary", "ergodic", dice, random p
 IF YOU SEE $P(\theta)=\dfrac{\text{number}}{A+B\cos\theta}$ + "spectral factorisation"/"factorization", "innovation filter $L(z)$", "$\sigma_i^2$"
 {: .see }
 
-1. Read $A$ and $B$ off the denominator $A+B\cos\theta$ **with their signs** ($25-24\cos\theta$: $A=25$, $B=-24$). Then two candidate roots $r=\dfrac{A\pm\sqrt{A^2-B^2}}{B}$: keep the one between $-1$ and $1$, call it $a$.
-2. $C=\dfrac{B}{2a}$ (plain plug-in, nothing to understand).
-3. $\sigma_i^2=\dfrac{\text{number on top}}{C}$, $L(z)=\dfrac{1}{1+a\,z^{-1}}$.
-4. Check $|a|\lt1$ and $\sigma_i^2\gt0$ — a negative $\sigma_i^2$ means you kept the wrong root.
+**What you are actually doing.** The process is white noise $i$ (variance $\sigma_i^2$) pushed through a filter $L(z)$, so $P=\sigma_i^2\lvert L(e^{j\theta})\rvert^2$. For $L=\frac1{1+az^{-1}}$ you get $\lvert1+ae^{-j\theta}\rvert^2=1+a^2+2a\cos\theta$. **So the denominator has to come out as $C\,(1+a^2+2a\cos\theta)$** — that is the whole trick; the steps below just match it to $A+B\cos\theta$.
+
+1. $a=\dfrac{A\pm\sqrt{A^2-B^2}}{B}$ — read $A$ and $B$ **with their signs** ($25-24\cos\theta$: $A=25$, $B=-24$). Keep the root between $-1$ and $1$.
+2. $C=\dfrac{B}{2a}$ is that constant of proportionality. Then $\sigma_i^2=\dfrac{\text{number on top}}{C}$ and $L(z)=\dfrac{1}{1+a\,z^{-1}}$.
+3. Check $|a|\lt1$ and $\sigma_i^2\gt0$ — a negative $\sigma_i^2$ means you kept the wrong root. "What must the innovation filter be?" → **minimum phase**: all poles and zeros inside the unit circle (Jun26 a).
 
 *Apr24* $\frac{7}{25-24\cos\theta}$: $A=25$, $B=-24$, $\sqrt{625-576}=7$, $r=\frac{25\pm7}{-24}$ = $-\frac43$ or $-\frac34$ → $a=-\frac34$. $C=\frac{-24}{-3/2}=16$. So $\sigma_i^2=\frac7{16}$, $L=\frac1{1-\frac34z^{-1}}$.
 
 *Apr25* $\frac{1}{61+60\cos\theta}$: $r=\frac{61\pm11}{60}$ → $a=\frac56$, $C=36$, $\sigma_i^2=\frac1{36}$, $L=\frac1{1+\frac56z^{-1}}$.
-
-Multiple choice "what must the innovation filter be?" → **minimum phase**: all poles and zeros inside the unit circle (Jun26 a).
 
 ### 1D · Bayes word problems (counts)
 
@@ -316,8 +315,6 @@ IF YOU SEE "which of the following statements" (in Part 3) about PSD, windows, p
 *Consistent* $=$ variance $\to0$ as $N\to\infty$. The periodogram's bias $\to0$ but $\mathrm{Var}\{\hat P\}\approx P^2$ stays put.
 
 **AR order (Jun26-3e).** Bigger $p$ → residual error always goes down → risk: **overfitting** (fake peaks). Fix: **AIC** $=N\ln\hat\sigma^2+2p$ (also FPE, MDL): the error term falls, the penalty $2p$ grows → choose the $p$ with the smallest AIC. Any PSD can be approximated by an AR model of **high enough order**.
-
-**Wiener FIR filter (2 taps).** $\hat e[k]=w_0g[k]+w_1g[k-1]$, $g=h*x$. Solve $\begin{bmatrix}r_g[0]&r_g[1]\\r_g[1]&r_g[0]\end{bmatrix}\begin{bmatrix}w_0\\w_1\end{bmatrix}=\begin{bmatrix}\rho_{eg}[0]\\\rho_{eg}[1]\end{bmatrix}$, then $J_{min}=\sigma_e^2-(w_0\rho_{eg}[0]+w_1\rho_{eg}[1])$. $H(z)=1$ → $g=x$. Otherwise build $g[k]=\sum_m h[m]x[k-m]$ and use $r_g,\rho_{eg}$ from that. (Jan19: $w_0=1$, $w_1=2$, $J_{min}=0$.)
 
 ## PART 4 · Detection (2–2.5 p)
 
