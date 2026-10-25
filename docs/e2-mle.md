@@ -8,6 +8,8 @@
 
 The exam says **"derive the MLE"** → you open **box 2A** on your A4 sheet and do its 3 steps with the pdf they gave you. That is the whole method. Every question below is the same box with a different pdf, so read one solution with the sheet in your hand and the rest are copies.
 
+Press **Next step** on each yellow box to go through it one step at a time — cover the step, do it yourself, then reveal it.
+
 !!! sheet "Box 2A, exactly as it is printed on the sheet"
     **IF YOU SEE** a pdf $p(x\mid\theta)$, samples $x_1..x_N$, "maximum likelihood", "derive the MLE"
 
@@ -35,26 +37,40 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
     derive the MLE for the parameter $\theta$.
 
 !!! sheet "In the cheat sheet: box 2A, steps 1–3"
-    **Sheet step 1** · "Take $\ln$ of ONE sample's pdf, then put $\sum_n$ in front."
+    <div class="stepper" markdown>
+
+    **Sheet step 1 · "Take $\ln$ of ONE sample's pdf, then put $\sum_n$ in front."**
     One sample is $\frac{x_n}{2\theta}e^{-x_n^2/2\theta}$. Take it apart with the sheet's ln rules: $x_n$ on top → $+\ln x_n$; $2\theta$ on the bottom → $-\ln(2\theta)=-\ln 2-\ln\theta$ (rule: $\ln\frac ab=\ln a-\ln b$, in the Calculations strip); $e^{\text{stuff}}$ → just "stuff" $=-\frac{x_n^2}{2\theta}$:
 
     $$\ln p(x_n\mid\theta)=\ln x_n-\ln 2-\ln\theta-\frac{x_n^2}{2\theta}$$
 
-    Now put $\sum_n$ in front. The sheet says "a term without $x_n$ gets multiplied by $N$" → the two constants $\ln 2$ and $\ln\theta$ come out as $N\ln 2$ and $N\ln\theta$:
+    ***
+
+    **Sheet step 1b · put $\sum_n$ in front.**
+    The sheet says "a term without $x_n$ gets multiplied by $N$" → the two constants $\ln 2$ and $\ln\theta$ come out as $N\ln 2$ and $N\ln\theta$:
 
     $$\ln L=\sum_n\ln x_n-N\ln 2-N\ln\theta-\frac{1}{2\theta}\sum_n x_n^2$$
 
-    **Sheet step 2** · "Differentiate (terms without $\theta$ disappear)."
+    ***
+
+    **Sheet step 2 · "Differentiate (terms without $\theta$ disappear)."**
     $\sum\ln x_n$ and $-N\ln2$ have no $\theta$ → gone. Then the sheet's derivative rules: $\ln\theta\to\frac1\theta$ and $\frac1\theta\to-\frac1{\theta^2}$ (and minus times minus is plus):
 
     $$\frac{d}{d\theta}\ln L=-\frac N\theta+\frac{1}{2\theta^2}\sum_n x_n^2$$
 
-    **Sheet step 3** · "Set it $=0$ and solve. Multiply by the denominators first."
+    ***
+
+    **Sheet step 3 · "Set it $=0$ and solve. Multiply by the denominators first."**
     Multiply the whole equation by $\theta^2$:
 
     $$-N\theta+\frac12\sum_n x_n^2=0\quad\Longrightarrow\quad \hat\theta=\frac{1}{2N}\sum_n x_n^2$$
 
-    **Sheet check:** the example line at the bottom of box 2A (*Apr24* … $\hat\theta=\frac1{2N}\sum x_n^2$) is this exact question, and it gives the same. If your line looks like the sheet's line, you have the points.
+    ***
+
+    **Sheet check · the example line.**
+    The line at the bottom of box 2A (*Apr24* … $\hat\theta=\frac1{2N}\sum x_n^2$) is this exact question, and it gives the same. If your line looks like the sheet's line, you have the points.
+
+    </div>
 
 !!! answer "Answer"
     $\displaystyle\hat\theta_{ML}=\frac{1}{2N}\sum_{n=1}^N x_n^2$
@@ -69,15 +85,31 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
     derive the MLE for the parameter $\theta$.
 
 !!! sheet "In the cheat sheet: box 2A again — this is exercise 1 without the 2"
-    The $\prod$ in front is just the exam writing the likelihood for you: one sample is $\frac{x_n}{\theta}e^{-x_n^2/\theta}$. Same three steps:
+    <div class="stepper" markdown>
 
-    **Step 1.** $\ln$ of one sample: $\ln x_n-\ln\theta-\frac{x_n^2}{\theta}$. With $\sum_n$: $\ln L=\sum\ln x_n-N\ln\theta-\frac1\theta\sum x_n^2$ (the sheet: terms without $x_n$ get $\times N$).
+    **Sheet step 1 · take $\ln$ of one sample, then $\sum_n$.**
+    The $\prod$ in front is just the exam writing the likelihood for you: one sample is $\frac{x_n}{\theta}e^{-x_n^2/\theta}$. So $\ln x_n-\ln\theta-\frac{x_n^2}{\theta}$, and with the sheet's "terms without $x_n$ get $\times N$":
 
-    **Step 2.** $\frac{d}{d\theta}\ln L=-\frac N\theta+\frac{1}{\theta^2}\sum x_n^2$ (sheet rules $\ln\theta\to\frac1\theta$, $\frac1\theta\to-\frac1{\theta^2}$).
+    $$\ln L=\sum\ln x_n-N\ln\theta-\frac1\theta\sum x_n^2$$
 
-    **Step 3.** $=0$, multiply by $\theta^2$: $-N\theta+\sum x_n^2=0$.
+    ***
 
-    **Sheet check:** compare with exercise 1. The only change is the missing 2 → the answer lost its 2.
+    **Sheet step 2 · differentiate.**
+    Sheet rules $\ln\theta\to\frac1\theta$, $\frac1\theta\to-\frac1{\theta^2}$:
+
+    $$\frac{d}{d\theta}\ln L=-\frac N\theta+\frac{1}{\theta^2}\sum x_n^2$$
+
+    ***
+
+    **Sheet step 3 · $=0$, clear the denominators.**
+    Multiply by $\theta^2$: $-N\theta+\sum x_n^2=0$.
+
+    ***
+
+    **Sheet check.**
+    Compare with exercise 1. The only change is the missing 2 → the answer lost its 2.
+
+    </div>
 
 !!! answer "Answer"
     $\displaystyle\hat\theta_{ML}=\frac{1}{N}\sum_{n=1}^N x_n^2$
@@ -88,15 +120,30 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
     For the data vector $\mathbf{x}$ consisting of independent samples with probability density function $p(x[n]) = \frac{x}{\theta} \exp\left(-\frac{x^2}{2\theta}\right)$, where $n = 0, 1, \dots, N-1$, find an estimator for the parameter $\theta$.
 
 !!! sheet "In the cheat sheet: box 2A — and the rule that saves you here"
-    "Find an estimator" with a pdf and samples = derive the MLE = box 2A. One sample: $\frac{x_n}{\theta}e^{-x_n^2/2\theta}$.
+    <div class="stepper" markdown>
 
-    **Step 1.** $\ln x_n-\ln\theta-\frac{x_n^2}{2\theta}$ → $\ln L=\sum\ln x_n-N\ln\theta-\frac{1}{2\theta}\sum x_n^2$.
+    **Sheet step 1 · take $\ln$ of one sample, then $\sum_n$.**
+    "Find an estimator" with a pdf and samples = derive the MLE = box 2A. One sample: $\frac{x_n}{\theta}e^{-x_n^2/2\theta}$ → $\ln x_n-\ln\theta-\frac{x_n^2}{2\theta}$:
 
-    **Step 2.** $-\frac N\theta+\frac{1}{2\theta^2}\sum x_n^2$.
+    $$\ln L=\sum\ln x_n-N\ln\theta-\frac{1}{2\theta}\sum x_n^2$$
 
-    **Step 3.** $=0$, multiply by $\theta^2$: $-N\theta+\frac12\sum x_n^2=0$.
+    ***
 
-    **Sheet check:** this is exercise 1 again (the $\frac12$ sits in the exponent in both). Numbers in front that do not contain $\theta$ never change the answer — the sheet's ln rules turn them into constants that vanish in step 2.
+    **Sheet step 2 · differentiate.**
+
+    $$\frac{d}{d\theta}\ln L=-\frac N\theta+\frac{1}{2\theta^2}\sum x_n^2$$
+
+    ***
+
+    **Sheet step 3 · $=0$, clear the denominators.**
+    Multiply by $\theta^2$: $-N\theta+\frac12\sum x_n^2=0$.
+
+    ***
+
+    **Sheet check.**
+    This is exercise 1 again (the $\frac12$ sits in the exponent in both). Numbers in front that do not contain $\theta$ never change the answer — the sheet's ln rules turn them into constants that vanish in step 2.
+
+    </div>
 
 !!! answer "Answer"
     $\displaystyle\hat\theta_{ML}=\frac{1}{2N}\sum_{n=0}^{N-1} x^2[n]$
@@ -111,15 +158,26 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
     (a) Find the maximum likelihood estimator for the parameter $\theta$.
 
 !!! sheet "In the cheat sheet: box 2A, the $\theta^k$ rule does the work"
-    **Step 1.** The sheet: "$\theta^k$ on the bottom → $-k\ln\theta$", here $k=2$ → $-2\ln\theta$. So $\ln x_n-2\ln\theta-\frac{x_n^2}{2\theta^2}$, and
+    <div class="stepper" markdown>
+
+    **Sheet step 1 · "$\theta^k$ on the bottom → $-k\ln\theta$".**
+    Here $k=2$ → $-2\ln\theta$. So $\ln x_n-2\ln\theta-\frac{x_n^2}{2\theta^2}$, and
 
     $$\ln L=\sum\ln x_n-2N\ln\theta-\frac{1}{2\theta^2}\sum x_n^2$$
 
-    **Step 2.** Sheet derivatives: $\ln\theta\to\frac1\theta$ (so $-2N\ln\theta\to-\frac{2N}{\theta}$) and $\frac{1}{\theta^2}\to-\frac{2}{\theta^3}$ (the $\theta^k$ rule backwards), so $-\frac{1}{2\theta^2}\sum x_n^2\to+\frac{1}{\theta^3}\sum x_n^2$:
+    ***
+
+    **Sheet step 2 · differentiate.**
+    $\ln\theta\to\frac1\theta$ (so $-2N\ln\theta\to-\frac{2N}{\theta}$) and $\frac{1}{\theta^2}\to-\frac{2}{\theta^3}$ (the $\theta^k$ rule backwards), so $-\frac{1}{2\theta^2}\sum x_n^2\to+\frac{1}{\theta^3}\sum x_n^2$:
 
     $$-\frac{2N}{\theta}+\frac{1}{\theta^3}\sum x_n^2=0$$
 
-    **Step 3.** Multiply by $\theta^3$ (the sheet: clear the denominators first): $-2N\theta^2+\sum x_n^2=0$ → $\theta^2=\frac{\sum x_n^2}{2N}$. The sheet's "get the letter alone" rule ($x^k=a\Rightarrow x=a^{1/k}$, Calculations strip) gives the square root. $\theta>0$ so take the $+$ root.
+    ***
+
+    **Sheet step 3 · $=0$, clear the denominators, then get the letter alone.**
+    Multiply by $\theta^3$ (the sheet: clear the denominators first): $-2N\theta^2+\sum x_n^2=0$ → $\theta^2=\frac{\sum x_n^2}{2N}$. The sheet's "get the letter alone" rule ($x^k=a\Rightarrow x=a^{1/k}$, Calculations strip) gives the square root. $\theta>0$ so take the $+$ root.
+
+    </div>
 
 !!! answer "Answer"
     $\displaystyle\hat\theta_{ML}=\sqrt{\frac{1}{2N}\sum_{n=0}^{N-1} x^2[n]}$
@@ -134,13 +192,30 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
     find the maximum likelihood estimator for $\lambda$, given $N$ independent identically distributed observations $x_i, i \in \{0 : N - 1\}$.
 
 !!! sheet "In the cheat sheet: box 2A (the unknown is called $\lambda$ — same box)"
-    **Step 1.** $\ln$ of one sample: $\lambda$ on top → $+\ln\lambda$; $e^{-\lambda x}$ → just $-\lambda x$. So $\ln L=N\ln\lambda-\lambda\sum x_i$ (the sheet: $\sum_n\lambda x_n=\lambda\sum x_n$).
+    <div class="stepper" markdown>
 
-    **Step 2.** $\frac N\lambda-\sum x_i$.
+    **Sheet step 1 · take $\ln$ of one sample, then $\sum_n$.**
+    $\lambda$ on top → $+\ln\lambda$; $e^{-\lambda x}$ → just $-\lambda x$. With the sheet's sum rule $\sum_n\lambda x_n=\lambda\sum x_n$:
 
-    **Step 3.** $=0$, multiply by $\lambda$: $N-\lambda\sum x_i=0$.
+    $$\ln L=N\ln\lambda-\lambda\sum x_i$$
 
-    **Sheet check:** this pdf also appears in box 2B ("one observation: exponential → $\lambda e^{-\lambda x}$") — there it is a prior/likelihood ingredient; here it is the whole question. Same shape, box 2A still applies.
+    ***
+
+    **Sheet step 2 · differentiate.**
+
+    $$\frac{d}{d\lambda}\ln L=\frac N\lambda-\sum x_i$$
+
+    ***
+
+    **Sheet step 3 · $=0$, clear the denominators.**
+    Multiply by $\lambda$: $N-\lambda\sum x_i=0$.
+
+    ***
+
+    **Sheet check.**
+    This pdf also appears in box 2B ("one observation: exponential → $\lambda e^{-\lambda x}$") — there it is a prior/likelihood ingredient; here it is the whole question. Same shape, box 2A still applies.
+
+    </div>
 
 !!! answer "Answer"
     $\displaystyle\hat\lambda_{ML}=\frac{N}{\sum_i x_i}=\frac{1}{\bar x}$
@@ -151,15 +226,29 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
     Recovery times $X\sim\text{Gamma}(k,\theta)$, $k$ known, $\theta>0$ unknown, with pdf $p(x \mid \theta) = x^{k-1} e^{-x/\theta} / (\theta^k \Gamma(k))$, $x > 0$. Write the likelihood and log-likelihood for $x_1, \dots, x_n$, derive the MLE of $\theta$, and explain what it tells us.
 
 !!! sheet "In the cheat sheet: box 2A, its own *Jun26* example line"
-    **Step 1.** The sheet's ln rules piece by piece: $x^{k-1}$ on top → $+(k-1)\ln x$; $e^{-x/\theta}$ → $-\frac x\theta$; $\theta^k$ on the bottom → $-k\ln\theta$; $\Gamma(k)$ on the bottom → $-\ln\Gamma(k)$ (a constant). Sum over $n$ samples:
+    <div class="stepper" markdown>
+
+    **Sheet step 1 · take $\ln$ of one sample, then $\sum_n$.**
+    The sheet's ln rules piece by piece: $x^{k-1}$ on top → $+(k-1)\ln x$; $e^{-x/\theta}$ → $-\frac x\theta$; $\theta^k$ on the bottom → $-k\ln\theta$; $\Gamma(k)$ on the bottom → $-\ln\Gamma(k)$ (a constant). Sum over $n$ samples:
 
     $$\ln L=(k-1)\sum\ln x_i-\frac1\theta\sum x_i-nk\ln\theta-n\ln\Gamma(k)$$
 
-    **Step 2.** Only two terms have $\theta$: $\frac{d}{d\theta}\big(-\frac1\theta\sum x_i\big)=+\frac{1}{\theta^2}\sum x_i$ and $\frac{d}{d\theta}(-nk\ln\theta)=-\frac{nk}{\theta}$.
+    ***
 
-    **Step 3.** $=0$, multiply by $\theta^2$: $\sum x_i-nk\theta=0$ → $\hat\theta=\frac{\sum x_i}{nk}=\frac{\bar x}{k}$.
+    **Sheet step 2 · differentiate.**
+    Only two terms have $\theta$: $\frac{d}{d\theta}\big(-\frac1\theta\sum x_i\big)=+\frac{1}{\theta^2}\sum x_i$ and $\frac{d}{d\theta}(-nk\ln\theta)=-\frac{nk}{\theta}$.
 
-    **Meaning** (the sheet's *Jun26* line says it in one sentence): a Gamma variable has mean $k\theta$, so $\hat\theta$ = average recovery time per stage, and $k\hat\theta$ = the observed mean time.
+    ***
+
+    **Sheet step 3 · $=0$, clear the denominators.**
+    Multiply by $\theta^2$: $\sum x_i-nk\theta=0$ → $\hat\theta=\frac{\sum x_i}{nk}=\frac{\bar x}{k}$.
+
+    ***
+
+    **Sheet check · the meaning line.**
+    The sheet's *Jun26* line says it in one sentence: a Gamma variable has mean $k\theta$, so $\hat\theta$ = average recovery time per stage, and $k\hat\theta$ = the observed mean time.
+
+    </div>
 
 !!! answer "Answer"
     $\displaystyle\hat\theta_{ML}=\frac{\sum x_i}{nk}=\frac{\bar x}{k}$ — average recovery time divided by the number of stages $k$
@@ -170,19 +259,32 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
     Consider the likelihood $p(x|\theta) = 3\lambda(\theta)e^{-4\frac{\lambda(\theta)x}{7}}, \ x > 1$, where $\lambda(\theta) = \frac{1}{1+e^{-\theta}}$ (logistic sigmoid). Derive the MLE for $\theta$. Hint: $\frac{\partial \lambda(\theta)}{\partial \theta} = \lambda(\theta)(1 - \lambda(\theta))$.
 
 !!! sheet "In the cheat sheet: box 2A · Sigmoid trick"
+    <div class="stepper" markdown>
+
+    **Sheet step 0 · the trick.**
     The sheet says: **IF YOU SEE $\lambda=\frac1{1+e^{-\theta}}$: treat $\lambda$ as the unknown, find $\hat\lambda$, then $\hat\theta=-\ln\!\big(\frac1{\hat\lambda}-1\big)$.** Do exactly that — ignore the $\theta$ until the last line.
 
-    **Step 1 with $\lambda$.** $\ln$ of $3\lambda e^{-4\lambda x/7}$: $\ln 3+\ln\lambda-\frac{4x}{7}\lambda$ (the sheet: $e^{\text{stuff}}$ → just "stuff").
+    ***
 
-    **Step 2 with $\lambda$.** $\frac{d}{d\lambda}\ln\lambda=\frac1\lambda$, and $\frac{d}{d\lambda}\big(-\frac{4x}7\lambda\big)=-\frac47x$ (a constant times $\lambda$).
+    **Sheet step 1 · take $\ln$ of the pdf (in $\lambda$).**
+    $\ln$ of $3\lambda e^{-4\lambda x/7}$: $\ln 3+\ln\lambda-\frac{4x}{7}\lambda$ (the sheet: $e^{\text{stuff}}$ → just "stuff").
 
-    **Step 3.** $\frac1\lambda-\frac{4x}7=0$, multiply by $\lambda$: $1-\frac{4x}7\lambda=0$ → $\hat\lambda=\frac{7}{4x}$.
+    ***
 
-    **Now the sheet's conversion formula.** $\hat\theta=-\ln\!\big(\frac{1}{\hat\lambda}-1\big)=-\ln\!\big(\frac{4x}{7}-1\big)$.
+    **Sheet step 2 · differentiate in $\lambda$.**
+    $\frac{d}{d\lambda}\ln\lambda=\frac1\lambda$, and $\frac{d}{d\lambda}\big(-\frac{4x}7\lambda\big)=-\frac47x$ (a constant times $\lambda$). So $\frac1\lambda-\frac{4x}7=0$; multiply by $\lambda$: $1-\frac{4x}7\lambda=0$ → $\hat\lambda=\frac{7}{4x}$.
 
-    **Range check** (the Calculations strip: "$\ln$ of a positive number"): $\frac{4x}7-1>0$ → $x>\frac74$.
+    ***
 
-    (If you differentiate in $\theta$ with the hint, the extra factor $\lambda(1-\lambda)$ is never 0, so you land on the same answer — the sheet's trick just avoids that mess.)
+    **Sheet step 3 · the sheet's conversion formula.**
+    $\hat\theta=-\ln\!\big(\frac{1}{\hat\lambda}-1\big)=-\ln\!\big(\frac{4x}{7}-1\big)$.
+
+    ***
+
+    **Sheet check · the range.**
+    The Calculations strip: "$\ln$ of a positive number" → $\frac{4x}7-1>0$ → $x>\frac74$. (If you differentiate in $\theta$ with the hint, the extra factor $\lambda(1-\lambda)$ is never 0, so you land on the same answer — the sheet's trick just avoids that mess.)
+
+    </div>
 
 !!! answer "Answer"
     $\displaystyle\hat\theta_{ML}=-\ln\!\left(\frac{4x}{7}-1\right)$, valid for $x>\frac74$
@@ -199,17 +301,31 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
     (*Note: $\rho$ is the unknown parameter; $\mu, \sigma, \theta$ are the observed data.*)
 
 !!! sheet "In the cheat sheet: box 2A — the unknown is $\rho$, everything else is a number"
+    <div class="stepper" markdown>
+
+    **Sheet step 0 · read who is the unknown.**
     This one looks scary because of the letters. Follow the sheet literally: the unknown is $\rho$, so in step 2 every term without $\rho$ disappears — $\mu,\sigma,\theta$ are just data, treat them as numbers.
 
-    **Step 1.** $\ln$ of the pdf: the front factor has no $\rho$ → a constant. The exponent comes down as it is:
+    ***
+
+    **Sheet step 1 · take $\ln$.**
+    The front factor has no $\rho$ → a constant. The exponent comes down as it is:
 
     $$\ln p=\text{const}-\frac{\mu^2\rho^2-2\rho\mu\sigma\theta+\sigma^2\rho^2}{2(1-\theta^2)}$$
 
-    **Step 2.** Differentiate in $\rho$ (the denominator $2(1-\theta^2)$ is a number and stays put; only the top changes):
+    ***
+
+    **Sheet step 2 · differentiate in $\rho$.**
+    The denominator $2(1-\theta^2)$ is a number and stays put; only the top changes:
 
     $$\frac{d}{d\rho}\ln p=-\frac{2\mu^2\rho-2\mu\sigma\theta+2\sigma^2\rho}{2(1-\theta^2)}$$
 
-    **Step 3.** $=0$, multiply by $2(1-\theta^2)$ (the sheet: clear the denominators first): $2\rho(\mu^2+\sigma^2)-2\mu\sigma\theta=0$.
+    ***
+
+    **Sheet step 3 · $=0$, clear the denominators.**
+    Multiply by $2(1-\theta^2)$ (the sheet: clear the denominators first): $2\rho(\mu^2+\sigma^2)-2\mu\sigma\theta=0$.
+
+    </div>
 
 !!! answer "Answer"
     $\displaystyle\hat\rho_{ML}=\frac{\mu\sigma\theta}{\mu^2+\sigma^2}$
@@ -228,9 +344,22 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
     Find the maximum likelihood estimator of the parameter $\theta$.
 
 !!! sheet "In the cheat sheet: box 2D, last line"
-    The sheet prints this exact model: *"Fisher info for $x$ = signal($\theta$) + Gaussian noise: … Nov22 $A[\cos\theta,\sin\theta]$ → $\mathcal I=\frac{A^2}{\sigma^2}$, and MLE $\hat\theta=\arctan\frac{x_2}{x_1}$."* So the answer is already on your sheet.
+    <div class="stepper" markdown>
 
-    **If you want to see it with box 2A anyway:** $\ln p=\text{const}-\frac{1}{2\sigma^2}\big((x_1-A\cos\theta)^2+(x_2-A\sin\theta)^2\big)$. Maximising $\ln p$ = minimising that square. Expand it (the Calculations strip has the rules; here it is just $(a-b)^2$): $x_1^2+x_2^2+A^2-2A(x_1\cos\theta+x_2\sin\theta)$. The only $\theta$ part is $-2A(x_1\cos\theta+x_2\sin\theta)$, so you must **maximise** $x_1\cos\theta+x_2\sin\theta$. That happens when the direction $[\cos\theta,\sin\theta]$ points the same way as the data $(x_1,x_2)$: $\cos\theta=\frac{x_1}{\sqrt{x_1^2+x_2^2}}$, $\sin\theta=\frac{x_2}{\sqrt{x_1^2+x_2^2}}$ → $\tan\theta=\frac{x_2}{x_1}$.
+    **Sheet step 0 · look at box 2D first.**
+    The sheet prints this exact model: *"Fisher info for $x$ = signal($\theta$) + Gaussian noise: … Nov22 $A[\cos\theta,\sin\theta]$ → $\mathcal I=\frac{A^2}{\sigma^2}$, and MLE $\hat\theta=\arctan\frac{x_2}{x_1}$."* The answer is already on your sheet.
+
+    ***
+
+    **Sheet step 1 · (if you want to see it) $\ln$ and what to maximise.**
+    $\ln p=\text{const}-\frac{1}{2\sigma^2}\big((x_1-A\cos\theta)^2+(x_2-A\sin\theta)^2\big)$. Maximising $\ln p$ = minimising that square. Expand it: $x_1^2+x_2^2+A^2-2A(x_1\cos\theta+x_2\sin\theta)$. The only $\theta$ part is $-2A(x_1\cos\theta+x_2\sin\theta)$, so you must **maximise** $x_1\cos\theta+x_2\sin\theta$.
+
+    ***
+
+    **Sheet step 2 · maximise $x_1\cos\theta+x_2\sin\theta$.**
+    It is biggest when the direction $[\cos\theta,\sin\theta]$ points the same way as the data $(x_1,x_2)$: $\cos\theta=\frac{x_1}{\sqrt{x_1^2+x_2^2}}$, $\sin\theta=\frac{x_2}{\sqrt{x_1^2+x_2^2}}$ → $\tan\theta=\frac{x_2}{x_1}$ → the sheet's answer.
+
+    </div>
 
 !!! answer "Answer"
     $\displaystyle\hat\theta_{ML}=\arctan\frac{x_2}{x_1}$ (the sheet's line, verbatim)
@@ -245,8 +374,17 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
     - (c) The maximum likelihood estimator is asymptotically unbiased.
 
 !!! sheet "In the cheat sheet: box 2D, three rows"
-    - *"MLE always reaches the CRLB / only for linear models"* → **F**. That one row kills **(a)** and **(b)** in a single look (this is what the sheet means: one row covers both distractors).
-    - *"MLE is asymptotically unbiased"* → **T (Nov22 c)**. The sheet even tags the row with this exam.
+    <div class="stepper" markdown>
+
+    **Sheet step 1 · the row "MLE always reaches the CRLB / only for linear models" → F.**
+    That one row kills **(a)** and **(b)** in a single look (this is what the sheet means: one row covers both distractors).
+
+    ***
+
+    **Sheet step 2 · the row "MLE is asymptotically unbiased" → T (Nov22 c).**
+    The sheet even tags the row with this exam.
+
+    </div>
 
 !!! answer "Answer"
     **(c)**
@@ -261,9 +399,22 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
     - (c) For a transformed parameter $\alpha = \psi(\theta)$, where $\psi(\cdot)$ is a one-to-one mapping, the maximum likelihood estimate $\hat{\theta}_{ML}$ can be obtained as $\hat{\theta}_{ML} = \psi^{-1}(\hat{\alpha}_{ML})$.
 
 !!! sheet "In the cheat sheet: box 2D"
-    - *"MLE maximises the likelihood over $\theta$"* → **T ("over $x$": F)**. **(a)** says "the value of $x$" → **F**. This row is written exactly for this distractor.
-    - *"MLE of $\alpha=\psi(\theta)$: $\hat\theta=\psi^{-1}(\hat\alpha)$"* → **T (Jan22 c)**. That is **(c)** word for word.
-    - **(b)** is not on the sheet as a row, but the sheet says the MLE is asymptotically unbiased and its variance sits at $\frac1{\mathcal I}$ — a uniform distribution is not that. And "one-to-one" is the same condition as the sigmoid trick in box 2A.
+    <div class="stepper" markdown>
+
+    **Sheet step 1 · (a) vs the row "MLE maximises the likelihood over $\theta$" → T ("over $x$": F).**
+    **(a)** says "the value of $x$" → **F**. This row is written exactly for this distractor.
+
+    ***
+
+    **Sheet step 2 · (c) vs the row "MLE of $\alpha=\psi(\theta)$: $\hat\theta=\psi^{-1}(\hat\alpha)$" → T (Jan22 c).**
+    That is **(c)** word for word.
+
+    ***
+
+    **Sheet step 3 · (b) is not on the sheet as a row.**
+    But the sheet says the MLE is asymptotically unbiased and its variance sits at $\frac1{\mathcal I}$ — a uniform distribution is not that. And "one-to-one" is the same condition as the sigmoid trick in box 2A.
+
+    </div>
 
 !!! answer "Answer"
     **(c)**
@@ -278,13 +429,23 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
     - C. $\hat{\theta} = \arg \max_{\theta} p(\theta|x)$
     - D. $\hat{\theta} = \arg \max_{\theta} p(x|\theta)$
 
-!!! sheet "In the cheat sheet: it is a 'which box' question"
-    Match each option to a box of the sheet:
+!!! sheet "In the cheat sheet: it is a 'which box' question — match each option to a box"
+    <div class="stepper" markdown>
 
-    - **A** = minimise a squared error over data points → **box 2C** (least squares).
-    - **B** = minimise a squared error averaged over the pdf → **MMSE**, box 2B's table ("MMSE = the mean of the posterior; minimises squared error").
-    - **C** = maximise $p(\theta\mid x)$ = the posterior → **MAP**, box 2B ("MAP needs a prior").
-    - **D** = maximise $p(x\mid\theta)$ = the likelihood over $\theta$ → **box 2A**. The sheet's row says it: *"MLE maximises the likelihood over $\theta$"*. The likelihood is $p(\text{data}\mid\theta)=p(x\mid\theta)$.
+    **Sheet step 1 · A and B are least squares / MMSE, not MLE.**
+    **A** = minimise a squared error over data points → **box 2C** (least squares). **B** = minimise a squared error averaged over the pdf → **MMSE**, box 2B's table ("MMSE = the mean of the posterior; minimises squared error").
+
+    ***
+
+    **Sheet step 2 · C is MAP.**
+    $p(\theta\mid x)$ is the **posterior** → **MAP**, box 2B ("MAP needs a prior").
+
+    ***
+
+    **Sheet step 3 · D is the box 2A row.**
+    $p(x\mid\theta)$ is the likelihood, and the sheet's row says it: *"MLE maximises the likelihood over $\theta$"*. The likelihood is $p(\text{data}\mid\theta)=p(x\mid\theta)$.
+
+    </div>
 
 !!! answer "Answer"
     **D**
