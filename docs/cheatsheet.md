@@ -12,65 +12,122 @@ hide:
 <div class="cheat-cols" markdown>
 
 <div markdown>
-## 0 · How the exam works (read once)
-4 blocks, ~9 questions. "Derive / show / construct" = **every step earns points**: write the recipe even when stuck. **"Provide only the final answer" = no partial credit** — round only at the very end. The `[0.15]` marks in the text are the **points** of each sub-question, not answers. Theory MC = statements with **one word swapped** ("maximised" ↔ "minimised"): read the verb and the direction.
+## 1.1 · Bayes word problems
+*"Machines make 40/35/25 %, defect rates 1/2/4 %" · "99 % accurate test, rare disease" · "which machine made it?"* — count people/items, don't start from formulas:
 
-**Symbols.** $\theta$ = frequency on the unit circle, $0\ldots\pi$ (0 = slow/constant, $\pi$ = fastest $+,-,+,-$). $r[k]$ = autocorrelation ($r[0]$ = power). $P(e^{j\theta})$ = PSD. $i[n]$ = white noise, variance $\sigma_i^2$. $\bar x$ = sample mean. $Q(z)$ = Gaussian tail. $C_{ij}$ = cost of **deciding $i$ when $j$ is true**. $\mathcal H_0$ = "nothing / student / healthy", $\mathcal H_1$ = "something". $\lambda$ (exam writes $\eta$) = bar on the likelihood ratio; $\gamma$ = cut on the data.
+1. Pretend there are **1000** items (1 000 000 when a probability is tiny, e.g. 0.0005).
+2. **Split by source**: count$_k$ = share$_k$ × 1000 → 400 / 350 / 250.
+3. **Bad per source**: bad$_k$ = rate$_k$ × count$_k$ → 4 / 7 / 10. (They often give the *good* rate: bad $=1-$good.)
+4. $P(\text{bad})$ = (bad$_A$+bad$_B$+bad$_C$)/1000 $=21/1000$.
+5. $P(\text{source }k\mid\text{bad})$ = bad$_k$ / **pile of bad** $=10/21$ — divide by the pile (21), never by 1000.
+
+**Medical test, same recipe.** 1 in 1000 ill, test 99 % right both ways, 100 000 people: 100 ill → 99 test $+$; 99 900 healthy → **999** test $+$ too. $P(\text{ill}\mid+)=99/1098\approx0.09$ — the healthy pile always dominates.
+
+**Symbols:** $P(B)=\sum_i P(B\mid A_i)P(A_i)$ · $P(A_k\mid B)=\frac{P(B\mid A_k)P(A_k)}{P(B)}$ · "pass 85 %" = defect 0.15 · priors from counts: divide by the total.
+
+**"Given it survived"** (memoryless): $P(T\ge t)=e^{-t/5}$, worked 2 years, breaks in year 3? $P(2\le T\lt 3\mid T\ge2)=\frac{e^{-2/5}-e^{-3/5}}{e^{-2/5}}=1-e^{-1/5}\approx 0.18$.
+
+**Independent?** $P(A\mid B)=P(A)$ ⇔ $P(A\cap B)=P(A)P(B)$; "disjoint" ($P(A\cap B)=0$) is the **opposite**. $P(A\cup B)=P(A)+P(B)-P(A\cap B)$.
 </div>
 
 <div markdown>
-## 1 · Probability & signals
-**What they say → what you do**
-- *"Machines make 40/35/25 %, defect rates …"* → **counts**: 1000 items → split per source → bad ones each → divide by the **pile** of bad.
-- *"99 % accurate test, rare disease"* → it cuts **both** ways: 1 % of the huge healthy group tests positive too. Take 1 000 000 people.
-- *"Joint PDF on a region"* → draw it → normalise → marginal = integrate out the other variable at **fixed** $x$ → conditional = joint / marginal on the slice.
-- *"WSS? ergodic in the mean?"* → mean constant? $r$ only on the lag? Then one row's time average $=$ the ensemble mean?
-- *"PSD $=\frac{N}{A+B\cos\theta}$, find $L(z),\sigma_i^2$"* → match → divide → quadratic → keep $|a|<1$.
+## 1.2 · Joint PDF: $c$, marginal, conditional, independent
+*"The joint PDF is $p(x,y)=c\,(\dots)$ on the region below"*
 
-**Total prob.** $P(B)=\sum_iP(B\mid A_i)P(A_i)$ · **Bayes** $P(A_k\mid B)=\frac{P(B\mid A_k)P(A_k)}{P(B)}$
-"pass 85 %" → defect 0.15 · priors from counts: divide by total.
-**Independent:** $P(A\mid B)=P(A)$, $P(A\cap B)=P(A)P(B)$; disjoint ≠ independent; $P(A\cup B)=P(A)+P(B)-P(A\cap B)$.
+1. **Draw the region.** Corners and boundary lines — every limit below comes from this drawing.
+2. **Find $c$**: $\iint p=1$. Inner integral along a slice (limits from the drawing), outer over all slice positions.
+3. **Marginal** $p_Y(y)=\int p(x,y)\,dx$, $x$ across the slice at height $y$. Write the domain: "for $0\le y\le1$, 0 otherwise".
+4. **Conditional** $p_{X\mid Y}(x\mid y)=\dfrac{p(x,y)}{p_Y(y)}$; domain = the slice.
+5. **Independent** ⇔ $p(x,y)=p_X(x)p_Y(y)$ everywhere. Quick test: region is a **rectangle** *and* formula splits as (only $x$)·(only $y$). A triangle is never independent.
+
+**Only integral rule needed.** $\int_a^b x^n dx=\big[\frac{x^{n+1}}{n+1}\big]_a^b$ = top − bottom; anything without the integration variable comes out in front: $\int_0^1 6x^2y\,dy=6x^2\cdot\frac12$.
+
+**e.g.** $p=cx$ on $0\le y\le x\le1$: $\iint=c\int_0^1 x^2 dx=c/3$ → $c=3$; $p_X(x)=\int_0^x 3x\,dy=3x^2$; $p(y\mid x)=\frac{3x}{3x^2}=\frac1x$ = uniform on the slice.
+
+Traps: forgetting "0 otherwise"; outer limits as a fixed number instead of the region.
 </div>
 
 <div markdown>
-**RVs.** discrete = countable (counts); continuous = measurements, averages. $E[X]=\sum xp(x)$ (weighted avg, long-run mean). $\text{Var}=E[X^2]-\mu^2$. Cov: sign = direction, unbounded, unit-dependent; $\rho\in[-1,1]$. Binomial $\binom nkp^k(1-p)^{n-k}$. Exponential memoryless.
-**Joint PDF:** draw region → limits. Normalise $\iint p=1$. Marginal $p_X=\int p\,dy$ (y over region at that x). Conditional $p_{X\mid Y}=p_{XY}/p_Y$ on the slice. Independent ⇔ factorises **and** rectangle. Diagonal cov → axis-aligned ellipses; tilted ⇒ cov ≠ 0.
+## 1.3 · WSS and ergodic
+*"Is the process wide-sense stationary? Ergodic in the mean?"*
 
-**WSS:** constant mean + $r(t_1,t_2)$ depends on lag only. **Ergodic:** time avg of 1 realisation = ensemble avg (needs stationarity). Something drawn once per realisation (amplitude $A$) ⇒ not ergodic in what depends on it. i.i.d. dice ⇒ ergodic mean & var. $\cos(t+U)$: WSS, ergodic; $A\cos t$: not WSS.
-$\cos\alpha\cos\beta=\frac12[\cos(\alpha+\beta)+\cos(\alpha-\beta)]$.
-**Autocorr:** $r[-l]=r[l]$, $r[0]\ge|r[l]|$, PSD $\ge0$. White: $\sigma^2\delta[l]$. $\hat r_{xy}[l]=\frac1N\sum x[n]y[n-l]$.
+1. **Mean**: $E[X(t)]$ (average over the random part $U$, $A$, …). Depends on $t$ → **not WSS**, not ergodic. Stop.
+2. **Autocorrelation** $E[X(t)X(t+\tau)]$: depends only on $\tau$ → **WSS**.
+3. **Ergodic in the mean**: freeze the random part (one realisation = one row) and average over time. Every row gives the same number as step 1 → **ergodic**; if the answer still contains the draw (like $A$) → **not**.
+
+**Known answers.** $\cos(t+U)$, $U$ uniform: WSS + ergodic · $A\cos t$, random $A$: $r$ depends on $A^2$ → not even WSS · i.i.d. dice: ergodic mean and variance.
+
+**Autocorr facts.** $r[-l]=r[l]$ · $|r[l]|\le r[0]$ · $r[0]$ = average power · white noise: $r[0]=\sigma_i^2$, else 0 · $\cos\alpha\cos\beta=\frac12[\cos(\alpha+\beta)+\cos(\alpha-\beta)]$ · $\hat r_{xy}[l]=\frac1N\sum_n x[n]y[n-l]$.
 </div>
 
 <div markdown>
-**Spectral factorisation.** $P_y=|H|^2P_x$; $P=\sigma_i^2L(z)L(z^{-1})$, $L$ causal, stable, **min phase**, $l[0]=1$.
-$(1\mp az^{-1})(1\mp az)=(1+a^2)\mp2a\cos\theta$; $\cos\theta=\frac{z+z^{-1}}2$.
-$\alpha\mp\beta\cos\theta$: $C(1+a^2)=\alpha$, $2Ca=\beta$ → roots $a,1/a$ → keep $|a|<1$ → $C=\beta/2a$. $\sigma_i^2=C_n/C_d$. Check at $\theta=0$.
-Trap: a **minus** cosine gives a **negative** $a$; $\sigma_i^2=N/C$, not $N$.
+## 1.4 · Spectral factorisation
+*"Write $P=\dfrac{N}{A+B\cos\theta}$ as $\sigma_i^2 L(z)L(z^{-1})$"*
+
+Match $C(1+az^{-1})(1+az)=C(1+a^2+2a\cos\theta)$ against $A+B\cos\theta$:
+
+1. **Match**: $C(1+a^2)=A$, $2Ca=B$.
+2. **Divide**: $\frac{1+a^2}{2a}=\frac AB$ → $B a^2-2A a+B=0$ → roots $a$ and $1/a$.
+3. **Keep $|a|\lt1$** (if $B<0$, $a$ comes out negative — correct).
+4. $C=\frac{B}{2a}$, then $\sigma_i^2=\frac NC$ (**not** $N$!).
+5. $L(z)=\dfrac{1}{1+a z^{-1}}$ — one over the denominator's factor.
+
+**Check** at $\theta=0$: must give $P(0)=\frac{N}{A+B}$. *e.g.* $N/(2+\cos\theta)$: $a^2-4a+1=0$ → $a=2-\sqrt3\approx0.268$, $C=\frac1{2a}$, $\sigma_i^2=N/C$.
+
+Identities: $(1+az^{-1})(1+az)=(1+a^2)+2a\cos\theta$ · $\cos\theta=\frac{z+z^{-1}}2$ · a **minus** cosine gives a **negative** $a$.
 </div>
 
 <div markdown>
-## 2 · Estimation
-**What they say → what you do**
-- *"Derive the MLE"* → **4 steps**: $L(\theta)=\prod p(x_n\mid\theta)$ → $\ln$ (split it) → $\frac{d}{d\theta}=0$ → solve. Show all four: each earns points.
-- *"Derive the MAP"* → likelihood (keep only $\theta$-parts) → **× prior** (exponents add) → name it (Beta/Gamma) → top.
-- *"Least squares line"* → means → table → slope → intercept.
-- *"Here is the posterior, derive the MAP"* → ln, differentiate, set to 0 (same 4 steps).
+## 2.1 · Maximum likelihood (MLE)
+*"Derive the ML estimator of $\theta$"* — write all four steps, each earns points:
 
-**MLE:** $\ln L=\sum\ln p(x_n;\theta)$ → $\partial_\theta=0$ → solve → check $\partial^2<0$. Asympt. unbiased, efficient, Gaussian $\mathcal N(\theta,I^{-1})$; invariance $\widehat{g(\theta)}=g(\hat\theta)$; maximise over **θ**, not x.
-Rayleigh $\frac x\theta e^{-x^2/2\theta}$ → $\frac1{2N}\sum x^2$; $\frac{x}{\theta^2}e^{-x^2/2\theta^2}$ → $\sqrt{\cdot}$ of that; exp. $\lambda e^{-\lambda x}$ → $1/\bar x$; Gamma(k,θ) → $\bar x/k$.
-Sigmoid $\lambda(\theta)$: $\lambda'=\lambda(1-\lambda)$; solve for λ, $\theta=\ln\frac{\lambda}{1-\lambda}$, need $0<\lambda<1$.
+1. **Likelihood**: $L(\theta)=\prod_{n=1}^N p(x_n\mid\theta)$ — multiply the PDFs.
+2. **Log**: $\ln L(\theta)=\sum_n \ln p(x_n\mid\theta)$ — split into simple pieces.
+3. **Differentiate** in $\theta$, set $\frac{d}{d\theta}\ln L=0$.
+4. **Solve** for $\theta$ = $\hat\theta_{ML}$.
+
+| log rules | derivatives in $\theta$ |
+|---|---|
+| $\ln(ab)=\ln a+\ln b$ | $\frac{d}{d\theta}\ln\theta=\frac1\theta$ |
+| $\ln\frac ab=\ln a-\ln b$ | $\frac{d}{d\theta}\frac1\theta=-\frac1{\theta^2}$ |
+| $\ln e^{u}=u$ | $\frac{d}{d\theta}(c\theta)=c$ |
+| $\ln x^k=k\ln x$ | anything without $\theta$ → 0 |
+| $\sum_n c=Nc$ | $\frac{d}{d\theta}\ln f=\frac{f'}{f}$ |
+
+**Worked (exponential $\lambda e^{-\lambda x}$):** $\ln L=N\ln\lambda-\lambda\sum x$ → $\frac N\lambda-\sum x=0$ → $\hat\lambda=\frac{N}{\sum x}=\frac1{\bar x}$.
+
+**Common answers.** Rayleigh $\frac x\theta e^{-x^2/2\theta}$ → $\hat\theta=\frac1{2N}\sum x^2$ (version $\frac x{\theta^2}e^{-x^2/2\theta^2}$ → square root of that) · Gamma($k,\theta$), $k$ known → $\hat\theta=\bar x/k$ · Sigmoid $\lambda(\theta)=\frac1{1+e^{-\theta}}$: solve for $\lambda$ first ($\hat\lambda$ = fraction of 1s), then $\hat\theta=\ln\frac{\hat\lambda}{1-\hat\lambda}$.
+
+Traps: the $\frac1\theta$ in front gives $-N\ln\theta$ — half the answer · maximise over $\theta$, **not** over $x$ · "derive" ≠ write the final formula only.
 </div>
 
 <div markdown>
-**CRLB:** $I=-E[\partial^2\ln p]=E[(\partial\ln p)^2]>0$; $\text{Var}\ge1/I$; i.i.d. $I=N\,i(\theta)$; efficient = equals bound; equality ⇔ $\partial\ln p=I(\theta)(g(\mathbf x)-\theta)$. **Not valid if support depends on θ** (regularity). Rayleigh $E[x^2]=2\sigma^2$.
+## 2.2 · MAP with a prior
+*"Find the MAP estimate given the prior …"*
 
-**Bayes:** post ∝ lik × prior. **MMSE = mean**, MAP = mode (uniform cost), median (abs). MMSE=MAP for symmetric unimodal. $\int_0^\infty\theta^ne^{-s\theta}d\theta=\frac{n!}{s^{n+1}}$.
-Beta(α,β)+$\theta^A(1-\theta)^B$ → Beta(α+A, β+B), mode $\frac{\alpha+A-1}{\alpha+\beta+A+B-2}$.
-Gamma(α,β)+Poisson ($\lambda^Se^{-n\lambda}$) → Gamma(α+S, β+n), mode $\frac{\alpha+S-1}{\beta+n}$, MLE $S/n$.
-Binary $X=\pm1$ + Gaussian: MMSE $\tanh(y/\sigma^2)$, MAP sign(y).
+1. **Likelihood**: multiply PMFs/PDFs, keep only the $\theta$ parts → $\theta^{A}(1-\theta)^{B}$ or $\lambda^{\sum x}e^{-n\lambda}$.
+2. **Times the prior** (only $\theta$ parts again). Same base → **add exponents**.
+3. **Name it**: $\theta^{a-1}(1-\theta)^{b-1}$ = **Beta**$(a,b)$; $\lambda^{a-1}e^{-b\lambda}$ = **Gamma**$(a,b)$. Add 1 to the exponent to read $a$: exponent 11 → $a=12$!
+4. **MAP = the top** (mode): Beta $\frac{a-1}{a+b-2}$ · Gamma $\frac{a-1}{b}$. Forget? $\ln$, differentiate, $=0$: $A\ln\theta+B\ln(1-\theta)$ → $\frac A\theta-\frac B{1-\theta}=0$ → $\theta=\frac{A}{A+B}$.
 
-**LS:** $\min\sum(x-s(\theta))^2$, no noise pdf. $\hat\theta=(H^TH)^{-1}H^Tx$; error ⟂ col(H); need $N\ge K$; BLUE: $W=C_x^{-1}$. Line: $(\sum x^2)a+(\sum x)b=\sum xy$, $(\sum x)a+nb=\sum y$. Nonlinear: transform ($\alpha=\ln\theta$ → $\hat\theta=e^{\bar x}$), else Gauss–Newton.
-MAP traps: exponent 11 → Beta **12**; Gamma top $=\frac{a-1}{b}$, not $(a-1)b$. "Compare with the MLE": say **which way** the prior pulls and that it **fades** as $n$ grows.
+**Words.** posterior ∝ likelihood × prior · MMSE = posterior **mean**, MAP = **mode** (equal for symmetric unimodal) · median under absolute cost · $\int_0^\infty \theta^n e^{-s\theta}d\theta=\frac{n!}{s^{n+1}}$ · Beta$+\theta^A(1-\theta)^B$ → Beta$(\alpha+A,\beta+B)$.
+
+**"Compare with the MLE"**: say **which way** the prior pulls and that it **fades** as $n$ grows.
+
+Traps: exponent 11 → Beta **12** · Gamma top $=\frac{a-1}{b}$, **not** $(a-1)b$.
+</div>
+
+<div markdown>
+## 2.3 · Least-squares line
+*"Fit $y=ax+b$ in the least-squares sense"* (no noise PDF needed)
+
+1. **Means**: $\bar x=\frac1N\sum x_n$, $\bar y=\frac1N\sum y_n$.
+2. **Slope**: $a=\dfrac{\sum_n (x_n-\bar x)(y_n-\bar y)}{\sum_n (x_n-\bar x)^2}$.
+3. **Intercept**: $b=\bar y-a\bar x$ — the line always passes $(\bar x,\bar y)$.
+
+Given sums instead of data: $(\sum x^2)a+(\sum x)b=\sum xy$ and $(\sum x)a+Nb=\sum y$.
+
+**General LS** ($K$ unknowns, $s=H\theta$): $\hat\theta=(H^TH)^{-1}H^Tx$; need $N\ge K$; error $x-H\hat\theta$ ⊥ columns of $H$. Nonlinear: transform ($\alpha=\ln\theta$ → $\hat\theta=e^{\bar x}$), else Gauss–Newton.
 </div>
 
 </div>
@@ -82,64 +139,134 @@ MAP traps: exponent 11 → Beta **12**; Gamma top $=\frac{a-1}{b}$, not $(a-1)b$
 <div class="cheat-cols" markdown>
 
 <div markdown>
-## 3 · Spectral estimation
-**What they say → what you do**
-- *"Correlogram, as a function of cosines"* → $r[0]+2r[1]\cos\theta+2r[2]\cos2\theta+\dots$ — one term per given lag, **$r[0]$ NOT doubled**.
-- *"Which plot is correct?"* → evaluate at both ends: $P(0)=r_0+2r_1+2r_2$, $P(\pi)=r_0-2r_1+2r_2$. Check **both**, curves that match at 0 often differ at $\pi$.
-- *"Model as AR(1)/AR(2)/MA(1)"* → plug the $r[k]$ into Yule–Walker (below) → PSD formula.
-- *"Match the method"* → non-overlapping = Bartlett · overlapping = Welch · windowed $r$ then DFT = Blackman–Tukey · $\frac1N|\text{DFT}|^2$ = periodogram · $\sigma^2|B/A|^2$ = ARMA.
+## 3.1 · Correlogram + pick the plot
+*"Express the PSD estimate as a function of cosines" · "which plot is correct?"*
 
-**Energy** $E<\infty$, $P=0$ (pulses). **Power** $0\lt P<\infty$, $E=\infty$ (periodic: $A^2/2$; $\cos t\,u(t)$: 1/4).
-**Window:** main lobe → **resolution** (≈2π/N); side lobes → **leakage**. Rect: narrowest lobe, −13 dB; triang −27, Hann −32 (less leakage, worse resolution). Longer N → better resolution. **Zero padding**: samples FTD at $2\pi k/L$, no extra resolution. DFT = FTD at $2\pi k/N$.
+1. $\hat P(\theta)=r[0]+2r[1]\cos\theta+2r[2]\cos2\theta+\dots$ — one term per given lag, **$r[0]$ NOT doubled**.
+2. Plug the numbers in. That is the "function of cosines" answer.
+3. **Pick the plot** by its end values: $\theta=0$, all $\cos=1$ → $P(0)=r_0+2r_1+2r_2$; $\theta=\pi$, $\cos\pi=-1$, $\cos2\pi=+1$ → $P(\pi)=r_0-2r_1+2r_2$. Match **both** — curves agreeing at 0 often differ at $\pi$.
 
-**Raw periodogram** $\frac1N|\text{DFT}|^2$ = **correlogram** (biased $\hat r$): asympt. unbiased (triangular smoothing), Var ≈ $P^2$ → not consistent.
-**Bartlett:** K non-overlapping, Var ≈ $P^2/K$, bias↑ (resol. 2π/M). **Welch:** overlap + window, Var↓ but not 1/K, bias less than Bartlett; $K=\frac{N-L}{D}+1$. **BT:** window $\hat r$, Var ∝ 1/N → consistent.
+$\hat P$ may go **below 0** (only an estimate); a true PSD never can.
 </div>
 
 <div markdown>
-**Models** (minus sign on a's!): MA $x=i+\sum b_ki[n-k]$; AR $x=i-\sum a_kx[n-k]$. $P=\sigma^2|B|^2/|A|^2$. $|1+ce^{-j\theta}|^2=1+c^2+2c\cos\theta$; $|1+a_1e^{-j\theta}+a_2e^{-2j\theta}|^2=1+a_1^2+a_2^2+2(a_1+a_1a_2)\cos\theta+2a_2\cos2\theta$; $\cos2\theta=2\cos^2\theta-1$.
-MA(q): $r[l]=\sigma^2\sum b_kb_{k-l}$, 0 for $|l|>q$. AR(1): $r[l]=\frac{\sigma^2}{1-a^2}(-a)^{|l|}$. ARMA: $r[l]$ decays slowly, never exactly 0.
+## 3.2 · AR / MA from $r[k]$
+Sign convention: $x[n]=i[n]-a_1x[n-1]-\dots$ (**minus** on the $a$'s); $P=\sigma_i^2\frac{|B|^2}{|A|^2}$.
 
-**Correlogram:** $\hat P=r[0]+2r[1]\cos\theta+2r[2]\cos2\theta+\dots$ (may go <0).
-**YW:** Toeplitz$[r]\,[1,a_1..a_p]^T=[\sigma^2,0..0]^T$. AR(1): $a_1=-r_1/r_0$, $\sigma^2=r_0+a_1r_1$. AR(2): $r_0a_1+r_1a_2=-r_1$, $r_1a_1+r_0a_2=-r_2$, $\sigma^2=r_0+a_1r_1+a_2r_2$.
-**MA(1):** $r_1b^2-r_0b+r_1=0$, keep $|b|<1$, $\sigma^2=r_1/b$, **PSD $=r_0+2r_1\cos\theta$**.
-**Order:** residual var ↓ always (overfit); AIC $=N\ln\hat\sigma^2+2P$, FPE $=\frac{N+P}{N-P}\hat\sigma^2$ → min. Any PSD ≈ AR of high order.
+**AR(1):** $a_1=-\frac{r[1]}{r[0]}$, $\ \sigma_i^2=r[0]+a_1r[1]$, $\ P=\dfrac{\sigma_i^2}{1+a_1^2+2a_1\cos\theta}$.
+
+**AR(2)** (Yule–Walker):
+1. "State the YW equations in matrix form" = $\begin{bmatrix}r[0]&r[1]\\ r[1]&r[0]\end{bmatrix}\begin{bmatrix}a_1\\ a_2\end{bmatrix}=-\begin{bmatrix}r[1]\\ r[2]\end{bmatrix}$.
+2. Solve with $D=r[0]^2-r[1]^2$: $a_1=\frac{-r[1](r[0]-r[2])}{D}$, $a_2=\frac{r[1]^2-r[0]r[2]}{D}$.
+3. $\sigma_i^2=r[0]+a_1r[1]+a_2r[2]$.
+4. $P=\frac{\sigma_i^2}{|A|^2}$, $\ |A|^2=1+a_1^2+a_2^2+2(a_1+a_1a_2)\cos\theta+2a_2\cos2\theta$.
+
+**MA(1)** — the model gives $r[0]=\sigma_i^2(1+b_1^2)$, $r[1]=\sigma_i^2b_1$:
+1. Divide: $b_1^2-\frac{r[0]}{r[1]}b_1+1=0$ → roots $b$ and $1/b$ → **keep $|b_1|\lt1$**.
+2. $\sigma_i^2=r[1]/b_1$.
+3. $P_{MA}=r[0]+2r[1]\cos\theta$ — the correlogram cut after lag 1; you don't need $b_1$ for it.
+
+**Signatures (theory).** MA($q$): $r[l]=0$ for $|l|>q$ · AR(1): $r[l]=\frac{\sigma_i^2}{1-a^2}(-a)^{|l|}$ · ARMA: $r$ decays, never hits 0 · any PSD ≈ AR of high order · $|1+ce^{-j\theta}|^2=1+c^2+2c\cos\theta$ · $\cos2\theta=2\cos^2\theta-1$.
 </div>
 
 <div markdown>
-## 4 · Detection
-**What they say → what you do**
-- *"Construct the LRT"* → **ratio** (cancel what you can; $N$ i.i.d. samples → product) → **log** → **isolate the data term** → write the rule "decide $\mathcal H_1$ if $x>\gamma$".
-- *"Which way does the rule point?"* → the rule is always "bigger ratio → $\mathcal H_1$"; if the ratio **decreases** in $x$, the cut points **left** ($y<\gamma$, Nov 2022). Plug one value on each side to be sure.
-- *"Shade $P_{FA}$ / $P_M$"* → first find where "decide $\mathcal H_1$" lives, then shade: $P_{FA}$ under the **$\mathcal H_0$** curve, $P_M$ under the **$\mathcal H_1$** curve.
-- *"Given $P_{FA}=\alpha$, find the threshold and $P_D$"* → invert $Q$: $\gamma=\mu_0+\sigma\,Q^{-1}(\alpha)$ ($\sigma$ = std of the statistic under $\mathcal H_0$), then $P_D$ under $\mathcal H_1$.
-- *"Priors/costs given"* → $\lambda=\frac{(C_{10}-C_{00})P_0}{(C_{01}-C_{11})P_1}$ is the bar; then same LRT.
+## 3.3 · Periodogram, Bartlett, Welch, windows
+From $N$ samples estimate the PSD — **match the method:**
 
-| decide ↓ / true → | $H_0$ | $H_1$ |
+| method | what you do | the catch |
 |---|---|---|
-| $H_0$ | TN | miss (II) |
-| $H_1$ | FA (I) | detect |
+| periodogram | $\frac1N\lvert\text{DFT}\rvert^2$ | noisy; more data ≠ calmer (not consistent) |
+| correlogram | DFT of $\hat r[k]$ | same problems |
+| Bartlett | $K$ **non-overlapping** pieces, average | variance ÷$K$, worse resolution |
+| Welch | pieces **overlap** + windowed | more pieces; variance not quite ÷$K$ |
+| Blackman–Tukey | window $\hat r[k]$ ($M\lt L$ lags) → DFT | consistent |
+| parametric | fit AR/MA → formula | good only if the model fits |
 
-$P_{FA}=\int_{X_1}p(x|H_0)$, $P_D=\int_{X_1}p(x|H_1)$, $P_M=1-P_D$. **NP:** fix $P_{FA}$, max $P_D$ → LRT. ROC: $P_D$ vs $P_{FA}$, above diagonal; swaps → below.
+**Welch segments.** $L$ = length, $D$ = step ($D=L$ none, $D=L/2$ at 50 %): $K=\frac{N-L}{D}+1$, variance ratio $\approx\frac1K$. *e.g.* $N=1000$, $L=200$, 50 %: $D=100$ → $K=9$ → $1/9$.
+
+**Windows.** Main lobe = **resolution** ($\approx2\pi/N$); side lobes = **leakage**. Rectangular: narrowest lobe, worst leakage ($-13$ dB); triangular $-27$, Hann $-32$ (less leakage, wider lobe). Longer $N$ → better resolution, side lobes unchanged. **Zero padding** = more dots on the same curve, **no** extra resolution.
+
+**Energy or power.** Finite $E=\sum_n|x[n]|^2$ → energy signal, $P=0$ ($e^{-n}$: $E=\frac1{1-e^{-2}}\approx1.16$). Infinite $E$, finite $P$ → power signal ($A\sin\omega t$ forever: $P=A^2/2$; $\cos t\,u(t)$: $P=1/4$).
+
+**Order.** Raising $p$ always lowers residual error but overfits; AIC $=N\ln\hat\sigma^2+2p$, FPE $=\frac{N+p}{N-p}\hat\sigma^2$ → smallest wins.
 </div>
 
 <div markdown>
-**LRT:** $\frac{p(x|H_1)}{p(x|H_0)}\gtrless\lambda$; i.i.d. → products; ln; isolate data term; **÷ negative flips H₀/H₁**. λ=1 → curves cross. The ratio never sees priors: they only set $\lambda$.
-Mean shift → $\bar x$ big. Var ↑ → $\sum x^2$ big. Narrower Laplace → $\sum|x|$ small. Exp $\lambda_1>\lambda_0$ → x small. Rayleigh σ↑ → x big ($P_{FA}=e^{-\gamma^2/2\sigma_0^2}$, $P_D=P_{FA}^{\sigma_0^2/\sigma_1^2}$); **threshold** $\gamma=\sqrt{\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\ln\!\big(\eta\frac{\sigma_1^2}{\sigma_0^2}\big)}$, $\eta$ = bar on the ratio ($=P_0/P_1$ with 0/1 costs).
-Gauss vs $\frac14e^{-|y|/2}$: $|y|>1.588$, $P_D=0.45$, $P_{FA}=2Q=0.11$ (Jan 2022: two-sided, normalised). Apr 2024 prints $y\gt0$ **as is**: decide $y\gt1.588$, $P_{FA}=Q(1.588)\approx0.056$, $P_D=\frac12e^{-0.794}\approx0.23$.
+## 4.1 · Likelihood-ratio test (LRT)
+*"Construct the LRT" · "show the test takes the form …" · "find the threshold" · "shade $P_{FA}$/$P_D$"*
 
-**Tails:** $P(X>t)=Q(\frac{t-\mu}{\sigma})$; $Q(0)=.5$, $Q(1)=.159$, $Q(2)=.023$, $Q(3)=.0013$; $Q=\frac12[1-\text{erf}(z/\sqrt2)]$. **Thresholds:** $Q^{-1}(.10)=1.28$, $Q^{-1}(.05)=1.645$, $Q^{-1}(.025)=1.96$, $Q^{-1}(.01)=2.33$ → $\gamma=\mu_0+\sigma\,Q^{-1}(P_{FA})$. Exp: $\int_a^b\lambda e^{-\lambda x}=e^{-\lambda a}-e^{-\lambda b}$. General: $\int ke^{-ay}dy=-\frac ka e^{-ay}$ (front $k$ cancels the exponent's $a$: $\int2e^{-2y}=-e^{-2y}$); $[F]_a^b$ = top − bottom; $e^{-a\ln b}=1/b^a$ ($e^{-\ln3}=\frac13$); $e^{-\infty}=0$.
-**Bayes:** $\lambda=\frac{(C_{10}-C_{00})P_0}{(C_{01}-C_{11})P_1}$, $C_{ij}$ = decide i, truth j. 0/1 costs → $P_0/P_1$, min $P_e$; equal priors → ML. Posteriors: $H_1$ iff $C_{01}P(H_1|x)>C_{10}P(H_0|x)$. $P_0$↑ → λ↑.
-**Matched filter:** $\sum x_ns_n\gtrless\sigma^2\ln\lambda+\frac12\sum s_n^2$; $h[n]=s[N-1-n]$; max SNR; correlated noise → prewhiten.
+Ratio of the two curve heights vs the **bar** $\lambda$ (exam writes $\eta$): $\ \dfrac{p(x\mid\mathcal H_1)}{p(x\mid\mathcal H_0)}\ \underset{\mathcal H_0}{\overset{\mathcal H_1}{\gtrless}}\ \lambda$. Bigger ratio → say $\mathcal H_1$. The number they **give** = the bar; solving $L=\lambda$ for $x$ gives the **cut** $\gamma$ they **ask** for.
+
+1. **Ratio**: write it, cancel what you can. $N$ independent samples → both PDFs are products → the ratio is a product.
+2. **Log both sides** ($\ln$ keeps the direction): $\ln(ab)=\ln a+\ln b$, $\ln e^u=u$, $\ln x^k=k\ln x$. Constant$^N$ → $N\ln$ constant!
+3. **Isolate the data term** ($x$, $\sum x_n$, $\sum x_n^2$, $\sum|x_n|$). Multiply/divide by a **negative** → **flip** $\gtrless$.
+4. **Write the rule**: "decide $\mathcal H_1$ if $x>\gamma$" ($\gamma$ in terms of $\lambda$). Which way? Plug one value each side into the ratio: the side beating $\lambda$ is the $\mathcal H_1$ side. Ratio decreasing in $x$ → points **left** ($y<\gamma$).
+5. **Errors** on the decide-$\mathcal H_1$ zone $X_1$: $P_{FA}=\int_{X_1}p(x\mid\mathcal H_0)$ (under the **$\mathcal H_0$** curve), $P_D=\int_{X_1}p(x\mid\mathcal H_1)$, $P_M=1-P_D$.
+
+**Which statistic pops out.** Mean shift → $\bar x$ big · bigger variance → $\sum x^2$ big · narrower Laplace → $\sum|x_n|$ **small** · exponential with larger rate → $x$ **small**.
+
+**Worked.** $\mathcal N(0,1)$ vs $\mathcal N(1,1)$: $e^{x-1/2}>\lambda$ → $x>\frac12+\ln\lambda=\gamma$; $P_{FA}=Q(\gamma)$, $P_D=Q(\gamma-1)$.
+
+**Gaussian tail** $P(X>t)=Q\!\big(\frac{t-\mu}{\sigma}\big)$: $Q(0)=.5$, $Q(1)=.159$, $Q(2)=.023$, $Q(3)=.0013$; $Q^{-1}(.10)=1.28$, $Q^{-1}(.05)=1.645$, $Q^{-1}(.025)=1.96$, $Q^{-1}(.01)=2.33$. Given $P_{FA}=\alpha$: $\gamma=\mu_0+\sigma_0Q^{-1}(\alpha)$, then $P_D=Q\!\big(\frac{\gamma-\mu_1}{\sigma_1}\big)$.
+
+**Integrals.** $\int_a^b\lambda e^{-\lambda x}dx=e^{-\lambda a}-e^{-\lambda b}$ · $\int ke^{-ay}dy=-\frac ka e^{-ay}$ (front $k$ kills the exponent's $a$: $\int 2e^{-2y}dy=-e^{-2y}$) · $[F]_a^b=$ top − bottom · $e^{-a\ln b}=1/b^a$ · $e^{-\infty}=0$.
 </div>
 
 <div markdown>
-## 5 · When you are blank
-1. Write the **recipe** of the question type (above) — steps earn points even without the number.
-2. Put **numbers in early**; a wrong final number with correct method costs less than an empty box.
-3. **Check** at the ends ($\theta=0,\pi$; $y=0,\infty$; areas between 0 and 1; a PSD can never go negative).
-4. Signs: $x[n]=-a_1x[n-1]+\dots$ → positive $r[1]$ gives negative $a_1$. Dividing an inequality by a negative number **flips** it.
-5. Round **only** at the end ("final answer only" = no partial credit).
+## 4.2 · Bayesian detection, ROC, matched filter
+*"Priors and costs given, construct the test"* — same LRT, the bar comes from money: $\lambda=\dfrac{(C_{10}-C_{00})P_0}{(C_{01}-C_{11})P_1}$, where $C_{ij}$ = cost of deciding $\mathcal H_i$ when $\mathcal H_j$ is true ($C_{10}$ = false alarm, $C_{01}$ = miss, $C_{00}=C_{11}=0$ nearly always).
+
+1. Compute $\lambda$.
+2. Run 4.1 with it: ratio → log → isolate data → rule "decide $\mathcal H_1$ if $\dots\gtrless\gamma$".
+3. Given **posteriors**: decide $\mathcal H_1$ if $\frac{P(\mathcal H_1\mid x)}{P(\mathcal H_0\mid x)}>\frac{C_{10}-C_{00}}{C_{01}-C_{11}}$ (priors already inside).
+
+**Specials.** 0/1 costs → $\lambda=P_0/P_1$ (min $P_e$) · 0/1 + equal priors → $\lambda=1$: pick the taller curve · $P_0$ up → $\lambda$ up → harder to say $\mathcal H_1$ · misses 100× worse → $\lambda=P_0/(100P_1)$.
+
+**Neyman–Pearson** (other way to set the bar): fix $P_{FA}=\alpha$, maximise $P_D$ → same ratio, $\lambda$ tuned so $P_{FA}=\alpha$. **ROC** = $P_D$ vs $P_{FA}$, above the diagonal (swap hypotheses → below); $\lambda=1$ is where the two PDF curves cross.
+
+**Matched filter** (known $s_n$ in white noise): decide $\mathcal H_1$ if $\sum_n x_ns_n\gtrless\sigma^2\ln\lambda+\frac12\sum_ns_n^2$; $h[n]=s[N-1-n]$; maximises SNR; correlated noise → prewhiten.
+
+Traps: the $\lambda(\theta)=\frac1{1+e^{-\theta}}$ of 2.1/2.2 is a **different lambda** (a model parameter) · keep the $N$ in front of constants ($2^N\to N\ln2$).
+</div>
+
+<div markdown>
+## Detection: the pair they love (Rayleigh)
+*"Two Rayleigh PDFs, decide …"* — taller tail = bigger $x$ points to $\mathcal H_1$: decide $\mathcal H_1$ if $x>\gamma$.
+
+$P_{FA}=e^{-\gamma^2/2\sigma_0^2}$ · $P_D=e^{-\gamma^2/2\sigma_1^2}=P_{FA}^{\sigma_0^2/\sigma_1^2}$ · threshold from the ratio: $\gamma=\sqrt{\dfrac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\ln\!\Big(\eta\dfrac{\sigma_1^2}{\sigma_0^2}\Big)}$ with $\eta$ = the bar ($P_0/P_1$ at 0/1 costs).
+</div>
+
+<div markdown>
+## 2.4 · CRLB (when they ask for the bound)
+*"Compute the Cramér–Rao lower bound" · "is the estimator efficient?"*
+
+1. **Log of one sample**: $\ln p(x\mid\theta)$.
+2. **Fisher information**: $i(\theta)=-E\big[\frac{\partial^2}{\partial\theta^2}\ln p\big]$ (also $=E\big[(\frac{\partial}{\partial\theta}\ln p)^2\big]$); $N$ independent samples → $\mathcal I=N\,i(\theta)$.
+3. **CRLB** $=\dfrac{1}{N\,i(\theta)}$: every unbiased estimator has $\text{Var}\ge$ this.
+
+First check: the range of $x$ must **not** depend on $\theta$ — if it does, "the bound does not apply". **Efficient** = unbiased *and* variance equals the bound. The MLE is **asymptotically** unbiased and efficient, $\hat\theta\approx\mathcal N(\theta,1/\mathcal I)$ — asymptotically, not always. Invariance: $\widehat{g(\theta)}=g(\hat\theta)$. Rayleigh: $E[x^2]=2\sigma^2$.
+</div>
+
+<div markdown>
+## Theory MC: one line each
+They swap **one word** ("maximised" ↔ "minimised", "always" ↔ "asymptotically") — read the verb and the direction.
+
+- unbiased $E[\hat\theta]=\theta$ · consistent: $\hat\theta\to\theta$ as $N\to\infty$ · efficient: variance **equals** the CRLB.
+- Fisher information $\ge0$; $N$ samples → $N\,i(\theta)$; bound is $\frac1{\mathcal I}$ (one over, not $\ge\mathcal I$).
+- MMSE = posterior **mean**, MAP = **mode**; equal for a symmetric one-peaked posterior — not "always different".
+- Bayes minimises the expected cost (Bayes risk); NP fixes $P_{FA}$ and maximises $P_D$; the LRT is both.
+- $r[0]\ge|r[l]|$, PSD $\ge0$ (but the *estimated* correlogram may go negative); $r[0]$ = average power.
+- Periodogram: **not consistent** (variance → $P^2$, not 0); Bartlett: variance ÷$K$, resolution $2\pi/M$; BT: consistent; more data never calms the raw periodogram.
+- Zero padding never improves resolution; rectangular window: best resolution, most leakage; wider main lobe = worse resolution.
+- Spectral factorisation needs $L$ causal, stable, **minimum phase**, $l[0]=1$ — the $|a|\lt1$ choice.
+</div>
+
+<div markdown>
+## Checks & sign rules (use everywhere)
+- **Ends**: $\theta=0,\pi$ (all $\cos=\pm1$); $y=0,\infty$; probabilities in $[0,1]$; PSD never negative; $\iint p=1$.
+- **Signs**: dividing an inequality by a negative **flips** it · $x[n]=-a_1x[n-1]+\dots$ with $r[1]>0$ gives $a_1<0$ · a **minus** cosine gives a **negative** $a$.
+- **Roots come in pairs** $a$ and $1/a$: keep $|a|\lt1$, $|b|\lt1$.
+- **Round only at the very end** — intermediate rounding wrecks "final answer only" questions.
 </div>
 
 </div>
