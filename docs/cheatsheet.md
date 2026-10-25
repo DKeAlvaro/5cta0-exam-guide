@@ -10,7 +10,7 @@ hide:
 <div class="cheat" markdown>
 <div class="cheat-cols" markdown>
 
-**How to use it.** Read the question. Find the box whose **IF YOU SEE** line matches its words. Do the steps. Copy the shape of the example (taken from a real exam, 2022–2026).
+**How to use it.** Read the question. Find the box whose **IF YOU SEE** line matches its words. Do the steps. Copy the shape of the example (taken from a real exam, 2022–2026). Stuck halfway? Still write the box's formula with the exam's numbers plugged in: that alone can earn part of the points.
 {: .how }
 
 ## PART 1 · Probability (1.5 p)
@@ -20,7 +20,7 @@ hide:
 IF YOU SEE a formula $p(x,y)$ on a region + "find $c$" / "marginal" / "conditional" / "independent"
 {: .see }
 
-First draw the region on $x$–$y$ axes. It gives you the limits of every integral.
+First draw the region on $x$–$y$ axes. It gives you the limits of every integral. **How to read a limit:** freeze the other letter at some value and ask "from where to where can this letter go?". E.g. $x,y\ge0$ and $x+y\lt1$, with $y$ frozen: $x$ goes from $0$ to $1-y$. Then the outer integral runs over the full range of the frozen letter ($y$ from 0 to 1).
 
 - **"Find $c$"** → integrate $p$ over the whole region, set the result $=1$, solve for $c$.<br>
   *Apr25:* $cx+1$ on the triangle $x,y\ge0$, $x+y\lt1$: $\int_0^1\!\int_0^{1-y}(cx+1)\,dx\,dy=\frac c6+\frac12=1$ → $c=3$.
@@ -31,7 +31,7 @@ First draw the region on $x$–$y$ axes. It gives you the limits of every integr
 - **"Independent?"** → YES only if the region is a rectangle AND $p(x,y)=p_X(x)\cdot p_Y(y)$.<br>
   *Jun26:* square, and $3x^2\cdot2y=6x^2y$ → independent. A triangle region → never independent.
 
-Integral: $\int x^n\,dx=\frac{x^{n+1}}{n+1}$.
+Integral: $\int x^n\,dx=\frac{x^{n+1}}{n+1}$; plug in the top limit minus the bottom limit.
 
 ### 1B · WSS / ergodic (multiple choice)
 
@@ -74,9 +74,10 @@ IF YOU SEE a pdf $p(x\mid\theta)$, samples $x_1..x_N$, "maximum likelihood", "de
 2. Differentiate with respect to $\theta$ (terms without $\theta$ disappear).
 3. Set it $=0$ and solve for $\theta$. That is $\hat\theta$.
 
+**How to take $\ln$ of a pdf:** split it into pieces that multiply, and turn each piece into a plus/minus term: a factor on top → $+\ln(\text{it})$; a factor on the bottom → $-\ln(\text{it})$; $\theta^k$ on the bottom → $-k\ln\theta$; $e^{\text{stuff}}$ → just "stuff" (the $e$ disappears).
 Derivatives: $\ln\theta\to\frac1\theta$ · $\frac1\theta\to-\frac1{\theta^2}$ · $\theta^k\to k\theta^{k-1}$ · $e^{c\theta}\to ce^{c\theta}$.
 
-*Apr24* $\frac{x}{2\theta}e^{-x^2/2\theta}$: $\ln L=\sum\ln x_n-N\ln2-N\ln\theta-\frac{\sum x_n^2}{2\theta}$ → $-\frac N\theta+\frac{\sum x_n^2}{2\theta^2}=0$ → $\hat\theta=\frac1{2N}\sum x_n^2$.
+*Apr24* $\frac{x}{2\theta}e^{-x^2/2\theta}$: one sample gives $\ln x-\ln2-\ln\theta-\frac{x^2}{2\theta}$, so $\ln L=\sum\ln x_n-N\ln2-N\ln\theta-\frac{\sum x_n^2}{2\theta}$ → $-\frac N\theta+\frac{\sum x_n^2}{2\theta^2}=0$ → $\hat\theta=\frac1{2N}\sum x_n^2$.
 
 *Jun26* Gamma $\frac{x^{k-1}e^{-x/\theta}}{\Gamma(k)\theta^k}$, $n$ patients: $-\frac{nk}\theta+\frac{\sum x_i}{\theta^2}=0$ → $\hat\theta=\frac{\sum x_i}{nk}=\frac{\bar x}k$. Meaning: average time per stage, so $k\hat\theta$ = the observed mean time.
 
@@ -101,9 +102,9 @@ IF YOU SEE "prior", "posterior", "MAP", "maximum a posteriori", Beta, Gamma
 Prior Beta$(a,b)$ = $\theta^{a-1}(1-\theta)^{b-1}$. Prior Gamma$(a,b)$ = $\lambda^{a-1}e^{-b\lambda}$.
 One observation $x$ gives: Poisson count → $\lambda^{x}e^{-\lambda}$ · "$k$-th success on trial $x$" → $\theta^k(1-\theta)^{x-k}$ · "$k$ successes in $n$ tries" → $\theta^k(1-\theta)^{n-k}$ · exponential → $\lambda e^{-\lambda x}$.
 
-*Jun26-2c:* $\theta^2(1-\theta)^{x-2}$ with $x=3,5,4,6,4$ → $\theta^{10}(1-\theta)^{12}$ (likelihood). Prior Beta(2,3) adds $\theta^1(1-\theta)^2$ → $\theta^{11}(1-\theta)^{14}$ → posterior Beta(12,15), MAP $=\frac{11}{25}=0.44$.
+*Jun26-2c:* $\theta^2(1-\theta)^{x-2}$ with $x=3,5,4,6,4$. Multiply the 5: the $\theta$ exponent is $2$ five times $=10$; the $(1-\theta)$ exponent is $(3-2)+(5-2)+(4-2)+(6-2)+(4-2)=12$ → $\theta^{10}(1-\theta)^{12}$ (likelihood). Prior Beta(2,3) adds $\theta^{2-1}(1-\theta)^{3-1}=\theta^1(1-\theta)^2$ → $\theta^{11}(1-\theta)^{14}$ → posterior Beta(12,15), MAP $=\frac{11}{25}=0.44$.
 
-*Jun26-2d:* Poisson, $x=2,4,3,5,2,4$ (sum 20, 6 days) → $\lambda^{20}e^{-6\lambda}$. Prior Gamma(3,2) adds $\lambda^2e^{-2\lambda}$ → $\lambda^{22}e^{-8\lambda}$ → Gamma(23,8), MAP $=\frac{22}8=2.75$. MLE $=\frac{20}6=3.33$: the prior pulls the estimate towards its own mean $\frac32$.
+*Jun26-2d:* Poisson, $x=2,4,3,5,2,4$. Each day gives $\lambda^{x}e^{-\lambda}$: the $\lambda$ exponents add to $20$, the six $e^{-\lambda}$ give $e^{-6\lambda}$ → $\lambda^{20}e^{-6\lambda}$. Prior Gamma(3,2) adds $\lambda^{3-1}e^{-2\lambda}=\lambda^2e^{-2\lambda}$ → $\lambda^{22}e^{-8\lambda}$ → Gamma(23,8), MAP $=\frac{22}8=2.75$. MLE $=\frac{20}6=3.33$: the prior pulls the estimate towards its own mean $\frac32$.
 
 *Apr25-2d:* posterior already given as $\theta^{a}(1-\theta)^{b}$ → MAP $=\frac a{a+b}$.
 
@@ -210,7 +211,7 @@ IF YOU SEE $x[n]=\dots$ + "which kind of process", "autocorrelation of $x$"
 {: .see }
 
 - Only $i[n],i[n-1],\dots$ on the right → **MA($q$)**, $q$ = biggest delay. Old $x[n-k]$ on the right too → **ARMA($p,q$)**, $p$ = biggest $x$ delay.
-- MA autocorrelation: list the coefficients $1,b_1,b_2,\dots$. $r[k]=\sigma^2\times$(sum of products of coefficients that are $k$ places apart). Zero after lag $q$.<br>
+- MA autocorrelation: list the coefficients $1,b_1,b_2,\dots$. $r[k]=\sigma^2\times$(sum of products of coefficients that are $k$ places apart). Zero after lag $q$. So $r[0]$ = sum of the squares; $r[1]$ = each one times its right-hand neighbour ($1\cdot b_1+b_1b_2+\dots$); $r[2]$ = skip one ($1\cdot b_2+b_1b_3+\dots$).<br>
   *Apr24* $1,-\frac12,\frac14,-\frac12$ (MA(3), $\sigma^2=1$): $r[0]=1+\frac14+\frac1{16}+\frac14=\frac{25}{16}$, $r[1]=-\frac12-\frac18-\frac18=-\frac34$, $r[2]=\frac14+\frac14=\frac12$, $r[3]=-\frac12$.
 - ARMA(1,1) written as $x[n]+\alpha x[n-1]=i[n]+\beta i[n-1]$: $P=\sigma^2\dfrac{1+\beta^2+2\beta\cos\theta}{1+\alpha^2+2\alpha\cos\theta}$.<br>
   *Nov22* $x[k]=i[k]-i[k-1]+\frac34x[k-1]$: $\alpha=-\frac34$, $\beta=-1$, $\sigma^2=\frac78$ → $P=\frac{28(1-\cos\theta)}{25-24\cos\theta}$.
@@ -291,7 +292,7 @@ IF YOU SEE two pdfs (one for $H_0$, one for $H_1$) + "likelihood ratio test", "w
 1. $L(x)=\dfrac{p(x\mid H_1)}{p(x\mid H_0)}$. Cancel what appears on top and bottom. $N$ samples → multiply them ($e^ae^b=e^{a+b}$).
 2. Decide $H_1$ if $L\gt$ threshold. Take $\ln$ of both sides.
 3. Get $x$ alone. Multiplying or dividing by a negative number flips $\gt$ into $\lt$.
-4. Test one value of $x$ to check the side.
+4. Check the side: put a small and a large $x$ into $L$. Where $L$ comes out bigger than the threshold, that side is "decide $H_1$".
 
 *Apr25* $\frac{6x^{11}}{3x^5}=2x^6\gt0.2$ → $x^6\gt0.1$ → $x\gt0.1^{1/6}=0.68$.
 
@@ -310,6 +311,8 @@ Tails: Gaussian $N(0,1)$: $P(x\gt t)=Q(t)$ (table) · exponential $ce^{-cx}$: $P
 "Threshold for $P_{FA}=0.1$": set the $H_0$ area $=0.1$, solve for $t$.
 
 *Nov22:* $1-e^{-t}=0.1$ → $t=-\ln0.9$; then $P_D=1-e^{-2t}=0.19$.
+
+"Plot / indicate $P_{FA}$ and $P_M$": draw both pdfs and a vertical line at the threshold. Shade the $H_0$ curve on the "decide $H_1$" side → $P_{FA}$. Shade the $H_1$ curve on the "decide $H_0$" side → $P_M$. (Nov22: $H_1$ when $y\lt1$, so $P_{FA}$ = $H_0$ area left of 1, $P_M$ = $H_1$ area right of 1.)
 
 ### 4B · Priors and costs (Bayes)
 

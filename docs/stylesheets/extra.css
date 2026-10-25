@@ -230,7 +230,7 @@
   .md-main__inner { margin: 0 !important; }
   .md-content { max-width: none !important; }
   .md-content__inner { margin: 0 !important; padding: 0 !important; }
-  .md-typeset .cheat { font-size: 9.2pt; line-height: 1.18; }
+  .md-typeset .cheat { font-size: 9pt; line-height: 1.18; }
   .md-typeset .cheat .katex { font-size: .97em; }
   .md-typeset .cheat h1 { font-size: 8pt; margin: 0 0 .1em; }
   .md-typeset .cheat h2 { font-size: 1.15em; margin: .3em 0 .1em; break-inside: avoid; break-after: avoid; }
