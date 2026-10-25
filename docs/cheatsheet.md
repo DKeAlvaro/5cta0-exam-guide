@@ -16,20 +16,18 @@ Use this when the question splits items into groups (machines, scanners, student
 Symbols: $k$ = group number (1, 2, 3…). share$_k$ = fraction of all items made by group $k$. items$_k$ = number of items group $k$ makes. bad$_k$ = number of bad items group $k$ makes. "Bad" = the event we count. $P(\cdot)$ = probability of the event inside.
 
 **Recipe** (the bracket says why the step is legal)
-1. **Total.** Counts given → total = sum of the counts. Only percentages → pretend total = 1000 (1 000 000 if a rate is tiny, like 0.0005). [The answer is a ratio, so any total gives the same answer.]
+1. **Total.** Counts given → total = sum of the counts. Only percentages → pretend total = 1000 (use 1 000 000 when a rate is under 1 %, like 0.0005, so that the group counts stay whole numbers). [The answer is a ratio, so any total gives the same answer.]
 2. **items$_k$ = share$_k$ × total.** [share$_k$ is a fraction of all items, so it scales the total.]
-3. **Pick "bad".** Bad = the event asked, or the event after "given / if / found to be / has passed / positive". Asked NOT pass with a pass rate given → bad rate = 1 − pass rate [not-pass is the complement of pass]. Asked pass → bad rate = pass rate, no subtraction.
+3. **Pick "bad".** Bad = the event asked, or the event after "given / if / found to be / has passed / positive". If the question gives the rate of the *opposite* event and you need this one, flip it: rate = 1 − the given rate (the two events split the group in two, so their rates add to 1). So "NOT pass" asked with a pass rate given → bad rate = 1 − pass rate; "no experience" given when you need "experience" → 1 − 0.15 = 0.85. Asked pass with the pass rate given → bad rate = pass rate, no subtraction.
 4. **bad$_k$ = bad rate$_k$ × items$_k$.** [A group's bad items are its bad fraction of its own items.]
 5. **Event with no "given":** $P(\text{bad})$ = (bad$_1$ + bad$_2$ + …) / total. [Items are mixed at random, so a random item is bad with probability (all bad) ÷ (all items). This is the law of total probability.]
 6. **Event with a "given" condition:** $P(k\mid\text{bad})$ = bad$_k$ / (sum of all bad). [Given the condition, only that pile is left, so the denominator is the pile, not the total.]
 
-**Exam phrase → step**
-- "found to be defective", "given", "if … has passed", "tests positive", "that chose psychology" → step 6.
-- "a randomly selected chip will be defective", "a car will pass", "probability of choosing Engineering" → step 5.
-- "Pr[TB]" = $P(\text{ill}\mid+)$.
-
-**Wording** (same meaning)
-- "99 % accurate" = 99 % of ill test positive and 99 % of healthy test negative, so 1 % of healthy test positive.
+**How the exam words pick the step.** The question is either a plain chance or a chance *inside a known pile*. Read the sentence for a condition.
+- **Condition given → step 6.** When the question says "found to be defective", "given a bad chip", "if the patient has passed", "tests positive", "that chose psychology", "a bad quality image comes from CT2", "has had experience", the event after those words has already happened: the item is inside that pile. So the answer is a share *of the pile*: $P(k\mid\text{bad}) = \text{bad}_k / (\text{all bad})$. The denominator is the pile, never the total.
+- **No condition → step 5.** When the question just asks for a chance with nothing known yet — "a randomly selected chip will be defective", "a car will pass", "the probability of choosing Engineering" — the item is a random one out of the whole lot: $P(\text{bad}) = (\text{all bad}) / \text{total}$.
+- "$\Pr[TB]$" in an exam means $P(\text{ill}\mid +)$: the chance of being ill *given* that the test came out positive, so a condition is given → step 6.
+- "99 % accurate" means both: 99 % of ill people test positive **and** 99 % of healthy people test negative. So 1 % of the healthy test positive by mistake.
 
 **Ex 1 · machines (jun26-1b, Q1 and Q2).** M1 makes 40 % of chips (2 % defective), M2 makes 35 % (4 %), M3 makes 25 % (5 %). Step 1: total = 1000 chips. Step 2: M1 makes $0.40 \times 1000 = 400$ chips, M2 makes $0.35 \times 1000 = 350$, M3 makes $0.25 \times 1000 = 250$. Step 4: defective from M1 = $0.02 \times 400 = 8$; from M2 = $0.04 \times 350 = 14$; from M3 = $0.05 \times 250 = 12.5$. Pile = $8+14+12.5 = 34.5$.
 - Q1 "a randomly selected chip will be defective": no "given" → step 5: $P(D) = 34.5 / 1000 = 0.0345$ (answer 0.0345).
@@ -42,7 +40,7 @@ TB: rate 0.0005 is tiny, so total = 1 000 000 people. Ill = $0.0005 \times 10^6 
 - Q1 "given psychology, the student is female": given pile = psychology column = $10+26 = 36$ (male 10 + female 26). Wanted cell = female psychology = 26. $P = 26/36 = 0.722 \approx 0.72$.
 
 **Ex 5 · lifetime (apr24-1a).** $T$ = lifetime in years, $t$ = time in years, $\Pr[T \ge t] = e^{-t/5}$ = probability still working at $t$. Given $T\ge2$, the product either still works at 3 or breaks in year 3, and these add to 1, so $P(\text{breaks}) = 1 - P(T\ge3\mid T\ge2)$.
-$P(T\ge3\mid T\ge2) = \Pr[T\ge3]/\Pr[T\ge2]$ [conditional probability; $T\ge3$ lies inside $T\ge2$, so the overlap is $T\ge3$] $= e^{-3/5}/e^{-2/5} = e^{-3/5+2/5} = e^{-1/5} = 0.8187$. Breaks in year 3 = $1 - 0.8187 = 0.18$ → (d).
+$P(T\ge3\mid T\ge2) = \Pr[T\ge3]/\Pr[T\ge2]$ [conditional probability; $T\ge3$ lies inside $T\ge2$, so the overlap is $T\ge3$] $= e^{-3/5}/e^{-2/5} = e^{-3/5+2/5} = e^{-1/5} = 0.8187$. The exponent rule is $\frac{e^a}{e^b}=e^{a-b}$ (dividing powers of $e$ subtracts the exponents), and $e^{-1/5}=e^{-0.2}=0.8187$ comes from the calculator. Breaks in year 3 = $1 - 0.8187 = 0.18$ → (d).
 
 **Yes/no and "always true" statements**
 - Independent ⇔ $P(A\mid B) = P(A)$ ⇔ $P(A\cap B) = P(A)P(B)$. So "$P(A\mid B)=P(A)$" is always true for independent events (jun26-1a: d). "$P(A\mid B)=P(B)$" is not.
@@ -51,7 +49,13 @@ $P(T\ge3\mid T\ge2) = \Pr[T\ge3]/\Pr[T\ge2]$ [conditional probability; $T\ge3$ l
 
 **Use this** when two variables $X,Y$ come with a joint function $p(x,y)$: a formula (continuous, integrate) or a table (discrete, add). A single variable's PDF belongs to 2.1. Plain counts per group are not this recipe.
 
-Here $p(x,y)$ is the joint PDF (or PMF for a table), and "0 otherwise" means it is zero outside the given region. **First, draw the region where $p\ne0$** in the $(x,y)$ plane and read every limit from it.
+Here $p(x,y)$ is the joint PDF (or PMF for a table), and "0 otherwise" means it is zero outside the given region.
+
+**Discrete or continuous?** A variable is **discrete** when you can list its outcomes: a table of probabilities, counts of people, a die, "the number of …". Then you **add**. It is **continuous** when it can take any value in a range: time, length, weight, a voltage, "between 0 and 1". Then you **integrate**. The question gives a table or a list of values → discrete; it gives a formula with $x,y$ over intervals → continuous. (A count like "6 of 8 free throws" is binomial: $P(k \text{ of } n)=\binom nk p^k(1-p)^{n-k}$, with $\binom nk$ = "n choose k" from the exam formula list.)
+
+**Expected value** $E[g(X)]$ = the average of $g$ over the distribution: $\sum_x g(x)p(x)$ when discrete, $\int g(x)p(x)\,dx$ when continuous. $E[X]$ is the balance point of the pdf.
+
+**First, draw the region where $p\ne0$** in the $(x,y)$ plane and read every limit from it: for a fixed $x$, the inner integral runs from the lower boundary curve of the region up to the upper one (the $x$-values *inside* the drawn region), and the outer integral runs over the full span of the other variable. Tiny integral crib: $\int y\,dy=\frac{y^2}{2}$, $\int y^2\,dy=\frac{y^3}{3}$, $\int e^{ky}\,dy=\frac{1}{k}e^{ky}$.
 
 **Recipe**
 
@@ -65,34 +69,36 @@ Here $p(x,y)$ is the joint PDF (or PMF for a table), and "0 otherwise" means it 
 
 **Worked examples, one per type**
 
-Exam says "find the constant $c$" → step 1. *apr25-1c:* $p=cx+1$ on $x,y\ge0$, $x+y<1$. The region is a triangle. For fixed $y\in[0,1)$, $x$ runs from 0 to $1-y$, because $x<1-y$. Inner integral: $\int_0^{1-y}(cx+1)\,dx=c\frac{(1-y)^2}{2}+(1-y)$. Outer: $\int_0^1\frac{(1-y)^2}{2}dy=\frac16$ and $\int_0^1(1-y)dy=\frac12$, so the total is $\frac c6+\frac12$. Set it to 1: $\frac c6=\frac12$, so $c=3$.
+When the exam says "find the constant $c$", the total probability must be 1: do step 1. *apr25-1c:* $p=cx+1$ on $x,y\ge0$, $x+y<1$. The region is a triangle. For fixed $y\in[0,1)$, $x$ runs from 0 to $1-y$, because $x<1-y$. Inner integral: $\int_0^{1-y}(cx+1)\,dx=c\frac{(1-y)^2}{2}+(1-y)$. Outer: $\int_0^1\frac{(1-y)^2}{2}dy=\frac16$ and $\int_0^1(1-y)dy=\frac12$, so the total is $\frac c6+\frac12$. Set it to 1: $\frac c6=\frac12$, so $c=3$.
 
-Exam says "marginal PDF, indicate its domain" → step 2; "justify independence" → step 4. *jun26-1c:* $p=6x^2y$ on $0\le x\le1$, $0\le y\le1$. For fixed $x$, $y$ runs over $[0,1]$: $p_X(x)=\int_0^1 6x^2y\,dy=6x^2\cdot\frac{1}{2}=3x^2$, domain $0\le x\le1$. Independence: the region is the square $[0,1]^2$, a rectangle. Also $p_Y(y)=\int_0^1 6x^2y\,dx=6y\cdot\frac13=2y$. Then $p_X p_Y=3x^2\cdot2y=6x^2y=p$ everywhere → **independent**.
+When the exam says "marginal PDF, indicate its domain", do step 2 and write the domain; when it says "justify independence", do step 4. *jun26-1c:* $p=6x^2y$ on $0\le x\le1$, $0\le y\le1$. For fixed $x$, $y$ runs over $[0,1]$: $p_X(x)=\int_0^1 6x^2y\,dy=6x^2\cdot\frac{1}{2}=3x^2$, domain $0\le x\le1$. Independence: the region is the square $[0,1]^2$, a rectangle. Also $p_Y(y)=\int_0^1 6x^2y\,dx=6y\cdot\frac13=2y$. Then $p_X p_Y=3x^2\cdot2y=6x^2y=p$ everywhere → **independent**.
 
-Exam says "conditional PDF, domain" → steps 2 then 3. *apr24-1c:* $p=2$ on $0\le y\le x\le1$. For fixed $y$, $x$ runs from $y$ to 1, so $p_Y(y)=\int_y^1 2\,dx=2(1-y)$ for $0\le y\le1$. Then $p_{X\mid Y}(x\mid y)=\frac{2}{2(1-y)}=\frac{1}{1-y}$ for $y\le x\le1$. Domain also needs $y<1$, since $p_Y(1)=0$ cannot divide.
+When the exam says "conditional PDF, domain", it needs the marginal first: do step 2, then step 3, and write the domain. *apr24-1c:* $p=2$ on $0\le y\le x\le1$. For fixed $y$, $x$ runs from $y$ to 1, so $p_Y(y)=\int_y^1 2\,dx=2(1-y)$ for $0\le y\le1$. Then $p_{X\mid Y}(x\mid y)=\frac{2}{2(1-y)}=\frac{1}{1-y}$ for $y\le x\le1$. Domain also needs $y<1$, since $p_Y(1)=0$ cannot divide.
 
 ## 1.3 · WSS and ergodic
 Words: $X(t)$ = random process, a family of signals. $E[\cdot]$ = average over the random part ($U$, $A$, or the die roll), with $t$ kept fixed. $r[\tau]$ = autocorrelation at lag $\tau$ (correlation of the signal with a copy of itself shifted by $\tau$ steps).
 
-**Exam phrase → step**: "wide-sense stationary" / "WSS" → A. "ergodic in the mean", "ergodic (mean)" or plain "ergodic" → B. "ergodic in both mean and variance" → pick that option (key answer in the exam set).
+**How the exam words pick the part.** When the question asks whether the process is "wide-sense stationary" (or "WSS"), do part A. When it asks whether it is "ergodic in the mean", "ergodic (mean)" or just "ergodic", do part B (part A first: B needs A's constant mean). When an option says "ergodic in both mean and variance", check the mean with B and the variance with D; on the dice questions the key answer has always been that option.
 
 **A. WSS.** Do steps 1 and 2 for each process. Both must pass.
 1. Compute the mean $E[X(t)]$. If $t$ is still in the answer → not WSS and not ergodic. Otherwise the mean is a constant. (Why: WSS needs a constant mean.)
 2. Compute $E[X(t)X(t+\tau)]$, the correlation between times $t$ and $t+\tau$. If $t$ is still there → not WSS. If only $\tau$ is left → WSS yes. (Why: the correlation must depend only on the shift, not on the starting time.)
 
 **B. Ergodic in the mean.** Only if A.1 gave a constant mean. If not, answer "not ergodic" at once.
-1. Fix ONE draw ($U$, $A$, or one die). Average that single signal over time $t$.
+1. Fix ONE draw ($U$, $A$, or one die). Average that single signal over time $t$: for a formula in $t$, the average over one full cycle of a sine or cosine is 0, and constants stay as they are (so $\cos(t+U)$ averages to 0 whatever $U$ is); for a die or a sum, the average is the plain mean of its values over many rolls, e.g. $(1+2+3+4+5+6)/6=3.5$.
 2. If this time average equals $E[X]$ for every draw → ergodic yes. If it differs from draw to draw → not ergodic. (Why: one long signal then reveals the ensemble mean.)
+
+**D. Ergodic in the variance.** Same test as B but for the spread: compute the variance of one fixed draw over time and compare it with $\operatorname{Var}[X]=E[X^2]-(E[X])^2$, computed over the draws. Equal for every draw → ergodic in the variance too. (For the fair die both are the variance of one roll, so yes.)
 
 **C. Worked examples, one per type.**
 
 *Type 1, "WSS and ergodic in the mean", $X(t)=\cos(t+U)$, $U\sim$ Uniform$(0,2\pi)$ (apr24, process 1).* $U$ is a random phase, any angle between 0 and $2\pi$ equally likely.
 - Step A.1: over one full cosine cycle the positive halves cancel the negative halves, so $E[X(t)]=0$. No $t$ left → constant mean 0.
-- Step A.2: the question gives $\cos\alpha\cos\beta=\frac{\cos(\alpha+\beta)+\cos(\alpha-\beta)}2$. Put $\alpha=t+U$ and $\beta=t+\tau+U$. Then $\alpha-\beta=-\tau$ and $\alpha+\beta=2t+\tau+2U$. So $r[\tau]=\frac12\cos\tau+\frac12\cos(2t+\tau+2U)$. The first term has no random part. The second averages to 0 over $U$ (one full cycle). So $r[\tau]=\frac12\cos\tau$, no $t$ → WSS **yes**.
-- Step B: one fixed $U$ gives $\cos(t+U)$, whose time average is 0 for every $U$, equal to the mean 0 → ergodic **yes**.
+- Step A.2: we need $E[\cos(t+U)\cos(t+\tau+U)]$. The exam gives the product-to-sum identity $\cos\alpha\cos\beta=\frac{\cos(\alpha+\beta)+\cos(\alpha-\beta)}2$. We choose $\alpha=t+U$ and $\beta=t+\tau+U$ because they are exactly the two cosines' angles; that choice makes $\alpha-\beta=-\tau$ (the lag we want, with no $t$ and no $U$ in it) and $\alpha+\beta=2t+\tau+2U$ (everything else). So $r[\tau]=\frac12\cos\tau+\frac12\cos(2t+\tau+2U)$. The first term has no random part and survives the average. The second contains $2U$: when $U$ runs over $0$ to $2\pi$, $2U$ runs over two full cycles, and a cosine over any whole number of cycles averages to 0. So $r[\tau]=\frac12\cos\tau$, no $t$ left → WSS **yes**.
+- Step B: one fixed $U$ gives the single signal $\cos(t+U)$. Its time average is the average of a cosine over its cycles = 0, for every $U$, and $E[X]=0$ too → ergodic **yes**.
 - Table row 1: WSS Yes, Ergodic Yes.
 
-*Type 4, fair dice (apr25, jan22).* Mean of one die: $(1+2+3+4+5+6)/6=21/6=3.5$, not 0. Each die's long-run average over its rolls is also 3.5, the same as the mean → ergodic in the mean. Key answer: option "ergodic in both mean and variance" (apr25 (b), jan22 (b)).
+*Type 4, fair dice (apr25, jan22).* Mean of one die: $(1+2+3+4+5+6)/6=21/6=3.5$, not 0. One die rolled many times has a long-run average of its own face values = $(1+2+3+4+5+6)/6=3.5$ too, the same as the mean → ergodic in the mean. The long-run spread of one die's rolls equals the spread of one roll → ergodic in the variance as well (part D). Key answer: option "ergodic in both mean and variance" (apr25 (b), jan22 (b)).
 
 ## 1.4 · Spectral factorisation
 
@@ -100,7 +106,11 @@ Words: $X(t)$ = random process, a family of signals. $E[\cdot]$ = average over t
 
 **Names:** $\theta$ = frequency angle in radians; $z=e^{j\theta}$ = point on the unit circle; $z^{-1}$ = one-sample delay; $N,M$ = constants of the top, $A,B$ = constants of the bottom; $p,q$ = generic constants of one cosine factor; $r$ = a root; $a,b$ = filter coefficients; $C,D$ = scaling constants; $\sigma_i^2$ = noise variance; $L$ = causal filter.
 
-**Tool and why it works:** $p+q\cos\theta=\frac{q}{2r}(1+rz^{-1})(1+rz)$, because $(1+rz^{-1})(1+rz)=r\,(r+\frac1r+2\cos\theta)$ and $r+\frac1r=\frac{2p}{q}$. **Keep $|r|<1$**: then $(1+rz^{-1})$ has its zero inside the unit circle, which makes $L$ causal and minimum phase.
+**Tool and why it works.** The goal is to split one cosine factor $p+q\cos\theta$ into two mirror factors $\frac{q}{2r}(1+rz^{-1})(1+rz)$. Why it works: multiply the two brackets out, $(1+rz^{-1})(1+rz)=1+r(z+z^{-1})+r^2$, and on the unit circle $z=e^{j\theta}$ gives $z+z^{-1}=2\cos\theta$ (Euler: $e^{j\theta}+e^{-j\theta}=2\cos\theta$). So the product is $r\left(r+\frac1r+2\cos\theta\right)$, which matches $p+q\cos\theta$ once $r+\frac1r=\frac{2p}{q}$.
+
+**Finding $r$ (the step the examples hide).** Multiply $r+\frac1r=\frac{2p}{q}$ by $r$: it becomes the quadratic $r^2-\frac{2p}{q}r+1=0$, whose two roots are $r=\dfrac{p\pm\sqrt{p^2-q^2}}{q}$ (quadratic formula with $a=1$, $b=-2p/q$, $c=1$; the $\sqrt{p^2-q^2}$ comes from $\sqrt{b^2-4ac}$). The two roots multiply to 1, so one is inside the unit circle and one outside.
+
+**Keep the root with $|r|<1$**, and throw the other away: only the inside-root makes $(1+rz^{-1})$ have its zero inside the unit circle, which is what "causal and minimum phase" means (the filter's coefficients die out instead of blowing up).
 
 **Recipe**
 1. Bottom $A+B\cos\theta$: take $p=A$, $q=B$, keep the root with $|a|<1$ as $a$. Then $C=\frac{q}{2a}$. Why: by the tool, the bottom equals $C(1+az^{-1})(1+az)$.
@@ -108,31 +118,30 @@ Words: $X(t)$ = random process, a family of signals. $E[\cdot]$ = average over t
 3. So $P=\frac DC\cdot\frac{(1+bz^{-1})(1+bz)}{(1+az^{-1})(1+az)}$. Keep only the $z^{-1}$ parts for $L$, because $L$ must be causal (the $z$ parts are the mirror image, not causal). Why $\sigma_i^2=\frac DC$: white noise of variance $\sigma_i^2$ filtered by $L$ gives $\sigma_i^2|L|^2$, so the constant in front is the variance.
 4. Answer: $\sigma_i^2=\frac DC$ and $L(z)=\frac{1+bz^{-1}}{1+az^{-1}}$ (if $M=0$: $L=\frac{1}{1+az^{-1}}$).
 
-**Exam phrasing -> step**
-- "find the spectral factorisation, $L(z)$ and $\sigma_i^2$" -> steps 1-4.
-- "which of the following is the spectral factorisation?" -> run steps 1-4 once, match the option; reject any option with the outside-circle root in $L$.
-- "which condition must the innovation filter satisfy?" -> minimum phase: all poles and zeros inside the unit circle (not maximum phase, not all-pass).
+**How the exam words pick the task.** When the question asks to "find the spectral factorisation" and then $L(z)$ and $\sigma_i^2$, do steps 1–4 and write both answers. When it asks "which of the following is the spectral factorisation?", do steps 1–4 once anyway, then pick the option with the same numbers; reject any option whose $L$ contains the root outside the unit circle. When it asks "which condition must the innovation filter satisfy?", the answer is **minimum phase**: all its poles and zeros lie inside the unit circle (reject "maximum phase" and "all-pass").
 
 **Example A** ("find the spectral factorisation", April 2024, $P=\frac{7}{25-24\cos\theta}$, no cosine on top)
-Bottom: $A=25$, $B=-24$, so $p=25$, $q=-24$. The square root is $\sqrt{625-576}=\sqrt{49}=7$. The two roots are $\frac{25+7}{-24}=-\frac43$ and $\frac{25-7}{-24}=-\frac34$. Only $-\frac34$ has $|r|<1$, so $a=-\frac34$ and $C=\frac{-24}{2(-3/4)}=\frac{-24}{-3/2}=16$.
+Bottom: $A=25$, $B=-24$, so $p=25$, $q=-24$. Then $p^2-q^2=625-576=49$ and $\sqrt{49}=7$. The two roots of the formula are $\frac{p\pm\sqrt{p^2-q^2}}{q}=\frac{25+7}{-24}=-\frac43$ and $\frac{25-7}{-24}=-\frac34$. Only $-\frac34$ has $|r|<1$, so $a=-\frac34$ and $C=\frac{q}{2a}=\frac{-24}{2(-3/4)}=\frac{-24}{-3/2}=16$.
 Top: no cosine, so $D=N=7$ and no $b$.
 Answer: $\sigma_i^2=\frac{7}{16}$ and $L(z)=\frac{1}{1-\frac34z^{-1}}$ (since $1+az^{-1}$ with $a=-\frac34$ is $1-\frac34z^{-1}$).
 
 ## 2.1 · Maximum likelihood (MLE)
 
-**Use this recipe** when a pdf $p(x\mid\theta)$ of the data is given and the question asks for the estimate $\hat\theta$. **Not this one**: if a prior or a posterior $p(\theta\mid x)$ appears, that is MAP (see MC below); if the question asks for a least-squares fit, that is not MLE.
+**Use this recipe** when a pdf $p(x\mid\theta)$ of the data is given and the question asks for the estimate $\hat\theta$. **Not this one**: if a prior or a posterior appears, that is MAP (see MC below); if the question asks for a least-squares fit, that is not MLE.
+
+*Words the "not this one" line uses.* A **prior** $p(\theta)$ = what you believe about $\theta$ *before* seeing data. A **posterior** $p(\theta\mid x)$ = what you believe *after* seeing the data $x$. **MAP** = the $\theta$ where the posterior peaks (2.2). **Least squares** = choose $\theta$ to minimise the total squared gap between data and model (2.3), no pdf needed.
 
 **Symbols.** $\theta$ = the unknown parameter we estimate. $\hat\theta$ ("theta hat") = our estimate. $x_n$ = the $n$-th observed sample, $n=1,\dots,N$. $N$ = number of samples. $\ln$ = natural log. $L$ = likelihood = joint pdf of all samples, read as a function of $\theta$. $\sum$ = add over all samples. $\bar x=\frac1N\sum x_n$ = sample mean.
 
 **Recipe**
 
-1. Likelihood and log-likelihood. $L=\prod_{n=1}^N p(x_n\mid\theta)$: samples are independent, so the joint density is the product of single densities. $\ln L=\sum_n\ln p(x_n\mid\theta)$: ln is increasing, so the $\theta$ that maximises $L$ also maximises $\ln L$, and sums are easier to differentiate.
+1. Likelihood and log-likelihood. $L=\prod_{n=1}^N p(x_n\mid\theta)$: samples are independent, so the joint density is the product of single densities. $\ln L=\sum_n\ln p(x_n\mid\theta)$: ln is increasing, so the $\theta$ that maximises $L$ also maximises $\ln L$, and sums are easier to differentiate. (If the question only says "write the likelihood and log-likelihood", stop here.)
 2. Differentiate $\ln L$ with respect to $\theta$. Only $\theta$ varies, so a term without $\theta$ (e.g. $\ln x$) is a constant with derivative 0. A term without $n$ appears in all $N$ terms of the sum, so it counts $N$ times.
 3. Set the derivative to 0: a maximum of a smooth curve is where its slope is zero. Multiply by $\theta^2$ to clear fractions; legal because $\theta>0$. Solve for $\hat\theta$.
 
 **Worked examples** (each line says what the number is)
 
-**A. Gamma with known $k$ (jun26-2b).** "Write the likelihood and log-likelihood" → step 1 only. "Derive the MLE for $\theta$" → steps 1–3. "Explain what the MLE tells us" → last paragraph. Here $x_i$ = recovery days of patient $i$, $n$ patients, $k$ = known number of stages, $\theta$ = unknown average time per stage.
+**A. Gamma with known $k$ (jun26-2b).** Here $x_i$ = recovery days of patient $i$, $n$ patients, $k$ = known number of stages, $\theta$ = unknown average time per stage. The question is asked in three shapes: "write the likelihood and log-likelihood" wants step 1 only; "derive the MLE for $\theta$" wants steps 1–3; "explain what the MLE tells us" wants the meaning paragraph at the end.
 
 1. Each patient's factor has $\theta^{-k}$; $n$ patients give $\theta^{-nk}$. $\ln L=\sum_i(k-1)\ln x_i-nk\ln\theta-\frac{\sum_i x_i}{\theta}-n\ln\Gamma(k)$. The first and last terms have no $\theta$.
 2. $\frac{d\ln L}{d\theta}=-\frac{nk}\theta+\frac{\sum_i x_i}{\theta^2}$ ($-nk\ln\theta$ gives $-\frac{nk}\theta$; $-\frac{\sum x_i}\theta$ gives $+\frac{\sum x_i}{\theta^2}$).
@@ -157,26 +166,27 @@ Valid only for $x>\frac74$: otherwise $\hat\lambda\ge1$, and a sigmoid never rea
 
 **MC (no algebra, pick the TRUE one)**
 
-- jan22-2b, answer **(c)**: transform the parameter, solve for $\hat\alpha$, map back with $\psi^{-1}$.
-- nov22-2b, answer **(c)**: ML is asymptotically unbiased (bias fades as $N$ grows).
+- jan22-2b, answer **(c)**, "transform the parameter": the MLE is **invariant** — if the question rewrites the unknown as $\alpha=\psi(\theta)$, you may solve for $\hat\alpha$ with this same recipe and then map back with $\hat\theta=\psi^{-1}(\hat\alpha)$ (e.g. $\alpha=\ln\theta$ → $\hat\theta=e^{\hat\alpha}$). Any option saying you must re-derive from scratch, or that the estimate changes with the parametrisation, is false.
+- nov22-2b, answer **(c)**: ML is asymptotically unbiased (the bias fades as $N$ grows). "Unbiased for any $N$" is false; "consistent" is true.
 
 ## 2.2 · MAP with a prior
 
 Symbols: $\theta$ (or $\lambda$) is the unknown parameter. $x$ is the observed data. $L(\theta)$ is the likelihood, the probability of the data as a function of $\theta$. $p(\theta|x)$ is the posterior, the density of $\theta$ after seeing the data. Bayes' rule gives posterior $\propto$ likelihood $\times$ prior. The sign $\propto$ means "equal up to a constant that does not contain $\theta$". Such constants cannot move a peak, so MAP never needs them.
 
-**Which estimator (match the exam words):**
-- "MAP", "maximum a posteriori", "most probable": the peak of the posterior, $\hat\theta_{MAP}=\arg\max_\theta p(\theta|x)$. Needs a prior.
-- "MMSE", "minimum mean square error", "posterior mean": the average of $\theta$ under the posterior, $\hat\theta_{MMSE}=\int\theta\,p(\theta|x)\,d\theta$.
-- "MLE": the peak of $L$ alone, no prior.
+**How the exam words name the estimator.** When the question says "MAP", "maximum a posteriori" or "most probable value", it wants the **peak of the posterior**: $\hat\theta_{MAP}=\arg\max_\theta p(\theta|x)$ — this needs a prior, since without one there is no posterior. When it says "MMSE", "minimum mean square error", "posterior mean" or "the average of $\theta$", it wants the **average under the posterior**: $\hat\theta_{MMSE}=\int\theta\,p(\theta|x)\,d\theta$ (a sum if $\theta$ is discrete). When it says "MLE", it wants the peak of the likelihood $L$ alone, with no prior at all.
 
-**Pick the recipe by what the question gives:**
-- Beta or Gamma prior plus a standard PMF/pdf likelihood: recipe A.
-- Posterior already written as $\theta^A(1-\theta)^B$ or $\lambda^Ae^{-B\lambda}$: skip to A-step 4 (MAP) or A-step 5 (MMSE).
-- Posterior contains a function of $\theta$ (sigmoid, $e^{\theta}$) or a non-conjugate prior: recipe B.
+**How the question picks the recipe.** If it gives a Beta or Gamma prior together with a standard PMF/pdf likelihood (see the crib), use recipe A from step 1. If the posterior is *already* written as $\theta^A(1-\theta)^B$ or $\lambda^Ae^{-B\lambda}$, the work of steps 1–3 is done for you: jump to step 4 for MAP or step 5 for MMSE. If the posterior contains a function of $\theta$ (a sigmoid, $e^{\theta}$) or the prior is not Beta/Gamma, use recipe B.
+
+**Standard likelihoods crib** (what each observation contributes to $L$)
+- "exactly $k$ successes in $n$ tries" → binomial: $\binom nk\theta^k(1-\theta)^{n-k}$.
+- "the $k$-th success happens on trial $x$" → $\theta^k(1-\theta)^{x-k}$ (e.g. $k=2$: $\theta^2(1-\theta)^{x-2}$).
+- "count of events per unit time, rate $\lambda$" → Poisson: $\dfrac{\lambda^{x}e^{-\lambda}}{x!}$ (its log is $x\ln\lambda-\lambda-\ln x!$).
+- "waiting time $x$, rate $\lambda$" → exponential: $\lambda e^{-\lambda x}$.
+- "Gaussian data, mean $\mu(\theta)$, variance $\sigma^2$" → $\dfrac{1}{\sqrt{2\pi\sigma^2}}e^{-(x-\mu)^2/2\sigma^2}$.
 
 **Recipe A: conjugate prior (Beta or Gamma)**
 
-A Beta($\alpha,\beta$) prior has pdf $\propto\theta^{\alpha-1}(1-\theta)^{\beta-1}$. A Gamma($\alpha,\beta$) prior has pdf $\propto\lambda^{\alpha-1}e^{-\beta\lambda}$, where $\beta$ is a rate. Use the numbers the question gives.
+A Beta($\alpha,\beta$) prior has pdf $\propto\theta^{\alpha-1}(1-\theta)^{\beta-1}$ — a prior for a **probability** $\theta$ in $(0,1)$. A Gamma($\alpha,\beta$) prior has pdf $\propto\lambda^{\alpha-1}e^{-\beta\lambda}$, where $\beta$ is a rate — a prior for a **positive rate** $\lambda$. Use the numbers the question gives. A **uniform prior** is flat: $p(\theta)$ = constant on its range and 0 outside, so it contributes nothing to the product except the range (a MAP answer may then hit the range's edge).
 
 1. Likelihood $L=\prod_i P(x_i|\theta)$. Multiply the probabilities of the $n$ observations because they are independent. Drop factors without $\theta$, such as $\binom{x-1}{k-1}$ or $1/x_i!$, because they do not move the peak. Add exponents of equal bases: $\theta^a\theta^b=\theta^{a+b}$.
 2. Multiply by the prior, by Bayes' rule. Add the exponents again.
@@ -199,6 +209,12 @@ A Beta($\alpha,\beta$) prior has pdf $\propto\theta^{\alpha-1}(1-\theta)^{\beta-
 3. $\lambda'>0$ always, because the sigmoid is strictly increasing, so it cannot be zero. Therefore $\frac1\lambda=\frac x2$, i.e. $\lambda=\frac2x$.
 4. Invert the sigmoid. $\frac1{1+e^{-\theta}}=\frac2x$ gives $e^{-\theta}=\frac x2-1$, so $\hat\theta=-\ln\left(\frac x2-1\right)=\ln\frac{2}{x-2}$. This needs $x>2$, so that $\lambda=2/x$ lies in $(0,1)$.
 
+**Other posteriors you may meet**
+- **Normalising constant.** If the posterior is written as $\frac{1}{g(x)}h(\theta,x)$ with a factor $g$ that does not contain $\theta$ (a number like $x+a$, a Gamma function, an integral over $\theta$), that factor only rescales the curve. For **MAP** drop it: it cannot move the peak. For **MMSE** you cannot drop it — the posterior must integrate to 1 before you average, so keep it and integrate.
+- **Two-bump (mixture) posterior.** If $p(\theta\mid x)=w\,f_1(\theta)+(1-w)f_2(\theta)$ with two named bumps, then MMSE (the mean) is the weighted sum of the bumps' means: $w\,\mu_1+(1-w)\,\mu_2$. MAP is at the bump with the larger $w\times$(height).
+- **$\theta$ takes only a few values** (e.g. $\theta\in\{+1,-1\}$). Then Bayes is a table, not an integral: $P(\theta\mid x)=\dfrac{p(x\mid\theta)P(\theta)}{\sum_{\theta'}p(x\mid\theta')P(\theta')}$. MAP = the value with the biggest entry; MMSE $=\sum_\theta \theta\,P(\theta\mid x)$. (For $\pm1$ with probabilities $q$ and $1-q$: MMSE $=q-(1-q)$.)
+- **MSE with a threshold.** When the question compares two values (e.g. "decide $\pm1$ from $y$"), the estimate is the posterior mean rounded to the nearest allowed value; the cut is where the two posterior probabilities are equal.
+
 **MC bullets (the reason is given where it is not obvious)**
 - "MMSE is the mean of the posterior": TRUE. "MMSE is the maximum of the posterior": FALSE. The maximum is MAP.
 - "MAP always equals the posterior mean" (jun26-2a-type): FALSE. They are equal only for one symmetric bump, e.g. a Gaussian posterior.
@@ -212,7 +228,7 @@ Answer letters: jun26-2a = c, apr25-2a = c, apr24-2b = a, jan22-2d = b, nov22-2c
 ## 2.3 · Least squares
 Symbols: $x[n]$ = observed data sample number $n$; $s[n]$ = what the model predicts for sample $n$; $w[n]$ = noise; $\theta$ (theta) = unknown parameter(s) to estimate; $\hat\theta$ = the estimate; $J$ = cost, the total squared gap between data and model. Least squares (LS) = choose the unknowns that make $J$ smallest.
 
-**Recipe A · straight line $y=ax+b$.** Exam says "find the linear function having least squares error" -> use A.
+**Recipe A · straight line $y=ax+b$.** When the exam says "find the linear function having least squares error", the model is a straight line and you want its slope and intercept: use recipe A.
 1. Compute $\bar x$ = mean of the x-values and $\bar y$ = mean of the y-values. The best line passes through $(\bar x,\bar y)$, which is why step 4 works.
 2. Deviations $dx=x_n-\bar x$, $dy=y_n-\bar y$ for each point. Centering removes $b$ from the slope equation.
 3. $a=\dfrac{\sum dx\,dy}{\sum dx^2}$ (minimising $J$ over $a$ gives this).
@@ -228,7 +244,7 @@ Worked (apr25-2b, points $(0,3),(2,4),(3,3)$):
 - $b=\tfrac{10}3-\tfrac1{14}\cdot\tfrac53=\tfrac{140}{42}-\tfrac5{42}=\tfrac{135}{42}=\tfrac{45}{14}\approx3.21$.
 - Final answer, the line the question asks for: $y=\tfrac1{14}x+\tfrac{45}{14}$.
 
-**Recipe B · closed form, avoid nonlinear optimisation.** Exam says "closed-form", "avoid the nonlinear optimization" -> use B. Works when $s=g(\theta)$ and $g$ is invertible (e.g. $\ln$, $e^{\cdot}$).
+**Recipe B · closed form, avoid nonlinear optimisation.** When the exam says "closed-form" or "avoid the nonlinear optimization", it wants an exact formula instead of an iteration: use recipe B. It works when $s=g(\theta)$ and $g$ is invertible (e.g. $\ln$, $e^{\cdot}$).
 1. Write $\alpha=g(\theta)$. The cost in $\alpha$ is an ordinary sum of squares, so it is solvable directly (step 2). Why: a one-to-one relabelling keeps the best fit the same.
 2. Solve LS for $\alpha$ with recipe C. For $x[n]=\alpha+w[n]$ the answer is $\hat\alpha=\bar x$.
 3. Map back: $\hat\theta=g^{-1}(\hat\alpha)$ (the inverse undoes step 1).
@@ -242,7 +258,7 @@ Worked (q3-23-2d, $x[n]=\ln\theta+w[n]$, $n=0,\dots,N-1$): put $\alpha=\ln\theta
 
 Worked (jan20-4b, $s[n]=Ae^{\phi n}$, $\phi$ known): here $h[n]=e^{\phi n}$. Step 2: $\sum e^{\phi n}(x[n]-Ae^{\phi n})=0$. Step 3, using $e^{\phi n}e^{\phi n}=e^{2\phi n}$: $\hat A=\sum x[n]e^{\phi n}\big/\sum e^{2\phi n}$. This is the closed form in $\phi$ and the data that the question asks for.
 
-**Recipe D · nonlinear model, $\phi$ and $A$ both unknown.** Exam says "write the cost function" -> D1. "Gauss-Newton... iterative" -> D2–D4.
+**Recipe D · nonlinear model, $\phi$ and $A$ both unknown.** When the exam says "write the cost function", only D1 is asked. When it says "Gauss-Newton", "iterative" or "one iteration", do D2–D4.
 1. Cost with $\theta=[\phi\ A]^T$ (a column of unknowns; $^T$ = transpose, just makes it a column): $J=\sum(x[n]-Ae^{\phi n})^2$.
 2. Matrix $G$ holds the partial derivatives of $s$ per sample $n$: column 1 $\partial s/\partial\phi = nAe^{\phi n}$, column 2 $\partial s/\partial A=e^{\phi n}$. Why: Gauss-Newton replaces the curve by its straight-line approximation at the current guess.
 3. Start from a guess $\theta_0$.
@@ -305,7 +321,7 @@ Step 3: $=\frac{A^2(\sin^2\theta+\cos^2\theta)}{\sigma^2}=\frac{A^2}{\sigma^2}$.
 
 **Example (Jan 2022 2e).** $p=\frac{2}{\theta}x$ for $0\le x\le\theta$. If $\theta=2$, data lie in $[0,2]$; if $\theta=3$, in $[0,3]$. The range changes with $\theta$, so the answer is "not possible: the support depends on $\theta$."
 
-**Which recipe:** "derive $\mathcal I$" with a density → A; with signal + noise → B; "given MVUE, find pdf" → C; "can the CRLB be derived / justify" → D; "which statement is TRUE/FALSE" → facts list.
+**How the exam words pick the recipe.** "Derive $\mathcal I$" or "find the CRLB" with a density written out → recipe A. The same question but with a model "signal + noise" instead of a density → recipe B. "Given the MVUE, find the pdf" → recipe C. "Can the CRLB be derived? Justify." → recipe D. "Which statement is TRUE/FALSE" → the facts and traps list above.
 
 **Example (Q1 2023 2a, "exactly one FALSE").** (a) $N$ i.i.d. gives $N\,i$: TRUE (sums add). (b) "Var $\ge\mathcal I$": FALSE, the bound is $1/\mathcal I$. (c) "strictly positive": doubtful, since $\mathcal I=0$ when $p$ does not depend on $\theta$. The key marks (b).
 
@@ -313,14 +329,21 @@ Step 3: $=\frac{A^2(\sin^2\theta+\cos^2\theta)}{\sigma^2}=\frac{A^2}{\sigma^2}$.
 
 Symbols: $\theta$ (theta) = the unknown parameter we want; $\hat\theta$ = its estimate computed from data $x$; $N$ = number of observations; $p(x;\theta)$ = probability density of the data for a given $\theta$; $\mathcal I(\theta)$ = Fisher information of all $N$ observations, $i(\theta)$ = for one observation; $E[\cdot]$ = average; Var = variance; CRLB = Cramér–Rao lower bound.
 
+**Theory words the true/false options use**
+- **Bayes' rule:** $P(A\mid B)=\dfrac{P(B\mid A)P(A)}{P(B)}$. Read: update the chance of $A$ after seeing $B$, by scaling with how likely $B$ is under $A$.
+- **Law of total probability:** $P(B)=\sum_k P(B\mid A_k)P(A_k)$ over all groups — the same as step 5 of 1.1.
+- **Union:** $P(A\cup B)=P(A)+P(B)-P(A\cap B)$ ("A or B", the overlap counted twice, so subtract it once). If $A$ and $B$ cannot happen together, $P(A\cup B)=P(A)+P(B)$.
+- **CDF** $F(x)=P(X\le x)$: the accumulated probability up to $x$. For a continuous pdf, $F(x)=\int_{-\infty}^x p(u)\,du$, and $P(a<X\le b)=F(b)-F(a)$.
+- **Relative frequency:** the fraction of trials landing in an event after many repetitions; it approaches the probability.
+
 **Facts to check statements against**
 - Unbiased: $E[\hat\theta]=\theta$ (the average estimate is right).
 - Efficient: unbiased AND Var $=$ CRLB. Going below the bound is impossible, so "below the bound = efficient" is false.
-- CRLB $=1/\mathcal I(\theta)$, NOT $\mathcal I$. $\mathcal I\ge 0$ (an average of a second derivative, so never negative). $N$ iid observations: $\mathcal I=N\,i(\theta)$, so CRLB $=1/(N i)$ falls as $1/N$.
+- CRLB $=1/\mathcal I(\theta)$, NOT $\mathcal I$. $\mathcal I\ge 0$ (an average of a second derivative, so never negative). $N$ iid observations: $\mathcal I=N\,i(\theta)$, so CRLB $=1/(N i)$ falls as $1/N$. Exam wording trap (jan22-2a): an option saying the bound "decreases linearly with $N$" is marked TRUE — they mean "keeps decreasing as $N$ grows, like $1/N$". If instead an option claims the bound is *proportional* to $N$, that is FALSE.
 - MLE = $\arg\max_\theta p(x;\theta)$, the value that makes the data most likely. Asymptotically unbiased: true. Always reaching the CRLB: false (only for large $N$). Computable in general models by maximising.
 - Bayes: $\theta$ has a prior $p(\theta)$, so Bayes estimators use the prior ("do not use prior" is false). Squared error cost gives MMSE = posterior mean $E[\theta|x]$. Uniform cost gives MAP = posterior maximum. "MMSE is the posterior max" is false. "MMSE and MAP always differ" is false: they coincide for a symmetric bell posterior. Only for large $N$ does the data dominate the prior, so MAP approaches MLE. "Regardless of the prior" is false.
 
-**Which recipe**: a statement with options (a)(b)(c) → recipe A. A formula or number asked from a likelihood $p(x|\lambda)$ and prior $p(\lambda)$ → recipe B.
+**How the exam words pick the recipe.** When the question is a statement with options (a)(b)(c) to judge, use recipe A. When it asks you to compute a formula or a number from a likelihood $p(x|\lambda)$ and a prior $p(\lambda)$, use recipe B.
 
 **Recipe A: true/false statements**
 1. Find the topic word (MLE, CRLB/Fisher, MMSE/MAP). Why: each option tests one fact of one topic.
@@ -334,25 +357,30 @@ Example A2 (apr25-2a, MMSE vs MAP): posterior is a bell centred at 1. Its mean i
 **Recipe B: MMSE and MAP from a likelihood and prior (jan19-2b)**
 Given: $p(x|\lambda)=\lambda e^{-\lambda x}$ for $x\ge0$ (exponential model, $\lambda$ = rate, $x$ = observed value) and prior $p(\lambda)=\tfrac12$ on $[0,2]$.
 1. Bayes' rule: $p(\lambda|x)=\dfrac{p(x|\lambda)\,p(\lambda)}{\int p(x|u)p(u)\,du}$. Why: posterior = likelihood times prior, divided by the total so it integrates to 1.
-2. MMSE $=E[\lambda|x]=\int_0^2\lambda\,p(\lambda|x)\,d\lambda$. Why: squared cost gives the posterior mean. Exam "provide the formula, specifying each distribution" → write steps 1–2 with $p(x|\lambda)$ and $p(\lambda)$ explicit.
+2. MMSE $=E[\lambda|x]=\int_0^2\lambda\,p(\lambda|x)\,d\lambda$. Why: squared cost gives the posterior mean. When the exam says "provide the formula, specifying each distribution", write steps 1–2 with $p(x|\lambda)$ and $p(\lambda)$ spelled out, and do not evaluate the integrals.
 3. The $\tfrac12$ is the same top and bottom, so it cancels: posterior $\propto\lambda e^{-\lambda x}$ on $[0,2]$.
-4. Numerator $\int_0^2\lambda^2e^{-\lambda x}d\lambda$, denominator $\int_0^2\lambda e^{-\lambda x}d\lambda$. Use the given integrals with $a=-x$, evaluate at 2 and subtract the value at 0 (a definite integral is $F(2)-F(0)$). Exam "solve the formula from b1" → this step.
+4. Numerator $\int_0^2\lambda^2e^{-\lambda x}d\lambda$, denominator $\int_0^2\lambda e^{-\lambda x}d\lambda$. Use the given integrals with $a=-x$, evaluate at 2 and subtract the value at 0 (a definite integral is $F(2)-F(0)$). When the exam says "solve the formula from b1", it wants these two integrals evaluated and the fraction simplified.
 5. Result: $\hat\lambda_{MMSE}=\dfrac{2}{x}\cdot\dfrac{1-(1+2x+2x^2)e^{-2x}}{1-(1+2x)e^{-2x}}$.
-6. MAP = $\arg\max_\lambda p(\lambda|x)$. Exam "find the MAP" → this step. The denominator of step 1 does not depend on $\lambda$, so drop it (a constant cannot move the peak). Take the log: $\ln\lambda-\lambda x$, derivative $1/\lambda-x=0$, so $\lambda=1/x$. The prior is zero above 2, so cap at 2: $\hat\lambda_{MAP}=\min(1/x,\,2)$.
+6. MAP = $\arg\max_\lambda p(\lambda|x)$. When the exam says "find the MAP", do this step. The denominator of step 1 does not depend on $\lambda$, so drop it (a constant cannot move the peak). Take the log: $\ln\lambda-\lambda x$, derivative $1/\lambda-x=0$, so $\lambda=1/x$. The prior is zero above 2, so the peak cannot lie past 2 — cap the answer: $\hat\lambda_{MAP}=\min(1/x,\,2)$.
 
-## Checks & sign rules
+## Checks, sign rules & maths crib
 - Probabilities lie in $[0,1]$; $\iint p=1$; a PSD never goes negative (a *correlogram estimate* may); $P_{FA}$ uses the $H_0$ curve.
 - Dividing an inequality by a negative **flips** it.
 - Roots of the AR/factorisation quadratics come in pairs $a$ and $1/a$: always keep $|a|\lt1$, $|b|\lt1$ (that is what "minimum phase" wants).
 - $x[n]=i[n]-a_1x[n-1]-\dots$ with $r[1]>0$ gives a **negative** $a_1$; a minus sign in front of $\cos\theta$ gives a negative $a$.
 - Round only at the very end.
+- **Derivatives you need:** $\frac{d}{d\theta}\theta^n=n\theta^{n-1}$ (so $\frac{d}{d\theta}\frac1{\theta}=-\frac1{\theta^2}$ and $\frac{d}{d\theta}\frac1{\theta^2}=-\frac2{\theta^3}$); $\frac{d}{d\theta}\ln\theta=\frac1\theta$; $\frac{d}{d\theta}e^{k\theta}=ke^{k\theta}$; $\frac{d}{d\theta}\cos\theta=-\sin\theta$; $\frac{d}{d\theta}\sin\theta=\cos\theta$. A constant times $\theta$ differentiates to the constant; a term without $\theta$ differentiates to 0.
+- **Quadratic formula:** $ax^2+bx+c=0$ has roots $x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$. For $b^2-4ac>0$ there are two real roots; pick the one inside the allowed range (for filter/MAR coefficients that is $|x|<1$).
+- **Log and exp rules:** $\ln(ab)=\ln a+\ln b$; $\ln\frac ab=\ln a-\ln b$; $\ln e^a=a$; $\ln a^b=b\ln a$; $e^ae^b=e^{a+b}$; $\frac{e^a}{e^b}=e^{a-b}$. Handy values: $\ln2=0.693$, $\ln3=1.099$, $\ln10=2.303$, so $\ln0.5=-0.693$, $\ln0.9=-0.105$, $\ln20=3.0$, $\ln0.1=-2.303$.
+- **Geometric series:** $\sum_{n=0}^\infty q^n=\frac1{1-q}$ for $|q|<1$ (used for energy of decaying signals).
+- **Gaussian tail:** for $x\sim N(0,1)$, $P(x>t)=Q(t)$; $Q(1.28)=0.10$, $Q(1.645)=0.05$, $Q(2.33)=0.01$, $Q(0)=0.5$. For $N(\mu,\sigma^2)$ standardise first: $Q\!\left(\frac{t-\mu}{\sigma}\right)$.
 
 
 ## 3.1 · Correlogram + pick the plot
 
 **Symbols.** $r[k]$ = autocorrelation at lag $k$: how much the signal resembles itself $k$ steps later; $r[0]$ = its variance (no shift). $r[-k]=r[k]$ (symmetry). $\theta$ = frequency in radians, from $0$ (slowest) to $\pi$ (fastest alternation). $\hat P(\theta)$ = estimated power spectral density (power per frequency). $c=\cos\theta$ (shorthand). $i[n]$ = white noise input (zero mean, uncorrelated in time); its variance is $\sigma^2$ (written $\sigma_i^2$ in exams). $a_k$ = AR weights on past outputs, $b$ = MA weight, $p$ = AR order, $q$ = MA order, $N$ = data length.
 
-**Which recipe?** "correlogram", "non-parametric", "using only the given lags", "function of $\cos\theta$" → recipe 1. "AR(1)" → 2. "AR(2)", "Yule-Walker" → 3. "MA(1)", "approximate as MA", "MA(q)" → 4. "which plot/figure/option" → 5. "order $p$", "residual", "criterion" → 6.
+**How the exam words pick the recipe.** When the question says "correlogram", "non-parametric", "using only the given lags" or "as a function of $\cos\theta$", it wants the PSD built from the $r[k]$ alone → recipe 1. When it names "AR(1)" → recipe 2; "AR(2)" or "Yule-Walker" → recipe 3. When it says "MA(1)", "MA($q$)" or "approximate as MA" → recipe 4. When it asks "which plot/figure/option matches" → recipe 5. When it asks for the "order $p$", about "residual" error or a model-selection "criterion" → recipe 6.
 
 **1. Correlogram (uses only the given lags)**
 
@@ -410,15 +438,9 @@ Trap: the correlogram may dip below 0; a true PSD never does.
 
 **Symbols.** $x[n]$: the random signal at time $n$. $i[n]$: the innovation, a fresh, unpredictable white-noise input (zero mean, variance $\sigma_i^2$) that drives the signal. $r[k]$: autocorrelation at lag $k$ (how many steps apart the two samples are), $r[k]=E\{x[n]x[n-k]\}$, with $r[-k]=r[k]$. $\theta$: frequency angle ($\theta=0$ is the slowest, $\theta=\pi$ the fastest). $c=\cos\theta$. $P$: power spectral density (PSD), the power per frequency. $p$: AR order, $q$: MA order. $a_1,a_2$: AR coefficients. $b$: MA coefficient. $\alpha,\beta$: ARMA coefficients. $N$: data length.
 
-**Which recipe?** Right side has only $i$ terms with delays up to $q$ → MA($q$). Left side has past $x$ terms → AR($p$). Both → ARMA. Given a PSD or r directly, use A. Given a model, use B–E. Given a plot, use F. True/false or "what happens as $p$ grows", use H.
+**How to choose the recipe.** First look at what the question gives. It gives $r[k]$ numbers or a PSD formula → recipe A. It gives a model (a difference equation or a transfer function $H(z)$) → recipes B–E. It gives a plot to identify → recipe F. It asks a true/false or "what happens as $p$ grows" → recipe H. Then read the model itself: if the equation has only noise terms $i[n], i[n-1],\dots$ on the right, it is an MA and $q$ is the largest delay; if past values of $x$ appear on the right, it is an AR and $p$ is the largest $x$-delay; if both appear, it is an ARMA($p,q$).
 
-**Exam wording → step**
-- "correlogram", "non-parametric", "using only the given lags" → A.
-- "model as AR(1)" → B. "AR(2)", "Yule–Walker matrix" → C.
-- "model as MA(1)/MA(2)", "find $a,b$" → D.
-- "which kind of model", "autocorrelation of $x$" from a difference equation → E.
-- "express as a function of cosines" → replace $\cos2\theta=2c^2-1$, $\cos3\theta=4c^3-3c$.
-- "hint: MA autocorrelation is finite" → lags beyond $q$ are zero, stop at lag $q$.
+**How the exam words pick the recipe.** When the question says "correlogram", "non-parametric" or "using only the given lags", it wants the PSD built from the $r[k]$ numbers alone → recipe A. When it says "model as AR(1)" → recipe B. When it says "AR(2)" or "Yule–Walker matrix" → recipe C. When it says "model as MA(1)/MA(2)" or "find $a,b$" → recipe D. When it gives a difference equation and asks "which kind of model" or "the autocorrelation of $x$" → recipe E. When it says "express as a function of cosines", rewrite every multiple angle with $\cos2\theta=2c^2-1$ and $\cos3\theta=4c^3-3c$, then collect powers of $c$. When it hints "the MA autocorrelation is finite", that means the lags beyond $q$ are zero, so stop writing terms at lag $q$.
 
 **A. Correlogram (PSD from $r[k]$).**
 1. Keep the lags up to the last one given, drop the rest. Why: the question says they are zero (or "use only these").
@@ -456,7 +478,7 @@ Example apr25-3f: $r[0]=2$, $r[1]=-\frac14$ (ignore $r[2]=-\frac3{16}$). Step 1:
 MA(2): $x[n]=i[n]+a\,i[n-1]+b\,i[n-2]$. Why: lag 2 has one pair ($1\cdot b$), lag 1 has two pairs ($1\cdot a$ and $a\cdot b$), so $r[2]=\sigma_i^2b$, $r[1]=\sigma_i^2a(1+b)$.
 1. $b=\dfrac{r[2]}{\sigma_i^2}$.
 2. $a=\dfrac{r[1]}{\sigma_i^2(1+b)}$.
-3. $r[0]=\sigma_i^2(1+a^2+b^2)$ if $r[0]$ is not given.
+3. $r[0]=\sigma_i^2(1+a^2+b^2)$ if $r[0]$ is not given. If the question says "unit variance noise" (or the key answers use $\sigma_i^2=1$), then $\sigma_i^2=1$ and $r[0]=1+a^2+b^2$ directly. If instead $r[0]$ is given, turn the formula around: $\sigma_i^2=r[0]/(1+a^2+b^2)$.
 
 **E. Model type and $r[\tau]$ from a difference equation (ARMA).**
 Model type: count which terms appear. Only $i$ with delays → MA(largest delay). $x$ on the right too → ARMA($p$,$q$) with $p$ the largest $x$-delay and $q$ the largest $i$-delay.
@@ -501,11 +523,11 @@ Symbols: $N$ = number of samples in the data record. $P$ = true PSD value. $r[k]
 
 Story (energy): $x[n]=e^{-n}$ for $n\ge0$ decays, so energy. $E=\sum_{n=0}^{\infty}e^{-2n}$. Each term is $q^n$ with $q=e^{-2}\approx0.135$, a geometric series worth $\frac1{1-q}=\frac1{0.865}\approx1.16$. Since $E$ is finite, $\bar P=0$ (finite energy spread over infinite time). Answers item 2 of apr25-3a.
 
-**Recipe C: match a description to a method** (apr25-3c, apr24-3a, nov19-1c). Use when a description is given and you name the method(s). Several can fit; repeats allowed. Match the key phrase:
-- "non-overlapping segments, average periodograms" = Bartlett. "overlapping segments" = Welch.
-- "DFT of estimated autocorrelation, window of length $M<L$ applied to it" = BT (the window makes it not a plain correlogram).
-- "modulus squared of DFT, divided by $N$" = periodogram. "DFT of $\hat r$" with no window = correlogram.
-- "model with $|B|^2/|A|^2$" = AR/MA/ARMA.
+**Recipe C: match a description to a method** (apr25-3c, apr24-3a, nov19-1c). Use when a description is given and you name the method(s). Several can fit; repeats allowed. Read the description and find its one deciding word:
+- The record is cut into **non-overlapping** segments and their periodograms are averaged → **Bartlett**. The segments **overlap** → **Welch** (WOSA). The single word overlap / non-overlap decides between the two.
+- The description says: DFT of the estimated autocorrelation, and a **window** of length $M<L$ is applied to that estimate → **Blackman–Tukey** (the applied window is what makes it not a plain correlogram).
+- The description says: modulus squared of the DFT, divided by $N$ → **periodogram**. It says DFT of $\hat r$ and mentions no window → **correlogram**.
+- The description gives a model with $|B|^2/|A|^2$ → **parametric** (AR/MA/ARMA).
 
 Story (apr25-3c): row 1 says non-overlapping and averaging periodograms, so Bartlett. Row 5 has the same words but "overlapping", so Welch. The single word decides.
 
@@ -556,14 +578,14 @@ Story (nov22-3b, option d): padding to $L$ samples samples at step $2\pi/L$, not
 5. Check the direction: put one $x$ on each side into the original $L$. If $L\gt$ bar there, that side is $\mathcal H_1$. This catches sign mistakes.
 6. Probabilities: $P_{FA}$ = integral of the $\mathcal H_0$ pdf over the decide-$\mathcal H_1$ region; $P_D$ = same integral for $\mathcal H_1$. If the region is $|x|\gt\gamma$ it has two tails: multiply by 2 when the curves are symmetric, because each tail has the same area.
 
-**Type 1 · two power-law pdfs, one sample, bar given (apr25 4a).** Exam: "what value of $x$ for which $\mathcal H_1$ should be accepted?" → steps 1, 2, 3, 4.
+**Type 1 · two power-law pdfs, one sample, bar given (apr25 4a).** When the exam asks "for what value of $x$ should $\mathcal H_1$ be accepted?", it wants the cut on $x$: do steps 1–4 and read the final inequality.
 - Here $p(x\mid\theta)=k_1\theta x^{k_2\theta-1}$, with $k_1=1$, $k_2=2$. $\theta$ is the unknown parameter; $\theta_0=3$ under $\mathcal H_0$ and $\theta_1=6$ under $\mathcal H_1$.
 - Step 1: under $\mathcal H_0$, $1\cdot3\cdot x^{2\cdot3-1}=3x^5$. Under $\mathcal H_1$, $1\cdot6\cdot x^{2\cdot6-1}=6x^{11}$. So $L=\frac{6x^{11}}{3x^5}=2x^6$ ($x^{11}/x^5=x^6$).
 - Step 3: bar $\lambda=0.2$, so $2x^6\gt0.2$.
 - Step 4: divide by 2 (positive, no flip): $x^6\gt0.1$, so $x\gt0.1^{1/6}$. Since $\ln0.1=-2.303$, $\ln x\gt-2.303/6=-0.384$, $x\gt e^{-0.384}=0.68$.
 - Answer: $\mathcal H_1$ is accepted for $0.68\lt x\lt1$.
 
-**Type 2 · two one-sided pdfs (Gaussian vs exponential), bar $\gamma=1$ (apr24 4b, jan22 4b/4c).** Exam: "for threshold $\gamma=1$ calculate $P_D$ and $P_{FA}$" → steps 1–6. Here $y$ is the observation, $\mathcal H_0$: $\frac1{\sqrt{2\pi}}e^{-y^2/2}$, $\mathcal H_1$: $\frac14e^{-y/2}$, $y\gt0$.
+**Type 2 · two one-sided pdfs (Gaussian vs exponential), bar $\gamma=1$ (apr24 4b, jan22 4b/4c).** When the exam says "for threshold $\gamma=1$ calculate $P_D$ and $P_{FA}$", the bar on $L$ is given and you must find the cut first and then the two tail areas: do steps 1–6. Here $y$ is the observation, $\mathcal H_0$: $\frac1{\sqrt{2\pi}}e^{-y^2/2}$, $\mathcal H_1$: $\frac14e^{-y/2}$, $y\gt0$.
 - Step 1: $L=\frac{\frac14e^{-y/2}}{\frac1{\sqrt{2\pi}}e^{-y^2/2}}=\frac{\sqrt{2\pi}}4e^{y^2/2-y/2}$. The constant is $2.507/4=0.627$.
 - Step 3: $L\gt1$. Take $\ln$: $\ln0.627=-0.467$, so $-0.467+\frac{y^2}2-\frac y2\gt0$.
 - Step 4: multiply by 2 (positive): $y^2-y-0.934\gt0$. The cut solves $y^2-y-0.934=0$: $y=\frac{1\pm\sqrt{1+3.738}}2=\frac{1\pm2.177}2$. The positive root is $y_{th}=1.59$.
@@ -577,20 +599,28 @@ Story (nov22-3b, option d): padding to $L$ samples samples at step $2\pi/L$, not
 - Step 4: $x^2\gt\frac83\cdot1.386=3.70$, so $x\gt\lambda'=1.92$.
 - Step 6: $P_{FA}=P(x\gt1.92\mid\mathcal H_0)=e^{-1.92^2/2}=e^{-1.84}\approx0.16$ (Rayleigh: area right of $t$ is $e^{-t^2/2\sigma^2}$). $P_M=P(x\lt1.92\mid\mathcal H_1)=1-e^{-1.92^2/8}=1-e^{-0.46}\approx0.37$.
 
-**Type 4 · Laplace pdfs, $N$ samples (nov22 4c/4d/4e).** Pdfs $\frac12e^{-|x|}$ and $e^{-2|x|}$. Exam: "show the test takes the form $\sum|x_n|\lessgtr\gamma'$ and find $\gamma'$" → steps 1–4.
+**Type 4 · Laplace pdfs, $N$ samples (nov22 4c/4d/4e).** Pdfs $\frac12e^{-|x|}$ and $e^{-2|x|}$. When the exam says "show that the test takes the form $\sum|x_n|\lessgtr\gamma'$ and find $\gamma'$", it wants the algebra of steps 1–4 and the value of $\gamma'$ at the end.
 - Step 1: per sample, $\frac{e^{-2|x_n|}}{\frac12e^{-|x_n|}}=2e^{-|x_n|}$. Multiplying $N$ such factors gives $2^N e^{-\sum_n|x_n|}$.
 - Step 3: $2^Ne^{-\sum|x_n|}\gt\lambda$; $\ln$: $N\ln2-\sum|x_n|\gt\ln\lambda$.
 - Step 4: multiply by $-1$ → flip: $\sum_n|x_n|\lt N\ln2-\ln\lambda=\gamma'$. Decide $\mathcal H_1$ when the sum is smaller than $\gamma'$.
 
-**Other exam phrasings → which step**
-- "derive the log-likelihood ratio test" → steps 1–4 with $\ln$; state the final sum and the inequality.
-- "roughly plot the pdfs and mark the threshold" → draw both curves; the cut is where they cross ($L=1$).
-- "indicate $P_{FA}$ and $P_M$ in the plot" → shade the $\mathcal H_0$ area and the $\mathcal H_1$ area on the wrong side of the cut.
-- "for $P_{FA}=0.1$ calculate the threshold" → invert step 6: get the cut from $P_{FA}$ first.
-- "show the LR can be written as $x\lessgtr\lambda'$" → steps 1–4 only; $\lambda'$ is the cut.
+**Type 5 · symbolic scales and two-sided pdfs** (jun26 4b, jan22 4b/4c, pe21 4b).
+- **Symbolic scales, no numbers.** Do the same steps with the letters in place: for the Rayleigh pair $\frac{x}{\sigma_0^2}e^{-x^2/2\sigma_0^2}$ vs $\frac{x}{\sigma_1^2}e^{-x^2/2\sigma_1^2}$, the $x$'s cancel and the exponents subtract, so $L=\frac{\sigma_0^2}{\sigma_1^2}e^{\frac{x^2}{2}\left(\frac1{\sigma_0^2}-\frac1{\sigma_1^2}\right)}$. Then $L>\eta$ gives, after $\ln$ and rearranging, $x^2>\dfrac{2\ln\left(\eta\,\sigma_1^2/\sigma_0^2\right)}{\frac1{\sigma_0^2}-\frac1{\sigma_1^2}}$, i.e. the cut is $x>\sqrt{\text{that}}$. Keep every letter until the last line.
+- **Two Gaussians with different variances.** Same idea: $\ln$ of the ratio gives a quadratic in $x$; solve it with the quadratic formula of the crib and keep the root on the side the arrow says.
+- **$|y|$ pdfs (the signal sits on the whole line).** If a pdf is written with $|y|$, solve the algebra for $y>0$ as usual, then **mirror** the cut: decide $\mathcal H_1$ for $|y|>y_{th}$ (or $|y|<y_{th}$, whichever the check of step 5 says). The two tails double the probability, as in the trap below.
+- **$\ln$ of anything else** ($\ln4\lambda$, $\ln\frac{\sigma_0^2}{\sigma_1^2}$, $\ln0.9$): split it with the log rules of the crib ($\ln(ab)=\ln a+\ln b$, $\ln(a/b)=\ln a-\ln b$), then use the crib's values or the calculator.
+
+**Other exam phrasings, and what they want**
+- When the exam says "derive the log-likelihood ratio test", do steps 1–4 with $\ln$ and end by writing the final sum (or $x$) and its inequality.
+- When it says "roughly plot the pdfs and mark the threshold" — "likelihoods" here means the two pdfs $p(x\mid\mathcal H_0)$ and $p(x\mid\mathcal H_1)$ — draw both curves and mark the cut where they cross ($L=1$).
+- When it says "indicate $P_{FA}$ and $P_M$ in the plot", shade the $\mathcal H_0$ area that falls on the decide-$\mathcal H_1$ side, and the $\mathcal H_1$ area on the wrong side of the cut.
+- When it says "for $P_{FA}=0.1$ calculate the threshold", invert step 6: find the cut from the $P_{FA}$ area first, then read the decision off it.
+- When it says "show the LR can be written as $x\lessgtr\lambda'$", do steps 1–4 only and stop at the inequality; $\lambda'$ is the cut.
 
 **Traps**
 - $\ln$ never flips the direction; only multiplying or dividing by a negative does.
+- A table of $P(0\le x\le k\sigma)$ (the area between 0 and $k$) equals $0.5-Q(k)$, and $P(x\le k)=1-Q(k)$; this is the "0.5 −" step when the exam gives such a table instead of $Q$.
+- If the question gives no arrow and no "greater than" wording, say your assumption out loud: decide $\mathcal H_1$ where $L$ is bigger (the standard rule), then compute the tails for that side.
 - $P_D\gt P_{FA}$ for any useful test; if you get $P_D\lt P_{FA}$, you have the decision direction backwards (step 5).
 - $P_M=1-P_D$, not $1-P_{FA}$.
 - Symmetric $|x|\gt\gamma$: two tails, so double each area.
@@ -650,12 +680,7 @@ For a density $ce^{-cy}$ ($y\ge0$), integrating gives $P(y>a)=e^{-ca}$ and $P(y<
 - Neyman–Pearson: fix $P_{FA}$, then **maximise** $P_D$ (priors not needed). "Minimise $P_D$" is false.
 - Priors: higher $P_0$ raises $\lambda$, harder to decide $H_1$. Higher $P_1$ lowers $\lambda=P_0/P_1$, easier to decide $H_1$. "Higher $P_1$ raises the threshold" is false.
 
-**Exam phrasing → step.**
-- "when should the sensor accept $H_1$" (priors + densities) → recipe A, steps 1–4.
-- "should the student fail" (posteriors, costs) → recipe B.
-- "value of $y$ where $p_1P_1=p_0P_0$", "find $\gamma''$" → recipe C.
-- "probability of miss and false alarm" for exponentials → recipe D.
-- "which statement is TRUE/FALSE" → multiple-choice rules.
+**How the exam words pick the recipe.** When the question asks "when should the sensor accept $H_1$" and gives priors and densities, use recipe A, steps 1–4. When it asks "should the student fail" and gives posteriors and costs, use recipe B. When it asks for "the value of $y$ where $p_1P_1=p_0P_0$" or "find $\gamma''$", use recipe C. When it asks for "the probability of miss and false alarm" with exponential densities, use recipe D on top of C. When it asks "which statement is TRUE/FALSE", check the multiple-choice rules above.
 
 </div>
 </div>
