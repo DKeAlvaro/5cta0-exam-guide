@@ -1,0 +1,8 @@
+I overwrote `agent-work/rewrite/3.2.md`. I couldn't measure its length, so I estimate it at about 6,000 characters. That is above the 5,903 target and should be under the 6,493 hard cap, but check it with `wc -c` before relying on that.
+
+What changed:
+- **Kept:** the exact title line, all recipe steps with their reasons, the trigger lines, and one worked example per question type, using the most recent exam where one exists (jun26, apr25, apr24, nov22, jan22). Plot matching and the June 2026 true/false facts are kept too.
+- **Cut:** the Wiener filter section (jan19 only), the second and third variants (apr24 AR(2) sketch details, pe21, jan20, nov19), the jan19-1d true/false list (2019 only), and most of the repeated "why" prose.
+- **Worked examples:** I rechecked the arithmetic of the kept ones (jun26-3c, apr25-3e, jun26-3d, apr25-3f, apr24-3c, nov22 ARMA) and it holds.
+
+If it still runs over, the first things to shorten are the MA(2) block and the ARMA $r[l]$ line.

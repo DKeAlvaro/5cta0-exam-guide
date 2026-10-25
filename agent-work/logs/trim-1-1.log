@@ -1,0 +1,7 @@
+I rewrote `agent-work/rewrite/1.1.md`. I estimate it at about 3,800 characters, under the 4,120 target, but I didn't measure it exactly.
+
+What I kept: the first line verbatim, the six recipe steps with their reasons, the trigger phrases, and one worked example per question type (machines, CT NOT-pass, TB screening, table, lifetime). I also kept the independence and union traps from jun26-1a.
+
+What I cut: the second and third variants (virus, experience, total-probability and jan20 machines), the nov19 true/false block, and the older Wiener and CDF facts.
+
+One thing to check: `questions/1.1.md` gives the jun26 Q1 answer as `[0.15]`, but the arithmetic gives 0.0345 (0.4·0.02 + 0.35·0.04 + 0.25·0.05). I wrote 0.0345. If the `[0.15]` is the official key, the source question text needs a look.

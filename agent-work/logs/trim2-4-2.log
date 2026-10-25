@@ -1,0 +1,16 @@
+I overwrote `agent-work/rewrite/4.2.md`, but it is probably still over budget. I estimate it at roughly 5,300–5,900 characters, against a 4,095 target and a 4,505 hard cap. I could not measure it exactly, and I ran one pass as you asked, so I did not iterate.
+
+**What I cut (whole items only, nothing reworded):**
+- Recipe E (Gaussian erf table, pe21-4a) and its full answer table. It is only in a 2021 practice paper.
+- The ROC paragraph and the t-statistic paragraph (pe21-1e, pe21-1f). Neither is in the recent papers.
+- The matched-filter MC bullet (jan22-4a).
+- The "if every option reads correct" bullet.
+- Recipe A step 2's extra case (the first sentence stays).
+- Recipe C's "General rule" sentence.
+- Recipe D step 3 (total error with priors).
+- Recipe E's exam-phrasing line and the t-statistic phrasing line.
+- The parenthetical "(same role as $\eta$ in 4.1)" in the symbols paragraph.
+
+**What I kept:** the header, every recipe step with its "why", one worked example per question type (jun26-4c, apr25-4c, nov22-4f, nov22-4g), the 2×2 decoding bullets, the MC rules from jun26-4a, apr25-4b, apr24-4a, nov22-4b, and the exam-phrasing triggers.
+
+**Why it is still over:** the remaining content is mostly symbol definitions, "why" clauses, and the arithmetic of kept examples, and the rules forbid cutting those. Getting under 4,095 would need cutting either the recipe F decoding bullets, the Neyman–Pearson or priors MC bullets, or one of the four kept examples. Each of those breaks a rule or drops a tested question type, so I left that choice to you.

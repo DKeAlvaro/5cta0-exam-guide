@@ -1,0 +1,15 @@
+I overwrote `agent-work/rewrite/2.4.md`, but it is **over budget**. My estimate is about 4,800 characters, against a 3,537 target and a 3,890 hard cap. I did not count it exactly, and you asked for one pass, so I did not iterate.
+
+What I kept:
+- The `## 2.4 · CRLB` header.
+- All five Recipe A steps, plus the Nov 2019 3b example, the only density-based one.
+- All three Recipe B steps and the Nov 2022 2e example.
+- All six Recipe C steps, which double as its worked example (pe21 2a).
+- All four Recipe D steps and the Jan 2022 2e example.
+- The "which recipe" triggers, the T/F traps and the answer keys for the recent papers.
+
+What I cut or shortened:
+- The long derivation prose and the integration hints.
+- Some restated explanations of the traps.
+
+The Nov 2019 example is the main cost. It only appears in the 2019 paper, so I could drop it and lose the density-based recipe, or keep it and trim the Recipe C text further. Tell me which, and I'll trim to the cap.

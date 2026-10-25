@@ -1,0 +1,11 @@
+I overwrote `agent-work/rewrite/2.1.md`, but I could not measure it, so I can't confirm the size. My estimate is roughly 4,300–4,400 characters, which is under the 4,518 hard cap but probably above the 4,108 target.
+
+What I cut, all as deletions:
+- **Worked examples B, C, D and F.** B (2019 exponential) and D (2019 square root) were the old-only cases. C (apr24) and F (nov22) were the oldest remaining examples, so I dropped them under the "delete the oldest whole example" fallback. The kept examples are A (jun26), E (jan25) and G (apr25). **The scale-in-exponent type (C) and the angle type (F) no longer have an example.** If you want them back, C is the cheaper one to restore.
+- **Unknown-squared rule**, since E covers it.
+- **Variant lines**: q1-23 and pe21, and the hint route in G.
+- **Made-up sanity checks** in A.
+- **Recipe rules and symbols**: the log-rule list, the step-2 derivative rule list, the "(or θ³)" and "if you get θ²=s" clauses, the argmax definition, and the "exam phrasings" sentence.
+- **MC**: the jan19 bullet and the false-option explanations for jan22 and nov22. The nov22 (a) and (b) traps are gone, so the "unbiased" answer is now the only nov22 fact.
+
+Every surviving sentence is copied byte for byte.

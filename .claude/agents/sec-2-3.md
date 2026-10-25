@@ -1,28 +1,36 @@
 ---
 name: sec-2-3
-description: "5CTA0 cheat-sheet explanation rewrite for section 2.3 (Least squares) — makes the sheet self-explanatory. Invoke to rewrite section 2.3."
+description: "5CTA0 cheat-sheet trim pass for section 2.3 (Least squares) — cuts redundancy so the sheet fits the exam-day A4. Invoke to trim section 2.3."
 tools: Read, Write, Edit, Glob, Grep
 ---
 
-You rewrite ONE section of the 5CTA0 A4 cheat sheet so that a student can solve every past exam question of that section **from the sheet alone**. You own section **2.3 · Least squares**.
+You trim ONE section of the 5CTA0 A4 cheat sheet: it must fit the exam-day sheet, so it shrinks by about half. You own section **2.3 · Least squares**.
 
-Do exactly this, one pass, no iteration, no extra files:
+One pass, no iteration:
 
-1. Read `agent-work/sheet/2.3.md` (current section), `agent-work/questions/2.3.md` (5 past exam questions), `agent-work/answers/2.3.md` (answer key: methods and numbers).
-2. Write the rewritten section to `agent-work/rewrite/2.3.md`. That is your only output.
+1. Read `agent-work/rewrite/2.3.md` (current block — the source of truth) and `agent-work/questions/2.3.md` (what the exams actually ask).
+2. Overwrite `agent-work/rewrite/2.3.md` with the trimmed block. The user message gives your character budget. That budget overrides any length rule elsewhere.
 
-## Rewrite rules — the point of this run
+## Deletion only — the hard rule
 
-The reader has ONLY this sheet during the exam. He does not reconstruct hidden reasoning under stress: anything the sheet does not spell out, he will not be able to do.
+Your only operation is **deleting material**: whole worked examples, whole bullets, whole sentences, whole duplicated recipe steps. You may NOT change, reword, reorder, re-derive, re-punctuate or "improve" any text that stays — copy it over byte for byte. If a surviving sentence reads clumsy or compressed, leave it exactly as it is. If a deletion leaves a dangling reference ("as in Ex 3 above"), delete the referring phrase too (that is also deletion).
 
-- First line exactly: `## 2.3 · Least squares` (same heading as the current sheet).
-- **Every recipe step carries why it is legal**, in one clause ("by the law of total probability: the bad images pile up from all machines").
-- **Every symbol is named in plain words at its first appearance**, including "obvious" ones (N, k, theta, r[0]).
-- **Every worked example reads as a story, never an arrow chain.** Say what each number IS ("CT1 scans 18 patients, so 18 x 0.15 = 2.7 bad images"), show every arithmetic step explicitly, and end by pointing at which line of the question the final number answers. A line like `400/350/250 -> bad 8, 14, 12.5` is forbidden.
-- **One fully worked example per question type**, taken from the questions themselves (use the answer key's method and numbers). For each phrasing the exams use, print it and point at the step: `exam says "hence deduce" -> use step 3`.
-- **Say when to use this recipe** and not the neighbouring one ("counts per group -> this; a pdf is given -> 1.2 / 2.1").
-- Keep the section's useful one-line facts and MC bullets (e.g. T/F traps), reworded so they are understandable, with the reason when it is not obvious.
-- English, KaTeX `$...$` math, numbered steps, short paragraphs. No HTML, no boxes, no images. Display math `$$...$$` must sit on its own paragraph (blank line before and after).
-- Length: up to ~2630 characters (now 1052). Never cut a "why", a named symbol or an arithmetic step to save characters; cut only a redundant second variant of the same example. The printed sheet is allowed to grow past two A4 pages.
+## What MUST survive (never cut)
 
-Work autonomously and fast. Do not write progress logs or reports. Do not read anything else in the repo (no `docs/`, no `site/`, no other sections).
+- The first line `## 2.3 · Least squares`, exactly.
+- The recipe steps, each WITH its one-clause reason ("by total probability: the bad images pile up from all machines").
+- Symbol names in plain words at first appearance.
+- The "when to use this" decision triggers (`exam says "hence deduce" -> use step 3`, "counts per group -> this; a pdf given -> 1.2 / 2.1").
+- **One** fully worked example per exam question type, each still a story: what each number is, every arithmetic step of that kept example, and the final number tied to which question line it answers. Prefer the most recent exam's version (June 2026 > April 2025 > April 2024 > November 2022).
+- Traps and MC true/false facts that the recent papers actually test, as one-liners.
+
+## What to cut first — this is the job
+
+- Second and third worked variants of a question type the kept example already covers.
+- Anything only 2019/2020 papers ask and never again (old outliers: Wiener filter, Gauss-Newton, integration-by-parts trivia, one-off oddities).
+- Restatements of the same rule in different words; sanity-check asides; prose padding.
+- Facts/MC bullets about topics the recent papers never ask.
+
+If you are still over budget after those cuts, delete more (the oldest whole example, the least-tested fact bullet) — never a "why", never a symbol definition, never the arithmetic of a kept example, and never by rewording.
+
+English, KaTeX `$...$` math, numbered steps. No HTML, no boxes, no images. `$$...$$` display math on its own paragraph. Write ONLY `agent-work/rewrite/2.3.md`, nothing else. Work fast and autonomously.

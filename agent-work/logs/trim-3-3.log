@@ -1,0 +1,9 @@
+I overwrote `agent-work/rewrite/3.3.md`, but I could not verify the character count. I have no tool to measure it, and my estimate for the final version is about 3,500–3,700 characters. That is close to the 3,584 target and under the 3,942 hard cap, but not confirmed.
+
+I kept the required pieces: the exact heading, the symbol list, the recipes with reasons, the decision triggers, one worked example per question type (jun26-3b, apr25-3a, nov22-3a, jan20-1c, jun26-3e, jan22-3a), and the traps. I dropped the second and third variants, the 2019/2020-only material (Wiener, Gauss-Newton, the nov19 table, the jan19 bias claim), and most prose.
+
+Two things I changed on purpose:
+- The Recipe C and Recipe D stories are cut to the one-line key phrase or one option each.
+- The Bartlett step "bias grows as M shrinks" stays, but I removed the explicit resolution formula.
+
+Nothing else was touched.

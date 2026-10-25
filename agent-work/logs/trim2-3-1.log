@@ -1,0 +1,11 @@
+I overwrote `agent-work/rewrite/3.1.md`, but it is **probably still over the cap**. I estimate about 5,800–6,000 characters against a 3,760 target and a 4,136 hard cap. I didn't measure it, and I'm not doing a second pass.
+
+**What I cut:**
+- The whole Wiener section (7), since the recent papers don't ask it. Its recipe-routing entry is gone too.
+- The "Exam traps" paragraph. The Jun26 trap just repeated section 6, and the Jan22 trap is old.
+- Sanity-check asides: the AR(2) "Quick checks" line, the "Check" lines in the AR(1) and AR(2) stories, and the "Check: P(0)" line in the Jun26 correlogram story.
+- Older examples and facts: the Apr24 plot sentence, the Nov19 parenthetical, the "Other AR(1) keys" line, the Pe21-3c aside, and the "(or FPE/AICc)" alternative.
+
+**What I kept:** every recipe step with its reason, the symbol definitions, the decision triggers, one worked story per question type (Jun26 for correlogram and AR(2), Apr25 for AR(1) and the plot, Jan20 for MA(1)), and the June 2026 model-selection bullets. Surviving text is copied byte for byte.
+
+**Why it's still long:** the remaining content is the minimum the rules allow. Getting under 3,760 would mean deleting a whole question type's only example (AR(1) or MA(1)) or trimming the symbol list, and both go against the rules. If you want it shorter, the choice is yours: drop the Jan20 MA(1) story, or accept a looser cap.

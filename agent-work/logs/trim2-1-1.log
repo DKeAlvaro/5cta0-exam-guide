@@ -1,0 +1,15 @@
+I overwrote `agent-work/rewrite/1.1.md` using deletions only. I have no character counter in this environment, so my estimate is about 4,400 characters. That is under the 4,566 hard cap, but probably above the 4,151 target.
+
+**Cut:**
+- Ex 2 (CT scanners, NOT pass). Ex 1 covers the same machines structure, and the NOT-pass rule stays in recipe step 3.
+- The virus half of Ex 3, and the "pe21" reference in its header.
+- Ex 4 Q2 (Engineering probability). Q1 stays as the table example.
+- Ex 6 (experience) and Ex 7 (nov22/jan20 total probability). Both are older or repeat the step-5 pattern.
+- The Yes/no bullets other than the independence one (jun26-1a). This removes the union, disjoint, Bayes T/F, CDF, Wiener and nov19 facts.
+- The "round to nearest percent" and "NOT pass / fail" exam-phrase lines. Step 3 already covers them.
+- Most of the synonym list under Wording. I kept only the "99 % accurate" trap line.
+- Several sanity-check and restatement sentences in Ex 1 and Ex 5, plus one explanatory bracket in Ex 5.
+
+**Kept:** the title, intro, symbols, all six recipe steps with their reasons, the trigger bullets, and one worked example each for machines (Ex 1), TB screening (Ex 3), table (Ex 4 Q1) and lifetime (Ex 5). The independence fact from jun26-1a is also kept.
+
+If you need the file under 4,151, the next cuts would be the table example (Ex 4) or the Wording line. Each one would remove an exam question type or a tested trap, so I left them in.

@@ -1,0 +1,13 @@
+I wrote `agent-work/rewrite/3.3.md`, but it's still over budget. I estimate about 5,900 characters against a 3,617 target and a 3,978 hard cap. I didn't measure the exact count. Deletion alone can't get there without breaking your rules.
+
+**What I cut:**
+- The "Consistent: BT, Bartlett, Welch…" recap line (a restatement).
+- The power-signal story in Recipe B. The energy story stays as the one worked example for that type.
+- The table line in Recipe B.
+- The jan20-1c story in Recipe E. The nov22-3b story stays because it's more recent.
+- The whole Recipe G (plot matching, jan22-3a). Plot matching isn't in the 2024–2026 papers, so it was the largest cut.
+- Two duplicate traps, and the jan19-1c parenthetical in Recipe D.
+
+Everything that stayed is copied byte for byte.
+
+**Why it's still over:** Recipes A, C, D, F and the estimator list are all recipe steps, decision triggers, or symbol definitions, which you said never to cut. Getting to about 3,600 would mean dropping whole question types (Recipe D or E, say) or the Symbols line. Both break the rules as written. Say which you'd rather give up, or raise the cap, and I'll make the next cut.

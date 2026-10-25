@@ -1,0 +1,13 @@
+I rewrote `agent-work/rewrite/1.4.md`. I estimated its length at about 2,200–2,300 characters but did not measure it, so it may sit slightly over the 2,298 target. Measuring it needs a shell, which I didn't have.
+
+What I kept:
+- The header line, the recipe steps with their reasons, and the self-check.
+- Exam-phrasing triggers, including the June 2026 minimum-phase condition.
+- One worked example per question type: April 2025 for "find the factorisation", January 2024 for the multiple-choice factorisation, and January 2022 for "which statement is true?". Each keeps its arithmetic and a check.
+
+What I cut:
+- The November 2022 question and the April 2024 example, both covered by the kept examples.
+- The long symbol-names list. Symbols are now defined inline (for example, $L(z)$ and $\sigma_i^2$ in the header), but $a$, $b$, $C$, $D$ are not separately defined.
+- The sanity-check asides and the "recipe on the real P" line in Example C.
+
+One thing to check: the January 2022 printed key marks (c), but my test at $z=1$ shows the printed factorisation is wrong, and the real $P$ gives $\sigma_i^2 = 2$ with a $-\tfrac34$ pole. I flagged that the key conflicts with the question but did not resolve it.

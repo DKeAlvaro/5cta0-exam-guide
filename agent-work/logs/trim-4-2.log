@@ -1,0 +1,6 @@
+I overwrote `agent-work/rewrite/4.2.md`. I couldn't measure the exact character count from here, so my estimate is about 4,050 to 4,100 characters. That's just over the 4,055 target but under the 4,461 hard cap. If you need it strictly under 4,055, cut the phrasing line or the "This is the answer." sentence.
+
+What changed:
+- **Kept:** the heading, the recipes A–F, one worked example per question type (jun26-4c, apr25-4c, nov22-4f/4g, pe21-4a), the 2×2 table decoding, and the MC/ROC/t-stat traps.
+- **Cut:** the full erf table for pe21-4a, the total-error $P_e$ step in recipe D, the extra variants, and the longer prose and restatements.
+- **Still open:** the file keeps the "equal error costs minimise $P_e$" bullet and the "if all options are correct, answer 'none is false'" line. The apr25-4b question has a cost-10 option that is marked as the false one, which conflicts with the first bullet. Check that key before you rely on either line.

@@ -1,0 +1,8 @@
+I overwrote `agent-work/rewrite/2.4.md`, but it is still well over budget. My estimate is about 6,000 characters against the 3,565 target and the 3,921 hard cap. I didn't measure it exactly.
+
+I could only make deletions, and the rules left little room to cut:
+
+- **Cut:** the Jan 2022 "decreases linearly" bullet, the Nov 2022 / Apr 2024 / Jan 2022 answer-key paragraph, the "(check: …)" aside in Recipe C, the "key writes $\hat\theta^2/4N$" sentence, the "(the exam hint)" aside, and the doubt sentence about (c) in the Q1 2023 example.
+- **Kept, because the rules forbid cutting them:** the Words block (every symbol is used), every recipe step with its "why", and one worked example per question type (Nov 2019 for the CRLB-for-MLE type, Nov 2022 for Fisher information, Jan 2022 for the derivability check, Q1 2023 for T/F). Recipe C is the only coverage for the MVUE-to-pdf type (2021 practice), so it stays too.
+
+Reaching 3,565 characters would mean breaking one of those rules. The most likely next cuts are the Words block (about 750 characters) or the Recipe C steps. Tell me which rule to relax and I'll make that cut.

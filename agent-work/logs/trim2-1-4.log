@@ -1,0 +1,16 @@
+I overwrote `agent-work/rewrite/1.4.md`, but it is probably still over the hard cap. I estimate roughly 2,600 characters against a 2,546 limit. I did not measure it exactly.
+
+**What I cut (whole sentences or bullets only):**
+- The "Goal:" sentence in the intro.
+- The "Roots: …" sentence in the tool paragraph.
+- The "Self-check" paragraph.
+- The "if $M=0$" parenthetical in step 4 was kept, since it is within a sentence I did not delete.
+- In Example A: the "Check:" sentence and "The two requested items…" sentence.
+- Example B (January 2024 MC) in full, as the second-oldest example after C.
+- Example C (January 2022, "which statement is true?") in full, as the oldest example. I also removed the exam-phrasing bullet that pointed to it, so no dangling reference is left.
+
+**What survived:** the header, the names, the tool and its why, all four recipe steps with their reasons, the three exam-phrasing triggers that still have a worked example or a fact (the "which of the following" trigger, the "find the factorisation" trigger, and the June 2026 minimum-phase trigger), and Example A byte for byte.
+
+**Why it is still over:** the must-keep content (names, tool, four steps with reasons, the June 2026 trap, and one worked example) alone comes to about the cap. Getting under 2,546 would mean dropping Example A too, which would leave no worked example. I did not do that, because it breaks the one-example-per-question-type rule. If you want it under the cap, the next move is to drop Example A (April 2024) and accept that the "find the factorisation" type has no worked example. Tell me and I'll do that in a second pass.
+
+I did not commit or push, since you only asked for the file to be written.

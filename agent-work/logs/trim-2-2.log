@@ -1,0 +1,16 @@
+I overwrote `agent-work/rewrite/2.2.md`, but I couldn't confirm it's under the 5,278-character budget. I have no character-count tool here, and my rough estimate is about 5,000–5,500 characters, so it may still be slightly over. Someone should run `wc -c` on it before it goes into the exam sheet.
+
+What I kept:
+- The title line, exactly as required.
+- The recipe steps, each with its one-clause reason.
+- The "which estimator" and "pick the recipe" triggers.
+- One full worked example per question type, with all arithmetic: jun26-2c (Beta), apr24-2d (sigmoid), jan22-2f (±1 binary), and the mixture case from q3-23-2f.
+- A one-line summary of the jun26-2d Gamma case, its MAP/MLE comparison, and the nov22-2f exponential case.
+- The MC true/false facts from the recent papers, and the answer letters.
+
+What I cut:
+- The 2019 flat-prior and cubic-equation questions.
+- Most of the duplicate variants.
+- Most of the explanatory asides.
+
+I did not commit or push anything, since you asked for that file only.

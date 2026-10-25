@@ -53,7 +53,7 @@ def chrome_path() -> str | None:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--scale", type=float, default=0.9)
+    ap.add_argument("--scale", type=float, default=0.86)
     ap.add_argument("--no-build", action="store_true")
     ap.add_argument("--open", action="store_true")
     args = ap.parse_args()
@@ -79,7 +79,7 @@ def main() -> int:
         page.wait_for_timeout(1000)
         page.emulate_media(media="print")
         page.pdf(path=str(OUT), format="A4", print_background=True, scale=args.scale,
-                 margin={"top": "3mm", "bottom": "3mm", "left": "3mm", "right": "3mm"})
+                 margin={"top": "1mm", "bottom": "1mm", "left": "3mm", "right": "3mm"})
         browser.close()
 
     try:

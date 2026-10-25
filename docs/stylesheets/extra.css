@@ -208,7 +208,14 @@
 @media screen and (max-width: 44.9375em) { .cheat-cols { column-count: 1; } }
 
 @media print {
-  @page { size: A4; margin: 3mm; }
+  @page { size: A4; margin: 1mm 3mm; }
+  /* no card, no frame, no page background: content edge to edge */
+  html, body { background: none !important; }
+  .md-container, .md-main, .md-main__inner, .md-content, .md-content__inner,
+  .md-typeset, .md-typeset .cheat, .cheat-cols {
+    background: none !important; box-shadow: none !important; border: 0 !important;
+    padding: 0 !important; margin-left: 0 !important; margin-right: 0 !important;
+  }
   .md-header, .md-tabs, .md-sidebar, .md-footer, .md-source-file, .md-content__button, .noprint { display: none !important; }
   /* study UI has no business on paper */
   #progress-bar, .kp-btn, .layout-btn, .edge-hint, #ask-ball, #ask-tail, #ask-toggle, #ask-panel, #ask-backdrop { display: none !important; }

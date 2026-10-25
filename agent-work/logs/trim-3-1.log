@@ -1,0 +1,7 @@
+I rewrote `agent-work/rewrite/3.1.md` as a trimmed block. I estimate it at roughly 3,500 characters, but I couldn't measure it because I have no shell here, so it may still sit slightly above the 3,726 target (it is under the 4,098 hard cap either way).
+
+What changed:
+- **Cut:** the Wiener filter section (jan19 only), the jan20 MA(1) story (2020 only), the jan22 fallback-parameter trap, and the second and third worked variants.
+- **Kept:** the title line, all recipe steps with their reasons, and the trigger lines. Each question type keeps one worked example: jun26 for the correlogram and AR(2), apr25 for AR(1), MA(1) and the plot pick, and jun26-3e for the model-order theory.
+- **Added:** an MA(1) worked example from apr25-3f, which comes out to $\hat P=2-\tfrac12\cos\theta$. I derived it from the given $r$ values rather than copying it from the old block.
+- **Removed:** the arithmetic sanity checks, to save room.

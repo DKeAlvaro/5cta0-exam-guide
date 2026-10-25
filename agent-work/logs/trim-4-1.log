@@ -1,0 +1,20 @@
+I overwrote `agent-work/rewrite/4.1.md`, but I haven't confirmed it meets the budget, and my estimate says it probably doesn't.
+
+I have no shell here, so I couldn't run `wc -c`. By my rough per-section estimate the file is about 7,000 to 7,600 characters. That's over the 6,811 hard cap and above the 6,192 target. I didn't do a second pass because you asked for one, so the file is still over.
+
+What I kept:
+- The title line, exactly.
+- All six recipe steps, each with its reason.
+- Symbols, the exam arrows and the traps, compressed.
+- One worked example per question type, using the most recent version where one exists:
+  - Type 1: apr25 power-law
+  - Type 2: apr24 Gaussian vs exponential
+  - Type 3: q1-23 Rayleigh, with the jun26 general cut
+  - Type 4: nov22 Laplace
+  - Type 5: jan20 exponential
+  - Type 6: nov19 Gaussian variances
+  - Type 7: jan19 Gaussian with mean and std
+
+What I cut: the sketch instructions, the ROC detail, the jan22 and pe21 variant arithmetic, and most of the "other phrasings" list.
+
+If you want it under the cap, the next step is a second, tighter pass. The easiest cuts are the Type 5 inverse and ROC lines, the Type 2 jan22 variant line, and the Type 3 separation line.

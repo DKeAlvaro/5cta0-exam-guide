@@ -1,0 +1,14 @@
+I overwrote `agent-work/rewrite/2.3.md`, but I couldn't confirm it fits the cap. My estimate is about 2,700–2,900 characters, which is probably over the 2,610 hard cap and above the 2,373 target. I didn't do a second pass because you asked for one, but the file likely needs another trim.
+
+What I kept:
+- The exact first line `## 2.3 · Least squares` and the symbol definitions.
+- Recipes A–D, each with its steps and a one-clause reason, plus the decision triggers.
+- One worked example per question type: apr25-2b (line fit, full arithmetic), q3-23-2d (closed form), jan20-4b (amplitude). Recipe D has no worked example, since jan20-4c/d asks only for the cost and the iteration formula.
+- The MC traps from q3r-23-2c, jan22-2c and the Gauss-Newton fact.
+
+What I cut:
+- The extra worked variants.
+- The sanity-check asides and most of the prose.
+- The jan20-4a "what kind of estimator" bullet.
+
+Next step if you want it tighter: shorten the Recipe D explanations and the trap lines. Those are the largest remaining blocks.

@@ -1,0 +1,14 @@
+I overwrote `agent-work/rewrite/2.5.md`, but it is **over budget**. My rough estimate is about 3,500–4,000 characters against a 2,544 target and a 2,798 hard cap. I stopped after one pass as you asked, so I didn't get it under the cap.
+
+What I did, all by deletion, with surviving text copied unchanged:
+
+- **Cut:** the invariance example (A3) and its fact, the "Related" linear-decrease line, the Recipe B sanity check at $x=1$, the $x=0.25$ MAP aside, the "same for q1-23" pointer, the "$N/\sum x_i$" key, the consistency fact, the "asymptotically normal, not uniform" fact, the "MAP needs a prior" repeat, and the dummy-variable parenthetical.
+- **Kept:** the symbol line, all recipe steps with their reasons, the trigger phrases, one worked example each for CRLB (A1), MMSE vs MAP (A2), and the MMSE/MAP formula (Recipe B), plus the true/false facts.
+
+The symbol line and the facts that the recent papers test already fill most of the budget. Every remaining fact is tested, so I couldn't cut further without deleting a "why", a symbol definition, or a kept example's arithmetic. Getting under 2,798 would need one of:
+
+1. Drop Example A1 (CRLB, from apr24-2a). Recipe A's steps still cover CRLB, but the CRLB type loses its worked example.
+2. Drop Recipe B step 4's definite-integral explanation. This breaks the "solve the formula from b1" trigger, so I'd rather not.
+3. Accept a looser cap.
+
+Tell me which you prefer and I'll make that one more deletion pass.

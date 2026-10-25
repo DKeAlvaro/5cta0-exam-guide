@@ -1,0 +1,19 @@
+I did not get 22.3 under budget. The file is now roughly 4,500 characters against a 2,396 target and a 2,635 hard cap. I only deleted what the deletion-only rule allows, and the rest is protected by the must-survive list.
+
+What I cut:
+- The sentence "Every sum $\sum$ runs over all data samples."
+- The fragment "Three points." in the Recipe A worked example.
+- The formula sentence "Linear model $x=H\theta+w$: $\hat\theta=(H^TH)^{-1}H^Tx$." Its trailing trap sentence survives as a bullet, unchanged.
+- The last sentence of the orthogonality trap: "$\hat\theta$ itself is not perpendicular to them."
+- The whole "What kind of estimator?" bullet for jan20-4a, which only the 2020 paper asks.
+
+What I could not cut without breaking a rule:
+- **Recipes B and C each have their own worked example.** Each example is the only one for its question type (q3-23-2d and jan20-4b), so each one stays.
+- **Recipe D's steps** are the full procedure, each with its "why", so they stay.
+- **The Recipe A worked example** is the most recent exam (apr25-2b), and every arithmetic line is kept.
+
+Reaching the cap would mean removing a recipe, a worked example, or a "why". The "Symbols" line and the Recipe D steps are protected too.
+
+Mistake I fixed: my first write added a bullet I composed myself, which broke the byte-for-byte rule. I replaced it with the original surviving sentence.
+
+To hit the budget, the decision is yours. Either raise the cap, or accept dropping one of the protected items. If you accept it, the least damaging option is Recipe C's worked example (jan20-4b), which is from 2020.

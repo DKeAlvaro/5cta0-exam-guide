@@ -1,0 +1,17 @@
+I wrote `agent-work/rewrite/3.2.md`, but it is over the budget. I estimate about 8,000 characters against a 5,952 target and a 6,547 hard cap. I have no shell tool, so I could not measure the exact count.
+
+The file keeps the header, the symbols, the decision triggers, the recipe steps with their reasons, and one worked example for each question type that the recent papers ask. Only deletions were made, and surviving text is byte-for-byte.
+
+**Cut:**
+- Section G (Wiener filter, jan19-4) and its trigger in "Which recipe?", since only the 2019 paper asks it.
+- The jan19-1d true/false bullets, which only the 2019 paper asks.
+- Extra worked variants: nov19-2a, nov19-2b, pe21-3b, jan20-3b, and the apr24 plot bullet.
+- The jan22-3b and nov22 worked examples, as the oldest examples.
+
+**Why it's still over:** the recipes for MA(2), ARMA(1,1), plot matching, and the theory bullets, plus the kept examples, come to about 8,000 characters on their own. Getting under 6,547 means dropping must-survive content. If you want the cap enforced, the cheapest cuts are:
+1. The MA(2) recipe (~450 chars). Only the 2022 paper asks it, and its example is already gone.
+2. The ARMA(1,1) recipe (~550 chars). Only the November 2022 paper asks it.
+3. The plot-matching section F (~450 chars). This drops the 3g question type.
+4. The theory section H (~550 chars). This drops the residual and AIC facts that the June 2026 question 3e asks.
+
+Tell me which of these to drop and I'll do a second pass.

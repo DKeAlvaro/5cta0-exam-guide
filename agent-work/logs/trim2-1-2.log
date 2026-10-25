@@ -1,0 +1,13 @@
+I overwrote `agent-work/rewrite/1.2.md` with the trimmed block. I did not measure the final length. My estimate is about 2,700 characters, under the 2,837 target, but a `wc -c` check would confirm it.
+
+What I kept:
+- The header line, the "Use this" triggers, the region-first instruction, and all four recipe steps with their reasons.
+- One worked example per type: `find c` (apr25-1c), marginal plus independence (jun26-1c), and conditional with domain (apr24-1c). Each keeps its arithmetic and its answer line.
+
+What I cut, all as whole-block deletions:
+- The integrals helper line.
+- The nov22 table-marginal example. The table case survives as the recipe sentence in step 2.
+- The jun24 normalisation example, which is covered by apr25.
+- The discrete/continuous, expected-value, binomial, Gaussian-contour and random-process bullets. These are not PDF-recipe material. The expected-value and discrete/continuous bullets are the ones most likely to matter if the budget ever loosens.
+- Two sanity-check asides in the apr24 example.
+- Two short sentences in the apr25 and jun26 examples: "This is the answer to 'find c'." and "Write this product line as the justification."
