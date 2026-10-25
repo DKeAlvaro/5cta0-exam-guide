@@ -29,6 +29,22 @@ $$
 
 $C_{ij}$ = cost of **deciding $\mathcal H_i$ when $\mathcal H_j$ is true**. So $C_{10}$ = cost of a false alarm, $C_{01}$ = cost of a miss, $C_{00}=C_{11}=0$ almost always (being right costs nothing).
 
+!!! idea "Why $\lambda$ appears twice: it is the bar, not part of the ratio"
+    The test is a sandwich of **four layers**, each built from something different:
+
+    | layer | symbol | made of | note |
+    |---|---|---|---|
+    | 1 | $p(x\mid\mathcal H_1)$, $p(x\mid\mathcal H_0)$ | the **model** | the two curve heights |
+    | 2 | $L(x)=\dfrac{p(x\mid\mathcal H_1)}{p(x\mid\mathcal H_0)}$ | layer 1 only | "how many times more likely under $\mathcal H_1$". **Priors and costs are not in here.** |
+    | 3 | $\lambda$ (the exam writes $\eta$) | priors + costs | $\lambda=\dfrac{(C_{10}-C_{00})P_0}{(C_{01}-C_{11})P_1}$ — the **bar** |
+    | 4 | $\gamma$ | layers 2 + 3 | the cut on $x$: solve $L(x)>\lambda$ for $x$ |
+
+    So there is nothing to "put inside" the LRT: the LRT **is** the sentence "compare layer 2 with layer 3". Bayes only answers *where the bar's number comes from* (priors × costs); Neyman–Pearson answers it differently (pick the bar so $P_{FA}$ is what you tolerate). Either way the ratio itself never changes.
+
+    "Substituting $\lambda$" then just means: put the number in and solve for $x$, which turns "ratio $>9$" into "$x>\gamma(\lambda)$" — layer 4.
+
+    One more trap: the $\lambda(\theta)=\frac{1}{1+e^{-\theta}}$ of [2.1](e2-mle.md) and [2.2](e2-map.md) is a **different lambda** — a model parameter there, unrelated to the detection threshold.
+
 | Special case | $\lambda$ | what it does |
 |---|---|---|
 | right costs 0, wrong costs 1 ("0/1 costs") | $\dfrac{P_0}{P_1}$ | minimises the total probability of error $P_e$ |

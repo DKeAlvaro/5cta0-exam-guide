@@ -17,12 +17,27 @@ Then they ask some of: **(a)** build the likelihood ratio test and simplify it t
 
 You measured one $x$. Ask each story: *"how likely was this $x$ under you?"* That is the height of its PDF at $x$. If the $\mathcal H_1$ curve is much higher than the $\mathcal H_0$ curve at your $x$, say $\mathcal H_1$.
 
-So the test is a **ratio of heights** compared with a number $\lambda$ (also called $\eta$ or $\gamma$, it is just "how convinced do I need to be"):
+So the test is a **ratio of heights** compared with a number $\lambda$ — the **bar** ("how convinced do I need to be"). The exam gives this same bar different clothes: $\eta$ (June 2026), $\gamma$ (Nov 2022), or it just hands it to you ($\lambda=0.2$):
 
 $$
 L(x)=\frac{p(x\mid\mathcal H_1)}{p(x\mid\mathcal H_0)}\ \underset{\mathcal H_0}{\overset{\mathcal H_1}{\gtrless}}\ \lambda
 \qquad\text{(read: bigger than }\lambda\text{ → say }\mathcal H_1\text{, smaller → say }\mathcal H_0).
 $$
+
+<div class="key" markdown>
+
+**Who is who** (the letters the exam mixes up):
+
+| symbol | lives on | what it is |
+|---|---|---|
+| $p(x\mid\mathcal H_1),\ p(x\mid\mathcal H_0)$ | the two curves | the PDF heights |
+| $L(x)$ | — | the **ratio** of the two heights (only the PDFs) |
+| $\lambda$ (= exam's $\eta$) | the ratio | the **bar** the ratio must beat |
+| $\gamma$ | the $x$ axis | the **cut** you get when you solve $L(x)>\lambda$ for $x$ |
+
+Rule of thumb: **the number they give you is the bar; the number they ask you to find is the cut.**
+
+</div>
 
 After a bit of algebra this always becomes a cut on the $x$ axis: a **threshold** $\gamma$. Two mistakes are possible, and the threshold trades one for the other:
 
