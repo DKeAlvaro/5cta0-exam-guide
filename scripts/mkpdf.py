@@ -89,6 +89,21 @@ def main() -> int:
     except Exception:
         pass
 
+    # Strip identifying metadata (Chrome writes the page title = "A4 cheat sheet - 5CTA0 ...")
+    try:
+        from pypdf import PdfReader, PdfWriter
+        reader = PdfReader(str(OUT))
+        writer = PdfWriter()
+        for page in reader.pages:
+            writer.add_page(page)
+        tmp = OUT.with_suffix(".tmp.pdf")
+        with open(tmp, "wb") as fh:
+            writer.write(fh)
+        os.replace(tmp, OUT)
+        print("metadata cleared (no title/author)")
+    except Exception as exc:
+        print("metadata strip skipped:", exc)
+
     # Also drop a copy into docs/ so the site serves it at .../5cta0-exam-guide/cheatsheet.pdf
     docs_copy = ROOT / "docs" / "cheatsheet.pdf"
     try:
