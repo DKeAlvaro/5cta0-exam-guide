@@ -31,9 +31,11 @@ your own notes, both sides, plus a calculator. See the [A4 sheet](cheatsheet.md)
 | **Friday** | [4.1 Likelihood ratio test](e4-lrt.md) · [4.2 Priors, costs, theory](e4-bayes.md) · [3.1 Correlogram](e3-corr.md) · [3.2 AR and MA](e3-arma.md) | ~2 h |
 | **Saturday** | [2.1 MLE](e2-mle.md) · [2.2 MAP](e2-map.md) · [2.3 LS line](e2-ls.md) · [2.4 Theory](e2-facts.md) · [3.3 Periodogram, Welch](e3-facts.md) | ~2 h |
 | **Sunday** | [1.1 Bayes](e1-bayes.md) · [1.2 Joint PDFs](e1-joint.md) · [1.3 Stationary, ergodic](e1-wss.md) · [1.4 Factorisation](e1-factor.md), then a **mock exam**: [April 2025](exams.md#april-2025-final-exam-q3-13-04-2025), 3 h, on paper | ~1.5 h + 3 h |
-| **Monday morning** | redo every *Test yourself* card set, read every *Traps* box, finish the A4 | ~1 h |
+| **Monday morning** | redo every *Test yourself* card set, read every *Traps* box, finish the A4, skim the [Battle kit](battle.md) | ~1 h |
 
 **New: the [podcast](podcast.md).** One episode per block (plus a true/false quiz), with the maths on screen and questions you answer during countdowns. Watch the episode of a block first, then do its lessons.
+
+**New: the [Battle kit](battle.md).** Every exam question (2019–2026) with the **box of the A4 sheet** to open, the steps with that exam's numbers, and the answer. That is the thing to use while you practise.
 
 The order is by points per hour: Part 4 and Part 3 are the most mechanical, Part 1 is worth the least.
 

@@ -63,6 +63,7 @@ nav:
           - 4.1 Likelihood ratio test: e4-lrt.md
           - 4.2 Priors, costs, theory: e4-bayes.md
       - Mock exams with answers: exams.md
+      - Battle kit · every question + its box: battle.md
       - A4 cheat sheet: cheatsheet.md
   - "Old · Long guide (deep dive)":
       - The exam, decoded: patterns.md
