@@ -6,7 +6,7 @@ hide:
 
 <h1 class="noprint">A4 cheat sheet</h1>
 
-<p class="noprint">You may bring <b>one A4, both sides, own notes</b>. This sheet fills both sides: print <code>cheatsheet.pdf</code> at 100 %, or Ctrl/Cmd + P → A4, margins minimal, untick "headers and footers", scale 83 %.</p>
+<p class="noprint">You may bring <b>one A4, both sides, own notes</b>. This sheet fills both sides: print <a href="cheatsheet.pdf"><code>cheatsheet.pdf</code></a> at 100 %, or Ctrl/Cmd + P → A4, margins minimal, untick "headers and footers", scale 83 %.</p>
 <div class="cheat" markdown>
 <div class="cheat-cols" markdown>
 

@@ -89,7 +89,14 @@ def main() -> int:
     except Exception:
         pass
 
-    print("saved:", OUT)
+    # Also drop a copy into docs/ so the site serves it at .../5cta0-exam-guide/cheatsheet.pdf
+    docs_copy = ROOT / "docs" / "cheatsheet.pdf"
+    try:
+        import shutil
+        shutil.copy2(OUT, docs_copy)
+        print("saved:", OUT, "and", docs_copy)
+    except Exception:
+        print("saved:", OUT)
     if args.open:
         os.startfile(str(OUT))
     return 0
