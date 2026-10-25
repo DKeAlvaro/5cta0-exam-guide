@@ -78,7 +78,7 @@ ARMA(1,1) $x=i+bi[n-1]-ax[n-1]$: $r_0=\sigma^2(1+b(b-a))-ar_1$, $r_1=\sigma^2b-a
 </div>
 
 <div markdown>
-**Chain.** Correlogram $r_0+2\sum r_k\cos k\theta$ (may go <0).
+**Chain.** **Correlogram** (from the given $r[k]$): $\hat P=r[0]+2r[1]\cos\theta+2r[2]\cos2\theta+\dots$ — one term per given lag, **$r[0]$ NOT doubled** (may go <0). Ends for picking the plot: $P(0)=r_0+2r_1+2r_2$, $P(\pi)=r_0-2r_1+2r_2$.
 **YW:** Toeplitz$[r]\,[1,a_1..a_p]^T=[\sigma^2,0..0]^T$. AR(1): $a_1=-r_1/r_0$, $\sigma^2=r_0+a_1r_1$. AR(2): $r_0a_1+r_1a_2=-r_1$, $r_1a_1+r_0a_2=-r_2$, $\sigma^2=r_0+a_1r_1+a_2r_2$.
 **MA(1):** $r_1b^2-r_0b+r_1=0$, keep $|b|<1$, $\sigma^2=r_1/b$, **PSD $=r_0+2r_1\cos\theta$**.
 **Pick plot:** evaluate at θ = 0 and π; AR/MA never < 0.
