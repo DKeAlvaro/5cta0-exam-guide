@@ -59,26 +59,58 @@ $C_{ij}$ = cost of **deciding $\mathcal H_i$ when $\mathcal H_j$ is true**. So $
 
 <div class="stepper" markdown>
 
-**Step 1 · $\lambda$.** Equal costs (0/1), so the Bayes threshold is the ratio of the priors: $\lambda=\dfrac{P_0}{P_1}=\dfrac{0.9}{0.1}=9$. This is the $\eta$ of 4b: decide $H_1$ when the ratio of the two PDFs is bigger than 9.
+*(4b builds the test, 4c adds the prior. Everything is here; you never need to go back.)*
+
+**Step 1 · What the two sentences give us.** "$P(H_0)=0.9$, $P(H_1)=0.1$" = **priors**: before looking at any measurement, the device is present only 10 % of the time. "Equal costs for false alarms and miss-detections" = the **0/1 costs** of the recipe: $C_{10}=C_{01}=1$ (each mistake hurts equally) and $C_{00}=C_{11}=0$ (being right is free).
 
 ***
 
-**Step 2 · Reuse the LRT of 4b.** The ratio of the two Rayleigh PDFs (the $x$ in front cancels), logged and solved for $x$, gives "decide $H_1$ if $x>\gamma$" with
+**Step 2 · The threshold number.** The general rule (recipe step 1) says: decide $H_1$ when
 
-$$\gamma=\sqrt{\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\Big(\eta\frac{\sigma_1^2}{\sigma_0^2}\Big)}$$
+$$\frac{p(x\mid H_1)}{p(x\mid H_0)}>\lambda=\frac{(C_{10}-C_{00})\,P_0}{(C_{01}-C_{11})\,P_1}.$$
 
-(full derivation in [4.1 Your turn](e4-lrt.md#your-turn)). Put $\eta=9$:
+Fill in the numbers: $\lambda=\dfrac{(1-0)\cdot0.9}{(1-0)\cdot0.1}=\dfrac{0.9}{0.1}=9$. (The exam calls this number $\eta$ in 4b; the recipe calls it $\lambda$: same thing.)
 
-$$x>\sqrt{\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\Big(\frac{9\sigma_1^2}{\sigma_0^2}\Big)}.$$
+In words: the measurement must be **9 times more likely** under "device" than under "no device" before the sensor says "device" — because devices are rare, one has to be convincing.
 
 ***
 
-**Step 3 · Numbers, to see the effect.** Take $\sigma_0=1$, $\sigma_1=2$: the factor in front is $\frac{2\cdot1\cdot4}{4-1}=\frac83=2.67$.
+**Step 3 · The ratio of the two Rayleigh PDFs.** Each PDF is $p(x\mid\sigma)=\dfrac{x}{\sigma^2}\,e^{-x^2/(2\sigma^2)}$, so
 
-- With $\eta=1$ (no prior): $\gamma=\sqrt{2.67\ln 4}=\sqrt{2.67\cdot1.386}=\sqrt{3.70}=1.92$.
-- With $\eta=9$ (the 10 % prior): $\gamma=\sqrt{2.67\ln 36}=\sqrt{2.67\cdot3.584}=\sqrt{9.56}=3.09$.
+$$\frac{p(x\mid H_1)}{p(x\mid H_0)}=\frac{\dfrac{x}{\sigma_1^2}e^{-x^2/(2\sigma_1^2)}}{\dfrac{x}{\sigma_0^2}e^{-x^2/(2\sigma_0^2)}}=\frac{\sigma_0^2}{\sigma_1^2}\;e^{-\frac{x^2}{2\sigma_1^2}+\frac{x^2}{2\sigma_0^2}}$$
 
-Compared with $\eta=1$ the threshold is **higher**: devices are rare, so we need a bigger envelope before we believe one is there. That is exactly what the prior does — it moves the line, not the curves.
+The $x$ on top cancels (both PDFs have it), the $\frac{1}{\sigma^2}$ flips into $\frac{\sigma_0^2}{\sigma_1^2}$, and dividing by $e^{u}$ is multiplying by $e^{-u}$, which is why the exponents subtract.
+
+***
+
+**Step 4 · Log, then isolate $x$.** Take $\ln$ of both sides of "ratio $>\lambda$" (the $\ln$ keeps the order because it is increasing):
+
+$$\ln\frac{\sigma_0^2}{\sigma_1^2}+\frac{x^2}{2}\left(\frac{1}{\sigma_0^2}-\frac{1}{\sigma_1^2}\right)>\ln\lambda$$
+
+$$\frac{x^2}{2}\underbrace{\left(\frac{1}{\sigma_0^2}-\frac{1}{\sigma_1^2}\right)}_{\text{positive, because }\sigma_1>\sigma_0}>\ln\lambda-\ln\frac{\sigma_0^2}{\sigma_1^2}=\ln\!\Big(\lambda\frac{\sigma_1^2}{\sigma_0^2}\Big)$$
+
+(the last step uses $\ln a-\ln b=\ln\frac ab$). Multiply by 2 and divide by the bracket, $\frac{1}{\sigma_0^2}-\frac{1}{\sigma_1^2}=\frac{\sigma_1^2-\sigma_0^2}{\sigma_0^2\sigma_1^2}$:
+
+$$x^2>\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\Big(\lambda\frac{\sigma_1^2}{\sigma_0^2}\Big)\qquad\Longrightarrow\qquad \text{decide } H_1 \text{ if } x>\gamma=\sqrt{\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\Big(\lambda\frac{\sigma_1^2}{\sigma_0^2}\Big)}.$$
+
+No "flip": the bracket is positive ($\sigma_1>\sigma_0$), and the ratio grows with $x$, so big envelopes mean $H_1$.
+
+***
+
+**Step 5 · Put $\lambda=9$.** The answer to "when should the sensor accept $H_1$?":
+
+$$x>\gamma=\sqrt{\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\Big(\frac{9\,\sigma_1^2}{\sigma_0^2}\Big)}.$$
+
+***
+
+**Step 6 · Numbers, to see the effect.** Take $\sigma_0=1$, $\sigma_1=2$ (any pair with $\sigma_1>\sigma_0$ shows the same effect). The factor in front: $\dfrac{2\cdot1^2\cdot2^2}{2^2-1^2}=\dfrac{2\cdot4}{3}=\dfrac83=2.67$.
+
+- $\lambda=1$ (ignore the prior): $\ln\!\big(1\cdot\frac41\big)=\ln4=1.386$; $\ 2.67\cdot1.386=3.70$; $\ \gamma=\sqrt{3.70}=1.92$.
+- $\lambda=9$ (the 10 % prior): $\ln\!\big(9\cdot\frac41\big)=\ln36=3.584$ (because $\ln36=\ln4+\ln9=1.386+2.197$); $\ 2.67\cdot3.584=9.56$; $\ \gamma=\sqrt{9.56}=3.09$.
+
+***
+
+**Step 7 · Read the result.** With the prior the threshold **rose** from 1.92 to 3.09 mV: devices are rare, so the envelope must be bigger before the sensor believes one is there. That is all the prior does — it moves the line, not the curves.
 
 </div>
 
@@ -87,15 +119,45 @@ Compared with $\eta=1$ the threshold is **higher**: devices are rare, so we need
 
 <div class="stepper" markdown>
 
-**Step 1 · Which form?** They give posteriors, so use recipe step 3: decide $\mathcal H_1$ if $\dfrac{P(\mathcal H_1\mid x)}{P(\mathcal H_0\mid x)}>\dfrac{C_{10}}{C_{01}}$.
+**Step 0 · Read the cost notation.** $C_{i,j}$ = cost of **deciding $\mathcal H_i$ when $\mathcal H_j$ is true**. So:
+
+- $C_{1,0}$ = decide "genAI" while it was really a student = a **false alarm** = wrongly failing a student.
+- $C_{0,1}$ = decide "student" while it was really genAI = a **miss** = letting genAI slip through.
+- $C_{1,1}=C_{0,0}=0$: being right costs nothing.
+
+And "the student fails if the agent accepts $\mathcal H_1$": **decide $\mathcal H_1$ = fail**.
 
 ***
 
-**Step 2 · Numbers.** Left side: the posterior of $\mathcal H_0$ is 5 times smaller, so the ratio is $5$. Right side: $\dfrac{C_{10}}{100\,C_{10}}=0.01$.
+**Step 1 · What the cost ratio tells us.** $C_{0,1}=100\,C_{1,0}$: letting genAI through is **100× worse** than wrongly accusing a student. So the exam tunes the detector to shout "genAI" easily — expect a very low bar.
 
 ***
 
-**Step 3 · Decide.** $5>0.01$, so accept $\mathcal H_1$: **yes, the student fails.**
+**Step 2 · Which form of the rule?** They hand us the **posteriors** $P(\mathcal H_0\mid x)$ and $P(\mathcal H_1\mid x)$: what the agent believes *after* reading the assignment. The priors are already baked inside them, so use recipe step 3:
+
+$$\text{decide } \mathcal H_1 \ \text{ if }\ \frac{P(\mathcal H_1\mid x)}{P(\mathcal H_0\mid x)}>\frac{C_{10}-C_{00}}{C_{01}-C_{11}}=\frac{C_{10}}{C_{01}}$$
+
+(the $C_{00},C_{11}$ drop out because they are 0).
+
+***
+
+**Step 3 · The left side.** "The posterior of $\mathcal H_0$ is 5 times smaller than the posterior of $\mathcal H_1$" means $P(\mathcal H_0\mid x)=\frac{1}{5}P(\mathcal H_1\mid x)$, so
+
+$$\frac{P(\mathcal H_1\mid x)}{P(\mathcal H_0\mid x)}=\frac{P(\mathcal H_1\mid x)}{\frac15 P(\mathcal H_1\mid x)}=5.$$
+
+In words: the evidence makes genAI **5 times more likely** than a human.
+
+***
+
+**Step 4 · The right side.** $\dfrac{C_{10}}{C_{01}}=\dfrac{C_{10}}{100\,C_{10}}=\dfrac{1}{100}=0.01$. (The unknown $C_{10}$ cancels — only the ratio matters.)
+
+***
+
+**Step 5 · Compare.** $5>0.01$, and not by a hair: the bar is 0.01, so even a *weak* lean towards genAI would already condemn the student. Only if the evidence favoured the student by more than 100 to 1 (ratio below 0.01) would the agent acquit.
+
+***
+
+**Step 6 · Decide.** Accept $\mathcal H_1$: **yes, the student fails.**
 
 </div>
 
