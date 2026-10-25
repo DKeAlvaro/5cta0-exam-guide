@@ -98,6 +98,7 @@ Derivatives: $\ln\theta\to\frac1\theta$ · $\theta^k\to k\theta^{k-1}$ · $\frac
 Solving $=0$: multiply the equation by the denominators ($\theta^2$, $\theta$, …) first — that does not change the root.
 **Trap:** if the pdf only exists for $x$ up to something containing $\theta$ (uniform on $[0,\theta]$), these 3 steps are useless — $\hat\theta=\max_n x_n$, and **the CRLB does not exist**.
 **Fisher info / CRLB** from that same derivative: $i(\theta)=-\mathrm E\big[\frac{\partial^2\ln p}{\partial\theta^2}\big]$ for one sample; $N$ samples → $\mathcal I=N i(\theta)$; **CRLB** $=\frac{1}{N i(\theta)}$.
+**Known $i(\theta)$** — skip the derivation: Gaussian mean with variance $\sigma^2$: $\frac1{\sigma^2}$ · exponential rate $\lambda$: $\frac1{\lambda^2}$ · Bernoulli: $\frac1{\theta(1-\theta)}$ · Rayleigh $\frac{x}{\theta^2}e^{-x^2/2\theta^2}$: $\frac4{\theta^2}$ (so CRLB $=\frac{\theta^2}{4N}$).
 
 *Apr24* $\frac{x}{2\theta}e^{-x^2/2\theta}$: one sample gives $\ln x-\ln2-\ln\theta-\frac{x^2}{2\theta}$, so $\ln L=\sum\ln x_n-N\ln2-N\ln\theta-\frac{\sum x_n^2}{2\theta}$ → $-\frac N\theta+\frac{\sum x_n^2}{2\theta^2}=0$ → $\hat\theta=\frac1{2N}\sum x_n^2$.
 
@@ -194,7 +195,7 @@ $r[k]$ = autocorrelation at lag $k$ (the given numbers). Rewrite cosines: $\cos2
 IF YOU SEE $r[0],r[1],r[2]\dots$ + "correlogram", "only these lags", "PSD as a function of $\cos\theta$", correlation values given
 {: .see }
 
-$P(\theta)=r[0]+2r[1]\cos\theta+2r[2]\cos2\theta+2r[3]\cos3\theta$. Stop at the last lag given. $r[0]$ is NOT doubled.
+$P(\theta)=r[0]+2r[1]\cos\theta+2r[2]\cos2\theta+2r[3]\cos3\theta$. Stop at the last lag given. $r[0]$ is NOT doubled. From data: $\hat r[k]=\frac1N\sum_n x[n]x[n-k]$.
 
 *Jun26* $3,2,1$: $3+4\cos\theta+2\cos2\theta=4\cos^2\theta+4\cos\theta+1=(2\cos\theta+1)^2$.
 
@@ -240,7 +241,7 @@ If they ask for $b$ and $\sigma^2$: solve $b^2-\frac{r[0]}{r[1]}\,b+1=0$, keep t
 IF YOU SEE $x[n]=\dots$ + "which kind of process", "calculate the autocorrelation of $x$"
 {: .see }
 
-- Only $i[n],i[n-1],\dots$ on the right → **MA($q$)**, $q$ = biggest delay. Old $x[n-k]$ on the right too → **ARMA($p,q$)**, $p$ = biggest $x$ delay.
+- Only $i[n],i[n-1],\dots$ on the right → **MA($q$)**, $q$ = biggest delay. Old $x[n-k]$ on the right too → **ARMA($p,q$)**, $p$ = biggest $x$ delay. From the shape of $P(\theta)$: sharp **peaks** → AR, deep **nulls** → MA, both → ARMA.
 - MA autocorrelation: write the list $1,b_1,b_2,\dots$ and use $r[k]=\sigma^2\sum_m b_m b_{m+k}$ with $b_0=1$ (pairs sitting $k$ apart in the list). Zero after lag $q$. So $r[0]$ = sum of the squares; $r[1]$ = each one times its right-hand neighbour ($1\cdot b_1+b_1b_2+\dots$); $r[2]$ = skip one ($1\cdot b_2+b_1b_3+\dots$).<br>
   *Apr24* $1,-\frac12,\frac14,-\frac12$ (MA(3), $\sigma^2=1$): $r[0]=1+\frac14+\frac1{16}+\frac14=\frac{25}{16}$, $r[1]=-\frac12-\frac18-\frac18=-\frac34$, $r[2]=\frac14+\frac14=\frac12$, $r[3]=-\frac12$.
 - ARMA(1,1) written as $x[n]+\alpha x[n-1]=i[n]+\beta i[n-1]$: $P=\sigma^2\dfrac{1+\beta^2+2\beta\cos\theta}{1+\alpha^2+2\alpha\cos\theta}$. Its $r[k]$: $r[0]=\sigma^2\frac{1+\beta^2-2\alpha\beta}{1-\alpha^2}$, $r[1]=-\alpha r[0]+\beta\sigma^2$, then $r[k]=(-\alpha)^{k-1}r[1]$ ($k\ge2$, decays by $-\alpha$ each lag).<br>
@@ -254,6 +255,7 @@ IF YOU SEE "which plot", "which figure", "plots A–D", "match the plot"
 Work out each PSD at $\theta=0$ (all cosines $=1$) and at $\theta=\pi$ ($\cos\theta=-1$, $\cos2\theta=1$, $\cos3\theta=-1$). Pick the plot with those heights. Only a correlogram can go below 0.
 
 *Apr25:* correlogram $1.13\to2.13$, MA $1.5\to2.5$, AR $1.56\to2.57$ → plot D.
+**Second type** (windowed cosine, FTD vs DFT): infinite cosine = **2 spikes** · windowed = **main lobe + side lobes** · DFT = **samples of that same curve** · zero padding = **more dots**, not more resolution (Jan22: 1B, 2D, 3C, 4A).
 
 ### 3G · Welch / Bartlett count
 
@@ -311,7 +313,11 @@ IF YOU SEE "which of the following statements" (in Part 3) about PSD, windows, p
 | Window type changes the periodogram's variance | F |
 | Periodogram better bias than correlogram | F (they are the same) |
 
+*Consistent* $=$ variance $\to0$ as $N\to\infty$. The periodogram's bias $\to0$ but $\mathrm{Var}\{\hat P\}\approx P^2$ stays put.
+
 **AR order (Jun26-3e).** Bigger $p$ → residual error always goes down → risk: **overfitting** (fake peaks). Fix: **AIC** $=N\ln\hat\sigma^2+2p$ (also FPE, MDL): the error term falls, the penalty $2p$ grows → choose the $p$ with the smallest AIC. Any PSD can be approximated by an AR model of **high enough order**.
+
+**Wiener FIR filter (2 taps).** $\hat e[k]=w_0g[k]+w_1g[k-1]$, $g=h*x$. Solve $\begin{bmatrix}r_g[0]&r_g[1]\\r_g[1]&r_g[0]\end{bmatrix}\begin{bmatrix}w_0\\w_1\end{bmatrix}=\begin{bmatrix}\rho_{eg}[0]\\\rho_{eg}[1]\end{bmatrix}$, then $J_{min}=\sigma_e^2-(w_0\rho_{eg}[0]+w_1\rho_{eg}[1])$. $H(z)=1$ → $g=x$. Otherwise build $g[k]=\sum_m h[m]x[k-m]$ and use $r_g,\rho_{eg}$ from that. (Jan19: $w_0=1$, $w_1=2$, $J_{min}=0$.)
 
 ## PART 4 · Detection (2–2.5 p)
 
