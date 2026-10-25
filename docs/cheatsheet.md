@@ -55,15 +55,16 @@ IF YOU SEE "WSS"/"wide-sense stationary"/"stationary", "ergodic", dice, random p
 IF YOU SEE $P(\theta)=\dfrac{\text{number}}{A+B\cos\theta}$ + "spectral factorisation"/"factorization", "innovation filter $L(z)$", "$\sigma_i^2$"
 {: .see }
 
-**What you are actually doing.** The process is white noise $i$ (variance $\sigma_i^2$) pushed through a filter $L(z)$, so $P=\sigma_i^2\lvert L(e^{j\theta})\rvert^2$. For $L=\frac1{1+az^{-1}}$ you get $\lvert1+ae^{-j\theta}\rvert^2=1+a^2+2a\cos\theta$. **So the denominator has to come out as $C\,(1+a^2+2a\cos\theta)$** — that is the whole trick; the steps below just match it to $A+B\cos\theta$.
-
-1. $a=\dfrac{A\pm\sqrt{A^2-B^2}}{B}$ — read $A$ and $B$ **with their signs** ($25-24\cos\theta$: $A=25$, $B=-24$). Keep the root between $-1$ and $1$.
-2. $C=\dfrac{B}{2a}$ is that constant of proportionality. Then $\sigma_i^2=\dfrac{\text{number on top}}{C}$ and $L(z)=\dfrac{1}{1+a\,z^{-1}}$.
-3. Check $|a|\lt1$ and $\sigma_i^2\gt0$ — a negative $\sigma_i^2$ means you kept the wrong root. "What must the innovation filter be?" → **minimum phase**: all poles and zeros inside the unit circle (Jun26 a).
+1. Read $A$ and $B$ off the denominator $A+B\cos\theta$ **with their signs** ($25-24\cos\theta$: $A=25$, $B=-24$). Two candidate roots $r=\dfrac{A\pm\sqrt{A^2-B^2}}{B}$: keep the one between $-1$ and $1$, call it $a$.
+2. $C=\dfrac{B}{2a}$.
+3. $\sigma_i^2=\dfrac{\text{number on top}}{C}$, $L(z)=\dfrac{1}{1+a\,z^{-1}}$.
+4. Check $|a|\lt1$ and $\sigma_i^2\gt0$ — a negative $\sigma_i^2$ means you kept the wrong root.
 
 *Apr24* $\frac{7}{25-24\cos\theta}$: $A=25$, $B=-24$, $\sqrt{625-576}=7$, $r=\frac{25\pm7}{-24}$ = $-\frac43$ or $-\frac34$ → $a=-\frac34$. $C=\frac{-24}{-3/2}=16$. So $\sigma_i^2=\frac7{16}$, $L=\frac1{1-\frac34z^{-1}}$.
 
 *Apr25* $\frac{1}{61+60\cos\theta}$: $r=\frac{61\pm11}{60}$ → $a=\frac56$, $C=36$, $\sigma_i^2=\frac1{36}$, $L=\frac1{1+\frac56z^{-1}}$.
+
+Multiple choice "what must the innovation filter be?" → **minimum phase**: all poles and zeros inside the unit circle (Jun26 a).
 
 ### 1D · Bayes word problems (counts)
 
