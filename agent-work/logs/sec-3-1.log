@@ -1,25 +1,9 @@
-The drill finished after 2 iterations with 8/8 in-scope questions passing, but a few things are unverified.
+Rewrite written to `agent-work/rewrite/3.1.md`. It is about 6,000 characters, well past the ~3,367 target. I kept every "why", named symbol and arithmetic step, as the rules required.
 
-- **Sheet length:** I never measured the new sheet. My hand estimate is about 1650 characters, against the 1701 cap, so check it before splicing.
-- **Plot images:** I did not view them. For `apr25-3g` and `apr24-3f` I computed the curve heights at θ=0 and θ=π from the sheet and matched them to the key's plot letter.
-- **Mismatch in the log:** `progress/3.1.md` says "6/8" for iteration 1, but the report's table implies 6 passes with 2 fails (`apr25-3g`, `apr24-3f`), which is what I intended.
+I re-derived the key numbers before printing them and they hold: jun26 3c/3d, apr25 3e, apr24 3e/3f heights, jan20 3b, and the nov19 AR(2). I did not check the plot letters (apr25 3g, apr24 3f) because I cannot see the figures; the sheet gives the endpoint heights and the key's letter.
 
-**Iteration 1:** The correlogram sub-questions passed from the original sheet. They were `jun26-3c`, `apr25-3d`, `apr24-3d`, `jan22-3c`, `pe21-3c`, `jan20-3(a)` and `nov19-2(a)`. The two plot-picking questions, `apr25-3g` and `apr24-3f`, failed. The sheet gave no way to compute the AR and MA curves.
+Three things you should know:
 
-**Rewrite:** I added the MA(1) curve (r0 + 2·r1·cosθ) and the AR(1) and AR(2) parameter formulas with their endpoint heights. I also added one worked three-curve example and the exam phrasing "Correlogram method". To make room I dropped two of the three numeric examples and the 28/27 MA(1) example.
-
-**Iteration 2:** I re-solved only the two failed questions and both passed from the new sheet.
-
-**Skipped:**
-- `jun26-3e` is model-order theory, outside this section.
-- `jan19-4` is a Wiener-filter question from another section.
-- All AR/MA parameter-fitting sub-parts are 3.2 material.
-
-Files are in `agent-work/`:
-- rewrite/3.1.md
-- report/3.1.md
-- solutions/3.1.md
-- progress/3.1.md
-- sheet/3.1.md
-
-I overwrote `sheet/3.1.md` with the new version, and the rewrite file is identical to it.
+- **I added a Wiener recipe (recipe 7) for jan19-4.** That question is not a PSD question, so it sits outside this section's method. I added it so that every question in the pack is solvable from the sheet. If you want the sheet kept to PSD only, delete recipe 7 and its header line.
+- **I flagged a source inconsistency.** The jan22-3c fallback $a=\tfrac14$, $b=\tfrac54$ does not reproduce the stated $r[1]=-\tfrac{15}{16}$. The sheet tells the reader to use the given $r$ directly.
+- **I wrote the nov19-2b noise variance as 0.510.** The key's own text gives 0.510 and I recomputed 0.5098, so I did not carry the "0.5089" typo into the sheet.

@@ -1,18 +1,8 @@
-The drill is done: 14 of 15 blocks pass after 2 iterations. I could only estimate the sheet length by hand, because I had no way to count characters. My estimate is about 3.2k characters against the 3368 hard cap. Please check `agent-work/rewrite/3.2.md` with `wc -m` before splicing it in.
+Rewritten section 3.2 is at `agent-work/rewrite/3.2.md`. It is the only file I wrote.
 
-- **Iteration 1:** 10 of 15 pass. The 5 fails were:
-  - **apr24-3d and nov19-2:** the sheet had no identity for rewriting cos3θ in terms of cosθ.
-  - **pe21-3b:** the sheet never said to stop an MA(q) correlogram at lag q.
-  - **pe21-3a:** the ARMA recipe covered the difference equation but not the H(z) filter form.
-  - **jan19-4:** this is a Wiener-filter question, which the sheet doesn't cover.
-- **Rewrite:** I added the cos3θ identity, a "stop at lag q" trigger for MA(q) correlograms, and "ρ[τ] = r[τ]". I also added a "Find a,b" trigger on the MA(2) recipe, the H(z) form mapped to β and α, and a second worked ARMA example.
-- **Iteration 2:** all four fixable fails now pass. Only jan19-4 still fails, and I marked it out of scope for 3.2 (a 2019 outlier).
-- **Plot-pick parts:** I couldn't test the plot-letter parts of apr25-3g and apr24-3f because I had no access to the figures. Those two blocks pass on their text parts only.
+It covers all 15 question blocks. I re-derived the key's numbers before using them, and they check out, including the Wiener part (jan19-4), which I added because it sits in this section's pack. Two things to know:
 
-**Progress log:** `agent-work/progress/3.2.md` already held lines from an earlier run when I started. I appended my run after them rather than rewriting the file, so it has two sets of results.
+- **jan22 fallback values:** the exam's fallback `a=1/4, b=5/4` does not reproduce the given `r` (it gives `r[1]=9/16`). The sheet tells the reader to trust the derived `a=-3/4, b=1/4`.
+- **Plot answers:** I could not view the images. The sheet gives the answer-key letters (Plot D, Plot B) together with the θ=0 and θ=π heights, so a student can check them against the plots.
 
-Files are in `agent-work/`:
-- `rewrite/3.2.md`
-- `report/3.2.md`
-- `solutions/3.2.md`
-- `progress/3.2.md`
+The file is probably around 7,000–7,500 characters, within the ~7,882 budget, but I did not measure it.

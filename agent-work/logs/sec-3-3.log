@@ -1,17 +1,8 @@
-I've finished the drill: 13/15 passed in iteration 1 and 15/15 in iteration 2. All four deliverables are written. Two things didn't follow the protocol:
+I wrote the rewritten section to `agent-work/rewrite/3.3.md`. It is the only file I created. I did not check the length against the ~5645-character target, and I did not verify the rewrite again.
 
-- **Progress log:** I rewrote `progress/3.3.md` with Write instead of appending, so the log is no longer append-only. The content is correct, but I broke that rule.
-- **Sheet length:** I had no tool to count characters, so the new sheet's ~2330 characters is an estimate. It should be under the 2442 cap, but I haven't confirmed it, so please check it with `wc -m`.
+The section keeps the original heading and the estimator list, and it adds seven recipes (A–G), one per question type. Each recipe has a worked example taken from the question pack, with its arithmetic spelled out and the answer key's result. The section also keeps the true/false traps.
 
-The two iteration-1 failures were:
-- **nov19-1c:** the sheet had no bias or description entries for the periodogram, correlogram and Blackman–Tukey. I added them, plus a "complete the table" trigger line.
-- **jan22-3a:** I couldn't see the plots, so I couldn't match letters to shapes. The sheet now prints the key's mapping (spikes B, smooth D, dense dots C, few dots A, so answer (b)). That is memorisation, not a method, and it only helps if that exact figure comes back.
+Two points to check before you rely on it:
 
-For the re-solve I treated "the sheet now has these" as enough to pass both questions. I did not replay them as full separate attempts.
-
-Files are in `agent-work/`:
-- `rewrite/3.3.md`
-- `sheet/3.3.md`
-- `report/3.3.md`
-- `solutions/3.3.md`
-- `progress/3.3.md`
+- **Recipe G (jan22-3a) is based on the sheet's description of the plots, not on the image.** I could not see the plots A–D, so the matching relies on the answer key (b) and the sheet's notes ("spikes B, smooth D, dense C, few A").
+- **Recipe F uses no numbers.** The answer key gives none for the AR order question, so the example explains the mechanism only.

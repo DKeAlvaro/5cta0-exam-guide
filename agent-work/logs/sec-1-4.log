@@ -1,7 +1,5 @@
-All 6 questions passed on the first iteration using the current sheet, so I didn't rewrite it and no re-solve was needed. The progress log has the per-question lines and the `[done]` line.
+The rewrite is at `agent-work/rewrite/1.4.md`. I checked the arithmetic for every question except jun26 and the nov22 example, and the sheet's method reproduces the key for apr25, apr24, nov22 and jan24.
 
-- **Grading:** the numeric questions (apr25-1e, apr24-1e, nov22-1d) came out right with the root formula on the sheet. jan24-1f is the sheet's own worked example, so it matched option (c). jun26-1e matched the sheet's "minimum phase" line, giving (a).
-- **jan22-1d:** I answered (c) by the sheet's rule for an already-factorised form, and the key agrees. The question as printed has a minus sign in the denominator cosine where the given factorisation needs a plus. The sheet has no step for checking that a given factorisation matches P, so a stricter version of this question could fail.
-- **Deliverables:** `rewrite/1.4.md` is the unchanged sheet block (993 chars). The report in `report/1.4.md` has no wording-gap rows, since no paraphrase failed, and no out-of-scope questions.
+**The answer key is wrong for jan22-1d.** The key marks (c), but the printed factorisation does not equal the given $P$. At $\theta=0$ the true $P=18$, while the printed factorisation gives $18/49$. Solving the question properly gives $L=\frac{1-\frac14z^{-1}}{1-\frac34z^{-1}}$ and $\sigma_i^2=2$, so statement (a) is the true one. The sheet says this and explains the discrepancy, so a student who follows the key will know why it disagrees with the algebra. You may want to check this against the official solution before relying on the key.
 
-I didn't commit or push anything, and the files above are the only ones written.
+The sheet is longer than the ~2482-character target because the three worked examples need every arithmetic step.

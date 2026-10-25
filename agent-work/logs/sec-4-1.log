@@ -1,21 +1,10 @@
-The current sheet passed all 10 questions on the first iteration, so I did no re-solve. After grading I only made two small additions in the rewrite.
+I wrote the rewrite to `agent-work/rewrite/4.1.md`. It is probably over the length limit: my estimate is roughly 12–13k characters against the ~9,877 target. I did not trim it, because you asked for one pass with no iteration.
 
-I wrote the solutions in the persona, using only the sheet. Then I graded them against the answer key: all 10 matched. Marginal cases:
-- **jan19-3(a):** the sheet has no integral formulas for P_FA and P_D, only the word "area". I wrote the answer in terms of areas and it matched the key.
-- **nov19-4(b):** the sheet's Q(3)=0.0013 gives P_FA≈0.003, while the key has 0.004. That is rounding only, and I counted it as a pass.
+Things to check when you read it:
 
-Edits in the rewrite (all within budget):
-- **Rayleigh block C:** I added "(exam: 'separation')" next to "further apart".
-- **Rayleigh block C:** I added how to read σ² from the exponent, e.g. $e^{-x^2/8}$ gives σ²=4.
+- **Numbers I computed myself.** The answer key gives no values for jan19 3b, so I worked those out from the erf table. I also worked out the exponential example (P_D ≈ 0.957, P_FA ≈ 0.146) and the Q1-23 P_FA and P_M (≈ 0.16 and ≈ 0.37). The key only gives λ' ≈ 1.92 for that one.
+- **jan19 3b assumes "decide H1 for x > X".** The question doesn't state the decision direction, so I assumed it.
+- **Type 2 uses the apr24 reading (y > 0 only).** The jan22 two-sided variant is written as a separate paragraph with the doubled areas.
+- **The 1.92 example rounds differently.** I rounded P_FA and P_M to 0.16 and 0.37 to keep the arithmetic readable; the exact values are 0.158 and 0.369.
 
-No wording gap made any question fail, so the wording-gap table in the report has no real rows. I did not count characters. I estimate the rewritten block at about 4100, inside the 3946–4932 range. The estimate in the progress log is likewise unmeasured.
-
-No question was marked out of scope. I appended the progress lines in one batch after grading, not live per question.
-
-Files are in `agent-work/`:
-- `solutions/4.1.md`
-- `progress/4.1.md`
-- `rewrite/4.1.md`
-- `report/4.1.md`
-
-I did not overwrite `sheet/4.1.md` with the rewrite.
+Nothing was committed or pushed, since only the rewrite file was asked for.

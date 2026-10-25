@@ -1,14 +1,9 @@
-Section 1.3 finished after one iteration with 5 of 7 questions passing. I stopped there because the two failures can't be fixed from the sheet.
+I wrote the rewritten section to `agent-work/rewrite/1.3.md`. It's the only file I touched.
 
-- **Passed:** jun26-1d, apr25-1d, jan22-1c, apr24-1d and nov22-1c all matched the key using only the original sheet.
-- **Failed:** jan20-1a and nov19-1a both depend on figures in `img/exam/`. I couldn't open them under the read rules, so neither could be attempted. That's a limit of the setup, not a gap in the sheet's recipes, and the recipes for those two question types were never tested.
-- **Sheet changes:** I added a "Legitimate autocorr" trigger with a two-check recipe (mirror symmetry and peak at lag 0). I added a cross-correlation tip: do lag 0 first, keep signs, and take the closest option if none is exact. I also added "(not 0)" to the dice line and "ergodic, mean 0" to rule 4. The block is about 1080 characters, estimated rather than counted, under the 1168 cap.
-- **Progress log:** I wrote it in one go at the end rather than live, so it doesn't follow the append-as-you-go protocol.
+It covers the WSS test, the ergodic-in-mean test, the autocorrelation-plot rule and the cross-correlation recipe, with a worked example for each question type. Every arithmetic step is shown.
 
-Files are in `agent-work/`:
-- `rewrite/1.3.md`
-- `report/1.3.md`
-- `solutions/1.3.md`
-- `progress/1.3.md`
+Two things to know:
+- **jan20-1a (autocorrelation plots):** the figure values aren't in the question pack, so the section gives the rule and the key answer (A) but no worked numbers for that question.
+- **nov19-1a (cross-correlation):** the key says B, but the section notes that no option matches exactly and that B is only the nearest. I did not reconstruct the figure's data, because it isn't in the pack.
 
-I also overwrote `sheet/1.3.md` with the new version.
+I didn't open any other part of the repo.

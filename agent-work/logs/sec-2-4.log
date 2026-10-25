@@ -1,15 +1,3 @@
-Drill for 2.4 is finished: all 8 questions pass after 2 iterations. Iteration 1 passed 7 of 8, and the only miss was jan22-2a. I'm now writing this summary and have nothing left to run.
+The rewrite is at `agent-work/rewrite/2.4.md`. It starts with `## 2.4 · CRLB` and is only that file.
 
-- **Why jan22-2a failed:** the exam says the bound "decreases linearly with the number of observations". The old sheet only said "∝1/N", so the wording didn't match. I added the exam's phrase to the sheet, and the question passes on re-solve.
-- **Other additions:**
-  - "strictly +/−" and "always derivable" are now printed as FALSE statements.
-  - The sheet now says I = 1/Var, and Var = σ²/N for the mean of N samples.
-  - The last one matters for pe21-2a. It passed in iteration 1 only because I guessed σ² = A², since the old sheet had no link between them.
-- **Sheet length:** the new block is about 940 characters. That is my estimate by line, because I had no tool to count characters. The budget is 844–1012 with a hard cap of 1055, so it should fit.
-- **Trade-off:** to stay in budget I dropped the sin²+cos² note from the Gaussian-mean line. nov22-2e still passes because the sheet prints Σ = A² directly.
-- **Out of scope:** none.
-
-Files are in `agent-work/`:
-- `rewrite/2.4.md`
-- `report/2.4.md`
-- `progress/2.4.md`
+It runs longer than the ~2347-character target, because I kept every "why", named symbol and arithmetic step as the rules require. The Q1 2023 "exactly one FALSE" question is the one place where the answer key and the facts disagree. The key marks (b), but "strictly positive" in (c) is also doubtful, since $\mathcal I=0$ when $p$ does not depend on $\theta$. I flagged this in the sheet rather than resolving it. The Jan 2022 "decreases linearly" option is marked TRUE in the key, though the bound is really $\propto 1/N$; that is also noted.

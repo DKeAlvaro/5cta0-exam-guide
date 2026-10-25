@@ -1,17 +1,97 @@
-The drill is finished: 13 of 15 blocks pass, after two iterations. The two failures are 2019 questions that I marked out of scope.
+## 2.2 · MAP with a prior
 
-- **Iteration 1:** 12 of 15 passed. The three failures were jan22-2f, nov19-3c and jan19-2b.
-  - jan22-2f failed because the sheet never says how to turn the proportional weights into actual probabilities (divide by their sum).
-  - nov19-3c and jan19-2b failed because the sheet has no rule for those shapes (a cubic from the log-derivative; a flat prior on [0,2] with integral limits).
-- **Rewrite:** I added the divide-by-the-sum step with the final probability formula to the discrete line. I also added the exam's true/false phrasings and the "uniform" cost wording. Both 2019 topics were cut to stay under the 2748-character cap.
-- **Iteration 2:** jan22-2f now passes.
-- **Out of scope:** nov19-3c and jan19-2b each appear once, in 2019. Covering them would not fit the budget.
-- **Sheet length:** I couldn't count characters with the tools available, so the rewritten sheet is about 2650 characters by my estimate, under the 2748 cap. The progress log's "2199 chars" for iteration 1 is the original block's size, and its "~2650" for iteration 2 is that same estimate.
+Symbols: $\theta$ (or $\lambda$) is the unknown parameter. $x$ is the observed data. $L(\theta)$ is the likelihood, the probability of the data as a function of $\theta$. $p(\theta|x)$ is the posterior, the density of $\theta$ after seeing the data. Bayes' rule gives posterior $\propto$ likelihood $\times$ prior. The sign $\propto$ means "equal up to a constant that does not contain $\theta$". Such constants cannot move a peak, so MAP never needs them.
 
-Files are in `agent-work/`:
-- `rewrite/2.2.md`
-- `report/2.2.md`
-- `solutions/2.2.md`
-- `progress/2.2.md`
+**Which estimator (match the exam words):**
+- "MAP", "maximum a posteriori", "most probable": the peak of the posterior, $\hat\theta_{MAP}=\arg\max_\theta p(\theta|x)$. Needs a prior.
+- "MMSE", "minimum mean square error", "posterior mean": the average of $\theta$ under the posterior, $\hat\theta_{MMSE}=\int\theta\,p(\theta|x)\,d\theta$.
+- "MLE": the peak of $L$ alone, no prior.
+- Bayes risk is the average cost. Squared-error cost gives MMSE. 0/1 or uniform cost gives MAP.
 
-I didn't commit or push anything.
+**Pick the recipe by what the question gives:**
+- Beta or Gamma prior plus a standard PMF/pdf likelihood: recipe A.
+- Posterior already written as $\theta^A(1-\theta)^B$ or $\lambda^Ae^{-B\lambda}$: skip to A-step 4 (MAP) or A-step 5 (MMSE).
+- Posterior contains a function of $\theta$ (sigmoid, $e^{\theta}$) or a non-conjugate prior: recipe B.
+- Binary $X=\pm1$ plus Gaussian noise: recipe C.
+- Posterior is a sum of two bumps (mixture): recipe D.
+- Flat prior on a bounded interval: recipe E.
+
+**Recipe A: conjugate prior (Beta or Gamma)**
+
+A Beta($\alpha,\beta$) prior has pdf $\propto\theta^{\alpha-1}(1-\theta)^{\beta-1}$. A Gamma($\alpha,\beta$) prior has pdf $\propto\lambda^{\alpha-1}e^{-\beta\lambda}$, where $\beta$ is a rate. Use the numbers the question gives.
+
+1. Likelihood $L=\prod_i P(x_i|\theta)$. Multiply the probabilities of the $n$ observations because they are independent. Drop factors without $\theta$, such as $\binom{x-1}{k-1}$ or $1/x_i!$, because they do not move the peak. Add exponents of equal bases: $\theta^a\theta^b=\theta^{a+b}$.
+2. Multiply by the prior, by Bayes' rule. Add the exponents again.
+3. Name the posterior. $\theta^A(1-\theta)^B$ is Beta($A+1,B+1$). $\lambda^Ae^{-B\lambda}$ is Gamma(shape $A+1$, rate $B$). The $+1$ is there because a Beta($a,b$) pdf has exponents $a-1$ and $b-1$.
+4. MAP. Beta type: $\hat\theta=\frac{A}{A+B}$, from setting the derivative of $A\ln\theta+B\ln(1-\theta)$ to zero. Gamma type: $\hat\lambda=\frac AB$, from $A/\lambda-B=0$.
+5. MMSE = mean of the posterior. Beta type: $\frac{A+1}{A+B+2}$. Gamma type: $\frac{A+1}{B}$.
+6. MLE: step 1 only, then the same peak formula with no prior exponents.
+
+*Example, exam says "write the likelihood, derive the posterior, compute MAP" (jun26-2c).* Each patient's screening count has PMF $\theta^2(1-\theta)^{x-2}$, because the $k=2$ successes give $\theta^2$ and the $x-2$ failures give $(1-\theta)^{x-2}$. There are $n=5$ rounds with $x=3,5,4,6,4$, so $\sum x=3+5+4+6+4=22$.
+- Step 1: the $\theta$ exponent is $2$ per round, so $2\times5=10$. The $(1-\theta)$ exponent is $\sum(x-2)=22-2\times5=12$. So $L\propto\theta^{10}(1-\theta)^{12}$. This answers "write the likelihood".
+- Step 2: the prior Beta(2,3) is $\propto\theta^1(1-\theta)^2$. Multiplying gives $\theta^{10+1}(1-\theta)^{12+2}=\theta^{11}(1-\theta)^{14}$, so $A=11$, $B=14$.
+- Step 3: posterior Beta($A+1,B+1$) = Beta(12,15). This answers "derive the posterior".
+- Step 4: $\hat\theta_{MAP}=\frac{11}{11+14}=\frac{11}{25}=0.44$. This answers "compute MAP".
+
+*Example, Poisson with Gamma prior (jun26-2d).* The Poisson PMF is $\lambda^xe^{-\lambda}/x!$, and $x!$ is dropped. There are $n=6$ days with $\sum x=2+4+3+5+2+4=20$. Each day contributes $\lambda^{x}$ and $e^{-\lambda}$, so six days give $e^{-6\lambda}$.
+- Step 1: $L\propto\lambda^{20}e^{-6\lambda}$.
+- Step 2: the Gamma($\alpha=3,\beta=2$) prior is $\propto\lambda^{2}e^{-2\lambda}$. The product is $\lambda^{22}e^{-8\lambda}$, so $A=22$, $B=8$.
+- Step 3: posterior Gamma(shape 23, rate 8).
+- Step 4: $\hat\lambda_{MAP}=\frac{22}{8}=2.75$.
+- MLE (step 6): $\frac{20}{6}=3.33$. The prior mean is $\alpha/\beta=\frac32=1.5$.
+- Exam says "compare with MLE and explain the effect of the prior": 2.75 lies between the prior mean 1.5 and the MLE 3.33. The prior pulls the estimate down. The prior adds only 2 to the $\lambda$ exponent and 2 to the rate, while the data add $\sum x=20$ and $n=6$. So with more data the prior fades and MAP approaches MLE.
+
+**Recipe B: posterior with a function of $\theta$ (no conjugate form)**
+
+*Example, exam says "derive the MAP for $\theta$" (apr24-2d).* The posterior is $\frac{\lambda}{2}e^{-\lambda x/2}$, where $\lambda=\frac1{1+e^{-\theta}}$ is the logistic sigmoid of $\theta$.
+1. Take the log of the posterior, since $\ln$ is increasing and turns the product into a sum: $\ln p=\ln\lambda-\frac{\lambda x}{2}+\text{const}$.
+2. Differentiate with the chain rule, using $\lambda'=\lambda(1-\lambda)$ from the hint: $\lambda'\left(\frac1\lambda-\frac x2\right)=0$.
+3. $\lambda'>0$ always, because the sigmoid is strictly increasing, so it cannot be zero. Therefore $\frac1\lambda=\frac x2$, i.e. $\lambda=\frac2x$.
+4. Invert the sigmoid. $\frac1{1+e^{-\theta}}=\frac2x$ gives $e^{-\theta}=\frac x2-1$, so $\hat\theta=-\ln\left(\frac x2-1\right)=\ln\frac{2}{x-2}$. This needs $x>2$, so that $\lambda=2/x$ lies in $(0,1)$.
+
+*Example, exponential prior (nov22-2f; the same logic gives the MMSE in q3-23-2h).* The prior is $ae^{-a\theta}$ and the likelihood is $\theta e^{-\theta x}$ for one observation $x$.
+- Steps 1–2: the product is $\theta e^{-(x+a)\theta}$, so $A=1$ and $B=x+a$.
+- Step 3: with $A=1$ this is Gamma(shape 2, rate $B$). Normalised, the posterior is $(x+a)^2\theta e^{-(x+a)\theta}$.
+- Step 4: MAP $=\frac AB=\frac1{x+a}$.
+- Step 5: MMSE $=\frac{A+1}{B}=\frac2{x+a}$. This is the mean of Gamma(2, rate $B$). The integral hint in the exam is for this.
+- Variant: if the likelihood is $\frac1xe^{-\theta x}$, then $A=0$, the posterior is $(x+a)e^{-(x+a)\theta}$, and MMSE $=\frac1{x+a}$.
+
+*Example, MAP leads to an equation with no closed form (nov19-3c).* The likelihood of each observation is $\frac{x}{\theta^2}e^{-x^2/(2\theta^2)}$, and the prior is $\lambda e^{-\lambda\theta}$. Let $S=\sum_n x_n^2$, which is a constant in $\theta$.
+1. The product over $N$ observations gives $\theta^{-2N}e^{-S/(2\theta^2)}$. Multiplying by the prior gives $\theta^{-2N}e^{-S/(2\theta^2)-\lambda\theta}$.
+2. The log is $-2N\ln\theta-\frac{S}{2\theta^2}-\lambda\theta$. Its derivative is $-\frac{2N}{\theta}+\frac{S}{\theta^3}-\lambda=0$.
+3. Multiply by $\theta^3$: $\lambda\theta^3+2N\theta^2-S=0$. The MAP is the positive root of this cubic. The question accepts an implicit answer like this.
+
+**Recipe C: $Y=X+N$ with $X=\pm1$ (jan22-2f)**
+
+$X$ is $+1$ or $-1$ with probability $\frac12$ each. $N$ is zero-mean Gaussian noise with variance $\sigma^2$. We observe $y$.
+1. For each value $s\in\{1,-1\}$, compute $w_s=e^{-(y-s)^2/(2\sigma^2)}$. This is large when $y$ is close to $s$. The Gaussian normalising constant is the same for both and cancels.
+2. Posterior: $P[X=s|y]=\frac{w_s}{w_1+w_{-1}}$. Dividing by the sum makes the two probabilities add to 1, by the law of total probability over the two values of $X$.
+3. Ratio: $(y-1)^2-(y+1)^2=-4y$, so $\frac{w_1}{w_{-1}}=e^{2y/\sigma^2}$. Hence $P[X=1|y]=\frac1{1+e^{-2y/\sigma^2}}$ and $P[X=-1|y]=\frac1{1+e^{2y/\sigma^2}}$.
+4. MMSE ("find the MMSE estimate"): $\hat X=P[1|y]\cdot(+1)+P[-1|y]\cdot(-1)=P_1-P_{-1}$. With $u=y/\sigma^2$, the identity $\frac{e^{2u}-1}{e^{2u}+1}=\tanh u$ gives $\hat X_{MMSE}=\tanh(y/\sigma^2)$.
+5. MAP ("find the MAP estimate", "threshold"): pick the larger posterior. $\frac{P_1}{P_{-1}}=e^{2y/\sigma^2}>1$ exactly when $y>0$. So $\hat X_{MAP}=+1$ if $y>0$, $-1$ if $y<0$, and $y_{th}=0$. The MAP is a hard decision, while the MMSE is a soft value in $(-1,1)$.
+
+**Recipe D: mixture of two bumps (q3-23-2f, 2g)**
+
+The posterior has bump 1 centred at $+x$ with weight $c$, and bump 2 centred at $-x$ with weight $1-c$.
+- MMSE: each bump's mean is its centre, so the weighted mean is $cx-(1-c)x=(2c-1)x$. For $c=\frac12$ this is $0$. For $c=\frac34$ it is $\frac12x$.
+- MAP: the tallest peak. For $c=\frac12$ both bumps are equally tall, so there are two maxima at $\pm x$. For $c=\frac34$ the bump at $+x$ is taller, so MAP $=x$.
+- Sketch: the MMSE sits in the valley or between the bumps, where the posterior is small. The mean and the peak differ because the posterior is not one symmetric bump.
+
+**Recipe E: flat prior on a bounded interval (jan19-2b)**
+
+The prior is $\frac12$ on $[0,2]$ and $0$ outside. The likelihood is $\lambda e^{-\lambda x}$ for one observation $x$.
+- MMSE: the posterior is the likelihood restricted to $[0,2]$ and normalised. The $\frac12$ cancels, so $\hat\lambda=N/D$ with $N=\int_0^2\lambda^2e^{-\lambda x}d\lambda$ and $D=\int_0^2\lambda e^{-\lambda x}d\lambda$. Integration by parts gives $N=\frac{2-e^{-2x}(2+4x+4x^2)}{x^3}$ and $D=\frac{1-e^{-2x}(1+2x)}{x^2}$. The result is $\hat\lambda_{MMSE}=\frac2x\left(1-\frac{2x^2e^{-2x}}{1-e^{-2x}(1+2x)}\right)$.
+- MAP: the peak of $\lambda e^{-\lambda x}$ is where $\frac1\lambda-x=0$, so $\lambda=\frac1x$. The flat prior clips this to the allowed interval, giving $\hat\lambda_{MAP}=\min(\frac1x,2)$. For $n$ observations, the peak is $\frac{n}{\sum x_i}$, clipped at 2.
+
+**MC bullets (the reason is given where it is not obvious)**
+- "MMSE is the mean of the posterior": TRUE. "MMSE is the maximum of the posterior": FALSE. The maximum is MAP.
+- "MAP always equals the posterior mean" (jun26-2a-type): FALSE. They are equal only for one symmetric bump, e.g. a Gaussian posterior.
+- "MMSE and MAP always give different estimates" (apr25-2a, apr24-2b, jan22-2d): FALSE, for the same reason. They can be equal, and they are equal for one symmetric bump.
+- "MAP converges to MLE regardless of the prior" (jun26-2a): FALSE. More data does shrink the prior's effect. But a prior that rules out the MLE value keeps MAP away from it, however much data arrives.
+- "MAP depends on the likelihood and the prior and cannot be computed without a prior": TRUE.
+- "The MLE is the argmax of the likelihood": TRUE.
+- "Bayesian estimators do not use prior knowledge": FALSE. That is the point of Bayesian estimation.
+- "Minimising Bayes risk with uniform cost gives MMSE": FALSE. Uniform cost gives MAP.
+- "The Bayes estimate minimises Bayes risk, the average cost": TRUE.
+
+Answer letters: jun26-2a = c, apr25-2a = c, apr24-2b = a, jan22-2d = b, nov22-2c = b.

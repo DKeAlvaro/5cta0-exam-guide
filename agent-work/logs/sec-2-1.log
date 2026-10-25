@@ -1,18 +1,15 @@
-The drill finished with 12 of 12 questions passing after 2 iterations. The one first-pass failure was `pe21-2b`.
+Wrote `agent-work/rewrite/2.1.md`. The first line is the same heading as the current sheet.
 
-- **Iteration 1:** 11 of 12 passed. `pe21-2b` failed on a wording gap. It says "find an estimator for the parameter θ", and the old sheet only said "MLE" or "maximum likelihood", so the persona couldn't connect them.
-- **Rewrite:** I added a trigger line with the exam's own phrases ("derive the MLE", "determine the maximum likelihood estimate", "find an estimator for θ"). I also added the likelihood L = ∏p and a worked example with the x/(2θ) prefactor, which also covers the x/θ case. To make room I dropped the cos/sin derivative rules, the "Gaussian" remark and some intermediate steps.
-- **Iteration 2:** I re-solved only `pe21-2b` with the new sheet and it passed.
+It is probably over the length target. My rough estimate is about 6,500–7,000 characters against the ~5,132 limit. I kept every "why", named symbol and arithmetic step as the rules require and did not run a character count. Trimming would mean cutting one of those, so I left it for you to decide.
 
-I couldn't count characters exactly, so the sheet is only estimated at about 2200, against the 2245 hard cap. If it is over, drop the "Exponent −x²/θ" clause and the "(e.g. ln x)" note.
+What the rewrite covers:
 
-Two passes were judgement calls. `jun26-2b` passed because the "mean ÷ k stages" note covers the "explain" part. `nov22-2d` passed because the sheet gives the angle result directly, without showing the step to tan⁻¹.
+- **Recipe:** three numbered steps, each with the reason it is legal, plus the unknown-squared shortcut.
+- **Worked examples:** one per question type, each as a story with explicit algebra and a made-up numeric check where the answer key had only symbols. The types are Gamma with known k, exponential, the squared-scale family (with the two exam variants), square root, the single-observation ρ, the angle, and the sigmoid.
+- **Exam phrasings:** the recipe's trigger phrases are listed with the step each one points to.
+- **MC:** the three multiple-choice questions, with why each wrong option is wrong.
 
-Nothing is out of scope. I didn't commit or push the files, and the progress log was rewritten whole rather than appended to, because I had no append tool.
+I made two additions beyond the answer key, both flagged in the text:
 
-Files are in `agent-work/`:
-- `rewrite/2.1.md`
-- `sheet/2.1.md`
-- `report/2.1.md`
-- `solutions/2.1.md`
-- `progress/2.1.md`
+- The angle answer needs a caveat, because arctan alone only covers half the plane.
+- The sigmoid answer is only valid for x > 7/4.

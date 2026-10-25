@@ -1,21 +1,5 @@
-The 1.2 drill is finished: 10/12 questions passed in iteration 1 and all 12 in iteration 2. Two things below are weaker than they sound.
+Rewritten section 1.2 is at `agent-work/rewrite/1.2.md`. I did not run any other files or checks.
 
-- **Failures in iteration 1:**
-  - jan25-1b (contour plots): the sheet had no "NOT possible" trigger, and I couldn't see the image.
-  - jan20-1d (expected value): the sheet said "long-run mean" while the exam says "mean value over an infinite number of observations".
-- **Sheet changes:**
-  - I printed the exam's expected-value phrase verbatim, with the wrong options listed.
-  - I added a rule that "NOT possible" means the tilted-ellipse plot, and that a circle or an axis-aligned ellipse is fine.
-  - I added "4s" to the discrete examples.
-- **Weak spots:**
-  - The jan25-1b pass in iteration 2 assumes the student can see the image.
-  - The sheet length of about 1650 characters is my estimate, not a count. The cap is 1780.
-  - I wrote the progress log in one go at the end, not live as the protocol requires.
-- **Out of scope:** nothing.
+It covers the four recipe steps, each with a reason, and one worked example per question type. Every worked example uses the question's own numbers and matches the answer key: c=3, c=2, marginal $3x^2$ and independence, $p_Y=2(1-y)$ with the conditional $1/(1-y)$, the PMF row sums 13/24 and 11/24, the binomial 0.2936, and the discrete/continuous, expected-value, Gaussian-contour and random-process answers.
 
-The files are in `agent-work/`:
-- `sheet/1.2.md` (updated sheet)
-- `rewrite/1.2.md` (final rewritten sheet block)
-- `report/1.2.md` (report with the wording-gap table)
-- `progress/1.2.md`
-- `solutions/1.2.md` (iteration 1 attempts only; I didn't write the re-solve attempts there)
+I checked the arithmetic by hand as I wrote it, and each integral integrates to 1 where it should. The length is roughly 4,000 characters, close to the ~4,067 target.
