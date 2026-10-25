@@ -73,7 +73,7 @@ IF YOU SEE a pdf $p(x\mid\theta)$, samples $x_1..x_N$, "maximum likelihood", "de
 2. Differentiate with respect to $\theta$ (terms without $\theta$ disappear).
 3. Set it $=0$ and solve for $\theta$. That is $\hat\theta$.
 
-**How to take $\ln$ of a pdf:** split it into pieces that multiply, and turn each piece into a plus/minus term: a factor on top → $+\ln(\text{it})$; a factor on the bottom → $-\ln(\text{it})$; $\theta^k$ on the bottom → $-k\ln\theta$; $e^{\text{stuff}}$ → just "stuff" (the $e$ disappears).
+**How to take $\ln$ of a pdf:** write the pdf as $\frac{\text{above}}{\text{below}}\cdot e^{u}$ (it is pieces multiplied, some in a fraction). Then each piece becomes one term: piece **above the line** → $+\ln(\text{it})$ · piece **below the line** → $-\ln(\text{it})$ · $e^{u}$ → just $u$ (the $e$ disappears). Two pieces below the line split: $-\ln(2\theta)=-\ln 2-\ln\theta$. A power $\theta^k$ below the line → $-k\ln\theta$.
 Derivatives: $\ln\theta\to\frac1\theta$ · $\frac1\theta\to-\frac1{\theta^2}$ · $\theta^k\to k\theta^{k-1}$ · $e^{c\theta}\to ce^{c\theta}$.
 Solving $=0$: multiply the equation by the denominators ($\theta^2$, $\theta$, …) first — that does not change the root.
 

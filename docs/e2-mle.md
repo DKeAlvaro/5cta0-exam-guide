@@ -27,13 +27,22 @@ Press **Next step** on each yellow box to go through it one step at a time — c
     2. Differentiate with respect to $\theta$ (terms without $\theta$ disappear).
     3. Set it $=0$ and solve for $\theta$. That is $\hat\theta$.
 
-    **How to take $\ln$ of a pdf:** a factor on top → $+\ln(\text{it})$; a factor on the bottom → $-\ln(\text{it})$; $\theta^k$ on the bottom → $-k\ln\theta$; $e^{\text{stuff}}$ → just "stuff" (the $e$ disappears).
+    **How to take $\ln$ of a pdf:** write the pdf as $\frac{\text{above}}{\text{below}}\cdot e^{u}$ (it is pieces multiplied, some in a fraction). Then each piece becomes one term: piece **above the line** → $+\ln(\text{it})$ · piece **below the line** → $-\ln(\text{it})$ · $e^{u}$ → just $u$ (the $e$ disappears). Two pieces below the line split: $-\ln(2\theta)=-\ln 2-\ln\theta$. A power $\theta^k$ below the line → $-k\ln\theta$.
 
     **Derivatives:** $\ln\theta\to\frac1\theta$ · $\frac1\theta\to-\frac1{\theta^2}$ · $\theta^k\to k\theta^{k-1}$ · $e^{c\theta}\to ce^{c\theta}$.
 
     **Solving $=0$:** multiply the equation by the denominators ($\theta^2$, $\theta$, …) first — that does not change the root.
 
     **Sigmoid trick** (bottom of box 2A): IF YOU SEE $\lambda=\frac1{1+e^{-\theta}}$: treat $\lambda$ as the unknown, find $\hat\lambda$, then $\hat\theta=-\ln\!\big(\frac1{\hat\lambda}-1\big)$.
+
+What "above the line / below the line" means, on the pdf of exercise 1:
+
+| the piece | where it sits | what its $\ln$ becomes |
+|---|---|---|
+| $x_n$ | above the line (it multiplies) | $+\ln x_n$ |
+| $2\theta$ | below the line (it divides) | $-\ln 2-\ln\theta$ (the two pieces split) |
+| $\theta^k$ | below the line | $-k\ln\theta$ |
+| $e^{-x_n^2/2\theta}$ | the $e$ part | just the exponent: $-\frac{x_n^2}{2\theta}$ |
 
 Two more sheet places you will need: the **Calculations** strip (bottom of the sheet) for the $\ln$/$e$ and fraction algebra, and **box 2D** for the true/false questions. Each exercise below tells you which one.
 
@@ -50,7 +59,7 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
     <div class="stepper" markdown>
 
     **Sheet step 1 · "Take $\ln$ of ONE sample's pdf, then put $\sum_n$ in front."**
-    One sample is $\frac{x_n}{2\theta}e^{-x_n^2/2\theta}$. Take it apart with the sheet's ln rules: $x_n$ on top → $+\ln x_n$; $2\theta$ on the bottom → $-\ln(2\theta)=-\ln 2-\ln\theta$ (rule: $\ln\frac ab=\ln a-\ln b$, in the Calculations strip); $e^{\text{stuff}}$ → just "stuff" $=-\frac{x_n^2}{2\theta}$:
+    One sample is $\frac{x_n}{2\theta}e^{-x_n^2/2\theta}$. Take it apart with the sheet's ln rules: $x_n$ is **above the line** → $+\ln x_n$; $2\theta$ is **below the line** → $-\ln(2\theta)=-\ln 2-\ln\theta$ (two pieces below split — Calculations strip: $\ln\frac ab=\ln a-\ln b$); $e^{\text{stuff}}$ → just "stuff" $=-\frac{x_n^2}{2\theta}$:
 
     $$\ln p(x_n\mid\theta)=\ln x_n-\ln 2-\ln\theta-\frac{x_n^2}{2\theta}$$
 
@@ -170,7 +179,7 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
 !!! sheet "In the cheat sheet: box 2A, the $\theta^k$ rule does the work"
     <div class="stepper" markdown>
 
-    **Sheet step 1 · "$\theta^k$ on the bottom → $-k\ln\theta$".**
+    **Sheet step 1 · "$\theta^k$ below the line → $-k\ln\theta$".**
     Here $k=2$ → $-2\ln\theta$. So $\ln x_n-2\ln\theta-\frac{x_n^2}{2\theta^2}$, and
 
     $$\ln L=\sum\ln x_n-2N\ln\theta-\frac{1}{2\theta^2}\sum x_n^2$$
@@ -205,7 +214,7 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
     <div class="stepper" markdown>
 
     **Sheet step 1 · take $\ln$ of one sample, then $\sum_n$.**
-    $\lambda$ on top → $+\ln\lambda$; $e^{-\lambda x}$ → just $-\lambda x$. With the sheet's sum rule $\sum_n\lambda x_n=\lambda\sum x_n$:
+    $\lambda$ is above the line → $+\ln\lambda$; $e^{-\lambda x}$ → just $-\lambda x$. With the sheet's sum rule $\sum_n\lambda x_n=\lambda\sum x_n$:
 
     $$\ln L=N\ln\lambda-\lambda\sum x_i$$
 
@@ -239,7 +248,7 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
     <div class="stepper" markdown>
 
     **Sheet step 1 · take $\ln$ of one sample, then $\sum_n$.**
-    The sheet's ln rules piece by piece: $x^{k-1}$ on top → $+(k-1)\ln x$; $e^{-x/\theta}$ → $-\frac x\theta$; $\theta^k$ on the bottom → $-k\ln\theta$; $\Gamma(k)$ on the bottom → $-\ln\Gamma(k)$ (a constant). Sum over $n$ samples:
+    The sheet's ln rules piece by piece: $x^{k-1}$ is above the line → $+(k-1)\ln x$; $e^{-x/\theta}$ → $-\frac x\theta$; $\theta^k$ below the line → $-k\ln\theta$; $\Gamma(k)$ below the line → $-\ln\Gamma(k)$ (a constant). Sum over $n$ samples:
 
     $$\ln L=(k-1)\sum\ln x_i-\frac1\theta\sum x_i-nk\ln\theta-n\ln\Gamma(k)$$
 
@@ -463,9 +472,9 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
 ## Traps
 
 !!! trap "Where points are lost (each one is a line of the sheet you skipped)"
-    - Forgetting the $-N\ln\theta$ that comes from the $\frac1\theta$ in front (sheet: "a factor on the bottom → $-\ln(\text{it})$"). It is half of the answer.
+    - Forgetting the $-N\ln\theta$ that comes from the $\frac1\theta$ in front (sheet: "a piece below the line → $-\ln(\text{it})$"). It is half of the answer.
     - Wrong sign on $\frac{d}{d\theta}\frac1\theta=-\frac1{\theta^2}$ — minus times minus gives a **plus** in the derivative (sheet's derivative list).
     - Leaving the denominators in when solving $=0$ and then messing up the algebra. The sheet says: **multiply by the denominators first**.
     - Writing only the final formula on a "derive" question. The sheet's 3 steps are the 3 things the grader pays for.
     - Sigmoid questions: differentiate in $\lambda$, not in $\theta$ (sheet's Sigmoid trick), and write the $x>\frac74$-style range at the end.
-    - $\theta^2$ in the pdf (Nov19) → $-2\ln\theta$, not $-2\theta$ (sheet: "$\theta^k$ on the bottom → $-k\ln\theta$").
+    - $\theta^2$ in the pdf (Nov19) → $-2\ln\theta$, not $-2\theta$ (sheet: "$\theta^k$ below the line → $-k\ln\theta$").
