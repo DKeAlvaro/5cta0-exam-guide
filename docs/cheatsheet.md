@@ -103,7 +103,7 @@ Gauss vs $\frac14e^{-|y|/2}$: $|y|>1.588$, $P_D=0.45$, $P_{FA}=2Q=0.11$ (Jan 202
 </div>
 
 <div markdown>
-**Tails:** $P(X>t)=Q(\frac{t-\mu}{\sigma})$; $Q(0)=.5$, $Q(1)=.159$, $Q(2)=.023$, $Q(3)=.0013$; $Q=\frac12[1-\text{erf}(z/\sqrt2)]$. Exp: $\int_a^b\lambda e^{-\lambda x}=e^{-\lambda a}-e^{-\lambda b}$.
+**Tails:** $P(X>t)=Q(\frac{t-\mu}{\sigma})$; $Q(0)=.5$, $Q(1)=.159$, $Q(2)=.023$, $Q(3)=.0013$; $Q=\frac12[1-\text{erf}(z/\sqrt2)]$. Exp: $\int_a^b\lambda e^{-\lambda x}=e^{-\lambda a}-e^{-\lambda b}$. General: $\int ke^{-ay}dy=-\frac ka e^{-ay}$ (front $k$ cancels the exponent's $a$: $\int2e^{-2y}=-e^{-2y}$); $[F]_a^b$ = top − bottom; $e^{-a\ln b}=1/b^a$ ($e^{-\ln3}=\frac13$, $e^{-2\ln3}=\frac19$); $e^{-\infty}=0$.
 **Bayes:** $\lambda=\frac{(C_{10}-C_{00})P_0}{(C_{01}-C_{11})P_1}$, $C_{ij}$ = decide i, truth j. 0/1 costs → $P_0/P_1$, min $P_e$; equal priors → ML. Posteriors: $H_1$ iff $C_{01}P(H_1|x)>C_{10}P(H_0|x)$. $P_0$↑ → λ↑.
 **Matched filter:** $\sum x_ns_n\gtrless\sigma^2\ln\lambda+\frac12\sum s_n^2$; $h[n]=s[N-1-n]$; max SNR; correlated noise → prewhiten.
 </div>

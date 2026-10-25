@@ -218,6 +218,15 @@ In words: the evidence makes genAI **5 times more likely** than a human.
     !!! answer "Answer"
         $\gamma''=\ln3\approx1.10$ (decide $\mathcal H_1$ for $y<\ln 3$); $P_{FA}=\frac23$, $P_M=\frac19$.
 
+!!! idea "The integrals themselves: three rules, no thinking"
+    **1 · Antiderivative.** $\displaystyle\int k\,e^{-ay}\,dy=-\frac{k}{a}\,e^{-ay}$. The minus comes from the exponent, and you divide by the $a$ in front of the $y$. So $\int e^{-y}dy=-e^{-y}$, and $\int 2e^{-2y}dy=-e^{-2y}$ — the $2$ in front **cancels** the $2$ of the exponent (that is why the exam always uses $2e^{-2y}$: a clean, normalised density).
+
+    **2 · Evaluate.** $\big[F\big]_a^b=F(b)-F(a)$: **top minus bottom**. With the minus sign already in $F$ this flips: $\big[-e^{-y}\big]_0^{\ln3}=-(e^{-\ln3}-e^{0})=1-e^{-\ln3}$. And $e^{-\infty}=0$: for a bound at $\infty$ the top contributes nothing and you get "minus the bottom".
+
+    **3 · Logs in the exponent.** $e^{-a\ln b}=\dfrac{1}{b^{a}}$, always: $e^{-\ln3}=\frac13$, $e^{-2\ln3}=\frac1{3^2}=\frac19$. A minus in front of a log = "one over that power".
+
+    **Check:** the integrand is (part of) a density, so every area lands between 0 and 1, and $\int_0^\infty e^{-y}dy=\int_0^\infty 2e^{-2y}dy=1$. Something bigger than 1 means a flipped sign.
+
 ## The theory questions: test yourself
 
 The exam keeps recycling the same statements, often with one word swapped ("maximised" ↔ "minimised"). The error table first:
