@@ -18,7 +18,7 @@ The top of the bottom curve is where its slope is zero. That is the whole method
 
 The exam says **"derive the MLE"** → you open **box 2A** on your A4 sheet and do its 3 steps with the pdf they gave you. That is the whole method. Every question below is the same box with a different pdf, so read one solution with the sheet in your hand and the rest are copies.
 
-Press **Next step** on each yellow box to go through it one step at a time — cover the step, do it yourself, then reveal it.
+Each step below names **the sheet's term it uses**, term by term: which pieces sit above the line, which below, which rule turns each one into the next line. Press **Next step** to go one at a time — cover the step, do it yourself, then reveal it.
 
 !!! sheet "Box 2A, exactly as it is printed on the sheet"
     **IF YOU SEE** a pdf $p(x\mid\theta)$, samples $x_1..x_N$, "maximum likelihood", "derive the MLE"
@@ -55,32 +55,40 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
 
     derive the MLE for the parameter $\theta$.
 
-!!! sheet "In the cheat sheet: box 2A, steps 1–3"
+!!! sheet "In the cheat sheet: box 2A, every term named"
     <div class="stepper" markdown>
 
-    **Sheet step 1 · "Take $\ln$ of ONE sample's pdf, then put $\sum_n$ in front."**
-    One sample is $\frac{x_n}{2\theta}e^{-x_n^2/2\theta}$. Take it apart with the sheet's ln rules: $x_n$ is **above the line** → $+\ln x_n$; $2\theta$ is **below the line** → $-\ln(2\theta)=-\ln 2-\ln\theta$ (two pieces below split — Calculations strip: $\ln\frac ab=\ln a-\ln b$); $e^{\text{stuff}}$ → just "stuff" $=-\frac{x_n^2}{2\theta}$:
+    **Sheet step 1 · take $\ln$ of ONE sample, term by term** ("a piece above the line → $+\ln a$; a piece below → $-\ln b$; $e^{u}$ → $u$").
+    One sample is $\frac{x_n}{2\theta}e^{-x_n^2/2\theta}$. Its three pieces:
+
+    - $x_n$ — **above the line** → $+\ln x_n$
+    - $2\theta$ — **below the line**, two pieces $2$ and $\theta$ → $-\ln 2-\ln\theta$ (they split — Calculations strip: $\ln\frac ab=\ln a-\ln b$)
+    - $e^{-x_n^2/2\theta}$ — **the $e$ part** → just the exponent: $-\frac{x_n^2}{2\theta}$
 
     $$\ln p(x_n\mid\theta)=\ln x_n-\ln 2-\ln\theta-\frac{x_n^2}{2\theta}$$
 
     ***
 
-    **Sheet step 1b · put $\sum_n$ in front.**
-    The sheet says "a term without $x_n$ gets multiplied by $N$" → the two constants $\ln 2$ and $\ln\theta$ come out as $N\ln 2$ and $N\ln\theta$:
+    **Sheet step 2 · put $\sum_n$ in front** ("a term without $x_n$ gets multiplied by $N$").
+    $\ln x_n$ keeps its $\sum_n$. The other three have no $x_n$ → they get $\times N$ (and $\sum_n$ of the last one pulls out $\sum x_n^2$):
 
     $$\ln L=\sum_n\ln x_n-N\ln 2-N\ln\theta-\frac{1}{2\theta}\sum_n x_n^2$$
 
     ***
 
-    **Sheet step 2 · "Differentiate (terms without $\theta$ disappear)."**
-    $\sum\ln x_n$ and $-N\ln2$ have no $\theta$ → gone. Then the sheet's derivative rules: $\ln\theta\to\frac1\theta$ and $\frac1\theta\to-\frac1{\theta^2}$ (and minus times minus is plus):
+    **Sheet step 3 · differentiate, term by term** ("terms without $\theta$ disappear", then the sheet's derivative rules).
+
+    - $\sum_n\ln x_n$ — no $\theta$ → **disappears**
+    - $-N\ln 2$ — no $\theta$ → **disappears**
+    - $-N\ln\theta$ — rule $\ln\theta\to\frac1\theta$ → $-\frac N\theta$
+    - $-\frac{1}{2\theta}\sum x_n^2$ — rule $\frac1\theta\to-\frac1{\theta^2}$ (minus times minus is plus) → $+\frac{1}{2\theta^2}\sum x_n^2$
 
     $$\frac{d}{d\theta}\ln L=-\frac N\theta+\frac{1}{2\theta^2}\sum_n x_n^2$$
 
     ***
 
-    **Sheet step 3 · "Set it $=0$ and solve. Multiply by the denominators first."**
-    Multiply the whole equation by $\theta^2$:
+    **Sheet step 4 · "Set it $=0$ and solve. Multiply by the denominators first."**
+    The denominator is $\theta^2$ → multiply the whole equation by $\theta^2$:
 
     $$-N\theta+\frac12\sum_n x_n^2=0\quad\Longrightarrow\quad \hat\theta=\frac{1}{2N}\sum_n x_n^2$$
 
@@ -106,22 +114,35 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
 !!! sheet "In the cheat sheet: box 2A again — this is exercise 1 without the 2"
     <div class="stepper" markdown>
 
-    **Sheet step 1 · take $\ln$ of one sample, then $\sum_n$.**
-    The $\prod$ in front is just the exam writing the likelihood for you: one sample is $\frac{x_n}{\theta}e^{-x_n^2/\theta}$. So $\ln x_n-\ln\theta-\frac{x_n^2}{\theta}$, and with the sheet's "terms without $x_n$ get $\times N$":
+    **Sheet step 1 · take $\ln$ of ONE sample, term by term.**
+    The $\prod$ in front is just the exam writing the likelihood for you. One sample is $\frac{x_n}{\theta}e^{-x_n^2/\theta}$:
+
+    - $x_n$ — **above the line** → $+\ln x_n$
+    - $\theta$ — **below the line** → $-\ln\theta$
+    - $e^{-x_n^2/\theta}$ — **the $e$ part** → $-\frac{x_n^2}{\theta}$
+
+    $$\ln p(x_n\mid\theta)=\ln x_n-\ln\theta-\frac{x_n^2}{\theta}$$
+
+    ***
+
+    **Sheet step 2 · put $\sum_n$** ("a term without $x_n$ gets $\times N$").
 
     $$\ln L=\sum\ln x_n-N\ln\theta-\frac1\theta\sum x_n^2$$
 
     ***
 
-    **Sheet step 2 · differentiate.**
-    Sheet rules $\ln\theta\to\frac1\theta$, $\frac1\theta\to-\frac1{\theta^2}$:
+    **Sheet step 3 · differentiate, term by term.**
+
+    - $\sum\ln x_n$ — no $\theta$ → **disappears**
+    - $-N\ln\theta$ — rule $\ln\theta\to\frac1\theta$ → $-\frac N\theta$
+    - $-\frac1\theta\sum x_n^2$ — rule $\frac1\theta\to-\frac1{\theta^2}$ → $+\frac{1}{\theta^2}\sum x_n^2$
 
     $$\frac{d}{d\theta}\ln L=-\frac N\theta+\frac{1}{\theta^2}\sum x_n^2$$
 
     ***
 
-    **Sheet step 3 · $=0$, clear the denominators.**
-    Multiply by $\theta^2$: $-N\theta+\sum x_n^2=0$.
+    **Sheet step 4 · $=0$, multiply by $\theta^2$** (the sheet: clear the denominators first).
+    $-N\theta+\sum x_n^2=0$.
 
     ***
 
@@ -141,26 +162,40 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
 !!! sheet "In the cheat sheet: box 2A — and the rule that saves you here"
     <div class="stepper" markdown>
 
-    **Sheet step 1 · take $\ln$ of one sample, then $\sum_n$.**
-    "Find an estimator" with a pdf and samples = derive the MLE = box 2A. One sample: $\frac{x_n}{\theta}e^{-x_n^2/2\theta}$ → $\ln x_n-\ln\theta-\frac{x_n^2}{2\theta}$:
+    **Sheet step 1 · take $\ln$ of ONE sample, term by term.**
+    "Find an estimator" with a pdf and samples = derive the MLE = box 2A. One sample: $\frac{x_n}{\theta}e^{-x_n^2/2\theta}$:
+
+    - $x_n$ — **above the line** → $+\ln x_n$
+    - $\theta$ — **below the line** → $-\ln\theta$
+    - $e^{-x_n^2/2\theta}$ — **the $e$ part** → $-\frac{x_n^2}{2\theta}$
+
+    $$\ln p=\ln x_n-\ln\theta-\frac{x_n^2}{2\theta}$$
+
+    ***
+
+    **Sheet step 2 · put $\sum_n$** ("a term without $x_n$ gets $\times N$").
 
     $$\ln L=\sum\ln x_n-N\ln\theta-\frac{1}{2\theta}\sum x_n^2$$
 
     ***
 
-    **Sheet step 2 · differentiate.**
+    **Sheet step 3 · differentiate, term by term.**
+
+    - $\sum\ln x_n$ — no $\theta$ → **disappears**
+    - $-N\ln\theta$ — rule $\ln\theta\to\frac1\theta$ → $-\frac N\theta$
+    - $-\frac{1}{2\theta}\sum x_n^2$ — rule $\frac1\theta\to-\frac1{\theta^2}$ → $+\frac{1}{2\theta^2}\sum x_n^2$
 
     $$\frac{d}{d\theta}\ln L=-\frac N\theta+\frac{1}{2\theta^2}\sum x_n^2$$
 
     ***
 
-    **Sheet step 3 · $=0$, clear the denominators.**
-    Multiply by $\theta^2$: $-N\theta+\frac12\sum x_n^2=0$.
+    **Sheet step 4 · $=0$, multiply by $\theta^2$.**
+    $-N\theta+\frac12\sum x_n^2=0$.
 
     ***
 
     **Sheet check.**
-    This is exercise 1 again (the $\frac12$ sits in the exponent in both). Numbers in front that do not contain $\theta$ never change the answer — the sheet's ln rules turn them into constants that vanish in step 2.
+    This is exercise 1 again (the $\frac12$ sits in the exponent in both). Numbers in front that do not contain $\theta$ never change the answer — the sheet's ln rules turn them into constants that vanish in step 3.
 
     </div>
 
@@ -179,22 +214,35 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
 !!! sheet "In the cheat sheet: box 2A, the $\theta^k$ rule does the work"
     <div class="stepper" markdown>
 
-    **Sheet step 1 · "$\theta^k$ below the line → $-k\ln\theta$".**
-    Here $k=2$ → $-2\ln\theta$. So $\ln x_n-2\ln\theta-\frac{x_n^2}{2\theta^2}$, and
+    **Sheet step 1 · take $\ln$ of ONE sample, term by term.**
+    One sample: $\frac{x}{\theta^2}e^{-x^2/(2\theta^2)}$:
+
+    - $x$ — **above the line** → $+\ln x$
+    - $\theta^2$ — **below the line, a power** → sheet rule "$\theta^k$ below → $-k\ln\theta$" with $k=2$ → $-2\ln\theta$
+    - $e^{-x^2/(2\theta^2)}$ — **the $e$ part** → $-\frac{x^2}{2\theta^2}$
+
+    $$\ln p=\ln x-2\ln\theta-\frac{x^2}{2\theta^2}$$
+
+    ***
+
+    **Sheet step 2 · put $\sum_n$** ("a term without $x_n$ gets $\times N$"; the $-2\ln\theta$ becomes $-2N\ln\theta$).
 
     $$\ln L=\sum\ln x_n-2N\ln\theta-\frac{1}{2\theta^2}\sum x_n^2$$
 
     ***
 
-    **Sheet step 2 · differentiate.**
-    $\ln\theta\to\frac1\theta$ (so $-2N\ln\theta\to-\frac{2N}{\theta}$) and $\frac{1}{\theta^2}\to-\frac{2}{\theta^3}$ (the $\theta^k$ rule backwards), so $-\frac{1}{2\theta^2}\sum x_n^2\to+\frac{1}{\theta^3}\sum x_n^2$:
+    **Sheet step 3 · differentiate, term by term.**
+
+    - $\sum\ln x_n$ — no $\theta$ → **disappears**
+    - $-2N\ln\theta$ — rule $\ln\theta\to\frac1\theta$ → $-\frac{2N}{\theta}$
+    - $-\frac{1}{2\theta^2}\sum x_n^2$ — rule $\theta^k\to k\theta^{k-1}$ with $k=-2$ → $+\frac{1}{\theta^3}\sum x_n^2$
 
     $$-\frac{2N}{\theta}+\frac{1}{\theta^3}\sum x_n^2=0$$
 
     ***
 
-    **Sheet step 3 · $=0$, clear the denominators, then get the letter alone.**
-    Multiply by $\theta^3$ (the sheet: clear the denominators first): $-2N\theta^2+\sum x_n^2=0$ → $\theta^2=\frac{\sum x_n^2}{2N}$. The sheet's "get the letter alone" rule ($x^k=a\Rightarrow x=a^{1/k}$, Calculations strip) gives the square root. $\theta>0$ so take the $+$ root.
+    **Sheet step 4 · $=0$, clear the denominators, then get the letter alone.**
+    Multiply by $\theta^3$ (the sheet: clear the denominators first): $-2N\theta^2+\sum x_n^2=0$ → $\theta^2=\frac{\sum x_n^2}{2N}$. The sheet's Calculations strip: "$x^k=a$ → $x=a^{1/k}$" → the square root. $\theta>0$, so the $+$ root.
 
     </div>
 
@@ -213,21 +261,33 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
 !!! sheet "In the cheat sheet: box 2A (the unknown is called $\lambda$ — same box)"
     <div class="stepper" markdown>
 
-    **Sheet step 1 · take $\ln$ of one sample, then $\sum_n$.**
-    $\lambda$ is above the line → $+\ln\lambda$; $e^{-\lambda x}$ → just $-\lambda x$. With the sheet's sum rule $\sum_n\lambda x_n=\lambda\sum x_n$:
+    **Sheet step 1 · take $\ln$ of ONE sample, term by term.**
+    One sample: $\lambda e^{-\lambda x}$ — no fraction at all, so nothing sits below a line:
+
+    - $\lambda$ — **above the line** → $+\ln\lambda$
+    - $e^{-\lambda x}$ — **the $e$ part** → $-\lambda x$
+
+    $$\ln p=\ln\lambda-\lambda x$$
+
+    ***
+
+    **Sheet step 2 · put $\sum_n$** (sheet's sum rule $\sum_n\lambda x_n=\lambda\sum x_n$).
 
     $$\ln L=N\ln\lambda-\lambda\sum x_i$$
 
     ***
 
-    **Sheet step 2 · differentiate.**
+    **Sheet step 3 · differentiate, term by term.**
+
+    - $N\ln\lambda$ — rule $\ln\theta\to\frac1\theta$ (here the letter is $\lambda$) → $\frac N\lambda$
+    - $-\lambda\sum x_i$ — rule $(c\,\theta)\to c$ → $-\sum x_i$
 
     $$\frac{d}{d\lambda}\ln L=\frac N\lambda-\sum x_i$$
 
     ***
 
-    **Sheet step 3 · $=0$, clear the denominators.**
-    Multiply by $\lambda$: $N-\lambda\sum x_i=0$.
+    **Sheet step 4 · $=0$, multiply by $\lambda$.**
+    $N-\lambda\sum x_i=0$ → $\hat\lambda=\frac{N}{\sum x_i}=\frac1{\bar x}$.
 
     ***
 
@@ -247,20 +307,36 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
 !!! sheet "In the cheat sheet: box 2A, its own *Jun26* example line"
     <div class="stepper" markdown>
 
-    **Sheet step 1 · take $\ln$ of one sample, then $\sum_n$.**
-    The sheet's ln rules piece by piece: $x^{k-1}$ is above the line → $+(k-1)\ln x$; $e^{-x/\theta}$ → $-\frac x\theta$; $\theta^k$ below the line → $-k\ln\theta$; $\Gamma(k)$ below the line → $-\ln\Gamma(k)$ (a constant). Sum over $n$ samples:
+    **Sheet step 1 · take $\ln$ of ONE sample, term by term.**
+    One sample: $\frac{x^{k-1}e^{-x/\theta}}{\theta^k\Gamma(k)}$ — four pieces:
+
+    - $x^{k-1}$ — **above the line** → $+(k-1)\ln x$
+    - $e^{-x/\theta}$ — **the $e$ part** → $-\frac x\theta$
+    - $\theta^k$ — **below the line, a power** → sheet rule "$\theta^k$ below → $-k\ln\theta$" → $-k\ln\theta$
+    - $\Gamma(k)$ — **below the line**, no $\theta$ → $-\ln\Gamma(k)$ (just a constant)
+
+    $$\ln p=(k-1)\ln x-\frac x\theta-k\ln\theta-\ln\Gamma(k)$$
+
+    ***
+
+    **Sheet step 2 · put $\sum_n$** ("a term without $x_n$ gets $\times N$" — here $n$ samples).
 
     $$\ln L=(k-1)\sum\ln x_i-\frac1\theta\sum x_i-nk\ln\theta-n\ln\Gamma(k)$$
 
     ***
 
-    **Sheet step 2 · differentiate.**
-    Only two terms have $\theta$: $\frac{d}{d\theta}\big(-\frac1\theta\sum x_i\big)=+\frac{1}{\theta^2}\sum x_i$ and $\frac{d}{d\theta}(-nk\ln\theta)=-\frac{nk}{\theta}$.
+    **Sheet step 3 · differentiate, term by term.**
+
+    - $(k-1)\sum\ln x_i$ and $-n\ln\Gamma(k)$ — no $\theta$ → **disappear**
+    - $-\frac1\theta\sum x_i$ — rule $\frac1\theta\to-\frac1{\theta^2}$ → $+\frac{1}{\theta^2}\sum x_i$
+    - $-nk\ln\theta$ — rule $\ln\theta\to\frac1\theta$ → $-\frac{nk}{\theta}$
+
+    $$\frac{d}{d\theta}\ln L=\frac{1}{\theta^2}\sum x_i-\frac{nk}{\theta}$$
 
     ***
 
-    **Sheet step 3 · $=0$, clear the denominators.**
-    Multiply by $\theta^2$: $\sum x_i-nk\theta=0$ → $\hat\theta=\frac{\sum x_i}{nk}=\frac{\bar x}{k}$.
+    **Sheet step 4 · $=0$, multiply by $\theta^2$.**
+    $\sum x_i-nk\theta=0$ → $\hat\theta=\frac{\sum x_i}{nk}=\frac{\bar x}{k}$.
 
     ***
 
@@ -285,17 +361,32 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
 
     ***
 
-    **Sheet step 1 · take $\ln$ of the pdf (in $\lambda$).**
-    $\ln$ of $3\lambda e^{-4\lambda x/7}$: $\ln 3+\ln\lambda-\frac{4x}{7}\lambda$ (the sheet: $e^{\text{stuff}}$ → just "stuff").
+    **Sheet step 1 · take $\ln$, term by term (the unknown is $\lambda$).**
+    One sample: $3\lambda e^{-4\lambda x/7}$:
+
+    - $3$ — **above the line**, no $\lambda$ → $\ln 3$ (a constant)
+    - $\lambda$ — **above the line** → $+\ln\lambda$
+    - $e^{-4\lambda x/7}$ — **the $e$ part** → $-\frac{4x}{7}\lambda$
+
+    $$\ln p=\ln 3+\ln\lambda-\frac{4x}{7}\lambda$$
 
     ***
 
-    **Sheet step 2 · differentiate in $\lambda$.**
-    $\frac{d}{d\lambda}\ln\lambda=\frac1\lambda$, and $\frac{d}{d\lambda}\big(-\frac{4x}7\lambda\big)=-\frac47x$ (a constant times $\lambda$). So $\frac1\lambda-\frac{4x}7=0$; multiply by $\lambda$: $1-\frac{4x}7\lambda=0$ → $\hat\lambda=\frac{7}{4x}$.
+    **Sheet step 2 · differentiate in $\lambda$, term by term.**
+
+    - $\ln 3$ — no $\lambda$ → **disappears**
+    - $\ln\lambda$ — rule $\ln\theta\to\frac1\theta$ → $\frac1\lambda$
+    - $-\frac{4x}7\lambda$ — rule $(c\,\theta)\to c$ → $-\frac{4x}7$
+
+    $$\frac{d}{d\lambda}\ln p=\frac1\lambda-\frac{4x}7$$
 
     ***
 
-    **Sheet step 3 · the sheet's conversion formula.**
+    **Sheet step 3 · $=0$, multiply by $\lambda$** → $1-\frac{4x}7\lambda=0$ → $\hat\lambda=\frac{7}{4x}$.
+
+    ***
+
+    **Sheet step 4 · the sheet's conversion formula.**
     $\hat\theta=-\ln\!\big(\frac{1}{\hat\lambda}-1\big)=-\ln\!\big(\frac{4x}{7}-1\big)$.
 
     ***
@@ -323,25 +414,37 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
     <div class="stepper" markdown>
 
     **Sheet step 0 · read who is the unknown.**
-    This one looks scary because of the letters. Follow the sheet literally: the unknown is $\rho$, so in step 2 every term without $\rho$ disappears — $\mu,\sigma,\theta$ are just data, treat them as numbers.
+    This one looks scary because of the letters. Follow the sheet literally: the unknown is $\rho$, so every term without $\rho$ disappears in step 3 — $\mu,\sigma,\theta$ are just data, treat them as numbers.
 
     ***
 
-    **Sheet step 1 · take $\ln$.**
-    The front factor has no $\rho$ → a constant. The exponent comes down as it is:
+    **Sheet step 1 · take $\ln$, term by term.**
+    One sample: $\frac{1}{2\pi(1-\theta^2)^{1/2}}\cdot e^{-\frac{\mu^2\rho^2-2\rho\mu\sigma\theta+\sigma^2\rho^2}{2(1-\theta^2)}}$:
+
+    - $\frac{1}{2\pi(1-\theta^2)^{1/2}}$ — a fraction, but **no $\rho$ anywhere in it** → it is a constant (it will disappear in step 3)
+    - $e^{-(\dots)}$ — **the $e$ part** → just the exponent, with its minus: $-\frac{\mu^2\rho^2-2\rho\mu\sigma\theta+\sigma^2\rho^2}{2(1-\theta^2)}$
 
     $$\ln p=\text{const}-\frac{\mu^2\rho^2-2\rho\mu\sigma\theta+\sigma^2\rho^2}{2(1-\theta^2)}$$
 
     ***
 
-    **Sheet step 2 · differentiate in $\rho$.**
-    The denominator $2(1-\theta^2)$ is a number and stays put; only the top changes:
+    **Sheet step 2 · put $\sum_n$.**
+    One observation only → $N=1$, nothing to sum. Same line as above.
+
+    ***
+
+    **Sheet step 3 · differentiate in $\rho$, term by term.**
+    The bottom $2(1-\theta^2)$ is a number (no $\rho$) and stays put. Only the top changes, piece by piece (rules $\theta^k\to k\theta^{k-1}$ and $(c\,\theta)\to c$):
+
+    - $\mu^2\rho^2$ → $2\mu^2\rho$
+    - $-2\rho\mu\sigma\theta$ → $-2\mu\sigma\theta$
+    - $\sigma^2\rho^2$ → $2\sigma^2\rho$
 
     $$\frac{d}{d\rho}\ln p=-\frac{2\mu^2\rho-2\mu\sigma\theta+2\sigma^2\rho}{2(1-\theta^2)}$$
 
     ***
 
-    **Sheet step 3 · $=0$, clear the denominators.**
+    **Sheet step 4 · $=0$, clear the denominators.**
     Multiply by $2(1-\theta^2)$ (the sheet: clear the denominators first): $2\rho(\mu^2+\sigma^2)-2\mu\sigma\theta=0$.
 
     </div>
@@ -370,12 +473,21 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
 
     ***
 
-    **Sheet step 1 · (if you want to see it) $\ln$ and what to maximise.**
-    $\ln p=\text{const}-\frac{1}{2\sigma^2}\big((x_1-A\cos\theta)^2+(x_2-A\sin\theta)^2\big)$. Maximising $\ln p$ = minimising that square. Expand it: $x_1^2+x_2^2+A^2-2A(x_1\cos\theta+x_2\sin\theta)$. The only $\theta$ part is $-2A(x_1\cos\theta+x_2\sin\theta)$, so you must **maximise** $x_1\cos\theta+x_2\sin\theta$.
+    **Sheet step 1 · take $\ln$, term by term (if you want to see why).**
+
+    - $\frac{1}{2\pi\sigma^2}$ — a constant, no $\theta$ → **disappears**
+    - $e^{-\frac{1}{2\sigma^2}(\dots)}$ — **the $e$ part** → $-\frac{1}{2\sigma^2}\big((x_1-A\cos\theta)^2+(x_2-A\sin\theta)^2\big)$
+
+    Maximising $\ln p$ = minimising that square.
 
     ***
 
-    **Sheet step 2 · maximise $x_1\cos\theta+x_2\sin\theta$.**
+    **Sheet step 2 · expand the square** (expand: $(a-b)^2=a^2-2ab+b^2$, and $\cos^2\theta+\sin^2\theta=1$).
+    $x_1^2+x_2^2+A^2-2A(x_1\cos\theta+x_2\sin\theta)$. The only $\theta$ part is $-2A(x_1\cos\theta+x_2\sin\theta)$, so you must **maximise** $x_1\cos\theta+x_2\sin\theta$.
+
+    ***
+
+    **Sheet step 3 · maximise $x_1\cos\theta+x_2\sin\theta$.**
     It is biggest when the direction $[\cos\theta,\sin\theta]$ points the same way as the data $(x_1,x_2)$: $\cos\theta=\frac{x_1}{\sqrt{x_1^2+x_2^2}}$, $\sin\theta=\frac{x_2}{\sqrt{x_1^2+x_2^2}}$ → $\tan\theta=\frac{x_2}{x_1}$ → the sheet's answer.
 
     </div>
