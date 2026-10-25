@@ -346,12 +346,12 @@ Error table (rows = decision, columns = truth): decide $H_0$ & true $H_0$ = true
 
 ## Calculations · the algebra under every answer
 
-**Integrals.** The exam hands these out (q3-23-2h, nov22-2f): $\int e^{cx}dx=\frac1ce^{cx}$ · $\int xe^{cx}dx=\frac{cx-1}{c^2}e^{cx}$ · $\int x^2e^{cx}dx=\big(\frac{x^2}{c}-\frac{2x}{c^2}+\frac{2}{c^3}\big)e^{cx}$ · $\int x^2e^{-x}dx=-e^{-x}(x^2+2x+2)$ (by parts twice).
-Evaluate $[F(x)]_a^b=F(b)-F(a)$: at $x=\infty$ only $e^{cx}$ with $c\lt0$ becomes 0, at $x=0$ only the plain number survives → $\int_0^\infty e^{-cx}dx=\frac1c$ · $\int_0^\infty xe^{-cx}dx=\frac1{c^2}$ · $\int_0^\infty x^2e^{-cx}dx=\frac2{c^3}$.<br>
+**Integrals.** These formulas are **printed in the question itself** (q3-23-2h, nov22-2f) — you do not memorise them, you copy them: $\int e^{cx}dx=\frac1ce^{cx}$ · $\int xe^{cx}dx=\frac{cx-1}{c^2}e^{cx}$ · $\int x^2e^{cx}dx=\big(\frac{x^2}{c}-\frac{2x}{c^2}+\frac{2}{c^3}\big)e^{cx}$ · $\int x^2e^{-x}dx=-e^{-x}(x^2+2x+2)$ (by parts twice).
+Evaluate $[F(x)]_a^b=F(b)-F(a)$: at $x=\infty$ only $e^{cx}$ with $c\lt0$ becomes 0, at $x=0$ every $x$ is 0 so only the plain number is left → $\int_0^\infty e^{-cx}dx=\frac1c$ · $\int_0^\infty xe^{-cx}dx=\frac1{c^2}$ · $\int_0^\infty x^2e^{-cx}dx=\frac2{c^3}$.<br>
 *Nov22-2f:* MMSE $=\dfrac{\int_0^\infty\theta\cdot\theta e^{-(x+a)\theta}d\theta}{\int_0^\infty\theta e^{-(x+a)\theta}d\theta}=\dfrac{2/(x+a)^3}{1/(x+a)^2}=\dfrac2{x+a}$.
 
 **$\ln$ and $e$.** $\ln(ab)=\ln a+\ln b$ · $\ln\frac ab=\ln a-\ln b$ · $\ln a^k=k\ln a$ · $\ln e^a=a$ · $e^{\ln a}=a$ · $e^ae^b=e^{a+b}$.<br>
-Unchain the unknown: $e^{ky}=A$ → $y=\frac{\ln A}{k}$ · $x^k=a$ → $x=a^{1/k}$ · $y=k\ln x$ → $x=e^{y/k}$.<br>
+Get the letter alone: $e^{ky}=A$ → $y=\frac{\ln A}{k}$ · $x^k=a$ → $x=a^{1/k}$ · $y=k\ln x$ → $x=e^{y/k}$.<br>
 *Nov22:* $e^{-y}=\frac13$ → $y=\ln3=1.099$. *Apr25:* $x^6=0.1$ → $x=0.1^{1/6}=0.68$.
 
 **Sums.** $\sum_{n\ge0}q^n=\frac1{1-q}$ for $|q|\lt1$ · $\sum_n x_n=N\bar x$ · $\sum_n c=Nc$.<br>
@@ -360,7 +360,7 @@ Unchain the unknown: $e^{ky}=A$ → $y=\frac{\ln A}{k}$ · $x^k=a$ → $x=a^{1/k
 **Fractions & equations.** $\frac ab\pm\frac cd=\frac{ad\pm bc}{bd}$ · $\frac ab\div\frac cd=\frac{ad}{bc}$ · $\frac ab=\frac cd$ → $ad=bc$ · $ax^2+bx+c=0$ → $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$ · multiplying by a negative flips $\gt$ into $\lt$ · $\lvert x\rvert\gt t$ = two cases.<br>
 *Apr25-2C:* $\frac{1/3}{14/3}=\frac1{14}$. *Nov22-1b:* $\frac16+\frac14+\frac18=\frac{4+6+3}{24}=\frac{13}{24}$ (common denominator 24).
 
-**Cosines.** $\cos\alpha\cos\beta=\frac{\cos(\alpha+\beta)+\cos(\alpha-\beta)}2$ (Nov22 hands it out in the exam).
+**Cosines.** $\cos\alpha\cos\beta=\frac{\cos(\alpha+\beta)+\cos(\alpha-\beta)}2$ (printed in the Nov22 question).
 
 ## Numbers
 
