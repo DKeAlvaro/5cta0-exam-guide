@@ -46,6 +46,8 @@ $$P(D)=\sum_k P(D\mid M_k)\,P(M_k)\qquad\qquad P(M_k\mid D)=\frac{P(D\mid M_k)\,
 
 <div class="stepper" markdown>
 
+*(The [0.15] marks in the exam text are the points of each sub-question, not answers.)*
+
 **Step 1 · 1000 chips, split by machine.** $400$ from $M_1$, $350$ from $M_2$, $250$ from $M_3$.
 
 ***

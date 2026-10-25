@@ -99,7 +99,7 @@ $P_{FA}=\int_{X_1}p(x|H_0)$, $P_D=\int_{X_1}p(x|H_1)$, $P_M=1-P_D$. **NP:** fix 
 <div markdown>
 **LRT:** $\frac{p(x|H_1)}{p(x|H_0)}\gtrless\lambda$; i.i.d. → products; ln; isolate data term; **÷ negative flips H₀/H₁**. λ=1 → curves cross.
 Mean shift → $\bar x$ big. Var ↑ → $\sum x^2$ big. Narrower Laplace → $\sum|x|$ small. Exp $\lambda_1>\lambda_0$ → x small. Rayleigh σ↑ → x big ($P_{FA}=e^{-\gamma^2/2\sigma_0^2}$, $P_D=P_{FA}^{\sigma_0^2/\sigma_1^2}$).
-Gauss vs $\frac14e^{-|y|/2}$: $|y|>1.588$, $P_D=0.45$, $P_{FA}=2Q=0.11$.
+Gauss vs $\frac14e^{-|y|/2}$: $|y|>1.588$, $P_D=0.45$, $P_{FA}=2Q=0.11$ (Jan 2022: two-sided, normalised). Apr 2024 prints $y\gt0$ **as is**: decide $y\gt1.588$, $P_{FA}=Q(1.588)\approx0.056$, $P_D=\frac12e^{-0.794}\approx0.23$.
 </div>
 
 <div markdown>
