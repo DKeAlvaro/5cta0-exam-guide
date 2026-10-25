@@ -379,4 +379,5 @@ $$\sum_{n}x_n\,s_n\ \underset{\mathcal H_0}{\overset{\mathcal H_1}{\gtrless}}\ \
     - **Forgetting to flip** when you divide by a negative number. Then the whole rule points the wrong way.
     - **Wrong curve for the area**: $P_{FA}$ always uses $p(x\mid\mathcal H_0)$, $P_D$ and $P_M$ always use $p(x\mid\mathcal H_1)$.
     - **Shading the wrong side**: first decide where "decide $\mathcal H_1$" is (left or right of $\gamma$), then shade.
+    - **Which way the rule points**: "bigger ratio → $\mathcal H_1$" never flips; the $x$-axis direction does. If the $\mathcal H_1$ curve is the tall one near 0 (e.g. $2e^{-2y}$ vs $e^{-y}$), the ratio **decreases** with $y$ and the rule becomes $y<\gamma$ (Nov 2022 4f: decide $\mathcal H_1$ for $y<\ln3$).
     - $N$ samples: the ratio is a **product**, its log a **sum** $\sum_n$. Do not drop the $N$ in front of constants ($2^N\to N\ln2$).

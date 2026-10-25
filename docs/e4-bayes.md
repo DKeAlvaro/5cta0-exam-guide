@@ -195,7 +195,15 @@ In words: the evidence makes genAI **5 times more likely** than a human.
 
     **4f · Step 3 · Set them equal.** $1.2\,e^{-2y}=0.4\,e^{-y}$. Divide both sides by $0.4\,e^{-2y}$: $\dfrac{1.2}{0.4}=e^{-y}e^{2y}=e^{y}$ → $3=e^{y}$ → $\gamma''=\ln3\approx1.10$.
 
-    **4f · Step 4 · The rule.** $\mathcal H_1$ wins left of the crossing (where its weighted curve is taller): **decide $\mathcal H_1$ for $y<\ln3$**, $\mathcal H_0$ for $y>\ln3$. (This detector decides $\mathcal H_1$ for *small* $y$ — the densities make small values the $\mathcal H_1$ side.)
+    **4f · Step 4 · The rule — and why the inequality points left.** The LRT is always "ratio **bigger** → $\mathcal H_1$", that never flips. What changes is the direction on the $y$ axis: here the weighted ratio is
+
+    $$\frac{p(y\mid\mathcal H_1)P_1}{p(y\mid\mathcal H_0)P_0}=\frac{1.2\,e^{-2y}}{0.4\,e^{-y}}=3\,e^{-y},$$
+
+    which **shrinks** as $y$ grows (the $\mathcal H_1$ density $2e^{-2y}$ dies faster than $e^{-y}$). So "ratio $>1$" means "small $y$":
+
+    $$3e^{-y}>1\ \iff\ e^{-y}>\tfrac13\ \iff\ y<\ln3 .$$
+
+    **Decide $\mathcal H_1$ for $y<\ln3$**, $\mathcal H_0$ for $y>\ln3$. Quick check at $y=0$: weighted curves $1.2$ vs $0.4$, ratio $3>1$ → $\mathcal H_1$ ✓. Small values point to $\mathcal H_1$ because that is the curve tall near 0.
 
     **4g · Step 5 · $P_{FA}$.** False alarm = decide $\mathcal H_1$ while $\mathcal H_0$ is true, i.e. $y<\ln3$ with the $\mathcal H_0$ density:
 
