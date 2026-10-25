@@ -37,6 +37,8 @@ $$
 
 Rule of thumb: **the number they give you is the bar; the number they ask you to find is the cut.**
 
+Which of these is a function? Only $L$. $\lambda$ is **always just a number**, even with 1000 samples. With $N$ samples $L$ becomes $L(x_1,\dots,x_N)$ and "$L>\lambda$" is a region in $N$ dimensions; the exam then usually collapses it to a cut on **one statistic** — that is what Nov 2022 4c asks ("show that the test takes the form $\sum_n|x_n|\gtrless\gamma'$"). So: $\lambda$ = number always, $L$ = function always, $\gamma$ = number only when the region reduces to one axis.
+
 </div>
 
 After a bit of algebra this always becomes a cut on the $x$ axis: a **threshold** $\gamma$. Two mistakes are possible, and the threshold trades one for the other:
