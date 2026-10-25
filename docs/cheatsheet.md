@@ -6,7 +6,7 @@ hide:
 
 <h1 class="noprint">A4 cheat sheet</h1>
 
-<p class="noprint">You may bring <b>one A4, both sides, own notes</b>. This sheet fills both sides: Ctrl/Cmd + P → A4, margins minimal, untick "headers and footers", scale 100 %.</p>
+<p class="noprint">You may bring <b>one A4, both sides, own notes</b>. This sheet fills both sides: print <code>cheatsheet.pdf</code> at 100 %, or Ctrl/Cmd + P → A4, margins minimal, untick "headers and footers", scale 83 %.</p>
 <div class="cheat" markdown>
 <div class="cheat-cols" markdown>
 
@@ -20,13 +20,14 @@ hide:
 IF YOU SEE a formula $p(x,y)$ on a region + "find $c$" / "marginal" / "conditional" / "independent"
 {: .see }
 
-First draw the region on $x$–$y$ axes. It gives you the limits of every integral. **How to read a limit:** freeze the other letter at some value and ask "from where to where can this letter go?". E.g. $x,y\ge0$ and $x+y\lt1$, with $y$ frozen: $x$ goes from $0$ to $1-y$. Then the outer integral runs over the full range of the frozen letter ($y$ from 0 to 1).
+First draw the region on $x$–$y$ axes: **every integral below takes its limits from that picture**, never from the formula.
 
 - **"Find $c$"** → integrate $p$ over the whole region, set the result $=1$, solve for $c$.<br>
+  **Limits in 4 moves.** (1) Choose the order $dx\,dy$ = inner $x$, outer $y$ (the other order works too). (2) Freeze the outer letter at one value. (3) Inner limits: "from where to where can the inner letter move now?" — they may contain the outer letter ($x$ from $0$ to $1-y$). (4) Outer limits: the full range of the frozen letter, always plain numbers ($y$ from $0$ to $1$). Rectangle → both limits are numbers, order free. Triangle/wedge → one limit is an expression in the other letter.<br>
   *Apr25:* $cx+1$ on the triangle $x,y\ge0$, $x+y\lt1$: $\int_0^1\!\int_0^{1-y}(cx+1)\,dx\,dy=\frac c6+\frac12=1$ → $c=3$.
-- **"Marginal $p_X(x)$"** → integrate the OTHER letter away: $p_X(x)=\int p(x,y)\,dy$. Write the range of $x$ and "0 otherwise".<br>
+- **"Marginal $p_X(x)$"** → integrate the OTHER letter away: $p_X(x)=\int p(x,y)\,dy$, inner limits as in move 3. Range of $x$ = the region's shadow on the $x$ axis; write it and "0 otherwise".<br>
   *Jun26:* $6x^2y$ on the square $0\le x,y\le1$: $p_X=\int_0^1 6x^2y\,dy=3x^2$ for $0\le x\le1$. Same way $p_Y=2y$.
-- **"Conditional $p(x\mid y)$"** → $p(x,y)$ divided by $p_Y(y)$.<br>
+- **"Conditional $p(x\mid y)$"** → $p(x,y)$ divided by $p_Y(y)$; state the ranges ($y$ over its shadow, $x$ over the slice at that $y$).<br>
   *Apr24:* $p=2$ on $0\le y\le x\le1$: $p_Y=\int_y^1 2\,dx=2(1-y)$ → $p(x\mid y)=\frac1{1-y}$ for $y\le x\le1$.
 - **"Independent?"** → YES only if the region is a rectangle AND $p(x,y)=p_X(x)\cdot p_Y(y)$.<br>
   *Jun26:* square, and $3x^2\cdot2y=6x^2y$ → independent. A triangle region → never independent.
@@ -56,6 +57,7 @@ IF YOU SEE $P(\theta)=\dfrac{\text{number}}{A+B\cos\theta}$ + "spectral factoris
 1. Two candidate roots: $r=\dfrac{A\pm\sqrt{A^2-B^2}}{B}$. Keep the one between $-1$ and $1$. Call it $a$.
 2. $C=\dfrac{B}{2a}$.
 3. Answer: $\sigma_i^2=\dfrac{\text{number on top}}{C}$ and $L(z)=\dfrac{1}{1+a\,z^{-1}}$.
+4. Check: $|a|\lt1$ and $\sigma_i^2\gt0$ — a negative $\sigma_i^2$ means you kept the wrong root.
 
 *Apr24* $\frac{7}{25-24\cos\theta}$: $A=25$, $B=-24$, $\sqrt{625-576}=7$, $r=\frac{25\pm7}{-24}$ = $-\frac43$ or $-\frac34$ → $a=-\frac34$. $C=\frac{-24}{-3/2}=16$. So $\sigma_i^2=\frac7{16}$, $L=\frac1{1-\frac34z^{-1}}$.
 
@@ -76,6 +78,7 @@ IF YOU SEE a pdf $p(x\mid\theta)$, samples $x_1..x_N$, "maximum likelihood", "de
 
 **How to take $\ln$ of a pdf:** split it into pieces that multiply, and turn each piece into a plus/minus term: a factor on top → $+\ln(\text{it})$; a factor on the bottom → $-\ln(\text{it})$; $\theta^k$ on the bottom → $-k\ln\theta$; $e^{\text{stuff}}$ → just "stuff" (the $e$ disappears).
 Derivatives: $\ln\theta\to\frac1\theta$ · $\frac1\theta\to-\frac1{\theta^2}$ · $\theta^k\to k\theta^{k-1}$ · $e^{c\theta}\to ce^{c\theta}$.
+Solving $=0$: multiply the equation by the denominators ($\theta^2$, $\theta$, …) first — that does not change the root.
 
 *Apr24* $\frac{x}{2\theta}e^{-x^2/2\theta}$: one sample gives $\ln x-\ln2-\ln\theta-\frac{x^2}{2\theta}$, so $\ln L=\sum\ln x_n-N\ln2-N\ln\theta-\frac{\sum x_n^2}{2\theta}$ → $-\frac N\theta+\frac{\sum x_n^2}{2\theta^2}=0$ → $\hat\theta=\frac1{2N}\sum x_n^2$.
 
@@ -119,7 +122,7 @@ IF YOU SEE points $(x,y)$ + "least squares", "linear function"
 
 1. Means $\bar x$ and $\bar y$.
 2. Slope $a=\dfrac{\sum(x-\bar x)(y-\bar y)}{\sum(x-\bar x)^2}$.
-3. $b=\bar y-a\bar x$. Answer: $y=ax+b$.
+3. $b=\bar y-a\bar x$. Answer: $y=ax+b$. Check: $x=\bar x$ must give $y=\bar y$.
 
 *Apr25* $(0,3),(2,4),(3,3)$: $\bar x=\frac53$, $\bar y=\frac{10}3$, $a=\frac{1/3}{14/3}=\frac1{14}$, $b=\frac{45}{14}$ → $y=\frac1{14}x+\frac{45}{14}$.
 
@@ -177,7 +180,7 @@ IF YOU SEE "AR(1)", "first-order autoregressive"
 
 1. $a=-\dfrac{r[1]}{r[0]}$
 2. $\sigma^2=r[0]+a\,r[1]$
-3. $P=\dfrac{\sigma^2}{1+a^2+2a\cos\theta}$
+3. $P=\dfrac{\sigma^2}{1+a^2+2a\cos\theta}$ (check $|a|\lt1$ and $\sigma^2\gt0$, else a sign went wrong)
 
 *Apr25* $r=2,-\frac14$: $a=\frac18$, $\sigma^2=\frac{63}{32}$, $P=\frac{126}{65+16\cos\theta}$.
 
@@ -230,7 +233,7 @@ Work out each PSD at $\theta=0$ (all cosines $=1$) and at $\theta=\pi$ ($\cos\th
 IF YOU SEE $N$ samples, segment length $L$, overlap %
 {: .see }
 
-Step $D=L\times(1-\text{overlap})$. Segments $K=\frac{N-L}{D}+1$. Variance ratio vs one periodogram $=\frac1K$. Bartlett (no overlap): $K=\frac NL$.
+Step $D=L\times(1-\text{overlap})$. Segments $K=\frac{N-L}{D}+1$ (round the fraction down). Variance ratio vs one periodogram $=\frac1K$. Bartlett (no overlap): $K=\frac NL$.
 
 *Jun26* $N=1000$, $L=200$, 50 %: $D=100$, $K=9$, ratio $\frac19$.
 
@@ -241,6 +244,7 @@ IF YOU SEE "energy or power signal"
 
 - Dies out or has finite length → **energy**: $E=\sum\lvert x\rvert^2$ is finite, power $=0$.
 - Never dies out (sin, cos, constant, $\cos t\,u(t)$) → **power**: $P$ = time average of $\lvert x\rvert^2$, energy $=\infty$.
+- Time-continuous ($t$) → $\sum$ becomes $\int dt$: $E=\int\lvert x\rvert^2dt$, $P=\frac1T\int_0^T\lvert x\rvert^2dt$.
 
 *Apr25:* $A\sin\omega t$ → power $\frac{A^2}2$. $e^{-n}$ for $n\ge0$ → energy $\sum e^{-2n}=\frac1{1-e^{-2}}\approx1.16$ (use $\sum_{n\ge0}q^n=\frac1{1-q}$).
 
@@ -345,7 +349,7 @@ Error table (rows = decision, columns = truth): decide $H_0$ & true $H_0$ = true
 
 ## Numbers
 
-$\ln2=0.693$ · $\ln3=1.099$ · $\ln4=1.386$ · $\ln10=2.303$ · $\ln0.9=-0.105$ · $e^{-1}=0.368$ · $Q(1.28)=0.10$ · $Q(1.645)=0.05$ · $Q(2.33)=0.01$ · $Q(0)=0.5$.
+$\ln2=0.693$ · $\ln3=1.099$ · $\ln4=1.386$ · $\ln10=2.303$ · $\ln0.9=-0.105$ · $e^{-1}=0.368$ · $e^{-2}=0.135$ · $\sqrt{2\pi}=2.51$ · $Q(1.28)=0.10$ · $Q(1.645)=0.05$ · $Q(1.96)=0.025$ · $Q(2.33)=0.01$ · $Q(0)=0.5$.
 $\ln(ab)=\ln a+\ln b$ · $\ln\frac ab=\ln a-\ln b$ · $\ln a^k=k\ln a$ · $\ln e^a=a$. Roots of $ax^2+bx+c$: $\frac{-b\pm\sqrt{b^2-4ac}}{2a}$.
 
 </div>
