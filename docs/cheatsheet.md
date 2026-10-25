@@ -6,7 +6,7 @@ hide:
 
 <h1 class="noprint">A4 cheat sheet</h1>
 
-<p class="noprint">You may bring <b>one A4, both sides, own notes</b>. This sheet fills both sides: print <a href="cheatsheet.pdf"><code>cheatsheet.pdf</code></a> at 100 %, or Ctrl/Cmd + P → A4, margins minimal, untick "headers and footers", scale 82 %.</p>
+<p class="noprint">You may bring <b>one A4, both sides, own notes</b>. This sheet fills both sides: print <a href="cheatsheet.pdf"><code>cheatsheet.pdf</code></a> at 100 %, or Ctrl/Cmd + P → A4, margins minimal, untick "headers and footers", scale 80 %.</p>
 <div class="cheat" markdown>
 <div class="cheat-cols" markdown>
 
@@ -51,10 +51,10 @@ IF YOU SEE "WSS"/"wide-sense stationary"/"stationary", "ergodic", dice, random p
 IF YOU SEE $P(\theta)=\dfrac{\text{number}}{A+B\cos\theta}$ + "spectral factorisation"/"factorization", "innovation filter $L(z)$", "$\sigma_i^2$"
 {: .see }
 
-1. Two candidate roots: $r=\dfrac{A\pm\sqrt{A^2-B^2}}{B}$. Keep the one between $-1$ and $1$. Call it $a$.
-2. $C=\dfrac{B}{2a}$.
-3. Answer: $\sigma_i^2=\dfrac{\text{number on top}}{C}$ and $L(z)=\dfrac{1}{1+a\,z^{-1}}$.
-4. Check: $|a|\lt1$ and $\sigma_i^2\gt0$ — a negative $\sigma_i^2$ means you kept the wrong root.
+1. Read $A$ and $B$ off the denominator $A+B\cos\theta$ **with their signs** ($25-24\cos\theta$: $A=25$, $B=-24$). Then two candidate roots $r=\dfrac{A\pm\sqrt{A^2-B^2}}{B}$: keep the one between $-1$ and $1$, call it $a$.
+2. $C=\dfrac{B}{2a}$ (plain plug-in, nothing to understand).
+3. $\sigma_i^2=\dfrac{\text{number on top}}{C}$, $L(z)=\dfrac{1}{1+a\,z^{-1}}$.
+4. Check $|a|\lt1$ and $\sigma_i^2\gt0$ — a negative $\sigma_i^2$ means you kept the wrong root.
 
 *Apr24* $\frac{7}{25-24\cos\theta}$: $A=25$, $B=-24$, $\sqrt{625-576}=7$, $r=\frac{25\pm7}{-24}$ = $-\frac43$ or $-\frac34$ → $a=-\frac34$. $C=\frac{-24}{-3/2}=16$. So $\sigma_i^2=\frac7{16}$, $L=\frac1{1-\frac34z^{-1}}$.
 
@@ -76,6 +76,7 @@ IF YOU SEE a pdf $p(x\mid\theta)$, samples $x_1..x_N$, "maximum likelihood", "de
 **How to take $\ln$ of a pdf:** write the pdf as $\frac{\text{above}}{\text{below}}\cdot e^{u}$ (it is pieces multiplied, some in a fraction). Then each piece becomes one term: a piece $a$ **above the line** → $+\ln a$ · a piece $b$ **below the line** → $-\ln b$ · $e^{u}$ → just $u$ (the $e$ disappears). Two pieces below the line split: $-\ln(2\theta)=-\ln 2-\ln\theta$. A power $\theta^k$ below the line → $-k\ln\theta$.
 Derivatives: $\ln\theta\to\frac1\theta$ · $\theta^k\to k\theta^{k-1}$ · $\frac1\theta\to-\frac1{\theta^2}$ · $e^{c\theta}\to ce^{c\theta}$.
 Solving $=0$: multiply the equation by the denominators ($\theta^2$, $\theta$, …) first — that does not change the root.
+**Trap:** if the pdf only exists for $x$ up to something containing $\theta$ (uniform on $[0,\theta]$), these 3 steps are useless — $\hat\theta=\max_n x_n$.
 
 *Apr24* $\frac{x}{2\theta}e^{-x^2/2\theta}$: one sample gives $\ln x-\ln2-\ln\theta-\frac{x^2}{2\theta}$, so $\ln L=\sum\ln x_n-N\ln2-N\ln\theta-\frac{\sum x_n^2}{2\theta}$ → $-\frac N\theta+\frac{\sum x_n^2}{2\theta^2}=0$ → $\hat\theta=\frac1{2N}\sum x_n^2$.
 
@@ -214,7 +215,7 @@ IF YOU SEE $x[n]=\dots$ + "which kind of process", "calculate the autocorrelatio
 {: .see }
 
 - Only $i[n],i[n-1],\dots$ on the right → **MA($q$)**, $q$ = biggest delay. Old $x[n-k]$ on the right too → **ARMA($p,q$)**, $p$ = biggest $x$ delay.
-- MA autocorrelation: list the coefficients $1,b_1,b_2,\dots$. $r[k]=\sigma^2\times$(sum of products of coefficients that are $k$ places apart). Zero after lag $q$. So $r[0]$ = sum of the squares; $r[1]$ = each one times its right-hand neighbour ($1\cdot b_1+b_1b_2+\dots$); $r[2]$ = skip one ($1\cdot b_2+b_1b_3+\dots$).<br>
+- MA autocorrelation: write the list $1,b_1,b_2,\dots$ and use $r[k]=\sigma^2\sum_m b_m b_{m+k}$ with $b_0=1$ (pairs sitting $k$ apart in the list). Zero after lag $q$. So $r[0]$ = sum of the squares; $r[1]$ = each one times its right-hand neighbour ($1\cdot b_1+b_1b_2+\dots$); $r[2]$ = skip one ($1\cdot b_2+b_1b_3+\dots$).<br>
   *Apr24* $1,-\frac12,\frac14,-\frac12$ (MA(3), $\sigma^2=1$): $r[0]=1+\frac14+\frac1{16}+\frac14=\frac{25}{16}$, $r[1]=-\frac12-\frac18-\frac18=-\frac34$, $r[2]=\frac14+\frac14=\frac12$, $r[3]=-\frac12$.
 - ARMA(1,1) written as $x[n]+\alpha x[n-1]=i[n]+\beta i[n-1]$: $P=\sigma^2\dfrac{1+\beta^2+2\beta\cos\theta}{1+\alpha^2+2\alpha\cos\theta}$. Its $r[k]$: $r[0]=\sigma^2\frac{1+\beta^2-2\alpha\beta}{1-\alpha^2}$, $r[1]=-\alpha r[0]+\beta\sigma^2$, then $r[k]=(-\alpha)^{k-1}r[1]$ ($k\ge2$, decays by $-\alpha$ each lag).<br>
   *Nov22* $x[k]=i[k]-i[k-1]+\frac34x[k-1]$: $\alpha=-\frac34$, $\beta=-1$, $\sigma^2=\frac78$ → $P=\frac{28(1-\cos\theta)}{25-24\cos\theta}$.
