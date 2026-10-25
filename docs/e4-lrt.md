@@ -297,14 +297,26 @@ $P_D=\int_0^{\gamma'}2e^{-2y}\,dy=1-e^{-2\gamma'}=1-(e^{-\gamma'})^2=1-0.81=\mat
 
 ## The theory questions: test yourself
 
-The multiple choice recycles the same sentences. Two definitions first, then the cards.
+The multiple choice is not about calculating: the same dozen sentences come back every year with one word swapped. So first what the sentences actually mean, then the cards.
 
-<div class="key" markdown>
+### Which trade do you pick? (Neyman–Pearson)
 
-- **Neyman–Pearson (NP)**: fix the false alarms you can tolerate ($P_{FA}=\alpha$) and **maximise $P_D$**. Its solution is always a **likelihood ratio test**, with the $\lambda$ that delivers that $P_{FA}$. (Bayesian detection instead **minimises** the risk: that side of the MC is in [4.2](e4-bayes.md#the-theory-questions-test-yourself).)
-- **Errors are unavoidable**: the two PDFs overlap, so some $x$ could come from either story. No threshold makes $P_{FA}$ and $P_M$ zero together; it only trades one for the other.
+Neither error is free: move the threshold (the widget above) and one shaded area shrinks while the other grows. So a "best detector" has to declare **which** error it is willing to pay for. Two classical answers:
 
-</div>
+- **Neyman–Pearson (NP).** Decide how many false alarms you can live with ("a smoke alarm that beeps every day is useless": say at most 5 %), and among **all** the tests that keep that promise, catch as many as possible. In one line: ==fix $P_{FA}$, **maximise** $P_D$==.
+- **Bayes** ([4.2](e4-bayes.md#the-theory-questions-test-yourself)). Put a price on each mistake and a prior on each hypothesis, and **minimise the average price** (the *risk*). Nothing is fixed.
+
+Why fix $P_{FA}$ and not $P_D$? Under $\mathcal H_0$ there is only noise and its PDF is known, so $P_{FA}$ can be computed exactly and promised. Under $\mathcal H_1$ the signal (its strength, its shape) is often unknown, so no promise about $P_D$ could be kept.
+
+!!! example "Tiny numbers"
+    $\mathcal H_0:x\sim\mathcal N(0,1)$, $\mathcal H_1:x\sim\mathcal N(2,1)$ (first tab of the widget). Promise $P_{FA}=0.05$: that forces the threshold to $\gamma=1.645$, because the right tail of $\mathcal H_0$ beyond 1.645 is exactly 0.05. There the detector catches $P_D=Q(1.645-2)=Q(-0.355)=1-Q(0.355)=1-0.361=0.64$.
+    Neyman–Pearson's claim: **no other rule whatsoever** keeps 5 % false alarms and catches more than 0.64. And the rule that does achieve it is the likelihood ratio test of this page (with the $\lambda$ that puts the threshold at 1.645) — that is the Neyman–Pearson lemma, and it is why every exam question starts from a ratio.
+
+**How the MC is built.** Swap "maximise" for "minimise"; swap "fixes $P_{FA}$" for "fixes $P_D$"; or hand you the Bayes rule and call it NP. Check **which quantity is fixed** and **which verb**.
+
+### The errors are unavoidable
+
+The two PDFs **overlap**: a value like $x=1.5$ sits under both curves, so whatever you decide you might be wrong. ==No threshold makes $P_{FA}$ and $P_M$ zero together; every test only trades one for the other.== (A detector with both zero would mean the two stories never produce the same data — the PDFs would not overlap at all.)
 
 **The matched filter** (a whole LRT in one line): a **known** signal $s_n$ buried in white Gaussian noise. The recipe gives
 
@@ -327,18 +339,18 @@ $$\sum_{n}x_n\,s_n\ \underset{\mathcal H_0}{\overset{\mathcal H_1}{\gtrless}}\ \
 | Statement | | Why |
 |---|---|---|
 | In the 2×2 table, the diagonal cells are the correct ones (true negative, true positive); the other two are the **miss** = false negative = **type II** error and the **false alarm** = false positive = **type I** error. | T | "Positive" means "we said $\mathcal H_1$". Nov 2022 4a is this table with the cells shuffled: answer (a). |
-| Both hypotheses can generate the same observation $\mathbf x$, so a wrong decision cannot be avoided. | T | The PDFs overlap. Nov 2022 4a opens with exactly this sentence. |
-| There is a threshold that makes $P_{FA}$ and $P_M$ both zero. | F | Overlapping PDFs: moving the threshold trades one error for the other. |
-| The Neyman–Pearson test fixes $P_{FA}$ and then **maximises** $P_D$. | T | That is its definition (Nov 2022 4b, Apr 2024 4a). |
-| The Neyman–Pearson test fixes $P_{FA}$ and then **minimises** $P_D$. | F | Nobody wants fewer detections. This is the flipped-verb option (Apr 2024 4a (c), Apr 2025 4b (c)). |
-| The test that solves the Neyman–Pearson problem is a likelihood ratio test. | T | The Neyman–Pearson lemma: that is why we keep computing these ratios. |
-| The likelihood ratio test needs the priors $P_0,P_1$. | F | It only uses the two PDFs. Priors enter the **Bayes** threshold $\lambda=P_0/P_1$ ([4.2](e4-bayes.md)). |
-| Taking $\ln$ of the likelihood ratio changes the decisions of the test. | F | $\ln$ is increasing, so $L>\lambda$ and $\ln L>\ln\lambda$ decide the same. The log only makes the algebra easy. |
+| Both hypotheses can generate the same observation $\mathbf x$, so a wrong decision cannot be avoided. | T | The PDFs overlap: an $x$ like 1.5 sits under both curves, so it could come from either story. Nov 2022 4a opens with exactly this sentence. |
+| There is a threshold that makes $P_{FA}$ and $P_M$ both zero. | F | Push the threshold far right to kill the false alarms and $P_M$ goes to 1 (you never say $\mathcal H_1$). Only non-overlapping PDFs could do both — but then you would not need a test. |
+| The Neyman–Pearson test fixes $P_{FA}$ and then **maximises** $P_D$. | T | Fix the false alarms you can live with, then catch as many as you can — the sentence just above. (Nov 2022 4b (b), Apr 2024 4a.) |
+| The Neyman–Pearson test fixes $P_{FA}$ and then **minimises** $P_D$. | F | Same words, swapped verb: minimising $P_D$ means *catching as few as possible*. That is the classic wrong option. |
+| The test that solves the Neyman–Pearson problem is a likelihood ratio test. | T | NP's lemma: thresholding $L(x)$ = "decide $\mathcal H_1$ when this $x$ is explained this much better by $\mathcal H_1$" is exactly what buys the highest $P_D$ for a given $P_{FA}$. |
+| The likelihood ratio test needs the priors $P_0,P_1$. | F | The ratio is only the two PDFs, so the rule works without any prior. Priors enter the **Bayes** threshold $\lambda=P_0/P_1$ ([4.2](e4-bayes.md)), i.e. where the line is drawn, not how it is built. |
+| Taking $\ln$ of the likelihood ratio changes the decisions of the test. | F | $\ln$ is strictly increasing: $a>b\Leftrightarrow\ln a>\ln b$, so exactly the same $x$'s land in "decide $\mathcal H_1$". The log only turns products into sums (algebra); it never moves the decision. |
 | An ROC curve has $P_D$ on the vertical axis and $P_{FA}$ on the horizontal, and a good detector bows to the top-left corner. | T | It runs from $(0,0)$ (never say $\mathcal H_1$) to $(1,1)$ (always); the diagonal is guessing. |
 | An ROC below the diagonal is caused by using a wrong $\sigma$ in your model. | F | A wrong $\sigma$ only flattens the curve. Below the diagonal means the decision is **flipped**: $\mathcal H_0/\mathcal H_1$ swapped in the ratio, $P_D$ computed with the CDF instead of the tail, or the two axes swapped (Practice exam 2021 1e: the wrong $\sigma$ is the one that *cannot* be the reason). |
-| The matched filter maximises the output SNR for a known signal in white noise. | T | Its defining property; Jan 2022 4a (a). |
-| The matched filter has impulse response $h[n]=s[n]$. | F | $h[n]=s[N-1-n]$, time-reversed, so that convolution becomes correlation. |
-| The matched filter can only be applied when the noise samples are uncorrelated. | F | With correlated noise: whiten first, then correlate. |
+| The matched filter maximises the output SNR for a known signal in white noise. | T | Giving the biggest weights to the biggest samples of the pattern squeezes the most signal out of the noise — no other linear filter does better (Cauchy–Schwarz). Jan 2022 4a (a). |
+| The matched filter has impulse response $h[n]=s[n]$. | F | A convolution **flips** one of the signals, so to end up correlating $\sum x_ns_n$ the filter must contain the already flipped pattern $h[n]=s[N-1-n]$ (time-reversed). $h[n]=s[n]$ correlates with the pattern backwards. |
+| The matched filter can only be applied when the noise samples are uncorrelated. | F | The *derivation* assumed white noise, but with correlated noise you whiten first (undo the correlation) and then correlate. "Assumed" ≠ "only works for". |
 | To decide between two zero-mean Gaussians that differ only in their variance, the LRT compares the energy $\sum x_n^2$ with a threshold. | T | The "energy detector": more variance shows up as more energy (Practice exam 2021 4b, Nov 2019). |
 | When $\mathcal H_1$ is the **narrower** PDF, the test decides $\mathcal H_1$ for **large** values of the statistic. | F | The narrow curve wins near the centre, so the rule flips: decide $\mathcal H_1$ when $\sum\lvert x_n\rvert$ is **small** (Nov 2022 4c). |
 

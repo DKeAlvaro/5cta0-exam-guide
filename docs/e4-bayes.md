@@ -108,9 +108,9 @@ The exam keeps recycling the same statements, often with one word swapped ("maxi
 
 | Statement | | Why |
 |---|---|---|
-| The Neyman–Pearson test fixes $P_{FA}$ and then **maximises** $P_D$. | T | That is its definition (Nov 2022 4b, Apr 2024 4a, Apr 2025 4b). |
-| The Neyman–Pearson test fixes $P_{FA}$ and then **minimises** $P_D$. | F | Nobody wants fewer detections. Maximises. |
-| Bayesian detection chooses the decision regions so that the Bayes risk is **maximised**. | F | Risk = expected cost. You **minimise** it. |
+| The Neyman–Pearson test fixes $P_{FA}$ and then **maximises** $P_D$. | T | You pick the false-alarm rate you can live with, then catch as many as possible. Why, with numbers: [4.1](e4-lrt.md#the-theory-questions-test-yourself). (Nov 2022 4b, Apr 2024 4a, Apr 2025 4b.) |
+| The Neyman–Pearson test fixes $P_{FA}$ and then **minimises** $P_D$. | F | The same sentence with the verb swapped: minimising $P_D$ means catching as few as possible. |
+| Bayesian detection chooses the decision regions so that the Bayes risk is **maximised**. | F | The risk is the average cost of your mistakes — you always **minimise** an average cost. Maximising it would build the worst possible detector. |
 | With costs $C_{01}=C_{10}=1$, $C_{00}=C_{11}=0$, the Bayes test minimises the total probability of error. | T | With 0/1 costs, the risk *is* the error probability. Same with $C_{01}=C_{10}=10$: scaling all costs does not move the threshold. |
 | Equal priors and equal costs reduce the Bayes rule to the maximum likelihood rule. | T | $\lambda=1$: just pick the taller curve. |
 | A higher $P(\mathcal H_0)$ raises the threshold $\eta$, so you need stronger evidence for $\mathcal H_1$. | T | $\eta=P_0/P_1$ grows with $P_0$. |
@@ -118,6 +118,6 @@ The exam keeps recycling the same statements, often with one word swapped ("maxi
 | "Type I error" is a false alarm. | T | Decide $\mathcal H_1$ while $\mathcal H_0$ is true. A miss is type II. |
 | An ROC curve plots $P_D$ (up) against $P_{FA}$ (right); the closer to the top-left corner, the better. | T | Top-left = high detection with few false alarms. The diagonal is guessing. |
 | A detector whose ROC lies below the diagonal is useless. | F | Swap its decisions and it lands above the diagonal. |
-| The matched filter maximises the output SNR for a known signal in white noise. | T | It correlates the data with the known signal shape. |
+| The matched filter maximises the output SNR for a known signal in white noise. | T | It correlates the data with the known pattern (biggest weights on the biggest samples). The other two options of Jan 2022 4a ($h[n]=s[n]$, "only for uncorrelated noise") are false — see [4.1](e4-lrt.md#the-theory-questions-test-yourself). |
 
 </div>
