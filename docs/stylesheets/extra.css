@@ -207,10 +207,12 @@
 @media print {
   @page { size: A4; margin: 9mm; }
   .md-header, .md-tabs, .md-sidebar, .md-footer, .md-source-file, .md-content__button, .noprint { display: none !important; }
+  /* study UI has no business on paper */
+  #progress-bar, .kp-btn, .layout-btn, .edge-hint, #ask-ball, #ask-tail, #ask-toggle, #ask-panel, #ask-backdrop { display: none !important; }
   .md-main__inner { margin: 0 !important; }
   .md-content { max-width: none !important; }
   .md-content__inner { margin: 0 !important; padding: 0 !important; }
-  .md-typeset .cheat { font-size: 7.1pt; line-height: 1.25; }
+  .md-typeset .cheat { font-size: 9.6pt; line-height: 1.3; }
   .md-typeset .cheat h1 { font-size: 11pt; margin: 0 0 .3em; }
   .cheat-cols { column-count: 3; column-gap: 1em; }
   .pagebreak { break-before: page; }
