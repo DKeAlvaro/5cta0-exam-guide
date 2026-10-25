@@ -10,9 +10,6 @@ hide:
 <div class="cheat" markdown>
 <div class="cheat-cols" markdown>
 
-**How to use it.** Read the question. Find the box whose **IF YOU SEE** line matches its words. Do the steps. Copy the shape of the example (taken from a real exam, 2022–2026). Stuck halfway? Still write the box's formula with the exam's numbers plugged in: that alone can earn part of the points.
-{: .how }
-
 ## PART 1 · Probability (1.5 p)
 
 ### 1A · Joint PDF $p(x,y)$
@@ -347,10 +344,27 @@ $C_{ij}$ = cost of deciding $i$ when $j$ is true. $C_{10}$ = false alarm cost, $
 
 Error table (rows = decision, columns = truth): decide $H_0$ & true $H_0$ = true negative · decide $H_0$ & true $H_1$ = miss, false negative, type II · decide $H_1$ & true $H_0$ = false alarm, false positive, type I · decide $H_1$ & true $H_1$ = detection, true positive (Nov22 a).
 
+## Calculations · the algebra under every answer
+
+**Integrals.** The exam hands these out (q3-23-2h, nov22-2f): $\int e^{cx}dx=\frac1ce^{cx}$ · $\int xe^{cx}dx=\frac{cx-1}{c^2}e^{cx}$ · $\int x^2e^{cx}dx=\big(\frac{x^2}{c}-\frac{2x}{c^2}+\frac{2}{c^3}\big)e^{cx}$ · $\int x^2e^{-x}dx=-e^{-x}(x^2+2x+2)$ (by parts twice).
+Evaluate $[F(x)]_a^b=F(b)-F(a)$: at $x=\infty$ only $e^{cx}$ with $c\lt0$ becomes 0, at $x=0$ only the plain number survives → $\int_0^\infty e^{-cx}dx=\frac1c$ · $\int_0^\infty xe^{-cx}dx=\frac1{c^2}$ · $\int_0^\infty x^2e^{-cx}dx=\frac2{c^3}$.<br>
+*Nov22-2f:* MMSE $=\dfrac{\int_0^\infty\theta\cdot\theta e^{-(x+a)\theta}d\theta}{\int_0^\infty\theta e^{-(x+a)\theta}d\theta}=\dfrac{2/(x+a)^3}{1/(x+a)^2}=\dfrac2{x+a}$.
+
+**$\ln$ and $e$.** $\ln(ab)=\ln a+\ln b$ · $\ln\frac ab=\ln a-\ln b$ · $\ln a^k=k\ln a$ · $\ln e^a=a$ · $e^{\ln a}=a$ · $e^ae^b=e^{a+b}$.<br>
+Unchain the unknown: $e^{ky}=A$ → $y=\frac{\ln A}{k}$ · $x^k=a$ → $x=a^{1/k}$ · $y=k\ln x$ → $x=e^{y/k}$.<br>
+*Nov22:* $e^{-y}=\frac13$ → $y=\ln3=1.099$. *Apr25:* $x^6=0.1$ → $x=0.1^{1/6}=0.68$.
+
+**Sums.** $\sum_{n\ge0}q^n=\frac1{1-q}$ for $|q|\lt1$ · $\sum_n x_n=N\bar x$ · $\sum_n c=Nc$.<br>
+*Apr25:* $\sum_{n\ge0}e^{-2n}=\frac1{1-0.135}=1.1565$.
+
+**Fractions & equations.** $\frac ab\pm\frac cd=\frac{ad\pm bc}{bd}$ · $\frac ab\div\frac cd=\frac{ad}{bc}$ · $\frac ab=\frac cd$ → $ad=bc$ · $ax^2+bx+c=0$ → $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$ · multiplying by a negative flips $\gt$ into $\lt$ · $\lvert x\rvert\gt t$ = two cases.<br>
+*Apr25-2C:* $\frac{1/3}{14/3}=\frac1{14}$. *Nov22-1b:* $\frac16+\frac14+\frac18=\frac{4+6+3}{24}=\frac{13}{24}$ (common denominator 24).
+
+**Cosines.** $\cos\alpha\cos\beta=\frac{\cos(\alpha+\beta)+\cos(\alpha-\beta)}2$ (Nov22 hands it out in the exam).
+
 ## Numbers
 
 $\ln2=0.693$ · $\ln3=1.099$ · $\ln4=1.386$ · $\ln10=2.303$ · $\ln0.9=-0.105$ · $e^{-1}=0.368$ · $e^{-2}=0.135$ · $\sqrt{2\pi}=2.51$ · $Q(1.28)=0.10$ · $Q(1.645)=0.05$ · $Q(1.96)=0.025$ · $Q(2.33)=0.01$ · $Q(0)=0.5$.
-$\ln(ab)=\ln a+\ln b$ · $\ln\frac ab=\ln a-\ln b$ · $\ln a^k=k\ln a$ · $\ln e^a=a$. Roots of $ax^2+bx+c$: $\frac{-b\pm\sqrt{b^2-4ac}}{2a}$.
 
 </div>
 </div>
