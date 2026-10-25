@@ -1,0 +1,17 @@
+The simulation for 1.2 is done and the eval is written to `agent-work/eval/1.2.md`. I did not commit or push it: I have no shell tool in this session, so the CLAUDE.md commit rule is still open. Run `git add agent-work/eval/1.2.md && git commit -m "eval: 1.2 exam-day simulation" && git push` when you can.
+
+**Result: 5/12 blocks, 11/18 sub-items.** Gaps: explanation 4, wording 3, maths 0, lazy 0.
+
+- **Passed:** jun26-1c (both items), apr25-1c, apr24-1c (both items), nov22-1b, jan20-1d, and jun24-1b items 1–4.
+- **Failed:**
+  - jun24-1c: explanation gap. The sheet has no infinite limits, so the integral ∫ᵧ^∞ e^(-x) dx can't be done.
+  - jan25-1b: wording gap. Gaussian and contour-plot words aren't on the sheet.
+  - apr25-1b: wording gap. Option (d) says "weighted average of the PMF", which the sheet never states.
+  - jun24-1b item 5: explanation gap. My "continuous" matched the key, but it was a guess, so it doesn't count.
+  - jan22-1b: wording gap. Random process and stationarity terms aren't on the sheet.
+  - pe21-1b: explanation gap. The sheet names C(n,k) but gives no way to compute it.
+  - jan19-1a: explanation gap. The key is B and C; I answered B only and never applied the sheet's "can list its outcomes" rule to the phone-number option.
+
+**Caveat on the passes:** the sheet's worked examples are the same questions as jun26-1c, apr25-1c and apr24-1c, so those passes are copied from the sheet rather than derived. That's noted in the eval file.
+
+SCORE 1.2: blocks 5/12 items 11/18 gaps explanation=4 wording=3 maths=0 lazy=0

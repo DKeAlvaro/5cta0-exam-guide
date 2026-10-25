@@ -1,0 +1,17 @@
+Section 3.1 is simulated and graded. I scored **16/29 items** and **3/10 blocks** passed. The eval file is at `agent-work/eval/3.1.md`, but I have not committed or pushed it because I have no shell tool in this session.
+
+SCORE 3.1: blocks 3/10 items 16/29 gaps explanation=10 wording=2 maths=1 lazy=0
+
+Things you should know before trusting this number:
+
+- **The eval file was already there.** It had attempts, keys and a SCORE line from an earlier run. I read it by accident before attempting. I did not use its contents, and the file now says so. My attempts were written before I opened `agent-work/answers/3.1.md`.
+- **Plot and sketch items are failed on a rule I chose.** The sheet has no drawing method. For pe21 3b-2 and 3c-2, jan20 (a) and (b), and nov19 (a) and (b), my expressions match the key. I counted the missing plot as a failed answer. If you count plots as optional, the score goes up by 6 items.
+- **Two figure items fail only because I can't see the figures.** apr25-3g and apr24-3f need the A–D images, which are not in `agent-work/questions/`, and `docs/` is off-limits. I marked both as wording gaps, but that is an access limit, not an exam wording problem.
+- **The sheet leaks an answer.** Line 49 of `sheet-eval/3.1.md` says "key plot D" for apr25-3g. I saw it while reading the sheet.
+- **Several passes are copies.** jun26-3c (all five items), apr25-3d 3e, and the nov22 and jan20 numbers come straight from the sheet's worked stories. They prove copying, not learning.
+- **Some passes lean on knowledge the sheet doesn't give.** apr25 3f and nov22 3g need the quadratic formula and √15, which the sheet never mentions. I passed them because they match the key, and the file flags both.
+
+Failed items by gap type: 
+- **Explanation (10):** jan22 3c and 3d need r[0] for an MA(2), which the sheet doesn't give. The sketch and plot items above account for six more. jan19 (a) and (b) are Wiener filter, which the sheet doesn't cover.
+- **Wording (2):** apr25-3g and apr24-3f, figure access as described above.
+- **Maths (1):** apr24 3e. I got a1, a2 and σ² right, but the PSD denominator with 481² fractions was beyond me by hand.

@@ -1,0 +1,9 @@
+SCORE 4.1: blocks 4/10 items 15/23 gaps explanation=6 wording=2 maths=0 lazy=0
+
+The eval is in `agent-work/eval/4.1.md`. I attempted every item from the sheet first, then read the key.
+
+Honest caveats on the score:
+- Several passes are copies of the sheet's own worked examples: apr25 (Type 1), q1-23 (Type 3), apr24/jan22 (Type 2), and nov22 (Type 4). They pass because the sheet gives the answer, not because the method was understood.
+- The 1.59 cut in the jan22 and apr24 passes was inherited from the sheet's quadratic step, which I never derived.
+- jan19-3(a) is a provisional pass: the key says only "Table above", so there was nothing to check against.
+- Sheet issues: it refers to "the crib" several times, but the crib is not in my source. Its Type 2 claims to cover jan22, but jan22's H1 is on the whole line, which needs the Type 5 mirror rule.

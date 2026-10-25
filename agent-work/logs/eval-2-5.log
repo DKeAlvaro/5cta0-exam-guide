@@ -1,0 +1,15 @@
+The simulation for 2.5 is done. `agent-work/eval/2.5.md` is written, with every attempt recorded before I opened the key.
+
+I could not commit or push the eval file. This session has no shell tool, so git was not run. Commit `agent-work/eval/2.5.md` and push when you have a shell.
+
+Per item:
+- **nov22-2b, apr25-2a, apr24-2b, jan22-2d, nov22-2a, apr24-2a, q1-23-2a, jan22-2a, jun26-2a**: PASS, letter matches the key.
+- **jan22-2b**: FAIL, explanation gap. The key's answer is the transformed-parameter property, which the sheet never teaches.
+- **jan19-2b b1**: UNGRADED. The key has no separate b1 formula, so I did not count it as a pass.
+- **jan19-2b b2**: PASS. My form is algebraically equal to the key's. Part of my route used an x³ simplification the sheet never wrote down.
+- **jan19-2b c**: FAIL, explanation gap. I gave min(1/x, 2) from the single-observation method. The key is min(N/Σxᵢ, 2), a multi-observation form the sheet does not teach.
+- **nov22-2c**: FAIL, wording gap. Option (b) uses "Bayes risk" and cost C(e), which the sheet never defines. I did not pick it by elimination.
+
+Two sheet rules I could not follow cleanly: the I ≥ 0 claim (no reason given) and the "decreases linearly" trap (I followed the sheet, though 1/N is not linear).
+
+SCORE 2.5: blocks 9/12 items 10/14 gaps explanation=2 wording=1 maths=0 lazy=0

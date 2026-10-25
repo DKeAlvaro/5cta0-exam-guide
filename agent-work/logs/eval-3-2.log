@@ -1,0 +1,15 @@
+SCORE 3.2: blocks 9/15 items 29/37 gaps explanation=5 wording=1 maths=0 lazy=2
+
+Results are in `agent-work/eval/3.2.md`. I attempted every item from the sheet before opening the key.
+
+Failures (8 items):
+- **apr25-3g** and **apr24-3f** (explanation gap): I could not see the plots. The figures are not in my allowed sources, so I could not match a letter.
+- **pe21-3c.2** (explanation gap): the sheet has no sketching method beyond endpoint heights.
+- **jan19-4 a/b** (explanation gap): the sheet has no Wiener filter at all.
+- **jan19-1d** (wording gap): I marked A true; the key says C and D.
+- **jan22-3c 3c/3d** (lazy): I used the optional fallback parameters (a=1/4, b=5/4) and skipped solving 3b. The sheet's 2-step MA(2) rule gives r0=13/8, which is what the key uses. I had the right method and didn't apply it.
+
+Caveats on the grading:
+- Some items have no key entry for the PSD expression (apr24-3e, nov19-2b). I passed them on the parameters the key does give and marked the PSD unverified.
+- Sketches and plots are not checked by the key, so I graded only their expressions.
+- The sheet's worked examples are the exact answers to several exam items (jun26-3c, apr25-3e/3f, apr24-3c, jun26-3d). That makes those items easy to copy and inflates the pass rate.

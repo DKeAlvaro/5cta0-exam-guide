@@ -1,0 +1,13 @@
+The simulation for 3.3 is done. The eval file is written to `agent-work/eval/3.3.md`.
+
+I could not commit or push. This session has no shell tool, so `agent-work/eval/3.3.md` is only changed on disk, not committed. Your rule says repo changes get committed and pushed, so that needs doing by hand or in a session with a shell.
+
+What went wrong, briefly:
+- **apr25-3c item 3:** I could not tell which of AR, MA or ARMA the |B|²/|A|² model is. The sheet lists all three without a rule.
+- **apr24-3a items 1, 3, 4, 5:** "linear random signal model" is not on the sheet. The consistent-estimator question needed Bartlett and Welch, which the sheet never says are consistent. The "Fourier transform of r̂" description needed both correlogram and Blackman–Tukey, and the sheet only gives the correlogram rule. Item 5 I answered "none" only because I could not map it, so it does not count as a pass.
+- **apr25-3a item 1:** I got power and infinite energy for the sine, but averaging A² sin² over time needs a trig identity that is not on the sheet.
+- **jan22-3a:** the sheet has no way to match the four plots to the four items.
+
+Everything else passed, including the Welch counts, the energy/power items, the windows, and the AR order questions.
+
+SCORE 3.3: blocks 11/15 items 28/35 gaps explanation=5 wording=1 maths=1 lazy=0

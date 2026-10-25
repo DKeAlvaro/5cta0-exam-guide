@@ -1,0 +1,10 @@
+The 1.1 simulation is done: 10 of 11 blocks passed, 14 of 19 sub-items. The written eval is in `agent-work/eval/1.1.md`.
+
+- **Passed (all items):** jun26-1b, apr25-1a, apr24-1b, apr24-1a, jan25-1a, nov22-1a, jan22-1a, pe21-1a, jan20-2, jun26-1a. Every numeric answer matched the key.
+- **Failed:** nov19-1b (true/false, 5 items). The sheet has no rules for those topics, so I attempted none. Gaps: explanation=2 (A, B), wording=3 (C, D, E).
+
+Two things to check:
+- `agent-work/questions/1.1.md` shows bracketed values next to jun26-1b Q1 and Q2 (`[0.15]`, `[0.15]`). They are not the key (0.0345 and 0.41), and I did not use them. They may be a leftover answer in the questions file.
+- I read the answer key only after writing every attempt, as the protocol requires.
+
+SCORE 1.1: blocks 10/11 items 14/19 gaps explanation=2 wording=3 maths=0 lazy=0

@@ -1,0 +1,7 @@
+SCORE 4.2: blocks 7/12 items 8/13 gaps explanation=5 wording=0 maths=0 lazy=0
+
+Written to `agent-work/eval/4.2.md`. I couldn't print it through a shell because Bash isn't available in this session, so the line above is the stdout version.
+
+Five items failed, all as explanation gaps: the sheet doesn't cover matched filters (jan22-4a), ROC curves, t-statistic, or the erf/Gaussian tail (pe21-1e, pe21-1f, pe21-4a), and it makes all three options in apr25-4b true, so there is no false one to pick (the official key also says none is false).
+
+One correction to my first draft: I had marked jun26-4c as FAIL because I thought the σ values from 4b were missing. The key is symbolic and my expression matches it, so I re-graded that item to PASS. The note in the eval file says so.

@@ -1,0 +1,17 @@
+Simulation for 2.1 is done and written to `agent-work/eval/2.1.md`. I could not commit or push: this session has no shell tool, so that step is still open.
+
+One caveat first. When I went to write the eval file, it already existed and contained answer keys from an earlier run. I read it, but my attempts were worked out from the sheet and questions before I opened it. I then overwrote it with fresh attempts, and only read `answers/2.1.md` after those were written.
+
+**Results**
+- **Passed:** jun26 (all 3 items), apr25, apr24, jan25, q1-23, pe21, jan19-2a, nov22-2b, jan22-2b, jan19-1b.
+- **Failed, maths gap:** nov22-2d. Needs the derivative of cos θ and sin θ, which the sheet never shows.
+- **Failed, explanation gap:** nov19-3a. The sheet only shows the derivative of 1/θ and the "multiply by θ²" step, not θ^(−2) or θ^(−3).
+
+**Soft spots that still count as passes**
+- jun26 item 1 has no separate key. I passed it because my expression is the sheet's own worked step.
+- nov22-2b and jan22-2b: the sheet states the letter (c) outright, so those passes rest on the sheet's line, not on my own check of the other options.
+- apr24 and pe21: the ln-split of a quotient is not on the sheet. I did it by analogy with the Gamma example.
+
+**Score**
+
+SCORE 2.1: blocks 10/12 items 12/14 gaps explanation=1 wording=0 maths=1 lazy=0

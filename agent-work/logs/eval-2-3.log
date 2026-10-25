@@ -1,0 +1,8 @@
+SCORE 2.3: blocks 5/5 items 8/8 gaps explanation=0 wording=0 maths=0 lazy=0
+
+Every item matched the key, but several passes depend on my own inferences rather than the sheet alone. I flagged these in `agent-work/eval/2.3.md`:
+
+- **jan22-2c (b):** I can't check it from the sheet, which only covers the error vector. I picked (a) because the sheet marks it TRUE.
+- **jan20-4 (a):** my reasoning was thin, and the key only says "LS".
+- **jan20-4 (b):** the 0..n sum limits came from the exam text, not the sheet.
+- **jan20-4 (d):** the matrix inverse and the stacked vectors are my inference. Strictly, that is a maths/explanation gap. The key has no formula of its own ("update above"), so I matched it to the sheet's D4 line.

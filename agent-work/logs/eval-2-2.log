@@ -1,0 +1,10 @@
+SCORE 2.2: blocks 10/15 items 20/27 gaps explanation=3 wording=3 maths=0 lazy=1
+
+The eval is in `agent-work/eval/2.2.md`. I could not commit or push it: this session has no shell tool, so the repo rule (commit and push any repo change) is still open. Run `git add agent-work/eval/2.2.md && git commit -m "eval: 2.2 ..." && git push` from the repo.
+
+Things you should know:
+
+- **Sheet leak:** the last line of `sheet-eval/2.2.md` is "Answer letters: jun26-2a = c, …". I did not copy from it. I worked the MC items from the bullets.
+- **Worked example = exam block:** the jun26-2c example has the same numbers as the exam block, so those 3 PASSes only prove copying works.
+- **Failures:** the three explanation gaps are the jun26-2d prior-effect explanation, the q3-23-2f tie case, and the jan19-2b truncated-range MMSE. The wording gaps are the exponential prior (q3-23-2h, twice) and jan19-2b c's single-x wording. The one lazy fail is jan22-2f 2f, where the squares need expanding and I did not reach the key's form. Maths gap is 0 because the nov19-3c cubic is accepted as the implicit answer the exam allows.
+- **Borderline PASS:** nov19-3c is passed as the implicit equation. My write-up does not say "positive root", so a strict marker could fail it.
