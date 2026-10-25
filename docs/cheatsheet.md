@@ -73,8 +73,7 @@ Binary $X=\pm1$ + Gaussian: MMSE $\tanh(y/\sigma^2)$, MAP sign(y).
 
 <div markdown>
 **Models** (minus sign on a's!): MA $x=i+\sum b_ki[n-k]$; AR $x=i-\sum a_kx[n-k]$. $P=\sigma^2|B|^2/|A|^2$. $|1+ce^{-j\theta}|^2=1+c^2+2c\cos\theta$; $|1+a_1e^{-j\theta}+a_2e^{-2j\theta}|^2=1+a_1^2+a_2^2+2(a_1+a_1a_2)\cos\theta+2a_2\cos2\theta$; $\cos2\theta=2\cos^2\theta-1$.
-MA(q): $r[l]=\sigma^2\sum b_kb_{k-l}$, 0 for $|l|>q$. AR(1): $r[l]=\frac{\sigma^2}{1-a^2}(-a)^{|l|}$.
-ARMA(1,1) $x=i+bi[n-1]-ax[n-1]$: $r_0=\sigma^2(1+b(b-a))-ar_1$, $r_1=\sigma^2b-ar_0$, $r_l=-ar_{l-1}$.
+MA(q): $r[l]=\sigma^2\sum b_kb_{k-l}$, 0 for $|l|>q$. AR(1): $r[l]=\frac{\sigma^2}{1-a^2}(-a)^{|l|}$. ARMA: $r[l]$ decays slowly, never exactly 0.
 </div>
 
 <div markdown>
@@ -98,12 +97,12 @@ $P_{FA}=\int_{X_1}p(x|H_0)$, $P_D=\int_{X_1}p(x|H_1)$, $P_M=1-P_D$. **NP:** fix 
 
 <div markdown>
 **LRT:** $\frac{p(x|H_1)}{p(x|H_0)}\gtrless\lambda$; i.i.d. → products; ln; isolate data term; **÷ negative flips H₀/H₁**. λ=1 → curves cross.
-Mean shift → $\bar x$ big. Var ↑ → $\sum x^2$ big. Narrower Laplace → $\sum|x|$ small. Exp $\lambda_1>\lambda_0$ → x small. Rayleigh σ↑ → x big ($P_{FA}=e^{-\gamma^2/2\sigma_0^2}$, $P_D=P_{FA}^{\sigma_0^2/\sigma_1^2}$).
+Mean shift → $\bar x$ big. Var ↑ → $\sum x^2$ big. Narrower Laplace → $\sum|x|$ small. Exp $\lambda_1>\lambda_0$ → x small. Rayleigh σ↑ → x big ($P_{FA}=e^{-\gamma^2/2\sigma_0^2}$, $P_D=P_{FA}^{\sigma_0^2/\sigma_1^2}$); **threshold** $\gamma=\sqrt{\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\ln\!\big(\eta\frac{\sigma_1^2}{\sigma_0^2}\big)}$, $\eta$ = bar on the ratio ($=P_0/P_1$ with 0/1 costs).
 Gauss vs $\frac14e^{-|y|/2}$: $|y|>1.588$, $P_D=0.45$, $P_{FA}=2Q=0.11$ (Jan 2022: two-sided, normalised). Apr 2024 prints $y\gt0$ **as is**: decide $y\gt1.588$, $P_{FA}=Q(1.588)\approx0.056$, $P_D=\frac12e^{-0.794}\approx0.23$.
 </div>
 
 <div markdown>
-**Tails:** $P(X>t)=Q(\frac{t-\mu}{\sigma})$; $Q(0)=.5$, $Q(1)=.159$, $Q(2)=.023$, $Q(3)=.0013$; $Q=\frac12[1-\text{erf}(z/\sqrt2)]$. Exp: $\int_a^b\lambda e^{-\lambda x}=e^{-\lambda a}-e^{-\lambda b}$. General: $\int ke^{-ay}dy=-\frac ka e^{-ay}$ (front $k$ cancels the exponent's $a$: $\int2e^{-2y}=-e^{-2y}$); $[F]_a^b$ = top − bottom; $e^{-a\ln b}=1/b^a$ ($e^{-\ln3}=\frac13$, $e^{-2\ln3}=\frac19$); $e^{-\infty}=0$.
+**Tails:** $P(X>t)=Q(\frac{t-\mu}{\sigma})$; $Q(0)=.5$, $Q(1)=.159$, $Q(2)=.023$, $Q(3)=.0013$; $Q=\frac12[1-\text{erf}(z/\sqrt2)]$. **Thresholds:** $Q^{-1}(.10)=1.28$, $Q^{-1}(.05)=1.645$, $Q^{-1}(.025)=1.96$, $Q^{-1}(.01)=2.33$ → $\gamma=\mu_0+\sigma\,Q^{-1}(P_{FA})$ ($\sigma$ = std of the statistic under $H_0$). Exp: $\int_a^b\lambda e^{-\lambda x}=e^{-\lambda a}-e^{-\lambda b}$. General: $\int ke^{-ay}dy=-\frac ka e^{-ay}$ (front $k$ cancels the exponent's $a$: $\int2e^{-2y}=-e^{-2y}$); $[F]_a^b$ = top − bottom; $e^{-a\ln b}=1/b^a$ ($e^{-\ln3}=\frac13$, $e^{-2\ln3}=\frac19$); $e^{-\infty}=0$.
 **Bayes:** $\lambda=\frac{(C_{10}-C_{00})P_0}{(C_{01}-C_{11})P_1}$, $C_{ij}$ = decide i, truth j. 0/1 costs → $P_0/P_1$, min $P_e$; equal priors → ML. Posteriors: $H_1$ iff $C_{01}P(H_1|x)>C_{10}P(H_0|x)$. $P_0$↑ → λ↑.
 **Matched filter:** $\sum x_ns_n\gtrless\sigma^2\ln\lambda+\frac12\sum s_n^2$; $h[n]=s[N-1-n]$; max SNR; correlated noise → prewhiten.
 </div>
