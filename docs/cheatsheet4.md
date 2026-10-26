@@ -220,7 +220,8 @@ IF YOU SEE $r[0],r[1],r[2]\dots$ + "correlogram", "only these lags", "PSD as a f
 
 <mark>$P(\theta)=r[0]+2r[1]\cos\theta+2r[2]\cos(2\theta)+2r[3]\cos(3\theta)+\cdots$</mark>. Stop at the largest given lag. **Why the 2?** Correlation at lag $+k$ equals correlation at lag $-k$; their two equal contributions combine into $2r[k]\cos(k\theta)$. The zero lag occurs only once, so **do not double $r[0]$**. From a data list, $\hat r[k]=\frac1N(\text{sum of products of values }k\text{ positions apart})$: use only pairs that both exist, but still divide by the full data length $N$. Reverse question ($P$ given): $r[0]$ = constant term; $r[k]$ = HALF the coefficient of $\cos(k\theta)$. Check your expression at $\theta=0$ (every cosine = 1) and $\theta=\pi$ (cosines alternate between $-1$ and $1$).
 
-*Jun26* $3,2,1$: $3+4\cos\theta+2\cos2\theta=4\cos^2\theta+4\cos\theta+1=(2\cos\theta+1)^2$. *From data* $x=[1,2,3]$: $\hat r[0]=\tfrac{1+4+9}{3}=\tfrac{14}3$, $\hat r[1]=\tfrac{2+6}{3}=\tfrac83$ (only the 2 overlapping pairs), $\hat r[2]=\tfrac33=1$.
+*Jun26 — correlations ALREADY GIVEN:* $r[0]=3,r[1]=2,r[2]=1$, so $P=3+4\cos\theta+2\cos2\theta=4\cos^2\theta+4\cos\theta+1=(2\cos\theta+1)^2$.<br>
+*DIFFERENT practice example — raw data given, NOT the Jun26 process:* $x=[1,2,3]$. Now calculate the correlations: $\hat r[0]=\tfrac{1+4+9}{3}=\tfrac{14}3$, $\hat r[1]=\tfrac{1\cdot2+2\cdot3}{3}=\tfrac83$, $\hat r[2]=\tfrac{1\cdot3}{3}=1$. For THIS data list, $P=\tfrac{14}3+\tfrac{16}3\cos\theta+2\cos2\theta$.
 
 ### 3B · AR(1)
 
