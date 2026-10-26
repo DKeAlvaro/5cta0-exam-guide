@@ -32,10 +32,12 @@ IF YOU SEE a joint PDF/PMF $p(x,y)$ on a region + "find $c$" / "marginal" / "con
 - **"Independent?"** → YES only if the region is a rectangle AND $p(x,y)=p_X(x)\cdot p_Y(y)$.<br>
   *Jun26:* square, and $3x^2\cdot2y=6x^2y$ → independent. A triangle region → never independent.
 
-**Doing the double integral** (the *Apr25* one above, step by step). $\int_0^1\!\int_0^{1-y}(cx+1)\,dx\,dy$:<br>
-**(a)** inner $dx$ first — treat $y$ as a plain number: $\int_0^{1-y}(cx+1)dx=\big[\frac{cx^2}{2}+x\big]_0^{1-y}=\frac{c(1-y)^2}{2}+(1-y)$. Top limit minus bottom; at the bottom every $x$ is 0. **The answer still holding $y$ is normal.**<br>
-**(b)** now in $y$, with the rules below: $\int_0^1\big[\frac{c(1-y)^2}{2}+(1-y)\big]dy$. Keep $c$ aside: $\int_0^1(1-y)dy=\big[y-\frac{y^2}{2}\big]_0^1=\frac12$ · $\int_0^1\frac{(1-y)^2}{2}dy=\big[-\frac{(1-y)^3}{6}\big]_0^1=\frac16$ → total $c\cdot\frac16+\frac12=1$ → $c=3$.<br>
-Rules: $\int x^n dx=\frac{x^{n+1}}{n+1}$ · $\int k\,dx=kx$ · $\int(a-y)^n dy=-\frac{(a-y)^{n+1}}{n+1}$ · always top minus bottom.
+**Worked example — the *Apr25* region, all four tasks on it.** $p(x,y)=cx+1$ on $x,y\ge0$, $x+y\lt1$: a **triangle**, corners $(0,0),(1,0),(0,1)$, sloped side $y=1-x$.<br>
+**Step 0 · picture → integral.** Order $dx\,dy$ (inner $x$). **Freeze the outer letter**: draw a horizontal line at one $y$ through the triangle. Where it **enters** the region = lower inner limit, where it **leaves** = upper one: enters at $x=0$, leaves at the sloped side $x=1-y$ → $\int_0^{1-y}$. Then the frozen letter sweeps its whole shadow → $\int_0^1$. Enter, leave, sweep — nothing else.<br>
+**1 "find $c$":** $\int_0^1\!\int_0^{1-y}(cx+1)\,dx\,dy=1$. Inner $dx$ with $y$ as a plain number: $\big[\frac{cx^2}{2}+x\big]_0^{1-y}=\frac{c(1-y)^2}{2}+(1-y)$ — top minus bottom, at the bottom all $x=0$ (**still holding $y$ is normal**). Outer $dy$: $\int_0^1(1-y)dy=\big[y-\frac{y^2}{2}\big]_0^1=\frac12$ · $\int_0^1\frac{(1-y)^2}{2}dy=\big[-\frac{(1-y)^3}{6}\big]_0^1=\frac16$ → $\frac c6+\frac12=1$ → $c=3$. Rules: $\int x^n dx=\frac{x^{n+1}}{n+1}$, $\int(a-y)^n dy=-\frac{(a-y)^{n+1}}{n+1}$, top minus bottom.<br>
+**2 "marginal":** same move, swap the letters: freeze $x$ → $y$ enters at $0$, leaves at $1-x$ → $p_X(x)=\int_0^{1-x}(3x+1)\,dy=(3x+1)(1-x)$, $0\le x\le1$.<br>
+**3 "conditional":** divide by the marginal of the letter you keep: $p_Y(y)=\int_0^{1-y}(3x+1)dx=\frac32(1-y)^2+(1-y)$ → $p(x\mid y)=\frac{3x+1}{\frac32(1-y)^2+(1-y)}$ for $0\le x\le1-y$.<br>
+**4 "independent?":** triangle, not a rectangle → **no**, no computation.
 
 ### 1B · WSS / ergodic (multiple choice)
 
