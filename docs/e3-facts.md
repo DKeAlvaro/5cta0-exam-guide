@@ -50,20 +50,19 @@ This page is not one recipe, it is **five boxes**: 3F, 3G, 3H, 3I, 3J. Read the 
 
     **3J · Part 3 true / false.**
 
-    | Statement | T / F |
+    Same swap test as 2D — hunt: *improves/reduces · exactly · more/less · both/only · resolution↔leakage*.
+
+    | The fact (true) | The lie they print (false) |
     |---|---|
-    | Periodogram NOT consistent: variance does not go to 0 as $N\to\infty$ | T (Jun26 b) |
-    | Bias affects deterministic and stochastic signals | T (Apr25 a) |
-    | Bartlett: variance drops like $\frac1K$, but bias increases | T (Nov22 a) |
-    | Welch/WOSA: variance drops exactly $\frac1K$ | F (overlapping segments are correlated) |
-    | Main-lobe width → resolution; side-lobe height → leakage | T (Nov22 b) |
-    | A window (Hamming…) improves resolution | F (it lowers leakage; rectangular = best resolution) |
-    | Triangular window: better resolution than rectangular | F |
-    | Longer data or window reduces leakage | F |
-    | Zero-padding improves resolution | F (only more points, step $\frac{2\pi}L$) |
-    | Bartlett reduces variance by zero-padding | F (it splits the data) |
-    | Window type changes the periodogram's variance | F |
-    | Periodogram better bias than correlogram | F (they are the same) |
+    | Periodogram is **not** consistent: bias $\to0$ but $\mathrm{Var}\{\hat P\}\approx P^2$ stays (Jun26 b) | "it is consistent" |
+    | Bias affects **both** deterministic and stochastic signals (Apr25 a) | "only stochastic" |
+    | Bartlett: variance $\propto\frac1K$, bias **up** (Nov22 a) | "variance drops by zero-padding" (it splits the data) |
+    | Welch (overlapping): variance drops **less** than $\frac1K$ | "exactly $\frac1K$" |
+    | Main-lobe width → resolution · side-lobe height → leakage (Nov22 b) | the two swapped |
+    | Windows (Hamming…) cut **leakage**; rectangular has best **resolution** | "a window improves resolution" · "triangular beats rectangular" |
+    | Zero-padding: more points (step $\frac{2\pi}L$), **no** better resolution | "improves resolution" |
+    | Window type does **not** change the periodogram's variance; leakage follows the window, not the record length | "longer data/window reduces leakage" |
+    | Periodogram and correlogram have the **same** bias | "periodogram has better bias" |
 
     **AR order (Jun26-3e).** Bigger $p$ → residual error always goes down → risk: **overfitting** (fake peaks). Fix: **AIC** $=N\ln\hat\sigma^2+2p$ (also FPE, MDL): the error term falls, the penalty $2p$ grows → choose the $p$ with the smallest AIC. Any PSD can be approximated by an AR model of **high enough order**.
 
@@ -303,7 +302,7 @@ Two more sheet places you will need: the **Numbers** strip for $e^{-2}=0.135$ an
     ***
 
     **Sheet step 2 · the bias column.**
-    Periodogram and correlogram are the **same** estimator (box 3J: "Periodogram better bias than correlogram → F"), both smoothed by a triangular window, asymptotically unbiased.
+    Periodogram and correlogram are the **same** estimator (box 3J: *"Periodogram and correlogram have the **same** bias"*, the lie is "periodogram has better bias"), both smoothed by a triangular window, asymptotically unbiased.
     Bartlett: **larger** bias (segments of length $M=N/K$ → resolution $\approx\frac{2\pi}M$).
     WOSA: larger than raw, but **less** than Bartlett (its segments are longer).
     Blackman–Tukey: larger for a shorter lag window $M$.
@@ -382,12 +381,12 @@ Two more sheet places you will need: the **Numbers** strip for $e^{-2}=0.135$ an
     <div class="stepper" markdown>
 
     **April 2025 · (a) is the row *"Bias affects deterministic and stochastic signals"* → T (Apr25 a).**
-    (b) is *"Zero-padding improves resolution"* → F. (c) is *"Periodogram better bias than correlogram"* → F (they are the same). (d) is *"Window type changes the periodogram's variance"* → F.
+    (b) is the zero-padding row — fact *"more points (step $\frac{2\pi}L$), **no** better resolution"*, lie *"improves resolution"* → F. (c) is the last row — fact *"Periodogram and correlogram have the **same** bias"*, lie *"periodogram has better bias"* → F. (d) is the window-type row — *"Window type does **not** change the periodogram's variance"* → F (and "affects both" is a second lie).
 
     ***
 
     **November 2022 · (a) is the row *"Bartlett: variance drops like $\frac1K$, but bias increases"* → T (Nov22 a).**
-    (b) and (d) are the *"Welch/WOSA: variance drops exactly $\frac1K$"* → F row: overlapping segments are **correlated**, so the drop is not $\frac1K$. (c) says the bias *decreases* — it increases.
+    (b) and (d) are the Welch row: the fact is *"Welch (overlapping): variance drops **less** than $\frac1K$"*, and the option prints the lie *"proportional to $\frac1K$"* — overlapping segments are **correlated**. (c) says the bias *decreases* — the Bartlett row says bias **up**.
 
     ***
 
@@ -416,11 +415,11 @@ Two more sheet places you will need: the **Numbers** strip for $e^{-2}=0.135$ an
 
     ***
 
-    **B · F.** The sheet's row: *"Welch/WOSA: variance drops exactly $\frac1K$"* → **F**, because overlapping segments are correlated.
+    **B · F.** The sheet's fact is *"Welch (overlapping): variance drops **less** than $\frac1K$"* — the statement prints the lie *"decreases as $\frac1K$"*, because overlapping segments are correlated.
 
     ***
 
-    **C · T.** Box 3I puts the word "consistent" on the Blackman–Tukey row, and the 3J table says its variance $\to0$.
+    **C · T.** Box 3I puts the word "consistent" on the Blackman–Tukey row, and 3J's footnote defines it: *"*Consistent* $=$ variance $\to0$ as $N\to\infty$"*.
 
     ***
 
@@ -455,7 +454,7 @@ Two more sheet places you will need: the **Numbers** strip for $e^{-2}=0.135$ an
     ***
 
     **Sheet step 2 · where does its variance sit?**
-    Box 3J: *"Welch/WOSA: variance drops exactly $\frac1K$ → F (overlapping segments are correlated)"*. So Welch is **worse than Bartlett** (which does get $\frac1K$) but still **better than a single periodogram** (which is the worst).
+    Box 3J: the fact is *"Welch (overlapping): variance drops **less** than $\frac1K$"*, the printed lie is *"exactly $\frac1K$"* (overlapping segments are correlated). So Welch is **worse than Bartlett** (which does get $\frac1K$) but still **better than a single periodogram** (which is the worst).
 
     $$\mathrm{Var}_{Bartlett} \;\lt\; \mathrm{Var}_{Welch} \;\lt\; \mathrm{Var}_{periodogram}$$
 
@@ -490,7 +489,7 @@ Two more sheet places you will need: the **Numbers** strip for $e^{-2}=0.135$ an
 !!! sheet "In the cheat sheet: box 3J's two window rows"
     <div class="stepper" markdown>
 
-    **The two words to keep apart** (box 3J: *"Main-lobe width → resolution; side-lobe height → leakage"* → T):
+    **The two words to keep apart** (box 3J fact: *"Main-lobe width → resolution · side-lobe height → leakage"* — the lie swaps them):
     **main lobe** = resolution (wide lobe = you cannot separate two close peaks). **side lobes** = leakage (tall lobes = energy spills into other frequencies).
 
     ***
@@ -590,6 +589,42 @@ Two more sheet places you will need: the **Numbers** strip for $e^{-2}=0.135$ an
 
 !!! answer "Answer"
     1. The residual error **decreases monotonically**; the risk is **overfitting** (fitting noise, spurious peaks). 2. **AIC** $=N\ln\hat\sigma^2+2p$ (or FPE / AICc / MDL): a fit term plus a complexity penalty $2p$, choose the minimum. 3. A **high enough** AR order.
+
+## Paraphrase drill — the sentences you have never seen
+
+The exam rewrites these sentences every year. Here they are in **fresh wording**, none taken from a paper. Run the swap test on each, then compare.
+
+<div class="stepper" markdown>
+
+**1 · "Splitting the record into K pieces and averaging their periodograms makes the estimate stabler but less sharp at the peaks."**
+Paraphrase of the Bartlett row (variance $\downarrow$ like $\frac1K$, bias $\uparrow$); no swap word → **T**.
+
+***
+
+**2 · "Windowing the data with a Hamming window makes close spectral peaks easier to tell apart."**
+Swap: *easier to tell apart* = resolution, but a window cuts **leakage** and widens the main lobe → **F**.
+
+***
+
+**3 · "Zero-padding a record of $N$ samples gives you a finer sampling of the same spectrum."**
+Paraphrase of *"more points (step $\frac{2\pi}L$), no better resolution"*; "finer sampling" ≠ "better resolution" → **T**.
+
+***
+
+**4 · "The periodogram turns into a reliable estimate of the PSD once the record is long enough."**
+Swap: *reliable* = consistent, and the first row says the periodogram is **not** consistent ($\mathrm{Var}\{\hat P\}\approx P^2$ stays) → **F**.
+
+***
+
+**5 · "The kind of window you apply changes how much the estimate scatters from one realisation to the next."**
+Swap: *scatters* = variance, and *"Window type does **not** change the periodogram's variance"* → **F**.
+
+***
+
+**6 · "The longer you observe the signal, the less the leakage smears the spectrum."**
+Swap: leakage follows the **window**, not the record length (longer data only sharpens resolution) → **F**.
+
+</div>
 
 ## Traps
 

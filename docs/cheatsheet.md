@@ -309,20 +309,19 @@ IF YOU SEE "which of the following statements" (in Part 3) about PSD, windows, p
 {: .see }
 
 
-| Statement | T / F |
+Same swap test as 2D — hunt: *improves/reduces · exactly · more/less · both/only · resolution↔leakage*.
+
+| The fact (true) | The lie they print (false) |
 |---|---|
-| Periodogram NOT consistent: variance does not go to 0 as $N\to\infty$ | T (Jun26 b) |
-| Bias affects deterministic and stochastic signals | T (Apr25 a) |
-| Bartlett: variance drops like $\frac1K$, but bias increases | T (Nov22 a) |
-| Welch/WOSA: variance drops exactly $\frac1K$ | F (overlapping segments are correlated) |
-| Main-lobe width → resolution; side-lobe height → leakage | T (Nov22 b) |
-| A window (Hamming…) improves resolution | F (it lowers leakage; rectangular = best resolution) |
-| Triangular window: better resolution than rectangular | F |
-| Longer data or window reduces leakage | F |
-| Zero-padding improves resolution | F (only more points, step $\frac{2\pi}L$) |
-| Bartlett reduces variance by zero-padding | F (it splits the data) |
-| Window type changes the periodogram's variance | F |
-| Periodogram better bias than correlogram | F (they are the same) |
+| Periodogram is **not** consistent: bias $\to0$ but $\mathrm{Var}\{\hat P\}\approx P^2$ stays (Jun26 b) | "it is consistent" |
+| Bias affects **both** deterministic and stochastic signals (Apr25 a) | "only stochastic" |
+| Bartlett: variance $\propto\frac1K$, bias **up** (Nov22 a) | "variance drops by zero-padding" (it splits the data) |
+| Welch (overlapping): variance drops **less** than $\frac1K$ | "exactly $\frac1K$" |
+| Main-lobe width → resolution · side-lobe height → leakage (Nov22 b) | the two swapped |
+| Windows (Hamming…) cut **leakage**; rectangular has best **resolution** | "a window improves resolution" · "triangular beats rectangular" |
+| Zero-padding: more points (step $\frac{2\pi}L$), **no** better resolution | "improves resolution" |
+| Window type does **not** change the periodogram's variance; leakage follows the window, not the record length | "longer data/window reduces leakage" |
+| Periodogram and correlogram have the **same** bias | "periodogram has better bias" |
 
 *Consistent* $=$ variance $\to0$ as $N\to\infty$. The periodogram's bias $\to0$ but $\mathrm{Var}\{\hat P\}\approx P^2$ stays put.
 
