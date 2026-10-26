@@ -241,7 +241,7 @@ IF YOU SEE "AR(2)", "Yule–Walker", $r[0],r[1],r[2]$
 3. $\sigma^2=r[0]+a_1r[1]+a_2r[2]$
 4. $P=\dfrac{\sigma^2}{1+a_1^2+a_2^2+2a_1(1+a_2)\cos\theta+2a_2\cos2\theta}$
 
-If they want the matrix: $\begin{bmatrix}r[0]&r[1]\\r[1]&r[0]\end{bmatrix}\begin{bmatrix}a_1\\a_2\end{bmatrix}=-\begin{bmatrix}r[1]\\r[2]\end{bmatrix}$.
+If they want the matrix (Yule–Walker = steps 1–2 in matrix form): $\begin{bmatrix}r[0]&r[1]\\r[1]&r[0]\end{bmatrix}\begin{bmatrix}a_1\\a_2\end{bmatrix}=-\begin{bmatrix}r[1]\\r[2]\end{bmatrix}$.
 
 *Jun26* $r=3,2,1$: $D=3^2-2^2=5$ · $a_1=\frac{-2(3-1)}5=-\frac45$ · $a_2=\frac{2^2-3\cdot1}5=\frac15$ · $\sigma^2=3+(-\frac45)2+\frac15(1)=\frac85$ → step 4, then $\cos2\theta=2\cos^2\theta-1$ → $P=\frac{10}{5\cos^2\theta-12\cos\theta+8}$.
 
@@ -275,7 +275,7 @@ IF YOU SEE "which plot", "which figure", "plots A–D", "match the plot"
 Work out each PSD at $\theta=0$ (all cosines $=1$) and at $\theta=\pi$ ($\cos\theta=-1$, $\cos2\theta=1$, $\cos3\theta=-1$). Pick the plot with those heights. Only a correlogram can go below 0.
 
 *Apr25:* correlogram $1.13\to2.13$, MA $1.5\to2.5$, AR $1.56\to2.57$ (heights at $0\to\pi$) → plot D.
-**Second type** (windowed cosine, DTFT vs DFT — the DTFT is the whole curve, the DFT is the dots on it): infinite cosine = **2 spikes** · windowed = **main lobe + side lobes** (one big bump + small ones) · DFT = **samples of that same curve** · zero padding = **more dots**, not more resolution (Jan22: 1B, 2D, 3C, 4A).
+**Second type** (windowed cosine, DTFT vs DFT — the DTFT is the whole curve, the DFT is the dots on it): infinite cosine = **2 spikes** · windowed = **main lobe + side lobes** (one big bump + small ones) · DFT = **samples of that same curve** · zero padding = **more dots**, not more resolution.
 
 ### 3G · Welch / Bartlett count
 
