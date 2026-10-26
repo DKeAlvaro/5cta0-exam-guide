@@ -6,11 +6,6 @@
 
 Needs [4.1 Likelihood ratio test](e4-lrt.md) first.
 
-## What the exam asks
-
-1. A multiple-choice question on the vocabulary: error table, Neyman–Pearson, Bayes risk, priors.
-2. A **Bayesian test**: the same LRT as in 4.1, but now you also know how often each hypothesis happens (**priors** $P_0=P(\mathcal H_0)$, $P_1=P(\mathcal H_1)$) and/or how bad each mistake is (**costs**). They ask for the threshold, or "should we accept $\mathcal H_1$?".
-
 ## The idea in one minute
 
 If devices are present only 10 % of the time, a measurement has to be **more convincing** before you say "device". Bayes does exactly that: it multiplies each curve by its prior and decides $\mathcal H_1$ wherever the weighted $\mathcal H_1$ curve is the taller one. Drag the crossing in the picture (or slide the prior) and watch the threshold move.
@@ -27,23 +22,34 @@ $$
 
 </div>
 
-$C_{ij}$ = cost of **deciding $\mathcal H_i$ when $\mathcal H_j$ is true**. So $C_{10}$ = cost of a false alarm, $C_{01}$ = cost of a miss, $C_{00}=C_{11}=0$ almost always (being right costs nothing).
+$C_{ij}$ = cost of **deciding $\mathcal H_i$ when $\mathcal H_j$ is true**. So $C_{10}$ = cost of a false alarm, $C_{01}$ = cost of a miss, $C_{00}=C_{11}=0$ almost always (being right costs nothing). Four layers, each from something different:
 
-!!! idea "Why $\lambda$ appears twice: it is the bar, not part of the ratio"
-    The test is a sandwich of **four layers**, each built from something different:
+| layer | symbol | made of | note |
+|---|---|---|---|
+| 1 | $p(x\mid\mathcal H_1)$, $p(x\mid\mathcal H_0)$ | the **model** | the two curve heights |
+| 2 | $L(x)=\dfrac{p(x\mid\mathcal H_1)}{p(x\mid\mathcal H_0)}$ | layer 1 only | priors and costs are **not** in here |
+| 3 | $\lambda$ (the exam writes $\eta$) | priors + costs | the **bar** |
+| 4 | $\gamma$ | layers 2 + 3 | the cut on $x$: solve $L(x)>\lambda$ for $x$ |
 
-    | layer | symbol | made of | note |
-    |---|---|---|---|
-    | 1 | $p(x\mid\mathcal H_1)$, $p(x\mid\mathcal H_0)$ | the **model** | the two curve heights |
-    | 2 | $L(x)=\dfrac{p(x\mid\mathcal H_1)}{p(x\mid\mathcal H_0)}$ | layer 1 only | "how many times more likely under $\mathcal H_1$". **Priors and costs are not in here.** |
-    | 3 | $\lambda$ (the exam writes $\eta$) | priors + costs | $\lambda=\dfrac{(C_{10}-C_{00})P_0}{(C_{01}-C_{11})P_1}$ — the **bar** |
-    | 4 | $\gamma$ | layers 2 + 3 | the cut on $x$: solve $L(x)>\lambda$ for $x$ |
+(Trap: the $\lambda(\theta)=\frac{1}{1+e^{-\theta}}$ of [2.1](e2-mle.md) is a **different lambda** — a model parameter there, not a detection threshold.)
 
-    So there is nothing to "put inside" the LRT: the LRT **is** the sentence "compare layer 2 with layer 3". Bayes only answers *where the bar's number comes from* (priors × costs); Neyman–Pearson answers it differently (pick the bar so $P_{FA}$ is what you tolerate). Either way the ratio itself never changes.
+## How to fight this section with the sheet
 
-    "Substituting $\lambda$" then just means: put the number in and solve for $x$, which turns "ratio $>9$" into "$x>\gamma(\lambda)$" — layer 4.
+The exam adds **priors** $P(H_0),P(H_1)$, **costs** $C_{ij}$, "posterior", "Bayesian hypothesis test" to the two PDFs → you open **box 4B** on your A4 sheet: one formula for $\eta$, one for the posterior version, one for "where $p_1P_1=p_0P_0$", each with an exam already done. The theory MC is **box 4C**.
 
-    One more trap: the $\lambda(\theta)=\frac{1}{1+e^{-\theta}}$ of [2.1](e2-mle.md) and [2.2](e2-map.md) is a **different lambda** — a model parameter there, unrelated to the detection threshold.
+!!! sheet "Box 4B, exactly as it is printed on the sheet"
+    IF YOU SEE priors $P(H_0),P(H_1)$, costs $C_{ij}$, "posterior", "Bayesian hypothesis test", "$P_M$" / "miss"
+
+    $C_{ij}$ = cost of deciding $i$ when $j$ is true. $C_{10}$ = false alarm cost, $C_{01}$ = miss cost.
+
+    - Threshold $\eta=\dfrac{P(H_0)\,(C_{10}-C_{00})}{P(H_1)\,(C_{01}-C_{11})}$. Equal error costs and 0 for correct → $\eta=\frac{P(H_0)}{P(H_1)}$. Then do 4A with this $\eta$.<br>
+      *Jun26-4c:* $\eta=\frac{0.9}{0.1}=9$ → put $\eta=9$ in the Rayleigh answer of 4A.
+    - **Posteriors given** → accept $H_1$ if $\dfrac{P(H_1\mid x)}{P(H_0\mid x)}\gt\dfrac{C_{10}-C_{00}}{C_{01}-C_{11}}$.<br>
+      *Apr25-4c:* $C_{01}=100\,C_{10}$ → right side $=0.01$. Posterior ratio $=5\gt0.01$ → accept $H_1$ → the student fails: **yes**.
+    - **"Where $p_1P_1=p_0P_0$"** → write the equality and solve.<br>
+      *Nov22:* $0.6\cdot2e^{-2y}=0.4\,e^{-y}$ → $e^{-y}=\frac13$ → $y=\ln3$; decide $H_1$ for $y\lt\ln3$. $P_{FA}=1-e^{-\ln3}=\frac23$, $P_M=e^{-2\ln3}=\frac19$.
+
+Special cases of the $\eta$ formula (from its own line: *"Equal error costs and 0 for correct → $\eta=\frac{P(H_0)}{P(H_1)}$"*):
 
 | Special case | $\lambda$ | what it does |
 |---|---|---|
@@ -51,133 +57,71 @@ $C_{ij}$ = cost of **deciding $\mathcal H_i$ when $\mathcal H_j$ is true**. So $
 | 0/1 costs **and** equal priors | $1$ | maximum likelihood rule: pick the taller curve |
 | misses 100× worse than false alarms | $\dfrac{P_0}{100P_1}$ | much easier to say $\mathcal H_1$ |
 
-## The recipe
+## 1 · June 2026 · 4c — priors onto the Rayleigh test
 
-!!! recipe key "Bayesian detection"
-    1. Compute $\lambda=\dfrac{(C_{10}-C_{00})P_0}{(C_{01}-C_{11})P_1}$.
-    2. Do the LRT of [4.1](e4-lrt.md) with that $\lambda$: ratio, log, isolate $x$, flip if needed.
-    3. If they give **posteriors** instead ($P(\mathcal H_1\mid x)$ vs $P(\mathcal H_0\mid x)$): decide $\mathcal H_1$ if $\dfrac{P(\mathcal H_1\mid x)}{P(\mathcal H_0\mid x)}>\dfrac{C_{10}-C_{00}}{C_{01}-C_{11}}$ (the priors are already inside the posteriors).
+!!! exam "Resit Q4, June 2026 · 4c · 1 p (after 4b built the Rayleigh LRT)"
+    Now assume prior probabilities $P(H_0) = 0.9$, $P(H_1) = 0.1$, reflecting the fact that a transmitting device is present only 10 % of the time. Assume equal costs for false alarms and miss-detections. When should the sensor accept $H_1$?
 
-## Watch it once: June 2026 · 4c and April 2025 · 4c
+!!! sheet "In the cheat sheet: box 4B, bullet 1 — the *Jun26-4c* line is this exam"
+    <div class="stepper" markdown>
 
-!!! exam "Resit, June 2026 · 4b + 4c · 1 p each"
-    **4b** A wireless sensor detects the presence of a transmitting device by measuring the received signal envelope $X$ (in mV). Under normal operating conditions the envelope follows a Rayleigh distribution due to multipath fading. Two hypotheses are proposed:
+    **Sheet step 1 · the formula.**
+    *"$\eta=\dfrac{P(H_0)\,(C_{10}-C_{00})}{P(H_1)\,(C_{01}-C_{11})}$. Equal error costs and 0 for correct → $\eta=\frac{P(H_0)}{P(H_1)}$."* Equal costs given → the short form.
 
-    1. Under $H_0$ (no device present), $X \sim \text{Rayleigh}(\sigma_0)$.
-    2. Under $H_1$ (device present), $X \sim \text{Rayleigh}(\sigma_1)$,
+    ***
 
-    with $\sigma_1 > \sigma_0 > 0$, both known. The Rayleigh pdf with scale parameter $\sigma$ is $p(x \mid \sigma) = \frac{x}{\sigma^2} \exp\left(-\frac{x^2}{2\sigma^2}\right)$, $x \geq 0$.
+    **Sheet step 2 · the number.**
+    *"$\eta=\frac{0.9}{0.1}=9$"* — printed. The measurement must be 9× more likely under $H_1$ before the sensor says $H_1$ (rare device → high bar).
 
-    - Construct the likelihood-ratio test for a threshold $\eta$.
-    - Discuss how the separation between $\sigma_0$ and $\sigma_1$ affects detection performance.
+    ***
 
-    **4c** Now assume prior probabilities $P(H_0) = 0.9$, $P(H_1) = 0.1$, reflecting the fact that a transmitting device is present only 10 % of the time. Assume equal costs for false alarms and miss-detections. When should the sensor accept $H_1$?
+    **Sheet step 3 · what to do with it.**
+    *"Then do 4A with this $\eta$."* And the example line: *"put $\eta=9$ in the Rayleigh answer of 4A"* — the 4A formula gives the cut:
 
-<div class="stepper" markdown>
+    $$x>\gamma=\sqrt{\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\Big(9\,\frac{\sigma_1^2}{\sigma_0^2}\Big)}.$$
 
-*(4b builds the test, 4c adds the prior. Everything is here; you never need to go back.)*
+    ***
 
-**Step 1 · What the two sentences give us.** "$P(H_0)=0.9$, $P(H_1)=0.1$" = **priors**: before looking at any measurement, the device is present only 10 % of the time. "Equal costs for false alarms and miss-detections" = the **0/1 costs** of the recipe: $C_{10}=C_{01}=1$ (each mistake hurts equally) and $C_{00}=C_{11}=0$ (being right is free).
+    **Sheet check · the example line.**
+    $\eta=9$ is printed as the answer to this exact sub-question. (Numbers, $\sigma_0=1,\sigma_1=2$: the threshold moves from $1.92$ at $\eta=1$ to $3.09$ at $\eta=9$ — the prior only moves the line, never the curves.)
 
-***
+    </div>
 
-**Step 2 · The threshold number.** The general rule (recipe step 1) says: decide $H_1$ when
+!!! answer "Answer"
+    $\eta=\frac{0.9}{0.1}=9$; accept $H_1$ when $x>\gamma=\sqrt{\dfrac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\Big(9\,\dfrac{\sigma_1^2}{\sigma_0^2}\Big)}$.
 
-$$\frac{p(x\mid H_1)}{p(x\mid H_0)}>\lambda=\frac{(C_{10}-C_{00})\,P_0}{(C_{01}-C_{11})\,P_1}.$$
+## 2 · April 2025 · 4c — posteriors and costs (the student fails)
 
-Fill in the numbers: $\lambda=\dfrac{(1-0)\cdot0.9}{(1-0)\cdot0.1}=\dfrac{0.9}{0.1}=9$. (The exam calls this number $\eta$ in 4b; the recipe calls it $\lambda$: same thing.)
-
-In words: the measurement must be **9 times more likely** under "device" than under "no device" before the sensor says "device" — because devices are rare, one has to be convincing.
-
-***
-
-**Step 3 · The ratio of the two Rayleigh PDFs.** Each PDF is $p(x\mid\sigma)=\dfrac{x}{\sigma^2}\,e^{-x^2/(2\sigma^2)}$, so
-
-$$\frac{p(x\mid H_1)}{p(x\mid H_0)}=\frac{\dfrac{x}{\sigma_1^2}e^{-x^2/(2\sigma_1^2)}}{\dfrac{x}{\sigma_0^2}e^{-x^2/(2\sigma_0^2)}}=\frac{\sigma_0^2}{\sigma_1^2}\;e^{-\frac{x^2}{2\sigma_1^2}+\frac{x^2}{2\sigma_0^2}}$$
-
-The $x$ on top cancels (both PDFs have it), the $\frac{1}{\sigma^2}$ flips into $\frac{\sigma_0^2}{\sigma_1^2}$, and dividing by $e^{u}$ is multiplying by $e^{-u}$, which is why the exponents subtract.
-
-***
-
-**Step 4 · Log, then isolate $x$.** Take $\ln$ of both sides of "ratio $>\lambda$" (the $\ln$ keeps the order because it is increasing):
-
-$$\ln\frac{\sigma_0^2}{\sigma_1^2}+\frac{x^2}{2}\left(\frac{1}{\sigma_0^2}-\frac{1}{\sigma_1^2}\right)>\ln\lambda$$
-
-$$\frac{x^2}{2}\underbrace{\left(\frac{1}{\sigma_0^2}-\frac{1}{\sigma_1^2}\right)}_{\text{positive, because }\sigma_1>\sigma_0}>\ln\lambda-\ln\frac{\sigma_0^2}{\sigma_1^2}=\ln\!\Big(\lambda\frac{\sigma_1^2}{\sigma_0^2}\Big)$$
-
-(the last step uses $\ln a-\ln b=\ln\frac ab$). Multiply by 2 and divide by the bracket, $\frac{1}{\sigma_0^2}-\frac{1}{\sigma_1^2}=\frac{\sigma_1^2-\sigma_0^2}{\sigma_0^2\sigma_1^2}$:
-
-$$x^2>\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\Big(\lambda\frac{\sigma_1^2}{\sigma_0^2}\Big)\qquad\Longrightarrow\qquad \text{decide } H_1 \text{ if } x>\gamma=\sqrt{\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\Big(\lambda\frac{\sigma_1^2}{\sigma_0^2}\Big)}.$$
-
-No "flip": the bracket is positive ($\sigma_1>\sigma_0$), and the ratio grows with $x$, so big envelopes mean $H_1$.
-
-***
-
-**Step 5 · Put $\lambda=9$.** The answer to "when should the sensor accept $H_1$?":
-
-$$x>\gamma=\sqrt{\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\Big(\frac{9\,\sigma_1^2}{\sigma_0^2}\Big)}.$$
-
-***
-
-**Step 6 · Numbers, to see the effect.** Take $\sigma_0=1$, $\sigma_1=2$ (any pair with $\sigma_1>\sigma_0$ shows the same effect). The factor in front: $\dfrac{2\cdot1^2\cdot2^2}{2^2-1^2}=\dfrac{2\cdot4}{3}=\dfrac83=2.67$.
-
-- $\lambda=1$ (ignore the prior): $\ln\!\big(1\cdot\frac41\big)=\ln4=1.386$; $\ 2.67\cdot1.386=3.70$; $\ \gamma=\sqrt{3.70}=1.92$.
-- $\lambda=9$ (the 10 % prior): $\ln\!\big(9\cdot\frac41\big)=\ln36=3.584$ (because $\ln36=\ln4+\ln9=1.386+2.197$); $\ 2.67\cdot3.584=9.56$; $\ \gamma=\sqrt{9.56}=3.09$.
-
-***
-
-**Step 7 · Read the result.** With the prior the threshold **rose** from 1.92 to 3.09 mV: devices are rare, so the envelope must be bigger before the sensor believes one is there. That is all the prior does — it moves the line, not the curves.
-
-</div>
-
-!!! exam "Final exam, 13 April 2025 · 4c · 1 p"
+!!! exam "Final exam Q3, 13 April 2025 · 4c · 1 p"
     An AI agent detects whether assignments were generated with genAI. $\mathcal{H}_0$: written by a student; $\mathcal{H}_1$: generated by genAI. The student fails if the agent accepts $\mathcal{H}_1$. Assume $C_{0,1} = 100C_{1,0}$, $C_{1,1} = C_{0,0} = 0$, and that the posterior of $\mathcal{H}_0$ is 5 times smaller than the posterior of $\mathcal{H}_1$. Should the student fail the course?
 
-<div class="stepper" markdown>
+!!! sheet "In the cheat sheet: box 4B, bullet 2 — the *Apr25-4c* line is this exam, decided"
+    <div class="stepper" markdown>
 
-**Step 0 · Read the cost notation.** $C_{i,j}$ = cost of **deciding $\mathcal H_i$ when $\mathcal H_j$ is true**. So:
+    **Sheet step 1 · which bullet?**
+    *"**Posteriors given** → accept $H_1$ if $\dfrac{P(H_1\mid x)}{P(H_0\mid x)}\gt\dfrac{C_{10}-C_{00}}{C_{01}-C_{11}}$."* The exam hands us posteriors → this bullet, not the $\eta$ one.
 
-- $C_{1,0}$ = decide "genAI" while it was really a student = a **false alarm** = wrongly failing a student.
-- $C_{0,1}$ = decide "student" while it was really genAI = a **miss** = letting genAI slip through.
-- $C_{1,1}=C_{0,0}=0$: being right costs nothing.
+    ***
 
-And "the student fails if the agent accepts $\mathcal H_1$": **decide $\mathcal H_1$ = fail**.
+    **Sheet step 2 · the right side.**
+    *"$C_{01}=100\,C_{10}$ → right side $=0.01$."* $\frac{C_{10}-0}{C_{01}-0}=\frac{C_{10}}{100C_{10}}=0.01$.
 
-***
+    ***
 
-**Step 1 · What the cost ratio tells us.** $C_{0,1}=100\,C_{1,0}$: letting genAI through is **100× worse** than wrongly accusing a student. So the exam tunes the detector to shout "genAI" easily — expect a very low bar.
+    **Sheet step 3 · the left side and the verdict.**
+    "Posterior of $H_0$ is 5 times smaller" → ratio $=\frac{P(H_1|x)}{P(H_0|x)}=5$. The sheet: *"Posterior ratio $=5\gt0.01$ → accept $H_1$ → the student fails: **yes**."*
 
-***
+    ***
 
-**Step 2 · Which form of the rule?** They hand us the **posteriors** $P(\mathcal H_0\mid x)$ and $P(\mathcal H_1\mid x)$: what the agent believes *after* reading the assignment. The priors are already baked inside them, so use recipe step 3:
+    **Sheet check · the example line.**
+    The line ends with the answer word: **yes**.
 
-$$\text{decide } \mathcal H_1 \ \text{ if }\ \frac{P(\mathcal H_1\mid x)}{P(\mathcal H_0\mid x)}>\frac{C_{10}-C_{00}}{C_{01}-C_{11}}=\frac{C_{10}}{C_{01}}$$
+    </div>
 
-(the $C_{00},C_{11}$ drop out because they are 0).
+!!! answer "Answer"
+    **Yes** — the ratio 5 beats the bar 0.01, so accept $\mathcal H_1$ and the student fails.
 
-***
-
-**Step 3 · The left side.** "The posterior of $\mathcal H_0$ is 5 times smaller than the posterior of $\mathcal H_1$" means $P(\mathcal H_0\mid x)=\frac{1}{5}P(\mathcal H_1\mid x)$, so
-
-$$\frac{P(\mathcal H_1\mid x)}{P(\mathcal H_0\mid x)}=\frac{P(\mathcal H_1\mid x)}{\frac15 P(\mathcal H_1\mid x)}=5.$$
-
-In words: the evidence makes genAI **5 times more likely** than a human.
-
-***
-
-**Step 4 · The right side.** $\dfrac{C_{10}}{C_{01}}=\dfrac{C_{10}}{100\,C_{10}}=\dfrac{1}{100}=0.01$. (The unknown $C_{10}$ cancels — only the ratio matters.)
-
-***
-
-**Step 5 · Compare.** $5>0.01$, and not by a hair: the bar is 0.01, so even a *weak* lean towards genAI would already condemn the student. Only if the evidence favoured the student by more than 100 to 1 (ratio below 0.01) would the agent acquit.
-
-***
-
-**Step 6 · Decide.** Accept $\mathcal H_1$: **yes, the student fails.**
-
-</div>
-
-## Your turn
+## 3 · November 2022 · 4f, 4g — "where $p_1P_1=p_0P_0$"
 
 !!! exam "Final exam, 7 November 2022 · 4f, 4g · 0.5 p each"
     $p(y;\mathcal H_0)=e^{-y}$, $p(y;\mathcal H_1)=2e^{-2y}$ for $y\ge0$. Priors $P_0 = 0.4$ and $P_1 = 0.6$; costs $C_{1,1} = C_{0,0} = 0$, $C_{0,1} = C_{1,0} = 1$, so we decide $\mathcal H_1$ when $p(y|\mathcal{H}_1)P_1 > p(y|\mathcal{H}_0)P_0$.
@@ -186,70 +130,104 @@ In words: the evidence makes genAI **5 times more likely** than a human.
 
     **4g** Determine $P_M$ and $P_{FA}$ for this test.
 
-??? solution "Check your answer"
-    **What is being asked?** Two exponential densities with unequal priors. 4f: the $y$ where the two **prior-weighted** curves cross. 4g: the two error probabilities of the rule that comes from that crossing.
+!!! sheet "In the cheat sheet: box 4B, bullet 3 — the *Nov22* line is both sub-questions"
+    <div class="stepper" markdown>
 
-    **4f · Step 1 · Write the weighted curves.** Each density gets multiplied by its prior: $p(y\mid\mathcal H_1)P_1=0.6\cdot2e^{-2y}=1.2\,e^{-2y}$ and $p(y\mid\mathcal H_0)P_0=0.4\,e^{-y}$.
+    **Sheet step 1 · the bullet.**
+    *""Where $p_1P_1=p_0P_0$" → write the equality and solve."* $0.6\cdot2e^{-2y}=0.4\,e^{-y}$.
 
-    **4f · Step 2 · At $y=0$ which is higher?** $1.2\,e^{0}=1.2$ versus $0.4\,e^{0}=0.4$: the weighted $\mathcal H_1$ curve starts **higher**. Since $e^{-2y}$ dies faster than $e^{-y}$, the curves cross exactly once — the threshold.
+    ***
 
-    **4f · Step 3 · Set them equal.** $1.2\,e^{-2y}=0.4\,e^{-y}$. Divide both sides by $0.4\,e^{-2y}$: $\dfrac{1.2}{0.4}=e^{-y}e^{2y}=e^{y}$ → $3=e^{y}$ → $\gamma''=\ln3\approx1.10$.
+    **Sheet step 2 · solve (the printed chain).**
+    *"$0.6\cdot2e^{-2y}=0.4\,e^{-y}$ → $e^{-y}=\frac13$ → $y=\ln3$"* → $\gamma''=\ln3\approx1.10$. (Divide both sides by $0.4e^{-2y}$: $3=e^{y}$.)
 
-    **4f · Step 4 · The rule — and why the inequality points left.** The LRT is always "ratio **bigger** → $\mathcal H_1$", that never flips. What changes is the direction on the $y$ axis: here the weighted ratio is
+    ***
 
-    $$\frac{p(y\mid\mathcal H_1)P_1}{p(y\mid\mathcal H_0)P_0}=\frac{1.2\,e^{-2y}}{0.4\,e^{-y}}=3\,e^{-y},$$
+    **Sheet step 3 · the rule's direction.**
+    *"decide $H_1$ for $y\lt\ln3$"* — small $y$ points to $H_1$ because $2e^{-2y}$ is the curve tall near 0 (the ratio $3e^{-y}$ shrinks with $y$).
 
-    which **shrinks** as $y$ grows (the $\mathcal H_1$ density $2e^{-2y}$ dies faster than $e^{-y}$). So "ratio $>1$" means "small $y$":
+    ***
 
-    $$3e^{-y}>1\ \iff\ e^{-y}>\tfrac13\ \iff\ y<\ln3 .$$
+    **Sheet step 4 · the two areas (the printed end of the line).**
+    $P_{FA}=1-e^{-\ln3}=\frac23$ (decide $H_1$ while $H_0$ true → the $e^{-y}$ area left of $\ln3$), $P_M=e^{-2\ln3}=\frac19$ (the $2e^{-2y}$ area right of $\ln3$).
 
-    **Decide $\mathcal H_1$ for $y<\ln3$**, $\mathcal H_0$ for $y>\ln3$. Quick check at $y=0$: weighted curves $1.2$ vs $0.4$, ratio $3>1$ → $\mathcal H_1$ ✓. Small values point to $\mathcal H_1$ because that is the curve tall near 0.
+    ***
 
-    **4g · Step 5 · $P_{FA}$.** False alarm = decide $\mathcal H_1$ while $\mathcal H_0$ is true, i.e. $y<\ln3$ with the $\mathcal H_0$ density:
+    **Sheet check · the example line.**
+    One printed line contains $\gamma''$, the direction and both probabilities.
 
-    $$P_{FA}=\int_0^{\ln3}e^{-y}dy=\Big[-e^{-y}\Big]_0^{\ln3}=1-e^{-\ln3}=1-\frac13=\frac23.$$
+    </div>
 
-    **4g · Step 6 · $P_M$.** Miss = decide $\mathcal H_0$ while $\mathcal H_1$ is true, i.e. $y>\ln3$ with the $\mathcal H_1$ density:
+!!! answer "Answer"
+    $\gamma''=\ln3\approx1.10$ (decide $\mathcal H_1$ for $y<\ln 3$); $P_{FA}=\frac23$, $P_M=\frac19$.
 
-    $$P_M=\int_{\ln3}^{\infty}2e^{-2y}dy=\Big[-e^{-2y}\Big]_{\ln3}^{\infty}=e^{-2\ln3}=\frac{1}{3^2}=\frac19.$$
+## The integrals: the Calculations strip
 
-    **4g · Step 7 · Sanity check.** Both areas are between 0 and 1 ✓. The total error of the test is $0.4\cdot\frac23+0.6\cdot\frac19=0.267+0.067=0.33$, better than the best lazy rule (always decide $\mathcal H_1$: error $P_0=0.4$) ✓.
+The areas above are integrals of $e^{-ay}$ — the **Calculations** strip at the bottom of the sheet prints what you need: $\int e^{cx}dx=\frac1ce^{cx}$, evaluate $[F]_a^b=F(b)-F(a)$, *"$e^{-\infty}=0$"*, $\int_0^\infty e^{-cx}dx=\frac1c$, $\int_0^\infty xe^{-cx}dx=\frac1{c^2}$, $\int_0^\infty x^2e^{-cx}dx=\frac2{c^3}$, plus the number cards ($\ln3=1.099$, $e^{-2}=0.135$…). Three rules make them mechanical:
 
-    !!! answer "Answer"
-        $\gamma''=\ln3\approx1.10$ (decide $\mathcal H_1$ for $y<\ln 3$); $P_{FA}=\frac23$, $P_M=\frac19$.
+1. **Antiderivative.** $\int k\,e^{-ay}\,dy=-\frac{k}{a}\,e^{-ay}$ — the $2$ in front of $2e^{-2y}$ **cancels** the $2$ of the exponent.
+2. **Evaluate, top minus bottom.** With the minus already in $F$: $\big[-e^{-y}\big]_0^{\ln3}=1-e^{-\ln3}$. At $\infty$ the top is 0 (the strip: $e^{-\infty}=0$).
+3. **Logs in the exponent.** $e^{-a\ln b}=\frac1{b^a}$: $e^{-\ln3}=\frac13$, $e^{-2\ln3}=\frac19$.
 
-!!! idea "The integrals themselves: three rules, no thinking"
-    **1 · Antiderivative.** $\displaystyle\int k\,e^{-ay}\,dy=-\frac{k}{a}\,e^{-ay}$. The minus comes from the exponent, and you divide by the $a$ in front of the $y$. So $\int e^{-y}dy=-e^{-y}$, and $\int 2e^{-2y}dy=-e^{-2y}$ — the $2$ in front **cancels** the $2$ of the exponent (that is why the exam always uses $2e^{-2y}$: a clean, normalised density).
+Check: every area lands between 0 and 1; something bigger than 1 means a flipped sign.
 
-    **2 · Evaluate.** $\big[F\big]_a^b=F(b)-F(a)$: **top minus bottom**. With the minus sign already in $F$ this flips: $\big[-e^{-y}\big]_0^{\ln3}=-(e^{-\ln3}-e^{0})=1-e^{-\ln3}$. And $e^{-\infty}=0$: for a bound at $\infty$ the top contributes nothing and you get "minus the bottom".
+## The theory questions — box 4C
 
-    **3 · Logs in the exponent.** $e^{-a\ln b}=\dfrac{1}{b^{a}}$, always: $e^{-\ln3}=\frac13$, $e^{-2\ln3}=\frac1{3^2}=\frac19$. A minus in front of a log = "one over that power".
+!!! sheet "Box 4C, exactly as it is printed on the sheet (Part 4 true / false)"
+    IF YOU SEE "which of the following statements" (in Part 4) about hypothesis testing, $P_{FA}$, errors
 
-    **Check:** the integrand is (part of) a density, so every area lands between 0 and 1, and $\int_0^\infty e^{-y}dy=\int_0^\infty 2e^{-2y}dy=1$. Something bigger than 1 means a flipped sign.
+    | Statement | T / F |
+    |---|---|
+    | Bayes detection **minimises** the Bayes risk (average cost) | T ("maximises": F) |
+    | $C_{01}=C_{10}$ (1, 10, any equal value), $C_{00}=C_{11}=0$ → minimises total error probability | T |
+    | Equal priors + equal costs → maximum-likelihood rule | T |
+    | Higher $P(H_0)$ raises $\eta$ → harder to pick $H_1$ | T |
+    | Higher $P(H_1)$ raises $\eta$ | F (it lowers it) — Jun26 c |
+    | Neyman–Pearson: fix $P_{FA}$, **maximise** $P_D$ | T ("minimise": F) |
+    | ROC = $P_D$ against $P_{FA}$; diagonal = guessing; better → top-left | T |
 
-## The theory questions: test yourself
+    Error table (rows = decision, columns = truth): decide $H_0$ & true $H_0$ = true negative · decide $H_0$ & true $H_1$ = miss, false negative, type II · decide $H_1$ & true $H_0$ = false alarm, false positive, type I · decide $H_1$ & true $H_1$ = detection, true positive (Nov22 a).
 
-The exam keeps recycling the same statements, often with one word swapped ("maximised" ↔ "minimised"). The error table first:
+    Trap (Apr25-4b): "which statement is FALSE" where all three look true → as printed **all three are true** (official: no false one). Check the verbs: risk **min** · $P_D$ **max** · $P_e$ **min**.
 
-| you decided ↓ / truth → | $\mathcal H_0$ true | $\mathcal H_1$ true |
-|---|---|---|
-| $\mathcal H_0$ | true negative (correct) | **miss** = false negative = type II error |
-| $\mathcal H_1$ | **false alarm** = false positive = type I error | **detection** = true positive |
+<div class="stepper" markdown>
 
-<div class="tf" markdown>
+**Sheet step 1 · Bayes risk (row 1).**
+*"Bayes detection **minimises** the Bayes risk (average cost) | T ("maximises": F)"*. The verb is the question.
 
-| Statement | | Why |
-|---|---|---|
-| The Neyman–Pearson test fixes $P_{FA}$ and then **maximises** $P_D$. | T | You pick the false-alarm rate you can live with, then catch as many as possible. Why, with numbers: [4.1](e4-lrt.md#the-theory-questions-test-yourself). (Nov 2022 4b, Apr 2024 4a, Apr 2025 4b.) |
-| The Neyman–Pearson test fixes $P_{FA}$ and then **minimises** $P_D$. | F | The same sentence with the verb swapped: minimising $P_D$ means catching as few as possible. |
-| Bayesian detection chooses the decision regions so that the Bayes risk is **maximised**. | F | The risk is the average cost of your mistakes — you always **minimise** an average cost. Maximising it would build the worst possible detector. |
-| With costs $C_{01}=C_{10}=1$, $C_{00}=C_{11}=0$, the Bayes test minimises the total probability of error. | T | With 0/1 costs, the risk *is* the error probability. Same with $C_{01}=C_{10}=10$: scaling all costs does not move the threshold. |
-| Equal priors and equal costs reduce the Bayes rule to the maximum likelihood rule. | T | $\lambda=1$: just pick the taller curve. |
-| A higher $P(\mathcal H_0)$ raises the threshold $\eta$, so you need stronger evidence for $\mathcal H_1$. | T | $\eta=P_0/P_1$ grows with $P_0$. |
-| Increasing $P(\mathcal H_1)$ raises $\eta$, making it harder to decide $\mathcal H_1$. | F | It **lowers** $\eta$: $\mathcal H_1$ gets easier (June 2026 4a, the FALSE one). |
-| "Type I error" is a false alarm. | T | Decide $\mathcal H_1$ while $\mathcal H_0$ is true. A miss is type II. |
-| An ROC curve plots $P_D$ (up) against $P_{FA}$ (right); the closer to the top-left corner, the better. | T | Top-left = high detection with few false alarms. The diagonal is guessing. |
-| A detector whose ROC lies below the diagonal is useless. | F | Swap its decisions and it lands above the diagonal. |
-| The matched filter maximises the output SNR for a known signal in white noise. | T | It correlates the data with the known pattern (biggest weights on the biggest samples). The other two options of Jan 2022 4a ($h[n]=s[n]$, "only for uncorrelated noise") are false — see [4.1](e4-lrt.md#the-theory-questions-test-yourself). |
+***
+
+**Sheet step 2 · the 0/1-costs row (row 2).**
+$C_{01}=C_{10}$ (any equal value) and $C_{00}=C_{11}=0$ → minimises total error probability | T. Scaling all costs by 10 does not move the threshold.
+
+***
+
+**Sheet step 3 · equal priors (row 3).**
+*"Equal priors + equal costs → maximum-likelihood rule | T"* — $\eta=1$, just pick the taller curve.
+
+***
+
+**Sheet step 4 · the prior rows (rows 4–5, one is Jun26's FALSE).**
+Higher $P(H_0)$ raises $\eta$ → T. *"Higher $P(H_1)$ raises $\eta$ | F (it lowers it) — Jun26 c"*.
+
+***
+
+**Sheet step 5 · the error table (Nov22 4a).**
+The box's error table names all four cells: miss = false negative = **type II**, false alarm = false positive = **type I**. "Positive" = "we said $H_1$".
+
+***
+
+**Sheet check · the trap line.**
+Apr25-4b asks for the FALSE statement and all three are true — the box says so. Verbs: risk **min** · $P_D$ **max** · $P_e$ **min**.
 
 </div>
+
+## Traps
+
+!!! trap key "Where points are lost (each one is a line of the sheet you skipped)"
+    - Mixing up $C_{10}$ and $C_{01}$: the box defines them — $C_{10}$ = false alarm, $C_{01}$ = miss. The subscripts are "decided, truth".
+    - Putting priors into $L(x)$: the ratio is only the two PDFs (layer 2). Priors and costs belong in $\eta$ (layer 3) — the box's formula has them on the right side only.
+    - Using the $\eta$ bullet when **posteriors** are given (Apr25-4c): posteriors already contain the priors → the ratio of posteriors against $\frac{C_{10}-C_{00}}{C_{01}-C_{11}}$.
+    - The direction flip again: the *Nov22* line decides $H_1$ for $y<\ln3$, not $>$. Small $y$ = the narrow curve.
+    - Forgetting that "equal costs" means the short form $\eta=\frac{P(H_0)}{P(H_1)}$ (bullet 1) — no $C$'s left to plug in.
+    - In the MC: "maximise the Bayes risk", "minimise $P_D$", "raising $P(H_1)$ raises $\eta$" — all three are the sheet's F rows.

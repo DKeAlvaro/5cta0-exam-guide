@@ -4,13 +4,9 @@
 
 <figure class="pod"><video src="video/pod_ep5_probability.mp4" poster="video/pod_ep5_probability.jpg" controls playsinline preload="none"></video><figcaption><b>Watch first: podcast episode 5, Block 1: Bayes, joint PDFs, ergodic, factorisation</b> (with sound). Answer every purple YOUR TURN out loud before the countdown ends; pause if you need more time. <a href="podcast.html">All 5 episodes</a>.</figcaption></figure>
 
-## What the exam asks
-
-You get a formula $p_{X,Y}(x,y)$ that is non-zero only on some **region** of the $(x,y)$ plane. They ask some of: **(a)** find the constant $c$, **(b)** the marginal $p_X(x)$ or $p_Y(y)$ **with its domain**, **(c)** the conditional $p_{X\mid Y}(x\mid y)$, **(d)** are $X$ and $Y$ independent? Usually "final answer only".
-
 ## The idea in one minute
 
-Think of $p(x,y)$ as a **height** above the region. Three facts:
+You get a formula $p_{X,Y}(x,y)$ that is non-zero only on some **region** of the $(x,y)$ plane. Think of it as a **height** above that region. Three facts:
 
 - The total volume under it is 1 (that is how you find $c$).
 - The **marginal** $p_Y(y)$: stand at height $y$, walk across the region horizontally, and add up the heights you pass: $p_Y(y)=\int p(x,y)\,dx$ **along that slice**.
@@ -20,110 +16,253 @@ Move the slice and watch the marginal being traced:
 
 <div class="widget" data-w="region" data-preset="0"></div>
 
-## The recipe
+## How to fight this section with the sheet
 
-!!! recipe key "Joint PDF questions"
-    1. **Draw the region.** Mark its corners and boundary lines.
-    2. **Find $c$**: $\iint p=1$. Inner integral along a slice (limits from the drawing), outer integral over all slice positions.
-    3. **Marginal** $p_Y(y)=\int p(x,y)\,dx$, with $x$ running across the slice at height $y$. Write the domain of $y$ ("for $0\le y\le1$, 0 otherwise").
-    4. **Conditional** $p_{X\mid Y}(x\mid y)=\dfrac{p(x,y)}{p_Y(y)}$; its domain is the slice.
-    5. **Independent** $\iff p(x,y)=p_X(x)\,p_Y(y)$ everywhere. Quick test: the region is a **rectangle** and the formula splits as (only $x$)·(only $y$). A triangle is never independent.
+The exam gives a $p(x,y)$ on a region and says **"find $c$"**, **"marginal"**, **"conditional"**, **"independent"**, **"domain"** → you open **box 1A** on your A4 sheet. Four bullets = the four questions, and each bullet ends with an example that is one of the exams below, **already worked out on the sheet**. There is also a "Doing the double integral" strip: the exact calculation for the $c$ question.
 
-!!! idea "The only integral rule you need"
-    $\int_a^b x^n\,dx=\Big[\frac{x^{n+1}}{n+1}\Big]_a^b$, and anything that does not contain the integration variable comes out as a constant: $\int_0^1 6x^2y\,dy=6x^2\int_0^1y\,dy=6x^2\cdot\frac12$.
+!!! sheet "Box 1A, exactly as it is printed on the sheet"
+    First draw the region on $x$–$y$ axes: **every integral below takes its limits from that picture**, never from the formula.
 
-## Watch it once: April 2024 · 1c (marginal + conditional)
+    - **"Find $c$"** → integrate $p$ over the whole region, set the result $=1$, solve for $c$.<br>
+      **Limits in 4 moves.** (1) Choose the order $dx\,dy$ = inner $x$, outer $y$ (the other order works too). (2) Freeze the outer letter at one value. (3) Inner limits: "from where to where can the inner letter move now?" — they may contain the outer letter ($x$ from $0$ to $1-y$). (4) Outer limits: the full range of the frozen letter, always plain numbers ($y$ from $0$ to $1$). Rectangle → both limits are numbers, order free. Triangle/wedge → one limit is an expression in the other letter. Limits can be $\infty$ (Jun24): $e^{-\infty}=0$.<br>
+      *Apr25:* $cx+1$ on the triangle $x,y\ge0$, $x+y\lt1$ — the whole integral is worked out below.
+    - **"Marginal $p_X(x)$"** → integrate the OTHER letter away: $p_X(x)=\int p(x,y)\,dy$, inner limits as in move 3. Range of $x$ = the region's shadow on the $x$ axis; write it and "0 otherwise".<br>
+      *Jun26:* $6x^2y$ on the square $0\le x,y\le1$: $p_X=\int_0^1 6x^2y\,dy=3x^2$ for $0\le x\le1$. Same way $p_Y=2y$.
+    - **"Conditional $p(x\mid y)$"** → $p(x,y)$ divided by $p_Y(y)$; state the ranges ($y$ over its shadow, $x$ over the slice at that $y$).<br>
+      *Apr24:* $p=2$ on $0\le y\le x\le1$: $p_Y=\int_y^1 2\,dx=2(1-y)$ → $p(x\mid y)=\frac1{1-y}$ for $y\le x\le1$.
+    - **"Independent?"** → YES only if the region is a rectangle AND $p(x,y)=p_X(x)\cdot p_Y(y)$.<br>
+      *Jun26:* square, and $3x^2\cdot2y=6x^2y$ → independent. A triangle region → never independent.
 
-!!! exam "Final exam, April 2024 · 1c · 0.3 p"
-    $p_{X,Y}(x,y) = 2$ for $0 \leq y \leq x \leq 1$, 0 otherwise. Find $p_Y(y)$ and $p_{X|Y}(x|y)$, with their domains. **Final answer only.**
+    **Doing the double integral** (the *Apr25* one above, step by step). $\int_0^1\!\int_0^{1-y}(cx+1)\,dx\,dy$:<br>
+    **(a)** inner $dx$ first — treat $y$ as a plain number: $\int_0^{1-y}(cx+1)dx=\big[\frac{cx^2}{2}+x\big]_0^{1-y}=\frac{c(1-y)^2}{2}+(1-y)$. Top limit minus bottom; at the bottom every $x$ is 0. **The answer still holding $y$ is normal.**<br>
+    **(b)** now in $y$ — expand first, $(1-y)^2=1-2y+y^2$: $\int_0^1(1-y)dy=\big[y-\frac{y^2}{2}\big]_0^1=\frac12$ · $\int_0^1\frac{(1-y)^2}{2}dy=\big[-\frac{(1-y)^3}{6}\big]_0^1=\frac16$ → total $\frac c6+\frac12=1$ → $c=3$.<br>
+    Rules: $\int x^n dx=\frac{x^{n+1}}{n+1}$ · $\int k\,dx=kx$ · $\int(a-y)^n dy=-\frac{(a-y)^{n+1}}{n+1}$ · always top minus bottom · expand powers first.
 
-<div class="stepper" markdown>
+One more sheet place: **box 1E** ("$E[x]$ = the weighted average of the outcomes", "Discrete = the values can be listed") for the multiple-choice words at the bottom of this page.
 
-**Step 1 · Draw.** $0\le y\le x\le1$: $y$ is below $x$, so the region is the triangle **under the diagonal** $y=x$, with corners $(0,0)$, $(1,0)$, $(1,1)$. (First tab of the widget.)
+## 1 · April 2025 · 1c — find $c$ (the sheet works this one out for you)
 
-***
+!!! exam "Final exam Q3, 13 April 2025 · 1c · 0.3 p"
+    Let $X$ and $Y$ be jointly continuous random variables with joint PDF given by:
 
-**Step 2 · The slice at height $y$.** Walking right at height $y$, you enter the triangle at the diagonal, $x=y$, and leave at $x=1$.
+    $$p_{X,Y}(x,y) = \begin{cases} cx + 1 & x, y \geq 0, x + y < 1 \\ 0 & \text{otherwise} \end{cases}$$
 
-***
+    **Note:** For the conditions $x, y \geq 0, x + y < 1$ to be satisfied, $x < 1 - y$ and $y < 1$, or equivalently $y < 1 - x$ and $x < 1$.
 
-**Step 3 · Marginal.** $p_Y(y)=\displaystyle\int_y^1 2\,dx=2(1-y)$ for $0\le y\le1$, 0 otherwise.
-Check: $\int_0^12(1-y)\,dy=2\cdot\frac12=1$ ✓.
+    ***Provide only the final answer. The workout will not be checked.***
 
-***
+    Find the constant $c$.
 
-**Step 4 · Conditional.** $p_{X\mid Y}(x\mid y)=\dfrac{2}{2(1-y)}=\dfrac1{1-y}$ for $y\le x\le1$ (the slice), 0 otherwise. It is flat along the slice: uniform.
+!!! sheet "In the cheat sheet: box 1A, bullet 1 + the 'Doing the double integral' strip — this exam IS the strip"
+    <div class="stepper" markdown>
 
-</div>
+    **Sheet step 1 · draw, then read the limits off the picture.**
+    The sheet's first line: *"First draw the region … every integral below takes its limits from that picture."* $x,y\ge0$ and $x+y<1$ = the triangle under the diagonal. The exam's own note gives the sheet's move 3: inner $x$ from $0$ to $1-y$.
 
-## Watch it once more: April 2025 · 1c (find $c$)
+    ***
 
-!!! exam "Final exam, 13 April 2025 · 1c · 0.3 p"
-    $p_{X,Y}(x,y) = cx + 1$ for $x, y \geq 0,\ x + y < 1$, 0 otherwise. Find the constant $c$. **Final answer only.**
+    **Sheet step 2 · the four moves.**
+    *"(1) Choose the order $dx\,dy$ = inner $x$, outer $y$. (2) Freeze the outer letter. (3) Inner limits … may contain the outer letter ($x$ from $0$ to $1-y$). (4) Outer limits … plain numbers ($y$ from $0$ to $1$)."* Triangle → *"one limit is an expression in the other letter"* — exactly what we have.
 
-<div class="stepper" markdown>
+    ***
 
-**Step 1 · Draw.** $x,y\ge0$ and $x+y<1$: the triangle with corners $(0,0)$, $(1,0)$, $(0,1)$, below the line $y=1-x$. (Second tab.)
+    **Sheet step 3 · inner integral (the strip's line (a)).**
+    $\int_0^{1-y}(cx+1)dx=\big[\frac{cx^2}{2}+x\big]_0^{1-y}=\frac{c(1-y)^2}{2}+(1-y)$. The sheet warns: *"The answer still holding $y$ is normal."*
 
-***
+    ***
 
-**Step 2 · Inner integral (vertical slice at $x$).** $y$ goes from 0 to $1-x$. The height $cx+1$ has no $y$, so it is height × length: $\int_0^{1-x}(cx+1)\,dy=(cx+1)(1-x)$.
+    **Sheet step 4 · outer integral (the strip's line (b)).**
+    *"expand first, $(1-y)^2=1-2y+y^2$"* → $\int_0^1(1-y)dy=\frac12$ and $\int_0^1\frac{(1-y)^2}{2}dy=\frac16$ → total $\frac c6+\frac12=1$ → $c=3$.
 
-***
+    ***
 
-**Step 3 · Outer integral.** $\int_0^1(cx+1)(1-x)\,dx=\int_0^1(cx-cx^2+1-x)\,dx=\frac c2-\frac c3+1-\frac12=\frac c6+\frac12$.
+    **Sheet check · the example line.**
+    The strip's last two words are literally *"$c=3$"*. If your number is not 3, you stopped mid-strip.
 
-***
+    </div>
 
-**Step 4 · Set to 1.** $\frac c6+\frac12=1$ → $c=\mathbf 3$.
+!!! answer "Answer"
+    $c=3$
 
-</div>
+## 2 · April 2024 · 1c — marginal + conditional, domains included
 
-## Your turn
+!!! exam "Final exam Q3, April 2024 · 1c · 0.3 p"
+    Random variables $X$ and $Y$ have joint PDF
 
-!!! exam "Resit, June 2026 · 1c · 0.5 p"
-    $p_{X,Y}(x, y) = 6x^2y$ for $0 \leq x \leq 1$ and $0 \leq y \leq 1$, 0 otherwise. **Final answer only.**
+    $$p_{X,Y}(x,y) = \begin{cases} 2, & 0 \leq y \leq x \leq 1 \\ 0, & \text{otherwise} \end{cases}$$
+
+    Find the marginal PDF of $Y$ ($p_Y(y)$), and the conditional PDF $p_{X|Y}(x|y)$. For both PDFs make sure to correctly indicate their domain.
+
+    **Note: provide only the final answer. No passages will be checked.**
+
+!!! sheet "In the cheat sheet: box 1A, bullets 3 and 4 — the *Apr24* example lines are this exam"
+    <div class="stepper" markdown>
+
+    **Sheet step 1 · draw.**
+    $0\le y\le x\le1$ = the triangle under the diagonal $y=x$ (first tab of the widget). Freeze $y$: walking right, the slice runs from the diagonal $x=y$ to $x=1$.
+
+    ***
+
+    **Sheet step 2 · marginal (bullet 3's example).**
+    *"Apr24: $p=2$ on $0\le y\le x\le1$: $p_Y=\int_y^1 2\,dx=2(1-y)$."* The sheet hands you the answer. Domain: bullet 2 — *"write it and '0 otherwise'"* → $0\le y\le1$.
+
+    ***
+
+    **Sheet step 3 · conditional (bullet 4's rule + same example).**
+    *"$p(x,y)$ divided by $p_Y(y)$; state the ranges ($y$ over its shadow, $x$ over the slice at that $y$)."* → $\frac{2}{2(1-y)}=\frac1{1-y}$ for $y\le x\le1$ (the slice), 0 otherwise.
+
+    ***
+
+    **Sheet check · the example line.**
+    The sheet prints "$p(x\mid y)=\frac1{1-y}$ for $y\le x\le1$". Copy that pair — including both ranges — and the 0.3 p are yours.
+
+    </div>
+
+!!! answer "Answer"
+    $p_Y(y)=2(1-y)$ for $0\le y\le1$ (0 otherwise); $\;p_{X\mid Y}(x\mid y)=\dfrac{1}{1-y}$ for $y\le x\le1$ (0 otherwise).
+
+## 3 · June 2026 · 1c — marginal + independence on a square
+
+!!! exam "Resit Q4, June 2026 · 1c · 0.5 p"
+    Let $X$ and $Y$ be jointly continuous random variables with a joint Probability Density Function (PDF) given by:
+
+    $$p_{X,Y}(x, y) = \begin{cases} 6x^2y, & 0 \leq x \leq 1 \text{ and } 0 \leq y \leq 1 \\ 0, & \text{otherwise} \end{cases}$$
+
+    **Please provide only the final answer. The workout will not be checked.**
 
     1. Find the marginal PDF $p_X(x)$ and indicate its domain. [0.25]
     2. Determine whether $X$ and $Y$ are independent, and briefly justify why. [0.25]
 
-??? solution "Check your answer"
-    **What is being asked?** (1) the marginal $p_X(x)$ with its domain, (2) are $X$ and $Y$ independent?
+!!! sheet "In the cheat sheet: box 1A, bullets 3 and 5 — the *Jun26* example lines are this exam"
+    <div class="stepper" markdown>
 
-    **Step 1 · The region.** $0\le x\le1$ and $0\le y\le1$: the unit square (third tab of the widget). So every slice runs from 0 to 1, and the domain of the marginal is $0\le x\le1$.
+    **Sheet step 1 · the region.**
+    $0\le x,y\le1$ = the unit square (third tab of the widget). The sheet's move 4: *"Rectangle → both limits are numbers, order free"* → every slice is 0 to 1.
 
-    **Step 2 · Marginal = integrate the $y$ away.** $p_X(x)=\int p(x,y)\,dy$ along the slice at that $x$:
+    ***
 
-    $$p_X(x)=\int_0^1 6x^2y\,dy=6x^2\int_0^1 y\,dy=6x^2\cdot\Big[\frac{y^2}{2}\Big]_0^1=6x^2\cdot\frac12=3x^2.$$
+    **Sheet step 2 · marginal (bullet 3's example).**
+    *"Jun26: $6x^2y$ on the square: $p_X=\int_0^1 6x^2y\,dy=3x^2$ for $0\le x\le1$."* The sheet hands you $3x^2$. (If they ask $p_Y$: *"Same way $p_Y=2y$."*) Domain from bullet 2: the shadow, $0\le x\le1$, "0 otherwise".
 
-    The $6x^2$ comes out of the integral because it has no $y$ in it (the [integral rule above](#the-recipe)).
+    ***
 
-    **Step 3 · Check that it is a PDF.** $\int_0^1 3x^2\,dx=\big[x^3\big]_0^1=1$ ✓.
+    **Sheet step 3 · independence (bullet 5's example).**
+    *"YES only if the region is a rectangle AND $p(x,y)=p_X(x)\cdot p_Y(y)$ … Jun26: square, and $3x^2\cdot2y=6x^2y$ → independent."* Both conditions printed → **independent**, and the justification is the multiplication $3x^2\cdot 2y=6x^2y$ on a rectangle.
 
-    **Step 4 · Independence.** Need $p(x,y)=p_X(x)\,p_Y(y)$ **everywhere**. Get $p_Y(y)$ the same way: $p_Y(y)=\int_0^1 6x^2y\,dx=6y\int_0^1 x^2\,dx=6y\cdot\frac13=2y$.
-    Product: $3x^2\cdot 2y=6x^2y$ = the joint ✓, and the region is a rectangle ✓. Both conditions hold → independent.
+    ***
 
-    !!! answer "Answer"
-        1. $p_X(x)=3x^2$ for $0\le x\le1$, 0 otherwise. 2. **Independent**: the support is a rectangle and $p_{X,Y}=p_X\,p_Y=3x^2\cdot2y$.
+    **Sheet check · the example line.**
+    Both answers of this exam appear verbatim in the sheet ("$3x^2$", "→ independent"). If your sheet is the one in your hands, you cannot miss 0.5 p here.
 
-## Quick facts for the MC
+    </div>
 
-<div class="tf" markdown>
+!!! answer "Answer"
+    1. $p_X(x)=3x^2$ for $0\le x\le1$, 0 otherwise. 2. **Independent**: the support is a rectangle and $p_{X,Y}=p_X\,p_Y=3x^2\cdot2y$.
 
-| Statement | | Why |
-|---|---|---|
-| The expected value of a discrete random variable is the weighted average of its values, weighted by the PMF. | T | $E[X]=\sum_x x\,p(x)$. April 2025 1b, answer (d). |
-| The expected value is the simple average of the PMF values. | F | Each value must be weighted by its probability. |
-| $\text{Var}(X)=E[X^2]-(E[X])^2$. | T | The handy way to compute a variance. |
-| Independent variables have zero covariance. | T | $\text{Cov}=E[XY]-E[X]E[Y]=0$ when $E[XY]=E[X]E[Y]$. |
-| Zero covariance implies independence. | F | Only the other way round (except for jointly Gaussian variables). |
-| A joint PDF on a triangle can be independent if the formula splits into $f(x)g(y)$. | F | The support also has to be a rectangle. On a triangle, knowing $y$ changes the range of $x$. |
+## 4 · June 2024 · 1c — $c$ with limits at infinity (MC)
 
-</div>
+!!! exam "Resit June 2024 · 1c · 0.25 p"
+    Random variables have joint PDF given by:
+
+    $$p_{X,Y}(x, y) = ce^{-x}e^{-y},$$
+
+    for $0 \leq y \leq x < \infty$.
+
+    What is the correct values for the normalization constant $c$?
+
+    a) 1  b) 4  c) 1/2  d) 2
+
+!!! sheet "In the cheat sheet: box 1A, bullet 1 — the $\infty$ line and the same four moves"
+    <div class="stepper" markdown>
+
+    **Sheet step 1 · draw, freeze $x$.**
+    $0\le y\le x<\infty$: the wedge below the diagonal, open to the right. Move 3: inner $y$ from $0$ to $x$ (an expression in the outer letter — *"Triangle/wedge → one limit is an expression in the other letter"*). Move 4: outer $x$ from $0$ to $\infty$.
+
+    ***
+
+    **Sheet step 2 · inner.**
+    $\int_0^x e^{-y}dy=1-e^{-x}$ (top minus bottom; the sheet's rule *"always top minus bottom"*).
+
+    ***
+
+    **Sheet step 3 · outer, with the sheet's infinity line.**
+    *"Limits can be $\infty$ (Jun24): $e^{-\infty}=0$."* $\int_0^\infty e^{-x}(1-e^{-x})dx=\int_0^\infty e^{-x}dx-\int_0^\infty e^{-2x}dx=1-\frac12=\frac12$. (The $e^{-\infty}=0$ is what makes both terms plain numbers.)
+
+    ***
+
+    **Sheet step 4 · solve.**
+    $c\cdot\frac12=1$ → $c=2$ → **(d)**.
+
+    </div>
+
+!!! answer "Answer"
+    **(d) $c=2$**
+
+## 5 · November 2022 · 1b — marginal from a table (sum, don't integrate)
+
+!!! exam "Final exam Q1, 7 November 2022 · 1b · 0.25 p"
+    Consider two random variables $X$ and $Y$ with joint PMF $p_{X,Y}(x,y)$ given by the following table. What is the marginal PMF of $X$?
+
+    |         | $Y = 0$ | $Y = 1$ | $Y = 2$ |
+    |---------|---------|---------|---------|
+    | $X = 0$ | 1/6     | 1/4     | 1/8     |
+    | $X = 1$ | 1/8     | 1/6     | 1/6     |
+
+    - (a) $p_X(0)=7/24$, $p_X(1)=5/24$, 0 otherwise
+    - (b) $p_X(0)=13/24$, $p_X(1)=11/24$, 0 otherwise
+    - (c) $p_X(0)=13/24$, $p_X(1)=5/24$, $p_X(2)=11/24$, 0 otherwise
+    - (d) $p_X(0)=7/24$, $p_X(1)=5/12$, $p_X(2)=7/24$, 0 otherwise
+
+!!! sheet "In the cheat sheet: box 1A, bullet 3 — same rule, table version"
+    <div class="stepper" markdown>
+
+    **Sheet step 1 · the rule.**
+    *"Marginal $p_X(x)$ → integrate the OTHER letter away."* With a table there is nothing to integrate: **sum** the other letter away = add each **row** across. (Box 1E: *"Discrete = the values can be listed"* — a table is the discrete twin of a joint PDF.)
+
+    ***
+
+    **Sheet step 2 · common denominator, then row sums.**
+    $\frac16=\frac4{24}$, $\frac14=\frac6{24}$, $\frac18=\frac3{24}$. Row $X=0$: $\frac{4+6+3}{24}=\frac{13}{24}$. Row $X=1$: $\frac{3+4+4}{24}=\frac{11}{24}$. Check: $13+11=24$ ✓ (box 1A's normalisation: the whole thing adds to 1).
+
+    ***
+
+    **Sheet step 3 · kill the impossible options.**
+    The table has only $X=0$ and $X=1$ — the marginal's domain is those two values ("0 otherwise"). (c) and (d) invent $X=2$ → out. (a)'s fractions don't sum to 1 ($\frac{7+5}{24}=\frac12$) → out.
+
+    </div>
+
+!!! answer "Answer"
+    **(b)** $p_X(0)=13/24$, $p_X(1)=11/24$, 0 otherwise.
+
+## 6 · The MC words (April 2025 · 1b and friends) — box 1E
+
+!!! exam "Final exam, 13 April 2025 · 1b · 0.25 p (type)"
+    Which statement about the expected value is true? (The expected value is … the weighted average of the values weighted by the PMF / the simple average of the PMF values / …)
+
+!!! sheet "In the cheat sheet: box 1E, first bullet"
+    <div class="stepper" markdown>
+
+    **Sheet step 1 · the printed sentence.**
+    *"$E[x]$ … = the **weighted average of the outcomes** (the probabilities are the weights) = the long-run mean."* → the option saying "weighted average of its values, weighted by the PMF" is true (Apr25-1b answer **(d)**).
+
+    ***
+
+    **Sheet step 2 · the printed traps.**
+    *""Integral/sum of the pmf itself" $=1$, **not** $E$. "highest probability / most common" = the **mode**."* → "the simple average of the PMF values" is false; "most likely value" questions ask for the **mode**, not $E$.
+
+    </div>
+
+!!! answer "Answer"
+    The weighted-average statement is true; "simple average of the PMF" is false. Variance: $\text{Var}(X)=E[X^2]-(E[X])^2$; independent $\Rightarrow$ zero covariance, but zero covariance $\not\Rightarrow$ independent.
 
 ## Traps
 
-!!! trap key "Where points are lost"
-    - **No drawing** → wrong limits. The limits of the inner integral can contain the other variable ($x$ from $y$ to 1).
-    - **Forgetting the domain** of the marginal or conditional. "Indicate its domain" is half the points.
-    - Calling a triangle independent.
+!!! trap key "Where points are lost (each one is a line of the sheet you skipped)"
+    - **No drawing** → wrong limits. The sheet's first sentence: the limits come *"from that picture, never from the formula"*.
+    - **Forgetting the domain.** Bullet 2: *"write it and '0 otherwise'"*. "Indicate its domain" is half the points (Apr24, Jun26).
+    - Swapping the roles in the conditional: it is **joint / marginal of the GIVEN letter**, and the $x$-range is *"the slice at that $y$"* ($y\le x\le1$), not $0\le y\le1$.
+    - Calling a triangle independent. Bullet 5: *"A triangle region → never independent"* — on a triangle, knowing $y$ changes the range of $x$.
+    - Writing $\frac{c(1-y)^2}{2}+(1-y)$ and panicking because $y$ is still in it. The sheet: *"The answer still holding $y$ is normal."*
+    - Forgetting to expand $(1-y)^2$ before integrating — the sheet's rule: *"expand powers first"*.
+    - Treating a PMF table like a PDF (or vice versa): table = sum the row, formula on a region = integrate the slice. Same bullet, discrete twin.
+    - Letting $\infty$ into an answer: the sheet's line *"Limits can be $\infty$ (Jun24): $e^{-\infty}=0$"* — the boundary term always kills the $e^{-\infty}$ piece.

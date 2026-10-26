@@ -6,10 +6,6 @@
 
 Needs [3.1 Correlogram](e3-corr.md) first.
 
-## What the exam asks
-
-Same $r[0], r[1], r[2]$ as in 3.1, then: "**model the signal as an AR(1) / AR(2) process**: find the parameters and the PSD", and sometimes "**now as an MA(1)**". This is the biggest mechanical chunk of Part 3.
-
 ## The idea in one minute
 
 A **model** is a recipe that makes the signal out of white noise $i[n]$ (pure randomness, flat spectrum, power $\sigma_i^2$):
@@ -26,112 +22,124 @@ A **model** is a recipe that makes the signal out of white noise $i[n]$ (pure ra
 
 <div class="widget" data-w="pole" data-a="0.8"></div>
 
-## The recipes
+## How to fight this section with the sheet
 
-!!! recipe key "AR(1)"
+The exam gives $r[0], r[1], r[2]$ and says **"AR(1)"** / **"AR(2)"** / **"Yule–Walker"** / **"MA(1)"** → you open **boxes 3B, 3C, 3D** on your A4 sheet: one box per model, numbered steps, and each box ends with an example from a real exam already computed. The exam words pick the box: "first-order autoregressive" = 3B, "Yule–Walker" = 3C, "moving average" = 3D.
 
-    $$a_1=-\frac{r[1]}{r[0]},\qquad \sigma_i^2=r[0]+a_1r[1],\qquad P_{AR}(e^{j\theta})=\frac{\sigma_i^2}{1+a_1^2+2a_1\cos\theta}.$$
+!!! sheet "Boxes 3B, 3C, 3D, exactly as printed on the sheet"
+    ### 3B · AR(1)
 
-!!! recipe key "AR(2): Yule–Walker"
-    1. **Equations** (this is what "state the Yule–Walker equations in matrix form" wants):
+    IF YOU SEE "AR(1)", "first-order autoregressive"
 
-    $$\begin{bmatrix}r[0]&r[1]\\ r[1]&r[0]\end{bmatrix}\begin{bmatrix}a_1\\ a_2\end{bmatrix}=-\begin{bmatrix}r[1]\\ r[2]\end{bmatrix}$$
+    1. $a=-\dfrac{r[1]}{r[0]}$
+    2. $\sigma^2=r[0]+a\,r[1]$
+    3. $P=\dfrac{\sigma^2}{1+a^2+2a\cos\theta}$ (check $|a|\lt1$ and $\sigma^2\gt0$, else a sign went wrong)
 
-    2. **Solve** the 2×2 (with $D=r[0]^2-r[1]^2$):
+    *Apr25* $r=2,-\frac14$: $a=\frac18$, $\sigma^2=\frac{63}{32}$, $P=\frac{126}{65+16\cos\theta}$.
 
-    $$a_1=\frac{-r[1]\,(r[0]-r[2])}{D},\qquad a_2=\frac{r[1]^2-r[0]\,r[2]}{D}.$$
+    ### 3C · AR(2) / Yule–Walker
 
-    3. **Noise power**: $\sigma_i^2=r[0]+a_1r[1]+a_2r[2]$.
-    4. **PSD**: $P_{AR}=\dfrac{\sigma_i^2}{|A|^2}$ with
+    IF YOU SEE "AR(2)", "Yule–Walker", $r[0],r[1],r[2]$
 
-    $$|A|^2=1+a_1^2+a_2^2+2(a_1+a_1a_2)\cos\theta+2a_2\cos2\theta.$$
+    1. $D=r[0]^2-r[1]^2$
+    2. $a_1=\dfrac{-r[1]\,(r[0]-r[2])}{D}$,  $a_2=\dfrac{r[1]^2-r[0]\,r[2]}{D}$
+    3. $\sigma^2=r[0]+a_1r[1]+a_2r[2]$
+    4. $P=\dfrac{\sigma^2}{1+a_1^2+a_2^2+2a_1(1+a_2)\cos\theta+2a_2\cos2\theta}$
 
-!!! recipe key "MA(1)"
-    The model must give $r[0]=\sigma_i^2(1+b_1^2)$ and $r[1]=\sigma_i^2b_1$.
-    1. Divide them: $\dfrac{1+b_1^2}{b_1}=\dfrac{r[0]}{r[1]}$ → a quadratic $b_1^2-\dfrac{r[0]}{r[1]}b_1+1=0$.
-    2. It has two roots, $b$ and $1/b$: **keep the one with $|b_1|<1$**.
-    3. $\sigma_i^2=r[1]/b_1$.
-    4. PSD: $P_{MA}=r[0]+2r[1]\cos\theta$. (Yes: the correlogram cut after lag 1. You do not even need $b_1$ for it.)
+    If they want the matrix: $\begin{bmatrix}r[0]&r[1]\\r[1]&r[0]\end{bmatrix}\begin{bmatrix}a_1\\a_2\end{bmatrix}=-\begin{bmatrix}r[1]\\r[2]\end{bmatrix}$.
 
-??? idea "Where the $|A|^2$ formula comes from (only if you are curious)"
-    $|A|^2=A\cdot\overline A=(1+a_1e^{-j\theta}+a_2e^{-2j\theta})(1+a_1e^{j\theta}+a_2e^{2j\theta})$. Multiply out and group: constants $1+a_1^2+a_2^2$; the $e^{\pm j\theta}$ terms give $(a_1+a_1a_2)(e^{j\theta}+e^{-j\theta})=2(a_1+a_1a_2)\cos\theta$; the $e^{\pm2j\theta}$ terms give $2a_2\cos2\theta$. For AR(1) set $a_2=0$: $1+a_1^2+2a_1\cos\theta$.
+    *Jun26* $3,2,1$: $D=5$, $a_1=-\frac45$, $a_2=\frac15$, $\sigma^2=\frac85$, $P=\frac{10}{5\cos^2\theta-12\cos\theta+8}$.
 
-## Watch it once: June 2026 · 3d (AR(2))
+    ### 3D · MA(1)
 
-!!! exam "Resit, June 2026 · 3d · 1 p"
-    $r_x[0] = 3, \ r_x[1] = 2, \ r_x[2] = 1$. Model the process as AR(2): $x[n] = i[n] - a_1 x[n-1] - a_2 x[n-2]$, $i[n]$ zero-mean white noise with variance $\sigma_i^2$.
+    IF YOU SEE "MA(1)", "moving average"
 
-    - State the Yule-Walker equations in matrix form. [0.1]
-    - Calculate $a_1$ and $a_2$. [0.4]
-    - Calculate $\sigma_i^2$. [0.2]
+    PSD: $P=r[0]+2r[1]\cos\theta$. Ignore $r[2]$ and beyond.
+    If they ask for $b$ and $\sigma^2$: solve $b^2-\frac{r[0]}{r[1]}\,b+1=0$, keep the root between $-1$ and $1$; then $\sigma^2=\frac{r[1]}{b}$.
+
+    *Apr25* $r=2,-\frac14$: $P=2-\frac12\cos\theta$.
+
+## 1 · April 2025 · 3e, 3f — AR(1) and MA(1), both examples on the sheet
+
+!!! exam "Final exam Q3, 13 April 2025 · 3e (0.5 p), 3f (0.5 p)"
+    Suppose you have an estimate of the autocorrelation function of a random signal at lags $0, \pm 1, \pm 2$ as: $r[0] = 2, \quad r[\pm 1] = -\frac{1}{4}, \quad r[\pm 2] = -\frac{3}{16}$
+
+    **3e** Model the signal as an AR(1) process, find the parameters of the model, and calculate the corresponding power spectral density in a parametric fashion. Express the obtained power spectral density $P_{AR}(e^{j\theta})$ as a function of cosines.
+
+    **3f** Model the signal as an MA(1) process, find the parameters of the model, and calculate the corresponding power spectral density in a parametric fashion. Express the obtained power spectral density $P_{MA}(e^{j\theta})$ as a function of cosines.
+
+!!! sheet "In the cheat sheet: box 3B (its *Apr25* line) and box 3D (its *Apr25* line) — this exam IS both examples"
+    <div class="stepper" markdown>
+
+    **Sheet step 1 · 3e = box 3B's three steps.**
+    Step 1: $a=-\frac{r[1]}{r[0]}=-\frac{-1/4}{2}=\frac18$. Step 2: $\sigma^2=r[0]+a\,r[1]=2+\frac18(-\frac14)=\frac{63}{32}$. Step 3: $P=\frac{\sigma^2}{1+a^2+2a\cos\theta}=\frac{63/32}{(65+16\cos\theta)/64}=\frac{126}{65+16\cos\theta}$. The sheet's example line: *"$a=\frac18$, $\sigma^2=\frac{63}{32}$, $P=\frac{126}{65+16\cos\theta}$."*
+
+    ***
+
+    **Sheet step 2 · 3f = box 3D's PSD line.**
+    *"PSD: $P=r[0]+2r[1]\cos\theta$. Ignore $r[2]$ and beyond."* → $P=2+2(-\frac14)\cos\theta=2-\frac12\cos\theta$. The sheet's example line: *"$P=2-\frac12\cos\theta$."* (For the PSD you don't even need $b$.)
+
+    ***
+
+    **Sheet step 3 · 3f parameters, only because they ask.**
+    *"$b^2-\frac{r[0]}{r[1]}\,b+1=0$, keep the root between $-1$ and $1$"*: $\frac{r[0]}{r[1]}=-8$ → $b^2+8b+1=0$ → $b=-4\pm\sqrt{15}$ = $-0.127$ or $-7.87$ → keep $b\approx-0.127$. Then $\sigma^2=\frac{r[1]}{b}=\frac{-0.25}{-0.127}\approx1.97$.
+
+    ***
+
+    **Sheet check · the example lines.**
+    Both *Apr25* lines under the boxes are this exam. The sheet's numbers ($\frac18$, $\frac{63}{32}$, $\frac{126}{65+16\cos\theta}$, $2-\frac12\cos\theta$) are the graded answers.
+
+    </div>
+
+!!! answer "Answer"
+    3e: $a_1=\frac18$, $\sigma_i^2=\frac{63}{32}$, $P_{AR}=\dfrac{126}{65+16\cos\theta}$. 3f: $P_{MA}=2-\frac12\cos\theta$ ($b_1\approx-0.13$, $\sigma_i^2\approx1.97$).
+
+## 2 · June 2026 · 3d — AR(2) / Yule–Walker
+
+!!! exam "Resit Q4, June 2026 · 3d · 1 p"
+    Consider a wide-sense stationary, real-valued random process $x[n]$ with $r_x[0] = 3, \ r_x[1] = 2, \ r_x[2] = 1$. You now wish to model this process parametrically using an Autoregressive (AR) model of order $p = 2$:
+
+    $$x[n] = i[n] - a_1 x[n-1] - a_2 x[n-2]$$
+
+    where $i[n]$ is zero-mean white noise with variance $\sigma_i^2$.
+
+    - State the Yule-Walker equations for this AR(2) process in matrix form. [0.1]
+    - Calculate the AR coefficients $a_1$ and $a_2$. [0.4]
+    - Calculate the variance of the driving white noise $\sigma_i^2$. [0.2]
     - Write $\hat{P}_{AR}(e^{j\theta})$ as a function of $\cos(\theta)$. [0.3]
 
-<div class="stepper" markdown>
+!!! sheet "In the cheat sheet: box 3C — the *Jun26* line is this exam"
+    <div class="stepper" markdown>
 
-**Step 1 · Equations.**
+    **Sheet step 1 · the matrix (the box prints it).**
+    $\begin{bmatrix}r[0]&r[1]\\r[1]&r[0]\end{bmatrix}\begin{bmatrix}a_1\\a_2\end{bmatrix}=-\begin{bmatrix}r[1]\\r[2]\end{bmatrix}$ → $\begin{bmatrix}3&2\\2&3\end{bmatrix}\begin{bmatrix}a_1\\a_2\end{bmatrix}=-\begin{bmatrix}2\\1\end{bmatrix}$. 0.1 p for copying it with the numbers.
 
-$$\begin{bmatrix}3&2\\2&3\end{bmatrix}\begin{bmatrix}a_1\\a_2\end{bmatrix}=-\begin{bmatrix}2\\1\end{bmatrix}$$
+    ***
 
-***
+    **Sheet step 2 · the two formulas (step 1–2 of the box).**
+    $D=r[0]^2-r[1]^2=9-4=5$ — the sheet's example line: *"$D=5$"*. $a_1=\frac{-r[1](r[0]-r[2])}{D}=\frac{-2\cdot2}{5}=-\frac45$, $a_2=\frac{r[1]^2-r[0]r[2]}{D}=\frac{4-3}{5}=\frac15$.
 
-**Step 2 · Solve.** $D=3^2-2^2=5$.
-$a_1=\dfrac{-2\,(3-1)}{5}=-\dfrac45$, $\quad a_2=\dfrac{2^2-3\cdot1}{5}=\dfrac15$.
-Check in the first row: $3(-\frac45)+2(\frac15)=-\frac{12}5+\frac25=-2$ ✓.
+    ***
 
-***
+    **Sheet step 3 · noise power (step 3 of the box).**
+    $\sigma^2=r[0]+a_1r[1]+a_2r[2]=3+(-\frac45)(2)+(\frac15)(1)=\frac85$ — again the sheet's line.
 
-**Step 3 · Noise power.** $\sigma_i^2=3+(-\frac45)(2)+(\frac15)(1)=3-\frac85+\frac15=\dfrac85$.
+    ***
 
-***
+    **Sheet step 4 · the PSD (step 4 of the box).**
+    $P=\dfrac{\sigma^2}{1+a_1^2+a_2^2+2a_1(1+a_2)\cos\theta+2a_2\cos2\theta}$. With the numbers: denominator $=\frac{42-48\cos\theta+10\cos2\theta}{25}$, so $P=\frac{40}{42-48\cos\theta+10\cos2\theta}$. Only $\cos\theta$ wanted? The Part 3 header's rewrite *"$\cos2\theta=2\cos^2\theta-1$"* gives $P=\frac{10}{5\cos^2\theta-12\cos\theta+8}$ — the sheet's example line ends there.
 
-**Step 4 · $|A|^2$.**
-Constant: $1+\frac{16}{25}+\frac1{25}=\frac{42}{25}$.
-$\cos\theta$: $2(a_1+a_1a_2)=2(-\frac45-\frac4{25})=-\frac{48}{25}$.
-$\cos2\theta$: $2a_2=\frac25=\frac{10}{25}$.
-So $|A|^2=\frac{42-48\cos\theta+10\cos2\theta}{25}$.
+    ***
 
-***
+    **Sheet check · the example line.**
+    *"$D=5$, $a_1=-\frac45$, $a_2=\frac15$, $\sigma^2=\frac85$, $P=\frac{10}{5\cos^2\theta-12\cos\theta+8}$."* Four graded answers, all printed.
 
-**Step 5 · PSD.** $P_{AR}=\dfrac{8/5}{|A|^2}=\dfrac{40}{42-48\cos\theta+10\cos2\theta}=\dfrac{20}{21-24\cos\theta+5\cos2\theta}$.
-With $\cos2\theta=2\cos^2\theta-1$ (only $\cos\theta$ left): $\dfrac{10}{5\cos^2\theta-12\cos\theta+8}$.
+    </div>
 
-</div>
+!!! answer "Answer"
+    Matrix as above; $a_1=-\frac45$, $a_2=\frac15$, $\sigma_i^2=\frac85$, $P_{AR}=\dfrac{10}{5\cos^2\theta-12\cos\theta+8}$ (equivalently $\dfrac{20}{21-24\cos\theta+5\cos2\theta}$).
 
-## Watch it once more: April 2025 · 3e, 3f (AR(1) and MA(1))
-
-!!! exam "Final exam, 13 April 2025 · 3e (0.5 p), 3f (0.5 p)"
-    $r[0] = 2, \quad r[\pm 1] = -\frac{1}{4}, \quad r[\pm 2] = -\frac{3}{16}$.
-
-    **3e** Model the signal as an AR(1) process, find the parameters and the PSD $P_{AR}(e^{j\theta})$ as a function of cosines.
-
-    **3f** Model the signal as an MA(1) process, find the parameters and the PSD $P_{MA}(e^{j\theta})$ as a function of cosines.
-
-<div class="stepper" markdown>
-
-**Step 1 · AR(1) coefficient.** $a_1=-\dfrac{r[1]}{r[0]}=-\dfrac{-1/4}{2}=\dfrac18$.
-
-***
-
-**Step 2 · AR(1) noise power.** $\sigma_i^2=r[0]+a_1r[1]=2+\frac18(-\frac14)=2-\frac1{32}=\dfrac{63}{32}$.
-
-***
-
-**Step 3 · AR(1) PSD.** $1+a_1^2+2a_1\cos\theta=1+\frac1{64}+\frac14\cos\theta=\frac{65+16\cos\theta}{64}$.
-$P_{AR}=\dfrac{63/32}{(65+16\cos\theta)/64}=\dfrac{126}{65+16\cos\theta}$.
-
-***
-
-**Step 4 · MA(1) coefficient.** $\dfrac{r[0]}{r[1]}=\dfrac{2}{-1/4}=-8$, so $b_1^2+8b_1+1=0$, $b_1=\dfrac{-8\pm\sqrt{64-4}}{2}=-4\pm\sqrt{15}$.
-That is $-0.127$ or $-7.87$. Keep $|b_1|<1$: $b_1\approx-0.127$.
-
-***
-
-**Step 5 · MA(1) noise and PSD.** $\sigma_i^2=r[1]/b_1=\frac{-0.25}{-0.127}\approx1.97$.
-$P_{MA}=r[0]+2r[1]\cos\theta=2-0.5\cos\theta$.
-
-</div>
-
-## Your turn
+## 3 · November 2022 · 3f, 3g — AR(1) then MA(1), no printed example
 
 !!! exam "Final exam, 7 November 2022 · 3f, 3g · 0.75 p each"
     A process has $r[0]=1$, $r[1]=-\frac18$, $r[2]=-\frac{3}{32}$.
@@ -140,55 +148,74 @@ $P_{MA}=r[0]+2r[1]\cos\theta=2-0.5\cos\theta$.
 
     **3g** Model $x[k]$ as an MA(1) signal and calculate $P_{MA1}(e^{j\theta})$. Decimal numbers are fine.
 
-??? solution "Check your answer"
-    **What is being asked?** Fit the given $r[k]$ ($r[0]=1$, $r[1]=-\frac18$, $r[2]=-\frac3{32}$) first with an AR(1), then with an MA(1), and write each model's PSD.
+!!! sheet "In the cheat sheet: boxes 3B and 3D, run the steps on these numbers"
+    <div class="stepper" markdown>
 
-    **AR(1)**
+    **Sheet step 1 · 3f = box 3B.**
+    $a=-\frac{r[1]}{r[0]}=-\frac{-1/8}{1}=\frac18$. $\sigma^2=r[0]+a\,r[1]=1+\frac18(-\frac18)=\frac{63}{64}$. $P=\frac{\sigma^2}{1+a^2+2a\cos\theta}=\frac{63/64}{(65+16\cos\theta)/64}=\frac{63}{65+16\cos\theta}$.
 
-    **Step 1 · Coefficient.** [Recipe](#the-recipes): $a_1=-\dfrac{r[1]}{r[0]}=-\dfrac{-1/8}{1}=\dfrac18$ (the minus is the course convention $x[n]=-a_1x[n-1]+i[n]$).
+    ***
 
-    **Step 2 · Noise power.** $\sigma_i^2=r[0]+a_1r[1]=1+\frac18\!\left(-\frac18\right)=1-\frac1{64}=\dfrac{63}{64}$.
+    **Sheet step 2 · 3f check (box 3B step 3's parenthetical).**
+    *"check $|a|<1$ and $\sigma^2>0$, else a sign went wrong"*: $\frac18<1$ ✓, $\frac{63}{64}>0$ ✓.
 
-    **Step 3 · Denominator.** $1+a_1^2+2a_1\cos\theta=1+\frac1{64}+\frac14\cos\theta=\dfrac{65+16\cos\theta}{64}$.
+    ***
 
-    **Step 4 · Divide.** $P_{AR1}=\dfrac{63/64}{(65+16\cos\theta)/64}=\dfrac{63}{65+16\cos\theta}$ (the 64s cancel).
+    **Sheet step 3 · 3g PSD = box 3D's first line.**
+    *"PSD: $P=r[0]+2r[1]\cos\theta$. Ignore $r[2]$ and beyond."* → $1+2(-\frac18)\cos\theta=1-\frac14\cos\theta$.
 
-    **MA(1)**
+    ***
 
-    **Step 5 · Quadratic for $b_1$.** $\dfrac{r[0]}{r[1]}=\dfrac{1}{-1/8}=-8$, so $\dfrac{1+b_1^2}{b_1}=-8$ → $b_1^2+8b_1+1=0$ → $b_1=\dfrac{-8\pm\sqrt{64-4}}{2}=-4\pm\sqrt{15}$, i.e. $-0.127$ or $-7.87$.
+    **Sheet step 4 · 3g parameters (they ask for the model).**
+    $b^2-\frac{r[0]}{r[1]}b+1=0$: $\frac{1}{-1/8}=-8$ → $b^2+8b+1=0$ → $b=-4\pm\sqrt{15}$ → *keep the root between $-1$ and $1$"* → $b\approx-0.127$. $\sigma^2=\frac{r[1]}{b}=\frac{-0.125}{-0.127}\approx0.98$.
 
-    **Step 6 · Keep $|b_1|<1$.** $|-0.127|<1$ ✓ → $b_1\approx-0.127$ (same root-picking as spectral factorisation).
+    ***
 
-    **Step 7 · Noise and PSD.** $\sigma_i^2=\dfrac{r[1]}{b_1}=\dfrac{-0.125}{-0.127}\approx0.98$. And $P_{MA}=r[0]+2r[1]\cos\theta=1-\frac14\cos\theta$ (the correlogram cut after lag 1 — you do not even need $b_1$ for the PSD itself).
+    **Sheet check · the example line.**
+    Same boxes, same steps as Apr25 — only the numbers changed. If your method differs from the sheet's four steps, stop and realign.
 
-    !!! answer "Answer"
-        $P_{AR1}=\dfrac{63}{65+16\cos\theta}$; $\quad P_{MA1}\approx1-0.25\cos\theta$ ($b_1\approx-0.13$, $\sigma_i^2\approx0.98$).
+    </div>
 
-!!! exam "Final exam, April 2024 · 3e · 0.7 p"
-    $r[0]=\frac{25}{16}$, $r[\pm1]=-\frac34$, $r[\pm2]=\frac12$. Model the signal as an AR(2) process. Find the model parameters.
+!!! answer "Answer"
+    $P_{AR1}=\dfrac{63}{65+16\cos\theta}$; $P_{MA1}=1-\frac14\cos\theta$ ($b_1\approx-0.13$, $\sigma_i^2\approx0.98$).
 
-??? solution "Check your answer"
-    **What is being asked?** AR(2) = three unknowns $a_1,a_2,\sigma_i^2$ fitted to $r[0]=\frac{25}{16}$, $r[1]=-\frac34$, $r[2]=\frac12$. Exactly the [AR(2) recipe](#the-recipes).
+## 4 · April 2024 · 3e — AR(2) with ugly fractions
 
-    **Step 1 · Yule–Walker.** $\begin{bmatrix}r[0]&r[1]\\ r[1]&r[0]\end{bmatrix}\begin{bmatrix}a_1\\ a_2\end{bmatrix}=-\begin{bmatrix}r[1]\\ r[2]\end{bmatrix}$, i.e. $\begin{bmatrix}\frac{25}{16}&-\frac34\\[2pt]-\frac34&\frac{25}{16}\end{bmatrix}\begin{bmatrix}a_1\\ a_2\end{bmatrix}=\begin{bmatrix}\frac34\\[2pt]-\frac12\end{bmatrix}$.
+!!! exam "Final exam Q3, April 2024 · 3e · 0.7 p"
+    *(from 3b/3c: $r[0]=\frac{25}{16}$, $r[\pm1]=-\frac34$, $r[\pm2]=\frac12$.)* Model the signal as an AR(2) process. Find the model parameters.
 
-    **Step 2 · Determinant.** $D=r[0]^2-r[1]^2=\frac{625}{256}-\frac{9}{16}=\frac{625-144}{256}=\frac{481}{256}$.
+!!! sheet "In the cheat sheet: box 3C, steps 1–3 (no PSD asked)"
+    <div class="stepper" markdown>
 
-    **Step 3 · $a_1$.** $a_1=\dfrac{-r[1](r[0]-r[2])}{D}=\dfrac{\frac34\left(\frac{25}{16}-\frac12\right)}{481/256}=\dfrac{\frac34\cdot\frac{17}{16}}{481/256}=\dfrac{51}{64}\cdot\dfrac{256}{481}=\dfrac{204}{481}\approx0.424$.
+    **Sheet step 1 · $D=r[0]^2-r[1]^2$.**
+    $\frac{625}{256}-\frac{9}{16}=\frac{625-144}{256}=\frac{481}{256}$.
 
-    **Step 4 · $a_2$.** $a_2=\dfrac{r[1]^2-r[0]\,r[2]}{D}=\dfrac{\frac{9}{16}-\frac{25}{32}}{481/256}=\dfrac{\frac{18-25}{32}}{481/256}=\dfrac{-7}{32}\cdot\dfrac{256}{481}=-\dfrac{56}{481}\approx-0.116$.
+    ***
 
-    **Step 5 · Noise power** (plus signs, with the $a$'s found): $\sigma_i^2=r[0]+a_1r[1]+a_2r[2]=1.5625+0.424(-0.75)+(-0.116)(0.5)=1.5625-0.3181-0.0582\approx1.19$.
+    **Sheet step 2 · the two formulas.**
+    $a_1=\frac{-r[1](r[0]-r[2])}{D}=\frac{\frac34\cdot\frac{17}{16}}{481/256}=\frac{204}{481}\approx0.424$, $a_2=\frac{r[1]^2-r[0]r[2]}{D}=\frac{\frac{9}{16}-\frac{25}{32}}{481/256}=-\frac{56}{481}\approx-0.116$.
 
-    **Step 6 · Check.** Row 1 of Yule–Walker: $\frac{25}{16}a_1-\frac34a_2=\frac{25}{16}\cdot\frac{204}{481}-\frac34\cdot\left(-\frac{56}{481}\right)=0.6627+0.0873=0.75=\frac34$ ✓.
+    ***
 
-    !!! answer "Answer"
-        $a_1=\frac{204}{481}\approx0.424$, $a_2=-\frac{56}{481}\approx-0.116$, $\sigma_i^2\approx1.19$.
+    **Sheet step 3 · $\sigma^2=r[0]+a_1r[1]+a_2r[2]$** $=1.5625+0.424(-0.75)+(-0.116)(0.5)\approx1.19$.
+
+    ***
+
+    **Sheet check · the example line.**
+    The box's *Jun26* line is the same computation with friendlier numbers; the steps never change. Sanity check row 1 of the matrix: $\frac{25}{16}a_1-\frac34a_2=\frac34$ ✓.
+
+    </div>
+
+!!! answer "Answer"
+    $a_1=\frac{204}{481}\approx0.424$, $a_2=-\frac{56}{481}\approx-0.116$, $\sigma_i^2\approx1.19$.
 
 ## Traps
 
-!!! trap key "Where points are lost"
-    - **Sign of $a$**: with the course convention $x[n]=-a_1x[n-1]+\dots$, $a_1=-r[1]/r[0]$. A positive $r[1]$ gives a negative $a_1$.
-    - The minus on the right of Yule–Walker: $\mathbf R\mathbf a=-\mathbf r$.
-    - $\sigma_i^2=r[0]+a_1r[1]+a_2r[2]$ uses **plus** signs (with the $a$'s you found, signs included).
-    - MA(1): keep the root **inside** the unit circle, $|b_1|<1$.
+!!! trap key "Where points are lost (each one is a step of the sheet you skipped)"
+    - **Sign of $a$**: box 3B step 1 is $a=-\frac{r[1]}{r[0]}$ with the minus built in. A positive $r[1]$ gives a negative $a_1$. If you drop the minus, every later number flips.
+    - The minus on the right of the Yule–Walker matrix (box 3C): $\mathbf R\mathbf a=-\mathbf r$. The matrix is worth 0.1 p — copy it from the sheet with the numbers in.
+    - $\sigma^2=r[0]+a_1r[1]+a_2r[2]$ uses **plus** signs (box 3C step 3) — with the $a$'s you found, their own signs included.
+    - MA(1): keeping the root outside the circle. Box 3D: *"keep the root between $-1$ and $1$"* — same rule as spectral factorisation.
+    - Forgetting the box's own check: *"check $|a|<1$ and $\sigma^2>0$, else a sign went wrong"* (3B step 3).
+    - Using $r[2]$ in the MA(1) PSD: box 3D says *"Ignore $r[2]$ and beyond"*.
+    - Writing the AR(2) denominator from memory: box 3C step 4 has $2a_1(1+a_2)\cos\theta+2a_2\cos2\theta$ — the $(1+a_2)$ factor is easy to lose.

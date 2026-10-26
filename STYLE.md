@@ -106,12 +106,21 @@ except as optional reading. Nav = two collapsible top sections ("New · Exam cou
 desktop opens the course, closes the old guide, and remembers the reader's toggles (localStorage `ssp-nav-open`).
 Section titles must keep starting with "New"/"Old".
 
-Lesson template (keep it to this, nothing more):
-`# n.m Title` → `<div class="meta">` (frequency, points, minutes) → **What the exam asks** → **The idea in one
-minute** (plain words + one interactive widget) → **The recipe** (`!!! recipe key`) → **Watch it once** (real exam
-box + `<div class="stepper" markdown>` with steps separated by `***`) → **Your turn** (real exam box + closed
-`??? solution "Check your answer"`) → **Traps** (`!!! trap key`, max 4 bullets). Theory MC goes in a
-`<div class="tf" markdown>` table (Statement | T/F | Why) which `widgets.js` turns into True/False cards.
+Lesson template — "sheet-anchored" (since 2026-10-26, keep it to this, nothing more). The idea: every
+exam exercise is solved **driving the A4 cheat sheet**, so a reader learns "which box, which line" instead
+of a second explanation of the theory. `docs/e2-mle.md` is the reference implementation.
+
+`# n.m Title` → `<div class="meta">` (frequency, points, minutes) → podcast `<figure class="pod">` →
+**The idea in one minute** (plain words + one interactive widget) → **How to fight this section with the
+sheet** (one line of exam trigger words → box, then `!!! sheet "Box XN, exactly as it is printed on the
+sheet"` with the box quoted **verbatim** from `cheatsheet.md`) → one `## N · Exam · Q — short title` per
+exercise: `!!! exam` (question text verbatim) + `!!! sheet "In the cheat sheet: …"` wrapping `<div class="stepper" markdown>`
+with `**Sheet step k · …**` blocks (each one quotes a sheet line in *italics*) separated by `***`, ending
+with `**Sheet check · the example line**` (what the sheet's own worked example prints) + `!!! answer "Answer"` →
+**Traps** (`!!! trap key "Where points are lost (each one is a line of the sheet you skipped)"`).
+Theory MC: same treatment — the T/F box (2D, 4C) is quoted in a `!!! sheet` block and each option is mapped
+to a sheet row inside a stepper (no more `<div class="tf">` tables). The sheet quote must stay in sync with
+`docs/cheatsheet.md`; if the sheet wording changes, grep the lessons for the old quote.
 
 Widgets (`docs/javascripts/widgets.js` + `stylesheets/widgets.css`), markup `<div class="widget" data-w="..."
 data-preset="...">`: `bayes`, `region` (tabs 0–2), `ensemble`, `pole` (`data-preset="factor"`, `data-a`),
