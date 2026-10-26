@@ -6,8 +6,9 @@ Usage:
     python scripts/mkpdf.py --open        # ...and open the PDF
     python scripts/mkpdf.py --no-build    # skip the mkdocs build (faster edits)
     python scripts/mkpdf.py --scale 1.1   # print scale, 1.0 = 100 %
+    python scripts/mkpdf.py --page cheatsheet2   # docs/cheatsheet2.md -> cheatsheet2.pdf
 
-The output lands next to this repo as cheatsheet.pdf (gitignored).
+The output lands next to this repo as <page>.pdf (gitignored).
 """
 
 import argparse
@@ -17,7 +18,6 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SITE = ROOT / "site" / "cheatsheet.html"
 OUT = ROOT / "cheatsheet.pdf"
 
 CHROME_CANDIDATES = [
@@ -53,17 +53,20 @@ def chrome_path() -> str | None:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
+    ap.add_argument("--page", default="cheatsheet", help="docs/<page>.md -> <page>.pdf")
     ap.add_argument("--scale", type=float, default=0.71)
     ap.add_argument("--no-build", action="store_true")
     ap.add_argument("--open", action="store_true")
     args = ap.parse_args()
+    site = ROOT / "site" / f"{args.page}.html"
+    out = ROOT / f"{args.page}.pdf"
 
     if not args.no_build:
         print("building site ...")
         subprocess.run([sys.executable, "-m", "mkdocs", "build", "-q"], cwd=ROOT, check=True)
 
-    if not SITE.exists():
-        print("site/cheatsheet.html not found — run without --no-build first")
+    if not site.exists():
+        print(f"{site} not found — run without --no-build first")
         return 1
 
     from playwright.sync_api import sync_playwright
@@ -72,19 +75,19 @@ def main() -> int:
     with sync_playwright() as p:
         browser = p.chromium.launch(executable_path=exe, headless=True) if exe else p.chromium.launch(headless=True)
         page = browser.new_page(viewport={"width": 1200, "height": 1600})
-        page.goto("file:///" + SITE.as_posix())
+        page.goto("file:///" + site.as_posix())
         page.wait_for_timeout(2500)  # KaTeX fonts + scripts from the CDN
         print(page.evaluate(RENDER))
         page.evaluate("document.fonts.ready")
         page.wait_for_timeout(1000)
         page.emulate_media(media="print")
-        page.pdf(path=str(OUT), format="A4", print_background=True, scale=args.scale,
+        page.pdf(path=str(out), format="A4", print_background=True, scale=args.scale,
                  margin={"top": "1mm", "bottom": "1mm", "left": "3mm", "right": "3mm"})
         browser.close()
 
     try:
         import pdfplumber
-        with pdfplumber.open(OUT) as pdf:
+        with pdfplumber.open(out) as pdf:
             print(f"pages: {len(pdf.pages)}")
     except Exception:
         pass
@@ -92,28 +95,28 @@ def main() -> int:
     # Strip identifying metadata (Chrome writes the page title = "A4 cheat sheet - 5CTA0 ...")
     try:
         from pypdf import PdfReader, PdfWriter
-        reader = PdfReader(str(OUT))
+        reader = PdfReader(str(out))
         writer = PdfWriter()
         for page in reader.pages:
             writer.add_page(page)
-        tmp = OUT.with_suffix(".tmp.pdf")
+        tmp = out.with_suffix(".tmp.pdf")
         with open(tmp, "wb") as fh:
             writer.write(fh)
-        os.replace(tmp, OUT)
+        os.replace(tmp, out)
         print("metadata cleared (no title/author)")
     except Exception as exc:
         print("metadata strip skipped:", exc)
 
     # Also drop a copy into docs/ so the site serves it at .../5cta0-exam-guide/cheatsheet.pdf
-    docs_copy = ROOT / "docs" / "cheatsheet.pdf"
+    docs_copy = ROOT / "docs" / f"{args.page}.pdf"
     try:
         import shutil
-        shutil.copy2(OUT, docs_copy)
-        print("saved:", OUT, "and", docs_copy)
+        shutil.copy2(out, docs_copy)
+        print("saved:", out, "and", docs_copy)
     except Exception:
-        print("saved:", OUT)
+        print("saved:", out)
     if args.open:
-        os.startfile(str(OUT))
+        os.startfile(str(out))
     return 0
 
 

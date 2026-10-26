@@ -259,6 +259,12 @@
   .cheat-cols > div { break-inside: auto; margin-bottom: .12em; }
   .md-typeset .cheat .cheat-cols table:not([class]) { break-inside: auto; font-size: .85em; }
   .md-typeset .cheat .cheat-cols table:not([class]) th, .md-typeset .cheat .cheat-cols table:not([class]) td { padding: .06em .22em; }
+  /* v2 sheet (docs/cheatsheet2.md): same boxes, more words — a hair tighter so it still fits 2 sides */
+  .md-typeset .cheat.cheat2 { font-size: 8.5pt; line-height: 1; }
+  .md-typeset .cheat.cheat2 .katex { font-size: .95em; }
+  .md-typeset .cheat.cheat2 p, .md-typeset .cheat.cheat2 ul, .md-typeset .cheat.cheat2 ol { margin: .02em 0; }
+  .md-typeset .cheat.cheat2 h2 { margin: .22em 0 .08em; }
+  .md-typeset .cheat.cheat2 h3 { margin: .22em 0 .06em; }
   .pagebreak { break-before: auto; }
 }
 
