@@ -42,6 +42,7 @@ IF YOU SEE "WSS"/"wide-sense stationary"/"stationary", "ergodic", dice, random p
 - **WSS** = the mean is constant AND the autocorrelation depends only on the lag $\tau$ (not on $t$). Jun26: pick the option saying exactly this.
 - **Ergodic** = averaging ONE signal over time gives the same as averaging over all signals.
 - **Test it:** is $\mathrm E[x(t)]$ constant in $t$? Does $r(t_1,t_2)$ only depend on $t_1-t_2$? Both yes → WSS. Ergodic: does one long realisation visit every value? Random **phase** → yes, random **amplitude** → no.
+- *$\cos(t+U)$ worked out:* $E[\cos(t+U)]=0$ in every $t$ — a uniform phase averages a whole turn to 0 → constant. $r=E[\cos(t_1{+}U)\cos(t_2{+}U)]=\frac12\cos(t_1-t_2)$ — use $\cos\alpha\cos\beta$; the term carrying $2U$ averages to 0 → only the lag. Time average of one long realisation $=0$ = the mean → **ergodic in the mean**.
 - **Words (Jan22-1b):** a *random process* = the whole infinite **set** of possible signals (the ensemble) · one recording (one picture) = a **realisation** = a random signal · one number / one pixel = a random **variable**. A set of pictures is WSS only if the question says the statistics do not shift.
 
 | The process | WSS? | Ergodic? |
@@ -408,7 +409,7 @@ Trap (Apr25-4b): "which statement is FALSE" where all three look true → as pri
 
 ## Calculations · the algebra under every answer
 
-**Integrals.** These formulas are **printed in the question itself** (q3-23-2h, nov22-2f) — you do not memorise them, you copy them: $\int e^{cx}dx=\frac1ce^{cx}$ · $\int xe^{cx}dx=\frac{cx-1}{c^2}e^{cx}$ · $\int x^2e^{cx}dx=\big(\frac{x^2}{c}-\frac{2x}{c^2}+\frac{2}{c^3}\big)e^{cx}$ · $\int x^2e^{-x}dx=-e^{-x}(x^2+2x+2)$ (by parts twice).
+**Integrals.** These formulas are **printed in the question itself** (q3-23-2h, nov22-2f) — you do not memorise them, you copy them: $\int e^{cx}dx=\frac1ce^{cx}$ · $\int xe^{cx}dx=\frac{cx-1}{c^2}e^{cx}$ · $\int x^2e^{cx}dx=\big(\frac{x^2}{c}-\frac{2x}{c^2}+\frac{2}{c^3}\big)e^{cx}$ · $\int x^2e^{-x}dx=-e^{-x}(x^2+2x+2)$ (by parts twice) · $\int\cos u\,du=\sin u$ · $\int\sin u\,du=-\cos u$.
 Evaluate $[F(x)]_a^b=F(b)-F(a)$: at $x=\infty$ only $e^{cx}$ with $c\lt0$ becomes 0, at $x=0$ every $x$ is 0 so only the plain number is left → $\int_0^\infty e^{-cx}dx=\frac1c$ · $\int_0^\infty xe^{-cx}dx=\frac1{c^2}$ · $\int_0^\infty x^2e^{-cx}dx=\frac2{c^3}$.<br>
 *Nov22-2f:* MMSE $=\dfrac{\int_0^\infty\theta\cdot\theta e^{-(x+a)\theta}d\theta}{\int_0^\infty\theta e^{-(x+a)\theta}d\theta}=\dfrac{2/(x+a)^3}{1/(x+a)^2}=\dfrac2{x+a}$.
 
