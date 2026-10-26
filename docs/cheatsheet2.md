@@ -12,9 +12,6 @@ hide:
 **Notation, once, for the whole sheet.** $p(x,y)$ = how likely the pair $(x,y)$ is (*PDF* if $x$ is a measurement, *PMF* if $x$ is countable: dice, counts). Capital $P(A)$ = probability of an event. $\theta$ = the unknown parameter you are estimating — **in Part 3 the same letter means frequency**. $\hat\theta$ ("theta hat") = your estimate. $\sum$ = add up · $\int$ = area under the curve · $\lvert z\rvert$ = $z$ with the sign removed · $k!$ $=$ $1\cdot2\cdots k$ · $Q(t)$ = area of the Gaussian tail right of $t$ · **lag** = how far apart in time.
 {: .how }
 
-**How to use this sheet.** Read the yellow IF YOU SEE line first — it names the words the exam uses and sends you to the box that handles them. Then run the numbered steps in order with the exam's numbers, and finish with the box's own check. Stuck on algebra → **Calculations**, last block.
-{: .how }
-
 <div class="cheat-cols" markdown>
 
 ## PART 1 · Probability (1.5 p)
@@ -35,6 +32,7 @@ First draw the region on $x$–$y$ axes: **every integral below takes its two en
   *Apr24:* $p=2$ on $0\le y\le x\le1$: $p_Y=\int_y^1 2\,dx=2(1-y)$ → $p(x\mid y)=\frac1{1-y}$ for $y\le x\le1$.
 - **"Independent?"** → knowing $x$ must tell you nothing about $y$: YES only if the region is a rectangle AND $p(x,y)=p_X(x)\cdot p_Y(y)$.<br>
   *Jun26:* square, and $3x^2\cdot2y=6x^2y$ → independent. A triangle region → never independent.
+- **"$P(x\lt y)$" / "$P(x+y\gt1)$"** → same integral over the **piece of the region where the inequality is true**: draw the line, keep the piece the question describes, then the 4 moves on that piece.
 
 **Doing the double integral** (the *Apr25* one, step by step). $\int_0^1\!\int_0^{1-y}(cx+1)\,dx\,dy$:<br>
 **(a)** inner $dx$ first — treat $y$ as a plain number: $\int_0^{1-y}(cx+1)dx=\big[\frac{cx^2}{2}+x\big]_0^{1-y}=\frac{c(1-y)^2}{2}+(1-y)$. Bracket = top value minus bottom value; at the bottom every $x$ is 0. **It is normal that the answer still holds $y$** — you sum $y$ out in (b).<br>
@@ -123,6 +121,7 @@ Solving $=0$: multiply the equation by the denominators ($\theta^2$, $\theta$, �
 **Fisher info / CRLB** from that same derivative: $i(\theta)=-\mathrm E\big[\frac{\partial^2\ln p}{\partial\theta^2}\big]$ for one sample; $N$ samples → $\mathcal I=N i(\theta)$; **CRLB** $=\frac{1}{N i(\theta)}$.
 **Known $i(\theta)$** — skip the derivation: Gaussian mean with variance $\sigma^2$: $\frac1{\sigma^2}$ · exponential rate $\lambda$: $\frac1{\lambda^2}$ · Bernoulli: $\frac1{\theta(1-\theta)}$ · Rayleigh $\frac{x}{\theta^2}e^{-x^2/2\theta^2}$: $\frac4{\theta^2}$ (so CRLB $=\frac{\theta^2}{4N}$).
 **Computing $i(\theta)$ in 3 lines** (exponential rate, $p=\lambda e^{-\lambda x}$): $\ln p=\ln\lambda-\lambda x$ → $\partial_\lambda=\frac1\lambda-x$ → $\partial^2_\lambda=-\frac1{\lambda^2}$ → $i=-\mathrm E\big[-\frac1{\lambda^2}\big]=\frac1{\lambda^2}$ (no $x$ left, so the average does nothing) → CRLB $=\frac{\lambda^2}N$. If an $x$ survives the second derivative, average it out with $\mathrm E[x]$.
+**"Is it efficient?"** → compare $\mathrm{Var}(\hat\theta)$ with that CRLB: equal → efficient, bigger → not.
 **$\hat\theta$ you should land on** — check yours against these: uniform $[0,\theta]$ → $\max_n x_n$ · exponential rate $\lambda$ → $1/\bar x$ · Poisson → $\bar x$ · Bernoulli / "$k$ of $n$" → $k/n=\bar x$ · Gaussian mean ($\sigma$ known) → $\bar x$ · Rayleigh $\frac{x}{\theta^2}e^{-x^2/2\theta^2}$ → $\sqrt{\frac1{2N}\sum x_n^2}$ · Gamma with $k$ fixed → $\bar x/k$.
 
 *Apr24* $\frac{x}{2\theta}e^{-x^2/2\theta}$: one sample gives $\ln x-\ln2-\ln\theta-\frac{x^2}{2\theta}$, so $\ln L=\sum\ln x_n-N\ln2-N\ln\theta-\frac{\sum x_n^2}{2\theta}$ → $-\frac N\theta+\frac{\sum x_n^2}{2\theta^2}=0$ → $\hat\theta=\frac1{2N}\sum x_n^2$.
@@ -369,7 +368,8 @@ IF YOU SEE two pdfs (one for $H_0$, one for $H_1$) + "binary hypothesis"/"hypoth
 
 *Nov22* $\frac12e^{-\lvert x\rvert}$ vs $e^{-2\lvert x\rvert}$, $N$ samples: $L=2^Ne^{-\sum\lvert x_n\rvert}$ → accept $H_1$ if $\sum\lvert x_n\rvert\lt N\ln2-\ln\lambda$.
 
-**Probabilities.** $P_{FA}$ = area under the $H_0$ pdf where you decide $H_1$. $P_D$ = area under the $H_1$ pdf in the same place.<br>
+**Probabilities.** $P_{FA}$ = area under the $H_0$ pdf where you decide $H_1$. $P_D$ = area under the $H_1$ pdf in the same place. Asked for one of them, it is the same equality read in the other direction.<br>
+**Neyman–Pearson as a recipe:** fix $P_{FA}=\alpha$ → solve that tail of the $H_0$ pdf for $t$ → that $t$ is the threshold → $P_D$ = tail of the $H_1$ pdf from the same $t$.<br>
 Tails: Gaussian $N(0,1)$ (mean 0, variance 1): $P(x\gt t)=Q(t)$ = the area right of $t$ under the bell (table) · exponential $ce^{-cx}$: $P(x\gt t)=e^{-ct}$ · Rayleigh: $P(x\gt t)=e^{-t^2/2\sigma^2}$ · two tails $\lvert x\rvert\gt t$ → double.<br>
 "Threshold for $P_{FA}=0.1$": set the $H_0$ area $=0.1$, solve for $t$.
 **Read $Q$ backwards:** want $P_{FA}=0.1$ with a Gaussian $H_0$ → the $t$ with $Q(t)=0.1$ is $t=1.28$ (Numbers, bottom of the sheet); then $P_D$ = area under the $H_1$ pdf from that same $t$ on.
@@ -431,9 +431,12 @@ Get the letter alone: $e^{ky}=A$ → $y=\frac{\ln A}{k}$ · $x^k=a$ → $x=a^{1/
 
 **Sums.** $\sum_{n\ge0}q^n=\frac1{1-q}$ for $|q|\lt1$ · $\sum_n x_n=N\bar x$ · $\sum_n c=Nc$.
 
+**Trig and $\lvert L\rvert^2$.** $\sin^2\alpha=\frac{1-\cos2\alpha}{2}$ · $\cos^2\alpha=\frac{1+\cos2\alpha}{2}$ · $\sin\alpha\sin\beta=\frac{\cos(\alpha-\beta)-\cos(\alpha+\beta)}{2}$ (the cosine version is in Part 3).<br>
+With $z=e^{i\theta}$: $z^{-1}+z=2\cos\theta$, so $\lvert1+a\,z^{-1}\rvert^2=1+a^2+2a\cos\theta$ — that is the denominator of **every** $P(\theta)$ on this sheet, and it is where $P=\sigma_i^2\big/\lvert1+az^{-1}\rvert^2$ (box 1C step 3) comes from.
+
 **Fractions & equations.** $\frac ab\pm\frac cd=\frac{ad\pm bc}{bd}$ · $\frac ab\div\frac cd=\frac{ad}{bc}$ · $\frac ab=\frac cd$ → $ad=bc$ · $ax^2+bx+c=0$ → $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$ · multiplying by a negative flips $\gt$ into $\lt$ · $\lvert x\rvert\gt t$ = two cases.
 
-**Numbers.** $\ln2=0.693$ · $\ln3=1.099$ · $\ln10=2.303$ · $e^{-2}=0.135$ · $\sqrt{2\pi}=2.51$ · $Q(1.28)=0.10$ · $Q(1.645)=0.05$ · $Q(1.96)=0.025$ · $Q(2.33)=0.01$.
+**Numbers.** $\pi=3.142$ · $\sqrt2=1.414$ · $e^{-1}=0.368$ · $\ln2=0.693$ · $\ln3=1.099$ · $\ln10=2.303$ · $e^{-2}=0.135$ · $\sqrt{2\pi}=2.51$ · $Q(1.28)=0.10$ · $Q(1.645)=0.05$ · $Q(1.96)=0.025$ · $Q(2.33)=0.01$.
 
 **Last 5 minutes, one check per part.** 1A: region drawn, and does the integral come out $1$? · 2A: derivative $=0$, and did you multiply the equation by $\theta^2$? · 2B: exponents only ever **add**, and $\theta$ powers stay separate from $(1-\theta)$ powers? · 3: every $\cos2\theta,\cos3\theta$ rewritten, and $r[0]$ not doubled? · 4: $P_{FA}$ and $P_D$ shaded on the **same** side of the threshold?
 
