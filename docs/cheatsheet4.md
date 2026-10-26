@@ -475,7 +475,5 @@ Get the letter alone: $e^{ky}=A$ → $y=\frac{\ln A}{k}$ · $x^k=a$ → $x=a^{1/
 **10 · $P_{FA}$ and $P_D$: same decision region, different pdf.** Suppose you decide $H_1$ when $x\gt t$, with $p(x\mid H_0)=e^{-x}$ and $p(x\mid H_1)=2e^{-2x}$, $x\ge0$. Then $P_{FA}=\int_t^\infty e^{-x}dx=[-e^{-x}]_t^\infty=0-(-e^{-t})=e^{-t}$. Use the SAME limits under $H_1$: $P_D=\int_t^\infty2e^{-2x}dx=[-e^{-2x}]_t^\infty=e^{-2t}$. If $P_{FA}=0.1$, then $e^{-t}=0.1$ → $t=-\ln0.1=2.303$ and $P_D=e^{-2(2.303)}=0.01$. Do not integrate $H_1$ for $P_{FA}$.
 {: .rescue }
 
-**Final 10-second rescue.** Integral → integrate first, substitute upper and lower second · multiplication inside $\ln$ → addition outside · division inside $\ln$ → subtraction · derivative → letters other than the unknown are constants · multiplying an inequality by a negative → flip it · finish with a range/sign/probability check.
-
 </div>
 </div>
