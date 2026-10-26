@@ -176,49 +176,73 @@ Check: every area lands between 0 and 1; something bigger than 1 means a flipped
 !!! sheet "Box 4C, exactly as it is printed on the sheet (Part 4 true / false)"
     IF YOU SEE "which of the following statements" (in Part 4) about hypothesis testing, $P_{FA}$, errors
 
-    | Statement | T / F |
-    |---|---|
-    | Bayes detection **minimises** the Bayes risk (average cost) | T ("maximises": F) |
-    | $C_{01}=C_{10}$ (1, 10, any equal value), $C_{00}=C_{11}=0$ → minimises total error probability | T |
-    | Equal priors + equal costs → maximum-likelihood rule | T |
-    | Higher $P(H_0)$ raises $\eta$ → harder to pick $H_1$ | T |
-    | Higher $P(H_1)$ raises $\eta$ | F (it lowers it) — Jun26 c |
-    | Neyman–Pearson: fix $P_{FA}$, **maximise** $P_D$ | T ("minimise": F) |
-    | ROC = $P_D$ against $P_{FA}$; diagonal = guessing; better → top-left | T |
+    Same swap test as 2D — the verb is the question: risk **min** · $P_D$ **max** · $P_e$ **min**; $\eta$ goes **up** with $P(H_0)$, **down** with $P(H_1)$.
 
-    Error table (rows = decision, columns = truth): decide $H_0$ & true $H_0$ = true negative · decide $H_0$ & true $H_1$ = miss, false negative, type II · decide $H_1$ & true $H_0$ = false alarm, false positive, type I · decide $H_1$ & true $H_1$ = detection, true positive (Nov22 a).
+    | The fact (true) | The lie they print (false) |
+    |---|---|
+    | Bayes detection **minimises** the Bayes risk | "maximises" |
+    | $C_{01}=C_{10}$, $C_{00}=C_{11}=0$ → minimises total error $P_e$ | (scaling all costs leaves $\eta$) |
+    | Equal priors + equal costs → maximum-likelihood rule | — |
+    | Higher $P(H_0)$ raises $\eta$ → harder to pick $H_1$ | "higher $P(H_1)$ raises $\eta$" (lowers — Jun26 c) |
+    | Neyman–Pearson: fix $P_{FA}$, **maximise** $P_D$ | "minimise $P_D$" · "fix $P_D$, max $P_{FA}$" |
+    | NP's solution is the LRT; the LRT itself needs **no** priors | "the LRT needs $P_0,P_1$" |
+    | $\ln$ of the ratio never changes the decisions | "changes the decisions" |
+    | Errors are unavoidable: the pdfs overlap | "a threshold kills both errors" |
+    | ROC: $P_D$ up, $P_{FA}$ right; diagonal = guessing; better = top-left | "below diagonal = wrong $\sigma$" (flipped) |
+    | miss = false negative = type II · false alarm = false positive = type I (Nov22 a) | labels swapped |
+
+    Matched filter & energy-detector sentences → the last blocks of 4A (time-reversed $s$, "only for uncorrelated noise" **false**, $\sum x^2$ **big**, narrow $H_1$ → sum **small**).
 
     Trap (Apr25-4b): "which statement is FALSE" where all three look true → as printed **all three are true** (official: no false one). Check the verbs: risk **min** · $P_D$ **max** · $P_e$ **min**.
 
 <div class="stepper" markdown>
 
-**Sheet step 1 · Bayes risk (row 1).**
-*"Bayes detection **minimises** the Bayes risk (average cost) | T ("maximises": F)"*. The verb is the question.
+**Sheet step 1 · Bayes risk: the verb is the question.**
+Fact: *"Bayes detection **minimises** the Bayes risk"*. Any wording that says maximise / maximise the average cost is the printed lie → F.
 
 ***
 
-**Sheet step 2 · the 0/1-costs row (row 2).**
-$C_{01}=C_{10}$ (any equal value) and $C_{00}=C_{11}=0$ → minimises total error probability | T. Scaling all costs by 10 does not move the threshold.
+**Sheet step 2 · the 0/1-costs row.**
+$C_{01}=C_{10}$ (any equal value), $C_{00}=C_{11}=0$ → minimises total error probability. A rephrase like "when both errors cost the same, the Bayes rule minimises the overall error rate" is the same fact → T. (Scaling all costs by 10 leaves $\eta$ untouched.)
 
 ***
 
-**Sheet step 3 · equal priors (row 3).**
-*"Equal priors + equal costs → maximum-likelihood rule | T"* — $\eta=1$, just pick the taller curve.
+**Sheet step 3 · equal priors row.**
+*"Equal priors + equal costs → maximum-likelihood rule"* — $\eta=1$, just pick the taller curve. Rephrased as "the ML rule is the special case of the Bayes rule with no prior preference" → T.
 
 ***
 
-**Sheet step 4 · the prior rows (rows 4–5, one is Jun26's FALSE).**
-Higher $P(H_0)$ raises $\eta$ → T. *"Higher $P(H_1)$ raises $\eta$ | F (it lowers it) — Jun26 c"*.
+**Sheet step 4 · the prior rows (one is Jun26's FALSE).**
+Fact: higher $P(H_0)$ raises $\eta$ (harder to say $H_1$). The printed lie *"higher $P(H_1)$ raises $\eta$"* — it lowers it. Watch for the same swap in new wording: "making $H_1$ more probable raises the threshold" → F.
 
 ***
 
 **Sheet step 5 · the error table (Nov22 4a).**
-The box's error table names all four cells: miss = false negative = **type II**, false alarm = false positive = **type I**. "Positive" = "we said $H_1$".
+The last row names the cells: miss = false negative = **type II**, false alarm = false positive = **type I**. "Positive" = "we said $H_1$". A shuffled-label question is answered by matching this row.
 
 ***
 
 **Sheet check · the trap line.**
 Apr25-4b asks for the FALSE statement and all three are true — the box says so. Verbs: risk **min** · $P_D$ **max** · $P_e$ **min**.
+
+</div>
+
+Fresh wording, never printed in any exam — run the swap test:
+
+<div class="stepper" markdown>
+
+**1 · "Multiplying all costs by the same constant leaves the Bayes decision unchanged."**
+The row's parenthetical fact, no swap → **T**.
+
+***
+
+**2 · "The Bayesian hypothesis test is designed to maximise the expected cost of the decision."**
+Swap: *maximise* against the fact *minimise* → **F**.
+
+***
+
+**3 · "When the priors are equal and all wrong decisions cost the same, the Bayes rule reduces to choosing the hypothesis with the higher likelihood."**
+Two facts glued together ("equal priors + equal costs → ML"), no swap → **T**.
 
 </div>
 

@@ -173,27 +173,21 @@ IF YOU SEE "which of the following statements" (in Part 2) about MLE, MAP, MMSE,
 {: .see }
 
 
-| Statement | T / F |
+**Kill any T/F with the swap test.** A FALSE option is a TRUE sentence with ONE word swapped: hunt *always · regardless · strictly · maximise/minimise · mean↔maximum*. No swap word → TRUE. Paraphrase? Match the idea, not the words.
+
+| The fact (true) | The lie they print (false) |
 |---|---|
-| MMSE = the **mean** of the posterior; minimises squared error | T |
-| MMSE = the maximum of the posterior | F (that is MAP) |
-| MMSE and MAP **always** give different estimates | F (same for a symmetric posterior) |
-| MAP always equals the posterior mean | F |
-| MAP depends on likelihood and prior; needs a prior | T (Jun26 c) |
-| MAP → MLE for many samples "regardless of the prior" | F |
-| Bayesian estimators do not use prior knowledge | F |
-| Bayes estimate minimises the Bayes risk | T (Nov22 b) |
-| Uniform cost → MMSE | F (uniform → MAP) |
-| MLE maximises the likelihood over $\theta$ | T ("over $x$": F) |
-| MLE is asymptotically unbiased | T (Nov22 c) |
-| MLE always reaches the CRLB / only for linear models | F |
-| MLE of $\alpha=\psi(\theta)$: $\hat\theta=\psi^{-1}(\hat\alpha)$ | T (Jan22 c) |
-| Fisher info of $N$ iid samples $=N\,i(\theta)$ | T |
-| $\mathrm{Var}(\hat\theta)\ge\mathcal I(\theta)$ | F (it is $\ge\frac1{\mathcal I}$) |
-| Fisher information is strictly negative | F (it is $\ge0$) |
-| CRLB can always be derived | F (not if the range of $x$ depends on $\theta$) |
-| Variance below the CRLB = efficient | F (efficient = equal to it) |
-| CRLB decreases as $N$ grows ($\sim\frac1N$); "decreases linearly with the number of observations" | T (Jan22 b) |
+| MMSE = **mean** of the posterior; MAP = **maximum** | the two swapped |
+| MMSE = MAP for a symmetric one-peak posterior | "**always** different" / "always equal" |
+| MAP = likelihood × prior, needs a prior (Jun26 c) | "MAP→MLE **regardless of** the prior" · "Bayesians skip priors" |
+| Bayes estimate **minimises** the Bayes risk (Nov22 b) | "maximises" |
+| Quadratic cost → MMSE; uniform cost → MAP | "uniform cost → MMSE" |
+| MLE = argmax of the likelihood **over $\theta$** | "over $x$" · "only linear models" |
+| MLE is **asymptotically** unbiased and efficient | "**always** reaches the CRLB" |
+| Invariance: $\alpha=\psi(\theta)$ 1-to-1 → $\hat\theta=\psi^{-1}(\hat\alpha)$ (Jan22 c) | — |
+| Fisher of $N$ iid $=N\,i(\theta)$, $\mathcal I\ge0$; $\mathrm{Var}(\hat\theta)\ge\frac1{\mathcal I(\theta)}$ | "$\mathcal I$ strictly negative" · "$\ge\mathcal I(\theta)$" |
+| CRLB $=\frac1{N i(\theta)}$ shrinks $\sim\frac1N$ (Jan22 b) | "**always** derivable" (no, if range of $x$ depends on $\theta$) |
+| efficient = variance **equal to** the CRLB | "**below** the CRLB" |
 
 Fisher info for "$x$ = signal($\theta$) + Gaussian noise $\sigma^2$": $\mathcal I=\frac1{\sigma^2}\sum\big(\frac{d\,\text{signal}}{d\theta}\big)^2$.
 
@@ -393,17 +387,22 @@ IF YOU SEE "which of the following statements" (in Part 4) about hypothesis test
 {: .see }
 
 
-| Statement | T / F |
-|---|---|
-| Bayes detection **minimises** the Bayes risk (average cost) | T ("maximises": F) |
-| $C_{01}=C_{10}$ (1, 10, any equal value), $C_{00}=C_{11}=0$ → minimises total error probability | T |
-| Equal priors + equal costs → maximum-likelihood rule | T |
-| Higher $P(H_0)$ raises $\eta$ → harder to pick $H_1$ | T |
-| Higher $P(H_1)$ raises $\eta$ | F (it lowers it) — Jun26 c |
-| Neyman–Pearson: fix $P_{FA}$, **maximise** $P_D$ | T ("minimise": F) |
-| ROC = $P_D$ against $P_{FA}$; diagonal = guessing; better → top-left | T |
+Same swap test as 2D — the verb is the question: risk **min** · $P_D$ **max** · $P_e$ **min**; $\eta$ goes **up** with $P(H_0)$, **down** with $P(H_1)$.
 
-Error table (rows = decision, columns = truth): decide $H_0$ & true $H_0$ = true negative · decide $H_0$ & true $H_1$ = miss, false negative, type II · decide $H_1$ & true $H_0$ = false alarm, false positive, type I · decide $H_1$ & true $H_1$ = detection, true positive (Nov22 a).
+| The fact (true) | The lie they print (false) |
+|---|---|
+| Bayes detection **minimises** the Bayes risk | "maximises" |
+| $C_{01}=C_{10}$, $C_{00}=C_{11}=0$ → minimises total error $P_e$ | (scaling all costs leaves $\eta$) |
+| Equal priors + equal costs → maximum-likelihood rule | — |
+| Higher $P(H_0)$ raises $\eta$ → harder to pick $H_1$ | "higher $P(H_1)$ raises $\eta$" (lowers — Jun26 c) |
+| Neyman–Pearson: fix $P_{FA}$, **maximise** $P_D$ | "minimise $P_D$" · "fix $P_D$, max $P_{FA}$" |
+| NP's solution is the LRT; the LRT itself needs **no** priors | "the LRT needs $P_0,P_1$" |
+| $\ln$ of the ratio never changes the decisions | "changes the decisions" |
+| Errors are unavoidable: the pdfs overlap | "a threshold kills both errors" |
+| ROC: $P_D$ up, $P_{FA}$ right; diagonal = guessing; better = top-left | "below diagonal = wrong $\sigma$" (flipped) |
+| miss = false negative = type II · false alarm = false positive = type I (Nov22 a) | labels swapped |
+
+Matched filter & energy-detector sentences → the last blocks of 4A (time-reversed $s$, "only for uncorrelated noise" **false**, $\sum x^2$ **big**, narrow $H_1$ → sum **small**).
 
 Trap (Apr25-4b): "which statement is FALSE" where all three look true → as printed **all three are true** (official: no false one). Check the verbs: risk **min** · $P_D$ **max** · $P_e$ **min**.
 
@@ -420,7 +419,7 @@ Get the letter alone: $e^{ky}=A$ → $y=\frac{\ln A}{k}$ · $x^k=a$ → $x=a^{1/
 
 **Fractions & equations.** $\frac ab\pm\frac cd=\frac{ad\pm bc}{bd}$ · $\frac ab\div\frac cd=\frac{ad}{bc}$ · $\frac ab=\frac cd$ → $ad=bc$ · $ax^2+bx+c=0$ → $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$ · multiplying by a negative flips $\gt$ into $\lt$ · $\lvert x\rvert\gt t$ = two cases.
 
-**Numbers.** $\ln2=0.693$ · $\ln3=1.099$ · $\ln10=2.303$ · $e^{-1}=0.368$ · $e^{-2}=0.135$ · $\sqrt{2\pi}=2.51$ · $Q(1.28)=0.10$ · $Q(1.645)=0.05$ · $Q(1.96)=0.025$ · $Q(2.33)=0.01$.
+**Numbers.** $\ln2=0.693$ · $\ln3=1.099$ · $\ln10=2.303$ · $e^{-2}=0.135$ · $\sqrt{2\pi}=2.51$ · $Q(1.28)=0.10$ · $Q(1.645)=0.05$ · $Q(1.96)=0.025$ · $Q(2.33)=0.01$.
 
 </div>
 </div>

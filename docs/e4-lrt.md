@@ -249,49 +249,73 @@ The MC is not about calculating: the same dozen sentences come back with one wor
 !!! sheet "Box 4C, exactly as it is printed on the sheet"
     IF YOU SEE "which of the following statements" (in Part 4) about hypothesis testing, $P_{FA}$, errors
 
-    | Statement | T / F |
-    |---|---|
-    | Bayes detection **minimises** the Bayes risk (average cost) | T ("maximises": F) |
-    | $C_{01}=C_{10}$ (1, 10, any equal value), $C_{00}=C_{11}=0$ → minimises total error probability | T |
-    | Equal priors + equal costs → maximum-likelihood rule | T |
-    | Higher $P(H_0)$ raises $\eta$ → harder to pick $H_1$ | T |
-    | Higher $P(H_1)$ raises $\eta$ | F (it lowers it) — Jun26 c |
-    | Neyman–Pearson: fix $P_{FA}$, **maximise** $P_D$ | T ("minimise": F) |
-    | ROC = $P_D$ against $P_{FA}$; diagonal = guessing; better → top-left | T |
+    Same swap test as 2D — the verb is the question: risk **min** · $P_D$ **max** · $P_e$ **min**; $\eta$ goes **up** with $P(H_0)$, **down** with $P(H_1)$.
 
-    Error table (rows = decision, columns = truth): decide $H_0$ & true $H_0$ = true negative · decide $H_0$ & true $H_1$ = miss, false negative, type II · decide $H_1$ & true $H_0$ = false alarm, false positive, type I · decide $H_1$ & true $H_1$ = detection, true positive (Nov22 a).
+    | The fact (true) | The lie they print (false) |
+    |---|---|
+    | Bayes detection **minimises** the Bayes risk | "maximises" |
+    | $C_{01}=C_{10}$, $C_{00}=C_{11}=0$ → minimises total error $P_e$ | (scaling all costs leaves $\eta$) |
+    | Equal priors + equal costs → maximum-likelihood rule | — |
+    | Higher $P(H_0)$ raises $\eta$ → harder to pick $H_1$ | "higher $P(H_1)$ raises $\eta$" (lowers — Jun26 c) |
+    | Neyman–Pearson: fix $P_{FA}$, **maximise** $P_D$ | "minimise $P_D$" · "fix $P_D$, max $P_{FA}$" |
+    | NP's solution is the LRT; the LRT itself needs **no** priors | "the LRT needs $P_0,P_1$" |
+    | $\ln$ of the ratio never changes the decisions | "changes the decisions" |
+    | Errors are unavoidable: the pdfs overlap | "a threshold kills both errors" |
+    | ROC: $P_D$ up, $P_{FA}$ right; diagonal = guessing; better = top-left | "below diagonal = wrong $\sigma$" (flipped) |
+    | miss = false negative = type II · false alarm = false positive = type I (Nov22 a) | labels swapped |
+
+    Matched filter & energy-detector sentences → the last blocks of 4A (time-reversed $s$, "only for uncorrelated noise" **false**, $\sum x^2$ **big**, narrow $H_1$ → sum **small**).
 
     Trap (Apr25-4b): "which statement is FALSE" where all three look true → as printed **all three are true** (official: no false one). Check the verbs: risk **min** · $P_D$ **max** · $P_e$ **min**.
 
 <div class="stepper" markdown>
 
 **Sheet step 1 · the error-table question (Nov 2022 4a).**
-The box's error table lists all four cells with their names. *"Positive" means "we said $H_1$"*, so the miss = false negative = **type II**, the false alarm = false positive = **type I**. Match the shuffled cells to the table.
+The last table row names the cells: *"miss = false negative = type II · false alarm = false positive = type I"*. *"Positive" means "we said $H_1$"*. Match the shuffled cells to the row.
 
 ***
 
-**Sheet step 2 · the NP sentence (Nov 2022 4b, Apr 2024 4a).**
-Row 6: *"Neyman–Pearson: fix $P_{FA}$, **maximise** $P_D$ | T ("minimise": F)"*. Read the verb: maximise = T, minimise = F.
+**Sheet step 2 · the NP sentence (Nov 2022 4b, Apr 2024 4a): read the verb.**
+Fact: *"Neyman–Pearson: fix $P_{FA}$, **maximise** $P_D$"*. "Minimise $P_D$" is the printed lie. A rephrasing ("among all tests with $P_{FA}=\alpha$, the one with the highest detection rate…") changes nothing: same idea, same answer.
 
 ***
 
-**Sheet step 3 · the priors sentence (Jun 2026 4c).**
-Rows 4–5: higher $P(H_0)$ raises $\eta$ → T; *"Higher $P(H_1)$ raises $\eta$ | F (it lowers it) — Jun26 c"*.
+**Sheet step 3 · the priors sentence (Jun 2026 4c): the lie is printed with the exam tag.**
+*"Higher $P(H_0)$ raises $\eta$ → harder to pick $H_1$"* is the fact; *"higher $P(H_1)$ raises $\eta$"* is the lie (it **lowers** it).
 
 ***
 
-**Sheet step 4 · the ROC sentence.**
-Row 7: *"ROC = $P_D$ against $P_{FA}$; diagonal = guessing; better → top-left | T"*. (An ROC below the diagonal means the decision is **flipped** — a wrong $\sigma$ only flattens it.)
+**Sheet step 4 · the ROC sentence and its lie.**
+Fact: *"$P_D$ up, $P_{FA}$ right; diagonal = guessing; better = top-left"*. The false twin blames a wrong $\sigma$ for a curve below the diagonal — a wrong $\sigma$ only flattens it; below means **flipped** decisions.
 
 ***
 
 **Sheet step 5 · the matched filter (jan22-4a) and the energy detector (pe21-4b).**
-Box 4A's last block: *"correlate the data with the known signal $s[n]$ (FIR filter $h[n]=$ the **time-reversed** $s$) → biggest output SNR; "only for uncorrelated noise" is **false**"*, and *"decide $H_1$ when $\sum_n x^2[n]$ is **big** = **energy detector**"*. Three MC sentences come from these two lines: max output SNR = T · $h[n]=s[n]$ = F (it is the time-reversed $s$) · "only for uncorrelated noise" = F.
+These live in 4A's last blocks, not in the table: *"correlate the data with the known signal $s[n]$ (FIR filter $h[n]=$ the **time-reversed** $s$) → biggest output SNR; "only for uncorrelated noise" is **false**"*, and *"decide $H_1$ when $\sum_n x^2[n]$ is **big** = **energy detector**"*.
 
 ***
 
 **Sheet check · the trap line.**
 Apr25-4b asks "which statement is FALSE" and, as printed, all three are true — the box says so explicitly. Check the three verbs before choosing: risk **min**, $P_D$ **max**, $P_e$ **min**.
+
+</div>
+
+Fresh wording, never printed in any exam — run the swap test:
+
+<div class="stepper" markdown>
+
+**1 · "The Neyman–Pearson lemma provides, among all tests with a given false-alarm rate, the one with the smallest miss probability."**
+"Smallest miss" = "biggest $P_D$", same idea, no swapped verb → **T**.
+
+***
+
+**2 · "Taking the logarithm of the likelihood ratio may change which observations are assigned to $H_1$."**
+Swap: *may change* against the fact *"never changes the decisions"* → **F**.
+
+***
+
+**3 · "A detector whose ROC runs below the diagonal should be re-fitted with a better noise model."**
+Swap: the fact says below-diagonal = **flipped** decisions; a wrong noise model only flattens the curve → **F**.
 
 </div>
 

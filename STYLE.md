@@ -118,9 +118,13 @@ exercise: `!!! exam` (question text verbatim) + `!!! sheet "In the cheat sheet: 
 with `**Sheet step k · …**` blocks (each one quotes a sheet line in *italics*) separated by `***`, ending
 with `**Sheet check · the example line**` (what the sheet's own worked example prints) + `!!! answer "Answer"` →
 **Traps** (`!!! trap key "Where points are lost (each one is a line of the sheet you skipped)"`).
-Theory MC: same treatment — the T/F box (2D, 4C) is quoted in a `!!! sheet` block and each option is mapped
-to a sheet row inside a stepper (no more `<div class="tf">` tables). The sheet quote must stay in sync with
-`docs/cheatsheet.md`; if the sheet wording changes, grep the lessons for the old quote.
+Theory MC: same treatment — the T/F boxes (2D, 4C) are **fact | lie** tables plus the "swap test"
+(a FALSE option is a TRUE sentence with ONE word swapped: hunt *always · regardless · strictly ·
+maximise/minimise · mean↔maximum*), quoted in a `!!! sheet` block and applied to each option inside a
+stepper (no more `<div class="tf">` tables, no verbatim sentence matching — the exam always rephrases).
+Every theory section also carries a short **Paraphrase drill**: the same facts in fresh wording, never
+printed in any exam. The sheet quote must stay in sync with `docs/cheatsheet.md`; if the sheet wording
+changes, grep the lessons for the old quote.
 
 Widgets (`docs/javascripts/widgets.js` + `stylesheets/widgets.css`), markup `<div class="widget" data-w="..."
 data-preset="...">`: `bayes`, `region` (tabs 0–2), `ensemble`, `pole` (`data-preset="factor"`, `data-a`),
