@@ -12,6 +12,9 @@ hide:
 **Notation, once, for the whole sheet.** $p(x,y)$ = how likely the pair $(x,y)$ is (*PDF* if $x$ is a measurement, *PMF* if $x$ is countable: dice, counts). Capital $P(A)$ = probability of an event. $\theta$ = the unknown parameter you are estimating — **in Part 3 the same letter means frequency**. $\hat\theta$ ("theta hat") = your estimate. $\sum$ = add up · $\int$ = area under the curve · $\lvert z\rvert$ = $z$ with the sign removed · $k!$ $=$ $1\cdot2\cdots k$ · $Q(t)$ = area of the Gaussian tail right of $t$ · **lag** = how far apart in time.
 {: .how }
 
+**How to use this sheet.** Read the yellow IF YOU SEE line first — it names the words the exam uses and sends you to the box that handles them. Then run the numbered steps in order with the exam's numbers, and finish with the box's own check. Stuck on algebra → **Calculations**, last block.
+{: .how }
+
 <div class="cheat-cols" markdown>
 
 ## PART 1 · Probability (1.5 p)
@@ -96,7 +99,8 @@ IF YOU SEE "expected value", "discrete or continuous", "exactly $k$ of $n$", "co
 - **$E[x]$** $=\sum_x x\,p(x)$ (discrete) $=\int x\,p(x)\,dx$ (continuous) = the **weighted average of the outcomes** (the probabilities are the weights) = the long-run mean. "Integral/sum of the pmf itself" $=1$, **not** $E$. "highest probability / most common" = the **mode**.
 - **Discrete** = the values can be listed: "number of …", counts, dice, digits 0–255. **Continuous** = a measurement: time, distance, mass, money.
 - **Rules:** $E[c\cdot z]=c\,E[z]$ · $E[c]=c$ · $E[z_1+z_2]=E[z_1]+E[z_2]$ — a constant factor comes out. Uniform $[a,b]$ → mean $\frac{a+b}2$ ($[-A,A]$ → 0).
-- **"Exactly $k$ of $n$ tries"** (binomial): $C(n,k)\,p^k(1-p)^{n-k}$, $p$ = chance of one try, $C(n,k)=\frac{n(n-1)\cdots(n-k+1)}{k!}$ = the number of ways to choose *which* $k$ tries succeed.
+- **"Exactly $k$ of $n$ tries"** (binomial): $C(n,k)\,p^k(1-p)^{n-k}$, $p$ = chance of one try, $C(n,k)=\frac{n(n-1)\cdots(n-k+1)}{k!}$ = the number of ways to choose *which* $k$ tries succeed.<br>
+  *e.g.* exactly two sixes in 5 rolls: $C(5,2)\big(\frac16\big)^2\big(\frac56\big)^3=10\cdot\frac1{36}\cdot\frac{125}{216}=0.16$.
 - **Covariance:** sign = direction, size grows with the units ($\pm1$-bounded version = correlation coefficient).
 - **Contour plot, bi-variate Gaussian:** covariance = off-diagonal of the **covariance matrix**: $0$ → ellipses on the axes · **tilted** → covariance $\ne0$.
 - **Definition MC / T/F:** independent $=P(A\mid B)=P(A)$, the same as $P(A\cap B)=P(A)P(B)$ · Bayes $=$ the conditional formula rearranged: $P(A\mid B)=\frac{P(A\cap B)}{P(B)}$, so $P(A\cap B)=P(A\mid B)P(B)$ · **disjoint** $=P(A\cap B)=0$ — the opposite of independent: if one happens the other cannot · $F(t)$ = chance $x$ is below $t$, so $F(-\infty)=0$, $F(\infty)=1$ · a T/F list → the swap test of box 2D (page 2).
@@ -118,6 +122,8 @@ Solving $=0$: multiply the equation by the denominators ($\theta^2$, $\theta$, �
 **Trap:** if the pdf only exists for $x$ up to something containing $\theta$ (uniform on $[0,\theta]$), these 3 steps are useless — $\hat\theta=\max_n x_n$, and **the CRLB (Cramér–Rao lower bound: the smallest variance any estimator can reach) does not exist**.
 **Fisher info / CRLB** from that same derivative: $i(\theta)=-\mathrm E\big[\frac{\partial^2\ln p}{\partial\theta^2}\big]$ for one sample; $N$ samples → $\mathcal I=N i(\theta)$; **CRLB** $=\frac{1}{N i(\theta)}$.
 **Known $i(\theta)$** — skip the derivation: Gaussian mean with variance $\sigma^2$: $\frac1{\sigma^2}$ · exponential rate $\lambda$: $\frac1{\lambda^2}$ · Bernoulli: $\frac1{\theta(1-\theta)}$ · Rayleigh $\frac{x}{\theta^2}e^{-x^2/2\theta^2}$: $\frac4{\theta^2}$ (so CRLB $=\frac{\theta^2}{4N}$).
+**Computing $i(\theta)$ in 3 lines** (exponential rate, $p=\lambda e^{-\lambda x}$): $\ln p=\ln\lambda-\lambda x$ → $\partial_\lambda=\frac1\lambda-x$ → $\partial^2_\lambda=-\frac1{\lambda^2}$ → $i=-\mathrm E\big[-\frac1{\lambda^2}\big]=\frac1{\lambda^2}$ (no $x$ left, so the average does nothing) → CRLB $=\frac{\lambda^2}N$. If an $x$ survives the second derivative, average it out with $\mathrm E[x]$.
+**$\hat\theta$ you should land on** — check yours against these: uniform $[0,\theta]$ → $\max_n x_n$ · exponential rate $\lambda$ → $1/\bar x$ · Poisson → $\bar x$ · Bernoulli / "$k$ of $n$" → $k/n=\bar x$ · Gaussian mean ($\sigma$ known) → $\bar x$ · Rayleigh $\frac{x}{\theta^2}e^{-x^2/2\theta^2}$ → $\sqrt{\frac1{2N}\sum x_n^2}$ · Gamma with $k$ fixed → $\bar x/k$.
 
 *Apr24* $\frac{x}{2\theta}e^{-x^2/2\theta}$: one sample gives $\ln x-\ln2-\ln\theta-\frac{x^2}{2\theta}$, so $\ln L=\sum\ln x_n-N\ln2-N\ln\theta-\frac{\sum x_n^2}{2\theta}$ → $-\frac N\theta+\frac{\sum x_n^2}{2\theta^2}=0$ → $\hat\theta=\frac1{2N}\sum x_n^2$.
 
@@ -147,13 +153,16 @@ Prior Beta$(a,b)$ = $\theta^{a-1}(1-\theta)^{b-1}$. Prior Gamma$(a,b)$ = $\lambd
 One observation $x$ gives: Poisson count → $\lambda^{x}e^{-\lambda}$ · "$k$-th success on trial $x$" → $\theta^k(1-\theta)^{x-k}$ · "$k$ successes in $n$ tries" → $\theta^k(1-\theta)^{n-k}$ · exponential → $\lambda e^{-\lambda x}$.
 
 **Posterior not in the table?** Do it by hand: **MAP** $=\arg\max_\theta p(\theta\mid x)$ = the peak (the $\theta$ where it is largest) · **MMSE** $=\int\theta\,p(\theta\mid x)\,d\theta$ = its mean (use the Calculations integrals).
-**Prior with a range** (uniform on $[a,b]$): the posterior is only $\propto$ the likelihood inside $[a,b]$ — so first cut the posterior down to $[a,b]$ and throw the rest away; if the peak would land outside, the MAP is the nearest endpoint $a$ or $b$.
+**Prior with a range** (uniform on $[a,b]$): the posterior is only $\propto$ the likelihood inside $[a,b]$ — so first cut the posterior down to $[a,b]$ and throw the rest away; if the peak would land outside, the MAP is the nearest endpoint $a$ or $b$.<br>
+*e.g.* posterior peaks at $\theta=0.8$ but the prior is uniform on $[0,0.5]$ → MAP $=0.5$.
 
 *Jun26-2c:* $\theta^2(1-\theta)^{x-2}$ with $x=3,5,4,6,4$: $\theta$ exponent $2$ five times $=10$, $(1-\theta)$ exponents sum $12$ → $\theta^{10}(1-\theta)^{12}$. Prior Beta(2,3) adds $\theta^1(1-\theta)^2$ → $\theta^{11}(1-\theta)^{14}$ → Beta(12,15), MAP $=\frac{11}{25}=0.44$.
 
 *Jun26-2d:* Poisson, $x=2,4,3,5,2,4$: $\lambda$ exponents add to $20$, six $e^{-\lambda}$ give $e^{-6\lambda}$ → $\lambda^{20}e^{-6\lambda}$. Prior Gamma(3,2) adds $\lambda^2e^{-2\lambda}$ → $\lambda^{22}e^{-8\lambda}$ → Gamma(23,8), MAP $=\frac{22}8=2.75$. MLE $=\frac{20}6=3.33$: the prior pulls towards its own mean $\frac32$.
 
 *Apr25-2d:* posterior already given as $\theta^{a}(1-\theta)^{b}$ → MAP $=\frac a{a+b}$. *Nov22:* posterior $\lambda e^{-(x+a)\lambda}$ → MAP $\frac1{x+a}$, MMSE $\frac2{x+a}$.
+
+*Apr24-2d (sigmoid):* posterior $\frac\lambda2e^{-\lambda x/2}$ → $\frac1\lambda-\frac x2=0$ → $\lambda=\frac2x$ → $\hat\theta=-\ln\!\big(\frac x2-1\big)$, $x\gt2$.
 
 ### 2C · Least-squares line
 
@@ -197,7 +206,7 @@ Fisher info for "$x$ = signal($\theta$) + Gaussian noise $\sigma^2$": $\mathcal 
 
 ## PART 3 · Spectral estimation (3 p)
 
-Here $\theta$ = **frequency** (radians), $\sigma^2$ = power of the driving noise $i[n]$, $P(\theta)$ = the **PSD** (spectrum: how the power sits over frequency). $r[k]$ = autocorrelation at lag $k$ (the given numbers). Rewrite cosines: $\cos2\theta=2\cos^2\theta-1$, $\cos3\theta=4\cos^3\theta-3\cos\theta$, $\cos\alpha\cos\beta=\frac{\cos(\alpha+\beta)+\cos(\alpha-\beta)}2$ (to expand $\lvert L\rvert^2$).
+Here $\theta$ = **frequency** (radians), $i[n]$ = the driving noise (white, power $\sigma^2$), $P(\theta)$ = the **PSD** (spectrum: how the power sits over frequency). $r[k]$ = autocorrelation at lag $k$ (the given numbers). Rewrite cosines: $\cos2\theta=2\cos^2\theta-1$, $\cos3\theta=4\cos^3\theta-3\cos\theta$, $\cos\alpha\cos\beta=\frac{\cos(\alpha+\beta)+\cos(\alpha-\beta)}2$ (to expand $\lvert L\rvert^2$).
 {: .how }
 
 **Draw it** — the question says "determine **and plot**", only the numbers are graded: $r[k]$ → vertical **stems** at the lags. $P(\theta)$ → compute the value at $\theta=0$ and at $\theta=\pi$, draw **one smooth curve** through those two heights and write them on the axis. Peak at $0$ = low-pass, peak at $\pi$ = high-pass, peak in between = band-pass.
@@ -207,7 +216,9 @@ Here $\theta$ = **frequency** (radians), $\sigma^2$ = power of the driving noise
 IF YOU SEE $r[0],r[1],r[2]\dots$ + "correlogram", "only these lags", "PSD as a function of $\cos\theta$", correlation values given
 {: .see }
 
-$P(\theta)=r[0]+2r[1]\cos\theta+2r[2]\cos2\theta+2r[3]\cos3\theta$. Stop at the last lag given. $r[0]$ is NOT doubled. From data: $\hat r[k]=\frac1N\sum_n x[n]x[n-k]$.
+$P(\theta)=r[0]+2r[1]\cos\theta+2r[2]\cos2\theta+2r[3]\cos3\theta$. Stop at the last lag given. $r[0]$ is NOT doubled. From data: $\hat r[k]=\frac1N\sum_n x[n]x[n-k]$.<br>
+**Instant check:** $P(0)=r[0]+2r[1]+2r[2]+\dots$ (all $+$), $P(\pi)=r[0]-2r[1]+2r[2]-\dots$ (signs alternate) — two numbers to compare against your curve.<br>
+**Other way round** ($P(\theta)$ given, $r[k]$ asked): $r[0]$ = the plain constant term, and $r[k]$ = **half** the coefficient of $\cos k\theta$ (that is where the 2 comes from). Autocorrelation is **symmetric**: $r[-k]=r[k]$, so $r[\pm1]$ is one number.
 
 *Jun26* $3,2,1$: $3+4\cos\theta+2\cos2\theta=4\cos^2\theta+4\cos\theta+1=(2\cos\theta+1)^2$.
 
@@ -218,7 +229,7 @@ $P(\theta)=r[0]+2r[1]\cos\theta+2r[2]\cos2\theta+2r[3]\cos3\theta$. Stop at the 
 IF YOU SEE "AR(1)", "first-order autoregressive"
 {: .see }
 
-1. $a=-\dfrac{r[1]}{r[0]}$
+1. $a=-\dfrac{r[1]}{r[0]}$ — the model is $x[n]+a\,x[n-1]=i[n]$, $a$ enters with a $+$, that is why the minus shows up here.
 2. $\sigma^2=r[0]+a\,r[1]$
 3. $P=\dfrac{\sigma^2}{1+a^2+2a\cos\theta}$ (check $|a|\lt1$ and $\sigma^2\gt0$, else a sign went wrong)
 
@@ -228,6 +239,8 @@ IF YOU SEE "AR(1)", "first-order autoregressive"
 
 IF YOU SEE "AR(2)", "Yule–Walker", $r[0],r[1],r[2]$
 {: .see }
+
+The model is $x[n]+a_1x[n-1]+a_2x[n-2]=i[n]$. Then:
 
 1. $D=r[0]^2-r[1]^2$
 2. $a_1=\dfrac{-r[1]\,(r[0]-r[2])}{D}$,  $a_2=\dfrac{r[1]^2-r[0]\,r[2]}{D}$
@@ -243,8 +256,9 @@ If they want the matrix: $\begin{bmatrix}r[0]&r[1]\\r[1]&r[0]\end{bmatrix}\begin
 IF YOU SEE "MA(1)", "moving average"
 {: .see }
 
-PSD: $P=r[0]+2r[1]\cos\theta$. Ignore $r[2]$ and beyond.
-If they ask for $b$ and $\sigma^2$: solve $b^2-\frac{r[0]}{r[1]}\,b+1=0$, keep the root between $-1$ and $1$; then $\sigma^2=\frac{r[1]}{b}$.
+Model: $x[n]=i[n]+b\,i[n-1]$. PSD: $P=r[0]+2r[1]\cos\theta$ — ignore $r[2]$ and beyond.
+If they ask for $b$ and $\sigma^2$: solve $b^2-\frac{r[0]}{r[1]}\,b+1=0$, keep the root between $-1$ and $1$; then $\sigma^2=\frac{r[1]}{b}$.<br>
+*e.g.* $r[0]=2$, $r[1]=-0.8$: $b^2+2.5b+1=0$ → $b=-\frac12$ (the other root $-2$ is outside) → $\sigma^2=\frac{-0.8}{-0.5}=1.6$; check $r[0]=\sigma^2(1+b^2)=1.6\cdot1.25=2$ ✓.
 
 *Apr25* $r=2,-\frac14$: $P=2-\frac12\cos\theta$.
 
@@ -288,7 +302,7 @@ IF YOU SEE "energy or power signal", "total energy", "average power"
 - Never dies out (sin, cos, constant, $\cos t\,u(t)$ where $u(t)$ = 0 before $t=0$ and 1 after) → **power**: $P$ = time average of $\lvert x\rvert^2$, energy $=\infty$.
 - Time-continuous ($t$) → $\sum$ becomes $\int dt$: $E=\int\lvert x\rvert^2dt$, $P=\frac1T\int_0^T\lvert x\rvert^2dt$.
 
-*Apr25:* $A\sin\omega t$ → power $\frac{A^2}2$. $e^{-n}$ for $n\ge0$ → energy $\sum e^{-2n}=\frac1{1-e^{-2}}\approx1.16$ (use $\sum_{n\ge0}q^n=\frac1{1-q}$).
+*Apr25:* $A\sin\omega t$ → power $\frac{A^2}2$ (the average of $\sin^2$ over one period is $\frac12$, and $A^2$ is a constant). $e^{-n}$ for $n\ge0$ → energy $\sum e^{-2n}=\frac1{1-e^{-2}}\approx1.16$ (use $\sum_{n\ge0}q^n=\frac1{1-q}$).
 
 ### 3I · Name the method
 
@@ -332,13 +346,15 @@ Same swap test as 2D — hunt: *improves/reduces · exactly · more/less · both
 
 ## PART 4 · Detection (2–2.5 p)
 
-$H_0$ = nothing there, $H_1$ = something there. $P_{FA}$ = decide $H_1$ when $H_0$ is true (false alarm). $P_D$ = decide $H_1$ when $H_1$ is true. $P_M=1-P_D$ (miss).
+$H_0$ = nothing there, $H_1$ = something there. $P_{FA}$ = decide $H_1$ when $H_0$ is true (false alarm). $P_D$ = decide $H_1$ when $H_1$ is true. $P_M=1-P_D$ (miss). $P_e$ = total error $=P(H_0)P_{FA}+P(H_1)P_M$ (equal error costs only).
 {: .how }
 
 ### 4A · Likelihood-ratio test
 
 IF YOU SEE two pdfs (one for $H_0$, one for $H_1$) + "binary hypothesis"/"hypothesis testing", "likelihood ratio test", "when accept $H_1$", threshold $\lambda,\gamma,\eta$, "$P_{FA}$"/"$P_D$"
 {: .see }
+
+**Which pdf is $H_0$?** The one for *nothing there* (pure noise). If the question does not say, $P_{FA}$ tells you: it is the area under the pdf of the no-signal case.
 
 1. $L(x)=\dfrac{p(x\mid H_1)}{p(x\mid H_0)}$ — 1 is the threshold you start from. Cancel what appears on top and bottom. $N$ samples → multiply them ($e^ae^b=e^{a+b}$).
 2. Decide $H_1$ if $L\gt$ threshold. Take $\ln$ of both sides.
@@ -356,6 +372,7 @@ IF YOU SEE two pdfs (one for $H_0$, one for $H_1$) + "binary hypothesis"/"hypoth
 **Probabilities.** $P_{FA}$ = area under the $H_0$ pdf where you decide $H_1$. $P_D$ = area under the $H_1$ pdf in the same place.<br>
 Tails: Gaussian $N(0,1)$ (mean 0, variance 1): $P(x\gt t)=Q(t)$ = the area right of $t$ under the bell (table) · exponential $ce^{-cx}$: $P(x\gt t)=e^{-ct}$ · Rayleigh: $P(x\gt t)=e^{-t^2/2\sigma^2}$ · two tails $\lvert x\rvert\gt t$ → double.<br>
 "Threshold for $P_{FA}=0.1$": set the $H_0$ area $=0.1$, solve for $t$.
+**Read $Q$ backwards:** want $P_{FA}=0.1$ with a Gaussian $H_0$ → the $t$ with $Q(t)=0.1$ is $t=1.28$ (Numbers, bottom of the sheet); then $P_D$ = area under the $H_1$ pdf from that same $t$ on.
 
 *Nov22:* $1-e^{-t}=0.1$ → $t=-\ln0.9$; then $P_D=1-e^{-2t}=0.19$.
 
@@ -417,6 +434,8 @@ Get the letter alone: $e^{ky}=A$ → $y=\frac{\ln A}{k}$ · $x^k=a$ → $x=a^{1/
 **Fractions & equations.** $\frac ab\pm\frac cd=\frac{ad\pm bc}{bd}$ · $\frac ab\div\frac cd=\frac{ad}{bc}$ · $\frac ab=\frac cd$ → $ad=bc$ · $ax^2+bx+c=0$ → $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$ · multiplying by a negative flips $\gt$ into $\lt$ · $\lvert x\rvert\gt t$ = two cases.
 
 **Numbers.** $\ln2=0.693$ · $\ln3=1.099$ · $\ln10=2.303$ · $e^{-2}=0.135$ · $\sqrt{2\pi}=2.51$ · $Q(1.28)=0.10$ · $Q(1.645)=0.05$ · $Q(1.96)=0.025$ · $Q(2.33)=0.01$.
+
+**Last 5 minutes, one check per part.** 1A: region drawn, and does the integral come out $1$? · 2A: derivative $=0$, and did you multiply the equation by $\theta^2$? · 2B: exponents only ever **add**, and $\theta$ powers stay separate from $(1-\theta)$ powers? · 3: every $\cos2\theta,\cos3\theta$ rewritten, and $r[0]$ not doubled? · 4: $P_{FA}$ and $P_D$ shaded on the **same** side of the threshold?
 
 </div>
 </div>
