@@ -7,8 +7,11 @@ hide:
 <h1 class="noprint">A4 cheat sheet (v3)</h1>
 
 <p class="noprint">Same content as <a href="cheatsheet/">v1</a>, but every word is defined the first time it appears. Print at the same settings.</p>
-<div class="cheat" markdown>
+<div class="cheat cheat3" markdown>
 <div class="cheat-cols" markdown>
+
+**Symbols, once.** $\theta$ = the unknown to estimate · $\hat\theta$ = your estimate ("theta hat") · $x[n]$, $x_1..x_N$ = the data ($N$ = how many) · $\bar x$ = its average · $E[\cdot]$ = average (expected value) · $r[k]$ = autocorrelation, lag $k$ · $P(\theta)$ = the spectrum · $Q(t)$ = area right of $t$ under the standard bell (Numbers strip).
+{: .how }
 
 ## PART 1 · Probability (1.5 p)
 
@@ -102,7 +105,7 @@ IF YOU SEE "expected value", "discrete or continuous", "exactly $k$ of $n$", "co
 IF YOU SEE a pdf $p(x\mid\theta)$, samples $x_1..x_N$, "maximum likelihood", "derive the MLE", "find an estimator", "estimate of …"
 {: .see }
 
-1. Take $\ln$ of ONE sample's pdf, then put $\sum_n$ in front. That is $\ln L$ ($L$ = likelihood = all the pdfs multiplied). A term without $x_n$ gets multiplied by $N$.
+1. Take $\ln$ of ONE sample's pdf, then put $\sum_n$ in front. That is $\ln L$ ($L$ = likelihood = all the pdfs multiplied). A term with no $x_n$ in it (a $\ln 2$, a $\ln\theta$) comes back once per sample → it gets multiplied by $N$.
 2. Differentiate with respect to $\theta$ (terms without $\theta$ disappear).
 3. Set it $=0$ and solve for $\theta$. That is $\hat\theta$ (the estimate of $\theta$).
 
@@ -112,6 +115,8 @@ Solving $=0$: multiply the equation by the denominators ($\theta^2$, $\theta$, �
 **Trap:** if the pdf only exists for $x$ up to something containing $\theta$ (uniform on $[0,\theta]$), these 3 steps are useless — $\hat\theta=\max_n x_n$, and **the CRLB does not exist**.
 **Fisher info / CRLB** from that same derivative: $i(\theta)=-\mathrm E\big[\frac{\partial^2\ln p}{\partial\theta^2}\big]$ for one sample; $N$ samples → $\mathcal I=N i(\theta)$; **CRLB** $=\frac1{N i(\theta)}$ — the smallest variance any unbiased estimator can get (the floor). Reach the floor = **efficient**.
 **Known $i(\theta)$** — skip the derivation: Gaussian mean with variance $\sigma^2$: $\frac1{\sigma^2}$ · exponential rate $\lambda$: $\frac1{\lambda^2}$ · Bernoulli: $\frac1{\theta(1-\theta)}$ · Rayleigh $\frac{x}{\theta^2}e^{-x^2/2\theta^2}$: $\frac4{\theta^2}$ (so CRLB $=\frac{\theta^2}{4N}$).
+
+**Check your $\hat\theta$:** uniform $[0,\theta]$ → $\max_n x_n$ (the trap above) · exponential rate $\lambda$ → $1/\bar x$ · Poisson $\lambda$ → $\bar x$ · Bernoulli → $k/N$ ($k$ successes in $N$).
 
 *Apr24* $\frac{x}{2\theta}e^{-x^2/2\theta}$: one sample gives $\ln x-\ln2-\ln\theta-\frac{x^2}{2\theta}$, so $\ln L=\sum\ln x_n-N\ln2-N\ln\theta-\frac{\sum x_n^2}{2\theta}$ → $-\frac N\theta+\frac{\sum x_n^2}{2\theta^2}=0$ → $\hat\theta=\frac1{2N}\sum x_n^2$.
 
@@ -204,7 +209,7 @@ $r[k]$ = autocorrelation at lag $k$ (the given numbers; lag $k$ = $k$ steps apar
 IF YOU SEE $r[0],r[1],r[2]\dots$ + "correlogram", "only these lags", "PSD as a function of $\cos\theta$", correlation values given
 {: .see }
 
-$P(\theta)=r[0]+2r[1]\cos\theta+2r[2]\cos2\theta+2r[3]\cos3\theta$. Stop at the last lag given. $r[0]$ is NOT doubled. From data: $\hat r[k]=\frac1N\sum_n x[n]x[n-k]$.
+$P(\theta)=r[0]+2r[1]\cos\theta+2r[2]\cos2\theta+2r[3]\cos3\theta$. Stop at the last lag given. $r[0]$ is NOT doubled. From data: $\hat r[k]=\frac1N\sum_n x[n]x[n-k]$. Other way round ($P(\theta)$ given, $r[k]$ asked): $r[0]$ = the plain constant term, $r[k]$ = **half** the coefficient of $\cos k\theta$.
 
 *Jun26* $3,2,1$: $3+4\cos\theta+2\cos2\theta=4\cos^2\theta+4\cos\theta+1=(2\cos\theta+1)^2$.
 
@@ -214,6 +219,8 @@ $P(\theta)=r[0]+2r[1]\cos\theta+2r[2]\cos2\theta+2r[3]\cos3\theta$. Stop at the 
 
 IF YOU SEE "AR(1)", "first-order autoregressive"
 {: .see }
+
+Model: $x[n]=a\,x[n-1]+i[n]$ ($i$ = white noise). The minus in step 1 = moving $x[n-1]$ to the left.
 
 1. $a=-\dfrac{r[1]}{r[0]}$
 2. $\sigma^2=r[0]+a\,r[1]$
@@ -240,7 +247,7 @@ If they want the matrix: $\begin{bmatrix}r[0]&r[1]\\r[1]&r[0]\end{bmatrix}\begin
 IF YOU SEE "MA(1)", "moving average"
 {: .see }
 
-PSD: $P=r[0]+2r[1]\cos\theta$. Ignore $r[2]$ and beyond.
+Model: $x[n]=i[n]+b\,i[n-1]$. PSD: $P=r[0]+2r[1]\cos\theta$ — it uses $r[0],r[1]$ only: ignore $r[2]$ and beyond.
 If they ask for $b$ and $\sigma^2$: solve $b^2-\frac{r[0]}{r[1]}\,b+1=0$, keep the root between $-1$ and $1$; then $\sigma^2=\frac{r[1]}{b}$.
 
 *Apr25* $r=2,-\frac14$: $P=2-\frac12\cos\theta$.
@@ -250,7 +257,7 @@ If they ask for $b$ and $\sigma^2$: solve $b^2-\frac{r[0]}{r[1]}\,b+1=0$, keep t
 IF YOU SEE $x[n]=\dots$ + "which kind of process", "calculate the autocorrelation of $x$"
 {: .see }
 
-- Only $i[n],i[n-1],\dots$ on the right → **MA($q$)**, $q$ = biggest delay ($i[n]$ = the noise coming in). Old $x[n-k]$ on the right too → **ARMA($p,q$)**, $p$ = biggest $x$ delay. From the shape of $P(\theta)$: sharp **peaks** → AR, deep **nulls** → MA, both → ARMA.
+- The right side names the type ($i$ = the noise coming in): only $i[n],i[n-1],\dots$ → **MA($q$)**, $q$ = biggest noise delay · noise **and** past outputs $x[n-k]$ → **ARMA($p,q$)**, $p$ = biggest $x$ delay (bring $x[n-k]$ left first: $x[n]+\alpha x[n-1]=i[n]+\beta i[n-1]$) · $x[n-k]$ but noise only as $i[n]$ → **AR($p$)**: use 3B/3C. From the shape of $P(\theta)$: sharp **peaks** → AR, deep **nulls** → MA, both → ARMA.
 - MA autocorrelation: write the list $1,b_1,b_2,\dots$ and use $r[k]=\sigma^2\sum_m b_m b_{m+k}$ with $b_0=1$ (pairs sitting $k$ apart in the list). Zero after lag $q$. So $r[0]$ = $\sigma^2\times$ sum of the squares ($r[0]=\sigma^2(1+b_1^2+b_2^2+\dots)$); $r[1]$ = each one times its right-hand neighbour ($1\cdot b_1+b_1b_2+\dots$); $r[2]$ = skip one ($1\cdot b_2+b_1b_3+\dots$).<br>
   **Backwards** — $r[k]$ given, the coefficients asked (Jan22 MA(2)): go from the **biggest lag down** — the biggest lag has a single product, so $b_q=r[q]/\sigma^2$; then the next lag has one letter left free. MA(2), $\sigma_i^2=1$: $b_2=r[2]$, then $r[1]=b_1(1+b_2)$ → $b_1$; the correlogram needs $r[0]=\sigma^2(1+b_1^2+b_2^2)$ (sum of the squares).<br>
   *Apr24* $1,-\frac12,\frac14,-\frac12$ (MA(3), $\sigma^2=1$): $r[0]=1+\frac14+\frac1{16}+\frac14=\frac{25}{16}$, $r[1]=-\frac12-\frac18-\frac18=-\frac34$, $r[2]=\frac14+\frac14=\frac12$, $r[3]=-\frac12$.
@@ -265,14 +272,14 @@ IF YOU SEE "which plot", "which figure", "plots A–D", "match the plot"
 Work out each PSD at $\theta=0$ (all cosines $=1$) and at $\theta=\pi$ ($\cos\theta=-1$, $\cos2\theta=1$, $\cos3\theta=-1$). Pick the plot with those heights. Only a correlogram can go below 0.
 
 *Apr25:* correlogram $1.13\to2.13$, MA $1.5\to2.5$, AR $1.56\to2.57$ (heights at $0\to\pi$) → plot D.
-**Second type** (windowed cosine, FTD vs DFT — FTD = the curve, DFT = the dots on it): infinite cosine = **2 spikes** · windowed = **main lobe + side lobes** (one big bump + small ones) · DFT = **samples of that same curve** · zero padding = **more dots**, not more resolution (Jan22: 1B, 2D, 3C, 4A).
+**Second type** (windowed cosine, DTFT vs DFT — the DTFT is the whole curve, the DFT is the dots on it): infinite cosine = **2 spikes** · windowed = **main lobe + side lobes** (one big bump + small ones) · DFT = **samples of that same curve** · zero padding = **more dots**, not more resolution (Jan22: 1B, 2D, 3C, 4A).
 
 ### 3G · Welch / Bartlett count
 
 IF YOU SEE "Welch"/"Bartlett"/"WOSA", $N$ samples, segment length $L$, overlap %, "how many segments"
 {: .see }
 
-Step $D=L\times(1-\text{overlap})$. Segments $K=\frac{N-L}{D}+1$ (round $K$ down to a whole number). Variance ratio vs one periodogram $=\frac1K$. Bartlett (no overlap): $K=\frac NL$.
+Step $D=L\times(1-\text{overlap})$. Segments $K=\frac{N-L}{D}+1$ (round $K$ down to a whole number). Bartlett (no overlap): $K=\frac NL$. Variance ratio $=\frac1K$ **if the segments are independent** (what the exam assumes — *Jun26* → $\frac19$); real Welch overlap shares samples → the drop is **less** than $\frac1K$ (3J).
 
 *Jun26* $N=1000$, $L=200$, 50 %: $D=100$, $K=9$, ratio $\frac19$.
 
@@ -352,7 +359,7 @@ IF YOU SEE two pdfs (one for $H_0$, one for $H_1$) + "binary hypothesis"/"hypoth
 *Nov22* $\frac12e^{-\lvert x\rvert}$ vs $e^{-2\lvert x\rvert}$, $N$ samples: $L=2^Ne^{-\sum\lvert x_n\rvert}$ → accept $H_1$ if $\sum\lvert x_n\rvert\lt N\ln2-\ln\lambda$.
 
 **Probabilities.** $P_{FA}$ = area under the $H_0$ pdf where you decide $H_1$. $P_D$ = area under the $H_1$ pdf in the same place.<br>
-Tails: Gaussian $N(0,1)$: $P(x\gt t)=Q(t)$ (table) · exponential $ce^{-cx}$: $P(x\gt t)=e^{-ct}$ · Rayleigh: $P(x\gt t)=e^{-t^2/2\sigma^2}$ · two tails $\lvert x\rvert\gt t$ → double.<br>
+Tails: Gaussian $N(0,1)$ (mean 0, variance 1): $P(x\gt t)=Q(t)$ = the area right of $t$ (Numbers strip) · exponential $ce^{-cx}$: $P(x\gt t)=e^{-ct}$ · Rayleigh: $P(x\gt t)=e^{-t^2/2\sigma^2}$ · two tails $\lvert x\rvert\gt t$ → double.<br>
 "Threshold for $P_{FA}=0.1$": set the $H_0$ area $=0.1$, solve for $t$.
 
 *Nov22:* $1-e^{-t}=0.1$ → $t=-\ln0.9$; then $P_D=1-e^{-2t}=0.19$.
@@ -360,7 +367,7 @@ Tails: Gaussian $N(0,1)$: $P(x\gt t)=Q(t)$ (table) · exponential $ce^{-cx}$: $P
 "Plot / indicate $P_{FA}$ and $P_M$": draw both pdfs and a vertical line at the threshold. Shade the $H_0$ curve on the "decide $H_1$" side → $P_{FA}$. Shade the $H_1$ curve on the "decide $H_0$" side → $P_M$. (Nov22: $H_1$ when $y\lt1$, so $P_{FA}$ = $H_0$ area left of 1, $P_M$ = $H_1$ area right of 1.)
 
 **Gaussian with any $\sigma$.** $p(x)=\dfrac1{\sigma\sqrt{2\pi}}e^{-x^2/2\sigma^2}$ (mean 0). Two zero-mean Gaussians, $\sigma_1$ vs $\sigma_0$ (pe21-4b): $\ln L=N\ln\frac{\sigma_0}{\sigma_1}+\frac12\big(\frac1{\sigma_0^2}-\frac1{\sigma_1^2}\big)\sum_n x^2[n]$ → decide $H_1$ when $\sum_n x^2[n]$ is **big** = **energy detector** (bigger variance = more energy).<br>
-**erf table** (printed in the question — pe21-4a): the printed CDF $\frac12\big[1+\operatorname{erf}\frac{t-\mu}{\sigma\sqrt2}\big]$ is $P(x\lt t)$; the test needs $P(x\gt t)=1-\text{CDF}=\frac12\big[1-\operatorname{erf}\frac{z}{\sqrt2}\big]$, $z=\frac{t-\mu}{\sigma}$. The table lists $\operatorname{erf}(x/\sqrt2)$ at $x=-3..3$: read it at $x=z$, value at $-z$ = minus the value at $z$.<br>
+**erf table** (printed with the question — pe21-4a). The printed formula $\frac12\big[1+\operatorname{erf}\frac{t-\mu}{\sigma\sqrt2}\big]$ gives $P(x\lt t)$, so $P(x\gt t)=1-\text{that}$. First compute $z=\frac{t-\mu}{\sigma}$, then read $\operatorname{erf}\frac{z}{\sqrt2}$ at the column $x=z$ ($x$ runs $-3$ to $3$; the value at $-z$ is minus the value at $z$).<br>
 **Matched filter** (jan22-4a): correlate the data with the known signal $s[n]$ (FIR filter $h[n]=$ the **time-reversed** $s$) → biggest output SNR; "only for uncorrelated noise" is **false**.
 
 ### 4B · Priors and costs (Bayes)
@@ -383,7 +390,7 @@ IF YOU SEE "which of the following statements" (in Part 4) about hypothesis test
 {: .see }
 
 
-Same swap test as 2D — the verb is the question: risk **min** · $P_D$ **max** · $P_e$ **min**; $\eta$ goes **up** with $P(H_0)$, **down** with $P(H_1)$.
+Same swap test as 2D — the verb is the question: risk **min** · $P_D$ **max** · $P_e$ **min** ($P_e$ = total error $=P(H_0)P_{FA}+P(H_1)P_M$, equal costs) · $\eta$ goes **up** with $P(H_0)$, **down** with $P(H_1)$.
 
 | The fact (true) | The lie they print (false) |
 |---|---|

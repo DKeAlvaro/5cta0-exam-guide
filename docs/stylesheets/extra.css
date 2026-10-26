@@ -265,6 +265,12 @@
   .md-typeset .cheat.cheat2 p, .md-typeset .cheat.cheat2 ul, .md-typeset .cheat.cheat2 ol { margin: .02em 0; }
   .md-typeset .cheat.cheat2 h2 { margin: .22em 0 .08em; }
   .md-typeset .cheat.cheat2 h3 { margin: .22em 0 .06em; }
+  /* v3 sheet (docs/cheatsheet3.md): clearer words, a few more of them — 8.7pt keeps it on 2 sides */
+  .md-typeset .cheat.cheat3 { font-size: 8.7pt; line-height: 1.02; }
+  .md-typeset .cheat.cheat3 .katex { font-size: .96em; }
+  .md-typeset .cheat.cheat3 p, .md-typeset .cheat.cheat3 ul, .md-typeset .cheat.cheat3 ol { margin: .03em 0; }
+  .md-typeset .cheat.cheat3 h2 { margin: .25em 0 .09em; }
+  .md-typeset .cheat.cheat3 h3 { margin: .22em 0 .06em; }
   .pagebreak { break-before: auto; }
 }
 
