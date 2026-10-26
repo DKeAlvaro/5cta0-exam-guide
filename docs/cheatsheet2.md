@@ -87,7 +87,7 @@ $k$ = group number ($1,2,3$). **Total**: counts given → sum them; only % → p
 
 Wording: defective, fail, NOT pass, positive, infected, "actually present" → **bad** · "false positive 3 %" = 3 % **of the healthy** · "detects 95 % when present" = 95 % of the ill · "99 % accurate" = both groups classified right · "mixed at random" = step 4.
 
-*Jun26* 40/35/25 %, defect 2/4/5 %: bad $=0.4(0.02)+0.35(0.04)+0.25(0.05)=0.0325$; $M_2$ given bad $=\frac{0.35\cdot0.04}{0.0325}=0.43$.
+*Jun26* 40/35/25 %, defect 2/4/5 % (per 1000: 400/350/250 items → bad$_k$ = 8/14/12.5): bad $=0.4(0.02)+0.35(0.04)+0.25(0.05)=0.0345$; $M_2$ given bad $=\frac{0.35\cdot0.04}{0.0345}=0.41$.
 
 ### 1E · Expected value and the MC words
 

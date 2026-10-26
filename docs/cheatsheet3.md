@@ -53,7 +53,7 @@ IF YOU SEE "WSS"/"wide-sense stationary"/"stationary", "ergodic", dice, random p
 *Worked, random phase $\cos(t+U)$:* $E[\cos(t+U)]=0$ — a uniform phase averages a whole turn to 0 → constant ✓. $r=E[\cos(t_1{+}U)\cos(t_2{+}U)]=\frac12\cos(t_1-t_2)$ ✓ → **WSS**, and one realisation $\cos(t+u)$ has long-time average $0=$ the mean → **ergodic in the mean**.
 *Worked, random amplitude $A\cos t$:* $E[A\cos t]=E[A]\cos t$ moves with $t$ → **not WSS**, stop. *Dice rolled forever:* fresh roll every time → **ergodic in mean AND variance**. *Numbers uniform in $[-A,A]$ streamed:* mean $\frac{-A+A}2=0$ whatever $A$ is (test 1), each realisation sweeps the whole range → **ergodic, mean 0**.
 
-**Words (Jan22-1b):** a *random process* = the whole infinite **set** of possible signals (the ensemble) · one recording (one picture) = a **realisation** · one number / one pixel = a random **variable**. "Is this set of pictures WSS?" → **yes** only if the statistics do not shift from picture to picture. Definition MC: pick the option saying the WSS line above **word for word** (the wrong ones name ergodic, strict stationarity or white noise).
+**Words (Jan22-1b):** *random process* = the whole **set** of signals · one recording = a **realisation** · one number = a random **variable**. "Is this set of pictures WSS?" → **yes** only if the statistics do not shift from picture to picture. Definition MC: the option repeating the WSS line **word for word**.
 
 ### 1C · Spectral factorisation
 
@@ -67,7 +67,7 @@ IF YOU SEE $P(\theta)=\dfrac{\text{number}}{A+B\cos\theta}$ + "spectral factoris
 
 *Apr24* $\frac{7}{25-24\cos\theta}$: $A=25$, $B=-24$, $\sqrt{625-576}=7$, $r=\frac{25\pm7}{-24}$ = $-\frac43$ or $-\frac34$ → $a=-\frac34$. $C=\frac{-24}{-3/2}=16$. So $\sigma_i^2=\frac7{16}$, $L=\frac1{1-\frac34z^{-1}}$.
 
-*Apr25* $\frac{1}{61+60\cos\theta}$: $r=\frac{61\pm11}{60}$ → $a=\frac56$, $C=36$, $\sigma_i^2=\frac1{36}$, $L=\frac1{1+\frac56z^{-1}}$.
+*Apr25* $\frac{1}{61+60\cos\theta}$: $\sqrt{61^2-60^2}=11$, $r=\frac{61\pm11}{60}$ → $a=\frac56$, $C=\frac{60}{2(5/6)}=36$, $\sigma_i^2=\frac1{36}$, $L=\frac1{1+\frac56z^{-1}}$. Check: $\frac{1/36}{1+\frac{25}{36}+2\frac56\cos\theta}=\frac1{61+60\cos\theta}$ ✓
 
 Multiple choice "what must the innovation filter be?" → **minimum phase** (poles and zeros inside the unit circle — the label is the whole answer; Jun26 a).
 
@@ -85,7 +85,7 @@ IF YOU SEE groups (machines, scanners, students, patients) with counts or shares
 
 Wording: defective, fail, NOT pass, positive, infected, "actually present" → **bad** · "false positive 3 %" = 3 % **of the healthy** · "detects 95 % when present" = 95 % of the ill · "99 % accurate" = both groups classified right · "mixed at random" = step 5.
 
-*Jun26* 40/35/25 %, defect 2/4/5 %: bad $=0.4(0.02)+0.35(0.04)+0.25(0.05)=0.0325$; $M_2$ given bad $=\frac{0.35\cdot0.04}{0.0325}=0.43$.
+*Jun26* 40/35/25 %, defect 2/4/5 % (per 1000: 400/350/250 items → bad$_k$ = 8/14/12.5): bad $=0.4(0.02)+0.35(0.04)+0.25(0.05)=0.0345$; $M_2$ given bad $=\frac{0.35\cdot0.04}{0.0345}=0.41$.
 
 ### 1E · Expected value and the MC words
 
@@ -95,8 +95,8 @@ IF YOU SEE "expected value", "discrete or continuous", "exactly $k$ of $n$", "co
 - **$E[x]$** $=\sum_x x\,p(x)$ (discrete) $=\int x\,p(x)\,dx$ (continuous) = the **weighted average of the outcomes** (the probabilities are the weights) = the long-run mean. "Integral/sum of the pmf itself" $=1$, **not** $E$. "highest probability / most common" = the **mode**.
 - **Discrete** = the values can be listed: "number of …", counts, dice, digits 0–255. **Continuous** = a measurement: time, distance, weight, money.
 - **Rules:** $E[c\cdot z]=c\,E[z]$ · $E[c]=c$ · $E[z_1+z_2]=E[z_1]+E[z_2]$ — a constant factor comes out. Uniform $[a,b]$ → mean $\frac{a+b}2$ ($[-A,A]$ → 0).
-- **"Exactly $k$ of $n$ tries"** (binomial): $C(n,k)\,p^k(1-p)^{n-k}$, $p$ = chance of one try, $C(n,k)=\frac{n(n-1)\cdots(n-k+1)}{k!}$.
-- **Covariance:** $\mathrm{Cov}(x,y)=E[xy]-E[x]E[y]$ · sign = whether one goes up when the other does · the number changes with the units (cm→m) · its $\pm1$-bounded version = correlation coefficient.
+- **"Exactly $k$ of $n$ tries"** (binomial): $C(n,k)\,p^k(1-p)^{n-k}$, $p$ = chance of one try, $C(n,k)=\frac{n(n-1)\cdots(n-k+1)}{k!}$. *e.g.* $n=4,k=2,p=0.3$: $C(4,2)=\frac{4\cdot3}{2\cdot1}=6$ → $6(0.3)^2(0.7)^2=0.2646$.
+- **Covariance:** $\mathrm{Cov}(x,y)=E[xy]-E[x]E[y]$ · sign = whether one goes up when the other does · the number changes with the units (cm→m) · its $\pm1$-bounded version = correlation coefficient. *e.g.* $p(0,0)=p(1,1)=\frac12$: $E[x]=E[y]=E[xy]=\frac12$ → $\mathrm{Cov}=\frac12-\frac14=\frac14$ (both move together → positive).
 - **Contour plot, bi-variate Gaussian:** covariance = the two corner (off-diagonal) entries of the covariance matrix: $0$ → ellipses aligned with the axes · **tilted** ellipses → covariance $\ne0$.
 - **Definition MC / T/F:** $F(t)=P(x\le t)$ (the cumulative), so $F(-\infty)=0$, $F(\infty)=1$ · independent $=P(A\mid B)=P(A)$, the same as $P(A\cap B)=P(A)P(B)$ ($\cap$ = "both happen") · **disjoint** = they can never both happen, $P(A\cap B)=0$ (the opposite!) · Bayes $=$ conditional probability rearranged. A T/F list → the swap test of box 2D, any topic.
 
@@ -123,7 +123,7 @@ Solving $=0$: multiply the equation by the denominators ($\theta^2$, $\theta$, �
 
 *Apr24* $\frac{x}{2\theta}e^{-x^2/2\theta}$: one sample gives $\ln x-\ln2-\ln\theta-\frac{x^2}{2\theta}$, so $\ln L=\sum\ln x_n-N\ln2-N\ln\theta-\frac{\sum x_n^2}{2\theta}$ → $-\frac N\theta+\frac{\sum x_n^2}{2\theta^2}=0$ → $\hat\theta=\frac1{2N}\sum x_n^2$.
 
-*Jun26* Gamma $\frac{x^{k-1}e^{-x/\theta}}{\Gamma(k)\theta^k}$, $n$ patients: $-\frac{nk}\theta+\frac{\sum x_i}{\theta^2}=0$ → $\hat\theta=\frac{\sum x_i}{nk}=\frac{\bar x}k$. Meaning: average time per stage, so $k\hat\theta$ = the observed mean time.
+*Jun26* Gamma $\frac{x^{k-1}e^{-x/\theta}}{\Gamma(k)\theta^k}$, $n$ patients: one sample → $\ln p=(k-1)\ln x-\frac x\theta-k\ln\theta$ → $\ln L=(k-1)\sum\ln x_i-\frac{\sum x_i}{\theta}-nk\ln\theta$ → $\partial_\theta=\frac{\sum x_i}{\theta^2}-\frac{nk}\theta=0$ → $\hat\theta=\frac{\sum x_i}{nk}=\frac{\bar x}k$. Meaning: average time per stage, so $k\hat\theta$ = the observed mean time.
 
 **Sigmoid trick.** IF YOU SEE $\lambda=\frac1{1+e^{-\theta}}$: treat $\lambda$ as the unknown, find $\hat\lambda$, then convert with $\hat\theta=-\ln\!\big(\frac1{\hat\lambda}-1\big)$.
 
@@ -149,7 +149,7 @@ One observation $x$ gives: Poisson count → $\lambda^{x}e^{-\lambda}$ · "$k$-t
 **Posterior not in the table?** Do it by hand: **MAP** $=\arg\max_\theta p(\theta\mid x)$ = the peak ($\arg\max$ = the $\theta$ at the top) · **MMSE** $=\int\theta\,p(\theta\mid x)\,d\theta$ = its mean (use the Calculations integrals).
 **Prior with a range** (uniform on $[a,b]$): cut the parameter's range to $[a,b]$ first — the posterior is only $\propto$ the likelihood inside $[a,b]$; if the peak would land outside, the MAP is the nearest endpoint $a$ or $b$.
 
-*Jun26-2c:* $\theta^2(1-\theta)^{x-2}$ with $x=3,5,4,6,4$: $\theta$ exponent $2$ five times $=10$, $(1-\theta)$ exponents sum $12$ → $\theta^{10}(1-\theta)^{12}$. Prior Beta(2,3) adds $\theta^1(1-\theta)^2$ → $\theta^{11}(1-\theta)^{14}$ → Beta(12,15), MAP $=\frac{11}{25}=0.44$.
+*Jun26-2c:* $\theta^2(1-\theta)^{x-2}$ with $x=3,5,4,6,4$: $\theta$ exponent $2$ five times $=10$, $(1-\theta)$ exponents sum $12$ → $\theta^{10}(1-\theta)^{12}$. Prior Beta(2,3) adds $\theta^1(1-\theta)^2$ → $\theta^{11}(1-\theta)^{14}$ → Beta(12,15), MAP $=\frac{11}{25}=0.44$, MMSE $=\frac{12}{27}=0.444$.
 
 *Jun26-2d:* Poisson, $x=2,4,3,5,2,4$: $\lambda$ exponents add to $20$, six $e^{-\lambda}$ give $e^{-6\lambda}$ → $\lambda^{20}e^{-6\lambda}$. Prior Gamma(3,2) adds $\lambda^2e^{-2\lambda}$ → $\lambda^{22}e^{-8\lambda}$ → Gamma(23,8), MAP $=\frac{22}8=2.75$. MLE $=\frac{20}6=3.33$: the prior pulls towards its own mean $\frac32$.
 
@@ -168,11 +168,11 @@ IF YOU SEE points $(x,y)$ + "least squares"/"least-squares"/"LSE", "linear funct
 2. Slope $a=\dfrac{\sum(x-\bar x)(y-\bar y)}{\sum(x-\bar x)^2}$.
 3. $b=\bar y-a\bar x$. Answer: $y=ax+b$. Check: $x=\bar x$ must give $y=\bar y$.
 
-*Apr25* $(0,3),(2,4),(3,3)$: $\bar x=\frac53$, $\bar y=\frac{10}3$, $a=\frac{1/3}{14/3}=\frac1{14}$, $b=\frac{45}{14}$ → $y=\frac1{14}x+\frac{45}{14}$.
+*Apr25* $(0,3),(2,4),(3,3)$: $\bar x=\frac{0+2+3}3=\frac53$, $\bar y=\frac{3+4+3}3=\frac{10}3$. Diffs $x-\bar x$: $-\frac53,\frac13,\frac43$ · $y-\bar y$: $-\frac13,\frac23,-\frac13$ → $\sum(x-\bar x)(y-\bar y)=\frac{5+2-4}{9}=\frac13$, $\sum(x-\bar x)^2=\frac{25+1+16}{9}=\frac{14}3$ → slope $a=\frac{1/3}{14/3}=\frac1{14}$, $b=\frac{10}3-\frac1{14}\cdot\frac53=\frac{45}{14}$ → $y=\frac1{14}x+\frac{45}{14}$ (check $x=\bar x$ gives $y=\bar y$ ✓).
 
 Also: $x[n]=\theta+\text{noise}$ → $\hat\theta=\bar x$. $x[n]=\ln\theta+\text{noise}$ → $\hat\theta=e^{\bar x}$ (noise = random wobble; fitting a constant by least squares is just its average).
 
-**Beyond a straight line.** $J(\theta)=\sum_n(x[n]-s[n;\theta])^2$, $\hat\theta=\arg\min J$ (the $\theta$ making $J$ smallest) — write this when they ask "what kind of estimator". One amplitude $s[n]=Ah[n]$: $\hat A=\dfrac{\sum x[n]h[n]}{\sum h[n]^2}$. Linear model $x=\mathbf H\theta+w$: $\hat\theta=(\mathbf H^T\mathbf H)^{-1}\mathbf H^Tx$; the **error** $x-\mathbf H\hat\theta$ is orthogonal (perpendicular) to the columns of $\mathbf H$ (it is the error, **not** $\hat\theta$); weighted LS with $\mathbf W=\mathbf C_x^{-1}$ = **BLUE** (best linear unbiased estimator). Nonlinear: transform it (the $e^{\bar x}$ line), or iterate **Gauss–Newton** $\theta_{k+1}=\theta_k+(\mathbf G^T\mathbf G)^{-1}\mathbf G^T(x-s(\theta_k))$, $\mathbf G[:,i]=\frac{\partial s}{\partial\theta_i}$ — Newton–Raphson works too, "only Gauss–Newton" is **false**.
+**Beyond a straight line.** $J(\theta)=\sum_n(x[n]-s[n;\theta])^2$, $\hat\theta=\arg\min J$ (the $\theta$ making $J$ smallest) — write this when they ask "what kind of estimator". One amplitude $s[n]=Ah[n]$: $\hat A=\dfrac{\sum x[n]h[n]}{\sum h[n]^2}$ (*e.g.* $x=3,5$, $h=1,2$: $\hat A=\frac{3+10}{1+4}=2.6$). Linear model $x=\mathbf H\theta+w$: $\hat\theta=(\mathbf H^T\mathbf H)^{-1}\mathbf H^Tx$; the **error** $x-\mathbf H\hat\theta$ is orthogonal (perpendicular) to the columns of $\mathbf H$ (it is the error, **not** $\hat\theta$); weighted LS with $\mathbf W=\mathbf C_x^{-1}$ = **BLUE** (best linear unbiased estimator). Nonlinear: transform it (the $e^{\bar x}$ line), or iterate **Gauss–Newton** $\theta_{k+1}=\theta_k+(\mathbf G^T\mathbf G)^{-1}\mathbf G^T(x-s(\theta_k))$, $\mathbf G[:,i]=\frac{\partial s}{\partial\theta_i}$ — Newton–Raphson works too, "only Gauss–Newton" is **false**.
 
 ### 2D · Part 2 true / false
 
@@ -214,7 +214,7 @@ IF YOU SEE $r[0],r[1],r[2]\dots$ + "correlogram", "only these lags", "PSD as a f
 
 $P(\theta)=r[0]+2r[1]\cos\theta+2r[2]\cos2\theta+2r[3]\cos3\theta$. Stop at the last lag given. $r[0]$ is NOT doubled. From data: $\hat r[k]=\frac1N\sum_n x[n]x[n-k]$. Other way round ($P(\theta)$ given, $r[k]$ asked): $r[0]$ = the plain constant term, $r[k]$ = **half** the coefficient of $\cos k\theta$. Instant check: $P(0)=r[0]+2r[1]+2r[2]+\dots$ (all $+$), $P(\pi)=r[0]-2r[1]+2r[2]-\dots$ (signs alternate) — two heights to compare against your curve.
 
-*Jun26* $3,2,1$: $3+4\cos\theta+2\cos2\theta=4\cos^2\theta+4\cos\theta+1=(2\cos\theta+1)^2$.
+*Jun26* $3,2,1$: $3+4\cos\theta+2\cos2\theta=4\cos^2\theta+4\cos\theta+1=(2\cos\theta+1)^2$. *From data* $x=[1,2,3]$: $\hat r[0]=\frac{1+4+9}{3}=\frac{14}3$, $\hat r[1]=\frac{2+6}{3}=\frac83$ (only the 2 overlapping pairs), $\hat r[2]=\frac33=1$.
 
 *Apr24* $\frac{25}{16},-\frac34,\frac12,-\frac12$: $\frac{25}{16}-\frac32\cos\theta+\cos2\theta-\cos3\theta$.
 
@@ -229,7 +229,7 @@ Model: $x[n]=a\,x[n-1]+i[n]$ ($i$ = white noise). The minus in step 1 = moving $
 2. $\sigma^2=r[0]+a\,r[1]$
 3. $P=\dfrac{\sigma^2}{1+a^2+2a\cos\theta}$ (check $|a|\lt1$ and $\sigma^2\gt0$, else a sign went wrong)
 
-*Apr25* $r=2,-\frac14$: $a=\frac18$, $\sigma^2=\frac{63}{32}$, $P=\frac{126}{65+16\cos\theta}$.
+*Apr25* $r[0]=2$, $r[1]=-\frac14$: $a=-\frac{-1/4}{2}=\frac18$ · $\sigma^2=2+\frac18(-\frac14)=\frac{63}{32}$ → $P=\frac{63/32}{1+\frac1{64}+\frac14\cos\theta}$, times $\frac{64}{64}$ → $P=\frac{126}{65+16\cos\theta}$.
 
 ### 3C · AR(2) / Yule–Walker
 
@@ -243,7 +243,7 @@ IF YOU SEE "AR(2)", "Yule–Walker", $r[0],r[1],r[2]$
 
 If they want the matrix: $\begin{bmatrix}r[0]&r[1]\\r[1]&r[0]\end{bmatrix}\begin{bmatrix}a_1\\a_2\end{bmatrix}=-\begin{bmatrix}r[1]\\r[2]\end{bmatrix}$.
 
-*Jun26* $3,2,1$: $D=5$, $a_1=-\frac45$, $a_2=\frac15$, $\sigma^2=\frac85$, $P=\frac{10}{5\cos^2\theta-12\cos\theta+8}$.
+*Jun26* $r=3,2,1$: $D=3^2-2^2=5$ · $a_1=\frac{-2(3-1)}5=-\frac45$ · $a_2=\frac{2^2-3\cdot1}5=\frac15$ · $\sigma^2=3+(-\frac45)2+\frac15(1)=\frac85$ → step 4, then $\cos2\theta=2\cos^2\theta-1$ → $P=\frac{10}{5\cos^2\theta-12\cos\theta+8}$.
 
 ### 3D · MA(1)
 
@@ -253,7 +253,7 @@ IF YOU SEE "MA(1)", "moving average"
 Model: $x[n]=i[n]+b\,i[n-1]$. PSD: $P=r[0]+2r[1]\cos\theta$ — it uses $r[0],r[1]$ only: ignore $r[2]$ and beyond.
 If they ask for $b$ and $\sigma^2$: solve $b^2-\frac{r[0]}{r[1]}\,b+1=0$, keep the root between $-1$ and $1$; then $\sigma^2=\frac{r[1]}{b}$.
 
-*Apr25* $r=2,-\frac14$: $P=2-\frac12\cos\theta$.
+*Apr25* $r=2,-\frac14$: $P=2-\frac12\cos\theta$. $b,\sigma^2$ asked too: $b^2-\frac{r[0]}{r[1]}b+1=b^2+8b+1=0$ → $b=-4+\sqrt{15}=-0.127$ (the root with $\lvert b\rvert\lt1$), $\sigma^2=\frac{r[1]}{b}=\frac{4+\sqrt{15}}4=1.97$; check $r[0]=\sigma^2(1+b^2)=2$ ✓
 
 ### 3E · Model from an equation
 
@@ -264,7 +264,7 @@ IF YOU SEE $x[n]=\dots$ + "which kind of process", "calculate the autocorrelatio
 - MA autocorrelation: write the list $1,b_1,b_2,\dots$ and use $r[k]=\sigma^2\sum_m b_m b_{m+k}$ with $b_0=1$ (pairs sitting $k$ apart in the list). Zero after lag $q$. So $r[0]$ = $\sigma^2\times$ sum of the squares ($r[0]=\sigma^2(1+b_1^2+b_2^2+\dots)$); $r[1]$ = each one times its right-hand neighbour ($1\cdot b_1+b_1b_2+\dots$); $r[2]$ = skip one ($1\cdot b_2+b_1b_3+\dots$).<br>
   **Backwards** — $r[k]$ given, the coefficients asked (Jan22 MA(2)): go from the **biggest lag down** — the biggest lag has a single product, so $b_q=r[q]/\sigma^2$; then the next lag has one letter left free. MA(2), $\sigma_i^2=1$: $b_2=r[2]$, then $r[1]=b_1(1+b_2)$ → $b_1$; the correlogram needs $r[0]=\sigma^2(1+b_1^2+b_2^2)$ (sum of the squares).<br>
   *Apr24* $1,-\frac12,\frac14,-\frac12$ (MA(3), $\sigma^2=1$): $r[0]=1+\frac14+\frac1{16}+\frac14=\frac{25}{16}$, $r[1]=-\frac12-\frac18-\frac18=-\frac34$, $r[2]=\frac14+\frac14=\frac12$, $r[3]=-\frac12$.
-- ARMA(1,1) written as $x[n]+\alpha x[n-1]=i[n]+\beta i[n-1]$: $P=\sigma^2\dfrac{1+\beta^2+2\beta\cos\theta}{1+\alpha^2+2\alpha\cos\theta}$. Its $r[k]$: $r[0]=\sigma^2\frac{1+\beta^2-2\alpha\beta}{1-\alpha^2}$, $r[1]=-\alpha r[0]+\beta\sigma^2$, then $r[k]=(-\alpha)^{k-1}r[1]$ ($k\ge2$, decays by $-\alpha$ each lag).<br>
+- ARMA(1,1) written as $x[n]+\alpha x[n-1]=i[n]+\beta i[n-1]$: $P=\sigma^2\dfrac{1+\beta^2+2\beta\cos\theta}{1+\alpha^2+2\alpha\cos\theta}$. Its $r[k]$: $r[0]=\sigma^2\frac{1+\beta^2-2\alpha\beta}{1-\alpha^2}$, $r[1]=-\alpha r[0]+\beta\sigma^2$, then every extra lag multiplies by $-\alpha$.<br>
   *Nov22* $x[k]=i[k]-i[k-1]+\frac34x[k-1]$, $\sigma^2=\frac78$ given: $\alpha=-\frac34$, $\beta=-1$ → $P=\frac{28(1-\cos\theta)}{25-24\cos\theta}$.
 
 ### 3F · Pick the plot
@@ -284,7 +284,7 @@ IF YOU SEE "Welch"/"Bartlett"/"WOSA", $N$ samples, segment length $L$, overlap %
 
 Step $D=L\times(1-\text{overlap})$. Segments $K=\frac{N-L}{D}+1$ (round $K$ down to a whole number). Bartlett (no overlap): $K=\frac NL$. Variance ratio $=\frac1K$ **if the segments are independent** (what the exam assumes — *Jun26* → $\frac19$); real Welch overlap shares samples → the drop is **less** than $\frac1K$ (3J).
 
-*Jun26* $N=1000$, $L=200$, 50 %: $D=100$, $K=9$, ratio $\frac19$.
+*Jun26* $N=1000$, $L=200$, 50 %: $D=200(1-0.5)=100$, $K=\frac{1000-200}{100}+1=9$ segments, ratio $\frac19$.
 
 ### 3H · Energy or power signal
 
@@ -295,7 +295,7 @@ IF YOU SEE "energy or power signal", "total energy", "average power"
 - Never dies out (sin, cos, constant, $\cos t\,u(t)$) → **power**: $P$ = time average of $\lvert x\rvert^2$, energy $=\infty$.
 - Time-continuous ($t$) → $\sum$ becomes $\int dt$: $E=\int\lvert x\rvert^2dt$, $P=\frac1T\int_0^T\lvert x\rvert^2dt$.
 
-*Apr25:* $A\sin\omega t$ → power $\frac{A^2}2$. $e^{-n}$ for $n\ge0$ → energy $\sum e^{-2n}=\frac1{1-e^{-2}}\approx1.16$ (use $\sum_{n\ge0}q^n=\frac1{1-q}$).
+*Apr25:* $A\sin\omega t$ → power $\frac{A^2}2$. $e^{-n}$ for $n\ge0$ → energy $\sum e^{-2n}=\frac1{1-e^{-2}}\approx1.16$ (use $\sum_{n\ge0}q^n=\frac1{1-q}$). *Continuous* $e^{-t}$, $t\ge0$: dies out → energy $\int_0^\infty e^{-2t}dt=\frac12$ (the $c=2$ line of the Calculations strip).
 
 ### 3I · Name the method
 
@@ -357,7 +357,7 @@ IF YOU SEE two pdfs (one for $H_0$, one for $H_1$) + "binary hypothesis"/"hypoth
 
 *Jun26 Rayleigh* $\frac x{\sigma^2}e^{-x^2/2\sigma^2}$ ($\sigma_1\gt\sigma_0$): the $x$ in front cancels → accept $H_1$ if $x\gt\sqrt{\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\big(\eta\frac{\sigma_1^2}{\sigma_0^2}\big)}$. Bigger gap between $\sigma_0,\sigma_1$ → the pdfs overlap less → more $P_D$ for the same $P_{FA}$ (better ROC).
 
-*Apr24* Gaussian $\frac1{\sqrt{2\pi}}e^{-y^2/2}$ vs exponential $\frac14e^{-y/2}$, $\gamma=1$: take $\ln$ → $-0.467+\frac{y^2}2-\frac y2\gt0$ → $y^2-y-0.934\gt0$ → root $y=\frac{1+\sqrt{1+3.74}}2=1.59$ → accept $H_1$ if $y\gt1.59$. $P_{FA}=Q(1.59)=0.056$, $P_D=\frac12e^{-0.795}=0.23$ (printed answer — that pdf is unnormalised, keep the $\frac12$).
+*Apr24* Gaussian $\frac1{\sqrt{2\pi}}e^{-y^2/2}$ vs exponential $\frac14e^{-y/2}$, $\gamma=1$: the constant $\ln\frac{1/4}{1/\sqrt{2\pi}}=\ln\frac4{2.51}=-0.467$ → $-0.467+\frac{y^2}2-\frac y2\gt0$ → $y^2-y-0.934\gt0$ → root $y=\frac{1+\sqrt{1+3.74}}2=1.59$ → accept $H_1$ if $y\gt1.59$. $P_{FA}=Q(1.59)=0.056$, $P_D=\frac12e^{-0.795}=0.23$ (printed answer — that pdf is unnormalised, keep the $\frac12$).
 
 *Nov22* $\frac12e^{-\lvert x\rvert}$ vs $e^{-2\lvert x\rvert}$, $N$ samples: $L=2^Ne^{-\sum\lvert x_n\rvert}$ → accept $H_1$ if $\sum\lvert x_n\rvert\lt N\ln2-\ln\lambda$.
 
