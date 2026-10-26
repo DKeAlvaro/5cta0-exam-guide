@@ -4,7 +4,7 @@ hide:
   - toc
 ---
 
-<h1 class="noprint">A4 cheat sheet (v2)</h1>
+<h1 class="noprint">A4 cheat sheet (v3)</h1>
 
 <p class="noprint">Same content as <a href="cheatsheet/">v1</a>, but every word is defined the first time it appears. Print at the same settings.</p>
 <div class="cheat" markdown>
