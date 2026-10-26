@@ -124,7 +124,10 @@ maximise/minimise · mean↔maximum*), quoted in a `!!! sheet` block and applied
 stepper (no more `<div class="tf">` tables, no verbatim sentence matching — the exam always rephrases).
 Every theory section also carries a short **Paraphrase drill**: the same facts in fresh wording, never
 printed in any exam. The sheet quote must stay in sync with `docs/cheatsheet.md`; if the sheet wording
-changes, grep the lessons for the old quote.
+changes, grep the lessons for the old quote. **No box may be an answer key.** A box must give the
+procedure (tests, steps, swap test) that solves any question of its type; worked examples are fine but
+must show the steps. A row whose whole content is one exam's solution (e.g. old box 1B "→ (d)") is
+banned — a paraphrased question leaves the reader with nothing to look up.
 
 Widgets (`docs/javascripts/widgets.js` + `stylesheets/widgets.css`), markup `<div class="widget" data-w="..."
 data-preset="...">`: `bayes`, `region` (tabs 0–2), `ensemble`, `pole` (`data-preset="factor"`, `data-a`),

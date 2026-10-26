@@ -39,18 +39,16 @@ Rules: $\int x^n dx=\frac{x^{n+1}}{n+1}$ · $\int k\,dx=kx$ · $\int(a-y)^n dy=-
 IF YOU SEE "WSS"/"wide-sense stationary"/"stationary", "ergodic", dice, random phase, random amplitude
 {: .see }
 
-- **WSS** = the mean is constant AND the autocorrelation depends only on the lag $\tau$ (not on $t$). Jun26: pick the option saying exactly this.
-- **Ergodic** = averaging ONE signal over time gives the same as averaging over all signals.
-- **Test it:** is $\mathrm E[x(t)]$ constant in $t$? Does $r(t_1,t_2)$ only depend on $t_1-t_2$? Both yes → WSS. Ergodic: does one long realisation visit every value? Random **phase** → yes, random **amplitude** → no.
-- *$\cos(t+U)$ worked out:* $E[\cos(t+U)]=0$ in every $t$ — a uniform phase averages a whole turn to 0 → constant. $r=E[\cos(t_1{+}U)\cos(t_2{+}U)]=\frac12\cos(t_1-t_2)$ — use $\cos\alpha\cos\beta$; the term carrying $2U$ averages to 0 → only the lag. Time average of one long realisation $=0$ = the mean → **ergodic in the mean**.
-- **Words (Jan22-1b):** a *random process* = the whole infinite **set** of possible signals (the ensemble) · one recording (one picture) = a **realisation** = a random signal · one number / one pixel = a random **variable**. A set of pictures is WSS only if the question says the statistics do not shift.
+**WSS** = the mean is constant AND the autocorrelation depends only on the lag $\tau$ (not on $t$) · **Ergodic** = averaging ONE signal over time gives the same as averaging over all signals. The exam hands you **a process to test** — no list to look it up: run the 3 tests:
 
-| The process | WSS? | Ergodic? |
-|---|---|---|
-| $\cos(t+U)$, $U$ uniform $0..2\pi$ (random phase) | yes | yes |
-| $A\cos t$, $A$ random (random amplitude) | no | no |
-| Many fair dice, each rolled forever | yes | yes, in mean AND variance |
-| Numbers uniform in $[-A,A]$, $A$ random (Nov22) | yes, mean 0 | key: ergodic, mean 0 → (d) |
+1. **Mean.** $E[x(t)]$, box 1E rules (constants come out; uniform $[a,b]$ → $\frac{a+b}2$). The $t$ has to cancel → constant. Still moves with $t$ → **not WSS**, stop.
+2. **Correlation.** $r(t_1,t_2)=E[x(t_1)x(t_2)]$ — expand the product ($\cos\alpha\cos\beta$), average the random letters away. Only $(t_1-t_2)$ survives → **WSS**; a lone $t$ or $t_1+t_2$ survives → **not WSS**.
+3. **Ergodic in the mean.** Freeze ONE realisation, take its long-time average, compare with test 1's mean. Fresh randomness at **every** time (random phase, dice, a stream of numbers) → the realisation sees every value → **yes**. One random letter frozen for **all** time (random amplitude $A$) → time averaging cannot remove it → **no**. "in the variance" too → same rule on $x^2$.
+
+*Worked, random phase $\cos(t+U)$:* $E[\cos(t+U)]=0$ — a uniform phase averages a whole turn to 0 → constant ✓. $r=E[\cos(t_1{+}U)\cos(t_2{+}U)]=\frac12\cos(t_1-t_2)$ ✓ (the $2U$ term averages to 0) → **WSS**, and one realisation $\cos(t+u)$ has long-time average $0=$ the mean → **ergodic in the mean**.
+*Worked, random amplitude $A\cos t$:* $E[A\cos t]=E[A]\cos t$ moves with $t$ → **not WSS**, stop. *Dice rolled forever:* fresh roll every time → **ergodic in mean AND variance**. *Numbers uniform in $[-A,A]$ streamed:* mean $\frac{-A+A}2=0$ whatever $A$ is (test 1), each realisation sweeps the whole range → **ergodic, mean 0**.
+
+**Words (Jan22-1b):** a *random process* = the whole infinite **set** of possible signals (the ensemble) · one recording (one picture) = a **realisation** = a random signal · one number / one pixel = a random **variable**. A set of pictures is WSS only if the question says the statistics do not shift. Definition MC: pick the option saying the WSS line above **word for word** (the wrong ones name ergodic, strict stationarity or white noise).
 
 ### 1C · Spectral factorisation
 
@@ -90,10 +88,10 @@ IF YOU SEE "expected value", "discrete or continuous", "exactly $k$ of $n$", "co
 {: .see }
 
 - **$E[x]$** $=\sum_x x\,p(x)$ (discrete) $=\int x\,p(x)\,dx$ (continuous) = the **weighted average of the outcomes** (the probabilities are the weights) = the long-run mean. "Integral/sum of the pmf itself" $=1$, **not** $E$. "highest probability / most common" = the **mode**.
-- **Discrete** = the values can be listed: "number of …", counts, dice, digits 0–255. **Continuous** = a measurement: time, duration, distance, weight, money.
+- **Discrete** = the values can be listed: "number of …", counts, dice, digits 0–255. **Continuous** = a measurement: time, distance, weight, money.
 - **Rules:** $E[c\cdot z]=c\,E[z]$ · $E[c]=c$ · $E[z_1+z_2]=E[z_1]+E[z_2]$ — a constant factor comes out. Uniform $[a,b]$ → mean $\frac{a+b}2$ ($[-A,A]$ → 0).
 - **"Exactly $k$ of $n$ tries"** (binomial): $C(n,k)\,p^k(1-p)^{n-k}$, $p$ = chance of one try, $C(n,k)=\frac{n(n-1)\cdots(n-k+1)}{k!}$.
-- **Covariance:** sign = direction, size grows with the units (correlation coefficient = the bounded $\pm1$ version).
+- **Covariance:** sign = direction, size grows with the units ($\pm1$-bounded version = correlation coefficient).
 - **Contour plot, bi-variate Gaussian:** off-diagonal of the **covariance matrix** = covariance. $0$ → ellipses straight on the axes (circle if the variances are equal) · **tilted** ellipse → covariance $\ne0$.
 
 ## PART 2 · Estimation (3–3.5 p)

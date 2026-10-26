@@ -24,27 +24,25 @@ Try the four tabs. In each, compare the red line (time average of row 1) with th
 
 ## How to fight this section with the sheet
 
-The exam says **"WSS"**, **"ergodic"**, **"dice"**, **"random phase"** → you open **box 1B** on your A4 sheet. It gives the definition, a two-line test, and a table of processes whose answer is already printed. Every question below is one of those two things: either read a row of the table, or run the two-line test.
+The exam says **"WSS"**, **"ergodic"**, **"dice"**, **"random phase"** → you open **box 1B** on your A4 sheet. It gives the definition and a **3-test procedure** you run on whatever process the exam hands you: **mean → correlation → ergodicity**. The sheet never prints the verdict for a process — you produce it with the three tests, and the sheet's worked lines show you the speed and the shape of each step.
 
 !!! sheet "Box 1B, exactly as it is printed on the sheet"
     **IF YOU SEE** "WSS"/"wide-sense stationary"/"stationary", "ergodic", dice, random phase, random amplitude
 
-    - **WSS** = the mean is constant AND the autocorrelation depends only on the lag $\tau$ (not on $t$). Jun26: pick the option saying exactly this.
-    - **Ergodic** = averaging ONE signal over time gives the same as averaging over all signals.
-    - **Test it:** is $\mathrm E[x(t)]$ constant in $t$? Does $r(t_1,t_2)$ only depend on $t_1-t_2$? Both yes → WSS. Ergodic: does one long realisation visit every value? Random **phase** → yes, random **amplitude** → no.
-    - *$\cos(t+U)$ worked out:* $E[\cos(t+U)]=0$ in every $t$ — a uniform phase averages a whole turn to 0 → constant. $r=E[\cos(t_1{+}U)\cos(t_2{+}U)]=\frac12\cos(t_1-t_2)$ — use $\cos\alpha\cos\beta$; the term carrying $2U$ averages to 0 → only the lag. Time average of one long realisation $=0$ = the mean → **ergodic in the mean**.
-    - **Words (Jan22-1b):** a *random process* = the whole infinite **set** of possible signals (the ensemble) · one recording (one picture) = a **realisation** = a random signal · one number / one pixel = a random **variable**. A set of pictures is WSS only if the question says the statistics do not shift.
+    **WSS** = the mean is constant AND the autocorrelation depends only on the lag $\tau$ (not on $t$) · **Ergodic** = averaging ONE signal over time gives the same as averaging over all signals. The exam hands you **a process to test** — no list to look it up: run the 3 tests:
 
-    | The process | WSS? | Ergodic? |
-    |---|---|---|
-    | $\cos(t+U)$, $U$ uniform $0..2\pi$ (random phase) | yes | yes |
-    | $A\cos t$, $A$ random (random amplitude) | no | no |
-    | Many fair dice, each rolled forever | yes | yes, in mean AND variance |
-    | Numbers uniform in $[-A,A]$, $A$ random (Nov22) | yes, mean 0 | key: ergodic, mean 0 → (d) |
+    1. **Mean.** $E[x(t)]$, box 1E rules (constants come out; uniform $[a,b]$ → $\frac{a+b}2$). The $t$ has to cancel → constant. Still moves with $t$ → **not WSS**, stop.
+    2. **Correlation.** $r(t_1,t_2)=E[x(t_1)x(t_2)]$ — expand the product ($\cos\alpha\cos\beta$), average the random letters away. Only $(t_1-t_2)$ survives → **WSS**; a lone $t$ or $t_1+t_2$ survives → **not WSS**.
+    3. **Ergodic in the mean.** Freeze ONE realisation, take its long-time average, compare with test 1's mean. Fresh randomness at **every** time (random phase, dice, a stream of numbers) → the realisation sees every value → **yes**. One random letter frozen for **all** time (random amplitude $A$) → time averaging cannot remove it → **no**. "in the variance" too → same rule on $x^2$.
+
+    *Worked, random phase $\cos(t+U)$:* $E[\cos(t+U)]=0$ — a uniform phase averages a whole turn to 0 → constant ✓. $r=E[\cos(t_1{+}U)\cos(t_2{+}U)]=\frac12\cos(t_1-t_2)$ ✓ (the $2U$ term averages to 0) → **WSS**, and one realisation $\cos(t+u)$ has long-time average $0=$ the mean → **ergodic in the mean**.
+    *Worked, random amplitude $A\cos t$:* $E[A\cos t]=E[A]\cos t$ moves with $t$ → **not WSS**, stop. *Dice rolled forever:* fresh roll every time → **ergodic in mean AND variance**. *Numbers uniform in $[-A,A]$ streamed:* mean $\frac{-A+A}2=0$ whatever $A$ is (test 1), each realisation sweeps the whole range → **ergodic, mean 0**.
+
+    **Words (Jan22-1b):** a *random process* = the whole infinite **set** of possible signals (the ensemble) · one recording (one picture) = a **realisation** = a random signal · one number / one pixel = a random **variable**. A set of pictures is WSS only if the question says the statistics do not shift. Definition MC: pick the option saying the WSS line above **word for word** (the wrong ones name ergodic, strict stationarity or white noise).
 
 Two more sheet places: **box 1E** ("Rules": $E[c\cdot z]=c\,E[z]$, uniform $[a,b]$ → mean $\frac{a+b}2$) when the mean has to be computed, and the **Calculations** strip for $\cos\alpha\cos\beta$ (bottom of the Part 3 band).
 
-## 1 · April 2024 · 1d — the two processes, straight from the table
+## 1 · April 2024 · 1d — the two processes, run the tests on each
 
 !!! exam "Final exam, April 2024 · 1d · 0.3 p"
     For the following random processes, indicate if they are WSS and ergodic in the mean:
@@ -56,31 +54,31 @@ Two more sheet places: **box 1E** ("Rules": $E[c\cdot z]=c\,E[z]$, uniform $[a,b
 
     $$\cos(\alpha) \cos(\beta) = \frac{\cos(\alpha + \beta) + \cos(\alpha - \beta)}{2}$$
 
-!!! sheet "In the cheat sheet: box 1B — the table's first two rows are this question"
+!!! sheet "In the cheat sheet: box 1B — run the 3 tests on each process"
     <div class="stepper" markdown>
 
-    **Sheet step 1 · match the words.**
-    Process 1 is "$\cos(t+U)$, $U$ uniform $0..2\pi$" = the sheet's **random phase** row. Process 2 is "$A\cos t$, $A$ random" = the **random amplitude** row. Read the two rows: (yes, yes) and (no, no).
+    **Sheet step 1 · test 1 (mean) on process 1.**
+    *"$E[\cos(t+U)]=0$ — a uniform phase averages a whole turn to 0"* → constant in every $t$ ✓. Passes, keep going.
 
     ***
 
-    **Sheet step 2 · prove it with the "Test it" line, process 1.**
-    Is $E[x(t)]$ constant? The sheet's worked line: *"$E[\cos(t+U)]=0$ in every $t$ — a uniform phase averages a whole turn to 0"* → constant ✓. Does $r$ depend only on $\tau$? The same line: $r=\frac12\cos(t_1-t_2)$ ✓ → **WSS**.
+    **Sheet step 2 · test 2 (correlation) on process 1.**
+    The worked line: $r=E[\cos(t_1{+}U)\cos(t_2{+}U)]=\frac12\cos(t_1-t_2)$ — expand with $\cos\alpha\cos\beta$, the $2U$ term averages to 0. Only $(t_1-t_2)$ survives ✓ → **WSS**.
 
     ***
 
-    **Sheet step 3 · ergodic, process 1.**
-    Sheet: *"Time average of one long realisation $=0$ = the mean → ergodic in the mean."* One row is $\cos(t+u_1)$ with a frozen $u_1$, and a cosine's long-time average is 0 whatever the phase ✓.
+    **Sheet step 3 · test 3 (ergodic) on process 1.**
+    Sheet: *"one realisation $\cos(t+u)$ has long-time average $0=$ the mean → **ergodic in the mean**"*. One realisation freezes one $u$, and a cosine's long-time average is 0 whatever the phase ✓.
 
     ***
 
-    **Sheet step 4 · process 2, the mean decides it.**
-    Box 1E: a constant factor comes out of the average → $E[A\cos t]=E[A]\cos t=1\cdot\cos t$, which **moves with $t$**. The sheet's test: "is $E[x(t)]$ constant in $t$?" → **no** → not WSS, and therefore not ergodic. (The table row says the same: random amplitude → no / no.)
+    **Sheet step 4 · the same three tests on process 2 stop at test 1.**
+    Box 1E: a constant factor comes out → $E[A\cos t]=E[A]\cos t=1\cdot\cos t$, which **moves with $t$**. Test 1: *"Still moves with $t$ → **not WSS**, stop."* No need to compute $r$; not WSS implies not ergodic.
 
     ***
 
     **Sheet check · the example line.**
-    The sheet's worked line *is* process 1, and the table's first two rows *are* the answer sheet you have to fill. If your table looks like the sheet's table, you have the points.
+    The sheet's two worked lines *are* these two processes — first one ends **"WSS, ergodic in the mean"**, second one ends **"not WSS, stop"**. Your verdicts must come out the same, whatever processes a new exam invents.
 
     </div>
 
@@ -97,21 +95,21 @@ Two more sheet places: **box 1E** ("Rules": $E[c\cdot z]=c\,E[z]$, uniform $[a,b
     - c) This random process is ergodic in the mean, but not in the variance.
     - d) None of the above.
 
-!!! sheet "In the cheat sheet: box 1B, table row 3"
+!!! sheet "In the cheat sheet: box 1B, test 3 + the dice worked line"
     <div class="stepper" markdown>
 
-    **Sheet step 1 · the row.**
-    The table has exactly this process: *"Many fair dice, each rolled forever → WSS: yes · Ergodic: **yes, in mean AND variance**"*. That is option **(b)**. (April 2025 1d is the same question with options shuffled — same row, "ergodic in both mean and variance", also (b).)
+    **Sheet step 1 · test 3, the "fresh or frozen" question.**
+    The process is *"Dice rolled forever"* — and the sheet's worked line for it: *"fresh roll every time → **ergodic in mean AND variance**"*. The rule behind it: *"Fresh randomness at **every** time (random phase, dice, a stream of numbers) → the realisation sees every value → **yes**."* That is option **(b)**. (April 2025 1d is the same question with options shuffled — "ergodic in both mean and variance", also (b).)
 
     ***
 
-    **Sheet step 2 · why, if they ask.**
-    The sheet's ergodic line: *"averaging ONE signal over time gives the same as averaging over all signals."* One die rolled forever shows each face in $\frac16$ of its rolls → time average $=\frac{1+2+3+4+5+6}{6}=3.5$, and the spread $\frac{35}{12}$. All dice at one time (the ensemble) give the same two numbers. Same → ergodic in both.
+    **Sheet step 2 · the numbers, if they ask why.**
+    The sheet's ergodic line: *"averaging ONE signal over time gives the same as averaging over all signals."* One die rolled forever shows each face in $\frac16$ of its rolls → time average $=\frac{1+2+3+4+5+6}{6}=3.5$, and the same on $x^2$ gives the spread $\frac{35}{12}$. All dice at one time (the ensemble) give the same two numbers. Same → ergodic in both.
 
     ***
 
     **Sheet step 3 · kill the neighbours.**
-    "(c) only in the mean" understates the row. "$E[X]=0$" (Apr25 option c) confuses dice with zero-mean noise — the sheet's row never says the mean is 0, and $\frac{1+\dots+6}{6}=3.5$.
+    "(c) only in the mean" understates the verdict. "$E[X]=0$" (Apr25 option c) confuses dice with zero-mean noise — the dice average $3.5$, never 0.
 
     </div>
 
@@ -128,11 +126,11 @@ Two more sheet places: **box 1E** ("Rules": $E[c\cdot z]=c\,E[z]$, uniform $[a,b
     - (c) Its probability density function remains strictly constant over all time indices.
     - (d) Its power spectral density is a constant value across all frequencies.
 
-!!! sheet "In the cheat sheet: box 1B, first line — and it names this exam"
+!!! sheet "In the cheat sheet: box 1B, the WSS definition + the definition-MC rule"
     <div class="stepper" markdown>
 
     **Sheet step 1 · read the sheet's definition.**
-    *"$\mathbf{WSS} =$ the mean is constant AND the autocorrelation depends only on the lag $\tau$ (not on $t$). Jun26: pick the option saying exactly this."* The sheet literally tags this exam. That is option **(b)** word for word.
+    *"$\mathbf{WSS} =$ the mean is constant AND the autocorrelation depends only on the lag $\tau$ (not on $t$)"*, and the box's rule for this question type: *"Definition MC: pick the option saying the WSS line above **word for word** (the wrong ones name ergodic, strict stationarity or white noise)."* Option **(b)** is that line word for word.
 
     ***
 
@@ -154,21 +152,21 @@ Two more sheet places: **box 1E** ("Rules": $E[c\cdot z]=c\,E[z]$, uniform $[a,b
     - c) The random process is NOT ergodic. The mean of the process is constant and equal to $\mu_{X(t)} = 0$
     - d) The random process is ergodic. The mean of the process is constant and equal to $\mu_{X(t)} = 0$
 
-!!! sheet "In the cheat sheet: box 1B, table row 4 — the answer is printed"
+!!! sheet "In the cheat sheet: box 1B, tests 1 and 3 + the uniform-stream worked line"
     <div class="stepper" markdown>
 
-    **Sheet step 1 · the row.**
-    *"Numbers uniform in $[-A,A]$, $A$ random (Nov22) → WSS: yes, **mean 0** · key: **ergodic, mean 0 → (d)**."* The sheet prints this exam's answer: mean 0 and ergodic → **(d)**.
+    **Sheet step 1 · test 1 (mean), with box 1E.**
+    The sheet's worked line: *"Numbers uniform in $[-A,A]$ streamed: mean $\frac{-A+A}2=0$ whatever $A$ is"* — that is box 1E's *"Uniform $[a,b]$ → mean $\frac{a+b}2$"* with $a=-A$, $b=A$. The random size of $A$ does not matter, the centre is 0 → **mean 0, constant**. That kills (a) and (b) on the mean alone.
 
     ***
 
-    **Sheet step 2 · why the mean is 0 (box 1E).**
-    The numbers are uniform on $[-A,A]$, and box 1E says *"Uniform $[a,b]$ → mean $\frac{a+b}2$"* with $a=-A$, $b=A$: $\frac{-A+A}{2}=0$. The random size of $A$ does not matter — the centre is 0 whatever $A$ is. That kills (a) and (b) on the mean alone.
+    **Sheet step 2 · test 3 (ergodic).**
+    The same worked line ends *"each realisation sweeps the whole range → **ergodic, mean 0**"*. Rule: *"Fresh randomness at **every** time (… a stream of numbers) → the realisation sees every value → **yes**."* Each realisation freezes one $A$ but then keeps drawing evenly on $[-A,A]$, so its time average is $0=$ the ensemble mean ✓ → **(d)**.
 
     ***
 
-    **Sheet step 3 · why ergodic.**
-    Each realisation freezes one $A$ and then samples numbers evenly on $[-A,A]$, so its time average is 0 = the ensemble mean. The sheet's ergodic line: *"averaging ONE signal over time gives the same as averaging over all signals"* ✓ → (d).
+    **Sheet check · the worked line.**
+    The worked line *is* this process — but you built the answer from test 1 and test 3, so any variant (uniform on $[0,A]$, uniform on $[A,A+1]$, a different law for $A$) falls to the same two tests instead of a row you cannot find.
 
     </div>
 
@@ -209,9 +207,9 @@ Two more sheet places: **box 1E** ("Rules": $E[c\cdot z]=c\,E[z]$, uniform $[a,b
 ## Traps
 
 !!! trap key "Where points are lost (each one is a line of the sheet you skipped)"
-    - Mixing up the two sheet rows: random **phase** → yes/yes, random **amplitude** → no/no. The words "random amplitude" in the enunciado are the whole answer.
-    - Saying "not ergodic" because the process has a random $A$. The sheet's dice row and Nov22 row show frozen randomness can still be ergodic — what matters is whether one long realisation averages to the ensemble mean.
-    - Calling the dice "mean 0" (Apr25's trap). Fair dice average 3.5; the sheet's row never says 0.
+    - Mixing up test 3's two cases: **fresh randomness at every time** (random phase, dice, a stream of numbers) → ergodic · **one random letter frozen for all time** (random amplitude $A$ in $A\cos t$) → not. The words "random amplitude" in the enunciado decide it.
+    - Saying "not ergodic" just because a random $A$ is in the formula. Test 3 asks whether fresh randomness keeps arriving: the dice and the uniform stream do, so they are ergodic; $A\cos t$ is one scaled cosine, so it is not.
+    - Calling the dice "mean 0" (Apr25's trap). Fair dice average 3.5 — test 1 gives the mean, the formula never says 0.
     - Answering (c) "the PDF stays constant" to "what does WSS require" — that is strict stationarity; the sheet's WSS line has only mean + autocorrelation.
-    - Forgetting that "is it WSS?" is two checks, not one: constant mean **and** lag-only correlation ("Test it" line). $A\cos t$ fails the first one.
+    - Forgetting that "is it WSS?" is two checks, not one: tests 1 **and** 2 (constant mean **and** lag-only correlation). $A\cos t$ fails the first one.
     - Using $E[A\cos t]=E[A]\cos t$ without noticing the $t$ is still there — box 1E: "a constant factor comes out", but $\cos t$ is not constant in $t$.
