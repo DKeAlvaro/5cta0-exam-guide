@@ -271,6 +271,19 @@
   .md-typeset .cheat.cheat3 p, .md-typeset .cheat.cheat3 ul, .md-typeset .cheat.cheat3 ol { margin: .03em 0; }
   .md-typeset .cheat.cheat3 h2 { margin: .25em 0 .09em; }
   .md-typeset .cheat.cheat3 h3 { margin: .22em 0 .06em; }
+  /* v4: same coverage, clearer visual hierarchy and fully expanded calculations */
+  .md-typeset .cheat.cheat4 { font-size: 8.35pt; line-height: 1.0; }
+  .md-typeset .cheat.cheat4 .katex { font-size: .96em; }
+  .md-typeset .cheat.cheat4 p, .md-typeset .cheat.cheat4 ul, .md-typeset .cheat.cheat4 ol { margin: .025em 0; }
+  .md-typeset .cheat.cheat4 ul, .md-typeset .cheat.cheat4 ol { padding-left: 1.35em; }
+  .md-typeset .cheat.cheat4 h2 { margin: .26em 0 .1em; }
+  .md-typeset .cheat.cheat4 h3 { margin: .25em 0 .07em; padding: .07em .2em; background: #eeeaf8; }
+  .md-typeset .cheat.cheat4 p.how { border-left: 2px solid #3b2f63; }
+  .md-typeset .cheat.cheat4 table:not([class]) th { background: #eeeaf8; }
+  .md-typeset .cheat.cheat4 .katex-display { margin: .04em 0; }
+  .md-typeset .cheat.cheat4 .regionpic { float: right; width: 31mm; margin: 0 0 .4mm 1mm; }
+  .md-typeset .cheat.cheat4 mark { background: #ffe58a; color: #111; padding: 0 .08em; }
+  .md-typeset .cheat.cheat4 .rescue { border-left: 2px solid #e0a100; padding-left: .3em; }
   .pagebreak { break-before: auto; }
 }
 
