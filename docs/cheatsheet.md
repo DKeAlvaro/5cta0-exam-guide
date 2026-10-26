@@ -20,8 +20,8 @@ IF YOU SEE a joint PDF/PMF $p(x,y)$ on a region + "find $c$" / "marginal" / "con
 First draw the region on $x$–$y$ axes: **every integral below takes its limits from that picture**, never from the formula.
 
 - **"Find $c$"** → integrate $p$ over the whole region, set the result $=1$, solve for $c$.<br>
-  **Limits in 4 moves.** (1) Choose the order $dx\,dy$ = inner $x$, outer $y$ (the other order works too). (2) Freeze the outer letter at one value. (3) Inner limits: "from where to where can the inner letter move now?" — they may contain the outer letter ($x$ from $0$ to $1-y$). (4) Outer limits: the full range of the frozen letter, always plain numbers ($y$ from $0$ to $1$). Rectangle → both limits are numbers, order free. Triangle/wedge → one limit is an expression in the other letter.<br>
-  *Apr25:* $cx+1$ on the triangle $x,y\ge0$, $x+y\lt1$: $\int_0^1\!\int_0^{1-y}(cx+1)\,dx\,dy=\frac c6+\frac12=1$ → $c=3$.
+  **Limits in 4 moves.** (1) Choose the order $dx\,dy$ = inner $x$, outer $y$ (the other order works too). (2) Freeze the outer letter at one value. (3) Inner limits: "from where to where can the inner letter move now?" — they may contain the outer letter ($x$ from $0$ to $1-y$). (4) Outer limits: the full range of the frozen letter, always plain numbers ($y$ from $0$ to $1$). Rectangle → both limits are numbers, order free. Triangle/wedge → one limit is an expression in the other letter. Limits can be $\infty$ (Jun24): $e^{-\infty}=0$.<br>
+  *Apr25:* $cx+1$ on the triangle $x,y\ge0$, $x+y\lt1$ — the whole integral is worked out below.
 - **"Marginal $p_X(x)$"** → integrate the OTHER letter away: $p_X(x)=\int p(x,y)\,dy$, inner limits as in move 3. Range of $x$ = the region's shadow on the $x$ axis; write it and "0 otherwise".<br>
   *Jun26:* $6x^2y$ on the square $0\le x,y\le1$: $p_X=\int_0^1 6x^2y\,dy=3x^2$ for $0\le x\le1$. Same way $p_Y=2y$.
 - **"Conditional $p(x\mid y)$"** → $p(x,y)$ divided by $p_Y(y)$; state the ranges ($y$ over its shadow, $x$ over the slice at that $y$).<br>
@@ -32,7 +32,7 @@ First draw the region on $x$–$y$ axes: **every integral below takes its limits
 **Doing the double integral** (the *Apr25* one above, step by step). $\int_0^1\!\int_0^{1-y}(cx+1)\,dx\,dy$:<br>
 **(a)** inner $dx$ first — treat $y$ as a plain number: $\int_0^{1-y}(cx+1)dx=\big[\frac{cx^2}{2}+x\big]_0^{1-y}=\frac{c(1-y)^2}{2}+(1-y)$. Top limit minus bottom; at the bottom every $x$ is 0. **The answer still holding $y$ is normal.**<br>
 **(b)** now in $y$ — expand first, $(1-y)^2=1-2y+y^2$: $\int_0^1(1-y)dy=\big[y-\frac{y^2}{2}\big]_0^1=\frac12$ · $\int_0^1\frac{(1-y)^2}{2}dy=\big[-\frac{(1-y)^3}{6}\big]_0^1=\frac16$ → total $\frac c6+\frac12=1$ → $c=3$.<br>
-Rules: $\int x^n dx=\frac{x^{n+1}}{n+1}$ · $\int k\,dx=kx$ · $\int(a-y)^n dy=-\frac{(a-y)^{n+1}}{n+1}$ · always top limit minus bottom · expand powers before integrating.
+Rules: $\int x^n dx=\frac{x^{n+1}}{n+1}$ · $\int k\,dx=kx$ · $\int(a-y)^n dy=-\frac{(a-y)^{n+1}}{n+1}$ · always top minus bottom · expand powers first.
 
 ### 1B · WSS / ergodic (multiple choice)
 
@@ -42,6 +42,7 @@ IF YOU SEE "WSS"/"wide-sense stationary"/"stationary", "ergodic", dice, random p
 - **WSS** = the mean is constant AND the autocorrelation depends only on the lag $\tau$ (not on $t$). Jun26: pick the option saying exactly this.
 - **Ergodic** = averaging ONE signal over time gives the same as averaging over all signals.
 - **Test it:** is $\mathrm E[x(t)]$ constant in $t$? Does $r(t_1,t_2)$ only depend on $t_1-t_2$? Both yes → WSS. Ergodic: does one long realisation visit every value? Random **phase** → yes, random **amplitude** → no.
+- **Words (Jan22-1b):** a *random process* = the whole infinite **set** of possible signals (the ensemble) · one recording (one picture) = a **realisation** = a random signal · one number / one pixel = a random **variable**. A set of pictures is WSS only if the question says the statistics do not shift.
 
 | The process | WSS? | Ergodic? |
 |---|---|---|
@@ -82,6 +83,18 @@ Wording: defective, fail, NOT pass, positive, infected, "actually present" → *
 
 *Jun26* 40/35/25 %, defect 2/4/5 %: bad $=0.4(0.02)+0.35(0.04)+0.25(0.05)=0.0325$; $M_2$ given bad $=\frac{0.35\cdot0.04}{0.0325}=0.43$.
 
+### 1E · Expected value and the MC words
+
+IF YOU SEE "expected value", "discrete or continuous", "exactly $k$ of $n$", "covariance", "contour plot"
+{: .see }
+
+- **$E[x]$** $=\sum_x x\,p(x)$ (discrete) $=\int x\,p(x)\,dx$ (continuous) = the **weighted average of the outcomes** (the probabilities are the weights) = the long-run mean. "Integral/sum of the pmf itself" $=1$, **not** $E$. "highest probability / most common" = the **mode**.
+- **Discrete** = the values can be listed: "number of …", counts, dice, digits 0–255. **Continuous** = a measurement: time, duration, distance, weight, money.
+- **Rules:** $E[c\cdot z]=c\,E[z]$ · $E[c]=c$ · $E[z_1+z_2]=E[z_1]+E[z_2]$ — a constant factor comes out. Uniform $[a,b]$ → mean $\frac{a+b}2$ ($[-A,A]$ → 0).
+- **"Exactly $k$ of $n$ tries"** (binomial): $C(n,k)\,p^k(1-p)^{n-k}$, $p$ = chance of one try, $C(n,k)=\frac{n(n-1)\cdots(n-k+1)}{k!}$.
+- **Covariance:** sign = direction, size grows with the units (correlation coefficient = the bounded $\pm1$ version).
+- **Contour plot, bi-variate Gaussian:** off-diagonal of the **covariance matrix** = covariance. $0$ → ellipses straight on the axes (circle if the variances are equal) · **tilted** ellipse → covariance $\ne0$.
+
 ## PART 2 · Estimation (3–3.5 p)
 
 ### 2A · Maximum likelihood (MLE)
@@ -94,7 +107,7 @@ IF YOU SEE a pdf $p(x\mid\theta)$, samples $x_1..x_N$, "maximum likelihood", "de
 3. Set it $=0$ and solve for $\theta$. That is $\hat\theta$.
 
 **How to take $\ln$ of a pdf:** write the pdf as $\frac{\text{above}}{\text{below}}\cdot e^{u}$ (it is pieces multiplied, some in a fraction). Then each piece becomes one term: a piece $a$ **above the line** → $+\ln a$ · a piece $b$ **below the line** → $-\ln b$ · $e^{u}$ → just $u$ (the $e$ disappears). Two pieces below the line split: $-\ln(2\theta)=-\ln 2-\ln\theta$. A power $\theta^k$ below the line → $-k\ln\theta$.
-Derivatives: $\ln\theta\to\frac1\theta$ · $\theta^k\to k\theta^{k-1}$ · $\frac1\theta\to-\frac1{\theta^2}$ · $e^{c\theta}\to ce^{c\theta}$.
+Derivatives: $\ln\theta\to\frac1\theta$ · $\theta^k\to k\theta^{k-1}$ · $\frac1\theta\to-\frac1{\theta^2}$ · $e^{c\theta}\to ce^{c\theta}$ · $\cos\theta\to-\sin\theta$ · $\sin\theta\to\cos\theta$.
 Solving $=0$: multiply the equation by the denominators ($\theta^2$, $\theta$, …) first — that does not change the root.
 **Trap:** if the pdf only exists for $x$ up to something containing $\theta$ (uniform on $[0,\theta]$), these 3 steps are useless — $\hat\theta=\max_n x_n$, and **the CRLB does not exist**.
 **Fisher info / CRLB** from that same derivative: $i(\theta)=-\mathrm E\big[\frac{\partial^2\ln p}{\partial\theta^2}\big]$ for one sample; $N$ samples → $\mathcal I=N i(\theta)$; **CRLB** $=\frac{1}{N i(\theta)}$.
@@ -128,9 +141,9 @@ One observation $x$ gives: Poisson count → $\lambda^{x}e^{-\lambda}$ · "$k$-t
 **Posterior not in the table?** Do it by hand: **MAP** $=\arg\max_\theta p(\theta\mid x)$ = the peak · **MMSE** $=\int\theta\,p(\theta\mid x)\,d\theta$ = its mean (use the Calculations integrals). Truncate first if the prior has a range.
 **Prior with a range** (uniform on $[a,b]$): the posterior is only $\propto$ the likelihood inside $[a,b]$; if the peak would land outside, the MAP is the nearest endpoint $a$ or $b$.
 
-*Jun26-2c:* $\theta^2(1-\theta)^{x-2}$ with $x=3,5,4,6,4$. Multiply the 5: the $\theta$ exponent is $2$ five times $=10$; the $(1-\theta)$ exponent is $(3-2)+(5-2)+(4-2)+(6-2)+(4-2)=12$ → $\theta^{10}(1-\theta)^{12}$ (likelihood). Prior Beta(2,3) adds $\theta^{2-1}(1-\theta)^{3-1}=\theta^1(1-\theta)^2$ → $\theta^{11}(1-\theta)^{14}$ → posterior Beta(12,15), MAP $=\frac{11}{25}=0.44$.
+*Jun26-2c:* $\theta^2(1-\theta)^{x-2}$ with $x=3,5,4,6,4$: $\theta$ exponent $2$ five times $=10$, $(1-\theta)$ exponents sum $12$ → $\theta^{10}(1-\theta)^{12}$. Prior Beta(2,3) adds $\theta^1(1-\theta)^2$ → $\theta^{11}(1-\theta)^{14}$ → Beta(12,15), MAP $=\frac{11}{25}=0.44$.
 
-*Jun26-2d:* Poisson, $x=2,4,3,5,2,4$. Each day gives $\lambda^{x}e^{-\lambda}$: the $\lambda$ exponents add to $20$, the six $e^{-\lambda}$ give $e^{-6\lambda}$ → $\lambda^{20}e^{-6\lambda}$. Prior Gamma(3,2) adds $\lambda^{3-1}e^{-2\lambda}=\lambda^2e^{-2\lambda}$ → $\lambda^{22}e^{-8\lambda}$ → Gamma(23,8), MAP $=\frac{22}8=2.75$. MLE $=\frac{20}6=3.33$: the prior pulls the estimate towards its own mean $\frac32$.
+*Jun26-2d:* Poisson, $x=2,4,3,5,2,4$: $\lambda$ exponents add to $20$, six $e^{-\lambda}$ give $e^{-6\lambda}$ → $\lambda^{20}e^{-6\lambda}$. Prior Gamma(3,2) adds $\lambda^2e^{-2\lambda}$ → $\lambda^{22}e^{-8\lambda}$ → Gamma(23,8), MAP $=\frac{22}8=2.75$. MLE $=\frac{20}6=3.33$: the prior pulls towards its own mean $\frac32$.
 
 *Apr25-2d:* posterior already given as $\theta^{a}(1-\theta)^{b}$ → MAP $=\frac a{a+b}$.
 
@@ -179,7 +192,7 @@ IF YOU SEE "which of the following statements" (in Part 2) about MLE, MAP, MMSE,
 | Fisher information is strictly negative | F (it is $\ge0$) |
 | CRLB can always be derived | F (not if the range of $x$ depends on $\theta$) |
 | Variance below the CRLB = efficient | F (efficient = equal to it) |
-| CRLB decreases as $N$ grows ($\sim\frac1N$) | T |
+| CRLB decreases as $N$ grows ($\sim\frac1N$); "decreases linearly with the number of observations" | T (Jan22 b) |
 
 Fisher info for "$x$ = signal($\theta$) + Gaussian noise $\sigma^2$": $\mathcal I=\frac1{\sigma^2}\sum\big(\frac{d\,\text{signal}}{d\theta}\big)^2$.
 
@@ -187,8 +200,10 @@ Fisher info for "$x$ = signal($\theta$) + Gaussian noise $\sigma^2$": $\mathcal 
 
 ## PART 3 · Spectral estimation (3 p)
 
-$r[k]$ = autocorrelation at lag $k$ (the given numbers). Rewrite cosines: $\cos2\theta=2\cos^2\theta-1$, $\cos3\theta=4\cos^3\theta-3\cos\theta$.
+$r[k]$ = autocorrelation at lag $k$ (the given numbers). Rewrite cosines: $\cos2\theta=2\cos^2\theta-1$, $\cos3\theta=4\cos^3\theta-3\cos\theta$, $\cos\alpha\cos\beta=\frac{\cos(\alpha+\beta)+\cos(\alpha-\beta)}2$ (to expand $\lvert L\rvert^2$).
 {: .how }
+
+**Draw it** — the question says "determine **and plot**", only the numbers are graded: $r[k]$ → vertical **stems** at the lags. $P(\theta)$ → compute the value at $\theta=0$ and at $\theta=\pi$, draw **one smooth curve** through those two heights and write them on the axis. Peak at $0$ = low-pass, peak at $\pi$ = high-pass, peak in between = band-pass.
 
 ### 3A · Correlogram
 
@@ -242,7 +257,8 @@ IF YOU SEE $x[n]=\dots$ + "which kind of process", "calculate the autocorrelatio
 {: .see }
 
 - Only $i[n],i[n-1],\dots$ on the right → **MA($q$)**, $q$ = biggest delay. Old $x[n-k]$ on the right too → **ARMA($p,q$)**, $p$ = biggest $x$ delay. From the shape of $P(\theta)$: sharp **peaks** → AR, deep **nulls** → MA, both → ARMA.
-- MA autocorrelation: write the list $1,b_1,b_2,\dots$ and use $r[k]=\sigma^2\sum_m b_m b_{m+k}$ with $b_0=1$ (pairs sitting $k$ apart in the list). Zero after lag $q$. So $r[0]$ = sum of the squares; $r[1]$ = each one times its right-hand neighbour ($1\cdot b_1+b_1b_2+\dots$); $r[2]$ = skip one ($1\cdot b_2+b_1b_3+\dots$).<br>
+- MA autocorrelation: write the list $1,b_1,b_2,\dots$ and use $r[k]=\sigma^2\sum_m b_m b_{m+k}$ with $b_0=1$ (pairs sitting $k$ apart in the list). Zero after lag $q$. So $r[0]$ = $\sigma^2\times$ sum of the squares ($r[0]=\sigma^2(1+b_1^2+b_2^2+\dots)$); $r[1]$ = each one times its right-hand neighbour ($1\cdot b_1+b_1b_2+\dots$); $r[2]$ = skip one ($1\cdot b_2+b_1b_3+\dots$).<br>
+  **Backwards** — $r[k]$ given, the coefficients asked (Jan22 MA(2)): go from the **biggest lag down** — the biggest lag has a single product, so $b_q=r[q]/\sigma^2$; then the next lag has one letter left free. MA(2), $\sigma_i^2=1$: $b=r[2]$, then $r[1]=a(1+b)$ → $a$; the correlogram needs $r[0]=\sigma^2(1+a^2+b^2)$ (sum of the squares).<br>
   *Apr24* $1,-\frac12,\frac14,-\frac12$ (MA(3), $\sigma^2=1$): $r[0]=1+\frac14+\frac1{16}+\frac14=\frac{25}{16}$, $r[1]=-\frac12-\frac18-\frac18=-\frac34$, $r[2]=\frac14+\frac14=\frac12$, $r[3]=-\frac12$.
 - ARMA(1,1) written as $x[n]+\alpha x[n-1]=i[n]+\beta i[n-1]$: $P=\sigma^2\dfrac{1+\beta^2+2\beta\cos\theta}{1+\alpha^2+2\alpha\cos\theta}$. Its $r[k]$: $r[0]=\sigma^2\frac{1+\beta^2-2\alpha\beta}{1-\alpha^2}$, $r[1]=-\alpha r[0]+\beta\sigma^2$, then $r[k]=(-\alpha)^{k-1}r[1]$ ($k\ge2$, decays by $-\alpha$ each lag).<br>
   *Nov22* $x[k]=i[k]-i[k-1]+\frac34x[k-1]$: $\alpha=-\frac34$, $\beta=-1$, $\sigma^2=\frac78$ → $P=\frac{28(1-\cos\theta)}{25-24\cos\theta}$.
@@ -352,6 +368,10 @@ Tails: Gaussian $N(0,1)$: $P(x\gt t)=Q(t)$ (table) · exponential $ce^{-cx}$: $P
 
 "Plot / indicate $P_{FA}$ and $P_M$": draw both pdfs and a vertical line at the threshold. Shade the $H_0$ curve on the "decide $H_1$" side → $P_{FA}$. Shade the $H_1$ curve on the "decide $H_0$" side → $P_M$. (Nov22: $H_1$ when $y\lt1$, so $P_{FA}$ = $H_0$ area left of 1, $P_M$ = $H_1$ area right of 1.)
 
+**Gaussian with any $\sigma$.** $p(x)=\dfrac1{\sigma\sqrt{2\pi}}e^{-x^2/2\sigma^2}$ (mean 0). Two zero-mean Gaussians, $\sigma_1$ vs $\sigma_0$ (pe21-4b): $\ln L=N\ln\frac{\sigma_0}{\sigma_1}+\frac12\big(\frac1{\sigma_0^2}-\frac1{\sigma_1^2}\big)\sum_n x^2[n]$ → decide $H_1$ when $\sum_n x^2[n]$ is **big** = **energy detector** (bigger variance = more energy).<br>
+**erf table** (printed in the question — pe21-4a): the printed CDF $\frac12\big[1+\operatorname{erf}\frac{t-\mu}{\sigma\sqrt2}\big]$ is $P(x\lt t)$; the test needs $P(x\gt t)=1-\text{CDF}=\frac12\big[1-\operatorname{erf}\frac{z}{\sqrt2}\big]$, $z=\frac{t-\mu}{\sigma}$. The table lists $\operatorname{erf}(x/\sqrt2)$ at $x=-3..3$: read it at $x=z$, value at $-z$ = minus the value at $z$.<br>
+**Matched filter** (jan22-4a): correlate the data with the known signal $s[n]$ (FIR filter $h[n]=$ the **time-reversed** $s$) → biggest output SNR; "only for uncorrelated noise" is **false**.
+
 ### 4B · Priors and costs (Bayes)
 
 IF YOU SEE priors $P(H_0),P(H_1)$, costs $C_{ij}$, "posterior", "Bayesian hypothesis test", "$P_M$" / "miss"
@@ -384,6 +404,8 @@ IF YOU SEE "which of the following statements" (in Part 4) about hypothesis test
 
 Error table (rows = decision, columns = truth): decide $H_0$ & true $H_0$ = true negative · decide $H_0$ & true $H_1$ = miss, false negative, type II · decide $H_1$ & true $H_0$ = false alarm, false positive, type I · decide $H_1$ & true $H_1$ = detection, true positive (Nov22 a).
 
+Trap (Apr25-4b): "which statement is FALSE" where all three look true → as printed **all three are true** (official: no false one). Check the verbs: risk **min** · $P_D$ **max** · $P_e$ **min**.
+
 ## Calculations · the algebra under every answer
 
 **Integrals.** These formulas are **printed in the question itself** (q3-23-2h, nov22-2f) — you do not memorise them, you copy them: $\int e^{cx}dx=\frac1ce^{cx}$ · $\int xe^{cx}dx=\frac{cx-1}{c^2}e^{cx}$ · $\int x^2e^{cx}dx=\big(\frac{x^2}{c}-\frac{2x}{c^2}+\frac{2}{c^3}\big)e^{cx}$ · $\int x^2e^{-x}dx=-e^{-x}(x^2+2x+2)$ (by parts twice).
@@ -391,15 +413,11 @@ Evaluate $[F(x)]_a^b=F(b)-F(a)$: at $x=\infty$ only $e^{cx}$ with $c\lt0$ become
 *Nov22-2f:* MMSE $=\dfrac{\int_0^\infty\theta\cdot\theta e^{-(x+a)\theta}d\theta}{\int_0^\infty\theta e^{-(x+a)\theta}d\theta}=\dfrac{2/(x+a)^3}{1/(x+a)^2}=\dfrac2{x+a}$.
 
 **$\ln$ and $e$.** $\ln(ab)=\ln a+\ln b$ · $\ln\frac ab=\ln a-\ln b$ · $\ln a^k=k\ln a$ · $\ln e^a=a$ · $e^{\ln a}=a$ · $e^ae^b=e^{a+b}$.<br>
-Get the letter alone: $e^{ky}=A$ → $y=\frac{\ln A}{k}$ · $x^k=a$ → $x=a^{1/k}$ · $y=k\ln x$ → $x=e^{y/k}$.<br>
-*Nov22:* $e^{-y}=\frac13$ → $y=\ln3=1.099$. *Apr25:* $x^6=0.1$ → $x=0.1^{1/6}=0.68$.
+Get the letter alone: $e^{ky}=A$ → $y=\frac{\ln A}{k}$ · $x^k=a$ → $x=a^{1/k}$ · $y=k\ln x$ → $x=e^{y/k}$.
 
-**Sums.** $\sum_{n\ge0}q^n=\frac1{1-q}$ for $|q|\lt1$ · $\sum_n x_n=N\bar x$ · $\sum_n c=Nc$.<br>
-*Apr25:* $\sum_{n\ge0}e^{-2n}=\frac1{1-0.135}=1.1565$.
+**Sums.** $\sum_{n\ge0}q^n=\frac1{1-q}$ for $|q|\lt1$ · $\sum_n x_n=N\bar x$ · $\sum_n c=Nc$.
 
-**Fractions & equations.** $\frac ab\pm\frac cd=\frac{ad\pm bc}{bd}$ · $\frac ab\div\frac cd=\frac{ad}{bc}$ · $\frac ab=\frac cd$ → $ad=bc$ · $ax^2+bx+c=0$ → $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$ · multiplying by a negative flips $\gt$ into $\lt$ · $\lvert x\rvert\gt t$ = two cases. Common denominator to add: $\frac16+\frac14+\frac18=\frac{4+6+3}{24}=\frac{13}{24}$.
-
-**Cosines.** $\cos\alpha\cos\beta=\frac{\cos(\alpha+\beta)+\cos(\alpha-\beta)}2$ (printed in the Nov22 question).
+**Fractions & equations.** $\frac ab\pm\frac cd=\frac{ad\pm bc}{bd}$ · $\frac ab\div\frac cd=\frac{ad}{bc}$ · $\frac ab=\frac cd$ → $ad=bc$ · $ax^2+bx+c=0$ → $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$ · multiplying by a negative flips $\gt$ into $\lt$ · $\lvert x\rvert\gt t$ = two cases.
 
 **Numbers.** $\ln2=0.693$ · $\ln3=1.099$ · $\ln10=2.303$ · $e^{-1}=0.368$ · $e^{-2}=0.135$ · $\sqrt{2\pi}=2.51$ · $Q(1.28)=0.10$ · $Q(1.645)=0.05$ · $Q(1.96)=0.025$ · $Q(2.33)=0.01$.
 
