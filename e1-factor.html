@@ -1,0 +1,2176 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Every 5CTA0 Statistical Signal Processing exam question (2019–2026), solved step by step, organised by the patterns that keep coming back.">
+      
+      
+      
+        <link rel="canonical" href="https://dkealvaro.github.io/5cta0-exam-guide/e1-factor.html">
+      
+      
+        <link rel="prev" href="e1-wss.html">
+      
+      
+        <link rel="next" href="e2-mle.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>1.4 Spectral factorisation - 5CTA0 · Pass the exam</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css?v=1793008663">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css?v=1793008663">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+4:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Source Serif 4";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0.16.11/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap">
+    
+      <link rel="stylesheet" href="stylesheets/extra.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/ask.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/layout.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/keypoints.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/widgets.css?v=1793008663">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#14-spectral-factorisation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-header__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            5CTA0 · Pass the exam
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1.4 Spectral factorisation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-nav__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    5CTA0 · Pass the exam
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New · Exam course
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    New · Exam course
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="podcast.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Podcast (watch first)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 1 · Probability (1.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 1 · Probability (1.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes word problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-joint.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-wss.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Stationary and ergodic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="e1-factor.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-idea-in-one-minute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The idea in one minute
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-fight-this-section-with-the-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to fight this section with the sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-april-2025-1e-the-sheet-works-this-one-out-under-the-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 · April 2025 · 1e — the sheet works this one out under the steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-april-2024-1e-the-minus-cosine-case-negative-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 · April 2024 · 1e — the minus-cosine case (negative \(a\))
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-november-2022-1d-fractions-same-four-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 · November 2022 · 1d — fractions, same four steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-january-2022-1d-read-a-factorisation-someone-else-wrote-down" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 · January 2022 · 1d — read a factorisation someone else wrote down
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-june-2026-1e-the-definition-mc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 · June 2026 · 1e — the definition MC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-map.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 MAP with a prior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Least-squares line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Theory questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-corr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Correlogram, pick the plot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-arma.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 AR and MA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Periodogram, Welch, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Likelihood ratio test
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Priors, costs, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exams.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mock exams with answers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="battle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Battle kit · every question + its box
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cheatsheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 cheat sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cheatsheet3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 cheat sheet (v3, clearer wording)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Old · Long guide (deep dive)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Old · Long guide (deep dive)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="patterns.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The exam, decoded
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p0-foundations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 0 · From zero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="toolbox.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toolbox
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes & total probability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-rv.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Random variables & joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-processes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Random processes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-factorisation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-crlb.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 CRLB & Fisher information
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Bayesian estimation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Least squares
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-windows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Signals, windows, zero padding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-nonparametric.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 Non-parametric estimators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-autocorr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Autocorrelation of ARMA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-chain.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.4 Correlogram → AR → MA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-basics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Errors, ROC, Neyman–Pearson
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Likelihood ratio tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.3 Bayesian detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-idea-in-one-minute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The idea in one minute
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-fight-this-section-with-the-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to fight this section with the sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-april-2025-1e-the-sheet-works-this-one-out-under-the-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 · April 2025 · 1e — the sheet works this one out under the steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-april-2024-1e-the-minus-cosine-case-negative-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 · April 2024 · 1e — the minus-cosine case (negative \(a\))
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-november-2022-1d-fractions-same-four-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 · November 2022 · 1d — fractions, same four steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-january-2022-1d-read-a-factorisation-someone-else-wrote-down" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 · January 2022 · 1d — read a factorisation someone else wrote down
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-june-2026-1e-the-definition-mc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 · June 2026 · 1e — the definition MC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="14-spectral-factorisation">1.4 Spectral factorisation<a class="headerlink" href="#14-spectral-factorisation" title="Permanent link">#</a></h1>
+<div class="meta"><span class="hot">In 5 of the last 5 exams</span><span>0.25–0.75 points</span><span>25 min</span></div>
+
+<figure class="pod"><video src="video/pod_ep5_probability.mp4" poster="video/pod_ep5_probability.jpg" controls playsinline preload="none"></video><figcaption><b>Watch first: podcast episode 5, Block 1: Bayes, joint PDFs, ergodic, factorisation</b> (with sound). Answer every purple YOUR TURN out loud before the countdown ends; pause if you need more time. <a href="podcast.html">All 5 episodes</a>.</figcaption></figure>
+
+<h2 id="the-idea-in-one-minute">The idea in one minute<a class="headerlink" href="#the-idea-in-one-minute" title="Permanent link">#</a></h2>
+<ul>
+<li><strong>White noise</strong> <span class="arithmatex">\(i[n]\)</span>: pure randomness, the same power <span class="arithmatex">\(\sigma_i^2\)</span> at every frequency (flat PSD).</li>
+<li>Pass it through a filter <span class="arithmatex">\(L(z)\)</span> and the output has PSD <span class="arithmatex">\(\sigma_i^2\,|L(e^{j\theta})|^2\)</span>: the filter shapes the flat spectrum.</li>
+<li><strong>Spectral factorisation</strong> = go backwards: from the PSD, find the filter and the noise power that made it.</li>
+</ul>
+<p>For the exam the filter is always <span class="arithmatex">\(L(z)=\dfrac{1}{1+a\,z^{-1}}\)</span>, and one identity does the work:</p>
+<div class="key">
+<div class="arithmatex">\[\big|1+a\,e^{-j\theta}\big|^2=1+a^2+2a\cos\theta\qquad\Longrightarrow\qquad P_x=\frac{\sigma_i^2}{1+a^2+2a\cos\theta}\]</div>
+</div>
+<p>(Why: <span class="arithmatex">\(|1+ae^{-j\theta}|^2=(1+ae^{-j\theta})(1+ae^{j\theta})=1+a^2+a(e^{j\theta}+e^{-j\theta})\)</span>, and <span class="arithmatex">\(e^{j\theta}+e^{-j\theta}=2\cos\theta\)</span>.)</p>
+<p>Two values of <span class="arithmatex">\(a\)</span> always give the same spectrum: <span class="arithmatex">\(a\)</span> and <span class="arithmatex">\(1/a\)</span>. Keep the one <strong>inside the unit circle</strong> (<span class="arithmatex">\(|a|&lt;1\)</span>): that makes the filter stable and <strong>minimum phase</strong>, which is what "innovation filter" requires. Slide <span class="arithmatex">\(a\)</span> and watch the pole move:</p>
+<div class="widget" data-w="pole" data-preset="factor"></div>
+
+<h2 id="how-to-fight-this-section-with-the-sheet">How to fight this section with the sheet<a class="headerlink" href="#how-to-fight-this-section-with-the-sheet" title="Permanent link">#</a></h2>
+<p>The exam prints <span class="arithmatex">\(P(\theta)=\dfrac{\text{number}}{A+B\cos\theta}\)</span> and says <strong>"spectral factorisation"</strong>, <strong>"innovation filter <span class="arithmatex">\(L(z)\)</span>"</strong>, <strong>"<span class="arithmatex">\(\sigma_i^2\)</span>"</strong> → you open <strong>box 1C</strong> on your A4 sheet. Four numbered steps, and two worked lines underneath show those steps on past numbers. You never need the identity above — just read <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> off the denominator and run the four steps.</p>
+<div class="admonition sheet">
+<p class="admonition-title">Box 1C, exactly as it is printed on the sheet</p>
+<p>IF YOU SEE <span class="arithmatex">\(P(\theta)=\dfrac{\text{number}}{A+B\cos\theta}\)</span> + "spectral factorisation"/"factorization", "innovation filter <span class="arithmatex">\(L(z)\)</span>", "<span class="arithmatex">\(\sigma_i^2\)</span>"</p>
+<ol>
+<li>Read <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> off the denominator <span class="arithmatex">\(A+B\cos\theta\)</span> <strong>with their signs</strong> (<span class="arithmatex">\(25-24\cos\theta\)</span>: <span class="arithmatex">\(A=25\)</span>, <span class="arithmatex">\(B=-24\)</span>). Two candidate roots <span class="arithmatex">\(r=\dfrac{A\pm\sqrt{A^2-B^2}}{B}\)</span>: keep the one between <span class="arithmatex">\(-1\)</span> and <span class="arithmatex">\(1\)</span>, call it <span class="arithmatex">\(a\)</span>.</li>
+<li><span class="arithmatex">\(C=\dfrac{B}{2a}\)</span>.</li>
+<li><span class="arithmatex">\(\sigma_i^2=\dfrac{\text{number on top}}{C}\)</span>, <span class="arithmatex">\(L(z)=\dfrac{1}{1+a\,z^{-1}}\)</span>.</li>
+<li>Check <span class="arithmatex">\(|a|\lt1\)</span> and <span class="arithmatex">\(\sigma_i^2\gt0\)</span> — a negative <span class="arithmatex">\(\sigma_i^2\)</span> means you kept the wrong root.</li>
+</ol>
+<p><em>Apr24</em> <span class="arithmatex">\(\frac{7}{25-24\cos\theta}\)</span>: <span class="arithmatex">\(A=25\)</span>, <span class="arithmatex">\(B=-24\)</span>, <span class="arithmatex">\(\sqrt{625-576}=7\)</span>, <span class="arithmatex">\(r=\frac{25\pm7}{-24}\)</span> = <span class="arithmatex">\(-\frac43\)</span> or <span class="arithmatex">\(-\frac34\)</span> → <span class="arithmatex">\(a=-\frac34\)</span>. <span class="arithmatex">\(C=\frac{-24}{-3/2}=16\)</span>. So <span class="arithmatex">\(\sigma_i^2=\frac7{16}\)</span>, <span class="arithmatex">\(L=\frac1{1-\frac34z^{-1}}\)</span>.</p>
+<p><em>Apr25</em> <span class="arithmatex">\(\frac{1}{61+60\cos\theta}\)</span>: <span class="arithmatex">\(r=\frac{61\pm11}{60}\)</span> → <span class="arithmatex">\(a=\frac56\)</span>, <span class="arithmatex">\(C=36\)</span>, <span class="arithmatex">\(\sigma_i^2=\frac1{36}\)</span>, <span class="arithmatex">\(L=\frac1{1+\frac56z^{-1}}\)</span>.</p>
+<p>Multiple choice "what must the innovation filter be?" → <strong>minimum phase</strong>: all poles and zeros inside the unit circle (Jun26 a).</p>
+</div>
+<h2 id="1-april-2025-1e-the-sheet-works-this-one-out-under-the-steps">1 · April 2025 · 1e — the sheet works this one out under the steps<a class="headerlink" href="#1-april-2025-1e-the-sheet-works-this-one-out-under-the-steps" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q3, 13 April 2025 · 1e · 0.4 p</p>
+<p>Random signal <span class="arithmatex">\(x[n]\)</span> has the following power spectral density:</p>
+<div class="arithmatex">\[P_x(e^{j\theta}) = \frac{1}{61 + 60 \cos \theta}\]</div>
+<p>Find the spectral factorization of <span class="arithmatex">\(x[n]\)</span>, that is, the innovation filter <span class="arithmatex">\(L(z)\)</span> and the variance of the input noise <span class="arithmatex">\(\sigma_i^2\)</span>.</p>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the cheat sheet: box 1C, the four steps (the <em>Apr25</em> line runs them on these numbers)</p>
+<div class="stepper" markdown>
+<p><strong>Sheet step 1 · read <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> with their signs.</strong>
+Denominator <span class="arithmatex">\(61+60\cos\theta\)</span> → <span class="arithmatex">\(A=61\)</span>, <span class="arithmatex">\(B=+60\)</span>. The sheet's own example line: <em>"<span class="arithmatex">\(r=\frac{61\pm11}{60}\)</span>"</em> — note the <span class="arithmatex">\(\sqrt{A^2-B^2}=\sqrt{3721-3600}=\sqrt{121}=11\)</span>.</p>
+<hr />
+<p><strong>Sheet step 2 · the two roots, keep the inside one.</strong>
+<span class="arithmatex">\(r=\frac{61+11}{60}=\frac{72}{60}=\frac65\)</span> or <span class="arithmatex">\(r=\frac{61-11}{60}=\frac{50}{60}=\frac56\)</span>. The sheet: <em>"keep the one between <span class="arithmatex">\(-1\)</span> and <span class="arithmatex">\(1\)</span>"</em> → <span class="arithmatex">\(a=\frac56\)</span> (step 4 check: <span class="arithmatex">\(|a|&lt;1\)</span> ✓).</p>
+<hr />
+<p><strong>Sheet step 3 · <span class="arithmatex">\(C=\frac{B}{2a}\)</span>.</strong>
+<span class="arithmatex">\(C=\frac{60}{2\cdot\frac56}=\frac{60}{5/3}=36\)</span> — exactly the sheet's <em>"<span class="arithmatex">\(C=36\)</span>"</em>.</p>
+<hr />
+<p><strong>Sheet step 4 · <span class="arithmatex">\(\sigma_i^2\)</span> and <span class="arithmatex">\(L(z)\)</span>.</strong>
+Step 3, one line each: <span class="arithmatex">\(\sigma_i^2=\frac{\text{number on top}}{C}=\frac1{36}\)</span>, and <span class="arithmatex">\(L(z)=\frac{1}{1+a\,z^{-1}}=\frac{1}{1+\frac56z^{-1}}\)</span>.</p>
+<hr />
+<p><strong>Sheet check · the box's step 4.</strong>
+<em>"Check <span class="arithmatex">\(|a|\lt1\)</span> and <span class="arithmatex">\(\sigma_i^2\gt0\)</span> — a negative <span class="arithmatex">\(\sigma_i^2\)</span> means you kept the wrong root."</em> <span class="arithmatex">\(|a|=\frac56&lt;1\)</span> ✓, <span class="arithmatex">\(\frac1{36}&gt;0\)</span> ✓ → the root you kept is the right one, whatever the numbers.</p>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><span class="arithmatex">\(L(z)=\dfrac{1}{1+\frac56z^{-1}}\)</span>, <span class="arithmatex">\(\quad\sigma_i^2=\dfrac1{36}\)</span></p>
+</div>
+<h2 id="2-april-2024-1e-the-minus-cosine-case-negative-a">2 · April 2024 · 1e — the minus-cosine case (negative <span class="arithmatex">\(a\)</span>)<a class="headerlink" href="#2-april-2024-1e-the-minus-cosine-case-negative-a" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q3, April 2024 · 1e · 0.4 p</p>
+<p>A random signal <span class="arithmatex">\(x[n]\)</span> has the power spectra density given by:</p>
+<div class="arithmatex">\[P(e^{j\theta}) = \frac{7}{25 - 24 \cos(\theta)}.\]</div>
+<p>Find the spectral factorization of <span class="arithmatex">\(x[n]\)</span>. In other words, find the coefficients of the innovation filter <span class="arithmatex">\(L(z)\)</span> and the variance of the input noise <span class="arithmatex">\(\sigma_i^2\)</span>, so that <span class="arithmatex">\(x[n]\)</span> can be expressed as the output of the innovation filter when white noise with variance <span class="arithmatex">\(\sigma_i^2\)</span> is given as input.</p>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the cheat sheet: box 1C, steps 1–4 with a minus sign in <span class="arithmatex">\(B\)</span></p>
+<div class="stepper" markdown>
+<p><strong>Sheet step 1 · signs first.</strong>
+The sheet's step 1 example is literally this denominator: <em>"<span class="arithmatex">\(25-24\cos\theta\)</span>: <span class="arithmatex">\(A=25\)</span>, <span class="arithmatex">\(B=-24\)</span>"</em>. The minus is <strong>in <span class="arithmatex">\(B\)</span></strong>.</p>
+<hr />
+<p><strong>Sheet step 2 · roots.</strong>
+<span class="arithmatex">\(\sqrt{A^2-B^2}=\sqrt{625-576}=7\)</span>, so <span class="arithmatex">\(r=\frac{25\pm7}{-24}=\frac{32}{-24}=-\frac43\)</span> or <span class="arithmatex">\(\frac{18}{-24}=-\frac34\)</span>. Sheet: <em>"keep the one between <span class="arithmatex">\(-1\)</span> and <span class="arithmatex">\(1\)</span>"</em> → <span class="arithmatex">\(a=-\frac34\)</span>.</p>
+<hr />
+<p><strong>Sheet step 3 · <span class="arithmatex">\(C=\frac{B}{2a}=\frac{-24}{-3/2}=16\)</span>.</strong></p>
+<hr />
+<p><strong>Sheet step 4 · finish.</strong>
+<span class="arithmatex">\(\sigma_i^2=\frac{7}{16}\)</span> (number on top is <strong>7</strong>, not 1), <span class="arithmatex">\(L(z)=\frac{1}{1+a z^{-1}}=\frac{1}{1-\frac34z^{-1}}\)</span>. Check: <span class="arithmatex">\(|a|=\frac34&lt;1\)</span> ✓, <span class="arithmatex">\(\sigma_i^2&gt;0\)</span> ✓.</p>
+<hr />
+<p><strong>Sheet check · the sign trap.</strong>
+<span class="arithmatex">\(B\)</span> carries the sign: a minus in the denominator stays in <span class="arithmatex">\(B\)</span> and comes out as <span class="arithmatex">\(a=-\frac34\)</span> and <span class="arithmatex">\(L=\frac1{1-\frac34z^{-1}}\)</span>. If your <span class="arithmatex">\(L\)</span> has a plus sign, you dropped the sign on the way.</p>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><span class="arithmatex">\(L(z)=\dfrac{1}{1-\frac34z^{-1}}\)</span>, <span class="arithmatex">\(\quad\sigma_i^2=\dfrac7{16}\)</span></p>
+</div>
+<h2 id="3-november-2022-1d-fractions-same-four-steps">3 · November 2022 · 1d — fractions, same four steps<a class="headerlink" href="#3-november-2022-1d-fractions-same-four-steps" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q1, 7 November 2022 · 1d · 0.75 p</p>
+<p>A random signal <span class="arithmatex">\(x[n]\)</span> has power spectral density given by <span class="arithmatex">\(P_x(e^{j\theta}) = \frac{1}{\frac{5}{3} - \cos(\theta)}\)</span>. Find the spectral factorization of <span class="arithmatex">\(x[n]\)</span>. In other words, modeling <span class="arithmatex">\(x[n]\)</span> as the output of an LTI driven by white noise, find the variance of the input noise <span class="arithmatex">\(\sigma_i^2\)</span> and the innovation filter <span class="arithmatex">\(L(z)\)</span>.</p>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the cheat sheet: box 1C, the four steps (no printed example — run them yourself)</p>
+<div class="stepper" markdown>
+<p><strong>Sheet step 1 · read off.</strong>
+<span class="arithmatex">\(\frac{5}{3}-\cos\theta\)</span>: the invisible number in front of <span class="arithmatex">\(\cos\theta\)</span> is <span class="arithmatex">\(-1\)</span> → <span class="arithmatex">\(A=\frac53\)</span>, <span class="arithmatex">\(B=-1\)</span> <em>("with their signs")</em>.</p>
+<hr />
+<p><strong>Sheet step 2 · roots.</strong>
+<span class="arithmatex">\(\sqrt{A^2-B^2}=\sqrt{\frac{25}{9}-1}=\sqrt{\frac{16}{9}}=\frac43\)</span>. <span class="arithmatex">\(r=\frac{\frac53\pm\frac43}{-1}=\frac{3}{-1}=-3\)</span> or <span class="arithmatex">\(\frac{1/3}{-1}=-\frac13\)</span>. Keep the one between <span class="arithmatex">\(-1\)</span> and <span class="arithmatex">\(1\)</span> → <span class="arithmatex">\(a=-\frac13\)</span>.</p>
+<hr />
+<p><strong>Sheet step 3 · <span class="arithmatex">\(C=\frac{B}{2a}=\frac{-1}{-2/3}=\frac32\)</span>,</strong> then <span class="arithmatex">\(\sigma_i^2=\frac{\text{number on top}}{C}=\frac{1}{3/2}=\frac23\)</span> and <span class="arithmatex">\(L(z)=\frac{1}{1-\frac13z^{-1}}\)</span>.</p>
+<hr />
+<p><strong>Sheet step 4 · the check.</strong>
+<span class="arithmatex">\(|a|=\frac13&lt;1\)</span> ✓ and <span class="arithmatex">\(\sigma_i^2=\frac23&gt;0\)</span> ✓ (<em>"a negative <span class="arithmatex">\(\sigma_i^2\)</span> means you kept the wrong root"</em> — if you had kept <span class="arithmatex">\(-3\)</span>, <span class="arithmatex">\(C=\frac{-1}{-6}=\frac16\)</span> and <span class="arithmatex">\(\sigma_i^2=6\)</span> with an unstable <span class="arithmatex">\(L\)</span>: wrong root, same spectrum).</p>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><span class="arithmatex">\(L(z)=\dfrac{1}{1-\frac13z^{-1}}\)</span>, <span class="arithmatex">\(\quad\sigma_i^2=\dfrac23\)</span></p>
+</div>
+<h2 id="4-january-2022-1d-read-a-factorisation-someone-else-wrote-down">4 · January 2022 · 1d — read a factorisation someone else wrote down<a class="headerlink" href="#4-january-2022-1d-read-a-factorisation-someone-else-wrote-down" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Resit, 24 January 2022 · 1d · 0.3 p</p>
+<p>Random signal <span class="arithmatex">\(x[n]\)</span> has power spectral density given by</p>
+<div class="arithmatex">\[P_x(e^{j\theta}) = \frac{\frac{17}{8} - \cos(\theta)}{\frac{25}{16} - \frac{3}{2} \cos(\theta)},\]</div>
+<p>which is factorized as</p>
+<div class="arithmatex">\[P_x(e^{j\theta}) = 2 \frac{(1 - \frac{1}{4}z^{-1})(1 - \frac{1}{4}z)}{(1 + \frac{3}{4}z^{-1})(1 + \frac{3}{4}z)}.\]</div>
+<p>Which of the following statements is true?</p>
+<ul>
+<li>a) The provided factorization does not represent the spectral factorization of signal <span class="arithmatex">\(x[n]\)</span>.</li>
+<li>b) The innovation filter is given by <span class="arithmatex">\(L(z^{-1}) = \frac{1 - \frac{1}{4}z}{1 + \frac{3}{4}z}\)</span>.</li>
+<li>c) The innovation filter is given by <span class="arithmatex">\(L(z) = \frac{1 - \frac{1}{4}z^{-1}}{1 + \frac{3}{4}z^{-1}}\)</span>.</li>
+<li>d) The input variance is given by <span class="arithmatex">\(\sigma_i^2 = 1/2\)</span>.</li>
+</ul>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the cheat sheet: box 1C, steps 3–4 + the MC line (minimum phase)</p>
+<div class="stepper" markdown>
+<p><strong>Sheet step 1 · the shape.</strong>
+Box 1C writes the model as <span class="arithmatex">\(P=\sigma_i^2\,L(z)\,L(z^{-1})\)</span>: the constant <strong>in front</strong> is <span class="arithmatex">\(\sigma_i^2\)</span>, the factor in <span class="arithmatex">\(z^{-1}\)</span> is <span class="arithmatex">\(L(z)\)</span>, the factor in <span class="arithmatex">\(z\)</span> is <span class="arithmatex">\(L(z^{-1})\)</span>. Here: <span class="arithmatex">\(\sigma_i^2=2\)</span>, <span class="arithmatex">\(L(z)=\frac{1-\frac14z^{-1}}{1+\frac34z^{-1}}\)</span>.</p>
+<hr />
+<p><strong>Sheet step 2 · the MC line decides it.</strong>
+<em>"Multiple choice "what must the innovation filter be?" → <strong>minimum phase</strong>: all poles and zeros inside the unit circle."</em> <span class="arithmatex">\(L(z)\)</span>: zero at <span class="arithmatex">\(\frac14\)</span>, pole at <span class="arithmatex">\(-\frac34\)</span> — both inside ✓. <span class="arithmatex">\(L(z^{-1})\)</span> (option b) puts them at <span class="arithmatex">\(4\)</span> and <span class="arithmatex">\(-\frac43\)</span> — outside ✗.</p>
+<hr />
+<p><strong>Sheet step 3 · read the options.</strong>
+(b) is the maximum-phase twin → not the innovation filter. (c) is <span class="arithmatex">\(L(z)\)</span> with both roots inside → <strong>true</strong>. (d) reads the constant wrong: it is <span class="arithmatex">\(2\)</span>, not <span class="arithmatex">\(\frac12\)</span> (step 3: <span class="arithmatex">\(\sigma_i^2\)</span> = the number in front). (a) is false — the factorisation is valid.</p>
+<hr />
+<p><strong>Sheet check · the same rule, one level deeper.</strong>
+The MC line gives the property — <em>"minimum phase: all poles and zeros inside the unit circle"</em> — and this question hands you a factorisation and asks you to <strong>check</strong> it against that rule. Poles of <span class="arithmatex">\(L\)</span> at <span class="arithmatex">\(-\frac34\)</span>, zero at <span class="arithmatex">\(\frac14\)</span>: both inside ✓.</p>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(c)</strong> <span class="arithmatex">\(L(z) = \dfrac{1 - \frac14z^{-1}}{1 + \frac34z^{-1}}\)</span> (the printed PSD's denominator sign was garbled in the exam; the factorisation given is the consistent one).</p>
+</div>
+<h2 id="5-june-2026-1e-the-definition-mc">5 · June 2026 · 1e — the definition MC<a class="headerlink" href="#5-june-2026-1e-the-definition-mc" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Resit Q4, June 2026 · 1e · 0.25 p</p>
+<p>Which of the following conditions is required for a discrete-time rational filter <span class="arithmatex">\(H(z)\)</span> to be the innovation filter obtained through the spectral factorisation of a given Power Spectral Density <span class="arithmatex">\(P_x(z)\)</span>?</p>
+<ul>
+<li>(a) <span class="arithmatex">\(H(z)\)</span> must be a minimum-phase system, meaning all its poles and zeros must lie inside (or on) the unit circle.</li>
+<li>(b) <span class="arithmatex">\(H(z)\)</span> must be a maximum-phase system, meaning all its poles and zeros must lie strictly outside the unit circle.</li>
+<li>(c) <span class="arithmatex">\(H(z)\)</span> must have a purely real-valued impulse response with strict linear phase to avoid phase distortion.</li>
+<li>(d) <span class="arithmatex">\(H(z)\)</span> must be an all-pass system to ensure that the power of the driving noise is perfectly preserved.</li>
+</ul>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the cheat sheet: box 1C, the last line — the minimum-phase rule</p>
+<div class="stepper" markdown>
+<p><strong>Sheet step 1 · read the rule.</strong>
+<em>"Multiple choice "what must the innovation filter be?" → <strong>minimum phase</strong>: all poles and zeros inside the unit circle."</em> The exam is asking for that property with fancier words — match the property, not the words.</p>
+<hr />
+<p><strong>Sheet step 2 · kill the others (why the sheet says "inside").</strong>
+Step 1's rule (<em>"keep the one between <span class="arithmatex">\(-1\)</span> and <span class="arithmatex">\(1\)</span>"</em>) exists because two roots give the same spectrum; the <strong>inside</strong> one is the stable, causal, invertible choice. (b) is the outside twin, (c) linear phase is unrelated, (d) all-pass would keep the PSD flat = white noise only.</p>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(a)</strong> minimum phase</p>
+</div>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">#</a></h2>
+<div class="admonition trap key">
+<p class="admonition-title">Where points are lost (each one is a line of the sheet you skipped)</p>
+<ul>
+<li>Ignoring the sign of <span class="arithmatex">\(B\)</span>: <span class="arithmatex">\(25-24\cos\theta\)</span> → <span class="arithmatex">\(B=-24\)</span> (<em>"with their signs"</em>) → <span class="arithmatex">\(a=-\frac34\)</span>, <span class="arithmatex">\(L=\frac1{1-\frac34z^{-1}}\)</span>. A plus in <span class="arithmatex">\(L\)</span> when the exam prints a minus cosine = step 1 skipped.</li>
+<li>Keeping the root outside the circle (<span class="arithmatex">\(\frac65\)</span> instead of <span class="arithmatex">\(\frac56\)</span>, <span class="arithmatex">\(-3\)</span> instead of <span class="arithmatex">\(-\frac13\)</span>). Step 1: <em>"keep the one between <span class="arithmatex">\(-1\)</span> and <span class="arithmatex">\(1\)</span>"</em>, step 4 re-checks <span class="arithmatex">\(|a|&lt;1\)</span>.</li>
+<li>Forgetting to divide by <span class="arithmatex">\(C\)</span>: step 3 is <span class="arithmatex">\(\sigma_i^2=\frac{\text{number on top}}{C}\)</span>, not the number on top. Apr24: <span class="arithmatex">\(\frac7{16}\)</span>, not <span class="arithmatex">\(7\)</span>.</li>
+<li>Negative <span class="arithmatex">\(\sigma_i^2\)</span> at the end = you kept the wrong root (step 4 says exactly that) — flip to the other root and redo.</li>
+<li>Mixing up the roles when a factorisation is given: the constant in front is <span class="arithmatex">\(\sigma_i^2\)</span>, the <span class="arithmatex">\(z^{-1}\)</span> factor is <span class="arithmatex">\(L(z)\)</span>, the <span class="arithmatex">\(z\)</span> factor is <span class="arithmatex">\(L(z^{-1})\)</span> (Jan22 (d) trap).</li>
+<li>Choosing <span class="arithmatex">\(L(z^{-1})\)</span> because it "looks like" the filter: the sheet's MC line requires <strong>minimum phase</strong> = both roots inside the unit circle.</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="e1-wss.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 1.3 Stationary and ergodic">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                1.3 Stationary and ergodic
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="e2-mle.html" class="md-footer__link md-footer__link--next" aria-label="Next: 2.1 Maximum likelihood">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                2.1 Maximum likelihood
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.footer", "navigation.tracking", "navigation.instant", "navigation.instant.progress", "toc.follow", "content.tooltips"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js?v=1793008663"></script>
+      
+        <script src="javascripts/katex.js?v=1793008663"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="javascripts/quiz.js?v=1793008663"></script>
+      
+        <script src="javascripts/ask.js?v=1793008663"></script>
+      
+        <script src="javascripts/video.js?v=1793008663"></script>
+      
+        <script src="javascripts/layout.js?v=1793008663"></script>
+      
+        <script src="javascripts/keypoints.js?v=1793008663"></script>
+      
+        <script src="javascripts/progress.js?v=1793008663"></script>
+      
+        <script src="javascripts/widgets.js?v=1793008663"></script>
+      
+        <script src="javascripts/navsections.js?v=1793008663"></script>
+      
+    
+  </body>
+</html>

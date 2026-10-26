@@ -1,0 +1,2664 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Every 5CTA0 Statistical Signal Processing exam question (2019–2026), solved step by step, organised by the patterns that keep coming back.">
+      
+      
+      
+        <link rel="canonical" href="https://dkealvaro.github.io/5cta0-exam-guide/p3-chain.html">
+      
+      
+        <link rel="prev" href="p3-autocorr.html">
+      
+      
+        <link rel="next" href="p4-basics.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>3.4 Correlogram → AR → MA - 5CTA0 · Pass the exam</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css?v=1793008663">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css?v=1793008663">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+4:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Source Serif 4";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0.16.11/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap">
+    
+      <link rel="stylesheet" href="stylesheets/extra.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/ask.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/layout.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/keypoints.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/widgets.css?v=1793008663">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#34-the-correlogram-ar-ma-chain" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-header__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            5CTA0 · Pass the exam
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3.4 Correlogram → AR → MA
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-nav__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    5CTA0 · Pass the exam
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New · Exam course
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    New · Exam course
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="podcast.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Podcast (watch first)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 1 · Probability (1.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 1 · Probability (1.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes word problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-joint.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-wss.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Stationary and ergodic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-factor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-map.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 MAP with a prior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Least-squares line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Theory questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-corr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Correlogram, pick the plot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-arma.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 AR and MA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Periodogram, Welch, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Likelihood ratio test
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Priors, costs, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exams.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mock exams with answers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="battle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Battle kit · every question + its box
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cheatsheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 cheat sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cheatsheet3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 cheat sheet (v3, clearer wording)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Old · Long guide (deep dive)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Old · Long guide (deep dive)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="patterns.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The exam, decoded
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p0-foundations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 0 · From zero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="toolbox.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toolbox
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes & total probability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-rv.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Random variables & joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-processes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Random processes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-factorisation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-crlb.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 CRLB & Fisher information
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Bayesian estimation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Least squares
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-windows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Signals, windows, zero padding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-nonparametric.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 Non-parametric estimators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-autocorr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Autocorrelation of ARMA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.4 Correlogram → AR → MA
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="p3-chain.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.4 Correlogram → AR → MA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-three-estimates-from-the-same-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 · The three estimates from the same numbers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 · The three estimates from the same numbers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-correlogram-non-parametric-just-transform-what-you-have" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Correlogram (non-parametric): just transform what you have
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-arp-by-yulewalker-pretend-the-signal-is-ar-and-fit-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 AR(\(p\)) by Yule–Walker: pretend the signal is AR and fit it
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-ma1-pretend-the-signal-is-a-one-memory-step-moving-average" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 MA(1): pretend the signal is a one-memory-step moving average
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-reading-psd-plots-the-which-plot-is-right-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Reading PSD plots (the "which plot is right?" question)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-how-many-ar-coefficients-model-order-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 · How many AR coefficients? Model order selection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exam questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exam questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jun26-3c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        June 2026 resit · 3c, 3d
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jun26-3e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        June 2026 resit · 3e
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr25-3d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2025 exam · 3d, 3e, 3f, 3g
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr24-3d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2024 exam · 3d, 3e, 3f
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nov22-3f" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2022 exam · 3f, 3g
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan22-3c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2022 resit · 3c, 3d
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pe21-3b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practice exam 2021 · 3b, 3c
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan20-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2020 retake · Exercise 3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nov19-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2019 exam · Exercise 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan19-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2019 retake · Exercise 4 (Wiener filter)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-basics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Errors, ROC, Neyman–Pearson
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Likelihood ratio tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.3 Bayesian detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-three-estimates-from-the-same-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 · The three estimates from the same numbers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 · The three estimates from the same numbers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-correlogram-non-parametric-just-transform-what-you-have" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Correlogram (non-parametric): just transform what you have
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-arp-by-yulewalker-pretend-the-signal-is-ar-and-fit-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 AR(\(p\)) by Yule–Walker: pretend the signal is AR and fit it
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-ma1-pretend-the-signal-is-a-one-memory-step-moving-average" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 MA(1): pretend the signal is a one-memory-step moving average
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-reading-psd-plots-the-which-plot-is-right-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Reading PSD plots (the "which plot is right?" question)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-how-many-ar-coefficients-model-order-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 · How many AR coefficients? Model order selection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exam questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exam questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jun26-3c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        June 2026 resit · 3c, 3d
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jun26-3e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        June 2026 resit · 3e
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr25-3d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2025 exam · 3d, 3e, 3f, 3g
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr24-3d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2024 exam · 3d, 3e, 3f
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nov22-3f" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2022 exam · 3f, 3g
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan22-3c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2022 resit · 3c, 3d
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pe21-3b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practice exam 2021 · 3b, 3c
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan20-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2020 retake · Exercise 3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nov19-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2019 exam · Exercise 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan19-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2019 retake · Exercise 4 (Wiener filter)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="34-the-correlogram-ar-ma-chain">3.4 The correlogram → AR → MA chain<a class="headerlink" href="#34-the-correlogram-ar-ma-chain" title="Permanent link">#</a></h1>
+<p class="lead">This is the single most valuable page of the guide. Since 2019 almost every exam gives you a few autocorrelation values and asks for the same chain: <b>correlogram PSD</b>, then an <b>AR model by Yule–Walker</b>, often an <b>MA(1) model</b>, and recently <b>"which plot is right?"</b>. Around 2 points, fully mechanical, and every step below is explained from the first line.</p>
+
+<div class="admonition need">
+<p class="admonition-title">Before this page</p>
+<ul>
+<li>Autocorrelation <span class="arithmatex">\(r[l]\)</span> and the PSD as its FTD (<a href="p0-foundations.html#random-signals-stationarity-and-autocorrelation">0.6</a>)</li>
+<li><span class="arithmatex">\(\cos\theta=\frac{e^{j\theta}+e^{-j\theta}}2\)</span> and <span class="arithmatex">\(\lvert u\rvert^2=u\bar u\)</span> (<a href="p0-foundations.html#03-complex-numbers-and-ejtheta">0.3</a>)</li>
+<li>What MA, AR and ARMA models are, and the formula <span class="arithmatex">\(P=\sigma_i^2\lvert H\rvert^2\)</span> (<a href="p3-autocorr.html">3.3</a>)</li>
+<li>Solving a 2×2 linear system (<a href="toolbox.html">Toolbox</a>)</li>
+</ul>
+<p>If you read only one thing: <strong>you are handed the same few numbers <span class="arithmatex">\(r[0],r[1],\dots\)</span> and asked to turn them into a PSD in three different ways: (1) just transform them, (2) pretend the signal is AR, (3) pretend it is MA(1). The three answers are different guesses at the same unknown spectrum.</strong></p>
+</div>
+<hr />
+<h2 id="1-the-three-estimates-from-the-same-numbers">1 · The three estimates from the same numbers<a class="headerlink" href="#1-the-three-estimates-from-the-same-numbers" title="Permanent link">#</a></h2>
+<p>You are given <span class="arithmatex">\(r[0]\)</span>, <span class="arithmatex">\(r[\pm1]\)</span>, sometimes <span class="arithmatex">\(r[\pm2]\)</span>, <span class="arithmatex">\(r[\pm3]\)</span> (estimated from data; the true autocorrelation continues forever but you do not know it).</p>
+<h3 id="11-correlogram-non-parametric-just-transform-what-you-have">1.1 Correlogram (non-parametric): just transform what you have<a class="headerlink" href="#11-correlogram-non-parametric-just-transform-what-you-have" title="Permanent link">#</a></h3>
+<p><strong>Plain words.</strong> The PSD is <em>defined</em> as <span class="arithmatex">\(P(e^{j\theta})=\sum_{l=-\infty}^{\infty}r[l]e^{-jl\theta}\)</span> (<a href="p0-foundations.html#random-signals-stationarity-and-autocorrelation">0.6</a>). <mark>You do not know the lags beyond the ones given, so <strong>assume they are zero</strong> and sum what you have.</mark> Pair lag <span class="arithmatex">\(l\)</span> with lag <span class="arithmatex">\(-l\)</span> (<span class="arithmatex">\(r[-l]=r[l]\)</span>) and use <span class="arithmatex">\(e^{jl\theta}+e^{-jl\theta}=2\cos l\theta\)</span>:</p>
+<div class="key">
+<div class="arithmatex">\[\boxed{\hat P_{corr}(e^{j\theta})=r[0]+2\sum_{k\ge1}r[k]\cos(k\theta)}\]</div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Numbers: <span class="arithmatex">\(r[0]=3,\ r[1]=2,\ r[2]=1\)</span></p>
+<p><span class="arithmatex">\(\hat P_{corr}=3+4\cos\theta+2\cos2\theta\)</span>. At <span class="arithmatex">\(\theta=0\)</span> every cosine is 1: <span class="arithmatex">\(3+4+2=9\)</span> (the sum of all the lags, <span class="arithmatex">\(3+2\cdot2+2\cdot1\)</span>). At <span class="arithmatex">\(\theta=\pi\)</span>: <span class="arithmatex">\(\cos\pi=-1,\ \cos2\pi=1\)</span>: <span class="arithmatex">\(3-4+2=1\)</span>.</p>
+</div>
+<p><strong>Weakness.</strong> If the true autocorrelation does not really stop at the last lag you used, <mark>chopping it there can make the sum <strong>dip below zero</strong>. A real PSD never does.</mark> (This is how you reject plots.)</p>
+<figure>
+<p><img alt="A truncated correlogram can go negative" src="img/gen/p3_corr_negative.svg" /></p>
+<figcaption>$r[l]=0.7^{|l|}$ is a perfectly valid autocorrelation (an AR(1) process). Keeping only lags 0, 1, 2 gives the grey correlogram, which dips below zero (red) around $\theta\approx\pm1.94$: impossible for a power. The AR(2) fit of the same three numbers (blue dashed) is the true PSD here, and it stays positive everywhere.</figcaption>
+</figure>
+<h3 id="12-arp-by-yulewalker-pretend-the-signal-is-ar-and-fit-it">1.2 AR(<span class="arithmatex">\(p\)</span>) by <abbr title="the linear equations that tie the AR coefficients to the autocorrelation lags, obtained by multiplying the AR equation by x[n−l] and taking expectations.">Yule–Walker</abbr>: pretend the signal is AR and fit it<a class="headerlink" href="#12-arp-by-yulewalker-pretend-the-signal-is-ar-and-fit-it" title="Permanent link">#</a></h3>
+<p><strong>Idea.</strong> An AR(<span class="arithmatex">\(p\)</span>) model <span class="arithmatex">\(x[n]=i[n]-a_1x[n-1]-\dots-a_px[n-p]\)</span> is determined by <span class="arithmatex">\(p+1\)</span> numbers: <span class="arithmatex">\(a_1,\dots,a_p\)</span> and <span class="arithmatex">\(\sigma_i^2\)</span>. <mark>Choose them so that the model's autocorrelation matches the first <span class="arithmatex">\(p+1\)</span> lags you were given.</mark> The resulting equations are the <strong><abbr title="the linear equations that tie the AR coefficients to the autocorrelation lags, obtained by multiplying the AR equation by x[n−l] and taking expectations.">Yule–Walker</abbr> equations</strong>. Here is where they come from.</p>
+<p><strong>Derivation.</strong> Write the model as <span class="arithmatex">\(x[n]+a_1x[n-1]+\dots+a_px[n-p]=i[n]\)</span>. Multiply by <span class="arithmatex">\(x[n-l]\)</span> and take expectations (exactly the method of <a href="p3-autocorr.html#3-the-autocorrelation-derived">3.3 §3</a>):</p>
+<div class="arithmatex">\[r[l]+a_1r[l-1]+\dots+a_pr[l-p]=\mathbb E\{i[n]\,x[n-l]\}=\begin{cases}\sigma_i^2&amp;l=0\\0&amp;l\ge1\end{cases}\]</div>
+<p>(today's noise is unrelated to the past signal, except for <span class="arithmatex">\(l=0\)</span>). Write this for <span class="arithmatex">\(l=0,1,\dots,p\)</span> and use <span class="arithmatex">\(r[-k]=r[k]\)</span>:</p>
+<div class="key">
+<div class="arithmatex">\[\begin{bmatrix}r[0]&amp;r[1]&amp;\cdots&amp;r[p]\\r[1]&amp;r[0]&amp;\cdots&amp;r[p-1]\\\vdots&amp;&amp;\ddots&amp;\vdots\\r[p]&amp;r[p-1]&amp;\cdots&amp;r[0]\end{bmatrix}\begin{bmatrix}1\\a_1\\\vdots\\a_p\end{bmatrix}=\begin{bmatrix}\sigma_i^2\\0\\\vdots\\0\end{bmatrix}\]</div>
+</div>
+<p><strong>How to solve it.</strong> <mark>Rows 2 to <span class="arithmatex">\(p+1\)</span> contain only the unknown <span class="arithmatex">\(a\)</span>'s: solve those first (a small linear system). Then row 1 gives the noise variance</mark>: <span class="arithmatex">\(\sigma_i^2=r[0]+a_1r[1]+\dots+a_pr[p]\)</span>.</p>
+<div class="key">
+<table>
+<thead>
+<tr>
+<th>Order</th>
+<th>Coefficients</th>
+<th>Noise variance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AR(1)</td>
+<td><span class="arithmatex">\(a_1=-\dfrac{r[1]}{r[0]}\)</span> (row 2: <span class="arithmatex">\(r[1]+a_1r[0]=0\)</span>)</td>
+<td><span class="arithmatex">\(\sigma_i^2=r[0]+a_1r[1]\)</span></td>
+</tr>
+<tr>
+<td>AR(2)</td>
+<td>solve <span class="arithmatex">\(\begin{cases}r[0]a_1+r[1]a_2=-r[1]\\r[1]a_1+r[0]a_2=-r[2]\end{cases}\)</span> (rows 2 and 3)</td>
+<td><span class="arithmatex">\(\sigma_i^2=r[0]+a_1r[1]+a_2r[2]\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>The PSD.</strong> By <span class="arithmatex">\(P=\sigma_i^2/\lvert A(e^{j\theta})\rvert^2\)</span> (<a href="p3-autocorr.html#2-the-psd-of-a-model-without-any-autocorrelation">3.3 §2</a>). To turn <span class="arithmatex">\(\lvert A\rvert^2\)</span> into cosines, multiply <span class="arithmatex">\(A\)</span> by its conjugate:</p>
+<div class="arithmatex">\[\lvert1+a_1e^{-j\theta}\rvert^2=1+a_1^2+2a_1\cos\theta,\]</div>
+<div class="arithmatex">\[\lvert1+a_1e^{-j\theta}+a_2e^{-j2\theta}\rvert^2=1+a_1^2+a_2^2+2(a_1+a_1a_2)\cos\theta+2a_2\cos2\theta .\]</div>
+<p>(Where the second line comes from: the 3×3 products give <span class="arithmatex">\(1,\ a_1^2,\ a_2^2\)</span> on the diagonal; <span class="arithmatex">\(1\cdot a_1e^{j\theta}\)</span> and its conjugate give <span class="arithmatex">\(2a_1\cos\theta\)</span>; <span class="arithmatex">\(a_1e^{-j\theta}\cdot a_2e^{j2\theta}=a_1a_2e^{j\theta}\)</span> and its conjugate give <span class="arithmatex">\(2a_1a_2\cos\theta\)</span>; <span class="arithmatex">\(1\cdot a_2e^{j2\theta}\)</span> and its conjugate give <span class="arithmatex">\(2a_2\cos2\theta\)</span>.)</p>
+<p>The same numbers come out of the <em>one-step linear predictor</em> (Wiener filter, see <a href="#jan19-4">Jan 2019 ex. 4</a>): <span class="arithmatex">\(\mathbf w=-\mathbf a\)</span> and the minimum prediction error is <span class="arithmatex">\(\sigma_i^2\)</span>.</p>
+<h3 id="13-ma1-pretend-the-signal-is-a-one-memory-step-moving-average">1.3 MA(1): pretend the signal is a one-memory-step moving average<a class="headerlink" href="#13-ma1-pretend-the-signal-is-a-one-memory-step-moving-average" title="Permanent link">#</a></h3>
+<p>Model <span class="arithmatex">\(x[n]=i[n]+b\,i[n-1]\)</span>. From <a href="p3-autocorr.html#31-maq-slide-the-coefficient-list-over-itself">3.3 §3.1</a>: <span class="arithmatex">\(r[0]=\sigma_i^2(1+b^2)\)</span> and <span class="arithmatex">\(r[1]=\sigma_i^2b\)</span>. Match these two to the given <span class="arithmatex">\(r[0],r[1]\)</span>. Dividing the second equation by the first eliminates <span class="arithmatex">\(\sigma_i^2\)</span>:</p>
+<div class="key">
+<div class="arithmatex">\[\frac{b}{1+b^2}=\frac{r[1]}{r[0]}\ \Longrightarrow\ \boxed{r[1]\,b^2-r[0]\,b+r[1]=0}.\]</div>
+</div>
+<p>A quadratic: two roots, and they are <span class="arithmatex">\(b\)</span> and <span class="arithmatex">\(1/b\)</span> (their product is <span class="arithmatex">\(r[1]/r[1]=1\)</span>). Both give exactly the same autocorrelation and the same PSD. <mark><strong>Keep the root with <span class="arithmatex">\(\lvert b\rvert&lt;1\)</span></strong></mark> (the <em>minimum-phase</em> choice, the same choice as in spectral factorisation, <a href="p1-factorisation.html">1.4</a>). <mark>Then <span class="arithmatex">\(\sigma_i^2=r[1]/b\)</span>.</mark></p>
+<div class="admonition idea key">
+<p class="admonition-title">Shortcut that saves minutes</p>
+<p>Expand the MA(1) PSD: <span class="arithmatex">\(\sigma_i^2\lvert1+be^{-j\theta}\rvert^2=\sigma_i^2(1+b^2)+2\sigma_i^2b\cos\theta=r[0]+2r[1]\cos\theta\)</span>.
+<strong>The MA(1) PSD is just the correlogram truncated at lag 1.</strong> You still have to give <span class="arithmatex">\(b\)</span> and <span class="arithmatex">\(\sigma_i^2\)</span> if they are asked, but you can write the PSD immediately and exactly, without the rounding errors of, say, <span class="arithmatex">\(b\approx-0.127\)</span>.</p>
+</div>
+<figure>
+<p><img alt="Four estimates from the same three autocorrelation values" src="img/gen/p3_chain_three.svg" /></p>
+<figcaption>The whole chain on one small example, $r[0]=1,\ r[1]=0.4,\ r[2]=0.1$. The MA(1) quadratic $0.4b^2-b+0.4=0$ gives $b=0.5$ or $2$; keep $0.5$, so $\sigma_i^2=\frac{0.4}{0.5}=0.8$. Its PSD is exactly $1+0.8\cos\theta$, the correlogram cut after lag 1 (green). Check the end values: correlogram $1+0.8+0.2=2$ at $\theta=0$ and $1-0.8+0.2=0.4$ at $\pi$; AR(1) $\frac{0.84}{0.6^2}=2.33$ and $\frac{0.84}{1.4^2}=0.43$. Four different curves, because each method assumes something different about the lags you were not given.</figcaption>
+</figure>
+<h3 id="14-reading-psd-plots-the-which-plot-is-right-question">1.4 Reading PSD plots (the "which plot is right?" question)<a class="headerlink" href="#14-reading-psd-plots-the-which-plot-is-right-question" title="Permanent link">#</a></h3>
+<figure>
+<p><img alt="AR peaks, MA dips, correlogram wiggles" src="img/gen/p3_shapes.svg" /></p>
+<figcaption>Horizontal axis: normalised frequency $\theta$ from $-\pi$ to $\pi$. A PSD of a real signal is symmetric, so only $0\ldots\pi$ really matters. $\theta=0$ is DC (no oscillation), $\theta=\pm\pi$ the fastest possible oscillation. AR(1) with $a_1&lt;0$ (i.e. $x[n]=0.8x[n-1]+\dots$, a smooth slow signal) peaks at 0; $a_1&gt;0$ peaks at $\pi$. MA spectra are smooth and can touch 0. A truncated correlogram can wiggle and even go below zero.</figcaption>
+</figure>
+<div class="admonition recipe key">
+<p class="admonition-title">Recipe: the whole chain</p>
+<ol>
+<li><strong>Correlogram:</strong> <span class="arithmatex">\(r[0]+2r[1]\cos\theta+2r[2]\cos2\theta+\dots\)</span></li>
+<li><strong>AR(<span class="arithmatex">\(p\)</span>):</strong> write the <abbr title="the linear equations that tie the AR coefficients to the autocorrelation lags, obtained by multiplying the AR equation by x[n−l] and taking expectations.">Yule–Walker</abbr> matrix; solve the <span class="arithmatex">\(a\)</span>'s from rows 2…; <span class="arithmatex">\(\sigma_i^2\)</span> from row 1; plug into <span class="arithmatex">\(\sigma_i^2/\lvert A(e^{j\theta})\rvert^2\)</span> and expand.</li>
+<li><strong>MA(1):</strong> quadratic <span class="arithmatex">\(r[1]b^2-r[0]b+r[1]=0\)</span>, keep <span class="arithmatex">\(\lvert b\rvert&lt;1\)</span>, <span class="arithmatex">\(\sigma_i^2=r[1]/b\)</span>; PSD <span class="arithmatex">\(=r[0]+2r[1]\cos\theta\)</span>.</li>
+<li><strong>Which plot?</strong> Evaluate every curve at <span class="arithmatex">\(\theta=0\)</span> and <span class="arithmatex">\(\theta=\pm\pi\)</span> (where <span class="arithmatex">\(\cos\theta=\pm1\)</span>, <span class="arithmatex">\(\cos2\theta=1\)</span>). Remove plots where an AR/MA curve goes negative or the end values do not match. Done.</li>
+<li><strong>"As a function of <span class="arithmatex">\(\cos\theta\)</span> only":</strong> replace <span class="arithmatex">\(\cos2\theta=2\cos^2\theta-1\)</span> (and <span class="arithmatex">\(\cos3\theta=4\cos^3\theta-3\cos\theta\)</span>).</li>
+</ol>
+</div>
+<hr />
+<h2 id="2-how-many-ar-coefficients-model-order-selection">2 · How many AR coefficients? Model order selection<a class="headerlink" href="#2-how-many-ar-coefficients-model-order-selection" title="Permanent link">#</a></h2>
+<p><strong>The problem.</strong> You can choose any order <span class="arithmatex">\(p\)</span>. A bigger <span class="arithmatex">\(p\)</span> has more freedom, so it can follow the <em>recorded</em> data more closely: the <abbr title="the difference between the data and what the model predicts for it.">residual</abbr> error variance <span class="arithmatex">\(\hat\sigma_p^2\)</span> (the average squared difference between data and the model's one-step prediction) <strong>never increases</strong> with <span class="arithmatex">\(p\)</span>. But <mark>beyond the true order the extra freedom is spent fitting this record's <strong>noise</strong>, not the signal: this is <strong><abbr title="a model so flexible that it fits the noise of this particular record instead of the signal.">overfitting</abbr></strong></mark> (spurious peaks, a spectrum that would not generalise to a new record).</p>
+<p><strong>The fix: charge a penalty per parameter.</strong> An <strong>information criterion</strong> adds to the error term a cost that grows with the number of parameters <span class="arithmatex">\(P=p+1\)</span>:</p>
+<div class="key">
+<div class="arithmatex">\[\text{AIC}(P)=N\ln\hat\sigma_P^2+2P,\qquad \text{FPE}(P)=\frac{N+P}{N-P}\,\hat\sigma_P^2 .\]</div>
+</div>
+<p>(<span class="arithmatex">\(N\)</span> = number of samples.) The first term of the <abbr title="Akaike information criterion: N ln σ² + 2P; error term plus a penalty per parameter; choose the minimum.">AIC</abbr> falls as the model improves, the second (<span class="arithmatex">\(2P\)</span>) rises: <mark>pick the order with the <strong>minimum</strong> value</mark>. <abbr title="final prediction error: (N+P)/(N−P) σ²; another order-selection criterion.">FPE</abbr> does the same through the factor <span class="arithmatex">\(\frac{N+P}{N-P}\)</span>, which grows with <span class="arithmatex">\(P\)</span>.</p>
+<figure>
+<p><img alt="residual variance vs AIC" src="img/gen/p3_order.svg" /></p>
+<figcaption>The residual variance (left) keeps falling with the order. The AIC (right) first falls, then rises again: its minimum is the order to use.</figcaption>
+</figure>
+<p><strong>One more fact (asked in June 2026).</strong> <mark><em>Any</em> PSD can be approximated by an AR model if the order is high enough</mark>, even one with deep notches (which an MA/ARMA would describe). Reason: for a minimum-phase <span class="arithmatex">\(B(z)\)</span>, the series <span class="arithmatex">\(1/B(z)=1+c_1z^{-1}+c_2z^{-2}+\dots\)</span> is an <em>infinite</em> AR model. <mark>So a notch needs a <strong>very high AR order</strong></mark> (and <span class="arithmatex">\(N\gg p\)</span> samples to estimate it).</p>
+<figure>
+<p><img alt="AR fits of increasing order approaching a notch" src="img/gen/p3_ar_notch.svg" /></p>
+<figcaption>Black: an MA(1) spectrum with a deep notch (−20 dB at $\theta=0$). AR models fitted to its exact autocorrelation: AR(1) barely bends, AR(4) starts to dip, AR(16) follows the notch closely. AR models are built for peaks (poles); to fake a dip they need many coefficients.</figcaption>
+</figure>
+<hr />
+<h2 id="exam-questions">Exam questions<a class="headerlink" href="#exam-questions" title="Permanent link">#</a></h2>
+<h3 id="jun26-3c">June 2026 resit · 3c, 3d<a class="headerlink" href="#jun26-3c" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Resit Q4, June 2026 · 3c (0.5 p), 3d (1 p)</p>
+<p>Consider a wide-sense stationary, real-valued random process <span class="arithmatex">\(x[n]\)</span> whose first three autocorrelation values have been estimated as:</p>
+<div class="arithmatex">\[r_x[0] = 3, \quad r_x[1] = 2, \quad r_x[2] = 1\]</div>
+<p><strong>3c</strong> Calculate the non-parametric correlogram estimate of the power spectral density, <span class="arithmatex">\(\hat{P}_{Corr}(e^{j\theta})\)</span>, using only the given autocorrelation lags. Assume <span class="arithmatex">\(r_x[k] = 0\)</span> for <span class="arithmatex">\(|k| &gt; 2\)</span>. Derive <span class="arithmatex">\(\hat{P}_{Corr}(e^{j\theta})\)</span> as a function of <span class="arithmatex">\(\cos(\theta)\)</span>.</p>
+<p><strong>3d</strong> You now wish to model this process parametrically using an Autoregressive (AR) model of order <span class="arithmatex">\(p = 2\)</span>:</p>
+<div class="arithmatex">\[x[n] = i[n] - a_1 x[n-1] - a_2 x[n-2]\]</div>
+<p>where <span class="arithmatex">\(i[n]\)</span> is zero-mean white noise with variance <span class="arithmatex">\(\sigma_i^2\)</span>.</p>
+<ul>
+<li>State the Yule-Walker equations for this AR(2) process in matrix form. [0.1]</li>
+<li>Calculate the AR coefficients <span class="arithmatex">\(a_1\)</span> and <span class="arithmatex">\(a_2\)</span>. [0.4]</li>
+<li>Calculate the variance of the driving white noise <span class="arithmatex">\(\sigma_i^2\)</span>. [0.2]</li>
+<li>Based on your estimated parameters, write the expression for the parametric power spectral density estimate <span class="arithmatex">\(\hat{P}_{AR}(e^{j\theta})\)</span>. Express it as a function of <span class="arithmatex">\(\cos(\theta)\)</span>. [0.3]</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> 3c: transform the three lags into a PSD and write it with only <span class="arithmatex">\(\cos\theta\)</span>. 3d: fit an AR(2) to the same lags (<abbr title="the linear equations that tie the AR coefficients to the autocorrelation lags, obtained by multiplying the AR equation by x[n−l] and taking expectations.">Yule–Walker</abbr>), then write <em>its</em> PSD, again with only <span class="arithmatex">\(\cos\theta\)</span>.</p>
+<p><strong>Symbols in this question</strong></p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(r_x[0],r_x[1],r_x[2]\)</span></td>
+<td>the given lags <span class="arithmatex">\(3,2,1\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(a_1,a_2\)</span></td>
+<td>AR coefficients, with the <strong>minus</strong> convention <span class="arithmatex">\(x[n]=i[n]-a_1x[n-1]-a_2x[n-2]\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\sigma_i^2\)</span></td>
+<td>variance of the white noise driving the model</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 1 — 3c: sum the lags</strong> (<a href="#11-correlogram-non-parametric-just-transform-what-you-have">1.1</a>): <span class="arithmatex">\(\hat P_{corr}=3+2\cdot2\cos\theta+2\cdot1\cos2\theta=3+4\cos\theta+2\cos2\theta.\)</span></p>
+<p><strong>Step 2 — as a function of <span class="arithmatex">\(\cos\theta\)</span> only.</strong> Use <span class="arithmatex">\(\cos2\theta=2\cos^2\theta-1\)</span> (<a href="p0-foundations.html#04-the-three-calculations-you-keep-meeting">Chapter 0 §0.4</a>): <span class="arithmatex">\(3+4\cos\theta+2(2\cos^2\theta-1)=4\cos^2\theta+4\cos\theta+1=(2\cos\theta+1)^2.\)</span></p>
+<p><strong>Step 3 — 3d: the <abbr title="the linear equations that tie the AR coefficients to the autocorrelation lags, obtained by multiplying the AR equation by x[n−l] and taking expectations.">Yule–Walker</abbr> equations</strong> (<a href="#12-arp-by-yulewalker-pretend-the-signal-is-ar-and-fit-it">1.2</a>) with <span class="arithmatex">\(p=2\)</span>:</p>
+<div class="arithmatex">\[\begin{bmatrix}3&amp;2&amp;1\\2&amp;3&amp;2\\1&amp;2&amp;3\end{bmatrix}\begin{bmatrix}1\\a_1\\a_2\end{bmatrix}=\begin{bmatrix}\sigma_i^2\\0\\0\end{bmatrix}\]</div>
+<p><strong>Step 4 — the coefficients, from rows 2 and 3</strong> (they contain no <span class="arithmatex">\(\sigma_i^2\)</span>): row 2: <span class="arithmatex">\(2+3a_1+2a_2=0\)</span>; row 3: <span class="arithmatex">\(1+2a_1+3a_2=0\)</span>. Move the constants:</p>
+<div class="arithmatex">\[\begin{cases}3a_1+2a_2=-2\\2a_1+3a_2=-1\end{cases}\qquad\det=3\cdot3-2\cdot2=5.\]</div>
+<p>Cramer's rule: <span class="arithmatex">\(a_1=\dfrac{(-2)(3)-(2)(-1)}{5}=\dfrac{-6+2}{5}=-\dfrac45\)</span>, <span class="arithmatex">\(\ a_2=\dfrac{(3)(-1)-(-2)(2)}{5}=\dfrac{-3+4}{5}=\dfrac15\)</span>. Check in row 2: <span class="arithmatex">\(2+3(-0.8)+2(0.2)=2-2.4+0.4=0\)</span> ✓.</p>
+<p><strong>Step 5 — the noise variance, from row 1:</strong> <span class="arithmatex">\(\sigma_i^2=3+2a_1+1\cdot a_2=3-\frac85+\frac15=\frac{15-8+1}{5}=\frac85.\)</span></p>
+<p><strong>Step 6 — the PSD.</strong> <span class="arithmatex">\(\hat P_{AR}=\sigma_i^2/\lvert A\rvert^2\)</span>. Expand <span class="arithmatex">\(\lvert A\rvert^2\)</span> with the AR(2) formula of <a href="#12-arp-by-yulewalker-pretend-the-signal-is-ar-and-fit-it">1.2</a>:</p>
+<ul>
+<li><span class="arithmatex">\(1+a_1^2+a_2^2=1+\frac{16}{25}+\frac1{25}=\frac{42}{25}\)</span></li>
+<li><span class="arithmatex">\(2(a_1+a_1a_2)=2\big(-\frac45-\frac4{25}\big)=2\cdot\big(-\frac{24}{25}\big)=-\frac{48}{25}\)</span></li>
+<li><span class="arithmatex">\(2a_2=\frac25\)</span></li>
+</ul>
+<p>So <span class="arithmatex">\(\lvert A\rvert^2=\frac{42}{25}-\frac{48}{25}\cos\theta+\frac25\cos2\theta\)</span>. Put <span class="arithmatex">\(\cos2\theta=2\cos^2\theta-1\)</span>: <span class="arithmatex">\(\frac{42}{25}-\frac{10}{25}-\frac{48}{25}\cos\theta+\frac{20}{25}\cos^2\theta=\frac4{25}\big(5\cos^2\theta-12\cos\theta+8\big)\)</span>. Then</p>
+<div class="arithmatex">\[\hat P_{AR}=\frac{8/5}{\frac4{25}(5\cos^2\theta-12\cos\theta+8)}=\frac{8}{5}\cdot\frac{25}{4}\cdot\frac1{(\dots)}=\frac{10}{5\cos^2\theta-12\cos\theta+8}.\]</div>
+<p><strong>Sanity check.</strong> At <span class="arithmatex">\(\theta=0\)</span>: <span class="arithmatex">\(\hat P_{AR}=\frac{10}{5-12+8}=10\)</span>, <span class="arithmatex">\(\hat P_{corr}=9\)</span>. At <span class="arithmatex">\(\theta=\pi\)</span>: <span class="arithmatex">\(\frac{10}{5+12+8}=0.4\)</span> and <span class="arithmatex">\(\hat P_{corr}=(-2+1)^2=1\)</span>. Both are low-pass (big at 0, small at <span class="arithmatex">\(\pi\)</span>), as expected from positive, slowly decaying <span class="arithmatex">\(r\)</span>.</p>
+<p><img alt="correlogram vs AR(2)" src="img/gen/p3_jun26.svg" /></p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p>3c: <span class="arithmatex">\(\hat P_{corr}=3+4\cos\theta+2\cos2\theta=(2\cos\theta+1)^2\)</span>.
+3d: <span class="arithmatex">\(a_1=-\frac45\)</span>, <span class="arithmatex">\(a_2=\frac15\)</span>, <span class="arithmatex">\(\sigma_i^2=\frac85\)</span>, <span class="arithmatex">\(\hat P_{AR}=\dfrac{10}{5\cos^2\theta-12\cos\theta+8}\)</span>.</p>
+</div>
+</details>
+<h3 id="jun26-3e">June 2026 resit · 3e<a class="headerlink" href="#jun26-3e" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Resit Q4, June 2026 · 3e · 0.75 p</p>
+<p>You are given a finite data record of length <span class="arithmatex">\(N\)</span> and you decide to estimate its power spectral density by fitting an Autoregressive (AR) model of order <span class="arithmatex">\(p\)</span>.</p>
+<ol>
+<li>Suppose you evaluate the quality of your fitted model by strictly looking at the variance of the <abbr title="the difference between the data and what the model predicts for it.">residual</abbr> error (the difference between the data and the prediction). As you increase the model order <span class="arithmatex">\(p\)</span>, what will happen to this <abbr title="the difference between the data and what the model predicts for it.">residual</abbr> error, and what is the primary risk of choosing an excessively high order <span class="arithmatex">\(p\)</span>? [0.25]</li>
+<li>Name at least one specific model selection criteria discussed in the course that are designed to prevent the issue identified in question 1. Briefly explain the mathematical mechanism it uses to do so. [0.25]</li>
+<li>It is a known property that any arbitrary power spectrum (even one originating from an MA process containing deep spectral nulls) can be approximated using strictly an AR model. What is required to achieve this? [0.25]</li>
+</ol>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> Three short theory answers, all from <a href="#2-how-many-ar-coefficients-model-order-selection">section 2</a>.</p>
+<p><strong>Step 1 — (1).</strong> More parameters can only fit the recorded data better, so the <abbr title="the difference between the data and what the model predicts for it.">residual</abbr> variance <span class="arithmatex">\(\hat\sigma_p^2\)</span> <strong>keeps decreasing</strong> and never goes up. The risk is <strong><abbr title="a model so flexible that it fits the noise of this particular record instead of the signal.">overfitting</abbr></strong>: the model starts fitting the noise of this particular record, giving spurious peaks and a spectrum that does not generalise.</p>
+<p><strong>Step 2 — (2).</strong> <strong>Akaike's information criterion</strong> <span class="arithmatex">\(\text{AIC}(P)=N\ln\hat\sigma_P^2+2P\)</span> (or the <strong>final prediction error</strong> <span class="arithmatex">\(\text{FPE}(P)=\frac{N+P}{N-P}\hat\sigma_P^2\)</span>, or AICc), with <span class="arithmatex">\(P=p+1\)</span> parameters. The first term falls as the fit improves; the <strong>penalty</strong> <span class="arithmatex">\(2P\)</span> grows with the number of parameters. Choose the order with the <strong>minimum</strong> criterion.</p>
+<p><strong>Step 3 — (3).</strong> A <strong>sufficiently high AR order</strong> (in theory <span class="arithmatex">\(p\to\infty\)</span>): for a minimum-phase <span class="arithmatex">\(B(z)\)</span>, <span class="arithmatex">\(1/B(z)\)</span> expands into an infinite series, i.e. an MA is an infinite-order AR. In practice: a high <span class="arithmatex">\(p\)</span> <strong>and</strong> enough data (<span class="arithmatex">\(N\gg p\)</span>) to estimate it.</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<ol>
+<li>Decreases monotonically; risk = <abbr title="a model so flexible that it fits the noise of this particular record instead of the signal.">overfitting</abbr> (fitting noise, spurious peaks). 2. <abbr title="Akaike information criterion: N ln σ² + 2P; error term plus a penalty per parameter; choose the minimum.">AIC</abbr> <span class="arithmatex">\(=N\ln\hat\sigma^2+2P\)</span> (or <abbr title="final prediction error: (N+P)/(N−P) σ²; another order-selection criterion.">FPE</abbr>/AICc): error term + complexity penalty, choose the minimum. 3. A high enough AR order (AR(∞) in theory).</li>
+</ol>
+</div>
+</details>
+<h3 id="apr25-3d">April 2025 exam · 3d, 3e, 3f, 3g<a class="headerlink" href="#apr25-3d" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q3, 13 April 2025 · 3d (0.5 p), 3e (0.5 p), 3f (0.5 p), 3g (0.25 p)</p>
+<p>Suppose you have an estimate of the autocorrelation function of a random signal at lags <span class="arithmatex">\(0, \pm 1, \pm 2\)</span> as: <span class="arithmatex">\(r[0] = 2, \quad r[\pm 1] = -\frac{1}{4}, \quad r[\pm 2] = -\frac{3}{16}\)</span></p>
+<p><strong>3d</strong> Use the correlogram method to calculate the power spectral density in a non-parametric fashion. Express the obtained power spectral density <span class="arithmatex">\(P_{corr}(e^{j\theta})\)</span> as a function of cosines.</p>
+<p><strong>3e</strong> Model the signal as an AR(1) process, find the parameters of the model, and calculate the corresponding power spectral density in a parametric fashion. Express the obtained power spectral density <span class="arithmatex">\(P_{AR}(e^{j\theta})\)</span> as a function of cosines.</p>
+<p><strong>3f</strong> Model the signal as an MA(1) process, find the parameters of the model, and calculate the corresponding power spectral density in a parametric fashion. Express the obtained power spectral density <span class="arithmatex">\(P_{MA}(e^{j\theta})\)</span> as a function of cosines.</p>
+<p><strong>3g</strong> Given the plots in the figure below, which option represents the correct power spectral densities, as found in 3d, 3e, and 3f?</p>
+<p><img alt="Plots A–D" src="img/exam/apr25-3g.jpg" /></p>
+<ul>
+<li>(a) Plot D</li>
+<li>(b) Plot C</li>
+<li>(c) Plot B</li>
+<li>(d) Plot A</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> The full chain on <span class="arithmatex">\(r=[2,-\frac14,-\frac3{16}]\)</span>: correlogram (3d), AR(1) (3e), MA(1) (3f), then pick the picture that contains all three curves (3g).</p>
+<p><strong>Symbols in this question.</strong> <span class="arithmatex">\(r[0]=2\)</span>, <span class="arithmatex">\(r[1]=-\frac14\)</span>, <span class="arithmatex">\(r[2]=-\frac3{16}\)</span>; <span class="arithmatex">\(a_1,\sigma_i^2\)</span> for the AR(1) model; <span class="arithmatex">\(b,\sigma_i^2\)</span> for the MA(1) model.</p>
+<p><strong>Step 1 — 3d: correlogram</strong> (<a href="#11-correlogram-non-parametric-just-transform-what-you-have">1.1</a>):</p>
+<div class="arithmatex">\[P_{corr}=2+2\left(-\tfrac14\right)\cos\theta+2\left(-\tfrac3{16}\right)\cos2\theta=2-\tfrac12\cos\theta-\tfrac38\cos2\theta.\]</div>
+<p><strong>Step 2 — 3e: AR(1).</strong> <abbr title="the linear equations that tie the AR coefficients to the autocorrelation lags, obtained by multiplying the AR equation by x[n−l] and taking expectations.">Yule–Walker</abbr> with <span class="arithmatex">\(p=1\)</span>: <span class="arithmatex">\(\begin{bmatrix}2&amp;-\frac14\\-\frac14&amp;2\end{bmatrix}\begin{bmatrix}1\\a_1\end{bmatrix}=\begin{bmatrix}\sigma_i^2\\0\end{bmatrix}\)</span>. Row 2: <span class="arithmatex">\(-\frac14+2a_1=0\Rightarrow a_1=\frac18\)</span>. Row 1: <span class="arithmatex">\(\sigma_i^2=2+a_1r[1]=2-\frac14\cdot\frac18=2-\frac1{32}=\frac{63}{32}\)</span>.</p>
+<p><strong>Step 3 — the AR(1) PSD.</strong> <span class="arithmatex">\(\lvert1+a_1e^{-j\theta}\rvert^2=1+\frac1{64}+\frac14\cos\theta=\frac{65+16\cos\theta}{64}\)</span>, so</p>
+<div class="arithmatex">\[P_{AR}=\frac{63/32}{(65+16\cos\theta)/64}=\frac{63\cdot64}{32\,(65+16\cos\theta)}=\frac{126}{65+16\cos\theta}.\]</div>
+<p><strong>Step 4 — 3f: MA(1)</strong> (<a href="#13-ma1-pretend-the-signal-is-a-one-memory-step-moving-average">1.3</a>). <span class="arithmatex">\(\sigma_i^2(1+b^2)=2\)</span> and <span class="arithmatex">\(\sigma_i^2b=-\frac14\)</span>. Dividing: <span class="arithmatex">\(\frac b{1+b^2}=-\frac18\Rightarrow b^2+8b+1=0\Rightarrow b=\frac{-8\pm\sqrt{64-4}}2=-4\pm\sqrt{15}\)</span>. Numerically <span class="arithmatex">\(-4+3.873=-0.127\)</span> or <span class="arithmatex">\(-7.873\)</span>. <strong>Keep <span class="arithmatex">\(b=-4+\sqrt{15}\approx-0.127\)</span></strong> (<span class="arithmatex">\(\lvert b\rvert&lt;1\)</span>). Then <span class="arithmatex">\(\sigma_i^2=\frac{-1/4}{-0.127}\approx1.968\)</span>.</p>
+<p><strong>Step 5 — the MA(1) PSD, by the shortcut</strong> (it is the correlogram cut at lag 1): <span class="arithmatex">\(P_{MA}=r[0]+2r[1]\cos\theta=2-0.5\cos\theta\)</span>. (Check: <span class="arithmatex">\(1.968\,(1+0.0161-0.254\cos\theta)=2-0.5\cos\theta\)</span> ✓.)</p>
+<p><strong>Step 6 — 3g: pick the plot.</strong> Evaluate at the two ends:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><span class="arithmatex">\(\theta=0\)</span></th>
+<th><span class="arithmatex">\(\theta=\pm\pi\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(P_{corr}\)</span></td>
+<td><span class="arithmatex">\(2-0.5-0.375=1.125\)</span></td>
+<td><span class="arithmatex">\(2+0.5-0.375=2.125\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P_{AR}\)</span></td>
+<td><span class="arithmatex">\(126/81=1.56\)</span></td>
+<td><span class="arithmatex">\(126/49=2.57\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P_{MA}\)</span></td>
+<td><span class="arithmatex">\(1.5\)</span></td>
+<td><span class="arithmatex">\(2.5\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Plot A has <span class="arithmatex">\(P_{corr}&lt;0\)</span> at 0 and C has an AR/MA curve negative → out (a PSD cannot be negative). B has everything ≈ 0.8–0.9 at 0 → out. <strong>D</strong> matches: corr ≈ 1.1 at 0 and ≈ 2.1 at ±π, AR and MA almost on top of each other going from ≈ 1.5 to ≈ 2.5.</p>
+<p><img alt="our own plot" src="img/gen/p3_apr25.svg" /></p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p>3d: <span class="arithmatex">\(2-\frac12\cos\theta-\frac38\cos2\theta\)</span>. 3e: <span class="arithmatex">\(a_1=\frac18\)</span>, <span class="arithmatex">\(\sigma_i^2=\frac{63}{32}\)</span>, <span class="arithmatex">\(P_{AR}=\frac{126}{65+16\cos\theta}\)</span>. 3f: <span class="arithmatex">\(b_1\approx-0.13\)</span>, <span class="arithmatex">\(\sigma_i^2\approx1.97\)</span>, <span class="arithmatex">\(P_{MA}\approx2-0.5\cos\theta\)</span>. 3g: <strong>(a) Plot D</strong>.</p>
+</div>
+</details>
+<h3 id="apr24-3d">April 2024 exam · 3d, 3e, 3f<a class="headerlink" href="#apr24-3d" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q3, April 2024 · 3d (0.4 p), 3e (0.7 p), 3f (0.4 p)</p>
+<p><em>(Signal from <a href="p3-autocorr.html#apr24-3b">3b/3c</a>: <span class="arithmatex">\(x[n]=i[n]-\frac12i[n-1]+\frac14i[n-2]-\frac12i[n-3]\)</span>, so <span class="arithmatex">\(r[0]=\frac{25}{16}\)</span>, <span class="arithmatex">\(r[\pm1]=-\frac34\)</span>, <span class="arithmatex">\(r[\pm2]=\frac12\)</span>, <span class="arithmatex">\(r[\pm3]=-\frac12\)</span>.)</em></p>
+<p><strong>3d</strong> Using the correlogram method, give an estimate of the power spectral density. Express it as a function of cosines.</p>
+<p><strong>3e</strong> Now model the signal as AR(2) process. Find the model parameters and the power spectral density,</p>
+<p><strong>3f</strong> Which of the following figures gives the correct plots for <span class="arithmatex">\(P_{corr}(e^{j\theta})\)</span> (calculated in d) and of <span class="arithmatex">\(P_{AR}(e^{j\theta})\)</span> (calculated in e) ? If you cannot find the correct answer, please sketch <span class="arithmatex">\(P_{corr}(e^{j\theta})\)</span> and <span class="arithmatex">\(P_{AR}(e^{j\theta})\)</span> in the plot below.</p>
+<p><div class="grid3" markdown>
+<img alt="A" src="img/exam/apr24-3f-A.jpg" />
+<img alt="B" src="img/exam/apr24-3f-B.jpg" />
+<img alt="C" src="img/exam/apr24-3f-C.jpg" />
+<img alt="D" src="img/exam/apr24-3f-D.jpg" />
+</div></p>
+<p>(a) C  (b) A  (c) B  (d) D</p>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> Correlogram of four lags (3d), AR(2) fit (3e), and which picture shows both curves (3f).</p>
+<p><strong>Step 1 — 3d.</strong> <span class="arithmatex">\(P_{corr}=r[0]+2r[1]\cos\theta+2r[2]\cos2\theta+2r[3]\cos3\theta=\frac{25}{16}-\frac32\cos\theta+\cos2\theta-\cos3\theta.\)</span> Because this is an MA(3), its autocorrelation really is 0 beyond lag 3, so this is also the <strong>true</strong> PSD.</p>
+<p><strong>Step 2 — 3e: <abbr title="the linear equations that tie the AR coefficients to the autocorrelation lags, obtained by multiplying the AR equation by x[n−l] and taking expectations.">Yule–Walker</abbr> rows 2 and 3</strong> (AR(2)): <span class="arithmatex">\(r[1]+a_1r[0]+a_2r[1]=0\)</span> and <span class="arithmatex">\(r[2]+a_1r[1]+a_2r[0]=0\)</span>:</p>
+<div class="arithmatex">\[\begin{cases}\frac{25}{16}a_1-\frac34a_2=\frac34\\-\frac34a_1+\frac{25}{16}a_2=-\frac12\end{cases}\xrightarrow{\ \times16\ }\begin{cases}25a_1-12a_2=12\\-12a_1+25a_2=-8\end{cases}\qquad\det=625-144=481.\]</div>
+<div class="arithmatex">\[a_1=\frac{12\cdot25-(-12)(-8)}{481}=\frac{300-96}{481}=\frac{204}{481}\approx0.424,\qquad a_2=\frac{25(-8)-(-12)(12)}{481}=\frac{-200+144}{481}=-\frac{56}{481}\approx-0.116.\]</div>
+<p><strong>Step 3 — noise variance</strong> (row 1): <span class="arithmatex">\(\sigma_i^2=r[0]+a_1r[1]+a_2r[2]=1.5625-0.75(0.424)+0.5(-0.116)=1.5625-0.318-0.058\approx1.186.\)</span></p>
+<p><strong>Step 4 — AR(2) PSD.</strong> <span class="arithmatex">\(\lvert A\rvert^2=1+a_1^2+a_2^2+2(a_1+a_1a_2)\cos\theta+2a_2\cos2\theta=1.193+0.750\cos\theta-0.233\cos2\theta\)</span>, so <span class="arithmatex">\(P_{AR}\approx\dfrac{1.186}{1.193+0.750\cos\theta-0.233\cos2\theta}\)</span>.</p>
+<p><strong>Step 5 — 3f: pick the plot</strong> (evaluate at the ends):</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><span class="arithmatex">\(\theta=0\)</span></th>
+<th><span class="arithmatex">\(\theta=\pm\pi\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(P_{corr}\)</span></td>
+<td><span class="arithmatex">\(\frac{25}{16}-\frac32+1-1=0.06\)</span></td>
+<td><span class="arithmatex">\(\frac{25}{16}+\frac32+1+1=5.06\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P_{AR}\)</span></td>
+<td><span class="arithmatex">\(1.186/1.710=0.69\)</span></td>
+<td><span class="arithmatex">\(1.186/0.211=5.6\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>A: corr ≈ 2 at 0 and ≈ 7 at π → no. C: peak at 0 → wrong shape. D: the AR curve goes <strong>negative</strong>, impossible. <strong>B</strong> matches: corr ≈ 0 at 0 and ≈ 5 at π; AR ≈ 0.7 and ≈ 5.6.</p>
+<p><img alt="our own plot" src="img/gen/p3_apr24.svg" /></p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p>3d: <span class="arithmatex">\(\frac{25}{16}-\frac32\cos\theta+\cos2\theta-\cos3\theta\)</span>. 3e: <span class="arithmatex">\(a_1=\frac{204}{481}\)</span>, <span class="arithmatex">\(a_2=-\frac{56}{481}\)</span>, <span class="arithmatex">\(\sigma_i^2\approx1.19\)</span>. 3f: <strong>(c) plot B</strong>.</p>
+</div>
+</details>
+<h3 id="nov22-3f">November 2022 exam · 3f, 3g<a class="headerlink" href="#nov22-3f" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q1, 7 November 2022 · 3f (0.75 p), 3g (0.75 p)</p>
+<p><em>(Process from <a href="p3-autocorr.html#nov22-3c">3c–3e</a>: ARMA(1,1) with <span class="arithmatex">\(r[0]=1\)</span>, <span class="arithmatex">\(r[l]=-\frac18(\frac34)^{|l|-1}\)</span>.)</em></p>
+<p><strong>3f</strong> Try to model <span class="arithmatex">\(x[k]\)</span> as a AR(1) signal and calculate the corresponding power spectral density <span class="arithmatex">\(P_{AR1}(e^{j\theta})\)</span>.</p>
+<p><strong>3g</strong> Try to model <span class="arithmatex">\(x[k]\)</span> as a MA(1) signal and calculate the corresponding power spectral density <span class="arithmatex">\(P_{MA1}(e^{j\theta})\)</span>. You can approximate the model parameters and the resulting PSD expression by using decimal numbers.</p>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> The true process is ARMA(1,1), but you must approximate it by the <em>simpler</em> AR(1) and MA(1) models, using only <span class="arithmatex">\(r[0]=1\)</span> and <span class="arithmatex">\(r[1]=-\frac18\)</span> (an AR(1) / MA(1) fit only needs lags 0 and 1).</p>
+<p><strong>Step 1 — 3f: AR(1)</strong> (<a href="#12-arp-by-yulewalker-pretend-the-signal-is-ar-and-fit-it">1.2</a>): <span class="arithmatex">\(a_1=-\frac{r[1]}{r[0]}=\frac18\)</span>, <span class="arithmatex">\(\sigma_i^2=r[0]+a_1r[1]=1-\frac1{64}=\frac{63}{64}\)</span>.</p>
+<p><strong>Step 2 — the PSD:</strong> <span class="arithmatex">\(\lvert1+\frac18e^{-j\theta}\rvert^2=1+\frac1{64}+\frac14\cos\theta=\frac{65+16\cos\theta}{64}\)</span>, so <span class="arithmatex">\(P_{AR1}=\dfrac{63/64}{(65+16\cos\theta)/64}=\dfrac{63}{65+16\cos\theta}\)</span>.</p>
+<p><strong>Step 3 — 3g: MA(1)</strong> (<a href="#13-ma1-pretend-the-signal-is-a-one-memory-step-moving-average">1.3</a>): <span class="arithmatex">\(\frac b{1+b^2}=-\frac18\Rightarrow b^2+8b+1=0\Rightarrow b=-4+\sqrt{15}\approx-0.13\)</span> (keep <span class="arithmatex">\(\lvert b\rvert&lt;1\)</span>); <span class="arithmatex">\(\sigma_i^2=\frac{r[1]}b=\frac{-0.125}{-0.127}\approx0.98\)</span>.</p>
+<p><strong>Step 4 — the PSD</strong>, by the shortcut: <span class="arithmatex">\(P_{MA1}=r[0]+2r[1]\cos\theta=1-0.25\cos\theta\)</span>.</p>
+<p><strong>Extra question from the review:</strong> with 3 lags (<span class="arithmatex">\(r[\pm2]=-\frac3{32}\)</span>) the correlogram is <span class="arithmatex">\(1-\frac14\cos\theta-\frac3{16}\cos2\theta\)</span>.</p>
+<p><img alt="true vs estimates" src="img/gen/p3_nov22.svg" /></p>
+<p>The true PSD is exactly 0 at <span class="arithmatex">\(\theta=0\)</span> (zero on the unit circle, <a href="p3-autocorr.html#nov22-3c">3.3</a>). None of the low-order estimates can reproduce that deep notch: AR models can only make peaks, and MA(1)/correlogram with 2–3 lags are too smooth. (To get a notch from an AR you need a very high order, <a href="#2-how-many-ar-coefficients-model-order-selection">section 2</a>.)</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p>3f: <span class="arithmatex">\(a_1=\frac18\)</span>, <span class="arithmatex">\(\sigma_i^2=\frac{63}{64}\)</span>, <span class="arithmatex">\(P_{AR1}=\frac{63}{65+16\cos\theta}\)</span>. 3g: <span class="arithmatex">\(b_1\approx-0.13\)</span>, <span class="arithmatex">\(\sigma_i^2\approx0.98\)</span>, <span class="arithmatex">\(P_{MA1}\approx1-0.25\cos\theta\)</span>.</p>
+</div>
+</details>
+<h3 id="jan22-3c">January 2022 resit · 3c, 3d<a class="headerlink" href="#jan22-3c" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Resit, 24 January 2022 · 3c (1 p), 3d (1 p)</p>
+<p><em>(MA(2) process from <a href="p3-autocorr.html#jan22-3b">3b</a>: <span class="arithmatex">\(x[n]=i[n]+ai[n-1]+bi[n-2]\)</span>, unit variance, <span class="arithmatex">\(r[\pm1]=-\frac{15}{16}\)</span>, <span class="arithmatex">\(r[\pm2]=\frac14\)</span>.)</em></p>
+<p><strong>3c</strong> Calculate the power spectral density of <span class="arithmatex">\(x[n]\)</span> using the correlogram method. If you were not able to solve question 3b, you may use the following parameters <span class="arithmatex">\(a = \frac{1}{4}\)</span> and <span class="arithmatex">\(b = \frac{5}{4}\)</span> for <span class="arithmatex">\(x[n]\)</span>. Please express the power spectral density as a function of <span class="arithmatex">\(\cos(\theta)\)</span>. <strong>Hint:</strong> The autocorrelation of a MA process is of finite length.</p>
+<p><strong>3d</strong> Now assume that <span class="arithmatex">\(x[n]\)</span> can be modeled as generated by an AR(1) process. Find the AR model parameters and the power spectral density of the AR(1) process (expressed as a function of <span class="arithmatex">\(\cos(\theta)\)</span>). If you were not able to solve question 3b, you may use the following parameters <span class="arithmatex">\(a = \frac{1}{4}\)</span> and <span class="arithmatex">\(b = \frac{5}{4}\)</span> for <span class="arithmatex">\(x[n]\)</span>. <strong>Hint:</strong> Some parameters may results in fractions with large numbers.</p>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> 3c: correlogram of the MA(2) (we know <span class="arithmatex">\(r[\pm1],r[\pm2]\)</span>; <span class="arithmatex">\(r[0]\)</span> is missing, compute it). 3d: AR(1) fit with large fractions.</p>
+<p><strong>Step 1 — the missing lag.</strong> From the sliding formula (<a href="p3-autocorr.html#31-maq-slide-the-coefficient-list-over-itself">3.3 §3.1</a>), <span class="arithmatex">\(r[0]=1+a^2+b^2=1+\frac9{16}+\frac1{16}=\frac{16+9+1}{16}=\frac{26}{16}=\frac{13}8\)</span> (with <span class="arithmatex">\(a=-\frac34\)</span>, <span class="arithmatex">\(b=\frac14\)</span> from 3b).</p>
+<p><strong>Step 2 — 3c.</strong> An MA(2) has <span class="arithmatex">\(r[l]=0\)</span> beyond lag 2, so the correlogram is exact: <span class="arithmatex">\(P=\frac{13}8+2\big(-\frac{15}{16}\big)\cos\theta+2\cdot\frac14\cos2\theta=\frac{13}8-\frac{15}8\cos\theta+\frac12\cos2\theta.\)</span></p>
+<p><strong>Step 3 — 3d: the AR(1) coefficient.</strong> <span class="arithmatex">\(a_1=-\frac{r[1]}{r[0]}=\frac{15/16}{13/8}=\frac{15}{16}\cdot\frac8{13}=\frac{15}{26}\)</span>, and <span class="arithmatex">\(\sigma_i^2=r[0]+a_1r[1]=\frac{13}8-\frac{15}{26}\cdot\frac{15}{16}=\frac{13}8-\frac{225}{416}=\frac{676-225}{416}=\frac{451}{416}\approx1.084\)</span>.</p>
+<p><strong>Step 4 — the PSD.</strong> <span class="arithmatex">\(\lvert1+a_1e^{-j\theta}\rvert^2=1+\frac{225}{676}+\frac{15}{13}\cos\theta=\frac{901}{676}+\frac{15}{13}\cos\theta\)</span>. To clear the fractions multiply numerator and denominator by <span class="arithmatex">\(5408\)</span> (<span class="arithmatex">\(=8\cdot676=13\cdot416\)</span>, which cancels <span class="arithmatex">\(676\)</span>, <span class="arithmatex">\(13\)</span> and <span class="arithmatex">\(416\)</span> at once):</p>
+<ul>
+<li>numerator: <span class="arithmatex">\(\frac{451}{416}\cdot5408=451\cdot13=5863\)</span></li>
+<li>denominator: <span class="arithmatex">\(\frac{901}{676}\cdot5408=901\cdot8=7208\)</span> and <span class="arithmatex">\(\frac{15}{13}\cdot5408=15\cdot416=6240\)</span></li>
+</ul>
+<div class="arithmatex">\[P_{AR}=\frac{451/416}{\frac{901}{676}+\frac{15}{13}\cos\theta}=\frac{5863}{7208+6240\cos\theta}.\]</div>
+<p>Check at <span class="arithmatex">\(\theta=0\)</span>: <span class="arithmatex">\(\frac{5863}{7208+6240}=\frac{5863}{13448}=0.436\)</span>, and directly <span class="arithmatex">\(\frac{1.084}{1.333+1.154}=0.436\)</span> ✓.</p>
+<p>(With the fallback values <span class="arithmatex">\(a=\frac14\)</span>, <span class="arithmatex">\(b=\frac54\)</span>: <span class="arithmatex">\(r=[\frac{21}8,\frac9{16},\frac54]\)</span>, <span class="arithmatex">\(P_{corr}=\frac{21}8+\frac98\cos\theta+\frac52\cos2\theta\)</span>, <span class="arithmatex">\(a_1=-\frac3{14}\)</span>, <span class="arithmatex">\(\sigma_i^2=\frac{561}{224}\)</span>, <span class="arithmatex">\(P_{AR}=\frac{3927}{1640-672\cos\theta}\)</span>.)</p>
+<p><img alt="correlogram vs AR(1)" src="img/gen/p3_jan22.svg" /></p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p>3c: <span class="arithmatex">\(\frac{13}8-\frac{15}8\cos\theta+\frac12\cos2\theta\)</span>. 3d: <span class="arithmatex">\(a_1=\frac{15}{26}\)</span>, <span class="arithmatex">\(\sigma_i^2=\frac{451}{416}\)</span>, <span class="arithmatex">\(P_{AR}=\dfrac{5863}{7208+6240\cos\theta}\)</span>.</p>
+</div>
+</details>
+<h3 id="pe21-3b">Practice exam 2021 · 3b, 3c<a class="headerlink" href="#pe21-3b" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Practice exam, 28 October 2021 · 3b (0.75 p), 3c (0.5 p)</p>
+<p><em>(Signal from <a href="p3-autocorr.html#pe21-3a">3a</a>: <span class="arithmatex">\(\rho[0]=\frac{28}{27}\)</span>, <span class="arithmatex">\(\rho[1]=-\frac4{27}\)</span>, <span class="arithmatex">\(\rho[\tau]=(\frac12)^{|\tau|-1}\rho[1]\)</span>.)</em></p>
+<p><strong>3b</strong> Now suppose you model the random signal as generated by a AR(1) process. 1. Find the AR model parameters. 2. Obtain the power spectral density function <span class="arithmatex">\(P_{AR1}(e^{j\theta})\)</span> from the AR(1) model and provide a sketch.</p>
+<p><strong>3c</strong> Now suppose that you approximate the random signal as generated by a MA(1) process. 1. use the correlogram method to calculate the power spectral density <span class="arithmatex">\(P_{\text{corrMA1}}(e^{j\theta})\)</span> from the autocorrelation function calculated in 3a. <strong>There is no need to calculate the MA model parameters.</strong> 2. Provide a sketch of the <span class="arithmatex">\(P_{\text{corrMA1}}(e^{j\theta})\)</span>. You may draw this sketch on top of the plot obtained in 3b. <strong>Hint:</strong> For an MA process, the number of autocorrelation lags different than zero is finite and related to the order of the MA process.</p>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> 3b: fit AR(1) to lags 0 and 1, give its PSD and a sketch. 3c: the MA(1) PSD, which is just the correlogram cut at lag 1 (that is why "no need to calculate the MA parameters": the shortcut of <a href="#13-ma1-pretend-the-signal-is-a-one-memory-step-moving-average">1.3</a>).</p>
+<p><strong>Step 1 — 3b: parameters.</strong> <span class="arithmatex">\(a_1=-\frac{\rho[1]}{\rho[0]}=\frac{4/27}{28/27}=\frac17\)</span>; <span class="arithmatex">\(\sigma_i^2=\rho[0]+a_1\rho[1]=\frac{28}{27}-\frac17\cdot\frac4{27}=\frac{196-4}{189}=\frac{192}{189}=\frac{64}{63}\)</span>.</p>
+<p><strong>Step 2 — the PSD:</strong> <span class="arithmatex">\(\lvert1+\frac17e^{-j\theta}\rvert^2=1+\frac1{49}+\frac27\cos\theta=\frac{50}{49}+\frac27\cos\theta\)</span>. Multiplying numerator and denominator by <span class="arithmatex">\(\frac72\)</span>: <span class="arithmatex">\(P_{AR1}=\dfrac{\frac{64}{63}\cdot\frac72}{\frac{25}7+\cos\theta}=\dfrac{32/9}{25/7+\cos\theta}\)</span>.</p>
+<p><strong>Step 3 — sketch values:</strong> <span class="arithmatex">\(\theta=0\)</span>: <span class="arithmatex">\(\frac{3.556}{4.571}=0.78\)</span>; <span class="arithmatex">\(\theta=\pm\frac\pi2\)</span> (<span class="arithmatex">\(\cos=0\)</span>): <span class="arithmatex">\(\frac{3.556}{3.571}=1.00\)</span>; <span class="arithmatex">\(\theta=\pm\pi\)</span>: <span class="arithmatex">\(\frac{3.556}{2.571}=1.38\)</span>. A gentle high-pass curve (small at 0, larger at <span class="arithmatex">\(\pi\)</span>).</p>
+<p><strong>Step 4 — 3c.</strong> MA(1) means only lags <span class="arithmatex">\(0,\pm1\)</span> are non-zero: <span class="arithmatex">\(P_{corr,MA1}=\rho[0]+2\rho[1]\cos\theta=\frac{28}{27}-\frac{8}{27}\cos\theta\)</span>, i.e. <span class="arithmatex">\(0.74\)</span> at 0, <span class="arithmatex">\(1.04\)</span> at <span class="arithmatex">\(\pm\frac\pi2\)</span>, <span class="arithmatex">\(1.33\)</span> at <span class="arithmatex">\(\pm\pi\)</span>: almost on top of the AR(1) curve.</p>
+<p><img alt="AR(1), correlogram and true ARMA" src="img/gen/p3_pe21.svg" /></p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p>3b: <span class="arithmatex">\(a_1=\frac17\)</span>, <span class="arithmatex">\(\sigma_i^2=\frac{64}{63}\)</span>, <span class="arithmatex">\(P_{AR1}=\dfrac{32/9}{25/7+\cos\theta}\)</span>. 3c: <span class="arithmatex">\(P=\frac{28}{27}-\frac8{27}\cos\theta\)</span>.</p>
+</div>
+</details>
+<h3 id="jan20-3">January 2020 retake · Exercise 3<a class="headerlink" href="#jan20-3" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Retake exam, 20 January 2020 · Exercise 3 · 0.8 p + 1.2 p</p>
+<p>Let <span class="arithmatex">\(x[n]\)</span> be a random process whose auto-correlation is given by</p>
+<div class="arithmatex">\[r_x[l] = \begin{cases} 1/21 &amp; l = 0 \\ 2/105 &amp; l = \pm 1 \\ 0 &amp; \text{else} \end{cases}\]</div>
+<ul>
+<li>(a) Determine and plot the correlogram power spectrum estimate. [0.8 pt]</li>
+<li>(b) Assume that <span class="arithmatex">\(x[n]\)</span> can be modeled by an MA(1) random process. Determine and plot its spectrum estimate. How does this relate to the spectrum estimate obtained in 3(a)? Motivate your answer. [1.2 pt]</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> (a) the correlogram. (b) fit an MA(1) and compare: the interesting part is the comparison.</p>
+<p><strong>Step 1 — (a).</strong> <span class="arithmatex">\(P_{corr}=\frac1{21}+2\cdot\frac2{105}\cos\theta=\frac1{21}+\frac4{105}\cos\theta\)</span>. At <span class="arithmatex">\(\theta=0\)</span>: <span class="arithmatex">\(\frac5{105}+\frac4{105}=\frac9{105}\approx0.086\)</span>; at <span class="arithmatex">\(\pm\pi\)</span>: <span class="arithmatex">\(\frac5{105}-\frac4{105}=\frac1{105}\approx0.0095\)</span> (low-pass).</p>
+<p><strong>Step 2 — (b): the quadratic.</strong> <span class="arithmatex">\(\frac b{1+b^2}=\frac{r[1]}{r[0]}=\frac{2/105}{1/21}=\frac{2}{105}\cdot21=\frac25\Rightarrow5b=2+2b^2\Rightarrow2b^2-5b+2=0\Rightarrow b=\frac{5\pm\sqrt{25-16}}{4}=\frac{5\pm3}4=2\text{ or }\frac12.\)</span> Keep <span class="arithmatex">\(b=\frac12\)</span> (<span class="arithmatex">\(\lvert b\rvert&lt;1\)</span>). <span class="arithmatex">\(\sigma_i^2=\frac{r[1]}{b}=\frac{2/105}{1/2}=\frac4{105}\)</span>.</p>
+<p><strong>Step 3 — its PSD.</strong> <span class="arithmatex">\(\frac4{105}\lvert1+\frac12e^{-j\theta}\rvert^2=\frac4{105}\big(\frac54+\cos\theta\big)=\frac5{105}+\frac4{105}\cos\theta=\frac1{21}+\frac4{105}\cos\theta.\)</span></p>
+<p><strong>Step 4 — the comparison.</strong> Identical curves. The given autocorrelation is zero beyond lag 1, which is exactly the structure of an MA(1); the fitted MA(1) reproduces <span class="arithmatex">\(r[0]\)</span> and <span class="arithmatex">\(r[1]\)</span> exactly, so it has <em>the same</em> autocorrelation and therefore the same PSD.</p>
+<p><img alt="same curve" src="img/gen/p3_jan20.svg" /></p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p>(a) <span class="arithmatex">\(\frac1{21}+\frac4{105}\cos\theta\)</span>. (b) <span class="arithmatex">\(b=\frac12\)</span>, <span class="arithmatex">\(\sigma_i^2=\frac4{105}\)</span>, identical PSD (the given <span class="arithmatex">\(r\)</span> is exactly an MA(1) autocorrelation).</p>
+</div>
+</details>
+<h3 id="nov19-2">November 2019 exam · Exercise 2<a class="headerlink" href="#nov19-2" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Written exam, 4 November 2019 · Exercise 2 · 1 p + 1 p</p>
+<p>Let <span class="arithmatex">\(x[n]\)</span> be a random process whose correlation is estimated. The values for the first five lags are <span class="arithmatex">\(r_x[0] = 1\)</span>, <span class="arithmatex">\(r_x[\pm 1] = 0.7\)</span>, <span class="arithmatex">\(r_x[\pm 2] = 0.5\)</span>, <span class="arithmatex">\(r_x[\pm 3] = 0.3\)</span>, and <span class="arithmatex">\(r_x[\pm 4] = 0\)</span>.</p>
+<ul>
+<li>(a) Determine and plot the correlogram power spectrum estimate. [1 pt.]</li>
+<li>(b) Assume that <span class="arithmatex">\(x[n]\)</span> is modeled by an AR(2) model. Determine and plot its spectrum estimate. [1 pt.]</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> Correlogram of lags 0–3 (<span class="arithmatex">\(r[4]=0\)</span> adds nothing) and an AR(2) fit.</p>
+<p><strong>Step 1 — (a).</strong> <span class="arithmatex">\(P_{cor}=1+2(0.7)\cos\theta+2(0.5)\cos2\theta+2(0.3)\cos3\theta=1+1.4\cos\theta+\cos2\theta+0.6\cos3\theta\)</span>. At <span class="arithmatex">\(\theta=0\)</span>: <span class="arithmatex">\(1+1.4+1+0.6=4.0\)</span>.</p>
+<p><strong>Step 2 — (b): <abbr title="the linear equations that tie the AR coefficients to the autocorrelation lags, obtained by multiplying the AR equation by x[n−l] and taking expectations.">Yule–Walker</abbr> rows 2, 3</strong> with <span class="arithmatex">\(r=[1,0.7,0.5]\)</span>: <span class="arithmatex">\(0.7+a_1+0.7a_2=0\)</span> and <span class="arithmatex">\(0.5+0.7a_1+a_2=0\)</span>, i.e.</p>
+<div class="arithmatex">\[\begin{cases}a_1+0.7a_2=-0.7\\0.7a_1+a_2=-0.5\end{cases}\qquad\det=1-0.49=0.51.\]</div>
+<p><span class="arithmatex">\(a_1=\dfrac{(-0.7)(1)-(0.7)(-0.5)}{0.51}=\dfrac{-0.7+0.35}{0.51}=-0.686\)</span>, <span class="arithmatex">\(\ a_2=\dfrac{(1)(-0.5)-(0.7)(-0.7)}{0.51}=\dfrac{-0.5+0.49}{0.51}=-0.0196\)</span>.</p>
+<p><strong>Step 3 — noise variance:</strong> <span class="arithmatex">\(\sigma_i^2=1+0.7a_1+0.5a_2=1-0.4804-0.0098=0.5098.\)</span></p>
+<p><strong>Step 4 — the PSD:</strong> <span class="arithmatex">\(P_{AR2}=\dfrac{0.5098}{\lvert1-0.686e^{-j\theta}-0.0196e^{-j2\theta}\rvert^2}\)</span>; at <span class="arithmatex">\(\theta=0\)</span> the denominator is <span class="arithmatex">\((1-0.686-0.0196)^2=0.294^2\)</span>, so <span class="arithmatex">\(P_{AR2}(0)=\frac{0.5098}{0.0864}\approx5.9\)</span>.</p>
+<p><img alt="correlogram vs AR(2)" src="img/gen/p3_nov19.svg" /></p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p>(a) <span class="arithmatex">\(1+1.4\cos\theta+\cos2\theta+0.6\cos3\theta\)</span>. (b) <span class="arithmatex">\(a_1=-0.686\)</span>, <span class="arithmatex">\(a_2=-0.0196\)</span>, <span class="arithmatex">\(\sigma_i^2=0.510\)</span> (the key prints 0.5089, a typo).</p>
+</div>
+</details>
+<h3 id="jan19-4">January 2019 retake · Exercise 4 (Wiener filter)<a class="headerlink" href="#jan19-4" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Written exam, 21 January 2019 · Exercise 4 · 1.25 p + 1.25 p</p>
+<p>In this exercise you need to design an optimal FIR Wiener filter with two coefficients <span class="arithmatex">\(w_0\)</span> and <span class="arithmatex">\(w_1\)</span> for the situation depicted in Figure 1, for which the following relationship holds <span class="arithmatex">\(\hat{e}[k] = w[k] * h[k] * x[k] = w[k] * g[k]\)</span>.</p>
+<p><img alt="Figure 1" src="img/exam/jan19-4-wiener.jpg" /></p>
+<p>The measured signal is AR(1) and can be described by the following difference equation: <span class="arithmatex">\(x[k] = i[k] + \frac{1}{2}x[k-1]\)</span>. The innovation signal <span class="arithmatex">\(i[k]\)</span> is a white noise sequence with zero mean and variance <span class="arithmatex">\(E\{i^2[k]\} = \sigma_i^2 = \frac{1}{4}\)</span>. The reference signal <span class="arithmatex">\(e[k]\)</span> has zero mean and variance <span class="arithmatex">\(E\{e^2[k]\} = \sigma_e^2 = \frac{7}{3}\)</span>. This reference signal is correlated with the measured signal <span class="arithmatex">\(x[k]\)</span>, which is expressed by the cross correlation <span class="arithmatex">\(E\{e[k]x[k-\tau]\} = \rho_{ex}[\tau]\)</span> from which we know the following values: <span class="arithmatex">\(\rho_{ex}[0] = \frac{2}{3}\)</span>, <span class="arithmatex">\(\rho_{ex}[1] = \frac{5}{6}\)</span> and <span class="arithmatex">\(\rho_{ex}[2] = \frac{5}{12}\)</span>.</p>
+<p>(a) Now we have <span class="arithmatex">\(H(z) = 1\)</span>. Calculate the optimal coefficients <span class="arithmatex">\(w_0\)</span> en <span class="arithmatex">\(w_1\)</span> and the minimal error <span class="arithmatex">\(J_{min}\)</span>. [1.25 pt.]</p>
+<p>(b) Now we have <span class="arithmatex">\(H(z) = 1 - 2z^{-1}\)</span>. Do the same as in (a). Note that now <span class="arithmatex">\(\hat{e}[k] = w[k] * h[k] * x[k] = w[k] * g[k]\)</span>, and the input-output cross correlation is <span class="arithmatex">\(\rho_{eg}[\tau] = E\{e[k]g[k-\tau]\}\)</span> [1.25 pt.]</p>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> Build the best 2-tap weighted sum of the filter input that imitates the reference signal <span class="arithmatex">\(e[k]\)</span> (best = smallest average squared error <span class="arithmatex">\(J\)</span>). This is old material (2019); the reader now treats Wiener filtering as beyond scope except as the AR predictor, so only study it if you have time.</p>
+<p><strong>Where the equations come from.</strong> The filter output is <span class="arithmatex">\(\hat e[k]=w_0g[k]+w_1g[k-1]\)</span> (<span class="arithmatex">\(g\)</span> = the filter's input; <span class="arithmatex">\(g=x\)</span> when <span class="arithmatex">\(H=1\)</span>). The error is <span class="arithmatex">\(J(\mathbf w)=\mathbb E\{(e-\hat e)^2\}=\sigma_e^2-2\mathbf w^T\boldsymbol\rho+\mathbf w^T\mathbf R\mathbf w\)</span>, with <span class="arithmatex">\(\mathbf R\)</span> the autocorrelation matrix of <span class="arithmatex">\(g\)</span> and <span class="arithmatex">\(\boldsymbol\rho=[\rho_{eg}[0],\rho_{eg}[1]]^T\)</span> the cross-correlation with <span class="arithmatex">\(e\)</span>. Setting the derivative to zero, <span class="arithmatex">\(-2\boldsymbol\rho+2\mathbf R\mathbf w=0\)</span>, gives the <strong><abbr title="R w = ρ: the linear equations whose solution minimises the squared error of a Wiener filter.">normal equations</abbr></strong> <span class="arithmatex">\(\mathbf R\mathbf w=\boldsymbol\rho\)</span>, and putting that back gives <span class="arithmatex">\(J_{min}=\sigma_e^2-\mathbf w^T\boldsymbol\rho\)</span>.</p>
+<p><strong>Step 1 — autocorrelation of <span class="arithmatex">\(x\)</span>.</strong> AR(1) with <span class="arithmatex">\(a=-\frac12\)</span>: <span class="arithmatex">\(r_x[0]=\frac{\sigma_i^2}{1-a^2}=\frac{1/4}{3/4}=\frac13\)</span>, <span class="arithmatex">\(r_x[1]=-a\,r_x[0]=\frac16\)</span>, <span class="arithmatex">\(r_x[2]=\frac1{12}\)</span> (<a href="p3-autocorr.html#32-ar1-a-geometric-tail">3.3 §3.2</a>).</p>
+<p><strong>Step 2 — (a), <abbr title="R w = ρ: the linear equations whose solution minimises the squared error of a Wiener filter.">normal equations</abbr>.</strong> <span class="arithmatex">\(\begin{bmatrix}\frac13&amp;\frac16\\\frac16&amp;\frac13\end{bmatrix}\begin{bmatrix}w_0\\w_1\end{bmatrix}=\begin{bmatrix}\frac23\\\frac56\end{bmatrix}\)</span>. Multiply by 6: <span class="arithmatex">\(\begin{cases}2w_0+w_1=4\\w_0+2w_1=5\end{cases}\)</span> → <span class="arithmatex">\(w_0=\frac{2\cdot4-5}{3}=1\)</span>, <span class="arithmatex">\(w_1=\frac{2\cdot5-4}{3}=2\)</span>. <span class="arithmatex">\(\ J_{min}=\frac73-\big(1\cdot\frac23+2\cdot\frac56\big)=\frac73-\frac73=0\)</span>.</p>
+<p><strong>Step 3 — (b), the filtered input</strong> <span class="arithmatex">\(g[k]=x[k]-2x[k-1]\)</span> (that is <span class="arithmatex">\(H(z)=1-2z^{-1}\)</span>). Its autocorrelation: <span class="arithmatex">\(r_g[l]=\mathbb E\{(x[k]-2x[k-1])(x[k-l]-2x[k-l-1])\}=5r_x[l]-2r_x[l+1]-2r_x[l-1]\)</span>. So <span class="arithmatex">\(r_g[0]=\frac53-\frac26-\frac26=1\)</span>, and <span class="arithmatex">\(r_g[1]=\frac56-\frac2{12}-\frac23=\frac{10-2-8}{12}=0\)</span>. The cross-correlation: <span class="arithmatex">\(\rho_{eg}[\tau]=\rho_{ex}[\tau]-2\rho_{ex}[\tau+1]\)</span>, so <span class="arithmatex">\(\rho_{eg}[0]=\frac23-\frac{10}6=-1\)</span> and <span class="arithmatex">\(\rho_{eg}[1]=\frac56-\frac{10}{12}=0\)</span>.</p>
+<p><strong>Step 4 — solve.</strong> <span class="arithmatex">\(\begin{bmatrix}1&amp;0\\0&amp;1\end{bmatrix}\mathbf w=\begin{bmatrix}-1\\0\end{bmatrix}\Rightarrow w_0=-1\)</span>, <span class="arithmatex">\(w_1=0\)</span>; <span class="arithmatex">\(J_{min}=\frac73-(-1)(-1)=\frac43\)</span>.</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p>(a) <span class="arithmatex">\(w_0=1\)</span>, <span class="arithmatex">\(w_1=2\)</span>, <span class="arithmatex">\(J_{min}=0\)</span>. (b) <span class="arithmatex">\(w_0=-1\)</span>, <span class="arithmatex">\(w_1=0\)</span>, <span class="arithmatex">\(J_{min}=\frac43\)</span>.</p>
+</div>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="p3-autocorr.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 3.3 Autocorrelation of ARMA models">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                3.3 Autocorrelation of ARMA models
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="p4-basics.html" class="md-footer__link md-footer__link--next" aria-label="Next: 4.1 Errors, ROC, Neyman–Pearson">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                4.1 Errors, ROC, Neyman–Pearson
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.footer", "navigation.tracking", "navigation.instant", "navigation.instant.progress", "toc.follow", "content.tooltips"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js?v=1793008663"></script>
+      
+        <script src="javascripts/katex.js?v=1793008663"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="javascripts/quiz.js?v=1793008663"></script>
+      
+        <script src="javascripts/ask.js?v=1793008663"></script>
+      
+        <script src="javascripts/video.js?v=1793008663"></script>
+      
+        <script src="javascripts/layout.js?v=1793008663"></script>
+      
+        <script src="javascripts/keypoints.js?v=1793008663"></script>
+      
+        <script src="javascripts/progress.js?v=1793008663"></script>
+      
+        <script src="javascripts/widgets.js?v=1793008663"></script>
+      
+        <script src="javascripts/navsections.js?v=1793008663"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2272 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Every 5CTA0 Statistical Signal Processing exam question (2019–2026), solved step by step, organised by the patterns that keep coming back.">
+      
+      
+      
+        <link rel="canonical" href="https://dkealvaro.github.io/5cta0-exam-guide/e4-bayes.html">
+      
+      
+        <link rel="prev" href="e4-lrt.html">
+      
+      
+        <link rel="next" href="exams.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>4.2 Priors, costs, theory - 5CTA0 · Pass the exam</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css?v=1793008663">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css?v=1793008663">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+4:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Source Serif 4";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0.16.11/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap">
+    
+      <link rel="stylesheet" href="stylesheets/extra.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/ask.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/layout.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/keypoints.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/widgets.css?v=1793008663">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#42-priors-costs-and-the-theory-questions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-header__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            5CTA0 · Pass the exam
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4.2 Priors, costs, theory
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-nav__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    5CTA0 · Pass the exam
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New · Exam course
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    New · Exam course
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="podcast.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Podcast (watch first)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 1 · Probability (1.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 1 · Probability (1.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes word problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-joint.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-wss.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Stationary and ergodic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-factor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-map.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 MAP with a prior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Least-squares line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Theory questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-corr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Correlogram, pick the plot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-arma.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 AR and MA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Periodogram, Welch, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Likelihood ratio test
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Priors, costs, theory
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="e4-bayes.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Priors, costs, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-idea-in-one-minute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The idea in one minute
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-fight-this-section-with-the-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to fight this section with the sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-june-2026-4c-priors-onto-the-rayleigh-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 · June 2026 · 4c — priors onto the Rayleigh test
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-april-2025-4c-posteriors-and-costs-the-student-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 · April 2025 · 4c — posteriors and costs (the student fails)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-november-2022-4f-4g-where-p_1p_1p_0p_0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 · November 2022 · 4f, 4g — "where \(p_1P_1=p_0P_0\)"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-integrals-the-calculations-strip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The integrals: the Calculations strip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-theory-questions-box-4c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The theory questions — box 4C
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exams.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mock exams with answers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="battle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Battle kit · every question + its box
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cheatsheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 cheat sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cheatsheet3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 cheat sheet (v3, clearer wording)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Old · Long guide (deep dive)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Old · Long guide (deep dive)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="patterns.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The exam, decoded
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p0-foundations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 0 · From zero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="toolbox.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toolbox
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes & total probability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-rv.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Random variables & joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-processes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Random processes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-factorisation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-crlb.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 CRLB & Fisher information
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Bayesian estimation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Least squares
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-windows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Signals, windows, zero padding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-nonparametric.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 Non-parametric estimators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-autocorr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Autocorrelation of ARMA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-chain.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.4 Correlogram → AR → MA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-basics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Errors, ROC, Neyman–Pearson
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Likelihood ratio tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.3 Bayesian detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-idea-in-one-minute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The idea in one minute
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-fight-this-section-with-the-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to fight this section with the sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-june-2026-4c-priors-onto-the-rayleigh-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 · June 2026 · 4c — priors onto the Rayleigh test
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-april-2025-4c-posteriors-and-costs-the-student-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 · April 2025 · 4c — posteriors and costs (the student fails)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-november-2022-4f-4g-where-p_1p_1p_0p_0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 · November 2022 · 4f, 4g — "where \(p_1P_1=p_0P_0\)"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-integrals-the-calculations-strip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The integrals: the Calculations strip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-theory-questions-box-4c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The theory questions — box 4C
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="42-priors-costs-and-the-theory-questions">4.2 Priors, costs and the theory questions<a class="headerlink" href="#42-priors-costs-and-the-theory-questions" title="Permanent link">#</a></h1>
+<div class="meta"><span class="hot">Theory MC in 6 of 6 recent exams</span><span>Bayes test in 3 of the last 3</span><span>0.5–1.5 points</span><span>25 min</span></div>
+
+<figure class="pod"><video src="video/pod_ep1_detection.mp4" poster="video/pod_ep1_detection.jpg" controls playsinline preload="none"></video><figcaption><b>Watch first: podcast episode 1, Detection: the likelihood ratio test</b> (with sound). Answer every purple YOUR TURN out loud before the countdown ends; pause if you need more time. <a href="podcast.html">All 5 episodes</a>.</figcaption></figure>
+
+<p>Needs <a href="e4-lrt.html">4.1 Likelihood ratio test</a> first.</p>
+<h2 id="the-idea-in-one-minute">The idea in one minute<a class="headerlink" href="#the-idea-in-one-minute" title="Permanent link">#</a></h2>
+<p>If devices are present only 10 % of the time, a measurement has to be <strong>more convincing</strong> before you say "device". Bayes does exactly that: it multiplies each curve by its prior and decides <span class="arithmatex">\(\mathcal H_1\)</span> wherever the weighted <span class="arithmatex">\(\mathcal H_1\)</span> curve is the taller one. Drag the crossing in the picture (or slide the prior) and watch the threshold move.</p>
+<div class="widget" data-w="lrt" data-priors="1"></div>
+
+<p>The same thing as a formula: it is still the LRT of 4.1, only the number on the right is now fixed by priors and costs.</p>
+<div class="key">
+<div class="arithmatex">\[
+\frac{p(x\mid\mathcal H_1)}{p(x\mid\mathcal H_0)}\ \underset{\mathcal H_0}{\overset{\mathcal H_1}{\gtrless}}\ \lambda=\frac{(C_{10}-C_{00})\,P_0}{(C_{01}-C_{11})\,P_1}
+\]</div>
+</div>
+<p><span class="arithmatex">\(C_{ij}\)</span> = cost of <strong>deciding <span class="arithmatex">\(\mathcal H_i\)</span> when <span class="arithmatex">\(\mathcal H_j\)</span> is true</strong>. So <span class="arithmatex">\(C_{10}\)</span> = cost of a false alarm, <span class="arithmatex">\(C_{01}\)</span> = cost of a miss, <span class="arithmatex">\(C_{00}=C_{11}=0\)</span> almost always (being right costs nothing). Four layers, each from something different:</p>
+<table>
+<thead>
+<tr>
+<th>layer</th>
+<th>symbol</th>
+<th>made of</th>
+<th>note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><span class="arithmatex">\(p(x\mid\mathcal H_1)\)</span>, <span class="arithmatex">\(p(x\mid\mathcal H_0)\)</span></td>
+<td>the <strong>model</strong></td>
+<td>the two curve heights</td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="arithmatex">\(L(x)=\dfrac{p(x\mid\mathcal H_1)}{p(x\mid\mathcal H_0)}\)</span></td>
+<td>layer 1 only</td>
+<td>priors and costs are <strong>not</strong> in here</td>
+</tr>
+<tr>
+<td>3</td>
+<td><span class="arithmatex">\(\lambda\)</span> (the exam writes <span class="arithmatex">\(\eta\)</span>)</td>
+<td>priors + costs</td>
+<td>the <strong>bar</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td><span class="arithmatex">\(\gamma\)</span></td>
+<td>layers 2 + 3</td>
+<td>the cut on <span class="arithmatex">\(x\)</span>: solve <span class="arithmatex">\(L(x)&gt;\lambda\)</span> for <span class="arithmatex">\(x\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>(Trap: the <span class="arithmatex">\(\lambda(\theta)=\frac{1}{1+e^{-\theta}}\)</span> of <a href="e2-mle.html">2.1</a> is a <strong>different lambda</strong> — a model parameter there, not a detection threshold.)</p>
+<h2 id="how-to-fight-this-section-with-the-sheet">How to fight this section with the sheet<a class="headerlink" href="#how-to-fight-this-section-with-the-sheet" title="Permanent link">#</a></h2>
+<p>The exam adds <strong>priors</strong> <span class="arithmatex">\(P(H_0),P(H_1)\)</span>, <strong>costs</strong> <span class="arithmatex">\(C_{ij}\)</span>, "posterior", "Bayesian hypothesis test" to the two PDFs → you open <strong>box 4B</strong> on your A4 sheet: one formula for <span class="arithmatex">\(\eta\)</span>, one for the posterior version, one for "where <span class="arithmatex">\(p_1P_1=p_0P_0\)</span>", each with an exam already done. The theory MC is <strong>box 4C</strong>.</p>
+<div class="admonition sheet">
+<p class="admonition-title">Box 4B, exactly as it is printed on the sheet</p>
+<p>IF YOU SEE priors <span class="arithmatex">\(P(H_0),P(H_1)\)</span>, costs <span class="arithmatex">\(C_{ij}\)</span>, "posterior", "Bayesian hypothesis test", "<span class="arithmatex">\(P_M\)</span>" / "miss"</p>
+<p><span class="arithmatex">\(C_{ij}\)</span> = cost of deciding <span class="arithmatex">\(i\)</span> when <span class="arithmatex">\(j\)</span> is true. <span class="arithmatex">\(C_{10}\)</span> = false alarm cost, <span class="arithmatex">\(C_{01}\)</span> = miss cost.</p>
+<ul>
+<li>Threshold <span class="arithmatex">\(\eta=\dfrac{P(H_0)\,(C_{10}-C_{00})}{P(H_1)\,(C_{01}-C_{11})}\)</span>. Equal error costs and 0 for correct → <span class="arithmatex">\(\eta=\frac{P(H_0)}{P(H_1)}\)</span>. Then do 4A with this <span class="arithmatex">\(\eta\)</span>.<br>
+  <em>Jun26-4c:</em> <span class="arithmatex">\(\eta=\frac{0.9}{0.1}=9\)</span> → put <span class="arithmatex">\(\eta=9\)</span> in the Rayleigh answer of 4A.</li>
+<li><strong>Posteriors given</strong> → accept <span class="arithmatex">\(H_1\)</span> if <span class="arithmatex">\(\dfrac{P(H_1\mid x)}{P(H_0\mid x)}\gt\dfrac{C_{10}-C_{00}}{C_{01}-C_{11}}\)</span>.<br>
+  <em>Apr25-4c:</em> <span class="arithmatex">\(C_{01}=100\,C_{10}\)</span> → right side <span class="arithmatex">\(=0.01\)</span>. Posterior ratio <span class="arithmatex">\(=5\gt0.01\)</span> → accept <span class="arithmatex">\(H_1\)</span> → the student fails: <strong>yes</strong>.</li>
+<li><strong>"Where <span class="arithmatex">\(p_1P_1=p_0P_0\)</span>"</strong> → write the equality and solve.<br>
+  <em>Nov22:</em> <span class="arithmatex">\(0.6\cdot2e^{-2y}=0.4\,e^{-y}\)</span> → <span class="arithmatex">\(e^{-y}=\frac13\)</span> → <span class="arithmatex">\(y=\ln3\)</span>; decide <span class="arithmatex">\(H_1\)</span> for <span class="arithmatex">\(y\lt\ln3\)</span>. <span class="arithmatex">\(P_{FA}=1-e^{-\ln3}=\frac23\)</span>, <span class="arithmatex">\(P_M=e^{-2\ln3}=\frac19\)</span>.</li>
+</ul>
+</div>
+<p>Special cases of the <span class="arithmatex">\(\eta\)</span> formula (from its own line: <em>"Equal error costs and 0 for correct → <span class="arithmatex">\(\eta=\frac{P(H_0)}{P(H_1)}\)</span>"</em>):</p>
+<table>
+<thead>
+<tr>
+<th>Special case</th>
+<th><span class="arithmatex">\(\lambda\)</span></th>
+<th>what it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>right costs 0, wrong costs 1 ("0/1 costs")</td>
+<td><span class="arithmatex">\(\dfrac{P_0}{P_1}\)</span></td>
+<td>minimises the total probability of error <span class="arithmatex">\(P_e\)</span></td>
+</tr>
+<tr>
+<td>0/1 costs <strong>and</strong> equal priors</td>
+<td><span class="arithmatex">\(1\)</span></td>
+<td>maximum likelihood rule: pick the taller curve</td>
+</tr>
+<tr>
+<td>misses 100× worse than false alarms</td>
+<td><span class="arithmatex">\(\dfrac{P_0}{100P_1}\)</span></td>
+<td>much easier to say <span class="arithmatex">\(\mathcal H_1\)</span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-june-2026-4c-priors-onto-the-rayleigh-test">1 · June 2026 · 4c — priors onto the Rayleigh test<a class="headerlink" href="#1-june-2026-4c-priors-onto-the-rayleigh-test" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Resit Q4, June 2026 · 4c · 1 p (after 4b built the Rayleigh LRT)</p>
+<p>Now assume prior probabilities <span class="arithmatex">\(P(H_0) = 0.9\)</span>, <span class="arithmatex">\(P(H_1) = 0.1\)</span>, reflecting the fact that a transmitting device is present only 10 % of the time. Assume equal costs for false alarms and miss-detections. When should the sensor accept <span class="arithmatex">\(H_1\)</span>?</p>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the cheat sheet: box 4B, bullet 1, the <span class="arithmatex">\(\eta\)</span> rule (the <em>Jun26-4c</em> line runs it on these numbers)</p>
+<div class="stepper" markdown>
+<p><strong>Sheet step 1 · the formula.</strong>
+<em>"<span class="arithmatex">\(\eta=\dfrac{P(H_0)\,(C_{10}-C_{00})}{P(H_1)\,(C_{01}-C_{11})}\)</span>. Equal error costs and 0 for correct → <span class="arithmatex">\(\eta=\frac{P(H_0)}{P(H_1)}\)</span>."</em> Equal costs given → the short form.</p>
+<hr />
+<p><strong>Sheet step 2 · the number.</strong>
+<em>"<span class="arithmatex">\(\eta=\frac{0.9}{0.1}=9\)</span>"</em> — printed. The measurement must be 9× more likely under <span class="arithmatex">\(H_1\)</span> before the sensor says <span class="arithmatex">\(H_1\)</span> (rare device → high bar).</p>
+<hr />
+<p><strong>Sheet step 3 · what to do with it.</strong>
+<em>"Then do 4A with this <span class="arithmatex">\(\eta\)</span>."</em> And the example line: <em>"put <span class="arithmatex">\(\eta=9\)</span> in the Rayleigh answer of 4A"</em> — the 4A formula gives the cut:</p>
+<div class="arithmatex">\[x&gt;\gamma=\sqrt{\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\Big(9\,\frac{\sigma_1^2}{\sigma_0^2}\Big)}.\]</div>
+<hr />
+<p><strong>Sheet check · the box's threshold rule.</strong>
+Equal error costs → <span class="arithmatex">\(\eta=\frac{P(H_0)}{P(H_1)}\)</span> — plug the priors in, then reuse the 4A threshold. (With <span class="arithmatex">\(\sigma_0=1,\sigma_1=2\)</span> the line moves from <span class="arithmatex">\(1.92\)</span> at <span class="arithmatex">\(\eta=1\)</span> to <span class="arithmatex">\(3.09\)</span> at <span class="arithmatex">\(\eta=9\)</span> — the prior only moves the line, never the curves.)</p>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><span class="arithmatex">\(\eta=\frac{0.9}{0.1}=9\)</span>; accept <span class="arithmatex">\(H_1\)</span> when <span class="arithmatex">\(x&gt;\gamma=\sqrt{\dfrac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\Big(9\,\dfrac{\sigma_1^2}{\sigma_0^2}\Big)}\)</span>.</p>
+</div>
+<h2 id="2-april-2025-4c-posteriors-and-costs-the-student-fails">2 · April 2025 · 4c — posteriors and costs (the student fails)<a class="headerlink" href="#2-april-2025-4c-posteriors-and-costs-the-student-fails" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q3, 13 April 2025 · 4c · 1 p</p>
+<p>An AI agent detects whether assignments were generated with genAI. <span class="arithmatex">\(\mathcal{H}_0\)</span>: written by a student; <span class="arithmatex">\(\mathcal{H}_1\)</span>: generated by genAI. The student fails if the agent accepts <span class="arithmatex">\(\mathcal{H}_1\)</span>. Assume <span class="arithmatex">\(C_{0,1} = 100C_{1,0}\)</span>, <span class="arithmatex">\(C_{1,1} = C_{0,0} = 0\)</span>, and that the posterior of <span class="arithmatex">\(\mathcal{H}_0\)</span> is 5 times smaller than the posterior of <span class="arithmatex">\(\mathcal{H}_1\)</span>. Should the student fail the course?</p>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the cheat sheet: box 4B, bullet 2, the posterior-ratio rule (the <em>Apr25-4c</em> line runs it on these numbers)</p>
+<div class="stepper" markdown>
+<p><strong>Sheet step 1 · which bullet?</strong>
+<em>"<strong>Posteriors given</strong> → accept <span class="arithmatex">\(H_1\)</span> if <span class="arithmatex">\(\dfrac{P(H_1\mid x)}{P(H_0\mid x)}\gt\dfrac{C_{10}-C_{00}}{C_{01}-C_{11}}\)</span>."</em> The exam hands us posteriors → this bullet, not the <span class="arithmatex">\(\eta\)</span> one.</p>
+<hr />
+<p><strong>Sheet step 2 · the right side.</strong>
+<em>"<span class="arithmatex">\(C_{01}=100\,C_{10}\)</span> → right side <span class="arithmatex">\(=0.01\)</span>."</em> <span class="arithmatex">\(\frac{C_{10}-0}{C_{01}-0}=\frac{C_{10}}{100C_{10}}=0.01\)</span>.</p>
+<hr />
+<p><strong>Sheet step 3 · the left side and the verdict.</strong>
+"Posterior of <span class="arithmatex">\(H_0\)</span> is 5 times smaller" → ratio <span class="arithmatex">\(=\frac{P(H_1|x)}{P(H_0|x)}=5\)</span>. The sheet: <em>"Posterior ratio <span class="arithmatex">\(=5\gt0.01\)</span> → accept <span class="arithmatex">\(H_1\)</span> → the student fails: <strong>yes</strong>."</em></p>
+<hr />
+<p><strong>Sheet check · the box's comparison.</strong>
+<em>"Posteriors given → accept <span class="arithmatex">\(H_1\)</span> if <span class="arithmatex">\(\dfrac{P(H_1\mid x)}{P(H_0\mid x)}\gt\dfrac{C_{10}-C_{00}}{C_{01}-C_{11}}\)</span>"</em> — one comparison decides it: <span class="arithmatex">\(5&gt;0.01\)</span> → <strong>yes</strong>, the student fails.</p>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>Yes</strong> — the ratio 5 beats the bar 0.01, so accept <span class="arithmatex">\(\mathcal H_1\)</span> and the student fails.</p>
+</div>
+<h2 id="3-november-2022-4f-4g-where-p_1p_1p_0p_0">3 · November 2022 · 4f, 4g — "where <span class="arithmatex">\(p_1P_1=p_0P_0\)</span>"<a class="headerlink" href="#3-november-2022-4f-4g-where-p_1p_1p_0p_0" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Final exam, 7 November 2022 · 4f, 4g · 0.5 p each</p>
+<p><span class="arithmatex">\(p(y;\mathcal H_0)=e^{-y}\)</span>, <span class="arithmatex">\(p(y;\mathcal H_1)=2e^{-2y}\)</span> for <span class="arithmatex">\(y\ge0\)</span>. Priors <span class="arithmatex">\(P_0 = 0.4\)</span> and <span class="arithmatex">\(P_1 = 0.6\)</span>; costs <span class="arithmatex">\(C_{1,1} = C_{0,0} = 0\)</span>, <span class="arithmatex">\(C_{0,1} = C_{1,0} = 1\)</span>, so we decide <span class="arithmatex">\(\mathcal H_1\)</span> when <span class="arithmatex">\(p(y|\mathcal{H}_1)P_1 &gt; p(y|\mathcal{H}_0)P_0\)</span>.</p>
+<p><strong>4f</strong> Find the threshold <span class="arithmatex">\(\gamma''\)</span>, i.e. the value of <span class="arithmatex">\(y\)</span> for which <span class="arithmatex">\(p(y|\mathcal{H}_1)P_1 = p(y|\mathcal{H}_0)P_0\)</span>.</p>
+<p><strong>4g</strong> Determine <span class="arithmatex">\(P_M\)</span> and <span class="arithmatex">\(P_{FA}\)</span> for this test.</p>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the cheat sheet: box 4B, bullet 3 — the <em>Nov22</em> line is both sub-questions</p>
+<div class="stepper" markdown>
+<p><strong>Sheet step 1 · the bullet.</strong>
+<em>""Where <span class="arithmatex">\(p_1P_1=p_0P_0\)</span>" → write the equality and solve."</em> <span class="arithmatex">\(0.6\cdot2e^{-2y}=0.4\,e^{-y}\)</span>.</p>
+<hr />
+<p><strong>Sheet step 2 · solve (the printed chain).</strong>
+<em>"<span class="arithmatex">\(0.6\cdot2e^{-2y}=0.4\,e^{-y}\)</span> → <span class="arithmatex">\(e^{-y}=\frac13\)</span> → <span class="arithmatex">\(y=\ln3\)</span>"</em> → <span class="arithmatex">\(\gamma''=\ln3\approx1.10\)</span>. (Divide both sides by <span class="arithmatex">\(0.4e^{-2y}\)</span>: <span class="arithmatex">\(3=e^{y}\)</span>.)</p>
+<hr />
+<p><strong>Sheet step 3 · the rule's direction.</strong>
+<em>"decide <span class="arithmatex">\(H_1\)</span> for <span class="arithmatex">\(y\lt\ln3\)</span>"</em> — small <span class="arithmatex">\(y\)</span> points to <span class="arithmatex">\(H_1\)</span> because <span class="arithmatex">\(2e^{-2y}\)</span> is the curve tall near 0 (the ratio <span class="arithmatex">\(3e^{-y}\)</span> shrinks with <span class="arithmatex">\(y\)</span>).</p>
+<hr />
+<p><strong>Sheet step 4 · the two areas (the printed end of the line).</strong>
+<span class="arithmatex">\(P_{FA}=1-e^{-\ln3}=\frac23\)</span> (decide <span class="arithmatex">\(H_1\)</span> while <span class="arithmatex">\(H_0\)</span> true → the <span class="arithmatex">\(e^{-y}\)</span> area left of <span class="arithmatex">\(\ln3\)</span>), <span class="arithmatex">\(P_M=e^{-2\ln3}=\frac19\)</span> (the <span class="arithmatex">\(2e^{-2y}\)</span> area right of <span class="arithmatex">\(\ln3\)</span>).</p>
+<hr />
+<p><strong>Sheet check · the box's equality rule.</strong>
+<em>"Where <span class="arithmatex">\(p_1P_1=p_0P_0\)</span> → write the equality and solve"</em> gives <span class="arithmatex">\(\gamma''\)</span> and the direction; the two areas then come from the 4A tail recipes (<span class="arithmatex">\(e^{-ct}\)</span>). One rule, three answers.</p>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><span class="arithmatex">\(\gamma''=\ln3\approx1.10\)</span> (decide <span class="arithmatex">\(\mathcal H_1\)</span> for <span class="arithmatex">\(y&lt;\ln 3\)</span>); <span class="arithmatex">\(P_{FA}=\frac23\)</span>, <span class="arithmatex">\(P_M=\frac19\)</span>.</p>
+</div>
+<h2 id="the-integrals-the-calculations-strip">The integrals: the Calculations strip<a class="headerlink" href="#the-integrals-the-calculations-strip" title="Permanent link">#</a></h2>
+<p>The areas above are integrals of <span class="arithmatex">\(e^{-ay}\)</span> — the <strong>Calculations</strong> strip at the bottom of the sheet prints what you need: <span class="arithmatex">\(\int e^{cx}dx=\frac1ce^{cx}\)</span>, evaluate <span class="arithmatex">\([F]_a^b=F(b)-F(a)\)</span>, <em>"<span class="arithmatex">\(e^{-\infty}=0\)</span>"</em>, <span class="arithmatex">\(\int_0^\infty e^{-cx}dx=\frac1c\)</span>, <span class="arithmatex">\(\int_0^\infty xe^{-cx}dx=\frac1{c^2}\)</span>, <span class="arithmatex">\(\int_0^\infty x^2e^{-cx}dx=\frac2{c^3}\)</span>, plus the number cards (<span class="arithmatex">\(\ln3=1.099\)</span>, <span class="arithmatex">\(e^{-2}=0.135\)</span>…). Three rules make them mechanical:</p>
+<ol>
+<li><strong>Antiderivative.</strong> <span class="arithmatex">\(\int k\,e^{-ay}\,dy=-\frac{k}{a}\,e^{-ay}\)</span> — the <span class="arithmatex">\(2\)</span> in front of <span class="arithmatex">\(2e^{-2y}\)</span> <strong>cancels</strong> the <span class="arithmatex">\(2\)</span> of the exponent.</li>
+<li><strong>Evaluate, top minus bottom.</strong> With the minus already in <span class="arithmatex">\(F\)</span>: <span class="arithmatex">\(\big[-e^{-y}\big]_0^{\ln3}=1-e^{-\ln3}\)</span>. At <span class="arithmatex">\(\infty\)</span> the top is 0 (the strip: <span class="arithmatex">\(e^{-\infty}=0\)</span>).</li>
+<li><strong>Logs in the exponent.</strong> <span class="arithmatex">\(e^{-a\ln b}=\frac1{b^a}\)</span>: <span class="arithmatex">\(e^{-\ln3}=\frac13\)</span>, <span class="arithmatex">\(e^{-2\ln3}=\frac19\)</span>.</li>
+</ol>
+<p>Check: every area lands between 0 and 1; something bigger than 1 means a flipped sign.</p>
+<h2 id="the-theory-questions-box-4c">The theory questions — box 4C<a class="headerlink" href="#the-theory-questions-box-4c" title="Permanent link">#</a></h2>
+<div class="admonition sheet">
+<p class="admonition-title">Box 4C, exactly as it is printed on the sheet (Part 4 true / false)</p>
+<p>IF YOU SEE "which of the following statements" (in Part 4) about hypothesis testing, <span class="arithmatex">\(P_{FA}\)</span>, errors</p>
+<p>Same swap test as 2D — the verb is the question: risk <strong>min</strong> · <span class="arithmatex">\(P_D\)</span> <strong>max</strong> · <span class="arithmatex">\(P_e\)</span> <strong>min</strong>; <span class="arithmatex">\(\eta\)</span> goes <strong>up</strong> with <span class="arithmatex">\(P(H_0)\)</span>, <strong>down</strong> with <span class="arithmatex">\(P(H_1)\)</span>.</p>
+<table>
+<thead>
+<tr>
+<th>The fact (true)</th>
+<th>The lie they print (false)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bayes detection <strong>minimises</strong> the Bayes risk</td>
+<td>"maximises"</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(C_{01}=C_{10}\)</span>, <span class="arithmatex">\(C_{00}=C_{11}=0\)</span> → minimises total error <span class="arithmatex">\(P_e\)</span></td>
+<td>(scaling all costs leaves <span class="arithmatex">\(\eta\)</span>)</td>
+</tr>
+<tr>
+<td>Equal priors + equal costs → maximum-likelihood rule</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Higher <span class="arithmatex">\(P(H_0)\)</span> raises <span class="arithmatex">\(\eta\)</span> → harder to pick <span class="arithmatex">\(H_1\)</span></td>
+<td>"higher <span class="arithmatex">\(P(H_1)\)</span> raises <span class="arithmatex">\(\eta\)</span>" (lowers — Jun26 c)</td>
+</tr>
+<tr>
+<td>Neyman–Pearson: fix <span class="arithmatex">\(P_{FA}\)</span>, <strong>maximise</strong> <span class="arithmatex">\(P_D\)</span></td>
+<td>"minimise <span class="arithmatex">\(P_D\)</span>" · "fix <span class="arithmatex">\(P_D\)</span>, max <span class="arithmatex">\(P_{FA}\)</span>"</td>
+</tr>
+<tr>
+<td>NP's solution is the LRT; the LRT itself needs <strong>no</strong> priors</td>
+<td>"the LRT needs <span class="arithmatex">\(P_0,P_1\)</span>"</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\ln\)</span> of the ratio never changes the decisions</td>
+<td>"changes the decisions"</td>
+</tr>
+<tr>
+<td>Errors are unavoidable: the pdfs overlap</td>
+<td>"a threshold kills both errors"</td>
+</tr>
+<tr>
+<td>ROC: <span class="arithmatex">\(P_D\)</span> up, <span class="arithmatex">\(P_{FA}\)</span> right; diagonal = guessing; better = top-left</td>
+<td>"below diagonal = wrong <span class="arithmatex">\(\sigma\)</span>" (flipped)</td>
+</tr>
+<tr>
+<td>miss = false negative = type II · false alarm = false positive = type I (Nov22 a)</td>
+<td>labels swapped</td>
+</tr>
+</tbody>
+</table>
+<p>Matched filter &amp; energy-detector sentences → the last blocks of 4A (time-reversed <span class="arithmatex">\(s\)</span>, "only for uncorrelated noise" <strong>false</strong>, <span class="arithmatex">\(\sum x^2\)</span> <strong>big</strong>, narrow <span class="arithmatex">\(H_1\)</span> → sum <strong>small</strong>).</p>
+<p>Trap (Apr25-4b): "which statement is FALSE" where all three look true → as printed <strong>all three are true</strong> (official: no false one). Check the verbs: risk <strong>min</strong> · <span class="arithmatex">\(P_D\)</span> <strong>max</strong> · <span class="arithmatex">\(P_e\)</span> <strong>min</strong>.</p>
+</div>
+<div class="stepper">
+<p><strong>Sheet step 1 · Bayes risk: the verb is the question.</strong>
+Fact: <em>"Bayes detection <strong>minimises</strong> the Bayes risk"</em>. Any wording that says maximise / maximise the average cost is the printed lie → F.</p>
+<hr />
+<p><strong>Sheet step 2 · the 0/1-costs row.</strong>
+<span class="arithmatex">\(C_{01}=C_{10}\)</span> (any equal value), <span class="arithmatex">\(C_{00}=C_{11}=0\)</span> → minimises total error probability. A rephrase like "when both errors cost the same, the Bayes rule minimises the overall error rate" is the same fact → T. (Scaling all costs by 10 leaves <span class="arithmatex">\(\eta\)</span> untouched.)</p>
+<hr />
+<p><strong>Sheet step 3 · equal priors row.</strong>
+<em>"Equal priors + equal costs → maximum-likelihood rule"</em> — <span class="arithmatex">\(\eta=1\)</span>, just pick the taller curve. Rephrased as "the ML rule is the special case of the Bayes rule with no prior preference" → T.</p>
+<hr />
+<p><strong>Sheet step 4 · the prior rows (one is Jun26's FALSE).</strong>
+Fact: higher <span class="arithmatex">\(P(H_0)\)</span> raises <span class="arithmatex">\(\eta\)</span> (harder to say <span class="arithmatex">\(H_1\)</span>). The printed lie <em>"higher <span class="arithmatex">\(P(H_1)\)</span> raises <span class="arithmatex">\(\eta\)</span>"</em> — it lowers it. Watch for the same swap in new wording: "making <span class="arithmatex">\(H_1\)</span> more probable raises the threshold" → F.</p>
+<hr />
+<p><strong>Sheet step 5 · the error table (Nov22 4a).</strong>
+The last row names the cells: miss = false negative = <strong>type II</strong>, false alarm = false positive = <strong>type I</strong>. "Positive" = "we said <span class="arithmatex">\(H_1\)</span>". A shuffled-label question is answered by matching this row.</p>
+<hr />
+<p><strong>Sheet check · the trap line.</strong>
+Apr25-4b asks for the FALSE statement and all three are true — the box says so. Verbs: risk <strong>min</strong> · <span class="arithmatex">\(P_D\)</span> <strong>max</strong> · <span class="arithmatex">\(P_e\)</span> <strong>min</strong>.</p>
+</div>
+<p>Fresh wording, never printed in any exam — run the swap test:</p>
+<div class="stepper">
+<p><strong>1 · "Multiplying all costs by the same constant leaves the Bayes decision unchanged."</strong>
+The row's parenthetical fact, no swap → <strong>T</strong>.</p>
+<hr />
+<p><strong>2 · "The Bayesian hypothesis test is designed to maximise the expected cost of the decision."</strong>
+Swap: <em>maximise</em> against the fact <em>minimise</em> → <strong>F</strong>.</p>
+<hr />
+<p><strong>3 · "When the priors are equal and all wrong decisions cost the same, the Bayes rule reduces to choosing the hypothesis with the higher likelihood."</strong>
+Two facts glued together ("equal priors + equal costs → ML"), no swap → <strong>T</strong>.</p>
+</div>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">#</a></h2>
+<div class="admonition trap key">
+<p class="admonition-title">Where points are lost (each one is a line of the sheet you skipped)</p>
+<ul>
+<li>Mixing up <span class="arithmatex">\(C_{10}\)</span> and <span class="arithmatex">\(C_{01}\)</span>: the box defines them — <span class="arithmatex">\(C_{10}\)</span> = false alarm, <span class="arithmatex">\(C_{01}\)</span> = miss. The subscripts are "decided, truth".</li>
+<li>Putting priors into <span class="arithmatex">\(L(x)\)</span>: the ratio is only the two PDFs (layer 2). Priors and costs belong in <span class="arithmatex">\(\eta\)</span> (layer 3) — the box's formula has them on the right side only.</li>
+<li>Using the <span class="arithmatex">\(\eta\)</span> bullet when <strong>posteriors</strong> are given (Apr25-4c): posteriors already contain the priors → the ratio of posteriors against <span class="arithmatex">\(\frac{C_{10}-C_{00}}{C_{01}-C_{11}}\)</span>.</li>
+<li>The direction flip again: the <em>Nov22</em> line decides <span class="arithmatex">\(H_1\)</span> for <span class="arithmatex">\(y&lt;\ln3\)</span>, not <span class="arithmatex">\(&gt;\)</span>. Small <span class="arithmatex">\(y\)</span> = the narrow curve.</li>
+<li>Forgetting that "equal costs" means the short form <span class="arithmatex">\(\eta=\frac{P(H_0)}{P(H_1)}\)</span> (bullet 1) — no <span class="arithmatex">\(C\)</span>'s left to plug in.</li>
+<li>In the MC: "maximise the Bayes risk", "minimise <span class="arithmatex">\(P_D\)</span>", "raising <span class="arithmatex">\(P(H_1)\)</span> raises <span class="arithmatex">\(\eta\)</span>" — all three are the sheet's F rows.</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="e4-lrt.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 4.1 Likelihood ratio test">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                4.1 Likelihood ratio test
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="exams.html" class="md-footer__link md-footer__link--next" aria-label="Next: Mock exams with answers">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Mock exams with answers
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.footer", "navigation.tracking", "navigation.instant", "navigation.instant.progress", "toc.follow", "content.tooltips"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js?v=1793008663"></script>
+      
+        <script src="javascripts/katex.js?v=1793008663"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="javascripts/quiz.js?v=1793008663"></script>
+      
+        <script src="javascripts/ask.js?v=1793008663"></script>
+      
+        <script src="javascripts/video.js?v=1793008663"></script>
+      
+        <script src="javascripts/layout.js?v=1793008663"></script>
+      
+        <script src="javascripts/keypoints.js?v=1793008663"></script>
+      
+        <script src="javascripts/progress.js?v=1793008663"></script>
+      
+        <script src="javascripts/widgets.js?v=1793008663"></script>
+      
+        <script src="javascripts/navsections.js?v=1793008663"></script>
+      
+    
+  </body>
+</html>

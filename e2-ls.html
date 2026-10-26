@@ -1,0 +1,2289 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Every 5CTA0 Statistical Signal Processing exam question (2019–2026), solved step by step, organised by the patterns that keep coming back.">
+      
+      
+      
+        <link rel="canonical" href="https://dkealvaro.github.io/5cta0-exam-guide/e2-ls.html">
+      
+      
+        <link rel="prev" href="e2-map.html">
+      
+      
+        <link rel="next" href="e2-facts.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>2.3 Least-squares line - 5CTA0 · Pass the exam</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css?v=1793008663">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css?v=1793008663">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+4:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Source Serif 4";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0.16.11/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap">
+    
+      <link rel="stylesheet" href="stylesheets/extra.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/ask.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/layout.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/keypoints.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/widgets.css?v=1793008663">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#23-least-squares-line" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-header__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            5CTA0 · Pass the exam
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2.3 Least-squares line
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-nav__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    5CTA0 · Pass the exam
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New · Exam course
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    New · Exam course
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="podcast.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Podcast (watch first)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 1 · Probability (1.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 1 · Probability (1.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes word problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-joint.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-wss.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Stationary and ergodic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-factor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-map.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 MAP with a prior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Least-squares line
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="e2-ls.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Least-squares line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-idea-in-one-minute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The idea in one minute
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-fight-this-section-with-the-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to fight this section with the sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-april-2025-2b-the-classic-read-this-one-with-the-sheet-next-to-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 · April 2025 · 2b — the classic. Read this one with the sheet next to you
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-q3-2022-23-2d-transform-solve-the-line-transform-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 · Q3 2022-23 · 2d — transform, solve the line, transform back
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-q3-2023-resit-2c-the-blue-sentence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 · Q3 2023 resit · 2c — the BLUE sentence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-january-2022-2c-how-you-get-out-of-a-nonlinear-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 · January 2022 · 2c — how you get out of a nonlinear problem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-january-2020-4-the-25-point-one-amplitude-and-a-power" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 · January 2020 · 4 — the 2.5-point one: amplitude and a power
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Theory questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-corr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Correlogram, pick the plot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-arma.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 AR and MA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Periodogram, Welch, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Likelihood ratio test
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Priors, costs, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exams.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mock exams with answers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="battle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Battle kit · every question + its box
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cheatsheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 cheat sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cheatsheet3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 cheat sheet (v3, clearer wording)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Old · Long guide (deep dive)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Old · Long guide (deep dive)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="patterns.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The exam, decoded
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p0-foundations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 0 · From zero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="toolbox.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toolbox
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes & total probability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-rv.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Random variables & joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-processes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Random processes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-factorisation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-crlb.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 CRLB & Fisher information
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Bayesian estimation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Least squares
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-windows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Signals, windows, zero padding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-nonparametric.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 Non-parametric estimators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-autocorr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Autocorrelation of ARMA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-chain.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.4 Correlogram → AR → MA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-basics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Errors, ROC, Neyman–Pearson
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Likelihood ratio tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.3 Bayesian detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-idea-in-one-minute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The idea in one minute
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-fight-this-section-with-the-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to fight this section with the sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-april-2025-2b-the-classic-read-this-one-with-the-sheet-next-to-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 · April 2025 · 2b — the classic. Read this one with the sheet next to you
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-q3-2022-23-2d-transform-solve-the-line-transform-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 · Q3 2022-23 · 2d — transform, solve the line, transform back
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-q3-2023-resit-2c-the-blue-sentence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 · Q3 2023 resit · 2c — the BLUE sentence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-january-2022-2c-how-you-get-out-of-a-nonlinear-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 · January 2022 · 2c — how you get out of a nonlinear problem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-january-2020-4-the-25-point-one-amplitude-and-a-power" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 · January 2020 · 4 — the 2.5-point one: amplitude and a power
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="23-least-squares-line">2.3 Least-squares line<a class="headerlink" href="#23-least-squares-line" title="Permanent link">#</a></h1>
+<div class="meta"><span class="hot">1 point in April 2025, 2.5 in Jan 2020</span><span>+ 3 multiple choice</span><span>15 min</span></div>
+
+<figure class="pod"><video src="video/pod_ep3_estimation.mp4" poster="video/pod_ep3_estimation.jpg" controls playsinline preload="none"></video><figcaption><b>Watch first: podcast episode 3, Estimation: MLE and MAP</b> (with sound). Answer every purple YOUR TURN out loud before the countdown ends; pause if you need more time. <a href="podcast.html">All 5 episodes</a>.</figcaption></figure>
+
+<h2 id="the-idea-in-one-minute">The idea in one minute<a class="headerlink" href="#the-idea-in-one-minute" title="Permanent link">#</a></h2>
+<p>We want the line <span class="arithmatex">\(y=a\,x+b\)</span> that passes "as close as possible" to the points. For each point, the <strong>miss</strong> is the vertical distance between the point and the line. Least squares squares each miss and adds them up, then picks <span class="arithmatex">\(a\)</span> and <span class="arithmatex">\(b\)</span> that make this total as small as possible. In the picture, each squared miss is a real square: make the orange area as small as you can, then press the button.</p>
+<div class="widget" data-w="ls"></div>
+
+<p>Nothing probabilistic is happening: <strong>least squares needs no model at all</strong>, just points. (If the noise <em>is</em> Gaussian, this same answer is also the MLE — that is a bonus, not a step.)</p>
+<h2 id="how-to-fight-this-section-with-the-sheet">How to fight this section with the sheet<a class="headerlink" href="#how-to-fight-this-section-with-the-sheet" title="Permanent link">#</a></h2>
+<p>The exam says <strong>"least squares", "LSE", "fit a line", "linear function"</strong> with a list of points → you open <strong>box 2C</strong> on your A4 sheet and do its 3 steps. That is the whole method for the "fit a line" question, and it is worth a full point for about four minutes of arithmetic.</p>
+<p>Each step below names <strong>the sheet's term it uses</strong>. Press <strong>Next step</strong> to go one at a time — cover the step, do it yourself, then reveal it.</p>
+<div class="admonition sheet">
+<p class="admonition-title">Box 2C, exactly as it is printed on the sheet</p>
+<p><strong>IF YOU SEE</strong> points <span class="arithmatex">\((x,y)\)</span> + "least squares"/"least-squares"/"LSE", "linear function", "fit a line"</p>
+<ol>
+<li>Means <span class="arithmatex">\(\bar x\)</span> and <span class="arithmatex">\(\bar y\)</span>.</li>
+<li>Slope <span class="arithmatex">\(a=\dfrac{\sum(x-\bar x)(y-\bar y)}{\sum(x-\bar x)^2}\)</span>.</li>
+<li><span class="arithmatex">\(b=\bar y-a\bar x\)</span>. Answer: <span class="arithmatex">\(y=ax+b\)</span>. Check: <span class="arithmatex">\(x=\bar x\)</span> must give <span class="arithmatex">\(y=\bar y\)</span>.</li>
+</ol>
+<p><em>Apr25</em> <span class="arithmatex">\((0,3),(2,4),(3,3)\)</span>: <span class="arithmatex">\(\bar x=\frac53\)</span>, <span class="arithmatex">\(\bar y=\frac{10}3\)</span>, <span class="arithmatex">\(a=\frac{1/3}{14/3}=\frac1{14}\)</span>, <span class="arithmatex">\(b=\frac{45}{14}\)</span> → <span class="arithmatex">\(y=\frac1{14}x+\frac{45}{14}\)</span>.</p>
+<p>Also: <span class="arithmatex">\(x[n]=\theta+\text{noise}\)</span> → <span class="arithmatex">\(\hat\theta=\bar x\)</span>. <span class="arithmatex">\(x[n]=\ln\theta+\text{noise}\)</span> → <span class="arithmatex">\(\hat\theta=e^{\bar x}\)</span>.</p>
+<p><strong>Beyond a straight line.</strong> <span class="arithmatex">\(J(\theta)=\sum_n(x[n]-s[n;\theta])^2\)</span>, <span class="arithmatex">\(\hat\theta=\arg\min J\)</span> — write this when they ask "what kind of estimator". One amplitude <span class="arithmatex">\(s[n]=Ah[n]\)</span>: <span class="arithmatex">\(\hat A=\dfrac{\sum x[n]h[n]}{\sum h[n]^2}\)</span>. Linear model <span class="arithmatex">\(x=\mathbf H\theta+w\)</span>: <span class="arithmatex">\(\hat\theta=(\mathbf H^T\mathbf H)^{-1}\mathbf H^Tx\)</span>; the <strong>error</strong> <span class="arithmatex">\(x-\mathbf H\hat\theta\)</span> is orthogonal to the columns of <span class="arithmatex">\(\mathbf H\)</span> (it is the error, <strong>not</strong> <span class="arithmatex">\(\hat\theta\)</span>); WLS with <span class="arithmatex">\(\mathbf W=\mathbf C_x^{-1}\)</span> = <strong>BLUE</strong>. Nonlinear: transform it (the <span class="arithmatex">\(e^{\bar x}\)</span> line), or iterate <strong>Gauss–Newton</strong> <span class="arithmatex">\(\theta_{k+1}=\theta_k+(\mathbf G^T\mathbf G)^{-1}\mathbf G^T(x-s(\theta_k))\)</span>, <span class="arithmatex">\(\mathbf G[:,i]=\frac{\partial s}{\partial\theta_i}\)</span> — Newton–Raphson works too, "only Gauss–Newton" is <strong>false</strong>.</p>
+</div>
+<p>What each line of the box means:</p>
+<table>
+<thead>
+<tr>
+<th>the sheet says</th>
+<th>what you actually do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Means <span class="arithmatex">\(\bar x\)</span> and <span class="arithmatex">\(\bar y\)</span>"</td>
+<td>do this <strong>first</strong>, before any table: <span class="arithmatex">\(\bar x=\frac1N\sum x_n\)</span>, <span class="arithmatex">\(\bar y=\frac1N\sum y_n\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\sum(x-\bar x)(y-\bar y)\)</span></td>
+<td>build a 5-column table (<span class="arithmatex">\(x\)</span>, <span class="arithmatex">\(y\)</span>, <span class="arithmatex">\(x-\bar x\)</span>, <span class="arithmatex">\(y-\bar y\)</span>, product) and add the product column</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\sum(x-\bar x)^2\)</span></td>
+<td>the last column of the same table</td>
+</tr>
+<tr>
+<td>"<span class="arithmatex">\(b=\bar y-a\bar x\)</span>"</td>
+<td>the line always passes through the centre point <span class="arithmatex">\((\bar x,\bar y)\)</span></td>
+</tr>
+<tr>
+<td>"Check: <span class="arithmatex">\(x=\bar x\)</span> must give <span class="arithmatex">\(y=\bar y\)</span>"</td>
+<td>a 5-second check that catches every arithmetic slip</td>
+</tr>
+<tr>
+<td>"<span class="arithmatex">\(x[n]=\theta+\text{noise}\)</span> → <span class="arithmatex">\(\hat\theta=\bar x\)</span>"</td>
+<td>box 2C already did the LS for you: this is the case <span class="arithmatex">\(h[n]=1\)</span></td>
+</tr>
+<tr>
+<td>"<span class="arithmatex">\(x[n]=\ln\theta+\text{noise}\)</span> → <span class="arithmatex">\(\hat\theta=e^{\bar x}\)</span>"</td>
+<td>the "transform the problem into a linear one" trick, already solved — write this line down</td>
+</tr>
+</tbody>
+</table>
+<p><strong>This is now printed on your A4</strong>, at the bottom of box 2C under "<strong>Beyond a straight line</strong>". The three numbered steps of the box stop at the straight line; the exams do not.</p>
+<ul>
+<li><strong>Cost and estimator.</strong> <span class="arithmatex">\(J(\theta)=\displaystyle\sum_n\big(x[n]-s[n;\theta]\big)^2\)</span>, and <span class="arithmatex">\(\hat\theta=\arg\min_\theta J\)</span>. That is the definition of "least squares"; write it when they ask "what kind of estimator".</li>
+<li><strong>Linear in one amplitude.</strong> If <span class="arithmatex">\(s[n]=A\,h[n]\)</span> (any shape <span class="arithmatex">\(h\)</span>, one unknown <span class="arithmatex">\(A\)</span>): <span class="arithmatex">\(\hat A=\dfrac{\sum_n x[n]h[n]}{\sum_n h[n]^2}\)</span>.</li>
+<li><strong>Linear model</strong> <span class="arithmatex">\(x=\mathbf H\theta+w\)</span>: <span class="arithmatex">\(\hat\theta=(\mathbf H^T\mathbf H)^{-1}\mathbf H^Tx\)</span>. The <strong>error</strong> <span class="arithmatex">\(x-\mathbf H\hat\theta\)</span> is orthogonal to the columns of <span class="arithmatex">\(\mathbf H\)</span> (it is the <em>error</em> that is orthogonal, <strong>not</strong> <span class="arithmatex">\(\hat\theta\)</span>). You need at least as many data as unknowns. Weighted LS with <span class="arithmatex">\(\mathbf W=\mathbf C_x^{-1}\)</span> is the <strong>BLUE</strong>.</li>
+<li><strong>Nonlinear</strong>, two ways out: split into a linear and a nonlinear part, <strong>or</strong> transform the problem until it is linear (the <span class="arithmatex">\(e^{\bar x}\)</span> line). <strong>Gauss–Newton and Newton–Raphson both work</strong> — "only Gauss–Newton" is false.</li>
+<li><strong>Gauss–Newton.</strong> Linearise <span class="arithmatex">\(s(\theta)\)</span> at <span class="arithmatex">\(\theta_k\)</span>, then solve the linear LS: <span class="arithmatex">\(\theta_{k+1}=\theta_k+(\mathbf G^T\mathbf G)^{-1}\mathbf G^T\big(x-s(\theta_k)\big)\)</span>, where <span class="arithmatex">\(\mathbf G\)</span> has one column per parameter, <span class="arithmatex">\(\mathbf G[:,i]=\dfrac{\partial s}{\partial\theta_i}\)</span>.</li>
+</ul>
+<h2 id="1-april-2025-2b-the-classic-read-this-one-with-the-sheet-next-to-you">1 · April 2025 · 2b — the classic. Read this one with the sheet next to you<a class="headerlink" href="#1-april-2025-2b-the-classic-read-this-one-with-the-sheet-next-to-you" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Final exam, 13 April 2025 · 2b · 1 p</p>
+<p>Find the linear function having least squares error for the data <span class="arithmatex">\(\{(0, 3), (2, 4), (3, 3)\}\)</span>.</p>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the cheat sheet: box 2C, every line used (the <em>Apr25</em> line runs the three steps on these numbers)</p>
+<div class="stepper" markdown>
+<p><strong>Sheet step 1 · "Means <span class="arithmatex">\(\bar x\)</span> and <span class="arithmatex">\(\bar y\)</span>."</strong>
+Three points, so divide by 3 (Calculations: <span class="arithmatex">\(\sum_n x_n=N\bar x\)</span>):</p>
+<div class="arithmatex">\[\bar x=\frac{0+2+3}{3}=\frac53,\qquad \bar y=\frac{3+4+3}{3}=\frac{10}{3}\]</div>
+<hr />
+<p><strong>Sheet step 2 · the table for <span class="arithmatex">\(\sum(x-\bar x)(y-\bar y)\)</span> and <span class="arithmatex">\(\sum(x-\bar x)^2\)</span>.</strong>
+Fill the middle two columns first, then multiply across and square down:</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(x\)</span></th>
+<th><span class="arithmatex">\(y\)</span></th>
+<th><span class="arithmatex">\(x-\bar x\)</span></th>
+<th><span class="arithmatex">\(y-\bar y\)</span></th>
+<th>product</th>
+<th><span class="arithmatex">\((x-\bar x)^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>3</td>
+<td><span class="arithmatex">\(-\frac53\)</span></td>
+<td><span class="arithmatex">\(-\frac13\)</span></td>
+<td><span class="arithmatex">\(\frac59\)</span></td>
+<td><span class="arithmatex">\(\frac{25}9\)</span></td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td><span class="arithmatex">\(\frac13\)</span></td>
+<td><span class="arithmatex">\(\frac23\)</span></td>
+<td><span class="arithmatex">\(\frac29\)</span></td>
+<td><span class="arithmatex">\(\frac19\)</span></td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td><span class="arithmatex">\(\frac43\)</span></td>
+<td><span class="arithmatex">\(-\frac13\)</span></td>
+<td><span class="arithmatex">\(-\frac49\)</span></td>
+<td><span class="arithmatex">\(\frac{16}9\)</span></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td><strong>sum</strong></td>
+<td><span class="arithmatex">\(\frac{5+2-4}{9}=\frac39\)</span></td>
+<td><span class="arithmatex">\(\frac{25+1+16}{9}=\frac{42}9\)</span></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>Sheet step 3 · "Slope <span class="arithmatex">\(a\)</span>".</strong>
+$<span class="arithmatex">\(a=\frac{\sum(x-\bar x)(y-\bar y)}{\sum(x-\bar x)^2}=\frac{3/9}{42/9}=\frac{3}{42}=\frac{1}{14}\)</span>$
+(The <span class="arithmatex">\(/9\)</span> cancels top and bottom — Calculations: <span class="arithmatex">\(\frac ab\div\frac cd=\frac{ad}{bc}\)</span>.)</p>
+<hr />
+<p><strong>Sheet step 4 · "<span class="arithmatex">\(b=\bar y-a\bar x\)</span>".</strong>
+$<span class="arithmatex">\(b=\frac{10}{3}-\frac{1}{14}\cdot\frac{5}{3}=\frac{10}{3}-\frac{5}{42}=\frac{140-5}{42}=\frac{135}{42}=\frac{45}{14}\)</span>$</p>
+<hr />
+<p><strong>Sheet step 5 · the sheet's check.</strong> "<span class="arithmatex">\(x=\bar x\)</span> must give <span class="arithmatex">\(y=\bar y\)</span>":
+<span class="arithmatex">\(\frac1{14}\cdot\frac53+\frac{45}{14}=\frac{5}{42}+\frac{135}{42}=\frac{140}{42}=\frac{10}{3}=\bar y\)</span> ✓</p>
+<hr />
+<p><strong>Sheet check · the box's own check.</strong>
+Step 3: <em>"Check: <span class="arithmatex">\(x=\bar x\)</span> must give <span class="arithmatex">\(y=\bar y\)</span>."</em> <span class="arithmatex">\(\frac1{14}\cdot\frac53+\frac{45}{14}=\frac{5+135}{42}=\frac{10}3=\bar y\)</span> ✓ — the line goes through the centre point, whatever the data are.</p>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><span class="arithmatex">\(\displaystyle y=\frac{1}{14}x+\frac{45}{14}\approx 0.071\,x+3.21\)</span></p>
+</div>
+<h2 id="2-q3-2022-23-2d-transform-solve-the-line-transform-back">2 · Q3 2022-23 · 2d — transform, solve the line, transform back<a class="headerlink" href="#2-q3-2022-23-2d-transform-solve-the-line-transform-back" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Q3 2022-23 exam · 2d</p>
+<p>Suppose we observe data from the following signal model:</p>
+<div class="arithmatex">\[x[n] = \ln(\theta) + w[n],\]</div>
+<p>with <span class="arithmatex">\(n = 0, 1, \dots, N - 1\)</span>.</p>
+<p><strong>2d</strong> Can you find a way to avoid the non linear optimization? In other words, can you find a closed-form solution for <span class="arithmatex">\(\hat{\theta}_{LSE}\)</span>?</p>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the cheat sheet: box 2C, the last line</p>
+<div class="stepper" markdown>
+<p><strong>Sheet step 0 · look at the bottom of box 2C first.</strong>
+The pattern rule: <em>"<span class="arithmatex">\(x[n]=\ln\theta+\text{noise}\)</span> → <span class="arithmatex">\(\hat\theta=e^{\bar x}\)</span>"</em>. That line is the <strong>output</strong> of the three moves below — run them yourself and any variant (a scale factor, <span class="arithmatex">\(\theta^2\)</span>, a different link) falls the same way.</p>
+<hr />
+<p><strong>Sheet step 1 · why that line is allowed.</strong>
+The model is <span class="arithmatex">\(x[n]=\ln\theta+w[n]\)</span>. Call <span class="arithmatex">\(\alpha=\ln\theta\)</span> — then the model is <span class="arithmatex">\(x[n]=\alpha+w[n]\)</span>, which is <em>linear</em> in <span class="arithmatex">\(\alpha\)</span> (a constant plus noise). That is the sheet's margin rule: <em>"transform the problem into a linear problem"</em>.</p>
+<hr />
+<p><strong>Sheet step 2 · least squares in <span class="arithmatex">\(\alpha\)</span>.</strong>
+<span class="arithmatex">\(J(\alpha)=\sum_n (x[n]-\alpha)^2\)</span> is minimised by the average of the data (box 2C's other line, "<span class="arithmatex">\(x[n]=\theta+\text{noise}\)</span> → <span class="arithmatex">\(\hat\theta=\bar x\)</span>", with <span class="arithmatex">\(\theta\)</span> renamed <span class="arithmatex">\(\alpha\)</span>):</p>
+<div class="arithmatex">\[\hat\alpha=\bar x=\frac1N\sum_{n=0}^{N-1}x[n]\]</div>
+<hr />
+<p><strong>Sheet step 3 · transform back.</strong>
+<span class="arithmatex">\(\alpha=\ln\theta\)</span> is one-to-one, so invert it (Calculations strip: "<span class="arithmatex">\(y=k\ln x\)</span> → <span class="arithmatex">\(x=e^{y/k}\)</span>" with <span class="arithmatex">\(k=1\)</span>):</p>
+<div class="arithmatex">\[\hat\theta_{LSE}=e^{\hat\alpha}=e^{\bar x}\]</div>
+<hr />
+<p><strong>Sheet check · same idea as the MLE invariance.</strong>
+Box 2D's row <em>"MLE of <span class="arithmatex">\(\alpha=\psi(\theta)\)</span>: <span class="arithmatex">\(\hat\theta=\psi^{-1}(\hat\alpha)\)</span>"</em> is the same move. The question says "avoid the non linear optimization" — this is exactly how you avoid it.</p>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><span class="arithmatex">\(\displaystyle\hat\theta_{LSE}=e^{\bar x}=e^{\frac1N\sum_n x[n]}\)</span></p>
+</div>
+<h2 id="3-q3-2023-resit-2c-the-blue-sentence">3 · Q3 2023 resit · 2c — the BLUE sentence<a class="headerlink" href="#3-q3-2023-resit-2c-the-blue-sentence" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Q3 2023 resit · 2c</p>
+<p>Which statement about the least square estimator is TRUE?</p>
+<ul>
+<li>a) For linear system models <span class="arithmatex">\(x = \mathbf{H}\theta + w\)</span>, the estimation error is in the column space of the observation matrix <span class="arithmatex">\(\mathbf{H}\)</span>.</li>
+<li>b) To find the least square estimate, we need exactly as many observations as parameters to be estimated.</li>
+<li>c) For a linear model <span class="arithmatex">\(x = \mathbf{H}\theta + w\)</span> with mean <span class="arithmatex">\(\mathrm{E}[x] = \mathbf{H}\theta\)</span> and covariance matrix <span class="arithmatex">\(\mathbf{C}_{\mathbf{x}}\)</span>, the weighted least square estimator with weighting matrix <span class="arithmatex">\(\mathbf{W} = \mathbf{C}_{\mathbf{x}}^{-1}\)</span> is the best linear unbiased estimator.</li>
+</ul>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the cheat sheet: not a box — the margin line you wrote</p>
+<div class="stepper" markdown>
+<p><strong>Sheet step 1 · (c) is the margin line word for word.</strong>
+<em>"Weighted LS with <span class="arithmatex">\(\mathbf W=\mathbf C_x^{-1}\)</span> is the BLUE."</em> → <strong>TRUE</strong>.</p>
+<hr />
+<p><strong>Sheet step 2 · (a) is the trap.</strong>
+The <strong>error</strong> <span class="arithmatex">\(x-\mathbf H\hat\theta\)</span> is <strong>orthogonal</strong> to the columns of <span class="arithmatex">\(\mathbf H\)</span> — orthogonal means <em>outside</em> the column space, not in it. (It is the error that is orthogonal; <span class="arithmatex">\(\hat\theta\)</span> itself lives entirely inside the column space.)</p>
+<hr />
+<p><strong>Sheet step 3 · (b) is the other trap.</strong>
+"Exactly as many" — no: you need <strong>at least</strong> as many observations as parameters. More observations is the normal case (that is what <span class="arithmatex">\(N\gg1\)</span> means).</p>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(c)</strong></p>
+</div>
+<h2 id="4-january-2022-2c-how-you-get-out-of-a-nonlinear-problem">4 · January 2022 · 2c — how you get out of a nonlinear problem<a class="headerlink" href="#4-january-2022-2c-how-you-get-out-of-a-nonlinear-problem" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Resit, January 2022 · 2c · 0.3 p</p>
+<p>Which of the following statements about the least-squares estimator is true?</p>
+<ul>
+<li>(a) Some nonlinear least-squares estimation problems can be solved analytically by either separating the problem into nonlinear and linear least-squares problems or by transforming the nonlinear problem into a linear problem.</li>
+<li>(b) For linear signal models, the solution vector <span class="arithmatex">\(\hat{\theta}\)</span> is orthogonal to the span of the columns of the observation matrix <span class="arithmatex">\(\mathbf{H}\)</span>.</li>
+<li>(c) Only the Gauss-Newton method can be applied for nonlinear least-squares problems but not the Newton-Raphson method.</li>
+</ul>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the cheat sheet: the margin lines again</p>
+<div class="stepper" markdown>
+<p><strong>Sheet step 1 · (a) is the margin line, literally.</strong>
+<em>"Nonlinear, two ways out: split into a linear and a nonlinear part, <strong>or</strong> transform the problem until it is linear."</em> → <strong>TRUE</strong>. Exercise 2 above is the transform version.</p>
+<hr />
+<p><strong>Sheet step 2 · (b) is the same trap as the previous question.</strong>
+The <strong>error</strong> is orthogonal to the columns of <span class="arithmatex">\(\mathbf H\)</span>, not the solution vector <span class="arithmatex">\(\hat\theta\)</span>.</p>
+<hr />
+<p><strong>Sheet step 3 · (c) is the "only" trap.</strong>
+<em>"Gauss–Newton <strong>and</strong> Newton–Raphson both work"</em> — "only Gauss–Newton" is false.</p>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(a)</strong></p>
+</div>
+<h2 id="5-january-2020-4-the-25-point-one-amplitude-and-a-power">5 · January 2020 · 4 — the 2.5-point one: amplitude and a power<a class="headerlink" href="#5-january-2020-4-the-25-point-one-amplitude-and-a-power" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Retake, January 2020 · Exercise 4 · 2.5 p</p>
+<p>Consider the observed data <span class="arithmatex">\(x[0], x[1], \dots, x[n]\)</span>, which consists of independent identically distributed samples. The data comes from an experiment, which generates a signal according to model</p>
+<div class="arithmatex">\[s[n] = Ae^{\phi n}\]</div>
+<p>where the amplitude <span class="arithmatex">\(A\)</span> and the power term <span class="arithmatex">\(\phi \lt 0\)</span> are to be estimated based on the observed data.</p>
+<ul>
+<li>(a) What kind of estimators can be used to solve this problem? Explain your reasoning and write down the formulations for the estimators that can be used. [0.5 pt.]</li>
+<li>(b) For the case where <span class="arithmatex">\(\phi\)</span> is known but <span class="arithmatex">\(A\)</span> is unknown, find an estimator for <span class="arithmatex">\(A\)</span>. The estimator you find must have a closed form that depends on <span class="arithmatex">\(\phi\)</span> and observed data <span class="arithmatex">\(x[0], x[1], \dots, x[n]\)</span>. [0.5 pt.]</li>
+<li>(c) For the case where both <span class="arithmatex">\(\phi\)</span> and <span class="arithmatex">\(A\)</span> are unknown, write the cost function for an estimator for <span class="arithmatex">\(\theta = [\phi \ A]^T\)</span>, where <span class="arithmatex">\([\cdot]^T\)</span> indicates the transpose of a vector or matrix. <strong>Hint:</strong> The expression you find will be non-linear, which is why the solution in (d) is asked. [0.5 pt.]</li>
+<li>(d) Formulate the Gauss-Newton solution for the estimator cost function derived in (c). Clearly show the iterative formulation. [1 pt.]</li>
+</ul>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the cheat sheet: box 2C starts it, the margin lines finish it</p>
+<div class="stepper" markdown>
+<p><strong>Sheet step (a) · write the definition of least squares.</strong>
+No pdf for the noise is given, so there is no likelihood → the ML route (box 2A) is closed. Least squares needs <strong>no model of the noise</strong>, only a model of the signal, so it is always available:</p>
+<div class="arithmatex">\[J(\theta)=\sum_{n=0}^{N-1}\big(x[n]-s[n;\theta]\big)^2,\qquad \hat\theta=\arg\min_\theta J(\theta)\]</div>
+<p>(If you want a second one: when the noise is Gaussian, this same <span class="arithmatex">\(\hat\theta\)</span> is also the MLE. Say it as a remark.)</p>
+<hr />
+<p><strong>Sheet step (b) · <span class="arithmatex">\(\phi\)</span> known → the problem is linear in <span class="arithmatex">\(A\)</span>.</strong>
+The margin line: <em>"If <span class="arithmatex">\(s[n]=A\,h[n]\)</span> … <span class="arithmatex">\(\hat A=\frac{\sum x[n]h[n]}{\sum h[n]^2}\)</span>"</em>. Here <span class="arithmatex">\(h[n]=e^{\phi n}\)</span>, so</p>
+<div class="arithmatex">\[J(A)=\sum_n\big(x[n]-A e^{\phi n}\big)^2,\qquad \frac{dJ}{dA}=-2\sum_n e^{\phi n}\big(x[n]-Ae^{\phi n}\big)=0\]</div>
+<div class="arithmatex">\[A\sum_n e^{2\phi n}=\sum_n x[n]e^{\phi n}\qquad\Longrightarrow\qquad \hat A=\frac{\sum_n x[n]e^{\phi n}}{\sum_n e^{2\phi n}}\]</div>
+<p>(Closed form, as required. Sanity: if <span class="arithmatex">\(\phi=0\)</span> then <span class="arithmatex">\(e^{\phi n}=1\)</span> and <span class="arithmatex">\(\hat A=\bar x\)</span> — box 2C's first extra line.)</p>
+<hr />
+<p><strong>Sheet step (c) · both unknown → write the cost and stop.</strong>
+<span class="arithmatex">\(\theta=[\phi\ A]^T\)</span>, so plug both into <span class="arithmatex">\(J\)</span>:</p>
+<div class="arithmatex">\[J(\phi,A)=\sum_{n=0}^{N-1}\big(x[n]-A e^{\phi n}\big)^2\]</div>
+<p>The hint is telling you this is <strong>nonlinear</strong> in <span class="arithmatex">\(\theta\)</span> (the <span class="arithmatex">\(Ae^{\phi n}\)</span> has the unknowns multiplied and in an exponent) — that is the whole reason for (d). 0.5 points for writing it down.</p>
+<hr />
+<p><strong>Sheet step (d) · Gauss–Newton</strong> (the last margin line).
+Linearise <span class="arithmatex">\(s(\theta)\)</span> at the current guess <span class="arithmatex">\(\theta_k\)</span>:</p>
+<div class="arithmatex">\[s(\theta)\approx s(\theta_k)+\mathbf G_k\,(\theta-\theta_k)\]</div>
+<p>Build <span class="arithmatex">\(\mathbf G_k\)</span> one column per parameter, <span class="arithmatex">\(\mathbf G[:,i]=\frac{\partial s}{\partial\theta_i}\)</span>, evaluated at <span class="arithmatex">\(\theta_k=[\phi_k\ A_k]^T\)</span>:</p>
+<div class="arithmatex">\[\frac{\partial s}{\partial A}=e^{\phi n},\qquad \frac{\partial s}{\partial \phi}=A\,n\,e^{\phi n} \qquad\Longrightarrow\qquad \mathbf G_k[n]=\Big[\;A_k\,n\,e^{\phi_k n}\ \ \ e^{\phi_k n}\;\Big]\]</div>
+<p>Then the update:</p>
+<div class="arithmatex">\[\boxed{\ \theta_{k+1}=\theta_k+(\mathbf G_k^T\mathbf G_k)^{-1}\mathbf G_k^T\big(x-s(\theta_k)\big)\ }\]</div>
+<p>Iterate until <span class="arithmatex">\(\theta_{k+1}\)</span> stops changing. (<span class="arithmatex">\(x\)</span> is the column vector of the data, <span class="arithmatex">\(s(\theta_k)\)</span> the column vector of the model at <span class="arithmatex">\(\theta_k\)</span>.)</p>
+<hr />
+<p><strong>Sheet check · what each piece costs.</strong>
+(a) 0.5 for the definition + "why": no noise model needed. (b) 0.5 for the closed form. (c) 0.5 for the cost. (d) 1 for <span class="arithmatex">\(\mathbf G\)</span> <strong>and</strong> the iteration — write both, the update alone loses half.</p>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(a)</strong> LS: <span class="arithmatex">\(J=\sum_n(x[n]-s[n;\theta])^2\)</span>, <span class="arithmatex">\(\hat\theta=\arg\min J\)</span> (no noise model needed; = MLE for Gaussian noise) · <strong>(b)</strong> <span class="arithmatex">\(\hat A=\dfrac{\sum_n x[n]e^{\phi n}}{\sum_n e^{2\phi n}}\)</span> · <strong>(c)</strong> <span class="arithmatex">\(J(\phi,A)=\sum_n (x[n]-Ae^{\phi n})^2\)</span> · <strong>(d)</strong> <span class="arithmatex">\(\mathbf G_k[n]=\big[A_k n e^{\phi_k n},\ e^{\phi_k n}\big]\)</span>, <span class="arithmatex">\(\ \theta_{k+1}=\theta_k+(\mathbf G_k^T\mathbf G_k)^{-1}\mathbf G_k^T(x-s(\theta_k))\)</span></p>
+</div>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">#</a></h2>
+<div class="admonition trap">
+<p class="admonition-title">Where points are lost (each one is a line of the sheet you skipped)</p>
+<ul>
+<li>Doing <span class="arithmatex">\(\bar x\)</span> and <span class="arithmatex">\(\bar y\)</span> <strong>after</strong> the table. Box 2C lists them as step 1 because every column depends on them.</li>
+<li>Slope formula upside down: <span class="arithmatex">\(a=\dfrac{\text{product sum}}{\text{square sum}}\)</span>, not the other way round.</li>
+<li>Forgetting to write the <strong>domain</strong> or to answer with the full line "<span class="arithmatex">\(y=ax+b\)</span>". The exam wants the function, not just <span class="arithmatex">\(a\)</span>.</li>
+<li>Skipping the check "<span class="arithmatex">\(x=\bar x\)</span> gives <span class="arithmatex">\(y=\bar y\)</span>". It is free, and it catches every arithmetic slip.</li>
+<li><span class="arithmatex">\(x[n]=\ln\theta+\text{noise}\)</span> → answer <span class="arithmatex">\(e^{\bar x}\)</span>, <strong>not</strong> <span class="arithmatex">\(\ln\bar x\)</span>. The sheet's last line is the whole question.</li>
+<li>Saying the <strong>estimate</strong> <span class="arithmatex">\(\hat\theta\)</span> is orthogonal to the columns of <span class="arithmatex">\(\mathbf H\)</span>. It is the <strong>error</strong> that is orthogonal.</li>
+<li>"Exactly as many observations as parameters" → false, it is <strong>at least</strong>.</li>
+<li>"Only Gauss–Newton works for nonlinear LS" → false, Newton–Raphson does too.</li>
+<li>Gauss–Newton: writing the update but not <span class="arithmatex">\(\mathbf G\)</span>. Half the points are for the columns <span class="arithmatex">\(\frac{\partial s}{\partial\theta_i}\)</span>.</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="e2-map.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 2.2 MAP with a prior">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                2.2 MAP with a prior
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="e2-facts.html" class="md-footer__link md-footer__link--next" aria-label="Next: 2.4 Theory questions">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                2.4 Theory questions
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.footer", "navigation.tracking", "navigation.instant", "navigation.instant.progress", "toc.follow", "content.tooltips"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js?v=1793008663"></script>
+      
+        <script src="javascripts/katex.js?v=1793008663"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="javascripts/quiz.js?v=1793008663"></script>
+      
+        <script src="javascripts/ask.js?v=1793008663"></script>
+      
+        <script src="javascripts/video.js?v=1793008663"></script>
+      
+        <script src="javascripts/layout.js?v=1793008663"></script>
+      
+        <script src="javascripts/keypoints.js?v=1793008663"></script>
+      
+        <script src="javascripts/progress.js?v=1793008663"></script>
+      
+        <script src="javascripts/widgets.js?v=1793008663"></script>
+      
+        <script src="javascripts/navsections.js?v=1793008663"></script>
+      
+    
+  </body>
+</html>

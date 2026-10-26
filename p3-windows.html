@@ -1,0 +1,2858 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Every 5CTA0 Statistical Signal Processing exam question (2019–2026), solved step by step, organised by the patterns that keep coming back.">
+      
+      
+      
+        <link rel="canonical" href="https://dkealvaro.github.io/5cta0-exam-guide/p3-windows.html">
+      
+      
+        <link rel="prev" href="p2-ls.html">
+      
+      
+        <link rel="next" href="p3-nonparametric.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>3.1 Signals, windows, zero padding - 5CTA0 · Pass the exam</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css?v=1793008663">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css?v=1793008663">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+4:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Source Serif 4";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0.16.11/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap">
+    
+      <link rel="stylesheet" href="stylesheets/extra.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/ask.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/layout.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/keypoints.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/widgets.css?v=1793008663">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#31-energy-power-windows-zero-padding" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-header__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            5CTA0 · Pass the exam
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3.1 Signals, windows, zero padding
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-nav__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    5CTA0 · Pass the exam
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New · Exam course
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    New · Exam course
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="podcast.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Podcast (watch first)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 1 · Probability (1.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 1 · Probability (1.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes word problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-joint.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-wss.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Stationary and ergodic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-factor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-map.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 MAP with a prior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Least-squares line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Theory questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-corr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Correlogram, pick the plot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-arma.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 AR and MA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Periodogram, Welch, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Likelihood ratio test
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Priors, costs, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exams.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mock exams with answers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="battle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Battle kit · every question + its box
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cheatsheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 cheat sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cheatsheet3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 cheat sheet (v3, clearer wording)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Old · Long guide (deep dive)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Old · Long guide (deep dive)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="patterns.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The exam, decoded
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p0-foundations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 0 · From zero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="toolbox.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toolbox
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes & total probability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-rv.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Random variables & joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-processes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Random processes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-factorisation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-crlb.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 CRLB & Fisher information
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Bayesian estimation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Least squares
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Signals, windows, zero padding
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="p3-windows.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Signals, windows, zero padding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-energy-vs-power-which-one-is-this-signal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 · Energy vs power: which one is this signal?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 · Energy vs power: which one is this signal?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-the-idea-before-the-formulas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 The idea before the formulas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-the-two-formulas-explained-symbol-by-symbol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 The two formulas, explained symbol by symbol
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-why-the-two-categories-can-never-overlap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Why the two categories can never overlap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-how-to-classify-a-signal-in-5-seconds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 How to classify a signal in 5 seconds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-every-example-the-exams-use-computed-from-scratch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Every example the exams use, computed from scratch
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-windows-what-cutting-the-signal-to-n-samples-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 · Windows: what cutting the signal to \(N\) samples does
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 · Windows: what cutting the signal to \(N\) samples does">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-why-a-window-exists-at-all" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Why a window exists at all
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-what-multiplication-does-to-the-spectrum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 What multiplication does to the spectrum
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-the-vocabulary-main-lobe-side-lobes-resolution-leakage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 The vocabulary: main lobe, side lobes, resolution, leakage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-what-you-can-change-and-what-it-costs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 What you can change, and what it costs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dft-ftd-and-zero-padding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 · FTD, DFT and zero padding
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 · FTD, DFT and zero padding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-the-two-transforms-one-more-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 The two transforms, one more time
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-zero-padding-what-it-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Zero padding: what it is
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-why-it-does-not-improve-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Why it does not improve resolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exam questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exam questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apr25-3a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2025 exam · 3a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-24-3a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q2 2023-24 resit · 3a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nov22-3b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2022 exam · 3b
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan20-1c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2020 retake · 1c
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan22-3a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2022 resit · 3a
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-nonparametric.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 Non-parametric estimators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-autocorr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Autocorrelation of ARMA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-chain.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.4 Correlogram → AR → MA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-basics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Errors, ROC, Neyman–Pearson
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Likelihood ratio tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.3 Bayesian detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-energy-vs-power-which-one-is-this-signal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 · Energy vs power: which one is this signal?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 · Energy vs power: which one is this signal?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-the-idea-before-the-formulas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 The idea before the formulas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-the-two-formulas-explained-symbol-by-symbol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 The two formulas, explained symbol by symbol
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-why-the-two-categories-can-never-overlap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Why the two categories can never overlap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-how-to-classify-a-signal-in-5-seconds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 How to classify a signal in 5 seconds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-every-example-the-exams-use-computed-from-scratch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Every example the exams use, computed from scratch
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-windows-what-cutting-the-signal-to-n-samples-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 · Windows: what cutting the signal to \(N\) samples does
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 · Windows: what cutting the signal to \(N\) samples does">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-why-a-window-exists-at-all" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Why a window exists at all
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-what-multiplication-does-to-the-spectrum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 What multiplication does to the spectrum
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-the-vocabulary-main-lobe-side-lobes-resolution-leakage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 The vocabulary: main lobe, side lobes, resolution, leakage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-what-you-can-change-and-what-it-costs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 What you can change, and what it costs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dft-ftd-and-zero-padding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 · FTD, DFT and zero padding
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 · FTD, DFT and zero padding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-the-two-transforms-one-more-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 The two transforms, one more time
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-zero-padding-what-it-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Zero padding: what it is
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-why-it-does-not-improve-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Why it does not improve resolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exam questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exam questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apr25-3a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2025 exam · 3a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-24-3a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q2 2023-24 resit · 3a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nov22-3b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2022 exam · 3b
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan20-1c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2020 retake · 1c
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan22-3a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2022 resit · 3a
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="31-energy-power-windows-zero-padding">3.1 Energy, power, windows, <abbr title="appending zeros before the DFT; it samples the same spectrum more finely, it does not add information.">zero padding</abbr><a class="headerlink" href="#31-energy-power-windows-zero-padding" title="Permanent link">#</a></h1>
+<p class="lead">This page answers four small questions that every later page uses: <b>(1)</b> is a signal an "energy" or a "power" signal, <b>(2)</b> what does cutting a signal to N samples do to its spectrum, <b>(3)</b> what is the difference between the FTD and the DFT, and <b>(4)</b> why zero padding does not give you better resolution. Everything is explained from the first sentence; nothing is assumed.</p>
+
+<div class="admonition need">
+<p class="admonition-title">Before this page (all of it is on <a href="p0-foundations.html">Chapter 0</a>)</p>
+<ul>
+<li>What <span class="arithmatex">\(x(t)\)</span> and <span class="arithmatex">\(x[n]\)</span> mean, and the difference between them (<a href="p0-foundations.html#01-what-a-signal-is">0.1</a>)</li>
+<li>Sine, cosine, frequency <span class="arithmatex">\(f\)</span> vs <span class="arithmatex">\(\omega\)</span> vs <span class="arithmatex">\(\theta\)</span> (<a href="p0-foundations.html#02-sine-cosine-frequency">0.2</a>)</li>
+<li>Integrals = area, sums = adding up, limits = "let it grow forever", the geometric series, <span class="arithmatex">\(\sin^2\alpha=\frac{1-\cos 2\alpha}{2}\)</span> (<a href="p0-foundations.html#04-the-three-calculations-you-keep-meeting">0.4</a>)</li>
+<li>What a spectrum is, FTD, DFT, bins, dB (<a href="p0-foundations.html#05-spectrum-what-a-fourier-transform-tells-you">0.5</a>)</li>
+</ul>
+<p>If you read only one thing: <strong>a spectrum is "how much of each frequency is in the signal"</strong>, and the <em><abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr></em> is the fact that you only ever record a finite chunk of the signal.</p>
+</div>
+<hr />
+<h2 id="1-energy-vs-power-which-one-is-this-signal">1 · Energy vs power: which one is this signal?<a class="headerlink" href="#1-energy-vs-power-which-one-is-this-signal" title="Permanent link">#</a></h2>
+<h3 id="11-the-idea-before-the-formulas">1.1 The idea before the formulas<a class="headerlink" href="#11-the-idea-before-the-formulas" title="Permanent link">#</a></h3>
+<p>Every signal carries <em>some</em> amount of "size". There are two different ways to measure that size, and which one is useful depends on whether the signal <strong>dies out</strong> or <strong>keeps going forever</strong>:</p>
+<ul>
+<li>A <strong>battery-powered blip</strong>: it transmits for a moment and then goes silent. What matters is the <em>total</em> it delivered → <strong>energy</strong> <span class="arithmatex">\(E_x\)</span>.</li>
+<li>A <strong>power station</strong>: it never stops. The total over forever is infinite and meaningless; what matters is what it delivers <em>per second on average</em> → <strong>average power</strong> <span class="arithmatex">\(P_x\)</span>.</li>
+</ul>
+<p>That is the entire concept. <mark>A signal is called an <strong><abbr title="a signal with finite total energy; its average power is 0.">energy signal</abbr></strong> if its total energy is a finite number, and a <strong><abbr title="a signal with infinite total energy but finite average power (e.g. anything periodic).">power signal</abbr></strong> if its total energy is infinite but its average power per second is a finite non-zero number.</mark></p>
+<p><strong>Why we square the signal.</strong> Electrical energy dissipated in a resistor is proportional to <em>voltage squared</em> (<span class="arithmatex">\(v^2/R\)</span>), so <mark>"energy of a signal" always means "area under <span class="arithmatex">\(x^2\)</span>"</mark>, never "area under <span class="arithmatex">\(x\)</span>" (which would be zero for any symmetric wiggle and would let positive and negative parts cancel).</p>
+<h3 id="12-the-two-formulas-explained-symbol-by-symbol">1.2 The two formulas, explained symbol by symbol<a class="headerlink" href="#12-the-two-formulas-explained-symbol-by-symbol" title="Permanent link">#</a></h3>
+<p><strong>Total energy</strong> (continuous time; for discrete time swap <span class="arithmatex">\(\int dt\)</span> for <span class="arithmatex">\(\sum\)</span> over <span class="arithmatex">\(n\)</span>):</p>
+<div class="key">
+<div class="arithmatex">\[E_x = \int_{-\infty}^{\infty} \lvert x(t)\rvert^2\,dt\]</div>
+</div>
+<ul>
+<li><span class="arithmatex">\(\lvert x(t)\rvert^2\)</span> = the squared size at instant <span class="arithmatex">\(t\)</span>. (For real signals <span class="arithmatex">\(\lvert x\rvert^2 = x^2\)</span>.)</li>
+<li><span class="arithmatex">\(dt\)</span> = "…times a tiny slice of time" — this is an integral, i.e. <strong>add up the area under <span class="arithmatex">\(x^2(t)\)</span> over all time</strong>.</li>
+<li>Limits <span class="arithmatex">\(-\infty\)</span> to <span class="arithmatex">\(\infty\)</span> = over the whole life of the signal.</li>
+</ul>
+<p>Discrete version: <span class="arithmatex">\(\displaystyle E_x = \sum_{n=-\infty}^{\infty} \lvert x[n]\rvert^2\)</span> — literally "square every sample and add them all up".</p>
+<p><strong>Average power</strong> = energy per unit of time, measured on a <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr> of length <span class="arithmatex">\(T\)</span> and then letting the <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr> grow forever:</p>
+<div class="key">
+<div class="arithmatex">\[P_x = \lim_{T\to\infty}\frac{1}{T}\int_{-T/2}^{T/2}\lvert x(t)\rvert^2\,dt\]</div>
+</div>
+<p>Read it inside-out: <span class="arithmatex">\(\int_{-T/2}^{T/2}\)</span> = energy in a <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr> of length <span class="arithmatex">\(T\)</span>; <span class="arithmatex">\(\frac1T\times\)</span> that = <strong>average energy per second over that <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr></strong>; <span class="arithmatex">\(\lim_{T\to\infty}\)</span> = now stretch the <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr> forever and see what value the average settles on. Discrete version: replace <span class="arithmatex">\(\frac1T\int\)</span> by <span class="arithmatex">\(\frac1N\sum_{n=-N/2}^{N/2}\)</span>.</p>
+<figure>
+<p><img alt="Energy as the area under x squared" src="img/gen/p3_energy_power.svg" /></p>
+<figcaption>Both formulas are about the bottom row, $x^2(t)$. Left column: a signal that dies out. Its squared version has a finite shaded area, $\frac12$: that number is the energy. Right column: a tone that never stops. Every second adds another $\frac{A^2}{2}$ of area, so the total is infinite. Its <i>average height</i> (dashed line) stays at $\frac{A^2}{2}$, and that average height is the power.</figcaption>
+</figure>
+<figure class="anim">
+<video class="anim" src="video/energy_power.mp4" poster="video/energy_power.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation: the two formulas, live.</b> The beige window $[-\frac{T}{2},\frac{T}{2}]$ grows. Top right: the area inside it, $E(T)$. Blue (dies out) levels off at $\frac12$; red (a tone) keeps climbing. Bottom right: that area divided by $T$, the average power $P(T)$. Blue sinks to 0 (a fixed $\frac12$ divided by a growing $T$, section 1.3 below); red settles on $\frac{A^2}{2}=\frac12$. Those two end values are exactly what "$\lim_{T\to\infty}$" means.</figcaption>
+</figure>
+
+<h3 id="13-why-the-two-categories-can-never-overlap">1.3 Why the two categories can never overlap<a class="headerlink" href="#13-why-the-two-categories-can-never-overlap" title="Permanent link">#</a></h3>
+<p>Suppose <span class="arithmatex">\(E_x\)</span> is a finite number. Then the average over a <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr> of length <span class="arithmatex">\(T\)</span> is at most <span class="arithmatex">\(E_x/T\)</span>, and</p>
+<div class="arithmatex">\[P_x = \lim_{T\to\infty}\frac{E_x}{T} = 0 \qquad\text{(a fixed number divided by something growing forever = 0)}.\]</div>
+<p>So: <mark><strong>finite energy ⟹ average power is exactly zero.</strong></mark> That is why the answer to an energy-signal question always ends with "<span class="arithmatex">\(P=0\)</span>", and why a <abbr title="a signal with infinite total energy but finite average power (e.g. anything periodic).">power signal</abbr> must have <span class="arithmatex">\(E_x=\infty\)</span>.</p>
+<h3 id="14-how-to-classify-a-signal-in-5-seconds">1.4 How to classify a signal in 5 seconds<a class="headerlink" href="#14-how-to-classify-a-signal-in-5-seconds" title="Permanent link">#</a></h3>
+<div class="admonition recipe key">
+<p class="admonition-title">Recipe: energy / power / neither</p>
+<ol>
+<li><strong>Does it die out?</strong> (tends to 0 as <span class="arithmatex">\(t\to\pm\infty\)</span>, or is non-zero only on a finite stretch, like a pulse) → <strong><abbr title="a signal with finite total energy; its average power is 0.">energy signal</abbr></strong>. Compute <span class="arithmatex">\(E\)</span> (a sum or an integral of <span class="arithmatex">\(x^2\)</span>), state <span class="arithmatex">\(P=0\)</span>.</li>
+<li><strong>Does it repeat forever?</strong> (a sine, a cosine, any periodic pattern; also random <em>stationary</em> signals) → <strong><abbr title="a signal with infinite total energy but finite average power (e.g. anything periodic).">power signal</abbr></strong>. Compute <span class="arithmatex">\(P\)</span> (the average of <span class="arithmatex">\(x^2\)</span>), state <span class="arithmatex">\(E=\infty\)</span>.</li>
+<li><strong>Does it grow without bound?</strong> (like <span class="arithmatex">\(e^{t}\)</span>) → <strong>neither</strong>.</li>
+</ol>
+<p>Rule of thumb for the average of the square of a wiggle: <strong>the average of <span class="arithmatex">\(\sin^2\)</span> or <span class="arithmatex">\(\cos^2\)</span> over many periods is exactly <span class="arithmatex">\(\frac12\)</span></strong>, so a tone <span class="arithmatex">\(A\sin(\omega t)\)</span> has <span class="arithmatex">\(P = A^2/2\)</span>. If the tone is only <em>half</em> on (switched on at <span class="arithmatex">\(t=0\)</span> instead of existing forever), the average is halved again: <span class="arithmatex">\(P = A^2/4\)</span>.</p>
+</div>
+<h3 id="15-every-example-the-exams-use-computed-from-scratch">1.5 Every example the exams use, computed from scratch<a class="headerlink" href="#15-every-example-the-exams-use-computed-from-scratch" title="Permanent link">#</a></h3>
+<figure>
+<p><img alt="The six exam signals and their verdicts" src="img/gen/p3_examples.svg" /></p>
+<figcaption>All six examples below at a glance, blue = energy signal, red = power signal. The recipe of 1.4 is visible in the shapes: everything that sinks to 0 on both sides (B, C, E, F) is an energy signal; everything that keeps wiggling forever (A, D) is a power signal.</figcaption>
+</figure>
+<p><strong>Example A — <span class="arithmatex">\(x(t) = A\sin(\omega t)\)</span>, forever.</strong> It repeats, so it is a <strong><abbr title="a signal with infinite total energy but finite average power (e.g. anything periodic).">power signal</abbr></strong>, <span class="arithmatex">\(E=\infty\)</span>. For the power, use the identity from <a href="p0-foundations.html#04-the-three-calculations-you-keep-meeting">Chapter 0</a>: <span class="arithmatex">\(\sin^2(\omega t) = \frac{1-\cos(2\omega t)}{2}\)</span>.</p>
+<div class="arithmatex">\[P = \lim_{T\to\infty}\frac{1}{T}\int_{-T/2}^{T/2} A^2\underbrace{\frac{1-\cos(2\omega t)}{2}}_{\sin^2(\omega t)}dt\]</div>
+<p>Split the integral in two pieces:</p>
+<div class="arithmatex">\[= \lim_{T\to\infty}\frac{A^2}{T}\left[\int_{-T/2}^{T/2}\frac12\,dt \;-\; \int_{-T/2}^{T/2}\frac{\cos(2\omega t)}{2}\,dt\right]\]</div>
+<ul>
+<li>First piece: <span class="arithmatex">\(\int_{-T/2}^{T/2}\frac12 dt = \frac12 T\)</span> (area of a constant <span class="arithmatex">\(\frac12\)</span> over a length-<span class="arithmatex">\(T\)</span> <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr>). So <span class="arithmatex">\(\frac{A^2}{T}\cdot\frac{T}{2} = \frac{A^2}{2}\)</span>.</li>
+<li>Second piece: <span class="arithmatex">\(\int \cos(2\omega t)dt = \frac{\sin(2\omega t)}{2\omega}\)</span>, and <span class="arithmatex">\(\sin\)</span> is trapped between <span class="arithmatex">\(-1\)</span> and <span class="arithmatex">\(+1\)</span>, so that integral is <strong>at most <span class="arithmatex">\(1/\omega\)</span></strong> — a fixed number. Divided by <span class="arithmatex">\(T\to\infty\)</span> it becomes 0. (That is what "the cosine averages out" means: a wiggle that spends as much time positive as negative contributes nothing to the average.)</li>
+</ul>
+<div class="arithmatex">\[\boxed{P = \frac{A^2}{2}},\qquad E = \infty\]</div>
+<p><strong>Example B — <span class="arithmatex">\(x[n] = e^{-n}\)</span> for <span class="arithmatex">\(n \ge 0\)</span>, zero elsewhere.</strong> It dies out, so it is an <strong><abbr title="a signal with finite total energy; its average power is 0.">energy signal</abbr></strong>. "Elsewhere" = 0 contributes nothing, so sum from <span class="arithmatex">\(n=0\)</span> to <span class="arithmatex">\(\infty\)</span>:</p>
+<div class="arithmatex">\[E = \sum_{n=0}^{\infty}\big(e^{-n}\big)^2 = \sum_{n=0}^{\infty} e^{-2n} = \sum_{n=0}^{\infty}\big(e^{-2}\big)^{n}\]</div>
+<p>That is a <strong>geometric series</strong> <span class="arithmatex">\(1 + r + r^2 + \dots\)</span> with <span class="arithmatex">\(r = e^{-2}\approx 0.1353 &lt; 1\)</span>, so it equals <span class="arithmatex">\(\frac{1}{1-r}\)</span>:</p>
+<div class="arithmatex">\[E = \frac{1}{1-e^{-2}} = \frac{1}{1-0.1353} = \frac{1}{0.8647} \approx 1.1565,\qquad P = 0 .\]</div>
+<p><strong>Example C — <span class="arithmatex">\(x(t) = e^{-t}u(t)\)</span></strong> (<span class="arithmatex">\(u(t)\)</span> = the <em><abbr title="u(t): 0 before t = 0, 1 after; it &quot;switches a signal on&quot; at t = 0.">unit step</abbr></em>: <span class="arithmatex">\(u(t)=1\)</span> for <span class="arithmatex">\(t\ge0\)</span>, <span class="arithmatex">\(0\)</span> for <span class="arithmatex">\(t&lt;0\)</span>; it just means "starts at <span class="arithmatex">\(t=0\)</span>"). Dies out → <abbr title="a signal with finite total energy; its average power is 0.">energy signal</abbr>:</p>
+<div class="arithmatex">\[E = \int_{-\infty}^{\infty}\big(e^{-t}u(t)\big)^2 dt = \int_{0}^{\infty} e^{-2t}dt = \left[\frac{e^{-2t}}{-2}\right]_0^\infty = 0 - \Big(-\frac12\Big) = \frac12 ,\qquad P = 0 .\]</div>
+<p><strong>Example D — <span class="arithmatex">\(x(t) = \cos(t)\,u(t)\)</span></strong> (a cosine, but only for <span class="arithmatex">\(t\ge 0\)</span>). It never dies out and it repeats on <span class="arithmatex">\([0,\infty)\)</span> → <strong><abbr title="a signal with infinite total energy but finite average power (e.g. anything periodic).">power signal</abbr></strong>, <span class="arithmatex">\(E=\infty\)</span>. The average of <span class="arithmatex">\(\cos^2(t)\)</span> is <span class="arithmatex">\(\frac12\)</span>, but the signal is only "on" for half of the symmetric <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr> <span class="arithmatex">\([-T/2, T/2]\)</span>:</p>
+<div class="arithmatex">\[P = \lim_{T\to\infty}\frac{1}{T}\int_{0}^{T/2}\cos^2(t)\,dt = \frac{1}{2}\times\frac{1}{2} = \frac14 .\]</div>
+<p>The extra <span class="arithmatex">\(\frac12\)</span> is exactly "the tone is on only half the time". (Same reason <span class="arithmatex">\(A\sin(\omega t)u(t)\)</span> gives <span class="arithmatex">\(A^2/4\)</span> instead of <span class="arithmatex">\(A^2/2\)</span>.)</p>
+<figure>
+<p><img alt="Why a switched-on cosine has power one quarter" src="img/gen/p3_cos_u.svg" /></p>
+<figcaption>The window $[-\frac{T}{2},\frac{T}{2}]$ is always centred on $t=0$. The left half (grey) falls before the switch-on, where $x=0$, so it adds nothing. The right half averages $\frac12$ like any $\cos^2$. Averaged over the whole window: half of $\frac12$, i.e. $\frac14$, however long $T$ gets.</figcaption>
+</figure>
+<p><strong>Example E — <span class="arithmatex">\(x(t) = 5\)</span> for <span class="arithmatex">\(-2 \le t \le 2\)</span>, zero elsewhere</strong> (a rectangular pulse). Non-zero only on a finite stretch → <abbr title="a signal with finite total energy; its average power is 0.">energy signal</abbr>, and <span class="arithmatex">\(x^2 = 25\)</span> there:</p>
+<div class="arithmatex">\[E = \int_{-2}^{2} 25\,dt = 25 \times 4 = 100,\qquad P = 0 .\]</div>
+<p><strong>Example F — <span class="arithmatex">\(x(t) = 5e^{-2\lvert t\rvert}\)</span></strong> (a symmetric two-sided spike). Dies out on both sides → <abbr title="a signal with finite total energy; its average power is 0.">energy signal</abbr>. The function is symmetric, so integrate from 0 to <span class="arithmatex">\(\infty\)</span> and double; <span class="arithmatex">\(\lvert t\rvert = t\)</span> there and <span class="arithmatex">\((5e^{-2t})^2 = 25e^{-4t}\)</span>:</p>
+<div class="arithmatex">\[E = 2\int_{0}^{\infty} 25 e^{-4t}dt = 2\times 25\times \left[\frac{e^{-4t}}{-4}\right]_0^\infty = 50\times\frac14 = \frac{25}{2} = 12.5,\qquad P = 0 .\]</div>
+<div class="admonition trap">
+<p class="admonition-title">Where points get lost here</p>
+<ul>
+<li>Answering <span class="arithmatex">\(P = A^2/2\)</span> when the tone is <strong>switched on at <span class="arithmatex">\(t=0\)</span></strong> (<span class="arithmatex">\(u(t)\)</span>): the answer is <span class="arithmatex">\(A^2/4\)</span>.</li>
+<li><mark>For an <abbr title="a signal with finite total energy; its average power is 0.">energy signal</abbr> you must still <strong>write <span class="arithmatex">\(P = 0\)</span></strong>, and for a <abbr title="a signal with infinite total energy but finite average power (e.g. anything periodic).">power signal</abbr> <strong>write <span class="arithmatex">\(E = \infty\)</span></strong>.</mark> The question asks for <em>both</em> numbers.</li>
+<li><span class="arithmatex">\(\big(e^{-n}\big)^2 = e^{-2n}\)</span>, <strong>not</strong> <span class="arithmatex">\(e^{-n^2}\)</span>. And the geometric series needs <span class="arithmatex">\(r = e^{-2}\)</span>, not <span class="arithmatex">\(r = e^{-n}\)</span>.</li>
+<li>"Provide only the final answer" means the marker sees <strong>only</strong> your number: write both <span class="arithmatex">\(E\)</span> and <span class="arithmatex">\(P\)</span> and label which is which.</li>
+</ul>
+</div>
+<hr />
+<h2 id="2-windows-what-cutting-the-signal-to-n-samples-does">2 · Windows: what cutting the signal to <span class="arithmatex">\(N\)</span> samples does<a class="headerlink" href="#2-windows-what-cutting-the-signal-to-n-samples-does" title="Permanent link">#</a></h2>
+<h3 id="21-why-a-window-exists-at-all">2.1 Why a <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr> exists at all<a class="headerlink" href="#21-why-a-window-exists-at-all" title="Permanent link">#</a></h3>
+<p>You never have "the signal, forever". You record <span class="arithmatex">\(N\)</span> samples and that is all you get. <mark>Recording <span class="arithmatex">\(N\)</span> samples is mathematically the same as <strong>multiplying</strong> the true infinite signal by a <em><abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr></em> <span class="arithmatex">\(w[n]\)</span></mark> that is 1 inside your recording and 0 outside:</p>
+<div class="arithmatex">\[\tilde{x}[n] = x[n]\cdot w[n],\qquad w[n] = \begin{cases}1 &amp; n = 0,\dots,N-1\\ 0 &amp; \text{everywhere else}\end{cases}\]</div>
+<p>That particular shape is the <strong><abbr title="the hard-cut window: 1 for n = 0…N−1, 0 elsewhere.">rectangular window</abbr></strong> (a rectangle: 1 inside, 0 outside). Other windows (Hann, Hamming, triangular) taper smoothly to 0 at the edges instead of cutting hard.</p>
+<figure>
+<p><img alt="Multiplying a signal by a window" src="img/gen/p3_window_time.svg" /></p>
+<figcaption>Top row: recording 32 samples is the same as multiplying the never-ending signal by a rectangle that is 1 on the samples you keep and 0 elsewhere. Bottom row: a Hann window does the same multiplication but fades the recording in and out, so there is no hard cut at the edges. The hard cut is what produces high side lobes in section 2.2.</figcaption>
+</figure>
+<h3 id="22-what-multiplication-does-to-the-spectrum">2.2 What multiplication does to the spectrum<a class="headerlink" href="#22-what-multiplication-does-to-the-spectrum" title="Permanent link">#</a></h3>
+<p>The rule from <a href="p0-foundations.html#05-spectrum-what-a-fourier-transform-tells-you">Chapter 0</a>: <mark><strong>multiplying signals in time = smearing (convolving) their spectra in frequency</strong></mark>. So <mark>the spectrum you compute is not the true spectrum; it is the true spectrum <strong>smeared with the <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr>'s own spectrum</strong> <span class="arithmatex">\(W(e^{j\theta})\)</span></mark>:</p>
+<div class="arithmatex">\[\text{what you measure} \;=\; \text{true spectrum} \;\otimes\; W(e^{j\theta})\]</div>
+<p>Intuition: every true frequency peak gets replaced by a copy of the <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr>'s spectrum shape, scaled and centred on that peak. If the <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr>'s shape were an infinitely thin spike, nothing would change. Because it is <em>not</em> infinitely thin, two bad things happen — and each is caused by one feature of the <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr>'s shape:</p>
+<figure class="anim">
+<video class="anim" src="video/windowing.mp4" poster="video/windowing.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation: windowing, start to finish.</b> Top: the true signal (grey), a strong tone plus a tone 100 times weaker, and the window (red); blue is what you record. Bottom: the spectrum you compute (dB). Each true tone (dashed) becomes a copy of the window's spectrum. As $N$ grows the main lobe narrows, but the side lobes stay at −13 dB and bury the weak tone. Switching to a Hann window drops the side lobes and the weak tone appears; the main lobe gets wider in exchange.</figcaption>
+</figure>
+
+<figure>
+<p><img alt="Rectangular vs Hann window" src="img/gen/p3_windows.svg" /></p>
+<figcaption>Left: the spectrum of two windows of the same length, in dB (log scale: lower = quieter). The rectangular window (blue) has the <b>narrowest main lobe</b> but its first side lobe is only 13 dB down. The Hann window (orange) has a <b>wider main lobe</b> but side lobes 32 dB down. Right: a strong tone at frequency 1.0 and a second tone 34 dB weaker at 2.3. With the rectangular window the weak tone is buried under the strong tone's side lobes (leakage); with Hann both tones are visible.</figcaption>
+</figure>
+<h3 id="23-the-vocabulary-main-lobe-side-lobes-resolution-leakage">2.3 The vocabulary: <abbr title="the big central bump of a window's spectrum; its width sets the resolution.">main lobe</abbr>, <abbr title="the ripples left and right of the main lobe; their height sets the leakage.">side lobes</abbr>, <abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr>, <abbr title="power of a strong tone spilling onto other frequencies and hiding weak tones.">leakage</abbr><a class="headerlink" href="#23-the-vocabulary-main-lobe-side-lobes-resolution-leakage" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Plain meaning</th>
+<th>Picture (left figure)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Main lobe</strong></td>
+<td>the big central bump of the <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr>'s spectrum</td>
+<td>the tall middle peak</td>
+</tr>
+<tr>
+<td><strong>Side lobes</strong></td>
+<td>the smaller ripples to the left and right</td>
+<td>the small bumps after the main one</td>
+</tr>
+<tr>
+<td><strong>Resolution</strong></td>
+<td>ability to see two close frequencies as <strong>two</strong> peaks</td>
+<td>set by <strong>how wide the <abbr title="the big central bump of a window's spectrum; its width sets the resolution.">main lobe</abbr> is</strong>: wider = worse</td>
+</tr>
+<tr>
+<td><strong>Leakage</strong></td>
+<td>power of a strong tone showing up at <strong>wrong</strong> frequencies, drowning weak tones</td>
+<td>set by <strong>how high the <abbr title="the ripples left and right of the main lobe; their height sets the leakage.">side lobes</abbr> are</strong>: higher = worse</td>
+</tr>
+</tbody>
+</table>
+<p>So each <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr> feature causes exactly one problem:</p>
+<div class="key">
+<table>
+<thead>
+<tr>
+<th>Feature of the <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr>'s spectrum</th>
+<th>Causes</th>
+<th>Symptom</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><abbr title="the big central bump of a window's spectrum; its width sets the resolution.">main lobe</abbr> width</strong></td>
+<td>loss of <strong><abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr></strong></td>
+<td>two peaks closer than about <span class="arithmatex">\(2\pi/N\)</span> (i.e. <span class="arithmatex">\(f_s/N\)</span> Hz) merge into one; peaks look wider and lower than they are</td>
+</tr>
+<tr>
+<td><strong>side lobe height</strong></td>
+<td>spectral <strong><abbr title="power of a strong tone spilling onto other frequencies and hiding weak tones.">leakage</abbr></strong></td>
+<td>background "noise floor" rises; weak tones and spurious peaks get hidden</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="24-what-you-can-change-and-what-it-costs">2.4 What you can change, and what it costs<a class="headerlink" href="#24-what-you-can-change-and-what-it-costs" title="Permanent link">#</a></h3>
+<ul>
+<li><mark><strong>Make <span class="arithmatex">\(N\)</span> bigger</strong> (record longer) → <abbr title="the big central bump of a window's spectrum; its width sets the resolution.">main lobe</abbr> gets <strong>narrower</strong> → <strong>better <abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr></strong>.</mark> But <mark>the <abbr title="the ripples left and right of the main lobe; their height sets the leakage.">side lobes</abbr> of a <em>rectangular</em> <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr> stay at −13 dB no matter how long the <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr> is.</mark> So the exam statement "increase <span class="arithmatex">\(N\)</span> to reduce <abbr title="power of a strong tone spilling onto other frequencies and hiding weak tones.">leakage</abbr>" is marked <strong>false</strong>.</li>
+<li><mark><strong>Use a smoother <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr></strong> (triangular: −27 dB, Hann: −32 dB, Hamming: similar) → <strong>less <abbr title="power of a strong tone spilling onto other frequencies and hiding weak tones.">leakage</abbr></strong>, but the <abbr title="the big central bump of a window's spectrum; its width sets the resolution.">main lobe</abbr> becomes <strong>wider</strong> → <strong>worse <abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr></strong></mark> for the same <span class="arithmatex">\(N\)</span>. It is always a trade: you buy <abbr title="power of a strong tone spilling onto other frequencies and hiding weak tones.">leakage</abbr> at the price of <abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr>.</li>
+</ul>
+<figure>
+<p><img alt="Longer N narrows the main lobe but not the side lobes" src="img/gen/p3_N_lobes.svg" /></p>
+<figcaption>The rectangular window's spectrum for $N=8,16,32$. Left (linear): the main lobe ends at $\theta=\frac{2\pi}{N}$ (triangles), so doubling $N$ halves its width. Right (dB): the highest side lobe sits at −13 dB for every $N$; only more lobes get squeezed in. This one picture answers "does a longer window reduce leakage?" (no) and "does it improve resolution?" (yes).</figcaption>
+</figure>
+<figure>
+<p><img alt="Zero padding" src="img/gen/p3_zeropad.svg" /></p>
+<figcaption>Grey curve: the true FTD of 16 samples of a cosine. Blue squares: the 16-point DFT (one sample per bin). Red dots: the DFT after zero padding to 64 points. The red dots simply trace the same grey curve at closer spacing; the peak does not get narrower and no new peak can appear.</figcaption>
+</figure>
+<hr />
+<h2 id="dft-ftd-and-zero-padding">3 · FTD, DFT and <abbr title="appending zeros before the DFT; it samples the same spectrum more finely, it does not add information.">zero padding</abbr><a class="headerlink" href="#dft-ftd-and-zero-padding" title="Permanent link">#</a></h2>
+<h3 id="31-the-two-transforms-one-more-time">3.1 The two transforms, one more time<a class="headerlink" href="#31-the-two-transforms-one-more-time" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>FTD</strong></th>
+<th><strong>DFT</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Formula</td>
+<td><span class="arithmatex">\(X(e^{j\theta}) = \sum_{n} x[n]e^{-jn\theta}\)</span></td>
+<td><span class="arithmatex">\(X[k] = \sum_{n=0}^{N-1} x[n]e^{-j2\pi kn/N}\)</span></td>
+</tr>
+<tr>
+<td>Input</td>
+<td>the whole (infinite) signal</td>
+<td>your <span class="arithmatex">\(N\)</span> recorded samples</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>a <strong>continuous curve</strong> over <span class="arithmatex">\(\theta \in [-\pi,\pi]\)</span></td>
+<td><strong><span class="arithmatex">\(N\)</span> numbers</strong> at frequencies <span class="arithmatex">\(\theta_k = 2\pi k/N\)</span></td>
+</tr>
+<tr>
+<td>Who can compute it</td>
+<td>nobody (it needs the infinite signal)</td>
+<td>a computer, in one go</td>
+</tr>
+</tbody>
+</table>
+<p><mark>The DFT is <strong>the FTD sampled at <span class="arithmatex">\(N\)</span> evenly spaced frequencies</strong>.</mark> Nothing else. <mark>The spacing between DFT points is <span class="arithmatex">\(\theta\)</span>-step <span class="arithmatex">\(= 2\pi/N\)</span>, which in Hz is <span class="arithmatex">\(f_s/N\)</span></mark> ("bin width", <a href="p0-foundations.html#05-spectrum-what-a-fourier-transform-tells-you">Chapter 0</a>).</p>
+<h3 id="32-zero-padding-what-it-is">3.2 Zero padding: what it is<a class="headerlink" href="#32-zero-padding-what-it-is" title="Permanent link">#</a></h3>
+<p>Take your <span class="arithmatex">\(N\)</span> samples, stick <span class="arithmatex">\(L-N\)</span> zeros at the end, and compute the <strong><span class="arithmatex">\(L\)</span>-point</strong> DFT instead. You still only know <span class="arithmatex">\(N\)</span> real samples; the extra inputs are zeros.</p>
+<p>What you get: <mark>the <span class="arithmatex">\(L\)</span>-point DFT samples <strong>the same <span class="arithmatex">\(N\)</span>-sample FTD curve</strong> at the finer spacing <span class="arithmatex">\(2\pi k/L\)</span></mark> (i.e. <span class="arithmatex">\(f_s/L\)</span> Hz). More points on the <em>same</em> curve.</p>
+<figure class="anim">
+<video class="anim" src="video/zero_pad.mp4" poster="video/zero_pad.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation.</b> Top: 16 real samples (blue) followed by more and more zeros (grey). Bottom: the $L$-point DFT (red dots) for $L=16,32,64,256$. The dots get denser but never leave the grey curve, the FTD of the 16 real samples. The green curve at the end uses 64 <i>real</i> samples: only that makes the peak narrower.</figcaption>
+</figure>
+
+<h3 id="33-why-it-does-not-improve-resolution">3.3 Why it does not improve <abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr><a class="headerlink" href="#33-why-it-does-not-improve-resolution" title="Permanent link">#</a></h3>
+<p><mark>Resolution is set by the <strong>width of the <abbr title="the big central bump of a window's spectrum; its width sets the resolution.">main lobe</abbr></strong>, and that width depends only on <span class="arithmatex">\(N\)</span> and the <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr></mark> — the zeros you appended carry no information, so the curve cannot get any narrower. <mark>Zero padding only makes the plot look smoother</mark> (it <em>interpolates</em> between the old points). Two tones that were merged into one peak before are still merged after.</p>
+<figure>
+<p><img alt="Zero padding vs more samples for two close tones" src="img/gen/p3_resolution.svg" /></p>
+<figcaption>Two tones only 0.2 rad/sample apart (dotted), closer than $\frac{2\pi}{16}\approx0.39$. Left: 16 samples, plain DFT: one blob. Middle: the same 16 samples zero-padded to 128 points: a smooth curve, still one blob. Right: 64 real samples ($\frac{2\pi}{64}\approx0.1$ apart is now resolvable): two clean peaks. Only real data buys resolution.</figcaption>
+</figure>
+<div class="admonition trap key">
+<p class="admonition-title">Traps (all of these are real exam statements)</p>
+<ul>
+<li>"Zero padding increases <abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr>" → <strong>false</strong>. It increases the <em>density of frequency samples</em>, nothing more.</li>
+<li>"A triangular/Hann <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr> gives higher <abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr> than rectangular" → <strong>false</strong>. It gives <em>less <abbr title="power of a strong tone spilling onto other frequencies and hiding weak tones.">leakage</abbr></em>; its <abbr title="the big central bump of a window's spectrum; its width sets the resolution.">main lobe</abbr> is <em>wider</em>, so <abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr> is worse.</li>
+<li>"Increasing the <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr> length reduces <abbr title="power of a strong tone spilling onto other frequencies and hiding weak tones.">leakage</abbr> for a <abbr title="the hard-cut window: 1 for n = 0…N−1, 0 elsewhere.">rectangular window</abbr>" → <strong>false</strong> (<abbr title="the ripples left and right of the main lobe; their height sets the leakage.">side lobes</abbr> stay at −13 dB). It <em>does</em> improve <abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr>.</li>
+<li>Bias caused by windowing affects <strong>both</strong> deterministic and random signals. <em>Variance</em> (estimates jumping around between records) is the separate, extra problem of random signals.</li>
+</ul>
+</div>
+<hr />
+<h2 id="exam-questions">Exam questions<a class="headerlink" href="#exam-questions" title="Permanent link">#</a></h2>
+<p>Every solution below starts with <em>what the question is actually asking</em>, then shows every step.</p>
+<h3 id="apr25-3a">April 2025 exam · 3a<a class="headerlink" href="#apr25-3a" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q3, 13 April 2025 · 3a · 0.5 p</p>
+<p>For each of the following signals, indicate whether they are energy or power signals, and provide their total energy and average power.</p>
+<p><strong><em>Provide only the final answer. The workout will not be checked.</em></strong></p>
+<ol>
+<li><span class="arithmatex">\(x(t) = A \sin(\omega t)\)</span>, with <span class="arithmatex">\(A, \omega\)</span> being the fixed amplitude and frequency, respectively.</li>
+<li><span class="arithmatex">\(x[n] = e^{-n}\)</span> for <span class="arithmatex">\(n \geq 0\)</span>, and <span class="arithmatex">\(x[n] = 0\)</span> elsewhere.</li>
+</ol>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> For each signal give three things: the label (energy or <abbr title="a signal with infinite total energy but finite average power (e.g. anything periodic).">power signal</abbr>), the total energy <span class="arithmatex">\(E\)</span>, and the average power <span class="arithmatex">\(P\)</span>. Only the three final answers are graded — but to <em>get</em> them you must compute, and you have no partial credit, so the computation must be right first time.</p>
+<p><strong>Symbols in this question</strong></p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(A,\ \omega\)</span></td>
+<td>fixed numbers: amplitude and angular frequency (they stay in the answer — this is a letter answer, not a number)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\sin(\omega t)\)</span></td>
+<td>a cosine-type wiggle that repeats forever</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(x[n]=e^{-n}\)</span>, <span class="arithmatex">\(n\ge0\)</span></td>
+<td>a discrete signal: <span class="arithmatex">\(1, 0.368, 0.135, 0.050, \dots\)</span> (since <span class="arithmatex">\(e^{-1}\approx0.368\)</span>), i.e. a shrinking list</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(E\)</span>, <span class="arithmatex">\(P\)</span></td>
+<td>total energy, average power (<a href="#12-the-two-formulas-explained-symbol-by-symbol">section 1.2</a>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Signal 1: <span class="arithmatex">\(x(t) = A\sin(\omega t)\)</span>.</strong></p>
+<ol>
+<li><em>Classify.</em> A sine repeats every <span class="arithmatex">\(2\pi/\omega\)</span> seconds and never dies out → <strong><abbr title="a signal with infinite total energy but finite average power (e.g. anything periodic).">power signal</abbr></strong> → by <a href="#13-why-the-two-categories-can-never-overlap">section 1.3</a> its energy is infinite: <span class="arithmatex">\(E = \infty\)</span>.</li>
+<li>
+<p><em>Compute <span class="arithmatex">\(P\)</span>.</em> The average of a squared sine over many periods is <span class="arithmatex">\(\frac12\)</span> (the identity <span class="arithmatex">\(\sin^2 = \frac{1-\cos 2\omega t}{2}\)</span>, with the cosine part averaging away — full working in <a href="#15-every-example-the-exams-use-computed-from-scratch">Example A</a>):</p>
+<div class="arithmatex">\[P = \frac{A^2}{2}.\]</div>
+</li>
+</ol>
+<p><strong>Signal 2: <span class="arithmatex">\(x[n] = e^{-n}\)</span>, <span class="arithmatex">\(n\ge 0\)</span>.</strong></p>
+<ol>
+<li><em>Classify.</em> The samples shrink to zero (<span class="arithmatex">\(e^{-n}\to0\)</span>) and are zero before <span class="arithmatex">\(n=0\)</span> → it dies out → <strong><abbr title="a signal with finite total energy; its average power is 0.">energy signal</abbr></strong> → <span class="arithmatex">\(P = 0\)</span>.</li>
+<li>
+<p><em>Compute <span class="arithmatex">\(E\)</span>.</em> Square each sample and add them all up:</p>
+<div class="arithmatex">\[E = \sum_{n=0}^{\infty}\big(e^{-n}\big)^2 = \sum_{n=0}^{\infty}\big(e^{-2}\big)^{n} \overset{\text{geom. series}}{=} \frac{1}{1-e^{-2}} = \frac{1}{0.8647}\approx 1.1565 .\]</div>
+</li>
+</ol>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<ol>
+<li><strong>Power signal</strong>: <span class="arithmatex">\(E = \infty\)</span>, <span class="arithmatex">\(P = \dfrac{A^2}{2}\)</span>.</li>
+<li><strong>Energy signal</strong>: <span class="arithmatex">\(E = \dfrac{1}{1-e^{-2}} \approx 1.16\)</span>, <span class="arithmatex">\(P = 0\)</span>.</li>
+</ol>
+</div>
+</details>
+<h3 id="q2-24-3a">Q2 2023-24 resit · 3a<a class="headerlink" href="#q2-24-3a" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Resit Q2 2023-24 · 3a (shown in the Part 3 review lecture)</p>
+<p>For the signals in the table below, please indicate whether they are energy or power signals, Note that <span class="arithmatex">\(u(t)\)</span> represents the <abbr title="u(t): 0 before t = 0, 1 after; it &quot;switches a signal on&quot; at t = 0.">unit step</abbr> function.</p>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Energy or Power?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(x(t) = e^{-t}u(t)\)</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(x(t) = \cos(t)u(t)\)</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(x(t) = 5 \text{ for } -2 \leq t \leq 2, \text{ zero elsewhere.}\)</span></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(x(t) = 5e^{-2\lvert t\rvert}\)</span></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> One word per row: does this signal die out (energy) or does it keep going forever (power)? The formula sheet for this decision is <a href="#14-how-to-classify-a-signal-in-5-seconds">the recipe in 1.4</a>. <span class="arithmatex">\(u(t)\)</span> means "0 before <span class="arithmatex">\(t=0\)</span>, unchanged after" — it just switches the signal on at <span class="arithmatex">\(t=0\)</span>.</p>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Does it die out?</th>
+<th>Verdict</th>
+<th>Work (see <a href="#15-every-example-the-exams-use-computed-from-scratch">1.5</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(e^{-t}u(t)\)</span></td>
+<td>yes, <span class="arithmatex">\(e^{-t}\to0\)</span></td>
+<td><strong>energy</strong></td>
+<td><span class="arithmatex">\(E=\int_0^\infty e^{-2t}dt = \frac12\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\cos(t)u(t)\)</span></td>
+<td>no — keeps wiggling forever</td>
+<td><strong>power</strong></td>
+<td>average of <span class="arithmatex">\(\cos^2 = \frac12\)</span>, on only half the <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr> → <span class="arithmatex">\(P = \frac14\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(5\)</span> on <span class="arithmatex">\([-2,2]\)</span></td>
+<td>yes, zero outside</td>
+<td><strong>energy</strong></td>
+<td><span class="arithmatex">\(E = \int_{-2}^{2}25\,dt = 25\cdot 4 = 100\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(5e^{-2\lvert t\rvert}\)</span></td>
+<td>yes, both tails die out</td>
+<td><strong>energy</strong></td>
+<td><span class="arithmatex">\(E = 2\int_0^\infty 25e^{-4t}dt = 2\cdot\frac{25}{4} = \frac{25}{2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Note the third one: a <strong>constant</strong> is fine as an <abbr title="a signal with finite total energy; its average power is 0.">energy signal</abbr> as long as it is only non-zero on a finite stretch. It is the "keeps going forever" that makes a signal a <abbr title="a signal with infinite total energy but finite average power (e.g. anything periodic).">power signal</abbr>.</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>Energy</strong> · <strong>Power</strong> · <strong>Energy</strong> · <strong>Energy</strong></p>
+</div>
+</details>
+<h3 id="nov22-3b">November 2022 exam · 3b<a class="headerlink" href="#nov22-3b" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q1, 7 November 2022 · 3b · 0.25 p</p>
+<p>In the context of windowing and zero-padding, which of the following statements is TRUE?</p>
+<ul>
+<li>a) Given the same <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr> length, a triangular <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr> provides higher spectral <abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr> compared to a <abbr title="the hard-cut window: 1 for n = 0…N−1, 0 elsewhere.">rectangular window</abbr>.</li>
+<li>b) When calculating the spectrum of a windowed signal, the main-lobe width of the <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr> function determines spectral <abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr>, while the height of the <abbr title="the ripples left and right of the main lobe; their height sets the leakage.">side lobes</abbr> determines spectral <abbr title="power of a strong tone spilling onto other frequencies and hiding weak tones.">leakage</abbr>.</li>
+<li>c) When estimating the spectrum using a <abbr title="the hard-cut window: 1 for n = 0…N−1, 0 elsewhere.">rectangular window</abbr>, spectral <abbr title="power of a strong tone spilling onto other frequencies and hiding weak tones.">leakage</abbr> can be reduced by increasing the <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr> length.</li>
+<li>d) When calculating the Fourier transform of a N-sample discrete signal, extending the signal to a length L by <abbr title="appending zeros before the DFT; it samples the same spectrum more finely, it does not add information.">zero padding</abbr> is equivalent to sampling the L-sample Fourier Transform for Continuous time signal (FTD) at a step given by theta = k * 2pi / N</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> One true statement out of four. Test each against the two tables in <a href="#23-the-vocabulary-main-lobe-side-lobes-resolution-leakage">section 2.3</a>: <em><abbr title="the big central bump of a window's spectrum; its width sets the resolution.">main lobe</abbr> ↔ <abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr></em>, <em><abbr title="the ripples left and right of the main lobe; their height sets the leakage.">side lobes</abbr> ↔ <abbr title="power of a strong tone spilling onto other frequencies and hiding weak tones.">leakage</abbr></em>, and the cost table in <a href="#24-what-you-can-change-and-what-it-costs">2.4</a>.</p>
+<ul>
+<li><strong>(a)</strong> Triangular vs rectangular at the same length: triangular has a <strong>wider</strong> <abbr title="the big central bump of a window's spectrum; its width sets the resolution.">main lobe</abbr>, so its <abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr> is <em>lower</em>, not higher. It wins on <abbr title="power of a strong tone spilling onto other frequencies and hiding weak tones.">leakage</abbr>. → <strong>false</strong>.</li>
+<li><strong>(b)</strong> Main lobe width determines <abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr>; side lobe height determines <abbr title="power of a strong tone spilling onto other frequencies and hiding weak tones.">leakage</abbr>. That is exactly the table. → <strong>true</strong> ✓</li>
+<li><strong>(c)</strong> Making a <abbr title="the hard-cut window: 1 for n = 0…N−1, 0 elsewhere.">rectangular window</abbr> longer narrows the <abbr title="the big central bump of a window's spectrum; its width sets the resolution.">main lobe</abbr> (better <abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr>), but the <abbr title="the ripples left and right of the main lobe; their height sets the leakage.">side lobes</abbr> stay at −13 dB, so <abbr title="power of a strong tone spilling onto other frequencies and hiding weak tones.">leakage</abbr> is <strong>not</strong> reduced. The review slides mark this false. → <strong>false</strong>.</li>
+<li><strong>(d)</strong> Zero padding to <span class="arithmatex">\(L\)</span> samples the <span class="arithmatex">\(N\)</span>-sample FTD at the finer step <span class="arithmatex">\(2\pi k\mathbf{/L}\)</span>, not <span class="arithmatex">\(2\pi k/N\)</span> (and the FTD is the transform of a <em>discrete-time</em> signal — the word "continuous" in the statement is a typo). → <strong>false</strong>.</li>
+</ul>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(b)</strong></p>
+</div>
+</details>
+<h3 id="jan20-1c">January 2020 retake · 1c<a class="headerlink" href="#jan20-1c" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Retake exam, 20 January 2020 · Exercise 1(c) · 0.25 p</p>
+<p>In the context of windowing, which one of the following statements is true:</p>
+<ul>
+<li>A. The higher the <abbr title="the ripples left and right of the main lobe; their height sets the leakage.">side lobes</abbr> of the <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr> function, the worse the <abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr> of the spectral estimate.</li>
+<li>B. The higher the <abbr title="the ripples left and right of the main lobe; their height sets the leakage.">side lobes</abbr> of the <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr> function, the smaller the effects of spectral <abbr title="power of a strong tone spilling onto other frequencies and hiding weak tones.">leakage</abbr>.</li>
+<li>C. The wider the <abbr title="the big central bump of a window's spectrum; its width sets the resolution.">main lobe</abbr> of the <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr> function, the worse the <abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr> of the spectral estimate.</li>
+<li>D. The wider the <abbr title="the big central bump of a window's spectrum; its width sets the resolution.">main lobe</abbr> of the <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr> function, the larger the effects of spectral <abbr title="power of a strong tone spilling onto other frequencies and hiding weak tones.">leakage</abbr>.</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> Which statement matches the pairings <em><abbr title="the big central bump of a window's spectrum; its width sets the resolution.">main lobe</abbr> ↔ <abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr></em> and <em><abbr title="the ripples left and right of the main lobe; their height sets the leakage.">side lobes</abbr> ↔ <abbr title="power of a strong tone spilling onto other frequencies and hiding weak tones.">leakage</abbr></em>, with the direction right (wider/higher = worse).</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Pairing</th>
+<th>Direction</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td><abbr title="the ripples left and right of the main lobe; their height sets the leakage.">side lobes</abbr> ↔ <strong><abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr></strong></td>
+<td>—</td>
+<td>wrong pairing (<abbr title="the ripples left and right of the main lobe; their height sets the leakage.">side lobes</abbr> are <abbr title="power of a strong tone spilling onto other frequencies and hiding weak tones.">leakage</abbr>)</td>
+</tr>
+<tr>
+<td>B</td>
+<td><abbr title="the ripples left and right of the main lobe; their height sets the leakage.">side lobes</abbr> ↔ <strong><abbr title="power of a strong tone spilling onto other frequencies and hiding weak tones.">leakage</abbr></strong></td>
+<td>"higher = smaller effect"</td>
+<td>right pairing, <strong>wrong direction</strong> (higher <abbr title="the ripples left and right of the main lobe; their height sets the leakage.">side lobes</abbr> = <em>more</em> <abbr title="power of a strong tone spilling onto other frequencies and hiding weak tones.">leakage</abbr>)</td>
+</tr>
+<tr>
+<td>C</td>
+<td><abbr title="the big central bump of a window's spectrum; its width sets the resolution.">main lobe</abbr> ↔ <strong><abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr></strong></td>
+<td>"wider = worse"</td>
+<td>right pairing, right direction ✓</td>
+</tr>
+<tr>
+<td>D</td>
+<td><abbr title="the big central bump of a window's spectrum; its width sets the resolution.">main lobe</abbr> ↔ <strong><abbr title="power of a strong tone spilling onto other frequencies and hiding weak tones.">leakage</abbr></strong></td>
+<td>—</td>
+<td>wrong pairing (<abbr title="the big central bump of a window's spectrum; its width sets the resolution.">main lobe</abbr> is <abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr>)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>C</strong></p>
+</div>
+</details>
+<h3 id="jan22-3a">January 2022 resit · 3a<a class="headerlink" href="#jan22-3a" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Resit, 24 January 2022 · 3a · 0.3 p</p>
+<p>The infinitely-long discrete-time signal <span class="arithmatex">\(x[n] = 20 \cos(2\pi \frac{f}{f_s} n)\)</span>, with <span class="arithmatex">\(f = 25 \text{ Hz}\)</span> and <span class="arithmatex">\(f_s = 50 \text{ Hz}\)</span>, is windowed with a <abbr title="the hard-cut window: 1 for n = 0…N−1, 0 elsewhere.">rectangular window</abbr> of length <span class="arithmatex">\(N\)</span> to obtain the <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr> signal <span class="arithmatex">\(\tilde{x}[n]\)</span>. In the plots below, the following Fourier transforms are shown:</p>
+<ol>
+<li>The Fourier Transform for Discrete time signals (FTD) of <span class="arithmatex">\(x[n]\)</span></li>
+<li>The FTD of <span class="arithmatex">\(\tilde{x}[n]\)</span>.</li>
+<li>The Discrete Fourier Transform (DFT) of <span class="arithmatex">\(\tilde{x}[n]\)</span> calculated for <span class="arithmatex">\(N = 24\)</span> and <abbr title="appending zeros before the DFT; it samples the same spectrum more finely, it does not add information.">zero padding</abbr> of <span class="arithmatex">\(M = 12\)</span> samples.</li>
+<li>The Discrete Fourier Transform (DFT) of <span class="arithmatex">\(\tilde{x}[n]\)</span> calculated for <span class="arithmatex">\(N = 24\)</span> with no <abbr title="appending zeros before the DFT; it samples the same spectrum more finely, it does not add information.">zero padding</abbr>.</li>
+</ol>
+<p><img alt="Four transforms A–D" src="img/exam/jan22-3a-ft.jpg" /></p>
+<p>Which of the following is the correct association?</p>
+<ul>
+<li>(a) 1B, 2D, 3A, 3C</li>
+<li>(b) 1B, 2D, 3C, 4A</li>
+<li>(c) 1C, 2A, 3D, 4B</li>
+<li>(d) 1D, 2B, 3C, 4A</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> Match four descriptions to four drawings labelled A (blue squares), B (orange solid), C (yellow circles), D (purple dashed). The only real question is: <em>curve or points? thin spikes or smeared bump?</em></p>
+<p><strong>Symbols in this question</strong></p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(f = 25\)</span> Hz, <span class="arithmatex">\(f_s = 50\)</span> Hz</td>
+<td>the tone is at half the sample rate → digital frequency <span class="arithmatex">\(\theta = 2\pi\frac{25}{50} = \pi\)</span>: the fastest possible wiggle, <span class="arithmatex">\(\cos(\pi n) = (-1)^n\)</span> (<a href="p0-foundations.html#02-sine-cosine-frequency">Chapter 0 §0.2</a>)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(N = 24\)</span></td>
+<td>we keep 24 samples</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(M = 12\)</span></td>
+<td>we append 12 zeros → total length <span class="arithmatex">\(L = 24 + 12 = 36\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\tilde x[n]\)</span></td>
+<td>the windowed signal: the cosine cut to 24 samples</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 1 — description 1 (FTD of the infinite cosine).</strong> An infinite cosine contains exactly one frequency. Its spectrum is therefore <strong>two infinitely thin spikes</strong> (at <span class="arithmatex">\(\pm 25\)</span> Hz — two because <span class="arithmatex">\(\cos\theta = \frac12(e^{j\theta}+e^{-j\theta})\)</span>, <a href="p0-foundations.html#05-spectrum-what-a-fourier-transform-tells-you">Chapter 0 §0.5</a>). In the picture that is the solid orange <strong>B</strong>. <em>(Thinnest possible peaks = the infinite signal.)</em></p>
+<p><strong>Step 2 — description 2 (FTD of the cut signal).</strong> Cutting to 24 samples smears each thin spike into the <abbr title="the mask you multiply your signal by because you only recorded N samples; 1 inside the recording, 0 outside (or tapered, for Hann etc.).">window</abbr>'s spectrum shape: a <strong>continuous curve</strong> with a <abbr title="the big central bump of a window's spectrum; its width sets the resolution.">main lobe</abbr> and <abbr title="the ripples left and right of the main lobe; their height sets the leakage.">side lobes</abbr> (<a href="#22-what-multiplication-does-to-the-spectrum">section 2.2</a>). Continuous curve in the picture = dashed <strong>D</strong>. Note this curve is <em>not</em> made of points: the FTD is always a curve.</p>
+<p><strong>Step 3 — how the DFT points sit on that curve.</strong> The DFT is a sampling of curve D with spacing "bin width" <span class="arithmatex">\(= f_s/L\)</span> where <span class="arithmatex">\(L\)</span> is the DFT length. Compute both spacings:</p>
+<ul>
+<li><strong>No <abbr title="appending zeros before the DFT; it samples the same spectrum more finely, it does not add information.">zero padding</abbr></strong>: <span class="arithmatex">\(L = N = 24\)</span> → spacing <span class="arithmatex">\(= 50/24 \approx 2.08\)</span> Hz.</li>
+<li><strong>Zero padding to 36</strong>: spacing <span class="arithmatex">\(= 50/36 \approx 1.39\)</span> Hz.</li>
+</ul>
+<p><strong>Step 4 — description 4 (DFT, <span class="arithmatex">\(N = 24\)</span>, no padding) → which drawing?</strong> The tone sits at 25 Hz, and <span class="arithmatex">\(25/2.0833 = 12\)</span> exactly, so the peak falls exactly <strong>on a bin</strong>. A <abbr title="the hard-cut window: 1 for n = 0…N−1, 0 elsewhere.">rectangular window</abbr>'s curve crosses zero at every multiple of <span class="arithmatex">\(2.0833\)</span> Hz away from the peak — which is exactly where all the other bins sit. Result: <strong>one point at the top, every other point at zero</strong> → the blue squares <strong>A</strong>.</p>
+<p><strong>Step 5 — description 3 (DFT with <abbr title="appending zeros before the DFT; it samples the same spectrum more finely, it does not add information.">zero padding</abbr> to 36) → which drawing?</strong> Now the points are <span class="arithmatex">\(1.39\)</span> Hz apart, which no longer matches the <span class="arithmatex">\(2.08\)</span> Hz zero crossings (only every third point lands on one). So the points land <strong>on the ripples of the curve</strong> and trace the <abbr title="the big central bump of a window's spectrum; its width sets the resolution.">main lobe</abbr> and <abbr title="the ripples left and right of the main lobe; their height sets the leakage.">side lobes</abbr> → yellow circles <strong>C</strong>.</p>
+<p><strong>Sanity check (and the moral).</strong> C and A are just two different samplings of the <em>same</em> curve D. The peak width did not change — that is the whole "<abbr title="appending zeros before the DFT; it samples the same spectrum more finely, it does not add information.">zero padding</abbr> adds no <abbr title="the ability to tell two nearby frequencies apart as two peaks.">resolution</abbr>" lesson in one picture.</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(b)</strong> 1B, 2D, 3C, 4A</p>
+</div>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="p2-ls.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 2.4 Least squares">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                2.4 Least squares
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="p3-nonparametric.html" class="md-footer__link md-footer__link--next" aria-label="Next: 3.2 Non-parametric estimators">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                3.2 Non-parametric estimators
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.footer", "navigation.tracking", "navigation.instant", "navigation.instant.progress", "toc.follow", "content.tooltips"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js?v=1793008663"></script>
+      
+        <script src="javascripts/katex.js?v=1793008663"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="javascripts/quiz.js?v=1793008663"></script>
+      
+        <script src="javascripts/ask.js?v=1793008663"></script>
+      
+        <script src="javascripts/video.js?v=1793008663"></script>
+      
+        <script src="javascripts/layout.js?v=1793008663"></script>
+      
+        <script src="javascripts/keypoints.js?v=1793008663"></script>
+      
+        <script src="javascripts/progress.js?v=1793008663"></script>
+      
+        <script src="javascripts/widgets.js?v=1793008663"></script>
+      
+        <script src="javascripts/navsections.js?v=1793008663"></script>
+      
+    
+  </body>
+</html>

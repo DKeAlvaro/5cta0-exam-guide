@@ -1,0 +1,2570 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Every 5CTA0 Statistical Signal Processing exam question (2019–2026), solved step by step, organised by the patterns that keep coming back.">
+      
+      
+      
+        <link rel="canonical" href="https://dkealvaro.github.io/5cta0-exam-guide/e1-bayes.html">
+      
+      
+        <link rel="prev" href="podcast.html">
+      
+      
+        <link rel="next" href="e1-joint.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>1.1 Bayes word problems - 5CTA0 · Pass the exam</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css?v=1793008663">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css?v=1793008663">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+4:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Source Serif 4";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0.16.11/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap">
+    
+      <link rel="stylesheet" href="stylesheets/extra.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/ask.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/layout.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/keypoints.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/widgets.css?v=1793008663">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#11-bayes-word-problems" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-header__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            5CTA0 · Pass the exam
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1.1 Bayes word problems
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-nav__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    5CTA0 · Pass the exam
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New · Exam course
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    New · Exam course
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="podcast.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Podcast (watch first)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 1 · Probability (1.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 1 · Probability (1.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes word problems
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="e1-bayes.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes word problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-idea-in-one-minute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The idea in one minute
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-fight-this-section-with-the-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to fight this section with the sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-june-2026-1b-three-machines-read-this-one-with-the-sheet-margin-next-to-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 · June 2026 · 1b — three machines. Read this one with the sheet margin next to you
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-april-2025-1a-the-rate-is-given-for-the-good-ones-and-the-counts-are-given" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 · April 2025 · 1a — the rate is given for the good ones, and the counts are given
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-april-2024-1b-a-rare-disease-take-1-000-000-people" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 · April 2024 · 1b — a rare disease: take 1 000 000 people
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-practice-exam-2021-1a-false-positive-3-is-about-the-healthy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 · Practice exam 2021 · 1a — "false positive 3 %" is about the healthy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-january-2020-2-asked-about-pass-so-there-is-no-1-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 · January 2020 · 2 — asked about pass, so there is no \(1-\) step
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-january-2022-1a-the-rate-is-given-for-the-complement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6 · January 2022 · 1a — the rate is given for the complement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-january-2025-1a-a-table-instead-of-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7 · January 2025 · 1a — a table instead of words
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-november-2022-1a-no-counts-anywhere-so-use-the-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8 · November 2022 · 1a — no counts anywhere, so use the formula
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-april-2024-1a-given-that-it-survived-divide-the-two-tails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9 · April 2024 · 1a — "given that it survived": divide the two tails
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-june-2026-1a-independence-is-a-one-line-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · June 2026 · 1a — independence is a one-line definition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-november-2019-1b-a-truefalse-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11 · November 2019 · 1b — a true/false list
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-joint.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-wss.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Stationary and ergodic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-factor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-map.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 MAP with a prior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Least-squares line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Theory questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-corr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Correlogram, pick the plot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-arma.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 AR and MA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Periodogram, Welch, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Likelihood ratio test
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Priors, costs, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exams.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mock exams with answers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="battle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Battle kit · every question + its box
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cheatsheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 cheat sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cheatsheet3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 cheat sheet (v3, clearer wording)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Old · Long guide (deep dive)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Old · Long guide (deep dive)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="patterns.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The exam, decoded
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p0-foundations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 0 · From zero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="toolbox.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toolbox
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes & total probability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-rv.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Random variables & joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-processes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Random processes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-factorisation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-crlb.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 CRLB & Fisher information
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Bayesian estimation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Least squares
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-windows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Signals, windows, zero padding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-nonparametric.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 Non-parametric estimators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-autocorr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Autocorrelation of ARMA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-chain.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.4 Correlogram → AR → MA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-basics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Errors, ROC, Neyman–Pearson
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Likelihood ratio tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.3 Bayesian detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-idea-in-one-minute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The idea in one minute
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-fight-this-section-with-the-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to fight this section with the sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-june-2026-1b-three-machines-read-this-one-with-the-sheet-margin-next-to-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 · June 2026 · 1b — three machines. Read this one with the sheet margin next to you
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-april-2025-1a-the-rate-is-given-for-the-good-ones-and-the-counts-are-given" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 · April 2025 · 1a — the rate is given for the good ones, and the counts are given
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-april-2024-1b-a-rare-disease-take-1-000-000-people" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 · April 2024 · 1b — a rare disease: take 1 000 000 people
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-practice-exam-2021-1a-false-positive-3-is-about-the-healthy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 · Practice exam 2021 · 1a — "false positive 3 %" is about the healthy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-january-2020-2-asked-about-pass-so-there-is-no-1-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 · January 2020 · 2 — asked about pass, so there is no \(1-\) step
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-january-2022-1a-the-rate-is-given-for-the-complement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6 · January 2022 · 1a — the rate is given for the complement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-january-2025-1a-a-table-instead-of-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7 · January 2025 · 1a — a table instead of words
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-november-2022-1a-no-counts-anywhere-so-use-the-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8 · November 2022 · 1a — no counts anywhere, so use the formula
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-april-2024-1a-given-that-it-survived-divide-the-two-tails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9 · April 2024 · 1a — "given that it survived": divide the two tails
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-june-2026-1a-independence-is-a-one-line-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · June 2026 · 1a — independence is a one-line definition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-november-2019-1b-a-truefalse-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11 · November 2019 · 1b — a true/false list
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="11-bayes-word-problems">1.1 Bayes word problems<a class="headerlink" href="#11-bayes-word-problems" title="Permanent link">#</a></h1>
+<div class="meta"><span class="hot">In 7 of the last 7 exams</span><span>0.25–0.3 points</span><span>15 min</span></div>
+
+<figure class="pod"><video src="video/pod_ep5_probability.mp4" poster="video/pod_ep5_probability.jpg" controls playsinline preload="none"></video><figcaption><b>Watch first: podcast episode 5, Block 1: Bayes, joint PDFs, ergodic, factorisation</b> (with sound). Answer every purple YOUR TURN out loud before the countdown ends; pause if you need more time. <a href="podcast.html">All 5 episodes</a>.</figcaption></figure>
+
+<h2 id="the-idea-in-one-minute">The idea in one minute<a class="headerlink" href="#the-idea-in-one-minute" title="Permanent link">#</a></h2>
+<p>Percentages of percentages are confusing. <strong>Counts</strong> are not. Pretend you have exactly 1000 items and follow them:</p>
+<div class="widget" data-w="bayes"></div>
+
+<p>That is all there is. The two formulas below are the same steps written with symbols (<span class="arithmatex">\(P(A\mid B)\)</span> reads "probability of <span class="arithmatex">\(A\)</span> <strong>given</strong> <span class="arithmatex">\(B\)</span>"):</p>
+<div class="key">
+<div class="arithmatex">\[P(D)=\sum_k P(D\mid M_k)\,P(M_k)\qquad\qquad P(M_k\mid D)=\frac{P(D\mid M_k)\,P(M_k)}{P(D)}\]</div>
+</div>
+<h2 id="how-to-fight-this-section-with-the-sheet">How to fight this section with the sheet<a class="headerlink" href="#how-to-fight-this-section-with-the-sheet" title="Permanent link">#</a></h2>
+<p>The exam says <strong>"what is the probability that…" / "if it is found to be…, which group"</strong> on top of a story with machines, scanners, students or patients → you open <strong>box 1D</strong> on your A4 sheet. It is a <strong>6-step recipe</strong> that solves every word problem of this type — no formulas to invent, just run the steps on the story's numbers. It is also the question that appears in <strong>7 of the last 7 exams</strong>, so you want this on autopilot.</p>
+<p>The <strong>Calculations</strong> strip at the bottom of the sheet does the arithmetic for you (fractions, <span class="arithmatex">\(\ln\)</span>, <span class="arithmatex">\(e\)</span>), and the <strong>Numbers</strong> strip has the <span class="arithmatex">\(e^{-1/5}=0.82\)</span>-style values. The definition MCs and T/F lists of this part have their own line in <strong>box 1E</strong> ("Definition MC / T/F") plus the swap test of box 2D — exercises 10 and 11 below.</p>
+<div class="admonition sheet">
+<p class="admonition-title">Box 1D, exactly as it is printed on the sheet</p>
+<p><strong>IF YOU SEE</strong> groups (machines, scanners, students, patients) with counts or shares + "what is the probability that…" / "if it is found to be…, which group"</p>
+<ol>
+<li><strong>Total</strong>: counts given → sum them. Only % → pretend total <span class="arithmatex">\(=1000\)</span>.</li>
+<li>Items<span class="arithmatex">\(_k=\)</span> share<span class="arithmatex">\(_k\times\)</span>total.</li>
+<li><strong>Pick "bad"</strong> = the event asked, or the one after "given / if / found to be / has / tested positive". Asked <strong>NOT</strong> pass when a pass rate is given → bad rate <span class="arithmatex">\(=1-\)</span>pass rate.</li>
+<li>Bad<span class="arithmatex">\(_k=\)</span> bad rate<span class="arithmatex">\(_k\times\)</span>items<span class="arithmatex">\(_k\)</span>.</li>
+<li><span class="arithmatex">\(P(\text{bad})=\dfrac{\sum_k \text{bad}_k}{\text{total}}\)</span>.</li>
+<li><span class="arithmatex">\(P(k\mid\text{bad})=\dfrac{\text{bad}_k}{\sum_k \text{bad}_k}\)</span> — <strong>divide by the pile of bad, not by the total.</strong></li>
+</ol>
+<p>Wording: defective, fail, NOT pass, positive, infected, "actually present" → <strong>bad</strong> · "false positive 3 %" = 3 % <strong>of the healthy</strong> · "detects 95 % when present" = 95 % of the ill · "99 % accurate" = both groups classified right · "mixed at random" = step 5.</p>
+<p><em>Jun26</em> 40/35/25 %, defect 2/&#8536; %: bad <span class="arithmatex">\(=0.4(0.02)+0.35(0.04)+0.25(0.05)=0.0325\)</span>; <span class="arithmatex">\(M_2\)</span> given bad <span class="arithmatex">\(=\frac{0.35\cdot0.04}{0.0325}=0.43\)</span>.</p>
+</div>
+<p><strong>Extra exam words</strong> (past papers beyond the sheet's short Wording line — same steps): "has TB" / any disease → <strong>bad</strong> · "pass", "sufficient quality", "good" → the good event (step 3's <span class="arithmatex">\(1-\)</span>pass rate rule) · "scans / paints <span class="arithmatex">\(N\)</span> patients" → that is your count (step 1) · a tiny rate like 0.0005 → pretend total <span class="arithmatex">\(1\,000\,000\)</span>.</p>
+<p>Two more sheet places you will need: the <strong>Calculations</strong> strip when the answer is a fraction of a fraction, and the <strong>Numbers</strong> strip for <span class="arithmatex">\(e^{-1/5}=0.82\)</span>-style values. For the yes/no and true/false questions there is no recipe at all — those are one-line definitions, given in exercises 10 and 11 below.</p>
+<h2 id="1-june-2026-1b-three-machines-read-this-one-with-the-sheet-margin-next-to-you">1 · June 2026 · 1b — three machines. Read this one with the sheet margin next to you<a class="headerlink" href="#1-june-2026-1b-three-machines-read-this-one-with-the-sheet-margin-next-to-you" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Resit, June 2026 · 1b · 0.3 p</p>
+<p>A manufacturing plant has three machines, <span class="arithmatex">\(M_1\)</span>, <span class="arithmatex">\(M_2\)</span>, and <span class="arithmatex">\(M_3\)</span>, that produce microchips. Machine <span class="arithmatex">\(M_1\)</span> produces 40% of the chips, <span class="arithmatex">\(M_2\)</span> produces 35%, and <span class="arithmatex">\(M_3\)</span> produces 25%. The probability that a chip is defective is 2% for <span class="arithmatex">\(M_1\)</span>, 4% for <span class="arithmatex">\(M_2\)</span>, and 5% for <span class="arithmatex">\(M_3\)</span>. The chips from all machines are mixed together randomly before quality control.</p>
+<p><strong>Please provide only the final answer. The workout will not be checked.</strong></p>
+<ol>
+<li>What is the probability that a randomly selected chip will be defective? [0.15]</li>
+<li>If a randomly selected chip is found to be defective, what is the probability that it was produced by machine <span class="arithmatex">\(M_2\)</span>? [0.15]</li>
+</ol>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the margin you wrote: steps 1 to 6</p>
+<div class="stepper" markdown>
+<p><em>(The [0.15] marks are the points of each sub-question, not answers.)</em></p>
+<p><strong>Margin step 1 · "Total. Only percentages → pretend total <span class="arithmatex">\(=1000\)</span>."</strong>
+1000 chips. No counts are given, so any total works — 1000 is the easy one.</p>
+<hr />
+<p><strong>Margin step 2 · "Items<span class="arithmatex">\(_k\)</span> <span class="arithmatex">\(=\)</span> share<span class="arithmatex">\(_k\times\)</span> total."</strong>
+<span class="arithmatex">\(M_1\)</span>: <span class="arithmatex">\(0.40\times1000=400\)</span>. <span class="arithmatex">\(M_2\)</span>: <span class="arithmatex">\(0.35\times1000=350\)</span>. <span class="arithmatex">\(M_3\)</span>: <span class="arithmatex">\(0.25\times1000=250\)</span>. (Check: <span class="arithmatex">\(400+350+250=1000\)</span> ✓.)</p>
+<hr />
+<p><strong>Margin step 3 · "Pick bad."</strong>
+The question asks "defective", and then "found to be <strong>defective</strong>" — so bad <span class="arithmatex">\(=\)</span> defective. The rates 2 %, 4 %, 5 % are already defective rates: <strong>no</strong> <span class="arithmatex">\(1-\)</span> step here.</p>
+<hr />
+<p><strong>Margin step 4 · "Bad<span class="arithmatex">\(_k\)</span> <span class="arithmatex">\(=\)</span> bad rate<span class="arithmatex">\(_k\times\)</span> items<span class="arithmatex">\(_k\)</span>."</strong>
+<span class="arithmatex">\(0.02\times400=8\)</span> · <span class="arithmatex">\(0.04\times350=14\)</span> · <span class="arithmatex">\(0.05\times250=12.5\)</span>.</p>
+<hr />
+<p><strong>Margin step 5 · "<span class="arithmatex">\(P(\text{bad})=\)</span> sum <span class="arithmatex">\(/\)</span> total."</strong>
+<span class="arithmatex">\(8+14+12.5=34.5\)</span> bad chips out of 1000:</p>
+<div class="arithmatex">\[P(D)=\frac{34.5}{1000}=\mathbf{0.0345}\]</div>
+<hr />
+<p><strong>Margin step 6 · "<span class="arithmatex">\(P(k\mid\text{bad})=\)</span> bad<span class="arithmatex">\(_k\)</span> <span class="arithmatex">\(/\)</span> sum of bad."</strong>
+"Found to be defective" means we are standing <strong>inside the pile of 34.5</strong>, not in the 1000. <span class="arithmatex">\(M_2\)</span> contributed 14 of them:</p>
+<div class="arithmatex">\[P(M_2\mid D)=\frac{14}{34.5}=\mathbf{0.41}\]</div>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<ol>
+<li><span class="arithmatex">\(P(D)=0.0345\)</span> · 2. <span class="arithmatex">\(P(M_2\mid D)\approx 0.41\)</span></li>
+</ol>
+</div>
+<h2 id="2-april-2025-1a-the-rate-is-given-for-the-good-ones-and-the-counts-are-given">2 · April 2025 · 1a — the rate is given for the <strong>good</strong> ones, and the counts are given<a class="headerlink" href="#2-april-2025-1a-the-rate-is-given-for-the-good-ones-and-the-counts-are-given" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Final exam, 13 April 2025 · 1a · 0.3 p</p>
+<p>An hospital has three CT scanners CT1, CT2, and CT3. It has been observed that 85% of the images produced by CT1 have sufficient quality, while CT2 and CT3 the percentages of images with sufficient quality are 90% and 66%, respectively. Each day, CT1 scans 18 patients, CT2 scans 22 patients, and CT3 scans 15 patients. The images from all CT scanners are mixed at random before image quality control. Assuming that the same number of images are produced for each patients:</p>
+<p><strong><em>Provide only the final answer. The workout will not be checked.</em></strong></p>
+<ol>
+<li>What is the probability the one image will NOT pass the quality test?</li>
+<li>What is the probability that a bad quality image comes from CT2?</li>
+</ol>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the margin you wrote: steps 1 to 6</p>
+<div class="stepper" markdown>
+<p><strong>Margin step 1 · "Counts given → items = those counts, total = their sum."</strong>
+They say how many patients each scanner does: 18, 22, 15. Total <span class="arithmatex">\(=55\)</span>. <strong>Do not</strong> invent 1000.</p>
+<hr />
+<p><strong>Margin step 2 · items.</strong> CT1: 18 · CT2: 22 · CT3: 15.</p>
+<hr />
+<p><strong>Margin step 3 · "Asked NOT pass when a pass rate is given → bad rate <span class="arithmatex">\(=1-\)</span>pass rate."</strong>
+This is the trap of this question. They give <strong>sufficient quality</strong> rates but ask for <strong>NOT pass</strong>:
+<span class="arithmatex">\(1-0.85=0.15\)</span> · <span class="arithmatex">\(1-0.90=0.10\)</span> · <span class="arithmatex">\(1-0.66=0.34\)</span>.</p>
+<hr />
+<p><strong>Margin step 4 · "Bad<span class="arithmatex">\(_k\)</span> <span class="arithmatex">\(=\)</span> bad rate <span class="arithmatex">\(\times\)</span> items."</strong>
+<span class="arithmatex">\(18\times0.15=2.7\)</span> · <span class="arithmatex">\(22\times0.10=2.2\)</span> · <span class="arithmatex">\(15\times0.34=5.1\)</span>.</p>
+<hr />
+<p><strong>Margin step 5 · "<span class="arithmatex">\(P(\text{bad})=\)</span> sum <span class="arithmatex">\(/\)</span> total."</strong>
+<span class="arithmatex">\(2.7+2.2+5.1=10.0\)</span> out of 55:</p>
+<div class="arithmatex">\[P(\text{NOT pass})=\frac{10.0}{55}=\mathbf{0.18}\]</div>
+<hr />
+<p><strong>Margin step 6 · "<span class="arithmatex">\(P(k\mid\text{bad})=\)</span> bad<span class="arithmatex">\(_k\)</span> <span class="arithmatex">\(/\)</span> sum of bad."</strong>
+"A <strong>bad</strong> quality image" — inside the pile of 10.0. CT2 gave 2.2 of them:</p>
+<div class="arithmatex">\[P(\text{CT2}\mid\text{bad})=\frac{2.2}{10.0}=\mathbf{0.22}\]</div>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<ol>
+<li><span class="arithmatex">\(10/55=0.18\)</span> · 2. <span class="arithmatex">\(2.2/10=0.22\)</span></li>
+</ol>
+</div>
+<h2 id="3-april-2024-1b-a-rare-disease-take-1-000-000-people">3 · April 2024 · 1b — a rare disease: take 1 000 000 people<a class="headerlink" href="#3-april-2024-1b-a-rare-disease-take-1-000-000-people" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Final exam, April 2024 · 1b · 0.25 p</p>
+<p>Assume the probability of having tuberculosis (TB) is 0.0005, and a test for TB is 99% accurate. What is the probability one has TB if one tests positive for the disease?</p>
+<p><strong>Note: provide only the final answer. No passages will be checked.</strong></p>
+<p>Provide the value of <span class="arithmatex">\(\Pr[TB]\)</span></p>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the margin you wrote: steps 1 to 6</p>
+<div class="stepper" markdown>
+<p><strong>Margin step 1 · "Only percentages → pretend total <span class="arithmatex">\(=1000\)</span> (1 000 000 if a rate is tiny, like 0.0005)."</strong>
+0.0005 is tiny, so take <strong>1 000 000 people</strong>.</p>
+<hr />
+<p><strong>Margin step 2 · items.</strong>
+<span class="arithmatex">\(0.0005\times1\,000\,000=500\)</span> have TB. The other <span class="arithmatex">\(999\,500\)</span> do not.</p>
+<hr />
+<p><strong>Margin step 3 · the Wording line: <em>"'99 % accurate' = both groups classified right."</em></strong>
+Both groups means: ill people test <strong>positive</strong> 99 % of the time, and <strong>1 % of the healthy also test positive</strong>. That 1 % of a huge group is the whole question.</p>
+<hr />
+<p><strong>Margin step 4 · "Bad<span class="arithmatex">\(_k\)</span> <span class="arithmatex">\(=\)</span> bad rate <span class="arithmatex">\(\times\)</span> items."</strong> (bad <span class="arithmatex">\(=\)</span> tests positive)
+Sick: <span class="arithmatex">\(0.99\times500=495\)</span>. Healthy: <span class="arithmatex">\(0.01\times999\,500=9\,995\)</span>.</p>
+<hr />
+<p><strong>Margin step 5 · the pile.</strong>
+<span class="arithmatex">\(495+9\,995=10\,490\)</span> positive tests.</p>
+<hr />
+<p><strong>Margin step 6 · "Divide by the pile, not by the total."</strong>
+"One has TB <strong>if</strong> one tests positive" → stand inside the 10 490:</p>
+<div class="arithmatex">\[\Pr[TB\mid +]=\frac{495}{10\,490}=\mathbf{0.047}\]</div>
+<p><em>(The exam's "<span class="arithmatex">\(\Pr[TB]\)</span>" at the end means the conditional — they want <span class="arithmatex">\(\Pr[TB\mid+]\)</span>.)</em></p>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><span class="arithmatex">\(P(TB\mid +)=\dfrac{495}{10\,490}\approx 0.047\)</span> — only about 5 %: most positives are healthy people, because there are so many more of them.</p>
+</div>
+<h2 id="4-practice-exam-2021-1a-false-positive-3-is-about-the-healthy">4 · Practice exam 2021 · 1a — "false positive 3 %" is about the <strong>healthy</strong><a class="headerlink" href="#4-practice-exam-2021-1a-false-positive-3-is-about-the-healthy" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Practice exam, October 2021 · 1a · 0.5 p</p>
+<p>A virus has infected 1.8% of a population. A test detects this virus 95% of the time when it is actually present, but it returns a false positive 3% of the time when the virus is not present. If a person selected at random from this population tests positive for the virus, what is the probability that this person is actually infected? Please round to the nearest percent.</p>
+<p>a) 26%  b) 37%  c) 95%  d) 92%</p>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the margin you wrote: steps 1 to 6</p>
+<div class="stepper" markdown>
+<p><strong>Margin step 1 · total.</strong>
+1.8 % is small but not tiny — 1000 people works fine.</p>
+<hr />
+<p><strong>Margin step 2 · items.</strong> Infected: <span class="arithmatex">\(0.018\times1000=18\)</span>. Not infected: <span class="arithmatex">\(982\)</span>.</p>
+<hr />
+<p><strong>Margin step 3 · read the two rates off the margin's wording table.</strong>
+"detects 95 % <strong>when it is actually present</strong>" → <span class="arithmatex">\(P(+\mid\text{inf})=0.95\)</span>.
+"false positive 3 % <strong>when the virus is not present</strong>" → <span class="arithmatex">\(P(+\mid\text{not})=0.03\)</span>.
+(The 95 % is <strong>not</strong> the answer. That is option (c), and it is the trap.)</p>
+<hr />
+<p><strong>Margin step 4 · "Bad<span class="arithmatex">\(_k\)</span> <span class="arithmatex">\(=\)</span> bad rate <span class="arithmatex">\(\times\)</span> items."</strong>
+<span class="arithmatex">\(0.95\times18=17.1\)</span> · <span class="arithmatex">\(0.03\times982=29.46\)</span>.</p>
+<hr />
+<p><strong>Margin step 5 · the pile.</strong> <span class="arithmatex">\(17.1+29.46=46.56\)</span> positives.</p>
+<hr />
+<p><strong>Margin step 6 · divide by the pile.</strong>
+<span class="arithmatex">\(\dfrac{17.1}{46.56}=0.367\)</span>. "Round to the nearest percent" → <span class="arithmatex">\(\mathbf{37\%}\)</span>.</p>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(b) 37 %</strong></p>
+</div>
+<h2 id="5-january-2020-2-asked-about-pass-so-there-is-no-1-step">5 · January 2020 · 2 — asked about <strong>pass</strong>, so there is no <span class="arithmatex">\(1-\)</span> step<a class="headerlink" href="#5-january-2020-2-asked-about-pass-so-there-is-no-1-step" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Retake, January 2020 · Exercise 2 · 2 p</p>
+<p>A car production company has three machines <span class="arithmatex">\(M_1\)</span>, <span class="arithmatex">\(M_2\)</span>, and <span class="arithmatex">\(M_3\)</span> for painting cars. It has been observed that 85% of the cars painted by <span class="arithmatex">\(M_1\)</span> pass the quality test, while for machines <span class="arithmatex">\(M_2\)</span> and <span class="arithmatex">\(M_3\)</span> the percentages of a car passing the quality test are 92% and 60%, respectively. Each day, machine <span class="arithmatex">\(M_1\)</span> paints 30 cars, <span class="arithmatex">\(M_2\)</span> paints 45 cars, and <span class="arithmatex">\(M_3\)</span> paints 25 cars. All the cars are mixed at random before quality control.</p>
+<ul>
+<li>(a) What is the probability that a car will pass the quality test? [1 pt]</li>
+<li>(b) What is the probability that a car that has passed the test was painted by machine <span class="arithmatex">\(M_3\)</span>? [1 pt]</li>
+</ul>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the margin you wrote: steps 1 to 6</p>
+<div class="stepper" markdown>
+<p><strong>Margin step 1 · "Counts given → items = those counts."</strong>
+<span class="arithmatex">\(30+45+25=100\)</span> cars per day.</p>
+<hr />
+<p><strong>Margin step 2 · items.</strong> <span class="arithmatex">\(M_1\)</span>: 30 · <span class="arithmatex">\(M_2\)</span>: 45 · <span class="arithmatex">\(M_3\)</span>: 25.</p>
+<hr />
+<p><strong>Margin step 3 · "Pick bad."</strong>
+Here bad <span class="arithmatex">\(=\)</span> <strong>passes</strong> (that is what they ask). The rates 85 %, 92 %, 60 % are already pass rates → <strong>do not</strong> subtract from 1. (Compare with exercise 2, where they asked "NOT pass".)</p>
+<hr />
+<p><strong>Margin step 4 · passers per machine.</strong>
+<span class="arithmatex">\(30\times0.85=25.5\)</span> · <span class="arithmatex">\(45\times0.92=41.4\)</span> · <span class="arithmatex">\(25\times0.60=15\)</span>.</p>
+<hr />
+<p><strong>Margin step 5 · "<span class="arithmatex">\(P=\)</span> sum <span class="arithmatex">\(/\)</span> total."</strong>
+<span class="arithmatex">\(25.5+41.4+15=81.9\)</span> out of 100: <span class="arithmatex">\(P(\text{pass})=\mathbf{0.819}\)</span>.</p>
+<hr />
+<p><strong>Margin step 6 · "<span class="arithmatex">\(P(k\mid\text{bad})=\)</span> bad<span class="arithmatex">\(_k\)</span> <span class="arithmatex">\(/\)</span> sum of bad."</strong>
+"A car that <strong>has passed</strong>" → inside the 81.9. <span class="arithmatex">\(M_3\)</span> gave 15 of them:</p>
+<div class="arithmatex">\[P(M_3\mid\text{pass})=\frac{15}{81.9}=\mathbf{0.18}\]</div>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p>(a) <span class="arithmatex">\(0.819\)</span> · (b) <span class="arithmatex">\(0.18\)</span></p>
+</div>
+<h2 id="6-january-2022-1a-the-rate-is-given-for-the-complement">6 · January 2022 · 1a — the rate is given for the <strong>complement</strong><a class="headerlink" href="#6-january-2022-1a-the-rate-is-given-for-the-complement" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Resit, January 2022 · 1a · 0.3 p</p>
+<p>A small manufacturing company has rated 75% of its employees as satisfactory (S) and 25% as unsatisfactory (<span class="arithmatex">\(S^c\)</span>). Personnel records show that 80% of the satisfactory workers had previous work experience (E) in the job they are now doing, while 15% of the unsatisfactory workers had no work experience (<span class="arithmatex">\(E^c\)</span>) in the job they are now doing. If a person who has had previous work experience is hired, what is the approximate empirical probability that this person will be an unsatisfactory employee?</p>
+<p>a) 0.24  b) 0.25  c) 0.26  d) 0.28</p>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the margin you wrote: steps 1 to 6</p>
+<div class="stepper" markdown>
+<p><strong>Margin step 1 · total.</strong> 1000 employees.</p>
+<hr />
+<p><strong>Margin step 2 · items.</strong> S: <span class="arithmatex">\(750\)</span> · <span class="arithmatex">\(S^c\)</span>: <span class="arithmatex">\(250\)</span>.</p>
+<hr />
+<p><strong>Margin step 3 · "Pick bad."</strong>
+The pile we are asked about is <strong>"has had previous work experience"</strong> (the person "is hired" with experience). So bad <span class="arithmatex">\(=\)</span> has experience.
+Two different wordings on purpose: "80 % <strong>had</strong> experience" given S → <span class="arithmatex">\(P(E\mid S)=0.80\)</span>. "15 % had <strong>no</strong> experience" given <span class="arithmatex">\(S^c\)</span> → so <span class="arithmatex">\(P(E\mid S^c)=1-0.15=0.85\)</span>. The <span class="arithmatex">\(1-\)</span> lives <strong>inside</strong> the group here, not on the final answer.</p>
+<hr />
+<p><strong>Margin step 4 · experienced per group.</strong>
+<span class="arithmatex">\(750\times0.80=600\)</span> · <span class="arithmatex">\(250\times0.85=212.5\)</span>.</p>
+<hr />
+<p><strong>Margin step 5 · the pile.</strong> <span class="arithmatex">\(600+212.5=812.5\)</span> experienced workers.</p>
+<hr />
+<p><strong>Margin step 6 · divide by the pile.</strong>
+"A person who <strong>has had</strong> previous work experience … unsatisfactory" → <span class="arithmatex">\(S^c\)</span> inside the pile:</p>
+<div class="arithmatex">\[P(S^c\mid E)=\frac{212.5}{812.5}=0.2615\approx\mathbf{0.26}\]</div>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(c) 0.26</strong></p>
+</div>
+<h2 id="7-january-2025-1a-a-table-instead-of-words">7 · January 2025 · 1a — a table instead of words<a class="headerlink" href="#7-january-2025-1a-a-table-instead-of-words" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Resit, January 2025 · 1a</p>
+<p>Two-hundred high school students were asked which university studies they would like to do. Their answers are shown in the table below. Please calculate the following probabilities:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Engineering</th>
+<th>Life Sciences</th>
+<th>Literature</th>
+<th>Psychology</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Male</td>
+<td>45</td>
+<td>27</td>
+<td>8</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Female</td>
+<td>22</td>
+<td>42</td>
+<td>20</td>
+<td>26</td>
+</tr>
+</tbody>
+</table>
+<p>Please only provide the final answer. The workout will not be checked.</p>
+<ol>
+<li>Given a student at random that chose psychology, the probability that the students was a female.</li>
+<li>The probability of choosing Engineering</li>
+</ol>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the margin you wrote: steps 1 to 6, with the table as the total</p>
+<div class="stepper" markdown>
+<p><strong>Margin step 1 · "Total."</strong>
+Here the total is given: 200. Check the cells: <span class="arithmatex">\(45+27+8+10+22+42+20+26=200\)</span> ✓.</p>
+<hr />
+<p><strong>Margin step 2 · nothing to compute</strong> — the cells <em>are</em> the items. Add the column or row you need.</p>
+<hr />
+<p><strong>Margin step 3 · "Pick bad."</strong>
+Question 1 says "<strong>Given</strong> a student … that chose psychology" → the pile is the <strong>Psychology column</strong>.
+Question 2 has <strong>no</strong> "given" → the pile is everybody.</p>
+<hr />
+<p><strong>Margin step 4 · count the piles.</strong>
+Psychology column: <span class="arithmatex">\(10+26=36\)</span>. Engineering column: <span class="arithmatex">\(45+22=67\)</span>.</p>
+<hr />
+<p><strong>Margin step 5 · question 2 first (it is the easy one).</strong>
+<span class="arithmatex">\(P(\text{Engineering})=\dfrac{67}{200}=\mathbf{0.335}\)</span>.</p>
+<hr />
+<p><strong>Margin step 6 · question 1, "divide by the pile".</strong>
+Inside the 36 psychology students, 26 are female:</p>
+<div class="arithmatex">\[P(\text{female}\mid\text{psychology})=\frac{26}{36}=\mathbf{0.72}\]</div>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<ol>
+<li><span class="arithmatex">\(26/36=0.72\)</span> · 2. <span class="arithmatex">\(67/200=0.335\)</span></li>
+</ol>
+</div>
+<h2 id="8-november-2022-1a-no-counts-anywhere-so-use-the-formula">8 · November 2022 · 1a — no counts anywhere, so use the formula<a class="headerlink" href="#8-november-2022-1a-no-counts-anywhere-so-use-the-formula" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Final exam, November 2022 · 1a · 0.25 p</p>
+<p>About 65% of students who enroll for the exam of the course statistical signal processing have followed the course. Suppose we know that the probability of passing the exam for students who have followed the course is 0.75, while it is 0.4 for students who have not followed it. What is the probability of passing the exam?</p>
+<p>(a) 0.53  (b) 0.52  (c) 0.63  (d) 0.65</p>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the margin you wrote: steps 1 to 6 (counts still work; the formula is the same)</p>
+<div class="stepper" markdown>
+<p><strong>Margin step 1 · total.</strong> 1000 students.</p>
+<hr />
+<p><strong>Margin step 2 · items.</strong> Followed: <span class="arithmatex">\(650\)</span> · Not followed: <span class="arithmatex">\(350\)</span>.</p>
+<hr />
+<p><strong>Margin step 3 · "Pick bad."</strong> Bad <span class="arithmatex">\(=\)</span> <strong>passes</strong>.</p>
+<hr />
+<p><strong>Margin step 4 · passers per group.</strong> <span class="arithmatex">\(650\times0.75=487.5\)</span> · <span class="arithmatex">\(350\times0.40=140\)</span>.</p>
+<hr />
+<p><strong>Margin step 5 · "<span class="arithmatex">\(P=\)</span> sum <span class="arithmatex">\(/\)</span> total."</strong>
+<span class="arithmatex">\(487.5+140=627.5\)</span> out of 1000 → <span class="arithmatex">\(0.6275\approx\mathbf{0.63}\)</span>.</p>
+<hr />
+<p><strong>Margin step 6 · same thing in symbols</strong> (the formula at the top of the page), if you prefer:</p>
+<div class="arithmatex">\[P(\text{pass})=0.65\cdot0.75+0.35\cdot0.40=0.4875+0.14=0.6275\]</div>
+<p><em>Sanity check:</em> the answer must sit <strong>between</strong> 0.40 and 0.75, and closer to 0.75 because 65 % followed the course. 0.63 does; (a) 0.53 and (b) 0.52 do not.</p>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(c) 0.63</strong></p>
+</div>
+<h2 id="9-april-2024-1a-given-that-it-survived-divide-the-two-tails">9 · April 2024 · 1a — "given that it survived": divide the two tails<a class="headerlink" href="#9-april-2024-1a-given-that-it-survived-divide-the-two-tails" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Final exam, April 2024 · 1a · 0.25 p</p>
+<p>The manual of an ultrasound transducer states that the lifetime <span class="arithmatex">\(T\)</span> of the product, defined as the amount of time (in years) the product works properly until it breaks down, follows the following probability distribution:</p>
+<div class="arithmatex">\[\Pr[T \geq t] = e^{-t/5},\]</div>
+<p>with <span class="arithmatex">\(t \leq 0\)</span> measured in years.</p>
+<p>Suppose that in an ultrasound lab, they have been using the transducer for two years without any problems. What is the probability that it breaks down in the third year, given that it was still working after 2 years?</p>
+<p><strong>Hint:</strong> the third year is the year between the <span class="arithmatex">\(t = 2\)</span> and <span class="arithmatex">\(t = 3\)</span>.</p>
+<p>(a) 0.24  (b) 0.12  (c) 0.30  (d) 0.18</p>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the margin you wrote: conditional <span class="arithmatex">\(=\)</span> part <span class="arithmatex">\(/\)</span> whole, and the Calculations strip</p>
+<div class="stepper" markdown>
+<p><strong>Margin step 0 · read the given function.</strong>
+<span class="arithmatex">\(\Pr[T\ge t]=e^{-t/5}\)</span> is the probability of <strong>still working at year <span class="arithmatex">\(t\)</span></strong>. (The printed "<span class="arithmatex">\(t\le0\)</span>" is a typo for <span class="arithmatex">\(t\ge0\)</span>.)</p>
+<hr />
+<p><strong>Margin step 1 · "Pick bad."</strong>
+Bad <span class="arithmatex">\(=\)</span> "breaks down in the third year" <span class="arithmatex">\(=\)</span> <span class="arithmatex">\(2\le T\lt3\)</span>. But it is <strong>conditional</strong>: "given that it was still working after 2 years" → the pile is <span class="arithmatex">\(T\ge2\)</span>.</p>
+<hr />
+<p><strong>Margin step 2 · conditional <span class="arithmatex">\(=\)</span> part <span class="arithmatex">\(/\)</span> whole</strong> (the formula at the top of the page):</p>
+<div class="arithmatex">\[P(2\le T\lt3\mid T\ge2)=\frac{P(T\ge2)-P(T\ge3)}{P(T\ge2)}=1-\frac{P(T\ge3)}{P(T\ge2)}\]</div>
+<hr />
+<p><strong>Margin step 3 · plug in, and use the Calculations strip</strong> (<span class="arithmatex">\(\frac{e^a}{e^b}=e^{a-b}\)</span>):</p>
+<div class="arithmatex">\[1-\frac{e^{-3/5}}{e^{-2/5}}=1-e^{-3/5+2/5}=1-e^{-1/5}\]</div>
+<hr />
+<p><strong>Margin step 4 · the Numbers strip</strong> has <span class="arithmatex">\(e^{-1}=0.368\)</span>, so get <span class="arithmatex">\(e^{-0.2}\)</span> from a calculator: <span class="arithmatex">\(0.8187\)</span>.
+<span class="arithmatex">\(1-0.8187=\mathbf{0.1813}\approx 0.18\)</span>.</p>
+<hr />
+<p><strong>Margin check.</strong>
+The four options are 0.12 / 0.18 / 0.24 / 0.30. Only 0.18 is close. (Quick feel: in one year a device with a 5-year "half-life-ish" scale breaks about 18 % of the time.)</p>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(d) 0.18</strong></p>
+</div>
+<h2 id="10-june-2026-1a-independence-is-a-one-line-definition">10 · June 2026 · 1a — independence is a one-line definition<a class="headerlink" href="#10-june-2026-1a-independence-is-a-one-line-definition" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Resit, June 2026 · 1a · 0.2 p</p>
+<p>Which of the following statements about two events <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> (assuming both have non-zero probabilities) is ALWAYS TRUE if they are statistically independent?</p>
+<ul>
+<li>(a) <span class="arithmatex">\(P(A \cup B) = P(A) + P(B)\)</span></li>
+<li>(b) <span class="arithmatex">\(P(A | B) = P(B)\)</span></li>
+<li>(c) <span class="arithmatex">\(P(A \cap B) = 0\)</span></li>
+<li>(d) <span class="arithmatex">\(P(A | B) = P(A)\)</span></li>
+</ul>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the cheat sheet: box 1E, the 'Definition MC / T/F' line</p>
+<div class="stepper" markdown>
+<p><strong>Step 1 · the definition line.</strong> Box 1E: <em>"independent <span class="arithmatex">\(=P(A\mid B)=P(A)\)</span>, the same as <span class="arithmatex">\(P(A\cap B)=P(A)P(B)\)</span>"</em> — knowing <span class="arithmatex">\(B\)</span> tells you <strong>nothing</strong> about <span class="arithmatex">\(A\)</span>:</p>
+<div class="arithmatex">\[P(A\mid B)=P(A)\qquad\Longleftrightarrow\qquad P(A\cap B)=P(A)P(B)\]</div>
+<p>That is option <strong>(d)</strong>.</p>
+<hr />
+<p><strong>Step 2 · kill the others.</strong>
+(a) <span class="arithmatex">\(P(A\cup B)=P(A)+P(B)\)</span> only for <strong>disjoint</strong> events (no overlap) — independent events usually do overlap.
+(b) <span class="arithmatex">\(P(A\mid B)=P(B)\)</span> swaps the roles; nothing says that.
+(c) <span class="arithmatex">\(P(A\cap B)=0\)</span> means they <strong>cannot happen together</strong> — that is disjoint, the <em>opposite</em> of independent (unless one probability is 0, which they excluded).</p>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(d)</strong> <span class="arithmatex">\(P(A\mid B)=P(A)\)</span></p>
+</div>
+<h2 id="11-november-2019-1b-a-truefalse-list">11 · November 2019 · 1b — a true/false list<a class="headerlink" href="#11-november-2019-1b-a-truefalse-list" title="Permanent link">#</a></h2>
+<div class="admonition exam">
+<p class="admonition-title">Written exam, November 2019 · 1b · 0.5 p</p>
+<p>Please indicate if the following statements are true or false.</p>
+<ul>
+<li>A. Bayes theorem is obtained from the total law of probability and the conditional probability (T/F)</li>
+<li>B. There is a 50% chance of rain here and a 25% chance of rain on Mars. Therefore, there is a 75% chance that it will rain here or on Mars. (T/F)</li>
+<li>C. For discrete random variables, the relative frequency tends to the probability mass function as the number of trials tends to infinity (T/F)</li>
+<li>D. For any random variable, the cumulative distribution function in <span class="arithmatex">\(-\infty\)</span> and <span class="arithmatex">\(\infty\)</span> are 0 and 1, respectively. (T/F)</li>
+<li>E. The Wiener FIR filter for 1-step linear prediction can be used for moving-average parametric spectral estimation (T/F).</li>
+</ul>
+</div>
+<div class="admonition sheet">
+<p class="admonition-title">In the cheat sheet: box 1E's definition line + the swap test of box 2D</p>
+<div class="stepper" markdown>
+<p><strong>A · F.</strong> Bayes comes from the <strong>definition of conditional probability</strong> plus the product rule; the total law of probability only supplies the denominator <span class="arithmatex">\(P(B)\)</span>. (This is the answer the key gives — the sentence is built to look right.)</p>
+<hr />
+<p><strong>B · F.</strong> <span class="arithmatex">\(P(A\cup B)=P(A)+P(B)\)</span> needs the events to be <strong>disjoint</strong>. Rain here and rain on Mars can happen together, so the union is at most 75 % and at least 50 % — not 75 %.</p>
+<hr />
+<p><strong>C · T.</strong> That is what "relative frequency" means: count the value, divide by the number of trials. As trials <span class="arithmatex">\(\to\infty\)</span> that ratio <span class="arithmatex">\(\to\)</span> the PMF. (Wording: <strong>PMF</strong> <span class="arithmatex">\(=P(X=x)\)</span> for each value.)</p>
+<hr />
+<p><strong>D · T.</strong> <span class="arithmatex">\(F(x)=P(X\le x)\)</span>. Nothing is <span class="arithmatex">\(\le-\infty\)</span> → 0. Everything is <span class="arithmatex">\(\le\infty\)</span> → 1.</p>
+<hr />
+<p><strong>E · F.</strong> A 1-step linear predictor gives an all-<strong>pole</strong> (AR) model, not an MA model. This one is from an old topic — if it comes back, say "AR, not MA" and move on.</p>
+<hr />
+<p><strong>Sheet check · the swap test.</strong>
+Answer key: <strong>F F T T F</strong>. Notice the shape of the exercise: a T/F list is really 5 separate recall questions. The swapped words here are <em>total law ↔ definition</em> (A), <em>disjoint ↔ independent</em> (B, D's opposite), <em>AR ↔ MA</em> (E) — one word flips each verdict, exactly the swap test of box 2D.</p>
+</div>
+</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>F F T T F</strong></p>
+</div>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">#</a></h2>
+<div class="admonition trap">
+<p class="admonition-title">Where points are lost (each one is a line of the margin recipe you skipped)</p>
+<ul>
+<li>The rate is given for the <strong>good</strong> items ("sufficient quality", "accurate", "pass"): convert with <span class="arithmatex">\(1-\)</span>rate <strong>only</strong> when the question asks for the bad one (exercises 2 and 5 are the same question with the sign flipped).</li>
+<li>Step 6 divides by the <strong>pile of bad ones</strong>, not by the total. That is the single most common mistake in this block.</li>
+<li>"99 % accurate" applies to <strong>both</strong> groups: 1 % of the healthy test positive, and they outnumber the sick.</li>
+<li>Reading "95 % detects" as the answer. It is <span class="arithmatex">\(P(+\mid\text{ill})\)</span>, and they want <span class="arithmatex">\(P(\text{ill}\mid +)\)</span> — the two are different and the exam offers both as options.</li>
+<li>"had <strong>no</strong> experience" inside a group → flip it <strong>inside</strong> the group (exercise 6), not at the end.</li>
+<li>"Given that it survived" → the answer is a ratio of two tails, <span class="arithmatex">\(1-\frac{P(T\ge3)}{P(T\ge2)}\)</span>.</li>
+<li>Round only at the very end. "Provide only the final answer" means no partial credit for a wrong number.</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="podcast.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Podcast (watch first)">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Podcast (watch first)
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="e1-joint.html" class="md-footer__link md-footer__link--next" aria-label="Next: 1.2 Joint PDFs">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                1.2 Joint PDFs
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.footer", "navigation.tracking", "navigation.instant", "navigation.instant.progress", "toc.follow", "content.tooltips"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js?v=1793008663"></script>
+      
+        <script src="javascripts/katex.js?v=1793008663"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="javascripts/quiz.js?v=1793008663"></script>
+      
+        <script src="javascripts/ask.js?v=1793008663"></script>
+      
+        <script src="javascripts/video.js?v=1793008663"></script>
+      
+        <script src="javascripts/layout.js?v=1793008663"></script>
+      
+        <script src="javascripts/keypoints.js?v=1793008663"></script>
+      
+        <script src="javascripts/progress.js?v=1793008663"></script>
+      
+        <script src="javascripts/widgets.js?v=1793008663"></script>
+      
+        <script src="javascripts/navsections.js?v=1793008663"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2350 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Every 5CTA0 Statistical Signal Processing exam question (2019–2026), solved step by step, organised by the patterns that keep coming back.">
+      
+      
+      
+        <link rel="canonical" href="https://dkealvaro.github.io/5cta0-exam-guide/p4-bayes.html">
+      
+      
+        <link rel="prev" href="p4-lrt.html">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>4.3 Bayesian detection - 5CTA0 · Pass the exam</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css?v=1793008663">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css?v=1793008663">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+4:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Source Serif 4";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0.16.11/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap">
+    
+      <link rel="stylesheet" href="stylesheets/extra.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/ask.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/layout.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/keypoints.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/widgets.css?v=1793008663">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#43-bayesian-detection-matched-filter" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-header__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            5CTA0 · Pass the exam
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4.3 Bayesian detection
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-nav__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    5CTA0 · Pass the exam
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New · Exam course
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    New · Exam course
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="podcast.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Podcast (watch first)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 1 · Probability (1.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 1 · Probability (1.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes word problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-joint.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-wss.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Stationary and ergodic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-factor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-map.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 MAP with a prior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Least-squares line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Theory questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-corr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Correlogram, pick the plot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-arma.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 AR and MA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Periodogram, Welch, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Likelihood ratio test
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Priors, costs, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exams.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mock exams with answers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="battle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Battle kit · every question + its box
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cheatsheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 cheat sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cheatsheet3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 cheat sheet (v3, clearer wording)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Old · Long guide (deep dive)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Old · Long guide (deep dive)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="patterns.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The exam, decoded
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p0-foundations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 0 · From zero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="toolbox.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toolbox
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes & total probability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-rv.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Random variables & joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-processes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Random processes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-factorisation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-crlb.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 CRLB & Fisher information
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Bayesian estimation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Least squares
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-windows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Signals, windows, zero padding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-nonparametric.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 Non-parametric estimators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-autocorr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Autocorrelation of ARMA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-chain.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.4 Correlogram → AR → MA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-basics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Errors, ROC, Neyman–Pearson
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Likelihood ratio tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.3 Bayesian detection
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="p4-bayes.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.3 Bayesian detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-priors-costs-risk-and-where-the-threshold-comes-from" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 · Priors, costs, risk, and where the threshold comes from
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 · Priors, costs, risk, and where the threshold comes from">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-the-ingredients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 The ingredients
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-derivation-short" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Derivation (short)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-how-the-threshold-moves-how-the-mc-questions-are-built" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 How the threshold moves (how the MC questions are built)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-special-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Special cases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-the-same-rule-with-posteriors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 The same rule with posteriors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-the-matched-filter-detecting-a-known-signal-in-noise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 · The matched filter: detecting a known signal in noise
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exam questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exam questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jun26-4c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        June 2026 resit · 4c
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jun26-4a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        June 2026 resit · 4a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr25-4c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2025 exam · 4c
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nov22-4f" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2022 exam · 4f, 4g
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan22-4a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2022 resit · 4a
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-priors-costs-risk-and-where-the-threshold-comes-from" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 · Priors, costs, risk, and where the threshold comes from
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 · Priors, costs, risk, and where the threshold comes from">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-the-ingredients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 The ingredients
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-derivation-short" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Derivation (short)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-how-the-threshold-moves-how-the-mc-questions-are-built" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 How the threshold moves (how the MC questions are built)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-special-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Special cases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-the-same-rule-with-posteriors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 The same rule with posteriors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-the-matched-filter-detecting-a-known-signal-in-noise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 · The matched filter: detecting a known signal in noise
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exam questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exam questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jun26-4c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        June 2026 resit · 4c
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jun26-4a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        June 2026 resit · 4a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr25-4c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2025 exam · 4c
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nov22-4f" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2022 exam · 4f, 4g
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan22-4a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2022 resit · 4a
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="43-bayesian-detection-matched-filter">4.3 Bayesian detection &amp; <abbr title="the filter whose impulse response is the time-reversed known signal; it maximises the output SNR.">matched filter</abbr><a class="headerlink" href="#43-bayesian-detection-matched-filter" title="Permanent link">#</a></h1>
+<p class="lead">When you know how often each hypothesis happens (priors) and how bad each mistake is (costs), the threshold of the likelihood ratio test is no longer free: it follows from one formula. Recent exams wrap this in a story (a sensor, a genAI detector) and ask "should we decide $\mathcal H_1$?". This page derives that formula, shows what moves the threshold, and then does the matched filter (a known signal in noise).</p>
+
+<div class="admonition need">
+<p class="admonition-title">Before this page</p>
+<ul>
+<li>Hypotheses, <span class="arithmatex">\(P_{FA}\)</span>, <span class="arithmatex">\(P_D\)</span>, <span class="arithmatex">\(P_M\)</span> (<a href="p4-basics.html">4.1</a>); the likelihood ratio test and its recipe (<a href="p4-lrt.html">4.2</a>)</li>
+<li>Conditional probability and Bayes' rule (<a href="p0-foundations.html#conditional-probability-and-independence">0.6</a>, <a href="p1-bayes.html">1.1</a>)</li>
+</ul>
+<p>If you read only one thing: <strong>the Bayes detector is the same likelihood ratio test as before, but the threshold is <span class="arithmatex">\(\lambda=\frac{(\text{cost of a false alarm})\times P_0}{(\text{cost of a miss})\times P_1}\)</span>. Rare event or costly false alarm → raise the bar; common event or costly miss → lower it.</strong></p>
+</div>
+<hr />
+<h2 id="1-priors-costs-risk-and-where-the-threshold-comes-from">1 · Priors, costs, risk, and where the threshold comes from<a class="headerlink" href="#1-priors-costs-risk-and-where-the-threshold-comes-from" title="Permanent link">#</a></h2>
+<h3 id="11-the-ingredients">1.1 The ingredients<a class="headerlink" href="#11-the-ingredients" title="Permanent link">#</a></h3>
+<ul>
+<li><strong>Priors</strong> <span class="arithmatex">\(P_0=P(\mathcal H_0)\)</span>, <span class="arithmatex">\(P_1=P(\mathcal H_1)=1-P_0\)</span>: how often each situation occurs <em>before</em> you look at the data (e.g. 90 % of the time no device is transmitting).</li>
+<li><mark><strong>Costs</strong> <span class="arithmatex">\(C_{i,j}\)</span> = <abbr title="C_ij, the penalty for deciding H_i when H_j is true.">cost</abbr> of <strong>deciding <span class="arithmatex">\(\mathcal H_i\)</span> when <span class="arithmatex">\(\mathcal H_j\)</span> is true</strong>.</mark> Usually correct decisions <abbr title="C_ij, the penalty for deciding H_i when H_j is true.">cost</abbr> 0 (<span class="arithmatex">\(C_{00}=C_{11}=0\)</span>). Then <span class="arithmatex">\(C_{10}\)</span> is the <abbr title="C_ij, the penalty for deciding H_i when H_j is true.">cost</abbr> of a <strong>false alarm</strong> (decided <span class="arithmatex">\(\mathcal H_1\)</span>, truth <span class="arithmatex">\(\mathcal H_0\)</span>) and <span class="arithmatex">\(C_{01}\)</span> the <abbr title="C_ij, the penalty for deciding H_i when H_j is true.">cost</abbr> of a <strong>miss</strong>.</li>
+<li><strong><abbr title="the expected cost of a decision rule; the Bayes detector minimises it.">Bayes risk</abbr></strong> <span class="arithmatex">\(R\)</span> = the <em>average <abbr title="C_ij, the penalty for deciding H_i when H_j is true.">cost</abbr></em> of the decision rule over all situations.</li>
+</ul>
+<h3 id="12-derivation-short">1.2 Derivation (short)<a class="headerlink" href="#12-derivation-short" title="Permanent link">#</a></h3>
+<p>Let <span class="arithmatex">\(\mathcal X_1\)</span> be the set of observations where you decide <span class="arithmatex">\(\mathcal H_1\)</span>. Weight each of the four outcomes (<a href="p4-basics.html#12-the-four-outcomes">4.1 §1.2</a>) by its <abbr title="C_ij, the penalty for deciding H_i when H_j is true.">cost</abbr> and its probability:</p>
+<div class="arithmatex">\[R=C_{00}P_0(1-P_{FA})+C_{10}P_0P_{FA}+C_{01}P_1(1-P_D)+C_{11}P_1P_D .\]</div>
+<p>Collect terms and write <span class="arithmatex">\(P_{FA}=\int_{\mathcal X_1}p(x\mid\mathcal H_0)dx\)</span>, <span class="arithmatex">\(P_D=\int_{\mathcal X_1}p(x\mid\mathcal H_1)dx\)</span>:</p>
+<div class="arithmatex">\[R=\underbrace{C_{00}P_0+C_{01}P_1}_{\text{fixed}}+\int_{\mathcal X_1}\Big[(C_{10}-C_{00})P_0\,p(x\mid\mathcal H_0)-(C_{01}-C_{11})P_1\,p(x\mid\mathcal H_1)\Big]dx .\]</div>
+<p>To make <span class="arithmatex">\(R\)</span> as small as possible, put an observation <span class="arithmatex">\(x\)</span> into <span class="arithmatex">\(\mathcal X_1\)</span> <strong>exactly when the bracket is negative</strong>, i.e. when <span class="arithmatex">\((C_{01}-C_{11})P_1\,p(x\mid\mathcal H_1)&gt;(C_{10}-C_{00})P_0\,p(x\mid\mathcal H_0)\)</span>. Divide by <span class="arithmatex">\(p(x\mid\mathcal H_0)\)</span> and the positive constant:</p>
+<div class="key">
+<div class="arithmatex">\[\boxed{\frac{p(\mathbf x\mid\mathcal H_1)}{p(\mathbf x\mid\mathcal H_0)}\ \underset{\mathcal H_0}{\overset{\mathcal H_1}{\gtrless}}\ \lambda=\frac{(C_{10}-C_{00})\,P_0}{(C_{01}-C_{11})\,P_1}}\]</div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Numbers: a rare signal</p>
+<p><span class="arithmatex">\(\mathcal H_0\)</span>: <span class="arithmatex">\(x\sim\mathcal N(0,1)\)</span>, <span class="arithmatex">\(\mathcal H_1\)</span>: <span class="arithmatex">\(x\sim\mathcal N(2,1)\)</span> (the example of <a href="p4-basics.html#11-two-stories-about-the-data">4.1</a>). Its ratio is <span class="arithmatex">\(L(x)=e^{2x-2}\)</span> (the algebra of <a href="p4-lrt.html#2-the-recipe-with-one-example-done-slowly">4.2</a>). Equal costs, but now <span class="arithmatex">\(\mathcal H_1\)</span> happens only 10 % of the time: <span class="arithmatex">\(\lambda=\frac{P_0}{P_1}=\frac{0.9}{0.1}=9\)</span>.
+<span class="arithmatex">\(e^{2x-2}&gt;9\iff2x-2&gt;\ln9=2.197\iff x&gt;2.10\)</span>. With equal priors (<span class="arithmatex">\(\lambda=1\)</span>) the threshold would be <span class="arithmatex">\(x&gt;1\)</span>. The rare event needs much stronger evidence.</p>
+</div>
+<figure>
+<p><img alt="Priors move the crossing point" src="img/gen/p4_prior_threshold.svg" /></p>
+<figcaption>The rule "decide $\mathcal H_1$ where $P_1\,p(x|\mathcal H_1)&gt;P_0\,p(x|\mathcal H_0)$" means: shrink each PDF by its prior, then see where the curves cross. Left: equal priors, crossing at $x=1$. Middle: $\mathcal H_1$ only 10 % of the time, so its curve shrinks to a tenth and the crossing moves to $x=2.10$. Right: the total error $P_0P_{FA}+P_1P_M$ against the threshold; its lowest point (dots) is exactly at those crossings.</figcaption>
+</figure>
+<figure class="anim">
+<video class="anim" src="video/bayes_threshold.mp4" poster="video/bayes_threshold.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation: the table of section 1.3, live.</b> The prior $P_1$ slides from 0.5 down to 0.1 and up to 0.8. Each PDF is weighted by its prior, and the decision boundary (dashed) sits where the weighted curves cross. A rarer $\mathcal H_1$ pushes the boundary right (stronger evidence needed); a common $\mathcal H_1$ pulls it left.</figcaption>
+</figure>
+
+<h3 id="13-how-the-threshold-moves-how-the-mc-questions-are-built">1.3 How the threshold moves (how the MC questions are built)<a class="headerlink" href="#13-how-the-threshold-moves-how-the-mc-questions-are-built" title="Permanent link">#</a></h3>
+<div class="key">
+<table>
+<thead>
+<tr>
+<th>Change</th>
+<th>Effect on <span class="arithmatex">\(\lambda\)</span></th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(P_0\)</span> larger (<span class="arithmatex">\(\mathcal H_1\)</span> rarer)</td>
+<td><strong>up</strong></td>
+<td>need stronger evidence to say <span class="arithmatex">\(\mathcal H_1\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P_1\)</span> larger</td>
+<td><strong>down</strong></td>
+<td>easier to say <span class="arithmatex">\(\mathcal H_1\)</span></td>
+</tr>
+<tr>
+<td>false alarms more costly (<span class="arithmatex">\(C_{10}\)</span> up)</td>
+<td>up</td>
+<td>say <span class="arithmatex">\(\mathcal H_1\)</span> less often</td>
+</tr>
+<tr>
+<td>misses more costly (<span class="arithmatex">\(C_{01}\)</span> up)</td>
+<td>down</td>
+<td>say <span class="arithmatex">\(\mathcal H_1\)</span> more often</td>
+</tr>
+<tr>
+<td>all costs × the same factor</td>
+<td>unchanged</td>
+<td>the factor cancels in the ratio</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="14-special-cases">1.4 Special cases<a class="headerlink" href="#14-special-cases" title="Permanent link">#</a></h3>
+<ul>
+<li><strong>0/1 costs</strong> (<span class="arithmatex">\(C_{01}=C_{10}=1\)</span>, <span class="arithmatex">\(C_{00}=C_{11}=0\)</span>): <mark>the risk is <span class="arithmatex">\(P_0P_{FA}+P_1P_M\)</span>, the <strong>total probability of error</strong>. Threshold <span class="arithmatex">\(\lambda=P_0/P_1\)</span>.</mark> Equivalent to "pick the hypothesis with the larger <abbr title="P(H_i | x): the probability of the hypothesis after seeing the data.">posterior</abbr>" (the <abbr title="maximum a posteriori: pick the hypothesis with the larger posterior.">MAP</abbr> rule): decide <span class="arithmatex">\(\mathcal H_1\)</span> if <span class="arithmatex">\(P_1\,p(\mathbf x\mid\mathcal H_1)&gt;P_0\,p(\mathbf x\mid\mathcal H_0)\)</span>.</li>
+<li><mark><strong>Equal priors + 0/1 costs</strong>: <span class="arithmatex">\(\lambda=1\)</span>, the <strong>maximum likelihood</strong> rule</mark> ("pick the story that explains the data better").</li>
+</ul>
+<h3 id="15-the-same-rule-with-posteriors">1.5 The same rule with posteriors<a class="headerlink" href="#15-the-same-rule-with-posteriors" title="Permanent link">#</a></h3>
+<p>By Bayes' rule (<a href="p1-bayes.html">1.1</a>), <span class="arithmatex">\(P(\mathcal H_i\mid\mathbf x)=\frac{p(\mathbf x\mid\mathcal H_i)P_i}{p(\mathbf x)}\)</span>, so <span class="arithmatex">\(p(\mathbf x\mid\mathcal H_i)P_i\propto P(\mathcal H_i\mid\mathbf x)\)</span> (the same denominator for both). The rule becomes</p>
+<div class="key">
+<div class="arithmatex">\[\text{decide }\mathcal H_1\iff(C_{01}-C_{11})\,P(\mathcal H_1\mid\mathbf x)&gt;(C_{10}-C_{00})\,P(\mathcal H_0\mid\mathbf x).\]</div>
+</div>
+<p>"Compare the posteriors, each weighted by the <abbr title="C_ij, the penalty for deciding H_i when H_j is true.">cost</abbr> of getting it wrong." (This is how the April 2025 genAI question is phrased.)</p>
+<hr />
+<h2 id="2-the-matched-filter-detecting-a-known-signal-in-noise">2 · The <abbr title="the filter whose impulse response is the time-reversed known signal; it maximises the output SNR.">matched filter</abbr>: detecting a known signal in noise<a class="headerlink" href="#2-the-matched-filter-detecting-a-known-signal-in-noise" title="Permanent link">#</a></h2>
+<p><strong>Setting.</strong> A known pattern <span class="arithmatex">\(s_n\)</span> (a radar pulse, a bit shape) may be present in white Gaussian noise <span class="arithmatex">\(w_n\sim\mathcal N(0,\sigma^2)\)</span>: <span class="arithmatex">\(\mathcal H_0\)</span>: <span class="arithmatex">\(x_n=w_n\)</span>; <span class="arithmatex">\(\mathcal H_1\)</span>: <span class="arithmatex">\(x_n=s_n+w_n\)</span>.</p>
+<p><strong>Derivation</strong> (the recipe of <a href="p4-lrt.html#2-the-recipe-with-one-example-done-slowly">4.2</a>). Under <span class="arithmatex">\(\mathcal H_1\)</span> each sample is <span class="arithmatex">\(\mathcal N(s_n,\sigma^2)\)</span>. In <span class="arithmatex">\(\ln L\)</span> the constants cancel and each sample contributes <span class="arithmatex">\(-\frac1{2\sigma^2}\big[(x_n-s_n)^2-x_n^2\big]=-\frac1{2\sigma^2}\big[-2x_ns_n+s_n^2\big]\)</span>, so</p>
+<div class="key">
+<div class="arithmatex">\[\ln L=\frac1{\sigma^2}\sum_nx_ns_n-\frac1{2\sigma^2}\sum_ns_n^2\gtrless\ln\lambda\ \Longrightarrow\ \boxed{\sum_{n=0}^{N-1}x_n\,s_n\ \underset{\mathcal H_0}{\overset{\mathcal H_1}{\gtrless}}\ \lambda'=\sigma^2\ln\lambda+\frac12\sum_ns_n^2 .}\]</div>
+</div>
+<p><mark>It is a <strong><abbr title="multiply the data with the known pattern sample by sample and add.">correlator</abbr></strong>: multiply the data with the expected pattern sample by sample and add.</mark> If the pattern is there, all products tend to be positive and the sum is large.</p>
+<div class="admonition example">
+<p class="admonition-title">Tiny numbers</p>
+<p><span class="arithmatex">\(s=[1,2,1]\)</span>, <span class="arithmatex">\(\sigma^2=1\)</span>, <span class="arithmatex">\(\lambda=1\)</span>: threshold <span class="arithmatex">\(\lambda'=0+\frac12(1+4+1)=3\)</span>. Data <span class="arithmatex">\(x=[0.8,\,2.5,\,0.3]\)</span>: <span class="arithmatex">\(\sum x_ns_n=0.8+5+0.3=6.1&gt;3\)</span> → decide <span class="arithmatex">\(\mathcal H_1\)</span>. Data <span class="arithmatex">\(x=[0.1,\,-0.4,\,0.5]\)</span>: <span class="arithmatex">\(0.1-0.8+0.5=-0.2&lt;3\)</span> → <span class="arithmatex">\(\mathcal H_0\)</span>.</p>
+</div>
+<figure>
+<p><img alt="Matched filter products for the two data sets" src="img/gen/p4_matched_products.svg" /></p>
+<figcaption>The tiny example as bars. Grey: the known pattern. Blue: the data. Coloured: their products. When the data look like the pattern (left), every product is positive and the biggest sample meets the biggest weight, so the sum is large. When they do not (right), products have mixed signs and cancel.</figcaption>
+</figure>
+<figure class="anim">
+<video class="anim" src="video/matched_filter.mp4" poster="video/matched_filter.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation: the same idea along a long record.</b> The pattern $[1,2,3,2,1]$ is hidden in noise at $n=31$, hard to see by eye. The orange template slides along; at each position the overlapping samples are multiplied by the pattern and added (green curve below). Only where the pattern really is does the sum clear the threshold $\frac12\sum s_n^2$.</figcaption>
+</figure>
+
+<ul>
+<li><strong>As an FIR filter:</strong> <mark>impulse response = the <strong>time-reversed</strong> signal, <span class="arithmatex">\(h[n]=s[N-1-n]\)</span>, output sampled at <span class="arithmatex">\(n=N-1\)</span>.</mark> (Check: convolution gives <span class="arithmatex">\(y[N-1]=\sum_kh[k]x[N-1-k]=\sum_ks[N-1-k]x[N-1-k]=\sum_ms[m]x[m]\)</span>, the <abbr title="multiply the data with the known pattern sample by sample and add.">correlator</abbr>.) <mark>Writing <span class="arithmatex">\(h[n]=s[n]\)</span> (no reversal) is a classic wrong option.</mark></li>
+<li><mark><strong>It maximises the output SNR</strong> among all linear filters.</mark> Reason: weights <span class="arithmatex">\(\mathbf w\)</span> give signal part <span class="arithmatex">\(\mathbf w^T\mathbf s\)</span> and noise variance <span class="arithmatex">\(\sigma^2\lVert\mathbf w\rVert^2\)</span>, so SNR <span class="arithmatex">\(=\frac{(\mathbf w^T\mathbf s)^2}{\sigma^2\lVert\mathbf w\rVert^2}\le\frac{\lVert\mathbf s\rVert^2}{\sigma^2}\)</span> by the Cauchy–Schwarz inequality, with equality exactly when <span class="arithmatex">\(\mathbf w\propto\mathbf s\)</span>.</li>
+<li><mark>With <strong>correlated</strong> noise, first <em>whiten</em> the data (undo the correlation) and then correlate</mark> (generalised <abbr title="the filter whose impulse response is the time-reversed known signal; it maximises the output SNR.">matched filter</abbr>). It is not limited to uncorrelated noise.</li>
+</ul>
+<hr />
+<h2 id="exam-questions">Exam questions<a class="headerlink" href="#exam-questions" title="Permanent link">#</a></h2>
+<h3 id="jun26-4c">June 2026 resit · 4c<a class="headerlink" href="#jun26-4c" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Resit Q4, June 2026 · 4c · 1 p</p>
+<p><em>(Same Rayleigh sensor as <a href="p4-lrt.html#jun26-4b">4b</a>.)</em> Now assume <abbr title="the probability of a hypothesis before seeing the data, P₀ = P(H₀), P₁ = P(H₁).">prior</abbr> probabilities <span class="arithmatex">\(P(H_0) = 0.9\)</span>, <span class="arithmatex">\(P(H_1) = 0.1\)</span>, reflecting the fact that a transmitting device is present only 10% of the time. Assume equal costs for false alarms and miss-detections. When should the sensor accept <span class="arithmatex">\(H_1\)</span>?</p>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> The test of <a href="p4-lrt.html#jun26-4b">4b</a> had a free threshold <span class="arithmatex">\(\eta\)</span>. Now the priors fix <span class="arithmatex">\(\eta\)</span>; find the resulting rule on <span class="arithmatex">\(x\)</span>.</p>
+<p><strong>Symbols in this question.</strong> <span class="arithmatex">\(P(H_0)=0.9\)</span>, <span class="arithmatex">\(P(H_1)=0.1\)</span>: priors. <span class="arithmatex">\(\eta\)</span>: threshold on the likelihood ratio. <span class="arithmatex">\(\sigma_0&lt;\sigma_1\)</span>: the Rayleigh scales from 4b.</p>
+<p><strong>Step 1 — the Bayes threshold.</strong> Equal costs (0 when correct, the same <abbr title="C_ij, the penalty for deciding H_i when H_j is true.">cost</abbr> for both errors) → <span class="arithmatex">\(\eta=\dfrac{P_0}{P_1}=\dfrac{0.9}{0.1}=9\)</span> (<a href="#14-special-cases">1.4</a>).</p>
+<p><strong>Step 2 — plug into the 4b rule.</strong> The 4b test was <span class="arithmatex">\(x&gt;\sqrt{\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\ln\big(\eta\frac{\sigma_1^2}{\sigma_0^2}\big)}\)</span>. With <span class="arithmatex">\(\eta=9\)</span>:</p>
+<div class="arithmatex">\[x&gt;\sqrt{\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\left(\frac{9\,\sigma_1^2}{\sigma_0^2}\right)}.\]</div>
+<p><strong>Step 3 — interpretation.</strong> Because the device is rare, the log term is bigger (<span class="arithmatex">\(\ln(9\sigma_1^2/\sigma_0^2)\)</span> instead of <span class="arithmatex">\(\ln(\sigma_1^2/\sigma_0^2)\)</span>), so the threshold is higher: the sensor needs a clearly stronger envelope before it declares a device.</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p>Accept <span class="arithmatex">\(H_1\)</span> when <span class="arithmatex">\(x&gt;\sqrt{\dfrac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\ln\!\dfrac{9\sigma_1^2}{\sigma_0^2}}\)</span> (LRT threshold <span class="arithmatex">\(\eta=9\)</span>)</p>
+</div>
+</details>
+<h3 id="jun26-4a">June 2026 resit · 4a<a class="headerlink" href="#jun26-4a" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Resit Q4, June 2026 · 4a · 0.5 p</p>
+<p>Which of the following statements about <abbr title="the probability of a hypothesis before seeing the data, P₀ = P(H₀), P₁ = P(H₁).">prior</abbr> probabilities in Bayesian hypothesis testing is FALSE?</p>
+<ul>
+<li>a When <abbr title="the probability of a hypothesis before seeing the data, P₀ = P(H₀), P₁ = P(H₁).">prior</abbr> probabilities are equal, <span class="arithmatex">\(P(H_0) = P(H_1)\)</span>, and equal costs are assigned, the Bayesian decision rule reduces to the maximum likelihood decision rule.</li>
+<li>b A higher <abbr title="the probability of a hypothesis before seeing the data, P₀ = P(H₀), P₁ = P(H₁).">prior</abbr> probability <span class="arithmatex">\(P(H_0)\)</span> raises the Bayesian threshold <span class="arithmatex">\(\eta\)</span>, requiring stronger evidence before <span class="arithmatex">\(H_1\)</span> is selected.</li>
+<li>c Increasing the <abbr title="the probability of a hypothesis before seeing the data, P₀ = P(H₀), P₁ = P(H₁).">prior</abbr> probability <span class="arithmatex">\(P(H_1)\)</span> raises the Bayesian decision threshold <span class="arithmatex">\(\eta\)</span>, making it harder to decide in favour of <span class="arithmatex">\(H_1\)</span>.</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> The one false statement about how priors enter the threshold <span class="arithmatex">\(\eta=\frac{P_0}{P_1}\)</span> (for equal costs).</p>
+<p><strong>Step 1 — (a).</strong> Equal priors and equal costs → <span class="arithmatex">\(\eta=1\)</span> → maximum likelihood (<a href="#14-special-cases">1.4</a>). True.</p>
+<p><strong>Step 2 — (b).</strong> Larger <span class="arithmatex">\(P_0\)</span> → larger <span class="arithmatex">\(\eta=P_0/P_1\)</span> → stronger evidence needed. True.</p>
+<p><strong>Step 3 — (c).</strong> Larger <span class="arithmatex">\(P_1\)</span> → <strong>smaller</strong> <span class="arithmatex">\(\eta\)</span> → <em>easier</em> to pick <span class="arithmatex">\(H_1\)</span>, not harder. False.</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(c)</strong></p>
+</div>
+</details>
+<h3 id="apr25-4c">April 2025 exam · 4c<a class="headerlink" href="#apr25-4c" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q3, 13 April 2025 · 4c · 1 p</p>
+<p>The teaching team in a MSc course uses an AI agent to detect whether assignments have been generated using genAI which is considered fraudulent. There are two hypotheses to choose from <span class="arithmatex">\(\mathcal{H}_0\)</span>: the assignment has been generated by a student; <span class="arithmatex">\(\mathcal{H}_1\)</span>: the assignment has been generated by genAI. The system uses Bayesian hypothesis testing and the student fails the course if the agent accepts <span class="arithmatex">\(\mathcal{H}_1\)</span>. Assume that <span class="arithmatex">\(C_{0,1} = 100C_{1,0}\)</span>, <span class="arithmatex">\(C_{1,1} = C_{0,0} = 0\)</span>. In addition, assume that the <abbr title="P(H_i | x): the probability of the hypothesis after seeing the data.">posterior</abbr> of <span class="arithmatex">\(\mathcal{H}_0\)</span> is 5 times smaller than the <abbr title="P(H_i | x): the probability of the hypothesis after seeing the data.">posterior</abbr> of <span class="arithmatex">\(\mathcal{H}_1\)</span>. Should the student fail the course?</p>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> Apply the Bayes rule in its <em><abbr title="P(H_i | x): the probability of the hypothesis after seeing the data.">posterior</abbr></em> form (<a href="#15-the-same-rule-with-posteriors">1.5</a>) and see whether the agent accepts <span class="arithmatex">\(\mathcal H_1\)</span>.</p>
+<p><strong>Symbols in this question</strong></p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\mathcal H_0\)</span> / <span class="arithmatex">\(\mathcal H_1\)</span></td>
+<td>written by a student / generated by genAI</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(C_{0,1}\)</span></td>
+<td><abbr title="C_ij, the penalty for deciding H_i when H_j is true.">cost</abbr> of deciding <span class="arithmatex">\(\mathcal H_0\)</span> (student) when <span class="arithmatex">\(\mathcal H_1\)</span> (AI) is true = <strong>missing</strong> an AI assignment</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(C_{1,0}\)</span></td>
+<td><abbr title="C_ij, the penalty for deciding H_i when H_j is true.">cost</abbr> of deciding <span class="arithmatex">\(\mathcal H_1\)</span> when <span class="arithmatex">\(\mathcal H_0\)</span> is true = failing an honest student (<strong>false alarm</strong>)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(C_{0,1}=100C_{1,0}\)</span></td>
+<td>as given: a miss costs 100 times a false alarm</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 1 — the rule:</strong> decide <span class="arithmatex">\(\mathcal H_1\)</span> iff <span class="arithmatex">\((C_{01}-C_{11})P(\mathcal H_1\mid x)&gt;(C_{10}-C_{00})P(\mathcal H_0\mid x)\)</span>. With <span class="arithmatex">\(C_{11}=C_{00}=0\)</span> and <span class="arithmatex">\(C_{01}=100C_{10}\)</span>:</p>
+<div class="arithmatex">\[100\,C_{10}\,P(\mathcal H_1\mid x)&gt;C_{10}\,P(\mathcal H_0\mid x)\iff\frac{P(\mathcal H_1\mid x)}{P(\mathcal H_0\mid x)}&gt;\frac1{100}=0.01.\]</div>
+<p><strong>Step 2 — the data.</strong> "The <abbr title="P(H_i | x): the probability of the hypothesis after seeing the data.">posterior</abbr> of <span class="arithmatex">\(\mathcal H_0\)</span> is 5 times smaller than that of <span class="arithmatex">\(\mathcal H_1\)</span>" means <span class="arithmatex">\(\frac{P(\mathcal H_1\mid x)}{P(\mathcal H_0\mid x)}=5\)</span>.</p>
+<p><strong>Step 3 — compare.</strong> <span class="arithmatex">\(5&gt;0.01\)</span> → the agent accepts <span class="arithmatex">\(\mathcal H_1\)</span> → the student fails. With these costs the system would flag an assignment even if AI authorship were 100 times <em>less</em> likely than a human author. (Even with equal costs, <span class="arithmatex">\(5&gt;1\)</span> would still mean fail.)</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>Yes</strong>, the student fails: <span class="arithmatex">\(5\ge\lambda=0.01\)</span>.</p>
+</div>
+</details>
+<h3 id="nov22-4f">November 2022 exam · 4f, 4g<a class="headerlink" href="#nov22-4f" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q1, 7 November 2022 · 4f, 4g · 0.5 p each</p>
+<p><em>(Same <span class="arithmatex">\(y=|x|\)</span> problem as <a href="p4-lrt.html#nov22-4c">4c–4e</a>: <span class="arithmatex">\(p(y;\mathcal H_0)=e^{-y}\)</span>, <span class="arithmatex">\(p(y;\mathcal H_1)=2e^{-2y}\)</span>.)</em></p>
+<p>Consider the <abbr title="the probability of a hypothesis before seeing the data, P₀ = P(H₀), P₁ = P(H₁).">prior</abbr> probabilities <span class="arithmatex">\(P_0 = 0.4\)</span> and <span class="arithmatex">\(P_1 = 0.6\)</span> for the hypotheses <span class="arithmatex">\(\mathcal{H}_0\)</span> and <span class="arithmatex">\(\mathcal{H}_1\)</span>, respectively. The Bayesian hypothesis test for the <abbr title="C_ij, the penalty for deciding H_i when H_j is true.">cost</abbr> <span class="arithmatex">\(C_{1,1} = C_{0,0} = 0\)</span> and <span class="arithmatex">\(C_{0,1} = C_{1,0} = 1\)</span> is</p>
+<div class="arithmatex">\[L(\mathbf{x}) = \frac{p(\mathbf{x}|\mathcal{H}_1)}{p(\mathbf{x}|\mathcal{H}_0)} \underset{\mathcal{H}_0}{\overset{\mathcal{H}_1}{\gtrless}} \frac{P_0}{P_1},\]</div>
+<p>or, equivalently, <span class="arithmatex">\(p(\mathbf{x}|\mathcal{H}_1)P_1 \underset{\mathcal{H}_0}{\overset{\mathcal{H}_1}{\gtrless}} p(\mathbf{x}|\mathcal{H}_0)P_0,\)</span> that is, we decide for <span class="arithmatex">\(\mathcal{H}_1\)</span> if the probability of observing <span class="arithmatex">\(y\)</span> under <span class="arithmatex">\(\mathcal{H}_1\)</span> is greater than under <span class="arithmatex">\(\mathcal{H}_0\)</span>. At the threshold, the observation <span class="arithmatex">\(y\)</span> admits the same probabilities under both hypotheses. A sketch of the two distributions is provided below.</p>
+<p><img alt="weighted pdfs" src="img/exam/nov22-4f.jpg" /></p>
+<p><strong>4f</strong> Find the threshold <span class="arithmatex">\(\gamma''\)</span>, i.e., the value of <span class="arithmatex">\(y\)</span> for which <span class="arithmatex">\(p(\mathbf{x}|\mathcal{H}_1)P_1 = p(\mathbf{x}|\mathcal{H}_0)P_0\)</span>.</p>
+<p><strong>4g</strong> Determine the probability of miss <span class="arithmatex">\(P_M\)</span> and the probability of false alarm <span class="arithmatex">\(P_{FA}\)</span> for the Bayesian hypothesis test.</p>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> 4f: where the two <em><abbr title="the probability of a hypothesis before seeing the data, P₀ = P(H₀), P₁ = P(H₁).">prior</abbr>-weighted</em> PDFs cross. 4g: the two error probabilities for that threshold.</p>
+<p><strong>Reading the plot.</strong> Each PDF is multiplied by its <abbr title="the probability of a hypothesis before seeing the data, P₀ = P(H₀), P₁ = P(H₁).">prior</abbr>: solid <span class="arithmatex">\(0.4e^{-y}\)</span> (starts at 0.4); dashed <span class="arithmatex">\(0.6\cdot2e^{-2y}=1.2e^{-2y}\)</span> (starts at 1.2). Where the dashed curve is on top, decide <span class="arithmatex">\(\mathcal H_1\)</span>.</p>
+<p><strong>Step 1 — 4f: set them equal:</strong> <span class="arithmatex">\(0.4e^{-y}=1.2e^{-2y}\)</span>. Divide by <span class="arithmatex">\(0.4e^{-2y}\)</span>: <span class="arithmatex">\(e^{y}=3\Rightarrow\gamma''=\ln3\approx1.10\)</span>. Decide <span class="arithmatex">\(\mathcal H_1\)</span> for <span class="arithmatex">\(y&lt;\ln3\)</span> (the same direction as in <a href="p4-lrt.html#nov22-4c">4e</a>: <span class="arithmatex">\(\mathcal H_1\)</span> lives at small <span class="arithmatex">\(y\)</span>).</p>
+<p><strong>Step 2 — 4g: conditional probabilities</strong> (the official clarification says so, <strong>not</strong> weighted by priors):</p>
+<div class="arithmatex">\[P_{FA}=\int_0^{\ln3}e^{-y}dy=1-e^{-\ln3}=1-\tfrac13=\tfrac23,\qquad P_M=\int_{\ln3}^\infty2e^{-2y}dy=e^{-2\ln3}=\tfrac19.\]</div>
+<p><img alt="Bayesian threshold" src="img/gen/p4_nov22_bayes.svg" /></p>
+<p><strong>Step 3 — check.</strong> Weighted by the priors these are <span class="arithmatex">\(0.4\cdot\frac23=\frac4{15}\)</span> and <span class="arithmatex">\(0.6\cdot\frac19=\frac1{15}\)</span>, total error <span class="arithmatex">\(\frac13\)</span>, the minimum possible for this problem (the review deck shows only these weighted values; the key gives the conditional ones).</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p>4f: <span class="arithmatex">\(\gamma''=\ln3\approx1.10\)</span>. 4g: <span class="arithmatex">\(P_{FA}=\frac23\)</span>, <span class="arithmatex">\(P_M=\frac19\)</span> (<abbr title="the probability of a hypothesis before seeing the data, P₀ = P(H₀), P₁ = P(H₁).">prior</abbr>-weighted: <span class="arithmatex">\(\frac4{15}\)</span> and <span class="arithmatex">\(\frac1{15}\)</span>, <span class="arithmatex">\(P_e=\frac13\)</span>).</p>
+</div>
+</details>
+<h3 id="jan22-4a">January 2022 resit · 4a<a class="headerlink" href="#jan22-4a" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Resit, 24 January 2022 · 4a · 0.3 p</p>
+<p>Which of the following statements about the <abbr title="the filter whose impulse response is the time-reversed known signal; it maximises the output SNR.">matched filter</abbr> is true?</p>
+<ul>
+<li>(a) The signal-to-noise ratio at the output of the <abbr title="the filter whose impulse response is the time-reversed known signal; it maximises the output SNR.">matched filter</abbr> is maximized.</li>
+<li>(b) The <abbr title="the filter whose impulse response is the time-reversed known signal; it maximises the output SNR.">matched filter</abbr> can be implemented as a FIR filter with impulse response <span class="arithmatex">\(h[n] = s[n]\)</span>.</li>
+<li>(c) The <abbr title="the filter whose impulse response is the time-reversed known signal; it maximises the output SNR.">matched filter</abbr> can only be applied for uncorrelated noise samples.</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> The properties of the <abbr title="the filter whose impulse response is the time-reversed known signal; it maximises the output SNR.">matched filter</abbr> (<a href="#2-the-matched-filter-detecting-a-known-signal-in-noise">section 2</a>).</p>
+<p><strong>Step 1 — (a).</strong> Maximum output SNR is the defining property (Cauchy–Schwarz). <strong>True.</strong></p>
+<p><strong>Step 2 — (b).</strong> The impulse response must be the <strong>time-reversed</strong> signal, <span class="arithmatex">\(h[n]=s[N-1-n]\)</span>, so that convolution turns into correlation. False.</p>
+<p><strong>Step 3 — (c).</strong> With correlated noise you whiten first and then apply the <abbr title="the filter whose impulse response is the time-reversed known signal; it maximises the output SNR.">matched filter</abbr>. False.</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(a)</strong></p>
+</div>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="p4-lrt.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 4.2 Likelihood ratio tests">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                4.2 Likelihood ratio tests
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.footer", "navigation.tracking", "navigation.instant", "navigation.instant.progress", "toc.follow", "content.tooltips"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js?v=1793008663"></script>
+      
+        <script src="javascripts/katex.js?v=1793008663"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="javascripts/quiz.js?v=1793008663"></script>
+      
+        <script src="javascripts/ask.js?v=1793008663"></script>
+      
+        <script src="javascripts/video.js?v=1793008663"></script>
+      
+        <script src="javascripts/layout.js?v=1793008663"></script>
+      
+        <script src="javascripts/keypoints.js?v=1793008663"></script>
+      
+        <script src="javascripts/progress.js?v=1793008663"></script>
+      
+        <script src="javascripts/widgets.js?v=1793008663"></script>
+      
+        <script src="javascripts/navsections.js?v=1793008663"></script>
+      
+    
+  </body>
+</html>

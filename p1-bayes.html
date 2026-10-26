@@ -1,0 +1,2670 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Every 5CTA0 Statistical Signal Processing exam question (2019–2026), solved step by step, organised by the patterns that keep coming back.">
+      
+      
+      
+        <link rel="canonical" href="https://dkealvaro.github.io/5cta0-exam-guide/p1-bayes.html">
+      
+      
+        <link rel="prev" href="toolbox.html">
+      
+      
+        <link rel="next" href="p1-rv.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>1.1 Bayes & total probability - 5CTA0 · Pass the exam</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css?v=1793008663">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css?v=1793008663">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+4:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Source Serif 4";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0.16.11/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap">
+    
+      <link rel="stylesheet" href="stylesheets/extra.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/ask.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/layout.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/keypoints.css?v=1793008663">
+    
+      <link rel="stylesheet" href="stylesheets/widgets.css?v=1793008663">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#11-bayes-total-probability" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-header__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            5CTA0 · Pass the exam
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1.1 Bayes & total probability
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="5CTA0 · Pass the exam" class="md-nav__button md-logo" aria-label="5CTA0 · Pass the exam" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg>
+
+    </a>
+    5CTA0 · Pass the exam
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DKeAlvaro/5cta0-exam-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    5cta0-exam-guide
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New · Exam course
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    New · Exam course
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="podcast.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Podcast (watch first)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 1 · Probability (1.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 1 · Probability (1.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes word problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-joint.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-wss.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Stationary and ergodic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e1-factor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 2 · Estimation (3–3.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-map.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 MAP with a prior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Least-squares line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e2-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Theory questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 3 · Spectral estimation (3 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-corr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Correlogram, pick the plot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-arma.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 AR and MA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e3-facts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Periodogram, Welch, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Block 4 · Detection (2–2.5 p)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Likelihood ratio test
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="e4-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Priors, costs, theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exams.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mock exams with answers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="battle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Battle kit · every question + its box
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cheatsheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 cheat sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cheatsheet3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 cheat sheet (v3, clearer wording)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Old · Long guide (deep dive)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Old · Long guide (deep dive)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="patterns.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The exam, decoded
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p0-foundations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 0 · From zero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="toolbox.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toolbox
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes & total probability
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="p1-bayes.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Bayes & total probability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-idea-from-zero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 · The idea, from zero
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 · The idea, from zero">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-probability-as-a-fraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Probability as a fraction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-one-picture-with-whole-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 One picture with whole numbers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-the-three-formulas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 The three formulas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-independent-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Independent events
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exam questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exam questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jun26-1b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        June 2026 resit · 1b
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr25-1a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2025 exam · 1a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr24-1b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2024 exam · 1b
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr24-1a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2024 exam · 1a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan25-1a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2025 resit · 1a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nov22-1a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2022 exam · 1a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan22-1a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2022 resit · 1a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pe21-1a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practice exam 2021 · 1a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan20-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2020 retake · Exercise 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jun26-1a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        June 2026 resit · 1a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nov19-1b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2019 exam · 1b
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-rv.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Random variables & joint PDFs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-processes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Random processes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p1-factorisation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.4 Spectral factorisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-mle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Maximum likelihood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-crlb.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 CRLB & Fisher information
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Bayesian estimation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p2-ls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Least squares
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-windows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Signals, windows, zero padding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-nonparametric.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 Non-parametric estimators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-autocorr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Autocorrelation of ARMA models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p3-chain.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.4 Correlogram → AR → MA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-basics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Errors, ROC, Neyman–Pearson
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-lrt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Likelihood ratio tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="p4-bayes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.3 Bayesian detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-idea-from-zero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 · The idea, from zero
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 · The idea, from zero">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-probability-as-a-fraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Probability as a fraction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-one-picture-with-whole-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 One picture with whole numbers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-the-three-formulas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 The three formulas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-independent-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Independent events
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exam questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exam questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jun26-1b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        June 2026 resit · 1b
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr25-1a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2025 exam · 1a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr24-1b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2024 exam · 1b
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apr24-1a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        April 2024 exam · 1a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan25-1a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2025 resit · 1a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nov22-1a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2022 exam · 1a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan22-1a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2022 resit · 1a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pe21-1a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practice exam 2021 · 1a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jan20-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        January 2020 retake · Exercise 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jun26-1a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        June 2026 resit · 1a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nov19-1b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        November 2019 exam · 1b
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="11-bayes-total-probability">1.1 Bayes &amp; <abbr title="P(B) = Σ P(B | Aᵢ)P(Aᵢ): the weighted average of per-group probabilities.">total probability</abbr><a class="headerlink" href="#11-bayes-total-probability" title="Permanent link">#</a></h1>
+<p class="lead">Almost every exam opens with a short word problem: several machines, scanners or groups, each with its own failure rate. You need two formulas. Learn them here once and you get 0.25–1 point every time. This page explains both with a picture made of whole numbers of chips, then fits the formulas to it.</p>
+
+<div class="admonition need">
+<p class="admonition-title">Before this page</p>
+<ul>
+<li>Nothing beyond arithmetic with fractions and percentages. (A short version of <abbr title="P(A | B): the probability of A when B is already known to have happened.">conditional probability</abbr> and independence is in <a href="p0-foundations.html#conditional-probability-and-independence">0.6</a>; this page builds the same thing again from counts.)</li>
+</ul>
+<p>If you read only one thing: <strong>a <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> is "what fraction of the time". Conditional <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> = zoom into the part of the world where something is already known, and take the fraction inside it. Bayes = the same zoom, applied the other way round.</strong></p>
+</div>
+<hr />
+<h2 id="1-the-idea-from-zero">1 · The idea, from zero<a class="headerlink" href="#1-the-idea-from-zero" title="Permanent link">#</a></h2>
+<h3 id="11-probability-as-a-fraction">1.1 Probability as a fraction<a class="headerlink" href="#11-probability-as-a-fraction" title="Permanent link">#</a></h3>
+<p>A <strong><abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr></strong> is a number between 0 and 1 (or 0–100 %) that says what fraction of the time something happens if you repeat the experiment many times. An <strong><abbr title="something that can happen or not, e.g. &quot;the chip is defective&quot;.">event</abbr></strong> is something that can happen or not ("the chip is defective").</p>
+<h3 id="12-one-picture-with-whole-numbers">1.2 One picture with whole numbers<a class="headerlink" href="#12-one-picture-with-whole-numbers" title="Permanent link">#</a></h3>
+<p>The trick that makes everything below obvious: <mark><strong>imagine 10 000 chips</strong> and count.</mark></p>
+<div class="admonition example">
+<p class="admonition-title">The machine problem as counts (June 2026 1b)</p>
+<p>Machine <span class="arithmatex">\(M_1\)</span> makes 40 % of the chips, <span class="arithmatex">\(M_2\)</span> 35 %, <span class="arithmatex">\(M_3\)</span> 25 %. Defect rates: 2 %, 4 %, 5 %.</p>
+<table>
+<thead>
+<tr>
+<th>Machine</th>
+<th>chips (of 10 000)</th>
+<th>defective chips</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(M_1\)</span></td>
+<td>4000</td>
+<td><span class="arithmatex">\(2\%\cdot4000=80\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(M_2\)</span></td>
+<td>3500</td>
+<td><span class="arithmatex">\(4\%\cdot3500=140\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(M_3\)</span></td>
+<td>2500</td>
+<td><span class="arithmatex">\(5\%\cdot2500=125\)</span></td>
+</tr>
+<tr>
+<td><strong>total</strong></td>
+<td>10 000</td>
+<td><span class="arithmatex">\(80+140+125=345\)</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><em>Probability that a random chip is defective:</em> <span class="arithmatex">\(\frac{345}{10\,000}=0.0345\)</span>.</li>
+<li><em>A chip is defective; how likely is it from <span class="arithmatex">\(M_2\)</span>?</em> Look <strong>only at the 345 defective chips</strong>: 140 are from <span class="arithmatex">\(M_2\)</span>: <span class="arithmatex">\(\frac{140}{345}=0.406\)</span>.</li>
+</ul>
+<p>These two sentences are exactly the two formulas below, with the multiplication done on whole numbers.</p>
+</div>
+<figure>
+<p><img alt="The machine problem as areas" src="img/gen/p1_bayes_area.svg" /></p>
+<figcaption>Left: the 10 000 chips as a square. Each machine gets a strip as wide as its share, and the red part at the bottom of each strip is its defective chips. Right: "given that the chip is defective" means keep only the red pieces and line them up. Each machine's share of that bar is its posterior probability. That zoom is all Bayes' theorem does.</figcaption>
+</figure>
+<figure class="anim">
+<video class="anim" src="video/bayes_zoom.mp4" poster="video/bayes_zoom.jpg" muted loop playsinline controls preload="none"></video>
+<figcaption><b>Animation: Bayes as a zoom.</b> The strips appear, then the defective chips (red). Learning "the chip is defective" throws away everything that is not red, and the 345 red chips are regrouped by machine: 80, 140 and 125 of them, i.e. 0.232, 0.406 and 0.362.</figcaption>
+</figure>
+
+<h3 id="13-the-three-formulas">1.3 The three formulas<a class="headerlink" href="#13-the-three-formulas" title="Permanent link">#</a></h3>
+<p><strong>Conditional <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr>.</strong> <span class="arithmatex">\(P(A\mid B)\)</span> ("<abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> of <span class="arithmatex">\(A\)</span> given <span class="arithmatex">\(B\)</span>") is the <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> of <span class="arithmatex">\(A\)</span> <em>when you already know that <span class="arithmatex">\(B\)</span> happened</em>. You zoom into the part of the world where <span class="arithmatex">\(B\)</span> is true and ask how much of it is also <span class="arithmatex">\(A\)</span>:</p>
+<div class="key">
+<div class="arithmatex">\[P(A\mid B)=\frac{P(A\cap B)}{P(B)}\qquad\Longleftrightarrow\qquad P(A\cap B)=P(A\mid B)\,P(B)\]</div>
+</div>
+<p>(<span class="arithmatex">\(A\cap B\)</span> = "both <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span>"). In the picture: <span class="arithmatex">\(\frac{140}{345}\)</span> is "defective and from <span class="arithmatex">\(M_2\)</span>" divided by "defective".</p>
+<p><strong>Law of <abbr title="P(B) = Σ P(B | Aᵢ)P(Aᵢ): the weighted average of per-group probabilities.">total probability</abbr>.</strong> If the world is split into non-overlapping groups <span class="arithmatex">\(A_1,A_2,\dots\)</span> (machine 1, machine 2, …) that together cover everything, the <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> of <span class="arithmatex">\(B\)</span> is the weighted average of the per-group probabilities:</p>
+<div class="key">
+<div class="arithmatex">\[P(B)=\sum_i P(B\mid A_i)\,P(A_i).\]</div>
+</div>
+<p>In the picture: <span class="arithmatex">\(0.02\cdot0.40+0.04\cdot0.35+0.05\cdot0.25=0.008+0.014+0.0125=0.0345\)</span>, i.e. the 345 defective chips divided by 10 000.</p>
+<p><strong><abbr title="P(A | B) = P(B | A)P(A)/P(B): turns a conditional probability around.">Bayes' theorem</abbr>.</strong> Turn the conditional around: from "how often does group <span class="arithmatex">\(k\)</span> produce <span class="arithmatex">\(B\)</span>" to "given <span class="arithmatex">\(B\)</span>, how likely is it that it came from group <span class="arithmatex">\(k\)</span>":</p>
+<div class="key">
+<div class="arithmatex">\[P(A_k\mid B)=\frac{P(B\mid A_k)\,P(A_k)}{P(B)}=\frac{P(B\mid A_k)\,P(A_k)}{\sum_i P(B\mid A_i)P(A_i)}.\]</div>
+</div>
+<p>(Derivation: write <span class="arithmatex">\(P(A_k\cap B)\)</span> in the two possible ways, <span class="arithmatex">\(P(B\mid A_k)P(A_k)=P(A_k\mid B)P(B)\)</span>, and divide by <span class="arithmatex">\(P(B)\)</span>.)</p>
+<p>Names you will see: <mark><span class="arithmatex">\(P(A_k)\)</span> = <strong><abbr title="the probability of a group before the outcome is known.">prior</abbr></strong> (before knowing the outcome), <span class="arithmatex">\(P(B\mid A_k)\)</span> = <strong>likelihood</strong>, <span class="arithmatex">\(P(B)\)</span> = <strong>evidence</strong>, <span class="arithmatex">\(P(A_k\mid B)\)</span> = <strong><abbr title="the probability of a group after the outcome is known.">posterior</abbr></strong> (after knowing the outcome)</mark>. The same structure comes back in Part 2 (Bayesian estimation) and Part 4 (Bayesian detection).</p>
+<figure>
+<p><img alt="Probability tree for the June 2026 machine problem" src="img/gen/p1_bayes_tree.svg" /></p>
+<figcaption>How to read a probability tree: the first split is "which group" (priors, blue), the second split is "what happens inside that group" (likelihoods, red). Multiply along a branch to get the probability of that whole path. Add the "defective" paths to get $P(\text{defective})$. Divide one path by that sum to get Bayes.</figcaption>
+</figure>
+<h3 id="14-independent-events">1.4 Independent events<a class="headerlink" href="#14-independent-events" title="Permanent link">#</a></h3>
+<p><mark><span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> are <strong><abbr title="knowing one event tells nothing about the other: P(A | B) = P(A).">independent</abbr></strong> when knowing <span class="arithmatex">\(B\)</span> tells you nothing about <span class="arithmatex">\(A\)</span>: <span class="arithmatex">\(P(A\mid B)=P(A)\)</span>, equivalently <span class="arithmatex">\(P(A\cap B)=P(A)P(B)\)</span>.</mark> Two coin flips: <span class="arithmatex">\(P(\text{both heads})=\frac12\cdot\frac12=\frac14\)</span>.</p>
+<p>Do not confuse with <strong>mutually exclusive</strong> (<abbr title="events that cannot happen together: P(A ∩ B) = 0.">disjoint</abbr>) events, which cannot happen together (<span class="arithmatex">\(P(A\cap B)=0\)</span>). <mark>Two events with non-zero probabilities that are <abbr title="knowing one event tells nothing about the other: P(A | B) = P(A).">independent</abbr> can never be <abbr title="events that cannot happen together: P(A ∩ B) = 0.">disjoint</abbr></mark> (<span class="arithmatex">\(P(A)P(B)&gt;0\)</span>). And <mark>the addition rule in general is <span class="arithmatex">\(P(A\cup B)=P(A)+P(B)-P(A\cap B)\)</span></mark>; plain addition is only for <abbr title="events that cannot happen together: P(A ∩ B) = 0.">disjoint</abbr> events.</p>
+<figure>
+<p><img alt="Disjoint vs independent events" src="img/gen/p1_indep_disjoint.svg" /></p>
+<figcaption>The square is "everything that can happen", area 1. Left: disjoint events do not touch, so knowing $B$ happened tells you for sure that $A$ did not. That is the opposite of independent. Right: independent events cross like a grid. Inside the strip $B$, the event $A$ still takes 40 % of the width, exactly as in the whole square, and the overlap's area is $0.4\times0.3$.</figcaption>
+</figure>
+<div class="admonition recipe key">
+<p class="admonition-title">Recipe: every Bayes word problem</p>
+<ol>
+<li>Name the events. Write the groups <span class="arithmatex">\(A_1,\dots\)</span> and the "outcome" <span class="arithmatex">\(B\)</span>.</li>
+<li>Read off the priors <span class="arithmatex">\(P(A_i)\)</span>. If they give counts (18, 22, 15 patients), divide by the total.</li>
+<li>Read off the likelihoods <span class="arithmatex">\(P(B\mid A_i)\)</span>. <strong>If they give "% that pass", the defect rate is 1 minus that.</strong></li>
+<li>Total <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr>: <span class="arithmatex">\(P(B)=\sum_i P(B\mid A_i)P(A_i)\)</span>.</li>
+<li>Bayes: <span class="arithmatex">\(P(A_k\mid B)=P(B\mid A_k)P(A_k)/P(B)\)</span>, i.e. one branch divided by the sum.</li>
+<li><em>(Check)</em> the posteriors of all groups add up to 1.</li>
+</ol>
+</div>
+<div class="admonition trap key">
+<p class="admonition-title">Traps</p>
+<ul>
+<li>"Probability that a car <strong>passed</strong> the test <strong>was</strong> painted by <span class="arithmatex">\(M_3\)</span>" is <span class="arithmatex">\(P(M_3\mid\text{pass})\)</span>, not <span class="arithmatex">\(P(\text{pass}\mid M_3)\)</span>.</li>
+<li>A test that is "99% accurate" means <span class="arithmatex">\(P(+\mid\text{sick})=0.99\)</span> <strong>and</strong> <span class="arithmatex">\(P(+\mid\text{healthy})=0.01\)</span>.</li>
+<li>Watch whether they ask about the <strong>good</strong> or the <strong>bad</strong> outcome; use the complement <span class="arithmatex">\(P(B^c)=1-P(B)\)</span>.</li>
+<li>A rare disease with an accurate test still gives a <em>small</em> <abbr title="the probability of a group after the outcome is known.">posterior</abbr>: healthy people are so numerous that even a 1 % false-positive rate produces more false alarms than true cases.</li>
+</ul>
+</div>
+<hr />
+<h2 id="exam-questions">Exam questions<a class="headerlink" href="#exam-questions" title="Permanent link">#</a></h2>
+<h3 id="jun26-1b">June 2026 resit · 1b<a class="headerlink" href="#jun26-1b" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Resit Q4, June 2026 · 1b · 0.3 p</p>
+<p>A manufacturing plant has three machines, <span class="arithmatex">\(M_1\)</span>, <span class="arithmatex">\(M_2\)</span>, and <span class="arithmatex">\(M_3\)</span>, that produce microchips. Machine <span class="arithmatex">\(M_1\)</span> produces 40% of the chips, <span class="arithmatex">\(M_2\)</span> produces 35%, and <span class="arithmatex">\(M_3\)</span> produces 25%. The <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> that a chip is defective is 2% for <span class="arithmatex">\(M_1\)</span>, 4% for <span class="arithmatex">\(M_2\)</span>, and 5% for <span class="arithmatex">\(M_3\)</span>. The chips from all machines are mixed together randomly before quality control.</p>
+<p><strong>Please provide only the final answer. The workout will not be checked.</strong></p>
+<ol>
+<li>What is the <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> that a randomly selected chip will be defective? [0.15]</li>
+<li>If a randomly selected chip is found to be defective, what is the <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> that it was produced by machine <span class="arithmatex">\(M_2\)</span>? [0.15]</li>
+</ol>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> Q1 is "<abbr title="P(B) = Σ P(B | Aᵢ)P(Aᵢ): the weighted average of per-group probabilities.">total probability</abbr>" (a chip from <em>any</em> machine). Q2 is Bayes, because the question is turned around ("given defective, which machine?").</p>
+<p><strong>Symbols in this question</strong></p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(M_i\)</span></td>
+<td>"the chip was made by machine <span class="arithmatex">\(i\)</span>"</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(D\)</span></td>
+<td>"the chip is defective"</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P(M_i)\)</span></td>
+<td>priors: <span class="arithmatex">\(0.40,\ 0.35,\ 0.25\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P(D\mid M_i)\)</span></td>
+<td>likelihoods (defect rates): <span class="arithmatex">\(0.02,\ 0.04,\ 0.05\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 1 — <abbr title="P(B) = Σ P(B | Aᵢ)P(Aᵢ): the weighted average of per-group probabilities.">total probability</abbr></strong> (<a href="#13-the-three-formulas">1.3</a>): sum the three branches that end in "defective":</p>
+<div class="arithmatex">\[P(D)=0.40(0.02)+0.35(0.04)+0.25(0.05)=0.008+0.014+0.0125=0.0345.\]</div>
+<p><strong>Step 2 — Bayes.</strong> The branch through <span class="arithmatex">\(M_2\)</span> divided by the sum:</p>
+<div class="arithmatex">\[P(M_2\mid D)=\frac{P(D\mid M_2)P(M_2)}{P(D)}=\frac{0.014}{0.0345}=0.406.\]</div>
+<p>(Same as the counting picture in <a href="#12-one-picture-with-whole-numbers">1.2</a>: <span class="arithmatex">\(\frac{140}{345}\)</span>.)</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<ol>
+<li><span class="arithmatex">\(P(D)=0.0345\)</span> (3.45 %)  2. <span class="arithmatex">\(P(M_2\mid D)\approx0.41\)</span></li>
+</ol>
+</div>
+</details>
+<h3 id="apr25-1a">April 2025 exam · 1a<a class="headerlink" href="#apr25-1a" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q3, 13 April 2025 · 1a · 0.3 p</p>
+<p>An hospital has three CT scanners CT1, CT2, and CT3. It has been observed that 85% of the images produced by CT1 have sufficient quality, while CT2 and CT3 the percentages of images with sufficient quality are 90% and 66%, respectively. Each day, CT1 scans 18 patients, CT2 scans 22 patients, and CT3 scans 15 patients. The images from all CT scanners are mixed at random before image quality control. Assuming that the same number of images are produced for each patients:</p>
+<p><strong><em>Provide only the final answer. The workout will not be checked.</em></strong></p>
+<ol>
+<li>What is the <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> the one image will NOT pass the quality test?</li>
+<li>What is the <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> that a bad quality image comes from CT2?</li>
+</ol>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> (1) Total <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> of a <em>bad</em> image. (2) Bayes: given bad, which scanner?</p>
+<p><strong>Symbols in this question.</strong> <span class="arithmatex">\(CT_i\)</span>: image from scanner <span class="arithmatex">\(i\)</span>; "bad": the image fails the quality test.</p>
+<p><strong>Step 1 — priors come from counts.</strong> <span class="arithmatex">\(18+22+15=55\)</span> patients, so <span class="arithmatex">\(P(CT_1)=\frac{18}{55}\)</span>, <span class="arithmatex">\(P(CT_2)=\frac{22}{55}\)</span>, <span class="arithmatex">\(P(CT_3)=\frac{15}{55}\)</span>.</p>
+<p><strong>Step 2 — likelihoods of the bad outcome</strong> are the complements of the given percentages: <span class="arithmatex">\(1-0.85=0.15\)</span>, <span class="arithmatex">\(1-0.90=0.10\)</span>, <span class="arithmatex">\(1-0.66=0.34\)</span>.</p>
+<p><strong>Step 3 — <abbr title="P(B) = Σ P(B | Aᵢ)P(Aᵢ): the weighted average of per-group probabilities.">total probability</abbr>:</strong></p>
+<div class="arithmatex">\[P(\text{bad})=\frac{18(0.15)+22(0.10)+15(0.34)}{55}=\frac{2.7+2.2+5.1}{55}=\frac{10}{55}=0.18.\]</div>
+<p>(Equivalently <span class="arithmatex">\(P(\text{good})=0.82\)</span> and <span class="arithmatex">\(1-0.82=0.18\)</span>.)</p>
+<p><strong>Step 4 — Bayes:</strong> <span class="arithmatex">\(P(CT_2\mid\text{bad})=\dfrac{22(0.10)/55}{10/55}=\dfrac{2.2}{10}=0.22\)</span>.</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<ol>
+<li><span class="arithmatex">\(0.18\)</span>  2. <span class="arithmatex">\(0.22\)</span></li>
+</ol>
+</div>
+</details>
+<h3 id="apr24-1b">April 2024 exam · 1b<a class="headerlink" href="#apr24-1b" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q3, April 2024 · 1b · 0.25 p</p>
+<p>Assume the <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> of having tuberculosis (TB) is 0.0005, and a test for TB is 99% accurate. What is the <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> one has TB if one tests positive for the disease?</p>
+<p><strong>Note: provide only the final answer. No passages will be checked.</strong></p>
+<p>Provide the value of <span class="arithmatex">\(\Pr[TB]\)</span></p>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> The <abbr title="the probability of a group after the outcome is known.">posterior</abbr> <span class="arithmatex">\(P(TB\mid +)\)</span>: given a positive test, how likely is the disease? (The statement "<span class="arithmatex">\(\Pr[TB]\)</span>" at the end means this <abbr title="the probability of a group after the outcome is known.">posterior</abbr>.)</p>
+<p><strong>Symbols in this question.</strong> <span class="arithmatex">\(TB\)</span>: has the disease; <span class="arithmatex">\(+\)</span>: tests positive.</p>
+<p><strong>Step 1 — read the numbers.</strong> Prior <span class="arithmatex">\(P(TB)=0.0005\)</span>. "99 % accurate" → <span class="arithmatex">\(P(+\mid TB)=0.99\)</span> <strong>and</strong> <span class="arithmatex">\(P(+\mid\text{no }TB)=0.01\)</span>.</p>
+<p><strong>Step 2 — evidence</strong> (<abbr title="P(B) = Σ P(B | Aᵢ)P(Aᵢ): the weighted average of per-group probabilities.">total probability</abbr> over the two groups, sick and healthy; <span class="arithmatex">\(P(\text{no TB})=0.9995\)</span>):</p>
+<div class="arithmatex">\[P(+)=0.99(0.0005)+0.01(0.9995)=0.000495+0.009995=0.010490.\]</div>
+<p><strong>Step 3 — Bayes:</strong></p>
+<div class="arithmatex">\[P(TB\mid +)=\frac{0.99(0.0005)}{0.010490}=\frac{0.000495}{0.010490}=0.047.\]</div>
+<p><strong>Why so small?</strong> Per 100 000 people: 50 have TB (49.5 test positive) and 99 950 are healthy (999.5 test positive by mistake). Of about 1049 positives only 49.5 are sick: <span class="arithmatex">\(\frac{49.5}{1049}=4.7\%\)</span>. The disease is so rare that false positives outnumber true ones. That "base-rate" effect is the whole point of the question.</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><span class="arithmatex">\(P(TB\mid +)\approx0.047\)</span> (about 5 %)</p>
+</div>
+</details>
+<h3 id="apr24-1a">April 2024 exam · 1a<a class="headerlink" href="#apr24-1a" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q3, April 2024 · 1a · 0.25 p</p>
+<p>The manual of an ultrasound transducer states that the lifetime <span class="arithmatex">\(T\)</span> of the product, defined as the amount of time (in years) the product works properly until it breaks down, follows the following <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> distribution:</p>
+<div class="arithmatex">\[\Pr[T \geq t] = e^{-t/5},\]</div>
+<p>with <span class="arithmatex">\(t \leq 0\)</span> measured in years.</p>
+<p>Suppose that in an ultrasound lab, they have been using the transducer for two years without any problems. What is the <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> that it breaks down in the third year, given that it was still working after 2 years?</p>
+<p><strong>Hint:</strong> the third year is the year between the <span class="arithmatex">\(t = 2\)</span> and <span class="arithmatex">\(t = 3\)</span>.</p>
+<p>(a) 0.24  (b) 0.12  (c) 0.30  (d) 0.18</p>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> A <abbr title="P(A | B): the probability of A when B is already known to have happened.">conditional probability</abbr>: restrict to "still working at 2 years" and ask what fraction of those fail before year 3. ("<span class="arithmatex">\(t\le0\)</span>" is a typo for <span class="arithmatex">\(t\ge0\)</span>.)</p>
+<p><strong>Symbols in this question</strong></p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(T\)</span></td>
+<td>lifetime of the transducer in years</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\Pr[T\ge t]=e^{-t/5}\)</span></td>
+<td>the <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> it is still working at time <span class="arithmatex">\(t\)</span> ("survival")</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(A=\{2\lt T\le3\}\)</span></td>
+<td>breaks down in year 3</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(B=\{T&gt;2\}\)</span></td>
+<td>still working after 2 years</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 1 — <abbr title="P(A | B): the probability of A when B is already known to have happened.">conditional probability</abbr>.</strong> <span class="arithmatex">\(P(A\mid B)=\frac{P(A\cap B)}{P(B)}\)</span>. Since <span class="arithmatex">\(A\)</span> lies inside <span class="arithmatex">\(B\)</span>, <span class="arithmatex">\(A\cap B=A\)</span>, and <span class="arithmatex">\(P(A)=P(T&gt;2)-P(T&gt;3)\)</span> (survive to 2 but not to 3).</p>
+<p><strong>Step 2 — plug in:</strong></p>
+<div class="arithmatex">\[P(2\lt T\le3\mid T&gt;2)=\frac{e^{-2/5}-e^{-3/5}}{e^{-2/5}}=1-e^{-1/5}=1-0.8187=0.181.\]</div>
+<p>Notice the answer does not depend on the 2 years already survived: the exponential distribution is <strong><abbr title="an exponential lifetime has the same chance of failing in the next year however long it has already survived.">memoryless</abbr></strong>. <span class="arithmatex">\(1-e^{-1/5}\)</span> is just the <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> that a brand-new transducer breaks in its first year.</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(d) 0.18</strong></p>
+</div>
+</details>
+<h3 id="jan25-1a">January 2025 resit · 1a<a class="headerlink" href="#jan25-1a" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Resit January 2025 · 1a · 0.5 p (shown in the Part 1 review lecture)</p>
+<p>Two-hundred high school students were asked which university studies they would like to do. Their answers are shown in the table below. Please calculate the following probabilities:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Engineering</th>
+<th>Life Sciences</th>
+<th>Literature</th>
+<th>Psychology</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Male</td>
+<td>45</td>
+<td>27</td>
+<td>8</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Female</td>
+<td>22</td>
+<td>42</td>
+<td>20</td>
+<td>26</td>
+</tr>
+</tbody>
+</table>
+<p>Please only provide the final answer. The workout will not be checked.</p>
+<ol>
+<li>Given a student at random that chose psychology, the <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> that the students was a female.</li>
+<li>The <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> of choosing Engineering</li>
+</ol>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> With a table of counts, probabilities are just fractions of counts. (1) is conditional: restrict to the psychology column. (2) is a plain fraction of everybody.</p>
+<p><strong>Step 1 — (1).</strong> "Given psychology" → look only at the psychology column: <span class="arithmatex">\(10+26=36\)</span> students, of which 26 are female: <span class="arithmatex">\(P(F\mid P)=\frac{26}{36}=0.72\)</span>.</p>
+<p><strong>Step 2 — (2).</strong> Engineering column total: <span class="arithmatex">\(45+22=67\)</span> students out of 200: <span class="arithmatex">\(P(E)=\frac{67}{200}=0.335\)</span>. (This is <abbr title="P(B) = Σ P(B | Aᵢ)P(Aᵢ): the weighted average of per-group probabilities.">total probability</abbr>: male engineers plus female engineers.)</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<ol>
+<li><span class="arithmatex">\(0.72\)</span>  2. <span class="arithmatex">\(0.335\)</span></li>
+</ol>
+</div>
+</details>
+<h3 id="nov22-1a">November 2022 exam · 1a<a class="headerlink" href="#nov22-1a" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Final exam Q1, 7 November 2022 · 1a · 0.25 p</p>
+<p>About 65% of students who enroll for the exam of the course statistical signal processing have followed the course. Suppose we know that the <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> of passing the exam for students who have followed the course is 0.75, while it is 0.4 for students who have not followed it. What is the <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> of passing the exam?</p>
+<p>(a) 0.53  (b) 0.52  (c) 0.63  (d) 0.65</p>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> Total <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> of passing, over the two groups "followed" and "did not follow".</p>
+<p><strong>Step 1 — priors.</strong> Followed: <span class="arithmatex">\(0.65\)</span>. Did not follow: <span class="arithmatex">\(1-0.65=0.35\)</span>.</p>
+<p><strong>Step 2 — <abbr title="P(B) = Σ P(B | Aᵢ)P(Aᵢ): the weighted average of per-group probabilities.">total probability</abbr>:</strong></p>
+<div class="arithmatex">\[P(\text{pass})=0.75(0.65)+0.40(0.35)=0.4875+0.14=0.6275.\]</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(c) 0.63</strong></p>
+</div>
+</details>
+<h3 id="jan22-1a">January 2022 resit · 1a<a class="headerlink" href="#jan22-1a" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Resit, 24 January 2022 · 1a · 0.3 p</p>
+<p>A small manufacturing company has rated 75% of its employees as satisfactory (S) and 25% as unsatisfactory (<span class="arithmatex">\(S^c\)</span>). Personnel records show that 80% of the satisfactory workers had previous work experience (E) in the job they are now doing, while 15% of the unsatisfactory workers had no work experience (<span class="arithmatex">\(E^c\)</span>) in the job they are now doing. If a person who has had previous work experience is hired, what is the approximate empirical <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> that this person will be an unsatisfactory employee?</p>
+<p>a) 0.24  b) 0.25  c) 0.26  d) 0.28</p>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> <span class="arithmatex">\(P(S^c\mid E)\)</span>: among workers <strong>with</strong> experience, what fraction is unsatisfactory? (Bayes.)</p>
+<p><strong>Step 1 — read the rates carefully.</strong> <span class="arithmatex">\(P(S)=0.75\)</span>, <span class="arithmatex">\(P(S^c)=0.25\)</span>. <span class="arithmatex">\(P(E\mid S)=0.80\)</span>. The trap: "15 % of the unsatisfactory had <strong>no</strong> experience" → <span class="arithmatex">\(P(E\mid S^c)=1-0.15=0.85\)</span>.</p>
+<p><strong>Step 2 — Bayes:</strong></p>
+<div class="arithmatex">\[P(S^c\mid E)=\frac{0.85(0.25)}{0.80(0.75)+0.85(0.25)}=\frac{0.2125}{0.6+0.2125}=\frac{0.2125}{0.8125}=0.26.\]</div>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(c) 0.26</strong></p>
+</div>
+</details>
+<h3 id="pe21-1a">Practice exam 2021 · 1a<a class="headerlink" href="#pe21-1a" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Practice exam, 28 October 2021 · 1a · 0.5 p</p>
+<p>A virus has infected 1.8% of a population. A test detects this virus 95% of the time when it is actually present, but it returns a false positive 3% of the time when the virus is not present. If a person selected at random from this population tests positive for the virus, what is the <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> that this person is actually infected? Please round to the nearest percent.</p>
+<p>a) 26%  b) 37%  c) 95%  d) 92%</p>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> <span class="arithmatex">\(P(V\mid +)\)</span> with <span class="arithmatex">\(V\)</span> = infected. Prior <span class="arithmatex">\(P(V)=0.018\)</span>; <span class="arithmatex">\(P(+\mid V)=0.95\)</span>; <span class="arithmatex">\(P(+\mid\text{not }V)=0.03\)</span> (the false-positive rate); <span class="arithmatex">\(P(\text{not }V)=0.982\)</span>.</p>
+<p><strong>Step 1 — Bayes with the evidence expanded over the two groups:</strong></p>
+<div class="arithmatex">\[P(V\mid +)=\frac{0.95(0.018)}{0.95(0.018)+0.03(0.982)}=\frac{0.0171}{0.0171+0.02946}=\frac{0.0171}{0.04656}=0.367.\]</div>
+<p>Rounded: 37 %. (Again the base-rate effect: the test is "95 % accurate" yet most positives are false.)</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(b) 37 %</strong></p>
+</div>
+</details>
+<h3 id="jan20-2">January 2020 retake · Exercise 2<a class="headerlink" href="#jan20-2" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Retake exam, 20 January 2020 · Exercise 2 · 2 × 1 p</p>
+<p>A car production company has three machines <span class="arithmatex">\(M_1\)</span>, <span class="arithmatex">\(M_2\)</span>, and <span class="arithmatex">\(M_3\)</span> for painting cars. It has been observed that 85% of the cars painted by <span class="arithmatex">\(M_1\)</span> pass the quality test, while for machines <span class="arithmatex">\(M_2\)</span> and <span class="arithmatex">\(M_3\)</span> the percentages of a car passing the quality test are 92% and 60%, respectively. Each day, machine <span class="arithmatex">\(M_1\)</span> paints 30 cars, <span class="arithmatex">\(M_2\)</span> paints 45 cars, and <span class="arithmatex">\(M_3\)</span> paints 25 cars. All the cars are mixed at random before quality control.</p>
+<ul>
+<li>(a) What is the <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> that a car will pass the quality test? [1 pt]</li>
+<li>(b) What is the <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> that a car that has passed the test was painted by machine <span class="arithmatex">\(M_3\)</span>? [1 pt]</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> (a) <abbr title="P(B) = Σ P(B | Aᵢ)P(Aᵢ): the weighted average of per-group probabilities.">total probability</abbr> of passing; (b) Bayes for the group <span class="arithmatex">\(M_3\)</span>, given <em>pass</em> (the good outcome this time).</p>
+<p><strong>Step 1 — priors from counts.</strong> <span class="arithmatex">\(30+45+25=100\)</span> cars a day, so <span class="arithmatex">\(P(M_1)=0.30\)</span>, <span class="arithmatex">\(P(M_2)=0.45\)</span>, <span class="arithmatex">\(P(M_3)=0.25\)</span>. Likelihoods of passing: <span class="arithmatex">\(0.85,\ 0.92,\ 0.60\)</span>.</p>
+<p><strong>Step 2 — (a):</strong></p>
+<div class="arithmatex">\[P(A)=0.85(0.30)+0.92(0.45)+0.60(0.25)=0.255+0.414+0.15=0.819.\]</div>
+<p><strong>Step 3 — (b):</strong> <span class="arithmatex">\(P(M_3\mid A)=\dfrac{0.60(0.25)}{0.819}=\dfrac{0.15}{0.819}=0.183.\)</span></p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p>(a) <span class="arithmatex">\(0.819\)</span>  (b) <span class="arithmatex">\(0.18\)</span></p>
+</div>
+</details>
+<h3 id="jun26-1a">June 2026 resit · 1a<a class="headerlink" href="#jun26-1a" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Resit Q4, June 2026 · 1a · 0.2 p</p>
+<p>Which of the following statements about two events <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> (assuming both have non-zero probabilities) is ALWAYS TRUE if they are statistically <abbr title="knowing one event tells nothing about the other: P(A | B) = P(A).">independent</abbr>?</p>
+<ul>
+<li>(a) <span class="arithmatex">\(P(A \cup B) = P(A) + P(B)\)</span></li>
+<li>(b) <span class="arithmatex">\(P(A | B) = P(B)\)</span></li>
+<li>(c) <span class="arithmatex">\(P(A \cap B) = 0\)</span></li>
+<li>(d) <span class="arithmatex">\(P(A | B) = P(A)\)</span></li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> The definition of independence (<a href="#14-independent-events">1.4</a>).</p>
+<p><strong>Step 1.</strong> Independent means knowing <span class="arithmatex">\(B\)</span> tells you nothing about <span class="arithmatex">\(A\)</span>: <span class="arithmatex">\(P(A\mid B)=P(A)\)</span>, equivalently <span class="arithmatex">\(P(A\cap B)=P(A)P(B)\)</span>. That is (d).</p>
+<p><strong>Step 2 — the others.</strong> (a) is the rule for <strong>mutually exclusive</strong> (<abbr title="events that cannot happen together: P(A ∩ B) = 0.">disjoint</abbr>) events; in general <span class="arithmatex">\(P(A\cup B)=P(A)+P(B)-P(A\cap B)\)</span>. (b) mixes up the letters. (c) is again "<abbr title="events that cannot happen together: P(A ∩ B) = 0.">disjoint</abbr>": <abbr title="knowing one event tells nothing about the other: P(A | B) = P(A).">independent</abbr> events with non-zero <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> can never be <abbr title="events that cannot happen together: P(A ∩ B) = 0.">disjoint</abbr>, since <span class="arithmatex">\(P(A)P(B)&gt;0\)</span>.</p>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p><strong>(d)</strong> <span class="arithmatex">\(P(A\mid B)=P(A)\)</span></p>
+</div>
+</details>
+<h3 id="nov19-1b">November 2019 exam · 1b<a class="headerlink" href="#nov19-1b" title="Permanent link">#</a></h3>
+<div class="admonition exam">
+<p class="admonition-title">Written exam, 4 November 2019 · 1b · 0.5 p</p>
+<p>Please indicate if the following statements are true or false.</p>
+<ul>
+<li>A. Bayes theorem is obtained from the total law of <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> and the <abbr title="P(A | B): the probability of A when B is already known to have happened.">conditional probability</abbr> (T/F)</li>
+<li>B. There is a 50% chance of rain here and a 25% chance of rain on Mars. Therefore, there is a 75% chance that it will rain here or on Mars. (T/F)</li>
+<li>C. For discrete random variables, the relative frequency tends to the <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> mass function as the number of trials tends to infinity (T/F)</li>
+<li>D. For any random variable, the cumulative distribution function in <span class="arithmatex">\(-\infty\)</span> and <span class="arithmatex">\(\infty\)</span> are 0 and 1, respectively. (T/F)</li>
+<li>E. The Wiener FIR filter for 1-step linear prediction can be used for moving-average parametric spectral estimation (T/F).</li>
+</ul>
+</div>
+<details class="solution" open="open">
+<summary>Solution</summary>
+<p><strong>What is being asked?</strong> Five <abbr title="knowing one event tells nothing about the other: P(A | B) = P(A).">independent</abbr> true/false statements.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Verdict</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td><strong>F</strong></td>
+<td>official key: F (and the item was removed from grading as ambiguous). Bayes follows from the definition of <abbr title="P(A | B): the probability of A when B is already known to have happened.">conditional probability</abbr> (<a href="#13-the-three-formulas">1.3</a>); <abbr title="P(B) = Σ P(B | Aᵢ)P(Aᵢ): the weighted average of per-group probabilities.">total probability</abbr> only expands the denominator</td>
+</tr>
+<tr>
+<td>B</td>
+<td><strong>F</strong></td>
+<td>adding is only allowed for <abbr title="events that cannot happen together: P(A ∩ B) = 0.">disjoint</abbr> events. For <abbr title="knowing one event tells nothing about the other: P(A | B) = P(A).">independent</abbr> events: <span class="arithmatex">\(0.5+0.25-0.5(0.25)=0.625\)</span> (<a href="#14-independent-events">1.4</a>)</td>
+</tr>
+<tr>
+<td>C</td>
+<td><strong>T</strong></td>
+<td>that is the frequentist definition of <abbr title="the fraction of the time an event happens when the experiment is repeated many times; a number between 0 and 1.">probability</abbr> (law of large numbers)</td>
+</tr>
+<tr>
+<td>D</td>
+<td><strong>T</strong></td>
+<td>a CDF (<span class="arithmatex">\(P(X\le x)\)</span>) always goes from 0 to 1</td>
+</tr>
+<tr>
+<td>E</td>
+<td><strong>F</strong></td>
+<td>the 1-step linear predictor (Wiener filter) gives the <strong>AR</strong> parameters (<a href="p3-chain.html#12-arp-by-yulewalker-pretend-the-signal-is-ar-and-fit-it">3.4</a>); MA parameters need non-linear equations</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition answer">
+<p class="admonition-title">Answer</p>
+<p>F F T T F</p>
+</div>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="toolbox.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Toolbox">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Toolbox
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="p1-rv.html" class="md-footer__link md-footer__link--next" aria-label="Next: 1.2 Random variables &amp; joint PDFs">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                1.2 Random variables & joint PDFs
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.footer", "navigation.tracking", "navigation.instant", "navigation.instant.progress", "toc.follow", "content.tooltips"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js?v=1793008663"></script>
+      
+        <script src="javascripts/katex.js?v=1793008663"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="javascripts/quiz.js?v=1793008663"></script>
+      
+        <script src="javascripts/ask.js?v=1793008663"></script>
+      
+        <script src="javascripts/video.js?v=1793008663"></script>
+      
+        <script src="javascripts/layout.js?v=1793008663"></script>
+      
+        <script src="javascripts/keypoints.js?v=1793008663"></script>
+      
+        <script src="javascripts/progress.js?v=1793008663"></script>
+      
+        <script src="javascripts/widgets.js?v=1793008663"></script>
+      
+        <script src="javascripts/navsections.js?v=1793008663"></script>
+      
+    
+  </body>
+</html>
