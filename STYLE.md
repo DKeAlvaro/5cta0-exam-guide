@@ -116,7 +116,8 @@ sheet** (one line of exam trigger words → box, then `!!! sheet "Box XN, exactl
 sheet"` with the box quoted **verbatim** from `cheatsheet.md`) → one `## N · Exam · Q — short title` per
 exercise: `!!! exam` (question text verbatim) + `!!! sheet "In the cheat sheet: …"` wrapping `<div class="stepper" markdown>`
 with `**Sheet step k · …**` blocks (each one quotes a sheet line in *italics*) separated by `***`, ending
-with `**Sheet check · the example line**` (what the sheet's own worked example prints) + `!!! answer "Answer"` →
+with `**Sheet check · the box's own check**` (run the box's checks/steps on the result — never "the sheet
+prints the same answer") + `!!! answer "Answer"` →
 **Traps** (`!!! trap key "Where points are lost (each one is a line of the sheet you skipped)"`).
 Theory MC: same treatment — the T/F boxes (2D, 4C) are **fact | lie** tables plus the "swap test"
 (a FALSE option is a TRUE sentence with ONE word swapped: hunt *always · regardless · strictly ·
@@ -127,7 +128,9 @@ printed in any exam. The sheet quote must stay in sync with `docs/cheatsheet.md`
 changes, grep the lessons for the old quote. **No box may be an answer key.** A box must give the
 procedure (tests, steps, swap test) that solves any question of its type; worked examples are fine but
 must show the steps. A row whose whole content is one exam's solution (e.g. old box 1B "→ (d)") is
-banned — a paraphrased question leaves the reader with nothing to look up.
+banned — a paraphrased question leaves the reader with nothing to look up. Same rule for lesson pointers:
+`!!! sheet "In the cheat sheet: …"` must name **what to run** ("box 1C, the four steps (the *Apr25* line runs
+them on these numbers)"), never "this exam is printed here" — the sheet solves the type, the lesson runs it.
 
 Widgets (`docs/javascripts/widgets.js` + `stylesheets/widgets.css`), markup `<div class="widget" data-w="..."
 data-preset="...">`: `bayes`, `region` (tabs 0–2), `ensemble`, `pole` (`data-preset="factor"`, `data-a`),

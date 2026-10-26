@@ -16,7 +16,7 @@ The top of the bottom curve is where its slope is zero. That is the whole method
 
 ## How to fight this section with the sheet
 
-The exam says **"derive the MLE"** → you open **box 2A** on your A4 sheet and do its 3 steps with the pdf they gave you. That is the whole method. Every question below is the same box with a different pdf, so read one solution with the sheet in your hand and the rest are copies.
+The exam says **"derive the MLE"** → you open **box 2A** on your A4 sheet and do its 3 steps with the pdf they gave you. That is the whole method. Every question below is the same 3 steps on a different pdf — the steps never change, only the pdf does.
 
 Each step below names **the sheet's term it uses**, term by term: which pieces sit above the line, which below, which rule turns each one into the next line. Press **Next step** to go one at a time — cover the step, do it yourself, then reveal it.
 
@@ -29,18 +29,21 @@ Each step below names **the sheet's term it uses**, term by term: which pieces s
 
     **How to take $\ln$ of a pdf:** write the pdf as $\frac{\text{above}}{\text{below}}\cdot e^{u}$ (it is pieces multiplied, some in a fraction). Then each piece becomes one term: a piece $a$ **above the line** → $+\ln a$ · a piece $b$ **below the line** → $-\ln b$ · $e^{u}$ → just $u$ (the $e$ disappears). Two pieces below the line split: $-\ln(2\theta)=-\ln 2-\ln\theta$. A power $\theta^k$ below the line → $-k\ln\theta$.
 
-    **Derivatives** — each row: the thing you have → its derivative. Read them one row at a time (it is **not** $\ln\theta\to\frac1{\theta^2}$ — that is the second row!):
+    Derivatives: $\ln\theta\to\frac1\theta$ · $\theta^k\to k\theta^{k-1}$ · $\frac1\theta\to-\frac1{\theta^2}$ · $e^{c\theta}\to ce^{c\theta}$ · $\cos\theta\to-\sin\theta$ · $\sin\theta\to\cos\theta$.
+    Solving $=0$: multiply the equation by the denominators ($\theta^2$, $\theta$, …) first — that does not change the root.
+    **Trap:** if the pdf only exists for $x$ up to something containing $\theta$ (uniform on $[0,\theta]$), these 3 steps are useless — $\hat\theta=\max_n x_n$, and **the CRLB does not exist**.
+    **Fisher info / CRLB** from that same derivative: $i(\theta)=-\mathrm E\big[\frac{\partial^2\ln p}{\partial\theta^2}\big]$ for one sample; $N$ samples → $\mathcal I=N i(\theta)$; **CRLB** $=\frac{1}{N i(\theta)}$.
+    **Known $i(\theta)$** — skip the derivation: Gaussian mean with variance $\sigma^2$: $\frac1{\sigma^2}$ · exponential rate $\lambda$: $\frac1{\lambda^2}$ · Bernoulli: $\frac1{\theta(1-\theta)}$ · Rayleigh $\frac{x}{\theta^2}e^{-x^2/2\theta^2}$: $\frac4{\theta^2}$ (so CRLB $=\frac{\theta^2}{4N}$).
 
-    | the thing | its derivative |
-    |---|---|
-    | $\ln\theta$ | $\frac1\theta$ |
-    | $\frac1\theta$ | $-\frac1{\theta^2}$ |
-    | $\theta^k$ | $k\theta^{k-1}$ |
-    | $e^{c\theta}$ | $ce^{c\theta}$ |
+    *Apr24* $\frac{x}{2\theta}e^{-x^2/2\theta}$: one sample gives $\ln x-\ln2-\ln\theta-\frac{x^2}{2\theta}$, so $\ln L=\sum\ln x_n-N\ln2-N\ln\theta-\frac{\sum x_n^2}{2\theta}$ → $-\frac N\theta+\frac{\sum x_n^2}{2\theta^2}=0$ → $\hat\theta=\frac1{2N}\sum x_n^2$.
 
-    **Solving $=0$:** multiply the equation by the denominators ($\theta^2$, $\theta$, …) first — that does not change the root.
+    *Jun26* Gamma $\frac{x^{k-1}e^{-x/\theta}}{\Gamma(k)\theta^k}$, $n$ patients: $-\frac{nk}\theta+\frac{\sum x_i}{\theta^2}=0$ → $\hat\theta=\frac{\sum x_i}{nk}=\frac{\bar x}k$. Meaning: average time per stage, so $k\hat\theta$ = the observed mean time.
 
-    **Sigmoid trick** (bottom of box 2A): IF YOU SEE $\lambda=\frac1{1+e^{-\theta}}$: treat $\lambda$ as the unknown, find $\hat\lambda$, then $\hat\theta=-\ln\!\big(\frac1{\hat\lambda}-1\big)$.
+    **Sigmoid trick.** IF YOU SEE $\lambda=\frac1{1+e^{-\theta}}$: treat $\lambda$ as the unknown, find $\hat\lambda$, then convert with $\hat\theta=-\ln\!\big(\frac1{\hat\lambda}-1\big)$.
+
+    *Apr25* $3\lambda e^{-4\lambda x/7}$: $\frac1\lambda-\frac{4x}7=0$ → $\hat\lambda=\frac7{4x}$ → $\hat\theta=-\ln\!\big(\frac{4x}7-1\big)$, valid for $x\gt\frac74$.
+
+One caution on the sheet's *Derivatives* line: read it item by item — it is **not** $\ln\theta\to\frac1{\theta^2}$, that is the *next* item ($\frac1\theta\to-\frac1{\theta^2}$).
 
 What "above the line / below the line" means, on the pdf of exercise 1:
 
@@ -101,8 +104,8 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
 
     ***
 
-    **Sheet check · the example line.**
-    The line at the bottom of box 2A (*Apr24* … $\hat\theta=\frac1{2N}\sum x_n^2$) is this exact question, and it gives the same. If your line looks like the sheet's line, you have the points.
+    **Sheet check · the box's steps.**
+    You ended where step 3 says: the derivative $=0$, solved for $\theta$. The sheet's *Apr24* line runs the same three steps on this pdf and lands on the same $\hat\theta=\frac1{2N}\sum x_n^2$ — the steps are what you copy, not the line.
 
     </div>
 
@@ -459,7 +462,7 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
 !!! answer "Answer"
     $\displaystyle\hat\rho_{ML}=\frac{\mu\sigma\theta}{\mu^2+\sigma^2}$
 
-## 9 · November 2022 · 2d — the sheet gives you the answer outright
+## 9 · November 2022 · 2d — the model is the sheet's phase family, and the steps prove it
 
 !!! exam "Final exam, November 2022 · 2d · 1 p"
     Consider the observation
@@ -476,7 +479,7 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
     <div class="stepper" markdown>
 
     **Sheet step 0 · look at box 2D first.**
-    The sheet prints this exact model: *"Fisher info for $x$ = signal($\theta$) + Gaussian noise: … Nov22 $A[\cos\theta,\sin\theta]$ → $\mathcal I=\frac{A^2}{\sigma^2}$, and MLE $\hat\theta=\arctan\frac{x_2}{x_1}$."* The answer is already on your sheet.
+    Box 2D has the rule for this whole family: *"Fisher info for $x$ = signal($\theta$) + Gaussian noise $\sigma^2$"* plus the phase case *"$A[\cos\theta,\sin\theta]$: **phase MLE** $=\arctan\frac{x_2}{x_1}$ (point the model vector at the data)"*. Your model *is* that family, so the rule gives $\hat\theta=\arctan\frac{x_2}{x_1}$ — and steps 1–3 below derive it, in case the exam changes the model.
 
     ***
 
@@ -495,12 +498,12 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
     ***
 
     **Sheet step 3 · maximise $x_1\cos\theta+x_2\sin\theta$.**
-    It is biggest when the direction $[\cos\theta,\sin\theta]$ points the same way as the data $(x_1,x_2)$: $\cos\theta=\frac{x_1}{\sqrt{x_1^2+x_2^2}}$, $\sin\theta=\frac{x_2}{\sqrt{x_1^2+x_2^2}}$ → $\tan\theta=\frac{x_2}{x_1}$ → the sheet's answer.
+    It is biggest when the direction $[\cos\theta,\sin\theta]$ points the same way as the data $(x_1,x_2)$: $\cos\theta=\frac{x_1}{\sqrt{x_1^2+x_2^2}}$, $\sin\theta=\frac{x_2}{\sqrt{x_1^2+x_2^2}}$ → $\tan\theta=\frac{x_2}{x_1}$ → $\hat\theta=\arctan\frac{x_2}{x_1}$, exactly what box 2D's phase rule said.
 
     </div>
 
 !!! answer "Answer"
-    $\displaystyle\hat\theta_{ML}=\arctan\frac{x_2}{x_1}$ (the sheet's line, verbatim)
+    $\displaystyle\hat\theta_{ML}=\arctan\frac{x_2}{x_1}$ (box 2D's phase rule; steps 1–3 derive it)
 
 ## 10 · November 2022 · 2b — true/false, read the row
 
@@ -520,7 +523,7 @@ Two more sheet places you will need: the **Calculations** strip (bottom of the s
     ***
 
     **Sheet step 2 · the row "MLE is asymptotically unbiased" → T (Nov22 c).**
-    The sheet even tags the row with this exam.
+    The sheet's row is the fact itself; the exam only rewords it.
 
     </div>
 

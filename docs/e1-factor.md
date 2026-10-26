@@ -26,7 +26,7 @@ Two values of $a$ always give the same spectrum: $a$ and $1/a$. Keep the one **i
 
 ## How to fight this section with the sheet
 
-The exam prints $P(\theta)=\dfrac{\text{number}}{A+B\cos\theta}$ and says **"spectral factorisation"**, **"innovation filter $L(z)$"**, **"$\sigma_i^2$"** → you open **box 1C** on your A4 sheet. Four numbered steps, and two of the exams below are already worked out underneath them. You never need the identity above — just read $A$ and $B$ off the denominator.
+The exam prints $P(\theta)=\dfrac{\text{number}}{A+B\cos\theta}$ and says **"spectral factorisation"**, **"innovation filter $L(z)$"**, **"$\sigma_i^2$"** → you open **box 1C** on your A4 sheet. Four numbered steps, and two worked lines underneath show those steps on past numbers. You never need the identity above — just read $A$ and $B$ off the denominator and run the four steps.
 
 !!! sheet "Box 1C, exactly as it is printed on the sheet"
     IF YOU SEE $P(\theta)=\dfrac{\text{number}}{A+B\cos\theta}$ + "spectral factorisation"/"factorization", "innovation filter $L(z)$", "$\sigma_i^2$"
@@ -51,7 +51,7 @@ The exam prints $P(\theta)=\dfrac{\text{number}}{A+B\cos\theta}$ and says **"spe
 
     Find the spectral factorization of $x[n]$, that is, the innovation filter $L(z)$ and the variance of the input noise $\sigma_i^2$.
 
-!!! sheet "In the cheat sheet: box 1C — the *Apr25* line under the steps is this exam"
+!!! sheet "In the cheat sheet: box 1C, the four steps (the *Apr25* line runs them on these numbers)"
     <div class="stepper" markdown>
 
     **Sheet step 1 · read $A$ and $B$ with their signs.**
@@ -70,12 +70,12 @@ The exam prints $P(\theta)=\dfrac{\text{number}}{A+B\cos\theta}$ and says **"spe
     ***
 
     **Sheet step 4 · $\sigma_i^2$ and $L(z)$.**
-    $\sigma_i^2=\frac{\text{number on top}}{C}=\frac1{36}$, $L(z)=\frac{1}{1+\frac56z^{-1}}$ — the sheet prints both.
+    Step 3, one line each: $\sigma_i^2=\frac{\text{number on top}}{C}=\frac1{36}$, and $L(z)=\frac{1}{1+a\,z^{-1}}=\frac{1}{1+\frac56z^{-1}}$.
 
     ***
 
-    **Sheet check · the example line.**
-    Last two tokens of the *Apr25* line: *"$\sigma_i^2=\frac1{36}$, $L=\frac1{1+\frac56z^{-1}}$."* Same answer → 0.4 p.
+    **Sheet check · the box's step 4.**
+    *"Check $|a|\lt1$ and $\sigma_i^2\gt0$ — a negative $\sigma_i^2$ means you kept the wrong root."* $|a|=\frac56<1$ ✓, $\frac1{36}>0$ ✓ → the root you kept is the right one, whatever the numbers.
 
     </div>
 
@@ -91,7 +91,7 @@ The exam prints $P(\theta)=\dfrac{\text{number}}{A+B\cos\theta}$ and says **"spe
 
     Find the spectral factorization of $x[n]$. In other words, find the coefficients of the innovation filter $L(z)$ and the variance of the input noise $\sigma_i^2$, so that $x[n]$ can be expressed as the output of the innovation filter when white noise with variance $\sigma_i^2$ is given as input.
 
-!!! sheet "In the cheat sheet: box 1C — the *Apr24* line is this exam, printed as the sign example"
+!!! sheet "In the cheat sheet: box 1C, steps 1–4 with a minus sign in $B$"
     <div class="stepper" markdown>
 
     **Sheet step 1 · signs first.**
@@ -100,21 +100,21 @@ The exam prints $P(\theta)=\dfrac{\text{number}}{A+B\cos\theta}$ and says **"spe
     ***
 
     **Sheet step 2 · roots.**
-    $\sqrt{A^2-B^2}=\sqrt{625-576}=7$, so $r=\frac{25\pm7}{-24}=\frac{32}{-24}=-\frac43$ or $\frac{18}{-24}=-\frac34$. Sheet: *"keep the one between $-1$ and $1$"* → $a=-\frac34$ (the sheet prints the same two numbers).
+    $\sqrt{A^2-B^2}=\sqrt{625-576}=7$, so $r=\frac{25\pm7}{-24}=\frac{32}{-24}=-\frac43$ or $\frac{18}{-24}=-\frac34$. Sheet: *"keep the one between $-1$ and $1$"* → $a=-\frac34$.
 
     ***
 
-    **Sheet step 3 · $C=\frac{B}{2a}=\frac{-24}{-3/2}=16$.** The sheet prints $C=16$.
+    **Sheet step 3 · $C=\frac{B}{2a}=\frac{-24}{-3/2}=16$.**
 
     ***
 
     **Sheet step 4 · finish.**
-    $\sigma_i^2=\frac{7}{16}$ (number on top is **7**, not 1), $L(z)=\frac{1}{1+a z^{-1}}=\frac{1}{1-\frac34z^{-1}}$ — the sheet's exact $L$. Check: $|a|=\frac34<1$ ✓, $\sigma_i^2>0$ ✓.
+    $\sigma_i^2=\frac{7}{16}$ (number on top is **7**, not 1), $L(z)=\frac{1}{1+a z^{-1}}=\frac{1}{1-\frac34z^{-1}}$. Check: $|a|=\frac34<1$ ✓, $\sigma_i^2>0$ ✓.
 
     ***
 
-    **Sheet check · the example line.**
-    *"$\sigma_i^2=\frac7{16}$, $L=\frac1{1-\frac34z^{-1}}$."* If your $L$ has a plus sign you lost the minus of $B$.
+    **Sheet check · the sign trap.**
+    $B$ carries the sign: a minus in the denominator stays in $B$ and comes out as $a=-\frac34$ and $L=\frac1{1-\frac34z^{-1}}$. If your $L$ has a plus sign, you dropped the sign on the way.
 
     </div>
 
@@ -187,8 +187,8 @@ The exam prints $P(\theta)=\dfrac{\text{number}}{A+B\cos\theta}$ and says **"spe
 
     ***
 
-    **Sheet check · the example line.**
-    The MC line's answer tag is "(Jun26 a)" = "minimum phase"; this question asks the same property one level deeper — same line of the sheet, applied to a given factorisation.
+    **Sheet check · the same rule, one level deeper.**
+    The MC line gives the property — *"minimum phase: all poles and zeros inside the unit circle"* — and this question hands you a factorisation and asks you to **check** it against that rule. Poles of $L$ at $-\frac34$, zero at $\frac14$: both inside ✓.
 
     </div>
 
@@ -205,11 +205,11 @@ The exam prints $P(\theta)=\dfrac{\text{number}}{A+B\cos\theta}$ and says **"spe
     - (c) $H(z)$ must have a purely real-valued impulse response with strict linear phase to avoid phase distortion.
     - (d) $H(z)$ must be an all-pass system to ensure that the power of the driving noise is perfectly preserved.
 
-!!! sheet "In the cheat sheet: box 1C, the last line — and it names this exam"
+!!! sheet "In the cheat sheet: box 1C, the last line — the minimum-phase rule"
     <div class="stepper" markdown>
 
-    **Sheet step 1 · read the printed line.**
-    *"Multiple choice "what must the innovation filter be?" → **minimum phase**: all poles and zeros inside the unit circle (Jun26 a)."* The sheet tags this exact question with its answer: **(a)**.
+    **Sheet step 1 · read the rule.**
+    *"Multiple choice "what must the innovation filter be?" → **minimum phase**: all poles and zeros inside the unit circle."* The exam is asking for that property with fancier words — match the property, not the words.
 
     ***
 

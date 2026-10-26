@@ -48,7 +48,7 @@ The exam says **"which of the following statements"** in Part 2, about MLE / MAP
 
     Fisher info for "$x$ = signal($\theta$) + Gaussian noise $\sigma^2$": $\mathcal I=\frac1{\sigma^2}\sum\big(\frac{d\,\text{signal}}{d\theta}\big)^2$.
 
-    *Nov22* $A[\cos\theta,\sin\theta]$ → $\mathcal I=\frac{A^2}{\sigma^2}$, and MLE $\hat\theta=\arctan\frac{x_2}{x_1}$.
+    *Nov22* $A[\cos\theta,\sin\theta]$: **phase MLE** $=\arctan\frac{x_2}{x_1}$ (point the model vector at the data), $\mathcal I=\frac{A^2}{\sigma^2}$.
 
 ## 1 · June 2026 · 2a — the MAP family
 
@@ -271,7 +271,7 @@ Rare, but the sheet has the formula under the table: for $x$ = signal$(\theta)$ 
 
 $$\mathcal I=\frac1{\sigma^2}\sum\left(\frac{d\,\text{signal}}{d\theta}\right)^2$$
 
-*Nov22* exam 2e gives $x=A[\cos\theta,\sin\theta]+w$: the sheet's example line answers it — $\mathcal I=\frac{A^2}{\sigma^2}$, and the MLE is $\hat\theta=\arctan\frac{x_2}{x_1}$.
+*Nov22* exam 2e gives $x=A[\cos\theta,\sin\theta]+w$: run the formula on it — the derivative sum gives $\mathcal I=\frac{A^2}{\sigma^2}$, and the phase MLE is $\hat\theta=\arctan\frac{x_2}{x_1}$ (point the model vector at the data).
 
 To compute the CRLB itself (also rare since 2022):
 

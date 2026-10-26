@@ -18,9 +18,11 @@ Move the slice and watch the marginal being traced:
 
 ## How to fight this section with the sheet
 
-The exam gives a $p(x,y)$ on a region and says **"find $c$"**, **"marginal"**, **"conditional"**, **"independent"**, **"domain"** → you open **box 1A** on your A4 sheet. Four bullets = the four questions, and each bullet ends with an example that is one of the exams below, **already worked out on the sheet**. There is also a "Doing the double integral" strip: the exact calculation for the $c$ question.
+The exam gives a $p(x,y)$ on a region and says **"find $c$"**, **"marginal"**, **"conditional"**, **"independent"**, **"domain"** → you open **box 1A** on your A4 sheet. Four bullets = the four questions, and each bullet ends with a worked line showing the moves on past numbers. There is also a "Doing the double integral" strip: the general calculation for the $c$ question.
 
 !!! sheet "Box 1A, exactly as it is printed on the sheet"
+    **IF YOU SEE** a joint PDF/PMF $p(x,y)$ on a region + "find $c$" / "marginal" / "conditional" / "independent" / "domain"
+
     First draw the region on $x$–$y$ axes: **every integral below takes its limits from that picture**, never from the formula.
 
     - **"Find $c$"** → integrate $p$ over the whole region, set the result $=1$, solve for $c$.<br>
@@ -53,7 +55,7 @@ One more sheet place: **box 1E** ("$E[x]$ = the weighted average of the outcomes
 
     Find the constant $c$.
 
-!!! sheet "In the cheat sheet: box 1A, bullet 1 + the 'Doing the double integral' strip — this exam IS the strip"
+!!! sheet "In the cheat sheet: box 1A, bullet 1 + the 'Doing the double integral' strip"
     <div class="stepper" markdown>
 
     **Sheet step 1 · draw, then read the limits off the picture.**
@@ -76,8 +78,8 @@ One more sheet place: **box 1E** ("$E[x]$ = the weighted average of the outcomes
 
     ***
 
-    **Sheet check · the example line.**
-    The strip's last two words are literally *"$c=3$"*. If your number is not 3, you stopped mid-strip.
+    **Sheet check · the box's own check.**
+    The strip's rule is that the whole integral has to come out $=1$ — that equation is what gives $c$. If you cannot write "$\frac c6+\frac12=1$", you stopped mid-strip.
 
     </div>
 
@@ -95,7 +97,7 @@ One more sheet place: **box 1E** ("$E[x]$ = the weighted average of the outcomes
 
     **Note: provide only the final answer. No passages will be checked.**
 
-!!! sheet "In the cheat sheet: box 1A, bullets 3 and 4 — the *Apr24* example lines are this exam"
+!!! sheet "In the cheat sheet: box 1A, bullets 3 and 4 (the *Apr24* lines run the same bullets on other numbers)"
     <div class="stepper" markdown>
 
     **Sheet step 1 · draw.**
@@ -113,8 +115,8 @@ One more sheet place: **box 1E** ("$E[x]$ = the weighted average of the outcomes
 
     ***
 
-    **Sheet check · the example line.**
-    The sheet prints "$p(x\mid y)=\frac1{1-y}$ for $y\le x\le1$". Copy that pair — including both ranges — and the 0.3 p are yours.
+    **Sheet check · the shape of the answer.**
+    Bullet 3 says *"state the ranges ($y$ over its shadow, $x$ over the slice at that $y$)"* — your pair must carry **both** ranges whatever the numbers are, and that is where points get lost.
 
     </div>
 
@@ -133,7 +135,7 @@ One more sheet place: **box 1E** ("$E[x]$ = the weighted average of the outcomes
     1. Find the marginal PDF $p_X(x)$ and indicate its domain. [0.25]
     2. Determine whether $X$ and $Y$ are independent, and briefly justify why. [0.25]
 
-!!! sheet "In the cheat sheet: box 1A, bullets 3 and 5 — the *Jun26* example lines are this exam"
+!!! sheet "In the cheat sheet: box 1A, bullets 3 and 5 (the *Jun26* lines run the same bullets)"
     <div class="stepper" markdown>
 
     **Sheet step 1 · the region.**
@@ -151,8 +153,8 @@ One more sheet place: **box 1E** ("$E[x]$ = the weighted average of the outcomes
 
     ***
 
-    **Sheet check · the example line.**
-    Both answers of this exam appear verbatim in the sheet ("$3x^2$", "→ independent"). If your sheet is the one in your hands, you cannot miss 0.5 p here.
+    **Sheet check · the box's two conditions.**
+    Bullet 5: *"YES only if the region is a rectangle AND $p(x,y)=p_X(x)\cdot p_Y(y)$"* — test both, in that order. The rectangle test alone already kills every triangle region.
 
     </div>
 

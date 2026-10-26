@@ -92,7 +92,8 @@ IF YOU SEE "expected value", "discrete or continuous", "exactly $k$ of $n$", "co
 - **Rules:** $E[c\cdot z]=c\,E[z]$ · $E[c]=c$ · $E[z_1+z_2]=E[z_1]+E[z_2]$ — a constant factor comes out. Uniform $[a,b]$ → mean $\frac{a+b}2$ ($[-A,A]$ → 0).
 - **"Exactly $k$ of $n$ tries"** (binomial): $C(n,k)\,p^k(1-p)^{n-k}$, $p$ = chance of one try, $C(n,k)=\frac{n(n-1)\cdots(n-k+1)}{k!}$.
 - **Covariance:** sign = direction, size grows with the units ($\pm1$-bounded version = correlation coefficient).
-- **Contour plot, bi-variate Gaussian:** off-diagonal of the **covariance matrix** = covariance. $0$ → ellipses straight on the axes (circle if the variances are equal) · **tilted** ellipse → covariance $\ne0$.
+- **Contour plot, bi-variate Gaussian:** covariance = off-diagonal of the **covariance matrix**: $0$ → ellipses on the axes · **tilted** → covariance $\ne0$.
+- **Definition MC / T/F:** independent $=P(A\mid B)=P(A)$, the same as $P(A\cap B)=P(A)P(B)$ · **disjoint** $=P(A\cap B)=0$ (the opposite!) · $F(-\infty)=0$, $F(\infty)=1$ · Bayes $=$ conditional probability rearranged. A T/F list → the swap test of box 2D, any topic.
 
 ## PART 2 · Estimation (3–3.5 p)
 
@@ -189,7 +190,7 @@ IF YOU SEE "which of the following statements" (in Part 2) about MLE, MAP, MMSE,
 
 Fisher info for "$x$ = signal($\theta$) + Gaussian noise $\sigma^2$": $\mathcal I=\frac1{\sigma^2}\sum\big(\frac{d\,\text{signal}}{d\theta}\big)^2$.
 
-*Nov22* $A[\cos\theta,\sin\theta]$ → $\mathcal I=\frac{A^2}{\sigma^2}$, and MLE $\hat\theta=\arctan\frac{x_2}{x_1}$.
+*Nov22* $A[\cos\theta,\sin\theta]$: **phase MLE** $=\arctan\frac{x_2}{x_1}$ (point the model vector at the data), $\mathcal I=\frac{A^2}{\sigma^2}$.
 
 ## PART 3 · Spectral estimation (3 p)
 
@@ -301,6 +302,8 @@ IF YOU SEE a table of descriptions to fill with method names, "name the method",
 | $\sigma^2\lvert B\rvert^2/\lvert A\rvert^2$, "linear random signal model" | Parametric (AR / MA / ARMA) |
 | "averages periodograms" | Bartlett and Welch |
 
+**How:** hunt ONE trigger word per description — a reworded description keeps it.
+
 ### 3J · Part 3 true / false
 
 IF YOU SEE "which of the following statements" (in Part 3) about PSD, windows, periodogram, Welch
@@ -342,13 +345,9 @@ IF YOU SEE two pdfs (one for $H_0$, one for $H_1$) + "binary hypothesis"/"hypoth
 
 *Apr25* $\frac{6x^{11}}{3x^5}=2x^6\gt0.2$ → $x^6\gt0.1$ → $x\gt0.1^{1/6}=0.68$.
 
-*Jun26 Rayleigh* $\frac x{\sigma^2}e^{-x^2/2\sigma^2}$ ($\sigma_1\gt\sigma_0$): the $x$ in front cancels, so $L=\frac{\sigma_0^2}{\sigma_1^2}\,e^{\frac{x^2}2\left(\frac1{\sigma_0^2}-\frac1{\sigma_1^2}\right)}\gt\eta$ → accept $H_1$ if
+*Jun26 Rayleigh* $\frac x{\sigma^2}e^{-x^2/2\sigma^2}$ ($\sigma_1\gt\sigma_0$): the $x$ in front cancels → accept $H_1$ if $x\gt\sqrt{\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\big(\eta\frac{\sigma_1^2}{\sigma_0^2}\big)}$. Bigger gap between $\sigma_0,\sigma_1$ → the pdfs overlap less → more $P_D$ for the same $P_{FA}$ (better ROC).
 
-$$x\gt\sqrt{\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\Big(\eta\,\frac{\sigma_1^2}{\sigma_0^2}\Big)}$$
-
-Bigger gap between $\sigma_0$ and $\sigma_1$ → the pdfs overlap less → more $P_D$ for the same $P_{FA}$ (better ROC).
-
-*Apr24* $\frac1{\sqrt{2\pi}}e^{-y^2/2}$ vs $\frac14e^{-y/2}$, $\gamma=1$: $L=\frac{\sqrt{2\pi}}4e^{y^2/2-y/2}\gt1$; take $\ln$: $-0.467+\frac{y^2}2-\frac y2\gt0$ → $y^2-y-0.934\gt0$ → root $y=\frac{1+\sqrt{1+3.74}}2=1.59$ → accept $H_1$ if $y\gt1.59$. $P_{FA}=Q(1.59)=0.056$, $P_D=\int_{1.59}^\infty\frac14e^{-y/2}dy=\frac12e^{-0.795}=0.23$.
+*Apr24* Gaussian $\frac1{\sqrt{2\pi}}e^{-y^2/2}$ vs exponential $\frac14e^{-y/2}$, $\gamma=1$: take $\ln$ → $-0.467+\frac{y^2}2-\frac y2\gt0$ → $y^2-y-0.934\gt0$ → root $y=\frac{1+\sqrt{1+3.74}}2=1.59$ → accept $H_1$ if $y\gt1.59$. $P_{FA}=Q(1.59)=0.056$, $P_D=\frac12e^{-0.795}=0.23$.
 
 *Nov22* $\frac12e^{-\lvert x\rvert}$ vs $e^{-2\lvert x\rvert}$, $N$ samples: $L=2^Ne^{-\sum\lvert x_n\rvert}$ → accept $H_1$ if $\sum\lvert x_n\rvert\lt N\ln2-\ln\lambda$.
 

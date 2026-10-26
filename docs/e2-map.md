@@ -29,9 +29,9 @@ Each step below names **the sheet's term it uses**, term by term: which pieces o
 !!! sheet "Box 2B, exactly as it is printed on the sheet"
     **IF YOU SEE** "prior", "posterior", "MAP", "maximum a posteriori"/"a-posteriori", "MMSE"/"minimum mean square error", "Bayesian estimator", Beta, Gamma
 
-    1. **Likelihood**: write each observation's probability, keep only the parts with $\theta$, multiply them all (exponents add).
-    2. **Multiply by the prior** (exponents add again). Drop numbers without $\theta$.
-    3. **Read the shape and use the table**:
+    1. Likelihood: write each observation's probability, keep only the parts with $\theta$, multiply them all (exponents add).
+    2. Multiply by the prior (exponents add again). Drop numbers without $\theta$.
+    3. Read the shape and use the table:
 
     | Result looks like | Posterior | MAP | MMSE (mean) |
     |---|---|---|---|
@@ -39,8 +39,20 @@ Each step below names **the sheet's term it uses**, term by term: which pieces o
     | $\lambda^{A}e^{-B\lambda}$ | Gamma$(A{+}1,B)$ | $\frac{A}{B}$ | $\frac{A+1}{B}$ |
 
     Prior Beta$(a,b)$ = $\theta^{a-1}(1-\theta)^{b-1}$. Prior Gamma$(a,b)$ = $\lambda^{a-1}e^{-b\lambda}$.
-
     One observation $x$ gives: Poisson count → $\lambda^{x}e^{-\lambda}$ · "$k$-th success on trial $x$" → $\theta^k(1-\theta)^{x-k}$ · "$k$ successes in $n$ tries" → $\theta^k(1-\theta)^{n-k}$ · exponential → $\lambda e^{-\lambda x}$.
+
+    **Posterior not in the table?** Do it by hand: **MAP** $=\arg\max_\theta p(\theta\mid x)$ = the peak · **MMSE** $=\int\theta\,p(\theta\mid x)\,d\theta$ = its mean (use the Calculations integrals). Truncate first if the prior has a range.
+    **Prior with a range** (uniform on $[a,b]$): the posterior is only $\propto$ the likelihood inside $[a,b]$; if the peak would land outside, the MAP is the nearest endpoint $a$ or $b$.
+
+    *Jun26-2c:* $\theta^2(1-\theta)^{x-2}$ with $x=3,5,4,6,4$: $\theta$ exponent $2$ five times $=10$, $(1-\theta)$ exponents sum $12$ → $\theta^{10}(1-\theta)^{12}$. Prior Beta(2,3) adds $\theta^1(1-\theta)^2$ → $\theta^{11}(1-\theta)^{14}$ → Beta(12,15), MAP $=\frac{11}{25}=0.44$.
+
+    *Jun26-2d:* Poisson, $x=2,4,3,5,2,4$: $\lambda$ exponents add to $20$, six $e^{-\lambda}$ give $e^{-6\lambda}$ → $\lambda^{20}e^{-6\lambda}$. Prior Gamma(3,2) adds $\lambda^2e^{-2\lambda}$ → $\lambda^{22}e^{-8\lambda}$ → Gamma(23,8), MAP $=\frac{22}8=2.75$. MLE $=\frac{20}6=3.33$: the prior pulls towards its own mean $\frac32$.
+
+    *Apr25-2d:* posterior already given as $\theta^{a}(1-\theta)^{b}$ → MAP $=\frac a{a+b}$.
+
+    *Nov22:* posterior $\lambda e^{-(x+a)\lambda}$ → MAP $\frac1{x+a}$, MMSE $\frac2{x+a}$.
+
+    *Apr24-2d (sigmoid):* posterior $\frac\lambda2e^{-\lambda x/2}$ → $\frac1\lambda-\frac x2=0$ → $\lambda=\frac2x$ → $\hat\theta=-\ln\!\big(\frac x2-1\big)$, $x\gt2$.
 
 What each line of the box means, word by word:
 
@@ -110,8 +122,8 @@ Two more sheet places you will need. **Box 2A** ([2.1](e2-mle.md)) does the alge
 
     ***
 
-    **Sheet check · the example line.**
-    The line at the bottom of box 2B (*Jun26-2d:* … MAP $=\frac{22}8=2.75$, MLE $=\frac{20}6=3.33$) is this exact question. If your line looks like the sheet's line, you have the points.
+    **Sheet check · the box's steps.**
+    The sheet's *Jun26-2d* line runs the same three steps and lands on MAP $=\frac{22}8=2.75$, MLE $=\frac{20}6=3.33$ — but what you copy is the **method**: exponents add, read the shape, read the column. New numbers, same three moves.
 
     </div>
 
@@ -617,7 +629,7 @@ Two more sheet places you will need. **Box 2A** ([2.1](e2-mle.md)) does the alge
     <div class="stepper" markdown>
 
     **Sheet step 1 · (c) is on the sheet verbatim.**
-    Row *"MAP depends on likelihood and prior; needs a prior"* → **T (Jun26 c)**. The sheet even tags the row with this exam.
+    Row *"MAP depends on likelihood and prior; needs a prior"* → **T (Jun26 c)**. The sheet's row is the fact itself; the exam only rewords it.
 
     ***
 

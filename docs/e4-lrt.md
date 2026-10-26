@@ -58,13 +58,9 @@ The exam gives **two PDFs** and says **"likelihood ratio test"**, **"binary hypo
 
     *Apr25* $\frac{6x^{11}}{3x^5}=2x^6\gt0.2$ → $x^6\gt0.1$ → $x\gt0.1^{1/6}=0.68$.
 
-    *Jun26 Rayleigh* $\frac x{\sigma^2}e^{-x^2/2\sigma^2}$ ($\sigma_1\gt\sigma_0$): the $x$ in front cancels, so $L=\frac{\sigma_0^2}{\sigma_1^2}\,e^{\frac{x^2}2\left(\frac1{\sigma_0^2}-\frac1{\sigma_1^2}\right)}\gt\eta$ → accept $H_1$ if
+    *Jun26 Rayleigh* $\frac x{\sigma^2}e^{-x^2/2\sigma^2}$ ($\sigma_1\gt\sigma_0$): the $x$ in front cancels → accept $H_1$ if $x\gt\sqrt{\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\big(\eta\frac{\sigma_1^2}{\sigma_0^2}\big)}$. Bigger gap between $\sigma_0,\sigma_1$ → the pdfs overlap less → more $P_D$ for the same $P_{FA}$ (better ROC).
 
-    $$x\gt\sqrt{\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\Big(\eta\,\frac{\sigma_1^2}{\sigma_0^2}\Big)}$$
-
-    Bigger gap between $\sigma_0$ and $\sigma_1$ → the pdfs overlap less → more $P_D$ for the same $P_{FA}$ (better ROC).
-
-    *Apr24* $\frac1{\sqrt{2\pi}}e^{-y^2/2}$ vs $\frac14e^{-y/2}$, $\gamma=1$: $L=\frac{\sqrt{2\pi}}4e^{y^2/2-y/2}\gt1$; take $\ln$: $-0.467+\frac{y^2}2-\frac y2\gt0$ → $y^2-y-0.934\gt0$ → root $y=\frac{1+\sqrt{1+3.74}}2=1.59$ → accept $H_1$ if $y\gt1.59$. $P_{FA}=Q(1.59)=0.056$, $P_D=\int_{1.59}^\infty\frac14e^{-y/2}dy=\frac12e^{-0.795}=0.23$.
+    *Apr24* Gaussian $\frac1{\sqrt{2\pi}}e^{-y^2/2}$ vs exponential $\frac14e^{-y/2}$, $\gamma=1$: take $\ln$ → $-0.467+\frac{y^2}2-\frac y2\gt0$ → $y^2-y-0.934\gt0$ → root $y=\frac{1+\sqrt{1+3.74}}2=1.59$ → accept $H_1$ if $y\gt1.59$. $P_{FA}=Q(1.59)=0.056$, $P_D=\frac12e^{-0.795}=0.23$.
 
     *Nov22* $\frac12e^{-\lvert x\rvert}$ vs $e^{-2\lvert x\rvert}$, $N$ samples: $L=2^Ne^{-\sum\lvert x_n\rvert}$ → accept $H_1$ if $\sum\lvert x_n\rvert\lt N\ln2-\ln\lambda$.
 
@@ -91,7 +87,7 @@ The algebra you need mid-step ($\ln$ rules, $e$ rules, quadratics, $Q$ numbers) 
 
     If $\lambda = 0.2$, $k_1 = 1$, and $k_2 = 2$, what is the value for $x$ for which $\mathcal{H}_1$ should be accepted?
 
-!!! sheet "In the cheat sheet: box 4A — the *Apr25* line is this exam, computed"
+!!! sheet "In the cheat sheet: box 4A, the four steps (the *Apr25* line runs them on these numbers)"
     <div class="stepper" markdown>
 
     **Sheet step 1 · build the two PDFs (the numbers are given).**
@@ -114,8 +110,8 @@ The algebra you need mid-step ($\ln$ rules, $e$ rules, quadratics, $Q$ numbers) 
 
     ***
 
-    **Sheet check · the example line.**
-    The whole line is printed: $2x^6>0.2$ → $x^6>0.1$ → $x>0.68$.
+    **Sheet check · the box's step 4.**
+    The box's own test: *"put a small and a large $x$ into $L$"* — big $x$ gives $L>0.2$ ✓, small $x$ gives $L\approx0$. That is how you fix the side for **any** threshold.
 
     </div>
 
@@ -157,12 +153,12 @@ The algebra you need mid-step ($\ln$ rules, $e$ rules, quadratics, $Q$ numbers) 
     ***
 
     **Sheet step 4 · $P_D$ = the same line's tail.**
-    *"then $P_D=1-e^{-2t}=0.19$"* — printed as is.
+    *"then $P_D=1-e^{-2t}=0.19$"* — the same tail recipe with the $H_1$ rate $c=2$: $1-e^{-2(0.105)}=0.19$.
 
     ***
 
-    **Sheet check · the example lines.**
-    Three lines of the box = the three sub-questions, with the numbers already done.
+    **Sheet check · the box's three lines.**
+    The *Probabilities* block solves all three sub-questions: tails for $P_{FA}$, the same place under $H_1$ for $P_D$, and *"set the $H_0$ area $=0.1$, solve for $t$"* for the threshold. The numbers come out of those lines.
 
     </div>
 
@@ -177,26 +173,26 @@ The algebra you need mid-step ($\ln$ rules, $e$ rules, quadratics, $Q$ numbers) 
     - Construct the likelihood-ratio test for a threshold $\eta$.
     - Discuss how the separation between $\sigma_0$ and $\sigma_1$ affects detection performance.
 
-!!! sheet "In the cheat sheet: box 4A — the *Jun26 Rayleigh* block is this exam"
+!!! sheet "In the cheat sheet: box 4A, the four steps (the *Jun26 Rayleigh* line runs them on this pdf)"
     <div class="stepper" markdown>
 
-    **Sheet step 1 · copy the cancelled ratio.**
-    *"$\frac x{\sigma^2}e^{-x^2/2\sigma^2}$ ($\sigma_1\gt\sigma_0$): the $x$ in front cancels, so $L=\frac{\sigma_0^2}{\sigma_1^2}\,e^{\frac{x^2}2\left(\frac1{\sigma_0^2}-\frac1{\sigma_1^2}\right)}\gt\eta$."* The $x$-in-front cancellation is box step 1 (*"Cancel what appears on top and bottom"*).
+    **Sheet step 1 · build the ratio, cancel what cancels.**
+    Box step 1: *"Cancel what appears on top and bottom"* — the $\frac x{\sigma^2}$ in both pdfs cancels and you are left with $L=\frac{\sigma_0^2}{\sigma_1^2}\,e^{\frac{x^2}2\left(\frac1{\sigma_0^2}-\frac1{\sigma_1^2}\right)}$. (The sheet's *Rayleigh* line says it in words: *"the $x$ in front cancels"*.)
 
     ***
 
     **Sheet step 2 · solve for $x$ = the printed formula.**
-    *"accept $H_1$ if $x\gt\sqrt{\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\Big(\eta\,\frac{\sigma_1^2}{\sigma_0^2}\Big)}$."* Take $\ln$ (step 2), isolate $x$ (step 3 — no flip because $\sigma_1>\sigma_0$ makes the bracket positive), done.
+    *"accept $H_1$ if $x\gt\sqrt{\frac{2\sigma_0^2\sigma_1^2}{\sigma_1^2-\sigma_0^2}\,\ln\!\big(\eta\frac{\sigma_1^2}{\sigma_0^2}\big)}$."* Take $\ln$ (step 2), isolate $x$ (step 3 — no flip because $\sigma_1>\sigma_0$ makes the bracket positive), done.
 
     ***
 
-    **Sheet step 3 · the discussion = the next printed sentence.**
-    *"Bigger gap between $\sigma_0$ and $\sigma_1$ → the pdfs overlap less → more $P_D$ for the same $P_{FA}$ (better ROC)."* That is the whole second bullet.
+    **Sheet step 3 · the discussion = the line's second sentence.**
+    *"Bigger gap between $\sigma_0,\sigma_1$ → the pdfs overlap less → more $P_D$ for the same $P_{FA}$ (better ROC)."* That is the whole discussion bullet.
 
     ***
 
-    **Sheet check · the example line.**
-    The block is tagged with this exam's name. If the formula is on your sheet, the 1 p is a copy job.
+    **Sheet check · the box's rule.**
+    The discussion line is a statement about **any** pair of $\sigma$'s; write it in words and you have the point, numbers or not.
 
     </div>
 
@@ -211,7 +207,7 @@ The algebra you need mid-step ($\ln$ rules, $e$ rules, quadratics, $Q$ numbers) 
 
     Sketch the likelihoods. For a threshold $\gamma = 1$, indicate $P_{FA}$ and $P_M$, and calculate $P_D$ and $P_{FA}$. Use $Q(x) = \int_x^{\infty} \frac{1}{\sqrt{2\pi}} e^{-\frac{u^2}{2}} du$. No need for exact numerical values.
 
-!!! sheet "In the cheat sheet: box 4A — the *Apr24* line is this exam, computed end to end"
+!!! sheet "In the cheat sheet: box 4A, the four steps (the *Apr24* line runs them end to end)"
     <div class="stepper" markdown>
 
     **Sheet step 1 · the bar is on the ratio.**
@@ -234,8 +230,8 @@ The algebra you need mid-step ($\ln$ rules, $e$ rules, quadratics, $Q$ numbers) 
 
     ***
 
-    **Sheet check · the example line.**
-    *"$P_{FA}=Q(1.59)=0.056$, $P_D=\frac12e^{-0.795}=0.23$."* The exam says "no exact numbers needed" — the sheet's $Q(1.59)$ form is already the answer.
+    **Sheet check · the tails recipe.**
+    Gaussian tail $=Q(t)$, exponential tail $=e^{-ct}$ — those two lines produce $P_{FA}=Q(1.59)$ and $P_D=\frac12e^{-0.795}$ whatever threshold you found. The exam says "no exact numbers needed": the $Q$ form **is** the answer.
 
     </div>
 

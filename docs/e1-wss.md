@@ -77,8 +77,8 @@ Two more sheet places: **box 1E** ("Rules": $E[c\cdot z]=c\,E[z]$, uniform $[a,b
 
     ***
 
-    **Sheet check · the example line.**
-    The sheet's two worked lines *are* these two processes — first one ends **"WSS, ergodic in the mean"**, second one ends **"not WSS, stop"**. Your verdicts must come out the same, whatever processes a new exam invents.
+    **Sheet check · the tests are the recipe.**
+    Both verdicts came out of tests 1–3, not out of remembering a line: mean → correlation → ergodicity. A new exam can invent any process and the same three moves still decide it.
 
     </div>
 

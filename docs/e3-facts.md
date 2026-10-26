@@ -25,7 +25,7 @@ This page is not one recipe, it is **five boxes**: 3F, 3G, 3H, 3I, 3J. Read the 
 !!! sheet "Boxes 3F–3J, exactly as they are printed on the sheet"
     **3F · Pick the plot.** Work out each PSD at $\theta=0$ (all cosines $=1$) and at $\theta=\pi$ ($\cos\theta=-1$, $\cos2\theta=1$, $\cos3\theta=-1$). Pick the plot with those heights. Only a correlogram can go below 0.
 
-    **3G · Welch / Bartlett count.** Step $D=L\times(1-\text{overlap})$. Segments $K=\dfrac{N-L}{D}+1$ (round the fraction down). Variance ratio vs one periodogram $=\dfrac1K$. Bartlett (no overlap): $K=\dfrac NL$.
+    **3G · Welch / Bartlett count.** Step $D=L\times(1-\text{overlap})$. Segments $K=\frac{N-L}{D}+1$ (round the fraction down). Variance ratio vs one periodogram $=\frac1K$. Bartlett (no overlap): $K=\frac NL$.
 
     *Jun26* $N=1000$, $L=200$, 50 %: $D=100$, $K=9$, ratio $\frac19$.
 
@@ -34,7 +34,7 @@ This page is not one recipe, it is **five boxes**: 3F, 3G, 3H, 3I, 3J. Read the 
     - Never dies out (sin, cos, constant, $\cos t\,u(t)$) → **power**: $P$ = time average of $\lvert x\rvert^2$, energy $=\infty$.
     - Time-continuous ($t$) → $\sum$ becomes $\int dt$: $E=\int\lvert x\rvert^2dt$, $P=\frac1T\int_0^T\lvert x\rvert^2dt$.
 
-    *Apr25:* $A\sin\omega t$ → power $\frac{A^2}2$. $e^{-n}$ for $n\ge0$ → energy $\sum e^{-2n}=\frac1{1-e^{-2}}\approx1.16$.
+    *Apr25:* $A\sin\omega t$ → power $\frac{A^2}2$. $e^{-n}$ for $n\ge0$ → energy $\sum e^{-2n}=\frac1{1-e^{-2}}\approx1.16$ (use $\sum_{n\ge0}q^n=\frac1{1-q}$).
 
     **3I · Name the method.**
 
@@ -47,6 +47,8 @@ This page is not one recipe, it is **five boxes**: 3F, 3G, 3H, 3I, 3J. Read the 
     | OVERLAPPING segments, average the periodograms | Welch (WOSA) |
     | $\sigma^2\lvert B\rvert^2/\lvert A\rvert^2$, "linear random signal model" | Parametric (AR / MA / ARMA) |
     | "averages periodograms" | Bartlett and Welch |
+
+    **How:** hunt ONE trigger word per description — a reworded description keeps it.
 
     **3J · Part 3 true / false.**
 
@@ -63,6 +65,8 @@ This page is not one recipe, it is **five boxes**: 3F, 3G, 3H, 3I, 3J. Read the 
     | Zero-padding: more points (step $\frac{2\pi}L$), **no** better resolution | "improves resolution" |
     | Window type does **not** change the periodogram's variance; leakage follows the window, not the record length | "longer data/window reduces leakage" |
     | Periodogram and correlogram have the **same** bias | "periodogram has better bias" |
+
+    *Consistent* $=$ variance $\to0$ as $N\to\infty$. The periodogram's bias $\to0$ but $\mathrm{Var}\{\hat P\}\approx P^2$ stays put.
 
     **AR order (Jun26-3e).** Bigger $p$ → residual error always goes down → risk: **overfitting** (fake peaks). Fix: **AIC** $=N\ln\hat\sigma^2+2p$ (also FPE, MDL): the error term falls, the penalty $2p$ grows → choose the $p$ with the smallest AIC. Any PSD can be approximated by an AR model of **high enough order**.
 
@@ -102,8 +106,8 @@ Two more sheet places you will need: the **Numbers** strip for $e^{-2}=0.135$ an
 
     ***
 
-    **Sheet check.**
-    The sheet prints this exact question as its *Jun26* line. Also: "round the fraction down" only matters if $\frac{N-L}{D}$ is not a whole number — here it is.
+    **Sheet check · the box's two formulas.**
+    Step $D=L\times(1-\text{overlap})$, segments $K=\frac{N-L}{D}+1$ — those two lines solve every variant of this question. "Round the fraction down" only matters when $\frac{N-L}{D}$ is not a whole number; here it is.
 
     </div>
 
@@ -147,8 +151,8 @@ Two more sheet places you will need: the **Numbers** strip for $e^{-2}=0.135$ an
 
     ***
 
-    **Sheet check · the sheet's example line.**
-    *Apr25:* "$A\sin\omega t$ → power $\frac{A^2}2$. $e^{-n}$ for $n\ge0$ → energy $\sum e^{-2n}=\frac1{1-e^{-2}}\approx1.16$" — identical.
+    **Sheet check · the box's two rules.**
+    *"Dies out or has finite length → energy"* / *"Never dies out → power"* decide the type; the sum or average then gives the number. The sheet's *Apr25* line runs the same two rules on $A\sin\omega t$ and $e^{-n}$.
 
     </div>
 
@@ -207,29 +211,29 @@ Two more sheet places you will need: the **Numbers** strip for $e^{-2}=0.135$ an
     | 4. PSD is estimated by calculating the L-point DFT of the estimated autocorrelation function of the signal (L=number of lags), after applying a window of length M\lt L to the autocorrelation function. | |
     | 5. PSD is estimated by dividing the total signal length in different overlapping segments, and averaging the periodograms obtained on each segment. | |
 
-!!! sheet "In the cheat sheet: box 3I, the row that matches"
+!!! sheet "In the cheat sheet: box 3I, the trigger words (one per exam row)"
     <div class="stepper" markdown>
 
-    **Sheet step 1 · row 1 — "NON-overlapping segments, average the periodograms"** → **Bartlett**.
+    **Sheet step 1 · exam row 1 — "NON-overlapping segments, average the periodograms"** → **Bartlett**.
     The word "non-overlapping" is the whole discriminator.
 
     ***
 
-    **Sheet step 2 · row 2 — "$\lvert\text{DFT}\rvert^2$ divided by $N$, whole signal"** → **Periodogram**.
+    **Sheet step 2 · exam row 2 — "$\lvert\text{DFT}\rvert^2$ divided by $N$, whole signal"** → **Periodogram**.
 
     ***
 
-    **Sheet step 3 · row 3 — "$\sigma^2\lvert B\rvert^2/\lvert A\rvert^2$"** → **Parametric (AR / MA / ARMA)**.
+    **Sheet step 3 · exam row 3 — "$\sigma^2\lvert B\rvert^2/\lvert A\rvert^2$"** → **Parametric (AR / MA / ARMA)**.
     The exam's $\sigma_i^2\big\lvert\frac{1+\sum b_q e^{-jq\theta}}{1+\sum a_p e^{-jp\theta}}\big\rvert^2$ is exactly $\sigma^2|B|^2/|A|^2$.
 
     ***
 
-    **Sheet step 4 · row 4 — "…plus a window of length $M\lt L$ on the autocorrelation"** → **Blackman–Tukey**.
+    **Sheet step 4 · exam row 4 — "…plus a window of length $M\lt L$ on the autocorrelation"** → **Blackman–Tukey**.
     "DFT of the estimated autocorrelation" alone would be the correlogram; the extra lag window is what makes it Blackman–Tukey.
 
     ***
 
-    **Sheet step 5 · row 5 — "OVERLAPPING segments, average the periodograms"** → **Welch (WOSA)**.
+    **Sheet step 5 · exam row 5 — "OVERLAPPING segments, average the periodograms"** → **Welch (WOSA)**.
 
     </div>
 
@@ -553,7 +557,7 @@ Two more sheet places you will need: the **Numbers** strip for $e^{-2}=0.135$ an
     ***
 
     **Sheet check · the box 3J row behind it.**
-    *"Zero-padding improves resolution → F (only more points)"*. Dots, not resolution: plots C and A show the same shape at different densities.
+    The fact is *"Zero-padding: more points (step $\frac{2\pi}L$), **no** better resolution"* — the lie they print is *"improves resolution"*. Dots, not resolution: plots C and A show the same shape at different densities.
 
     </div>
 

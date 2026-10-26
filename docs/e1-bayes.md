@@ -20,21 +20,25 @@ $$P(D)=\sum_k P(D\mid M_k)\,P(M_k)\qquad\qquad P(M_k\mid D)=\frac{P(D\mid M_k)\,
 
 ## How to fight this section with the sheet
 
-Here is the honest bad news: **your A4 sheet has no box for this question type.** Box 1A is the joint PDF, 1B is WSS, 1C is spectral factorisation — the word problems are not on the sheet, and that is deliberate (they need no formulas).
+The exam says **"what is the probability that…" / "if it is found to be…, which group"** on top of a story with machines, scanners, students or patients → you open **box 1D** on your A4 sheet. It is a **6-step recipe** that solves every word problem of this type — no formulas to invent, just run the steps on the story's numbers. It is also the question that appears in **7 of the last 7 exams**, so you want this on autopilot.
 
-It is also the question that appears in **7 of the last 7 exams**, so you do not want to improvise it. **The recipe is now printed on your A4 as box 1D** — nothing to write in any margin. The **Calculations** strip at the bottom of the sheet does the arithmetic for you (fractions, $\ln$, $e$).
+The **Calculations** strip at the bottom of the sheet does the arithmetic for you (fractions, $\ln$, $e$), and the **Numbers** strip has the $e^{-1/5}=0.82$-style values. The definition MCs and T/F lists of this part have their own line in **box 1E** ("Definition MC / T/F") plus the swap test of box 2D — exercises 10 and 11 below.
 
 !!! sheet "Box 1D, exactly as it is printed on the sheet"
-    **IF YOU SEE** groups (machines, scanners, students, patients) with counts or shares, a rate inside each group, and a probability is asked.
+    **IF YOU SEE** groups (machines, scanners, students, patients) with counts or shares + "what is the probability that…" / "if it is found to be…, which group"
 
-    1. **Total.** Counts given → items = those counts, total = their sum. Only percentages → pretend total $=1000$ (1 000 000 if a rate is tiny, like 0.0005).
-    2. **Items$_k$** $=$ share$_k\times$ total.
-    3. **Pick "bad".** Bad $=$ the event asked, or the event after "given / if / found to be / has had / has passed / positive". Asked **NOT** pass when a **pass** rate is given → bad rate $=1-$pass rate.
-    4. **Bad$_k$** $=$ bad rate$_k\times$ items$_k$.
-    5. **$P(\text{bad})$** $=$ (sum of all bad$_k$) $/$ total.
-    6. **$P(k\mid\text{bad})$** $=$ bad$_k$ $/$ (sum of all bad). **Divide by the pile, not by the total.**
+    1. **Total**: counts given → sum them. Only % → pretend total $=1000$.
+    2. Items$_k=$ share$_k\times$total.
+    3. **Pick "bad"** = the event asked, or the one after "given / if / found to be / has / tested positive". Asked **NOT** pass when a pass rate is given → bad rate $=1-$pass rate.
+    4. Bad$_k=$ bad rate$_k\times$items$_k$.
+    5. $P(\text{bad})=\dfrac{\sum_k \text{bad}_k}{\text{total}}$.
+    6. $P(k\mid\text{bad})=\dfrac{\text{bad}_k}{\sum_k \text{bad}_k}$ — **divide by the pile of bad, not by the total.**
 
-    **Wording** (exam word → same step): defective, fail, NOT pass, positive, infected, has TB, actually present → **bad**. pass, sufficient quality, good → the good event. "false positive 3 %" $=$ 3 % **of the healthy** test positive. "detects 95 % when present" $=$ 95 % of the ill test positive. "99 % accurate" $=$ 99 % of the ill **and** 99 % of the healthy classified right. "scans / paints $N$ patients" $=$ that is your count. "mixed at random" $=$ step 5.
+    Wording: defective, fail, NOT pass, positive, infected, "actually present" → **bad** · "false positive 3 %" = 3 % **of the healthy** · "detects 95 % when present" = 95 % of the ill · "99 % accurate" = both groups classified right · "mixed at random" = step 5.
+
+    *Jun26* 40/35/25 %, defect 2/4/5 %: bad $=0.4(0.02)+0.35(0.04)+0.25(0.05)=0.0325$; $M_2$ given bad $=\frac{0.35\cdot0.04}{0.0325}=0.43$.
+
+**Extra exam words** (past papers beyond the sheet's short Wording line — same steps): "has TB" / any disease → **bad** · "pass", "sufficient quality", "good" → the good event (step 3's $1-$pass rate rule) · "scans / paints $N$ patients" → that is your count (step 1) · a tiny rate like 0.0005 → pretend total $1\,000\,000$.
 
 Two more sheet places you will need: the **Calculations** strip when the answer is a fraction of a fraction, and the **Numbers** strip for $e^{-1/5}=0.82$-style values. For the yes/no and true/false questions there is no recipe at all — those are one-line definitions, given in exercises 10 and 11 below.
 
@@ -162,8 +166,8 @@ Two more sheet places you will need: the **Calculations** strip when the answer 
 
     ***
 
-    **Margin step 3 · "'99 % accurate' $=$ 99 % of the ill **and** 99 % of the healthy classified right."**
-    So: ill people test **positive** 99 % of the time, and **1 % of the healthy also test positive**. That 1 % of a huge group is the whole question.
+    **Margin step 3 · the Wording line: *"'99 % accurate' = both groups classified right."***
+    Both groups means: ill people test **positive** 99 % of the time, and **1 % of the healthy also test positive**. That 1 % of a huge group is the whole question.
 
     ***
 
@@ -478,10 +482,10 @@ Two more sheet places you will need: the **Calculations** strip when the answer 
     - (c) $P(A \cap B) = 0$
     - (d) $P(A | B) = P(A)$
 
-!!! sheet "Not on the sheet — one line to know by heart"
+!!! sheet "In the cheat sheet: box 1E, the 'Definition MC / T/F' line"
     <div class="stepper" markdown>
 
-    **Step 1 · the definition.** Independent means knowing $B$ tells you **nothing** about $A$:
+    **Step 1 · the definition line.** Box 1E: *"independent $=P(A\mid B)=P(A)$, the same as $P(A\cap B)=P(A)P(B)$"* — knowing $B$ tells you **nothing** about $A$:
 
     $$P(A\mid B)=P(A)\qquad\Longleftrightarrow\qquad P(A\cap B)=P(A)P(B)$$
 
@@ -510,7 +514,7 @@ Two more sheet places you will need: the **Calculations** strip when the answer 
     - D. For any random variable, the cumulative distribution function in $-\infty$ and $\infty$ are 0 and 1, respectively. (T/F)
     - E. The Wiener FIR filter for 1-step linear prediction can be used for moving-average parametric spectral estimation (T/F).
 
-!!! sheet "Not on the sheet — five one-liners, and this is what a T/F list looks like"
+!!! sheet "In the cheat sheet: box 1E's definition line + the swap test of box 2D"
     <div class="stepper" markdown>
 
     **A · F.** Bayes comes from the **definition of conditional probability** plus the product rule; the total law of probability only supplies the denominator $P(B)$. (This is the answer the key gives — the sentence is built to look right.)
@@ -533,8 +537,8 @@ Two more sheet places you will need: the **Calculations** strip when the answer 
 
     ***
 
-    **Sheet check.**
-    Answer key: **F F T T F**. Notice the shape of the exercise: a T/F list mixes topics, so it is really 5 separate recall questions. Do not spend 2 minutes on one line.
+    **Sheet check · the swap test.**
+    Answer key: **F F T T F**. Notice the shape of the exercise: a T/F list is really 5 separate recall questions. The swapped words here are *total law ↔ definition* (A), *disjoint ↔ independent* (B, D's opposite), *AR ↔ MA* (E) — one word flips each verdict, exactly the swap test of box 2D.
 
     </div>
 

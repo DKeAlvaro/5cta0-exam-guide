@@ -68,7 +68,7 @@ The exam gives $r[0], r[1], r[2]$ and says **"AR(1)"** / **"AR(2)"** / **"Yule�
 
     **3f** Model the signal as an MA(1) process, find the parameters of the model, and calculate the corresponding power spectral density in a parametric fashion. Express the obtained power spectral density $P_{MA}(e^{j\theta})$ as a function of cosines.
 
-!!! sheet "In the cheat sheet: box 3B (its *Apr25* line) and box 3D (its *Apr25* line) — this exam IS both examples"
+!!! sheet "In the cheat sheet: boxes 3B and 3D, the numbered steps (their *Apr25* lines run them on these numbers)"
     <div class="stepper" markdown>
 
     **Sheet step 1 · 3e = box 3B's three steps.**
@@ -86,8 +86,8 @@ The exam gives $r[0], r[1], r[2]$ and says **"AR(1)"** / **"AR(2)"** / **"Yule�
 
     ***
 
-    **Sheet check · the example lines.**
-    Both *Apr25* lines under the boxes are this exam. The sheet's numbers ($\frac18$, $\frac{63}{32}$, $\frac{126}{65+16\cos\theta}$, $2-\frac12\cos\theta$) are the graded answers.
+    **Sheet check · the boxes' own checks.**
+    3B step 3: *"check $|a|\lt1$ and $\sigma^2\gt0$, else a sign went wrong"* — $|a|=\frac18<1$ ✓, $\frac{63}{32}>0$ ✓. The graded items ($a$, $\sigma^2$, $P$) are one step of the box each; new numbers, same steps.
 
     </div>
 
@@ -108,7 +108,7 @@ The exam gives $r[0], r[1], r[2]$ and says **"AR(1)"** / **"AR(2)"** / **"Yule�
     - Calculate the variance of the driving white noise $\sigma_i^2$. [0.2]
     - Write $\hat{P}_{AR}(e^{j\theta})$ as a function of $\cos(\theta)$. [0.3]
 
-!!! sheet "In the cheat sheet: box 3C — the *Jun26* line is this exam"
+!!! sheet "In the cheat sheet: box 3C, the four steps (the *Jun26* line runs them on these numbers)"
     <div class="stepper" markdown>
 
     **Sheet step 1 · the matrix (the box prints it).**
@@ -127,12 +127,12 @@ The exam gives $r[0], r[1], r[2]$ and says **"AR(1)"** / **"AR(2)"** / **"Yule�
     ***
 
     **Sheet step 4 · the PSD (step 4 of the box).**
-    $P=\dfrac{\sigma^2}{1+a_1^2+a_2^2+2a_1(1+a_2)\cos\theta+2a_2\cos2\theta}$. With the numbers: denominator $=\frac{42-48\cos\theta+10\cos2\theta}{25}$, so $P=\frac{40}{42-48\cos\theta+10\cos2\theta}$. Only $\cos\theta$ wanted? The Part 3 header's rewrite *"$\cos2\theta=2\cos^2\theta-1$"* gives $P=\frac{10}{5\cos^2\theta-12\cos\theta+8}$ — the sheet's example line ends there.
+    $P=\dfrac{\sigma^2}{1+a_1^2+a_2^2+2a_1(1+a_2)\cos\theta+2a_2\cos2\theta}$. With the numbers: denominator $=\frac{42-48\cos\theta+10\cos2\theta}{25}$, so $P=\frac{40}{42-48\cos\theta+10\cos2\theta}$. Only $\cos\theta$ wanted? The Part 3 header's rewrite *"$\cos2\theta=2\cos^2\theta-1$"* gives $P=\frac{10}{5\cos^2\theta-12\cos\theta+8}$ — either form is accepted.
 
     ***
 
-    **Sheet check · the example line.**
-    *"$D=5$, $a_1=-\frac45$, $a_2=\frac15$, $\sigma^2=\frac85$, $P=\frac{10}{5\cos^2\theta-12\cos\theta+8}$."* Four graded answers, all printed.
+    **Sheet check · the box's steps.**
+    Four graded items, four steps: $D$ (step 1), $a_1,a_2$ (step 2), $\sigma^2$ (step 3), $P$ (step 4). If one of yours looks odd, redo that step — the steps are independent enough that only one can be wrong.
 
     </div>
 

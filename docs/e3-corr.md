@@ -55,7 +55,7 @@ The exam gives numbers $r[0],r[1],r[2],\dots$ and says **"correlogram"**, **"onl
 
     Calculate the non-parametric correlogram estimate of the power spectral density, $\hat{P}_{Corr}(e^{j\theta})$, using only the given autocorrelation lags. Assume $r_x[k] = 0$ for $|k| > 2$. Derive $\hat{P}_{Corr}(e^{j\theta})$ as a function of $\cos(\theta)$.
 
-!!! sheet "In the cheat sheet: box 3A — the *Jun26* line is this exam"
+!!! sheet "In the cheat sheet: box 3A, the formula (the *Jun26* line runs it on these numbers)"
     <div class="stepper" markdown>
 
     **Sheet step 1 · write the formula line.**
@@ -69,12 +69,12 @@ The exam gives numbers $r[0],r[1],r[2],\dots$ and says **"correlogram"**, **"onl
     ***
 
     **Sheet step 3 · the second form (because they said "as a function of $\cos\theta$").**
-    The header line gives the rewrite: *"$\cos2\theta=2\cos^2\theta-1$"* → $3+4\cos\theta+2(2\cos^2\theta-1)=4\cos^2\theta+4\cos\theta+1=(2\cos\theta+1)^2$. The sheet prints this whole chain.
+    The header line gives the rewrite: *"$\cos2\theta=2\cos^2\theta-1$"* → $3+4\cos\theta+2(2\cos^2\theta-1)=4\cos^2\theta+4\cos\theta+1=(2\cos\theta+1)^2$. The chain itself is just algebra — the sheet gives the rewrite rule, you expand.
 
     ***
 
-    **Sheet check · the example line.**
-    *"$3+4\cos\theta+2\cos2\theta=4\cos^2\theta+4\cos\theta+1=(2\cos\theta+1)^2$."* Both forms are accepted; the sheet gives both.
+    **Sheet check · the formula, not the example.**
+    $P(\theta)=r[0]+2r[1]\cos\theta+2r[2]\cos2\theta$ is the entire method — plug the lags in. Writing it as $(2\cos\theta+1)^2$ is optional sugar; both forms are accepted.
 
     </div>
 
@@ -132,7 +132,7 @@ The exam gives numbers $r[0],r[1],r[2],\dots$ and says **"correlogram"**, **"onl
 
     Using the correlogram method, give an estimate of the PSD as a function of cosines.
 
-!!! sheet "In the cheat sheet: box 3A — the *Apr24* line is this exam"
+!!! sheet "In the cheat sheet: box 3A, the formula with four lags (the *Apr24* line runs it)"
     <div class="stepper" markdown>
 
     **Sheet step 1 · formula, all four lags.**
@@ -145,8 +145,8 @@ The exam gives numbers $r[0],r[1],r[2],\dots$ and says **"correlogram"**, **"onl
 
     ***
 
-    **Sheet check · the example line.**
-    *"$\frac{25}{16},-\frac34,\frac12,-\frac12$: $\frac{25}{16}-\frac32\cos\theta+\cos2\theta-\cos3\theta$."* The sheet prints this exam's answer as its example.
+    **Sheet check · the formula's two rules.**
+    *"$r[0]$ is NOT doubled"* and *"Stop at the last lag given"* — those are the two points the grader checks; the numbers come out of the formula.
 
     ***
 

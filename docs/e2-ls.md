@@ -29,6 +29,8 @@ Each step below names **the sheet's term it uses**. Press **Next step** to go on
 
     Also: $x[n]=\theta+\text{noise}$ → $\hat\theta=\bar x$. $x[n]=\ln\theta+\text{noise}$ → $\hat\theta=e^{\bar x}$.
 
+    **Beyond a straight line.** $J(\theta)=\sum_n(x[n]-s[n;\theta])^2$, $\hat\theta=\arg\min J$ — write this when they ask "what kind of estimator". One amplitude $s[n]=Ah[n]$: $\hat A=\dfrac{\sum x[n]h[n]}{\sum h[n]^2}$. Linear model $x=\mathbf H\theta+w$: $\hat\theta=(\mathbf H^T\mathbf H)^{-1}\mathbf H^Tx$; the **error** $x-\mathbf H\hat\theta$ is orthogonal to the columns of $\mathbf H$ (it is the error, **not** $\hat\theta$); WLS with $\mathbf W=\mathbf C_x^{-1}$ = **BLUE**. Nonlinear: transform it (the $e^{\bar x}$ line), or iterate **Gauss–Newton** $\theta_{k+1}=\theta_k+(\mathbf G^T\mathbf G)^{-1}\mathbf G^T(x-s(\theta_k))$, $\mathbf G[:,i]=\frac{\partial s}{\partial\theta_i}$ — Newton–Raphson works too, "only Gauss–Newton" is **false**.
+
 What each line of the box means:
 
 | the sheet says | what you actually do |
@@ -54,7 +56,7 @@ What each line of the box means:
 !!! exam "Final exam, 13 April 2025 · 2b · 1 p"
     Find the linear function having least squares error for the data $\{(0, 3), (2, 4), (3, 3)\}$.
 
-!!! sheet "In the cheat sheet: box 2C, every line used — and the sheet prints this exact question"
+!!! sheet "In the cheat sheet: box 2C, every line used (the *Apr25* line runs the three steps on these numbers)"
     <div class="stepper" markdown>
 
     **Sheet step 1 · "Means $\bar x$ and $\bar y$."**
@@ -92,15 +94,15 @@ What each line of the box means:
 
     ***
 
-    **Sheet check · the example line.**
-    The *Apr25* line at the bottom of box 2C is this exact question and gives $y=\frac1{14}x+\frac{45}{14}$. Same line → you have the point.
+    **Sheet check · the box's own check.**
+    Step 3: *"Check: $x=\bar x$ must give $y=\bar y$."* $\frac1{14}\cdot\frac53+\frac{45}{14}=\frac{5+135}{42}=\frac{10}3=\bar y$ ✓ — the line goes through the centre point, whatever the data are.
 
     </div>
 
 !!! answer "Answer"
     $\displaystyle y=\frac{1}{14}x+\frac{45}{14}\approx 0.071\,x+3.21$
 
-## 2 · Q3 2022-23 · 2d — the sheet prints the answer as its last line
+## 2 · Q3 2022-23 · 2d — transform, solve the line, transform back
 
 !!! exam "Q3 2022-23 exam · 2d"
     Suppose we observe data from the following signal model:
@@ -115,7 +117,7 @@ What each line of the box means:
     <div class="stepper" markdown>
 
     **Sheet step 0 · look at the bottom of box 2C first.**
-    The sheet prints it verbatim: *"$x[n]=\ln\theta+\text{noise}$ → $\hat\theta=e^{\bar x}$"*. The answer is already on your A4.
+    The pattern rule: *"$x[n]=\ln\theta+\text{noise}$ → $\hat\theta=e^{\bar x}$"*. That line is the **output** of the three moves below — run them yourself and any variant (a scale factor, $\theta^2$, a different link) falls the same way.
 
     ***
 
