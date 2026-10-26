@@ -61,7 +61,7 @@ IF YOU SEE $P(\theta)=\dfrac{\text{number}}{A+B\cos\theta}$ + "spectral factoris
 1. Read $A$ and $B$ off the denominator $A+B\cos\theta$ **with their signs** ($25-24\cos\theta$: $A=25$, $B=-24$). Two candidate roots $r=\dfrac{A\pm\sqrt{A^2-B^2}}{B}$: keep the one between $-1$ and $1$, call it $a$.
 2. $C=\dfrac{B}{2a}$ (just a helper number).
 3. $\sigma_i^2=\dfrac{\text{number on top}}{C}$, $L(z)=\dfrac{1}{1+a\,z^{-1}}$.
-4. Check $|a|\lt1$ and $\sigma_i^2\gt0$ — a negative $\sigma_i^2$ means you kept the wrong root.
+4. Check $|a|\lt1$ and $\sigma_i^2\gt0$ — a negative $\sigma_i^2$ means you kept the wrong root. Sanity: $\dfrac{\sigma_i^2}{1+a^2+2a\cos\theta}$ must give back the $P(\theta)$ you started from.
 
 *Apr24* $\frac{7}{25-24\cos\theta}$: $A=25$, $B=-24$, $\sqrt{625-576}=7$, $r=\frac{25\pm7}{-24}$ = $-\frac43$ or $-\frac34$ → $a=-\frac34$. $C=\frac{-24}{-3/2}=16$. So $\sigma_i^2=\frac7{16}$, $L=\frac1{1-\frac34z^{-1}}$.
 
@@ -94,7 +94,7 @@ IF YOU SEE "expected value", "discrete or continuous", "exactly $k$ of $n$", "co
 - **Discrete** = the values can be listed: "number of …", counts, dice, digits 0–255. **Continuous** = a measurement: time, distance, weight, money.
 - **Rules:** $E[c\cdot z]=c\,E[z]$ · $E[c]=c$ · $E[z_1+z_2]=E[z_1]+E[z_2]$ — a constant factor comes out. Uniform $[a,b]$ → mean $\frac{a+b}2$ ($[-A,A]$ → 0).
 - **"Exactly $k$ of $n$ tries"** (binomial): $C(n,k)\,p^k(1-p)^{n-k}$, $p$ = chance of one try, $C(n,k)=\frac{n(n-1)\cdots(n-k+1)}{k!}$.
-- **Covariance:** sign = whether one goes up when the other does · the number changes with the units (cm→m) · its $\pm1$-bounded version = correlation coefficient.
+- **Covariance:** $\mathrm{Cov}(x,y)=E[xy]-E[x]E[y]$ · sign = whether one goes up when the other does · the number changes with the units (cm→m) · its $\pm1$-bounded version = correlation coefficient.
 - **Contour plot, bi-variate Gaussian:** covariance = the two corner (off-diagonal) entries of the covariance matrix: $0$ → ellipses aligned with the axes · **tilted** ellipses → covariance $\ne0$.
 - **Definition MC / T/F:** $F(t)=P(x\le t)$ (the cumulative), so $F(-\infty)=0$, $F(\infty)=1$ · independent $=P(A\mid B)=P(A)$, the same as $P(A\cap B)=P(A)P(B)$ ($\cap$ = "both happen") · **disjoint** = they can never both happen, $P(A\cap B)=0$ (the opposite!) · Bayes $=$ conditional probability rearranged. A T/F list → the swap test of box 2D, any topic.
 
@@ -107,13 +107,14 @@ IF YOU SEE a pdf $p(x\mid\theta)$, samples $x_1..x_N$, "maximum likelihood", "de
 
 1. Take $\ln$ of ONE sample's pdf, then put $\sum_n$ in front. That is $\ln L$ ($L$ = likelihood = all the pdfs multiplied). A term with no $x_n$ in it (a $\ln 2$, a $\ln\theta$) comes back once per sample → it gets multiplied by $N$.
 2. Differentiate with respect to $\theta$ (terms without $\theta$ disappear).
-3. Set it $=0$ and solve for $\theta$. That is $\hat\theta$ (the estimate of $\theta$).
+3. Set it $=0$ and solve for $\theta$. That is $\hat\theta$ (the estimate of $\theta$). ($\ln$ is safe: it turns the product into a sum, and it peaks at the same place.)
 
 **How to take $\ln$ of a pdf:** write the pdf as $\frac{\text{above}}{\text{below}}\cdot e^{u}$ (it is pieces multiplied, some in a fraction). Then each piece becomes one term: a piece $a$ **above the line** → $+\ln a$ · a piece $b$ **below the line** → $-\ln b$ · $e^{u}$ → just $u$ (the $e$ disappears). Two pieces below the line split: $-\ln(2\theta)=-\ln 2-\ln\theta$. A power $\theta^k$ below the line → $-k\ln\theta$.
 Derivatives: $\ln\theta\to\frac1\theta$ · $\theta^k\to k\theta^{k-1}$ · $\frac1\theta\to-\frac1{\theta^2}$ · $e^{c\theta}\to ce^{c\theta}$ · $\cos\theta\to-\sin\theta$ · $\sin\theta\to\cos\theta$.
 Solving $=0$: multiply the equation by the denominators ($\theta^2$, $\theta$, …) first — that does not change the solution.
 **Trap:** if the pdf only exists for $x$ up to something containing $\theta$ (uniform on $[0,\theta]$), these 3 steps are useless — $\hat\theta=\max_n x_n$, and **the CRLB does not exist**.
 **Fisher info / CRLB** from that same derivative: $i(\theta)=-\mathrm E\big[\frac{\partial^2\ln p}{\partial\theta^2}\big]$ for one sample; $N$ samples → $\mathcal I=N i(\theta)$; **CRLB** $=\frac1{N i(\theta)}$ — the smallest variance any unbiased estimator can get (the floor). Reach the floor = **efficient**.
+**Computing $i(\theta)$ in 3 lines** (exponential rate, $p=\lambda e^{-\lambda x}$): $\ln p=\ln\lambda-\lambda x$ → $\partial_\lambda=\frac1\lambda-x$ → $\partial^2_\lambda=-\frac1{\lambda^2}$ → $i=-\mathrm E\big[-\frac1{\lambda^2}\big]=\frac1{\lambda^2}$ (no $x$ left, so the average does nothing) → CRLB $=\frac{\lambda^2}N$. If an $x$ survives the second derivative, average it out with $\mathrm E[x]$.
 **Known $i(\theta)$** — skip the derivation: Gaussian mean with variance $\sigma^2$: $\frac1{\sigma^2}$ · exponential rate $\lambda$: $\frac1{\lambda^2}$ · Bernoulli: $\frac1{\theta(1-\theta)}$ · Rayleigh $\frac{x}{\theta^2}e^{-x^2/2\theta^2}$: $\frac4{\theta^2}$ (so CRLB $=\frac{\theta^2}{4N}$).
 
 **Check your $\hat\theta$:** uniform $[0,\theta]$ → $\max_n x_n$ (the trap above) · exponential rate $\lambda$ → $1/\bar x$ · Poisson $\lambda$ → $\bar x$ · Bernoulli → $k/N$ ($k$ successes in $N$).
@@ -140,7 +141,7 @@ IF YOU SEE "prior", "posterior", "MAP", "maximum a posteriori"/"a-posteriori", "
 | $\theta^{A}(1-\theta)^{B}$ | Beta$(A{+}1,B{+}1)$ | $\frac{A}{A+B}$ | $\frac{A+1}{A+B+2}$ |
 | $\lambda^{A}e^{-B\lambda}$ | Gamma$(A{+}1,B)$ | $\frac{A}{B}$ | $\frac{A+1}{B}$ |
 
-Prior Beta$(a,b)$ = $\theta^{a-1}(1-\theta)^{b-1}$. Prior Gamma$(a,b)$ = $\lambda^{a-1}e^{-b\lambda}$.
+Prior Beta$(a,b)$ = $\theta^{a-1}(1-\theta)^{b-1}$ (its mean $\frac a{a+b}$). Prior Gamma$(a,b)$ = $\lambda^{a-1}e^{-b\lambda}$ (mean $\frac ab$). The prior pulls the estimate towards that mean.
 One observation $x$ gives: Poisson count → $\lambda^{x}e^{-\lambda}$ · "$k$-th success on trial $x$" → $\theta^k(1-\theta)^{x-k}$ · "$k$ successes in $n$ tries" → $\theta^k(1-\theta)^{n-k}$ · exponential → $\lambda e^{-\lambda x}$.
 
 **Posterior not in the table?** Do it by hand: **MAP** $=\arg\max_\theta p(\theta\mid x)$ = the peak ($\arg\max$ = the $\theta$ at the top) · **MMSE** $=\int\theta\,p(\theta\mid x)\,d\theta$ = its mean (use the Calculations integrals).
@@ -167,7 +168,7 @@ IF YOU SEE points $(x,y)$ + "least squares"/"least-squares"/"LSE", "linear funct
 
 *Apr25* $(0,3),(2,4),(3,3)$: $\bar x=\frac53$, $\bar y=\frac{10}3$, $a=\frac{1/3}{14/3}=\frac1{14}$, $b=\frac{45}{14}$ → $y=\frac1{14}x+\frac{45}{14}$.
 
-Also: $x[n]=\theta+\text{noise}$ → $\hat\theta=\bar x$. $x[n]=\ln\theta+\text{noise}$ → $\hat\theta=e^{\bar x}$.
+Also: $x[n]=\theta+\text{noise}$ → $\hat\theta=\bar x$. $x[n]=\ln\theta+\text{noise}$ → $\hat\theta=e^{\bar x}$ (noise = random wobble; fitting a constant by least squares is just its average).
 
 **Beyond a straight line.** $J(\theta)=\sum_n(x[n]-s[n;\theta])^2$, $\hat\theta=\arg\min J$ (the $\theta$ making $J$ smallest) — write this when they ask "what kind of estimator". One amplitude $s[n]=Ah[n]$: $\hat A=\dfrac{\sum x[n]h[n]}{\sum h[n]^2}$. Linear model $x=\mathbf H\theta+w$: $\hat\theta=(\mathbf H^T\mathbf H)^{-1}\mathbf H^Tx$; the **error** $x-\mathbf H\hat\theta$ is orthogonal (perpendicular) to the columns of $\mathbf H$ (it is the error, **not** $\hat\theta$); weighted LS with $\mathbf W=\mathbf C_x^{-1}$ = **BLUE** (best linear unbiased estimator). Nonlinear: transform it (the $e^{\bar x}$ line), or iterate **Gauss–Newton** $\theta_{k+1}=\theta_k+(\mathbf G^T\mathbf G)^{-1}\mathbf G^T(x-s(\theta_k))$, $\mathbf G[:,i]=\frac{\partial s}{\partial\theta_i}$ — Newton–Raphson works too, "only Gauss–Newton" is **false**.
 
@@ -209,7 +210,7 @@ $r[k]$ = autocorrelation at lag $k$ (the given numbers; lag $k$ = $k$ steps apar
 IF YOU SEE $r[0],r[1],r[2]\dots$ + "correlogram", "only these lags", "PSD as a function of $\cos\theta$", correlation values given
 {: .see }
 
-$P(\theta)=r[0]+2r[1]\cos\theta+2r[2]\cos2\theta+2r[3]\cos3\theta$. Stop at the last lag given. $r[0]$ is NOT doubled. From data: $\hat r[k]=\frac1N\sum_n x[n]x[n-k]$. Other way round ($P(\theta)$ given, $r[k]$ asked): $r[0]$ = the plain constant term, $r[k]$ = **half** the coefficient of $\cos k\theta$.
+$P(\theta)=r[0]+2r[1]\cos\theta+2r[2]\cos2\theta+2r[3]\cos3\theta$. Stop at the last lag given. $r[0]$ is NOT doubled. From data: $\hat r[k]=\frac1N\sum_n x[n]x[n-k]$. Other way round ($P(\theta)$ given, $r[k]$ asked): $r[0]$ = the plain constant term, $r[k]$ = **half** the coefficient of $\cos k\theta$. Instant check: $P(0)=r[0]+2r[1]+2r[2]+\dots$ (all $+$), $P(\pi)=r[0]-2r[1]+2r[2]-\dots$ (signs alternate) — two heights to compare against your curve.
 
 *Jun26* $3,2,1$: $3+4\cos\theta+2\cos2\theta=4\cos^2\theta+4\cos\theta+1=(2\cos\theta+1)^2$.
 
@@ -360,7 +361,7 @@ IF YOU SEE two pdfs (one for $H_0$, one for $H_1$) + "binary hypothesis"/"hypoth
 
 **Probabilities.** $P_{FA}$ = area under the $H_0$ pdf where you decide $H_1$. $P_D$ = area under the $H_1$ pdf in the same place.<br>
 Tails: Gaussian $N(0,1)$ (mean 0, variance 1): $P(x\gt t)=Q(t)$ = the area right of $t$ (Numbers strip) · exponential $ce^{-cx}$: $P(x\gt t)=e^{-ct}$ · Rayleigh: $P(x\gt t)=e^{-t^2/2\sigma^2}$ · two tails $\lvert x\rvert\gt t$ → double.<br>
-"Threshold for $P_{FA}=0.1$": set the $H_0$ area $=0.1$, solve for $t$.
+"Threshold for $P_{FA}=0.1$": set the $H_0$ area $=0.1$, solve for $t$. **Read $Q$ backwards:** with a Gaussian $H_0$ the $t$ with $Q(t)=0.1$ is $t=1.28$ (Numbers strip); then $P_D$ = area under the $H_1$ pdf from that same $t$ on.
 
 *Nov22:* $1-e^{-t}=0.1$ → $t=-\ln0.9$; then $P_D=1-e^{-2t}=0.19$.
 
@@ -375,7 +376,7 @@ Tails: Gaussian $N(0,1)$ (mean 0, variance 1): $P(x\gt t)=Q(t)$ = the area right
 IF YOU SEE priors $P(H_0),P(H_1)$, costs $C_{ij}$, "posterior", "Bayesian hypothesis test", "$P_M$" / "miss"
 {: .see }
 
-$C_{ij}$ = cost of deciding $i$ when $j$ is true. $C_{10}$ = false alarm cost, $C_{01}$ = miss cost.
+$C_{ij}$ = cost of deciding $i$ when $j$ is true. $C_{10}$ = false alarm cost, $C_{01}$ = miss cost. "Minimises the Bayes risk" = makes the total cost $C_{00}P(H_0)(1{-}P_{FA})+C_{10}P(H_0)P_{FA}+C_{11}P(H_1)P_D+C_{01}P(H_1)P_M$ as small as possible.
 
 - Threshold $\eta=\dfrac{P(H_0)\,(C_{10}-C_{00})}{P(H_1)\,(C_{01}-C_{11})}$. Equal error costs and 0 for correct → $\eta=\frac{P(H_0)}{P(H_1)}$. Then do 4A with this $\eta$.<br>
   *Jun26-4c:* $\eta=\frac{0.9}{0.1}=9$ → put $\eta=9$ in the Rayleigh answer of 4A.
@@ -402,7 +403,7 @@ Same swap test as 2D — the verb is the question: risk **min** · $P_D$ **max**
 | NP's solution is the LRT; the LRT itself needs **no** priors | "the LRT needs $P_0,P_1$" |
 | $\ln$ of the ratio never changes the decisions | "changes the decisions" |
 | Errors are unavoidable: the pdfs overlap | "a threshold kills both errors" |
-| ROC: $P_D$ up, $P_{FA}$ right; diagonal = guessing; better = top-left | "below diagonal = wrong $\sigma$" (flipped) |
+| ROC = $P_D$ plotted against $P_{FA}$ as the threshold moves: up and right · diagonal = guessing · better = top-left | "below diagonal = wrong $\sigma$" (flipped) |
 | miss = false negative = type II · false alarm = false positive = type I (Nov22 a) | labels swapped |
 
 Matched filter & energy-detector sentences → the last blocks of 4A: time-reversed $s$ · "only for uncorrelated noise" **false** · $\sum x^2$ **big** · a narrow $H_1$ pdf → the sum comes out **small**.
